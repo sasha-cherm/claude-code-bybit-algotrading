@@ -16,12 +16,13 @@ echo "[$(date)] Starting Claude trading session..." | tee -a "$LOGFILE"
 cd "$PROJECT_DIR"
 
 # Launch Claude Code non-interactively with the session prompt
-claude --print "
+claude -p "
 You are the autonomous trading research agent for this project.
 Follow the Session Protocol in CLAUDE.md exactly.
 Start by loading context (MEMORY.md, memory/state.md, memory/hypotheses.md, questions/USER_QA.md).
 Then pick a session goal and execute it.
 End by updating all state files and appending to MEMORY.md.
-" 2>&1 | tee -a "$LOGFILE"
+" \
+    --dangerously-skip-permissions --model opus --effort high </dev/null 2>&1 | tee -a "$LOGFILE"
 
 echo "[$(date)] Session complete." | tee -a "$LOGFILE"

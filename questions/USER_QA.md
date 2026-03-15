@@ -4,7 +4,7 @@ Claude asks questions here. Please fill in answers and save the file — Claude 
 
 ---
 
-## Q-001 [OPEN]
+## Q-001 [ANSWERED]
 **Session:** 2026-03-15 bootstrap
 **Question:** A few setup questions to guide the research direction:
 
@@ -18,6 +18,15 @@ Claude asks questions here. Please fill in answers and save the file — Claude 
 
 5. **Automation level** — Should paper trading remain manual-review-before-live, or fully automatic promotion once targets are hit?
 
-**Answer:** (fill in below)
+**Answer:**
+1. 10,000–100,000 USD
+2. UTA, no testnet keys yet
+3. No preference — all instruments fair game
+4. No hard drawdown restriction, but stay conscious of drawdown
+5. Fully autonomous — user wants hands-off "scripts that print money"
 
----
+**Action taken:** (session 2026-03-15 research)
+- Recorded capital range, account type, risk preferences as project constraints
+- Designing strategies for $10k–$100k capital on Bybit UTA
+- No drawdown kill-switch enforced, but targeting ≤15% max drawdown in backtests
+- System will be fully autonomous: research → backtest → paper → live pipeline with no user gate
