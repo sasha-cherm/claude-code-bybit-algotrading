@@ -1,0 +1,9 @@
+.env
+*.env
+data/*.csv
+data/*.parquet
+data/*.h5
+logs/
+__pycache__/
+*.pyc
+.DS_Store
