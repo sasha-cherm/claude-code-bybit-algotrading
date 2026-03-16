@@ -1,13 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (BTC daily EMA, LONG 0.055 BTC) + H-011 (funding rate arb 5x, OUT)
-- **Target portfolio:** 30% H-009 / 70% H-011 → Sharpe 2.43, +34%, 7.2% DD
-- **Research:** H-010 initial research complete — weekly momentum and daily MR rejected
-- **Analyzed:** H-008 (multi-asset daily trend) — BTC signal validated OOS
-- **Rejected:** H-001–H-007 (7 hypotheses rejected)
-- **Last session:** 2026-03-16 paper trade (session 4)
-- **Key insight:** H-009 + H-011 are uncorrelated (r=0.037). Combined portfolio can hit targets.
+- **Paper trading:** H-009 (BTC daily EMA, LONG 0.055 BTC, +0.15%) + H-011 (funding rate arb 5x, OUT)
+- **Confirmed:** H-012 (cross-sectional momentum, 14 assets) — ready for paper trade
+- **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78, +40.1%, 10.1% DD
+- **Rejected:** H-001–H-007 (7 hypotheses), calendar patterns, EW trend
+- **Last session:** 2026-03-16 research (session 5)
+- **Key insight:** All 3 strategies are uncorrelated (r ≈ 0 pairwise). 3-strategy portfolio improves Sharpe from 2.43 → 2.78.
 - **Risk watch:** Funding rates declining (Q1 2024: 22.7% → Q1 2026: 1.6%)
 - **Open user questions:** none
 
@@ -64,5 +63,13 @@
 - Focus: Paper trade runners for H-009 and H-011, multi-strategy portfolio research
 - Done: Built and deployed **H-009 paper trade runner** (BTC daily EMA + VT 20%). Opened LONG 0.055 BTC @ $73,524 (0.40x). Ran **H-010 multi-strategy research**: tested 5 tracks — leveraged funding arb (best: 5x → +38.2%, Sharpe 24.89), basis trade (~7% = same as funding), weekly momentum (Sharpe 0.63, too much DD), daily MR (all negative). **Key finding**: H-009 + funding arb at 5x are uncorrelated (r=0.037). Portfolio 30/70 → Sharpe 2.43, +34%, 7.2% DD. Created **H-011** (leveraged funding rate arb) and deployed paper trade runner. Walk-forward validated: OOS 5x → +25.4%, 0.14% DD.
 - Next: **Monitor paper trades** (both H-009 and H-011 each session). **Research options vol selling** as potential third portfolio leg. Watch funding rate trends.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-16 research (session 5)
+- Goal: Research — find third portfolio leg to diversify beyond H-009 + H-011
+- Focus: Tested 3 tracks: cross-sectional momentum (14 assets), equal-weight all-asset trend, BTC calendar patterns
+- Done: **H-012 CONFIRMED** — cross-sectional momentum (60d lookback, 5d rebalance, top/bottom 4). IS Sharpe 1.11, rolling OOS Sharpe 0.84 (+27.5%, 20.6% DD). 45/45 params positive (100%). Fee robust to 5x. Correlation with H-009: 0.015, with H-011: -0.050. 3-strategy portfolio (20/60/20): **Sharpe 2.78, +40.1%, 10.1% DD** (up from 2.43/34%/7.2%). EW all-asset trend rejected (IS Sharpe 0.43). Calendar patterns rejected (no significant effects).
+- Next: **Implement H-012 paper trade runner**. Monitor H-009 and H-011 paper trades.
 - Questions added: none
 - Self-modifications: none

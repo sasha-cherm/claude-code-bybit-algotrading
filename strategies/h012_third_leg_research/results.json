@@ -1,0 +1,490 @@
+{
+  "track_a_xsmom": [
+    {
+      "lookback": 7,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": -0.27,
+      "annual_ret": -0.2251,
+      "max_dd": 0.6741,
+      "n_trades": 2643
+    },
+    {
+      "lookback": 7,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": -0.77,
+      "annual_ret": -0.3399,
+      "max_dd": 0.6554,
+      "n_trades": 3174
+    },
+    {
+      "lookback": 7,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": 0.13,
+      "annual_ret": -0.0477,
+      "max_dd": 0.5715,
+      "n_trades": 1374
+    },
+    {
+      "lookback": 7,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": 0.01,
+      "annual_ret": -0.0716,
+      "max_dd": 0.4644,
+      "n_trades": 1596
+    },
+    {
+      "lookback": 7,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": -0.34,
+      "annual_ret": -0.2548,
+      "max_dd": 0.6053,
+      "n_trades": 973
+    },
+    {
+      "lookback": 7,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": -0.44,
+      "annual_ret": -0.24,
+      "max_dd": 0.5837,
+      "n_trades": 1113
+    },
+    {
+      "lookback": 7,
+      "rebal": 7,
+      "n_long": 3,
+      "sharpe": 0.89,
+      "annual_ret": 0.369,
+      "max_dd": 0.5703,
+      "n_trades": 775
+    },
+    {
+      "lookback": 7,
+      "rebal": 7,
+      "n_long": 4,
+      "sharpe": 0.76,
+      "annual_ret": 0.2733,
+      "max_dd": 0.5802,
+      "n_trades": 865
+    },
+    {
+      "lookback": 14,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": 0.92,
+      "annual_ret": 0.401,
+      "max_dd": 0.4266,
+      "n_trades": 1878
+    },
+    {
+      "lookback": 14,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": 0.88,
+      "annual_ret": 0.3313,
+      "max_dd": 0.438,
+      "n_trades": 2281
+    },
+    {
+      "lookback": 14,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": 0.56,
+      "annual_ret": 0.1639,
+      "max_dd": 0.6376,
+      "n_trades": 1000
+    },
+    {
+      "lookback": 14,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": 0.55,
+      "annual_ret": 0.1563,
+      "max_dd": 0.5677,
+      "n_trades": 1133
+    },
+    {
+      "lookback": 14,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": 0.47,
+      "annual_ret": 0.1097,
+      "max_dd": 0.5445,
+      "n_trades": 757
+    },
+    {
+      "lookback": 14,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": 0.65,
+      "annual_ret": 0.2126,
+      "max_dd": 0.4107,
+      "n_trades": 854
+    },
+    {
+      "lookback": 14,
+      "rebal": 7,
+      "n_long": 3,
+      "sharpe": 0.98,
+      "annual_ret": 0.4423,
+      "max_dd": 0.5251,
+      "n_trades": 604
+    },
+    {
+      "lookback": 14,
+      "rebal": 7,
+      "n_long": 4,
+      "sharpe": 1.07,
+      "annual_ret": 0.4524,
+      "max_dd": 0.363,
+      "n_trades": 664
+    },
+    {
+      "lookback": 21,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": 0.42,
+      "annual_ret": 0.0887,
+      "max_dd": 0.4246,
+      "n_trades": 1533
+    },
+    {
+      "lookback": 21,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": 0.51,
+      "annual_ret": 0.138,
+      "max_dd": 0.3461,
+      "n_trades": 1828
+    },
+    {
+      "lookback": 21,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": 0.68,
+      "annual_ret": 0.2462,
+      "max_dd": 0.3614,
+      "n_trades": 822
+    },
+    {
+      "lookback": 21,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": 0.46,
+      "annual_ret": 0.1127,
+      "max_dd": 0.3662,
+      "n_trades": 995
+    },
+    {
+      "lookback": 21,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": 0.09,
+      "annual_ret": -0.0848,
+      "max_dd": 0.5035,
+      "n_trades": 646
+    },
+    {
+      "lookback": 21,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": 0.19,
+      "annual_ret": -0.013,
+      "max_dd": 0.4359,
+      "n_trades": 714
+    },
+    {
+      "lookback": 21,
+      "rebal": 7,
+      "n_long": 3,
+      "sharpe": 0.76,
+      "annual_ret": 0.2939,
+      "max_dd": 0.4764,
+      "n_trades": 519
+    },
+    {
+      "lookback": 21,
+      "rebal": 7,
+      "n_long": 4,
+      "sharpe": 0.71,
+      "annual_ret": 0.2416,
+      "max_dd": 0.2957,
+      "n_trades": 593
+    },
+    {
+      "lookback": 30,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": 0.03,
+      "annual_ret": -0.1002,
+      "max_dd": 0.6504,
+      "n_trades": 1254
+    },
+    {
+      "lookback": 30,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": 0.1,
+      "annual_ret": -0.0439,
+      "max_dd": 0.5886,
+      "n_trades": 1513
+    },
+    {
+      "lookback": 30,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": 0.31,
+      "annual_ret": 0.0326,
+      "max_dd": 0.4853,
+      "n_trades": 692
+    },
+    {
+      "lookback": 30,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": 0.16,
+      "annual_ret": -0.028,
+      "max_dd": 0.5115,
+      "n_trades": 814
+    },
+    {
+      "lookback": 30,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": 0.15,
+      "annual_ret": -0.0456,
+      "max_dd": 0.5095,
+      "n_trades": 528
+    },
+    {
+      "lookback": 30,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": 0.08,
+      "annual_ret": -0.0616,
+      "max_dd": 0.5538,
+      "n_trades": 599
+    },
+    {
+      "lookback": 30,
+      "rebal": 7,
+      "n_long": 3,
+      "sharpe": 0.21,
+      "annual_ret": -0.0217,
+      "max_dd": 0.4471,
+      "n_trades": 442
+    },
+    {
+      "lookback": 30,
+      "rebal": 7,
+      "n_long": 4,
+      "sharpe": 0.08,
+      "annual_ret": -0.0627,
+      "max_dd": 0.4793,
+      "n_trades": 495
+    },
+    {
+      "lookback": 60,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": 0.64,
+      "annual_ret": 0.2179,
+      "max_dd": 0.2866,
+      "n_trades": 969
+    },
+    {
+      "lookback": 60,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": 0.63,
+      "annual_ret": 0.2004,
+      "max_dd": 0.3008,
+      "n_trades": 1018
+    },
+    {
+      "lookback": 60,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": 0.76,
+      "annual_ret": 0.2982,
+      "max_dd": 0.2993,
+      "n_trades": 494
+    },
+    {
+      "lookback": 60,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": 0.89,
+      "annual_ret": 0.3671,
+      "max_dd": 0.2631,
+      "n_trades": 548
+    },
+    {
+      "lookback": 60,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": 1.09,
+      "annual_ret": 0.5083,
+      "max_dd": 0.323,
+      "n_trades": 367
+    },
+    {
+      "lookback": 60,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": 1.11,
+      "annual_ret": 0.4969,
+      "max_dd": 0.3055,
+      "n_trades": 407
+    },
+    {
+      "lookback": 60,
+      "rebal": 7,
+      "n_long": 3,
+      "sharpe": 0.59,
+      "annual_ret": 0.1834,
+      "max_dd": 0.3588,
+      "n_trades": 298
+    },
+    {
+      "lookback": 60,
+      "rebal": 7,
+      "n_long": 4,
+      "sharpe": 0.68,
+      "annual_ret": 0.2362,
+      "max_dd": 0.2924,
+      "n_trades": 334
+    }
+  ],
+  "track_b_ew_trend": [
+    {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "vol_target": null,
+      "sharpe": 0.27,
+      "annual_ret": 0.0088,
+      "max_dd": 0.5437,
+      "n_assets": 14,
+      "n_trades": 581
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 40,
+      "vol_target": null,
+      "sharpe": 0.12,
+      "annual_ret": -0.0517,
+      "max_dd": 0.602,
+      "n_assets": 14,
+      "n_trades": 422
+    },
+    {
+      "ema_fast": 10,
+      "ema_slow": 40,
+      "vol_target": null,
+      "sharpe": 0.32,
+      "annual_ret": 0.0387,
+      "max_dd": 0.5095,
+      "n_assets": 14,
+      "n_trades": 294
+    },
+    {
+      "ema_fast": 10,
+      "ema_slow": 60,
+      "vol_target": null,
+      "sharpe": 0.29,
+      "annual_ret": 0.0275,
+      "max_dd": 0.5677,
+      "n_assets": 14,
+      "n_trades": 218
+    },
+    {
+      "ema_fast": 20,
+      "ema_slow": 60,
+      "vol_target": null,
+      "sharpe": 0.43,
+      "annual_ret": 0.0968,
+      "max_dd": 0.4764,
+      "n_assets": 14,
+      "n_trades": 153
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 40,
+      "vol_target": 0.1,
+      "sharpe": 0.25,
+      "annual_ret": 0.0223,
+      "max_dd": 0.1357,
+      "n_assets": 14,
+      "n_trades": 422
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 40,
+      "vol_target": 0.15,
+      "sharpe": 0.22,
+      "annual_ret": 0.0229,
+      "max_dd": 0.199,
+      "n_assets": 14,
+      "n_trades": 422
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 40,
+      "vol_target": 0.2,
+      "sharpe": 0.2,
+      "annual_ret": 0.0195,
+      "max_dd": 0.2592,
+      "n_assets": 14,
+      "n_trades": 422
+    }
+  ],
+  "track_c_calendar": [
+    {
+      "name": "top6_long_only",
+      "sharpe": -7.79,
+      "annual_ret": -0.8114,
+      "max_dd": 0.9663,
+      "n_switches": 5847
+    },
+    {
+      "name": "top6_long_bot6_short",
+      "sharpe": -10.79,
+      "annual_ret": -0.9792,
+      "max_dd": 0.9996,
+      "n_switches": 13157
+    },
+    {
+      "name": "long_all_except_bot6",
+      "sharpe": -5.08,
+      "annual_ret": -0.8762,
+      "max_dd": 0.9859,
+      "n_switches": 7310
+    }
+  ],
+  "walk_forward": {
+    "xsmom_oos": {
+      "lookback": 60,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": 0.95,
+      "annual_ret": 0.2714,
+      "max_dd": 0.1405,
+      "n_trades": 87
+    },
+    "ew_trend_oos": {
+      "ema_fast": 20,
+      "ema_slow": 60,
+      "vol_target": null,
+      "sharpe": 2.11,
+      "annual_ret": 0.7378,
+      "max_dd": 0.0939,
+      "n_assets": 14,
+      "n_trades": 21
+    }
+  }
+}

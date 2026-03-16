@@ -27,23 +27,43 @@
 - Notes: Derived from H-005 (rejected at 1x for low returns). Leverage scales returns linearly for delta-neutral strategy. Key risk: funding rates declining (22.7% → 1.6% recent). Max consecutive loss at 5x: 0.36% (vs 20% liquidation threshold — very safe). Paper trade started 2026-03-16, currently OUT of position (rolling avg filter).
 - Sessions: [2026-03-16 paper trade]
 
+## Confirmed
+
+## H-012: Cross-Sectional Momentum (14 Crypto Assets, Daily)
+- Status: CONFIRMED — validated, ready for paper trade
+- Idea: Rank 14 crypto assets by 60-day return, long top 4, short bottom 4. Market-neutral cross-sectional momentum.
+- Instrument: futures (14 perps: BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: Compute 60-day return for each asset. Rank. Long top 4 (25% each), short bottom 4 (25% each). Rebalance every 5 days using lagged (t-1) ranking.
+- Result:
+  - **In-sample (full)**: Sharpe 1.11, +49.7% annual, 30.6% DD
+  - **Rolling walk-forward OOS (6 folds, 90d each)**: Sharpe 0.84, +27.5% annual, 20.6% DD
+  - **Param robustness**: 45/45 positive Sharpe (100%), mean 0.54, median 0.57
+  - **Fee sensitivity**: Sharpe 0.88 even at 5x fees (very robust)
+  - **Correlation with H-009**: 0.015 (near zero)
+  - **Correlation with H-011**: -0.050 (slightly negative — excellent)
+  - **3-strategy portfolio (20/60/20)**: Sharpe 2.78, +40.1% annual, 10.1% DD
+- Notes: Captures cross-sectional momentum premium in crypto (winners keep winning, losers keep losing). Market-neutral so no directional exposure. 5/6 walk-forward folds positive. Rolling OOS 20.6% DD is the main concern — manageable with vol targeting or position sizing. Calendar and equal-weight trend alternatives were also tested and rejected.
+- Sessions: [2026-03-16 research session 5]
+
 ## Pending
 
 ## H-010: Multi-Strategy Portfolio Research
-- Status: BACKTEST — initial research complete
+- Status: BACKTEST — expanded to 3-strategy portfolio
 - Idea: Research and combine multiple uncorrelated strategies to achieve Sharpe ≥ 2.0 via diversification.
 - Instrument: mixed
 - Timeframe: mixed
 - Logic: Identify 3-5 strategies with low correlation. Portfolio allocation based on Sharpe contribution.
 - Result:
   - **Leveraged funding rate arb**: Best candidate → promoted to H-011. At 5x: +38.2% annual, Sharpe 24.89
+  - **Cross-sectional momentum**: Promoted to H-012. OOS Sharpe 0.84, 100% params positive
   - **Weekly momentum**: Best Sharpe 0.63 (4w lookback), +19.2% return but 35.9% DD — not viable
   - **Basis/carry trade**: Essentially same as funding arb (7.3% annual) — no incremental value
   - **Daily mean reversion**: All negative — BTC doesn't mean-revert despite lag-1 autocorrelation -0.08
   - **Portfolio combo (H-009 + H-011)**: 30/70 at 5x → Sharpe 2.43, +34%, 7.2% DD
   - **Conservative combo**: 10/90 at 5x → Sharpe 3.40, +15.4%, 6.8% DD
-- Notes: The two-strategy portfolio (H-009 trend + H-011 funding arb) achieves targets with full-period data. Conservative estimate with recent declining funding rates gives ~15-17% return. Need to monitor funding rate trends. Could add a third uncorrelated strategy (options vol selling?) to further boost Sharpe.
-- Sessions: [2026-03-16 analyze, 2026-03-16 paper trade]
+- Notes: Three-strategy portfolio (H-009 + H-011 + H-012) with 20/60/20 allocation achieves Sharpe 2.78, +40.1%, 10.1% DD. All pairwise correlations near zero. Conservative estimate with declining funding rates still achieves ~20%+ return. Could explore fourth strategy (options vol selling?) for further boost.
+- Sessions: [2026-03-16 analyze, 2026-03-16 paper trade, 2026-03-16 research]
 
 ## H-001: EMA Crossover Trend Following (BTC Futures)
 - Status: REJECTED

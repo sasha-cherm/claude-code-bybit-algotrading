@@ -1,0 +1,53 @@
+{
+  "param_robustness": {
+    "positive_pct": 1.0,
+    "mean_sharpe": 0.54,
+    "top_params": [
+      {
+        "lookback": 60,
+        "rebal": 5,
+        "n_long": 4,
+        "sharpe": 1.11,
+        "annual_ret": 0.4969,
+        "max_dd": 0.3055
+      },
+      {
+        "lookback": 60,
+        "rebal": 5,
+        "n_long": 3,
+        "sharpe": 1.09,
+        "annual_ret": 0.5083,
+        "max_dd": 0.323
+      },
+      {
+        "lookback": 45,
+        "rebal": 3,
+        "n_long": 5,
+        "sharpe": 0.96,
+        "annual_ret": 0.3453,
+        "max_dd": 0.2327
+      },
+      {
+        "lookback": 60,
+        "rebal": 3,
+        "n_long": 4,
+        "sharpe": 0.89,
+        "annual_ret": 0.3671,
+        "max_dd": 0.2631
+      },
+      {
+        "lookback": 45,
+        "rebal": 7,
+        "n_long": 5,
+        "sharpe": 0.86,
+        "annual_ret": 0.2852,
+        "max_dd": 0.2167
+      }
+    ]
+  },
+  "walk_forward": {
+    "sharpe": 0.84,
+    "annual_ret": 0.2752,
+    "max_dd": 0.2059
+  }
+}

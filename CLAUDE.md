@@ -1,7 +1,7 @@
 # Bybit Algo Trading — Autonomous Research System
 
 ## Mission
-Build a robust crypto trading algorithm validated on historical data and paper trades, targeting **≥20% annual return** with **≤10% drawdown** on Bybit. Instruments: spot, futures, options — anything that fits the risk profile.
+Build a robust crypto trading algorithm validated on historical data and paper trades, targeting **≥20% annual return** on Bybit. Instruments: spot, futures, options — anything that fits the risk profile. Before I meant DD to be <=10%, actually nice if it would be <=50%, excelent if it would be <=30%.
 
 ## How This Works
 
@@ -109,13 +109,13 @@ Format in `memory/hypotheses.md`:
 
 ## Performance Targets
 
-| Metric | Target | Hard Limit |
-|--------|--------|------------|
-| Annual return | ≥ 20% | — |
-| Max drawdown | ≤ 10% | 15% kill switch |
-| Sharpe ratio | ≥ 1.5 | — |
-| Win rate | ≥ 45% | — |
-| Backtest period | ≥ 2 years | — |
+| Metric | Target | Excellent | Hard Limit |
+|--------|--------|-----------|------------|
+| Annual return | ≥ 20% | ≥ 30% | — |
+| Max drawdown | ≤ 50% | ≤ 30% | — |
+| Sharpe ratio | ≥ 1.5 | ≥ 2.0 | — |
+| Win rate | ≥ 45% | — | — |
+| Backtest period | ≥ 2 years | — | — |
 
 A strategy must pass backtest before paper trading. Paper trading runs ≥ 4 weeks before any live consideration.
 
