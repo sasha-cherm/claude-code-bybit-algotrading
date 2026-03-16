@@ -1,14 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.31%) + H-011 (OUT, 0%) + H-012 (-0.25%) — portfolio +0.02%
+- **Paper trading:** H-009 (+0.59%) + H-011 (OUT, 0%) + H-012 (-0.32%) — portfolio +0.09%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
-- **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78, +40.1%, 10.1% DD
-- **Rejected:** H-001–H-007 (7 hypotheses), calendar patterns, EW trend
-- **Last session:** 2026-03-17 review (session 7)
-- **Risk watch:** Funding rates NEGATIVE since 2026-03-07 (8 days). Q1 2026 only 1.6% ann. H-011 (60% of portfolio) earning nothing. No filter window rescues performance.
-- **Action needed:** If funding stays negative >2 weeks, research H-011 replacement or reallocate
-- **New tool:** `scripts/portfolio_monitor.py` — live mark-to-market portfolio dashboard
+- **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
+- **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
+- **Last session:** 2026-03-17 research (session 8)
+- **Risk resolution:** H-013 research concluded — current 20/60/20 is optimal. H-011 OUT = automatic de-risking. Multi-asset funding fails (rates correlated r=0.49). Dynamic reallocation worse (Sharpe 1.42 vs 2.14). Accept cyclicality.
+- **Next action:** Monitor paper trades. Research new strategy type only if portfolio Sharpe < 1.0.
 - **Open user questions:** none
 
 ## Memory Files
@@ -90,3 +89,11 @@
 - Next: Continue monitoring. If funding stays negative past 2026-03-21, begin researching H-011 replacement (options vol selling, basis trade variants, or higher H-009/H-012 allocation). H-012 rebalances 2026-03-21.
 - Questions added: none
 - Self-modifications: Added portfolio_monitor.py to infrastructure
+
+### Session 2026-03-17 research (session 8)
+- Goal: Research — H-013 multi-asset funding arb + dynamic allocation to address H-011 risk
+- Focus: Can we fix H-011's low-funding problem via multi-asset diversification or dynamic reallocation?
+- Done: Fetched 2yr funding rates for 14 assets. **H-013 REJECTED**: all crypto funding rates correlated (r=0.49 with BTC), multi-asset diversification doesn't help in low-funding regimes, fees kill top-N rotation. Dynamic allocation also rejected: static 20/60/20 outperforms all dynamic variants (Sharpe 2.14 vs 1.42 recent 180d). Key insight: H-011 OUT = auto-derisking (60% idle reduces vol). Portfolio is self-regulating. Portfolio at $30,027 (+0.09%): H-009 $10,059 (+0.59%), H-011 $10,000 (0%), H-012 $9,968 (-0.32%).
+- Next: Monitor paper trades. H-012 rebalances 2026-03-21. Research new strategy types (options, orderflow) only if portfolio Sharpe drops below 1.0.
+- Questions added: none
+- Self-modifications: none

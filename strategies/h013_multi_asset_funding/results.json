@@ -1,0 +1,62 @@
+[
+  {
+    "n_assets": 1,
+    "leverage": 5.0,
+    "total_return": 0.7213180206058389,
+    "ann_return": 0.3164447750018924,
+    "max_dd": -0.02284745657803652,
+    "sharpe": 10.323340300891008,
+    "in_market": 0.9611829944547134,
+    "final_equity": 17213.18020605839,
+    "fees": 1324.919383719464,
+    "variant": "BTC-only (baseline)"
+  },
+  {
+    "n_assets": 1,
+    "leverage": 5.0,
+    "total_return": -0.7989957944686334,
+    "ann_return": -0.5561321962028016,
+    "max_dd": -0.8198969415126528,
+    "sharpe": -6.153935780219585,
+    "in_market": 1.0,
+    "final_equity": 2010.0420553136655,
+    "fees": 15053.511736951019,
+    "variant": "Top-1"
+  },
+  {
+    "n_assets": 3,
+    "leverage": 5.0,
+    "total_return": -0.6615576163538195,
+    "ann_return": -0.42216248936299405,
+    "max_dd": -0.6840764827807433,
+    "sharpe": -8.178074994829082,
+    "in_market": 1.0,
+    "final_equity": 3384.4238364618045,
+    "fees": 14032.46436882347,
+    "variant": "Top-3"
+  },
+  {
+    "n_assets": 5,
+    "leverage": 5.0,
+    "total_return": -0.4559142716785647,
+    "ann_return": -0.26517507441626154,
+    "max_dd": -0.4917524351378623,
+    "sharpe": -6.401841895570152,
+    "in_market": 1.0,
+    "final_equity": 5440.857283214353,
+    "fees": 12266.521826773738,
+    "variant": "Top-5"
+  },
+  {
+    "n_assets": 14,
+    "leverage": 5.0,
+    "total_return": 0.5689744196918323,
+    "ann_return": 0.25611336043017374,
+    "max_dd": -0.0846510587684634,
+    "sharpe": 6.859034480406807,
+    "in_market": 1.0,
+    "final_equity": 15689.744196918322,
+    "fees": 3999.4848924599896,
+    "variant": "All-positive"
+  }
+]

@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,031.20 (+0.31%) — live mark @ BTC $74,166
+- **Mark equity**: $10,058.85 (+0.59%) — live mark @ BTC $74,670
 - **Leverage**: 0.40x (vol targeting: 49.6% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -22,17 +22,17 @@
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC, NEAR, ATOM, AVAX
-  - SHORT: SOL, SUI, ARB, OP
-- **Mark equity**: $9,975.50 (-0.25%) — shorts underperforming in broad rally
+  - LONG: BTC (+$23), NEAR (+$125), ATOM (+$15), AVAX (+$63)
+  - SHORT: SOL (-$48), SUI (-$49), ARB (-$47), OP (-$95)
+- **Mark equity**: $9,968.06 (-0.32%) — shorts losing in broad rally (NEAR strong +$125)
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21
 
-## Portfolio Summary (live mark-to-market 2026-03-16 21:05 UTC)
-- **Total equity**: $30,006.70 (+0.02%)
-- **Weighted return** (20/60/20): +0.013%
-- **Paper trade age**: 0 days / 28 required
+## Portfolio Summary (live mark-to-market 2026-03-17)
+- **Total equity**: $30,026.91 (+0.09%)
+- **H-009**: $10,058.85 (+0.59%) | **H-011**: $10,000.00 (0%) | **H-012**: $9,968.06 (-0.32%)
+- **Paper trade age**: 1 day / 28 required
 
 ## Target Portfolio Allocation
 - **20% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -51,11 +51,13 @@
 | Hypothesis | Status | Priority | Next Step |
 |-----------|--------|----------|-----------|
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | All 3 strategies now in paper trade |
+| H-013: Multi-Asset Funding Arb | REJECTED | — | Fees kill returns, all rates correlated |
 
 ## Risk Watch
-- **Funding rate regime**: Structural decline from 22.7% ann (Q1 2024) to 1.6% ann (Q1 2026). Rolling-27 negative since 2026-03-07. If this persists, H-011's 60% allocation contributes near-zero returns and portfolio falls below 20% target.
-- **Filter sensitivity**: Tested windows 9-54. No window rescues returns in low-funding regime. Best recent 180d performance: window 36 at +12.3% ann (5x).
-- **Mitigation options**: (1) Reduce H-011 allocation, boost H-009/H-012. (2) Research 4th strategy as H-011 replacement. (3) Accept cyclicality — funding may recover.
+- **Funding rate regime**: Rolling-27 negative since 2026-03-07 (10 days). H-011 OUT = 60% idle.
+- **H-013 research conclusion**: Multi-asset funding arb REJECTED. Dynamic reallocation REJECTED. Current 20/60/20 is self-regulating — H-011 OUT acts as automatic de-risking, improving Sharpe. Even in recent 180d: +19.0% ann, Sharpe 2.14.
+- **Decision**: Accept H-011 cyclicality. Portfolio remains robust. No allocation change needed.
+- **Watchlist**: If funding stays negative >4 weeks AND portfolio Sharpe drops below 1.0, revisit. Otherwise maintain current allocation.
 
 ## Rejected Strategies
 | Hypothesis | Reason |
@@ -67,6 +69,7 @@
 | H-005: Funding Rate Arb (1x) | Returns too low at 1x (1.7-3.1%). Superseded by H-011 (5x). |
 | H-006: Adaptive Mean Reversion (1h) | All params negative even with regime filter. |
 | H-007: BTC/ETH Pairs Trading | Structural BTC/ETH divergence defeats mean reversion. |
+| H-013: Multi-Asset Funding Arb | Rates too correlated (r=0.49), fees kill multi-asset rotation. |
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -81,6 +84,8 @@
 - **Portfolio monitor**: `scripts/portfolio_monitor.py` — live mark-to-market across all strategies — NEW
 - Cached data (1h, 2yr): BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM (14 assets)
 - Cached data: BTC funding rates (2yr, 2194 records)
+- Cached data: 14-asset funding rates (2yr, 2190 records each) — NEW
+- H-013 multi-asset funding research + dynamic allocation analysis — NEW
 
 ## Key Learnings
 - 2024–2026 BTC: +1.8% total, 50% drawdown — extremely hostile for directional strategies
@@ -97,4 +102,7 @@
 - Equal-weight all-asset trend: weak IS Sharpe (0.43), suspicious OOS (likely period-specific)
 - Fee drag critical at 1h; daily/5-day rebalance minimizes fee impact
 - **All 3 strategies now in paper trade** — monitor for ≥4 weeks before live consideration
-- Next priorities: (1) monitor all 3 paper trades every session, (2) if funding stays negative >2 weeks, research H-011 replacement or reallocation
+- **Multi-asset funding arb doesn't help**: all crypto funding rates correlated (r=0.49). Fees from rotation kill returns.
+- **Dynamic allocation not needed**: H-011 OUT = 60% idle = auto-derisking. Reallocating to H-009/H-012 increases DD more than returns. Static 20/60/20 has best Sharpe in all periods.
+- **Current portfolio is self-regulating**: accept H-011 cyclicality, maintain allocation
+- Next priorities: (1) monitor all 3 paper trades, (2) research genuinely new strategy type (options, orderflow) only if portfolio Sharpe drops below 1.0
