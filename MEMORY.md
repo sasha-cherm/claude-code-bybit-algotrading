@@ -1,13 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.20%) + H-011 (OUT) + H-012 (-0.24%, just entered) — all 3 strategies LIVE
+- **Paper trading:** H-009 (+0.31%) + H-011 (OUT, 0%) + H-012 (-0.25%) — portfolio +0.02%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78, +40.1%, 10.1% DD
 - **Rejected:** H-001–H-007 (7 hypotheses), calendar patterns, EW trend
-- **Last session:** 2026-03-16 paper trade (session 6)
-- **Key insight:** All 3 strategies are uncorrelated (r ≈ 0 pairwise). Full portfolio now in paper trade.
-- **Risk watch:** Funding rates declining (Q1 2024: 22.7% → Q1 2026: 1.6%)
+- **Last session:** 2026-03-17 review (session 7)
+- **Risk watch:** Funding rates NEGATIVE since 2026-03-07 (8 days). Q1 2026 only 1.6% ann. H-011 (60% of portfolio) earning nothing. No filter window rescues performance.
+- **Action needed:** If funding stays negative >2 weeks, research H-011 replacement or reallocate
+- **New tool:** `scripts/portfolio_monitor.py` — live mark-to-market portfolio dashboard
 - **Open user questions:** none
 
 ## Memory Files
@@ -81,3 +82,11 @@
 - Next: Monitor all 3 paper trades every session. H-012 next rebal 2026-03-21. Consider 4th strategy leg if needed.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-17 review (session 7)
+- Goal: Review — monitor paper trades, analyze funding rate risk, build portfolio tooling
+- Focus: Paper trade day 1 review + H-011 funding rate viability analysis
+- Done: Ran all 3 paper trade runners (no new daily bars yet). Portfolio at $30,007 (+0.02%). Deep funding rate analysis: rolling-27 negative since 2026-03-07, Q1 2026 only 1.6% ann, tested filter windows 9-54 — no window rescues recent performance (best 180d: window 36 → +12.3% ann at 5x). Built `scripts/portfolio_monitor.py` with live mark-to-market pricing. Added Risk Watch section to state.md.
+- Next: Continue monitoring. If funding stays negative past 2026-03-21, begin researching H-011 replacement (options vol selling, basis trade variants, or higher H-009/H-012 allocation). H-012 rebalances 2026-03-21.
+- Questions added: none
+- Self-modifications: Added portfolio_monitor.py to infrastructure
