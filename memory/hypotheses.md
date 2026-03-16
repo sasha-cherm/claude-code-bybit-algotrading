@@ -2,32 +2,59 @@
 
 ## Pending
 
-## H-001: EMA Crossover Trend Following (BTC Futures)
+## H-009: BTC Daily EMA Trend Following with Vol Targeting (Paper Trade Candidate)
 - Status: PENDING
+- Idea: BTC-only daily EMA(5/40) crossover with position-level vol targeting. Most defensible variant of H-008 — no asset selection needed, OOS-validated.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D (daily)
+- Logic: Long when EMA(5) > EMA(40), short when EMA(5) < EMA(40). Position size scaled by target_vol / realized_vol (30-day lookback). Cap at 2x notional.
+- Result: —
+- Notes: Derived from H-008 analysis. BTC-only OOS Sharpe 0.94, VT 20% gives +11.8% annual at 12.9% DD. Modest returns but robust signal. Could be component of multi-strategy portfolio.
+- Sessions: [2026-03-16 analyze]
+
+## H-010: Multi-Strategy Portfolio Research
+- Status: PENDING
+- Idea: Research and combine multiple uncorrelated strategies to achieve Sharpe ≥ 2.0 via diversification. Single strategies max at Sharpe ~0.7; need portfolio approach for 20% return at 10% DD.
+- Instrument: mixed
+- Timeframe: mixed
+- Logic: Identify 3-5 strategies with low correlation. Candidates: (a) BTC daily trend (H-009, Sharpe 0.65), (b) funding rate arb with leverage (H-005 derivative), (c) cross-exchange arb/basis trade, (d) options vol selling, (e) order flow / microstructure.
+- Result: —
+- Notes: Math requires Sharpe ≥ 2.0 for 20% return at ≤10% DD. With 3 uncorrelated strategies at Sharpe ~0.7, combined Sharpe ≈ 1.2. Need higher individual Sharpes or more strategies.
+- Sessions: [2026-03-16 analyze]
+
+## H-001: EMA Crossover Trend Following (BTC Futures)
+- Status: REJECTED
 - Idea: Classic dual-EMA crossover on BTC/USDT perpetual futures with volatility-scaled position sizing
 - Instrument: futures (BTC/USDT perp)
 - Timeframe: 4h
 - Logic: Long when EMA(20) > EMA(50), short when EMA(20) < EMA(50). Position size = target_risk / ATR(14). Stop-loss at 2×ATR. Take-profit at 3×ATR or trail.
-- Result: —
-- Notes: Superseded by H-008 which tests daily EMA crossover more broadly. Low priority.
-- Sessions: [2026-03-15 research]
+- Result: Superseded by H-008/H-009 (daily timeframe works better than 4h).
+- Notes: 4h timeframe inferior to daily. H-008 tested daily EMA crossover comprehensively.
+- Sessions: [2026-03-15 research, 2026-03-16 analyze]
 
-## Backtest
+## Analyzed (Walk-Forward Validated)
 
 ## H-008: Multi-Asset Daily Trend Following (Futures Portfolio)
-- Status: BACKTEST
+- Status: ANALYZED — partially validated
 - Idea: EMA crossover trend following on daily timeframe across a diversified crypto futures portfolio. Equal-weight allocation across top-performing assets selected by in-sample Sharpe.
 - Instrument: futures (BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM — 14 assets tested)
 - Timeframe: 1D (daily)
-- Logic: Long when EMA(5) > EMA(40), short when EMA(5) < EMA(40). Full allocation per asset, equal weight across portfolio assets. No leverage.
+- Logic: Long when EMA(5) > EMA(40), short when EMA(5) < EMA(40). Full allocation per asset, equal weight across portfolio assets.
 - Result:
-  - **Single-asset BTC**: Sharpe 0.70, annual +22.5%, max DD 33.7%, 25 trades, PF 1.73
-  - **Top-3 portfolio (SUI, BTC, XRP)**: Sharpe 1.03, annual +53.4%, max DD 57.3%
-  - **Top-5 portfolio**: Sharpe 0.83, annual +34.4%, max DD 51.3%
-  - **All-14 portfolio**: Sharpe 0.15, annual -3.9%, max DD 59.8%
-  - Average strategy return correlation: 0.355 (good diversification)
-- Notes: Best result across all hypotheses tested. SUI dominates (Sharpe 1.25, +100.6% annual) — likely driven by strong 2025 trend, may not persist. Only 3/14 assets have Sharpe > 0.5 individually. **Needs walk-forward validation** to confirm this isn't overfit. Position sizing needed to control DD to ≤10% (would reduce returns proportionally). With vol-targeting, BTC-only achieves 6.5% annual at 13.1% DD.
-- Sessions: [2026-03-16 backtest]
+  - **In-sample (full)**: Top-3 Sharpe 1.03, +53.4%, 57.3% DD | BTC-only Sharpe 0.70, +22.5%
+  - **Fixed-split OOS (30%)**: Top-3 Sharpe 0.94, +34.2%, 19.5% DD | BTC-only Sharpe 0.94, +30.2%, 16.5% DD
+  - **Rolling walk-forward (top-5, 6mo rebal)**: Sharpe -0.84, -43.4% — **FAILS**
+  - **Rolling walk-forward (top-3, 3mo rebal)**: Sharpe -0.59, -37.1% — **FAILS**
+  - **BTC-only OOS VT 20%**: Sharpe 0.59, +11.8%, 12.9% DD
+  - **Top-3 OOS VT 12%**: Sharpe 0.76, +9.7%, 7.2% DD
+  - **Param robustness**: 15/15 param sets positive Sharpe (0.50–0.86), mean 0.69
+- Notes:
+  - **Signal is real**: BTC daily EMA crossover OOS Sharpe 0.94 (higher than IS 0.59), 15/15 params positive
+  - **Asset selection is fragile**: rolling walk-forward fails because past Sharpe doesn't predict future for altcoins
+  - **Vol targeting works**: controls DD to target level at cost of proportional return reduction
+  - **Math ceiling**: Sharpe ~0.65 means max ~15% return at 10% DD. Cannot hit 20%/10% with single strategy
+  - **Recommendation**: BTC-only variant (H-009) is paper-trade ready. Multi-asset needs better selection method.
+- Sessions: [2026-03-16 backtest, 2026-03-16 analyze]
 
 ## Confirmed
 (none)

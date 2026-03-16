@@ -1,0 +1,300 @@
+{
+  "params": {
+    "ema_fast": 5,
+    "ema_slow": 40,
+    "fee_rate": 0.001
+  },
+  "fixed_split": {
+    "top_3": {
+      "assets": [
+        "BTC",
+        "SUI",
+        "XRP"
+      ],
+      "raw": {
+        "annual_return": 0.3422,
+        "max_drawdown": 0.1946,
+        "sharpe_ratio": 0.9426,
+        "sortino_ratio": 1.4835,
+        "n_trades": 18,
+        "win_rate": 0.3333,
+        "profit_factor": 1.6779
+      },
+      "vol_targeted_10pct": {
+        "annual_return": 0.0011,
+        "max_drawdown": 0.0935,
+        "sharpe_ratio": 0.0701,
+        "sortino_ratio": 0.0885
+      }
+    },
+    "top_5": {
+      "assets": [
+        "BTC",
+        "ETH",
+        "SUI",
+        "XRP",
+        "DOGE"
+      ],
+      "raw": {
+        "annual_return": 0.0626,
+        "max_drawdown": 0.2542,
+        "sharpe_ratio": 0.3493,
+        "sortino_ratio": 0.5086,
+        "n_trades": 32,
+        "win_rate": 0.3125,
+        "profit_factor": 1.0936
+      },
+      "vol_targeted_10pct": {
+        "annual_return": -0.0967,
+        "max_drawdown": 0.1393,
+        "sharpe_ratio": -0.7681,
+        "sortino_ratio": -0.8469
+      }
+    },
+    "top_7": {
+      "assets": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "SUI",
+        "XRP",
+        "DOGE",
+        "DOT"
+      ],
+      "raw": {
+        "annual_return": -0.095,
+        "max_drawdown": 0.3321,
+        "sharpe_ratio": -0.0369,
+        "sortino_ratio": -0.0512,
+        "n_trades": 48,
+        "win_rate": 0.2917,
+        "profit_factor": 0.8423
+      },
+      "vol_targeted_10pct": {
+        "annual_return": -0.1419,
+        "max_drawdown": 0.1684,
+        "sharpe_ratio": -1.1635,
+        "sortino_ratio": -1.2438
+      }
+    },
+    "top_10": {
+      "assets": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "SUI",
+        "XRP",
+        "DOGE",
+        "AVAX",
+        "LINK",
+        "DOT",
+        "ATOM"
+      ],
+      "raw": {
+        "annual_return": 0.1047,
+        "max_drawdown": 0.2287,
+        "sharpe_ratio": 0.4524,
+        "sortino_ratio": 0.6594,
+        "n_trades": 65,
+        "win_rate": 0.3385,
+        "profit_factor": 1.1492
+      },
+      "vol_targeted_10pct": {
+        "annual_return": -0.0484,
+        "max_drawdown": 0.1327,
+        "sharpe_ratio": -0.3314,
+        "sortino_ratio": -0.4049
+      }
+    },
+    "top_14": {
+      "assets": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "SUI",
+        "XRP",
+        "DOGE",
+        "AVAX",
+        "LINK",
+        "ADA",
+        "DOT",
+        "NEAR",
+        "ATOM"
+      ],
+      "raw": {
+        "annual_return": 0.0528,
+        "max_drawdown": 0.2464,
+        "sharpe_ratio": 0.3236,
+        "sortino_ratio": 0.4467,
+        "n_trades": 84,
+        "win_rate": 0.3214,
+        "profit_factor": 1.0644
+      },
+      "vol_targeted_10pct": {
+        "annual_return": -0.0567,
+        "max_drawdown": 0.1363,
+        "sharpe_ratio": -0.4109,
+        "sortino_ratio": -0.4948
+      }
+    }
+  },
+  "rolling_walk_forward": {
+    "segments": [
+      {
+        "period": "2025-04-01 to 2025-10-01",
+        "assets": [
+          "SUI",
+          "XRP",
+          "ATOM",
+          "DOGE",
+          "DOT"
+        ],
+        "segment_return": -0.5599
+      },
+      {
+        "period": "2025-10-01 to 2026-03-15",
+        "assets": [
+          "SUI",
+          "XRP",
+          "BTC",
+          "ETH",
+          "AVAX"
+        ],
+        "segment_return": 0.3168
+      }
+    ],
+    "chained_oos": {
+      "annual_return": -0.4338,
+      "max_drawdown": 0.6276,
+      "sharpe_ratio": -0.8385,
+      "sortino_ratio": -1.1766
+    },
+    "vol_targeted_10pct": {
+      "annual_return": -0.0939,
+      "max_drawdown": 0.1622,
+      "sharpe_ratio": -0.942
+    }
+  },
+  "param_robustness": [
+    {
+      "ema_fast": 3,
+      "ema_slow": 30,
+      "annual_return": 0.2781,
+      "max_drawdown": 0.4269,
+      "sharpe": 0.7379,
+      "n_trades": 182
+    },
+    {
+      "ema_fast": 3,
+      "ema_slow": 40,
+      "annual_return": 0.3731,
+      "max_drawdown": 0.57,
+      "sharpe": 0.8599,
+      "n_trades": 167
+    },
+    {
+      "ema_fast": 3,
+      "ema_slow": 50,
+      "annual_return": 0.1449,
+      "max_drawdown": 0.5983,
+      "sharpe": 0.5197,
+      "n_trades": 156
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 30,
+      "annual_return": 0.3462,
+      "max_drawdown": 0.5228,
+      "sharpe": 0.8268,
+      "n_trades": 149
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 40,
+      "annual_return": 0.3366,
+      "max_drawdown": 0.5155,
+      "sharpe": 0.8176,
+      "n_trades": 130
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 50,
+      "annual_return": 0.2461,
+      "max_drawdown": 0.4824,
+      "sharpe": 0.6864,
+      "n_trades": 121
+    },
+    {
+      "ema_fast": 5,
+      "ema_slow": 60,
+      "annual_return": 0.1335,
+      "max_drawdown": 0.5029,
+      "sharpe": 0.5,
+      "n_trades": 117
+    },
+    {
+      "ema_fast": 7,
+      "ema_slow": 30,
+      "annual_return": 0.2885,
+      "max_drawdown": 0.4083,
+      "sharpe": 0.7617,
+      "n_trades": 134
+    },
+    {
+      "ema_fast": 7,
+      "ema_slow": 40,
+      "annual_return": 0.1635,
+      "max_drawdown": 0.5431,
+      "sharpe": 0.5512,
+      "n_trades": 124
+    },
+    {
+      "ema_fast": 7,
+      "ema_slow": 50,
+      "annual_return": 0.1924,
+      "max_drawdown": 0.4248,
+      "sharpe": 0.6004,
+      "n_trades": 103
+    },
+    {
+      "ema_fast": 7,
+      "ema_slow": 60,
+      "annual_return": 0.2504,
+      "max_drawdown": 0.4328,
+      "sharpe": 0.7044,
+      "n_trades": 89
+    },
+    {
+      "ema_fast": 10,
+      "ema_slow": 30,
+      "annual_return": 0.2822,
+      "max_drawdown": 0.484,
+      "sharpe": 0.7355,
+      "n_trades": 106
+    },
+    {
+      "ema_fast": 10,
+      "ema_slow": 40,
+      "annual_return": 0.29,
+      "max_drawdown": 0.4195,
+      "sharpe": 0.7567,
+      "n_trades": 95
+    },
+    {
+      "ema_fast": 10,
+      "ema_slow": 50,
+      "annual_return": 0.2651,
+      "max_drawdown": 0.3594,
+      "sharpe": 0.7256,
+      "n_trades": 85
+    },
+    {
+      "ema_fast": 10,
+      "ema_slow": 60,
+      "annual_return": 0.211,
+      "max_drawdown": 0.4364,
+      "sharpe": 0.6372,
+      "n_trades": 77
+    }
+  ]
+}

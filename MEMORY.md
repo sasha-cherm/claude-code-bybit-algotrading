@@ -1,10 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Active strategies:** H-008 (multi-asset daily trend following) in BACKTEST — best result so far, Sharpe 1.03
+- **Active strategies:** H-009 (BTC daily EMA + vol targeting) PENDING paper trade, H-010 (multi-strategy research) PENDING
 - **Paper trading:** none
-- **Rejected:** H-002, H-003, H-004, H-005, H-006, H-007 (6 hypotheses rejected this project)
-- **Last session:** 2026-03-16 backtest (session 2)
+- **Analyzed:** H-008 (multi-asset daily trend) — BTC signal validated OOS, asset selection fails walk-forward
+- **Rejected:** H-001–H-007 (7 hypotheses rejected)
+- **Last session:** 2026-03-16 analyze (session 3)
+- **Key insight:** Sharpe ~0.65 single strategy → max ~15% return at 10% DD. Need multi-strategy for 20%/10% target.
 - **Open user questions:** none
 
 ## Memory Files
@@ -44,5 +46,13 @@
 - Focus: Exhaustive strategy testing — 5 hypotheses tested, pivoted to daily timeframe and multi-asset
 - Done: **H-004 REJECTED** (all negative, best Sharpe -0.62). **H-006 REJECTED** (reversal confirmation improved WR to 60% but still negative). Created and tested **H-007** BTC/ETH pairs trading — **REJECTED** (structural ETH underperformance defeats mean reversion). Tested **H-005** funding rate arb — works perfectly (Sharpe 4.7+) but returns too low (1.7-3.1% annual) — **REJECTED**. Pivoted to daily EMA crossover: BTC EMA(5/40) Sharpe 0.70, +22.5% annual. Expanded to 14 assets — created **H-008**: top-3 portfolio (SUI, BTC, XRP) achieves **Sharpe 1.03, +53.4% annual**. Fetched 1h data for 11 additional assets.
 - Next: **H-008 walk-forward validation** — split train/test, confirm not overfit. Position sizing to control DD. Consider adaptive asset selection.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-16 analyze (session 3)
+- Goal: Analyze — H-008 walk-forward validation, vol targeting, parameter robustness
+- Focus: Rigorous OOS testing of multi-asset daily trend following
+- Done: Built full strategy code in `strategies/daily_trend_multi_asset/`. Ran 5 validation tests: (1) Fixed 70/30 split — BTC-only OOS Sharpe 0.94, top-3 OOS Sharpe 0.94; (2) Rolling walk-forward — **FAILS** (Sharpe -0.84, -0.59) due to altcoin regime shifts; (3) Param robustness — 15/15 positive Sharpe (0.50–0.86); (4) Vol targeting — controls DD but reduces returns proportionally; (5) BTC-only VT 20% → +11.8%, 12.9% DD. Created H-009 (BTC-only paper trade candidate) and H-010 (multi-strategy portfolio research). Math: need Sharpe ≥ 2.0 for 20% return at ≤10% DD.
+- Next: **H-009 paper trade implementation** (BTC daily EMA with vol targeting). **H-010 research** — explore higher-Sharpe strategies: options vol selling, basis/carry trades, order flow microstructure.
 - Questions added: none
 - Self-modifications: none
