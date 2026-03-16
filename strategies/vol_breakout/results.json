@@ -1,0 +1,27 @@
+{
+  "total_return": -0.2297,
+  "annual_return": -0.1223,
+  "max_drawdown": 0.3166,
+  "sharpe_ratio": -0.623,
+  "sortino_ratio": -0.265,
+  "calmar_ratio": -0.3865,
+  "n_periods": 17520,
+  "n_trades": 119,
+  "win_rate": 0.395,
+  "profit_factor": 0.8651,
+  "avg_trade": -9.7633,
+  "best_trade": 398.4754,
+  "worst_trade": -354.7173,
+  "mode": "futures",
+  "fee_rate": 0.001,
+  "initial_capital": 10000.0,
+  "final_capital": 7702.84,
+  "params": {
+    "channel_window": 24,
+    "atr_window": 24,
+    "breakout_mult": 1.0,
+    "trail_atr_mult": 1.5,
+    "max_hold": 48,
+    "vol_filter": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "total_return": -0.2768,
+  "annual_return": -0.1496,
+  "max_drawdown": 0.356,
+  "sharpe_ratio": -1.0483,
+  "sortino_ratio": -0.7631,
+  "calmar_ratio": -0.4202,
+  "n_periods": 17520,
+  "n_trades": 105,
+  "win_rate": 0.619,
+  "profit_factor": 0.7175,
+  "avg_trade": -18.0505,
+  "best_trade": 338.0561,
+  "worst_trade": -682.7983,
+  "initial_capital": 10000.0,
+  "final_capital": 7231.78,
+  "fee_rate": 0.001,
+  "mode": "pairs",
+  "params": {
+    "lookback": 168,
+    "entry_z": 2.5,
+    "exit_z": 0.5,
+    "stop_z": 5.0
+  }
+}

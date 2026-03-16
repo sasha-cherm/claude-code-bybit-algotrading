@@ -1,0 +1,28 @@
+{
+  "total_return": -0.2579,
+  "annual_return": -0.1385,
+  "max_drawdown": 0.3497,
+  "sharpe_ratio": -1.0303,
+  "sortino_ratio": -0.4798,
+  "calmar_ratio": -0.3962,
+  "n_periods": 17520,
+  "n_trades": 167,
+  "win_rate": 0.5988,
+  "profit_factor": 0.8744,
+  "avg_trade": -6.5562,
+  "best_trade": 412.6925,
+  "worst_trade": -423.0642,
+  "mode": "futures",
+  "fee_rate": 0.001,
+  "initial_capital": 10000.0,
+  "final_capital": 7421.28,
+  "params": {
+    "bb_window": 20,
+    "bb_std": 2.5,
+    "rsi_long_entry": 35,
+    "rsi_short_entry": 65,
+    "regime_threshold": 1.0,
+    "stop_atr_mult": 3.0,
+    "require_reversal": true
+  }
+}
