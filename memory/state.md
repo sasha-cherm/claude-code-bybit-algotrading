@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,014.67 (+0.15%)
+- **Mark equity**: $10,020.12 (+0.20%)
 - **Leverage**: 0.40x (vol targeting: 49.6% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -18,7 +18,17 @@
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
 - **Next check**: Next funding settlement (every 8h)
 
-## Target Portfolio Allocation (Updated)
+### H-012: Cross-Sectional Momentum (14 Assets)
+- **Status**: LIVE paper trade (started 2026-03-16)
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: BTC, NEAR, ATOM, AVAX
+  - SHORT: SOL, SUI, ARB, OP
+- **Mark equity**: $9,975.99 (-0.24%, initial fees)
+- **Runner**: `paper_trades/h012_xsmom/runner.py`
+- **Params**: 60d lookback, 5d rebalance, top/bottom 4
+- **Next rebal**: 2026-03-21
+
+## Target Portfolio Allocation
 - **20% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
 - **60% H-011** (funding rate arb): carry alpha, Sharpe ~15-25
 - **20% H-012** (cross-sectional momentum): relative value alpha, Sharpe ~0.8-1.1
@@ -34,8 +44,7 @@
 ## Research Pipeline
 | Hypothesis | Status | Priority | Next Step |
 |-----------|--------|----------|-----------|
-| H-012: Cross-Sectional Momentum | CONFIRMED | **High** | Implement paper trade runner |
-| H-010: Multi-Strategy Portfolio | BACKTEST | Low | Updated to 3-strategy model |
+| H-010: Multi-Strategy Portfolio | BACKTEST | Low | All 3 strategies now in paper trade |
 
 ## Rejected Strategies
 | Hypothesis | Reason |
@@ -57,6 +66,7 @@
 - H-012 research + validation framework (XSMom)
 - H-009 paper trade runner (internal simulation)
 - H-011 paper trade runner (funding rate arb simulation)
+- **H-012 paper trade runner (XSMom, internal simulation)** — NEW
 - Cached data (1h, 2yr): BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM (14 assets)
 - Cached data: BTC funding rates (2yr, 2194 records)
 
@@ -73,4 +83,5 @@
 - Calendar/seasonality patterns in BTC: not exploitable (low t-stats, unstable across halves)
 - Equal-weight all-asset trend: weak IS Sharpe (0.43), suspicious OOS (likely period-specific)
 - Fee drag critical at 1h; daily/5-day rebalance minimizes fee impact
-- Next priorities: (1) implement H-012 paper trade, (2) monitor all paper trades
+- **All 3 strategies now in paper trade** — monitor for ≥4 weeks before live consideration
+- Next priorities: (1) monitor all 3 paper trades every session, (2) research 4th strategy leg if needed

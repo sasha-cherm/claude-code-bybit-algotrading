@@ -27,10 +27,8 @@
 - Notes: Derived from H-005 (rejected at 1x for low returns). Leverage scales returns linearly for delta-neutral strategy. Key risk: funding rates declining (22.7% → 1.6% recent). Max consecutive loss at 5x: 0.36% (vs 20% liquidation threshold — very safe). Paper trade started 2026-03-16, currently OUT of position (rolling avg filter).
 - Sessions: [2026-03-16 paper trade]
 
-## Confirmed
-
 ## H-012: Cross-Sectional Momentum (14 Crypto Assets, Daily)
-- Status: CONFIRMED — validated, ready for paper trade
+- Status: LIVE (paper trade since 2026-03-16)
 - Idea: Rank 14 crypto assets by 60-day return, long top 4, short bottom 4. Market-neutral cross-sectional momentum.
 - Instrument: futures (14 perps: BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM)
 - Timeframe: 1D (rebalance every 5 days)
@@ -43,8 +41,11 @@
   - **Correlation with H-009**: 0.015 (near zero)
   - **Correlation with H-011**: -0.050 (slightly negative — excellent)
   - **3-strategy portfolio (20/60/20)**: Sharpe 2.78, +40.1% annual, 10.1% DD
-- Notes: Captures cross-sectional momentum premium in crypto (winners keep winning, losers keep losing). Market-neutral so no directional exposure. 5/6 walk-forward folds positive. Rolling OOS 20.6% DD is the main concern — manageable with vol targeting or position sizing. Calendar and equal-weight trend alternatives were also tested and rejected.
-- Sessions: [2026-03-16 research session 5]
+- Notes: Captures cross-sectional momentum premium in crypto (winners keep winning, losers keep losing). Market-neutral so no directional exposure. 5/6 walk-forward folds positive. Rolling OOS 20.6% DD is the main concern — manageable with vol targeting or position sizing. Calendar and equal-weight trend alternatives were also tested and rejected. Paper trade deployed 2026-03-16: LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP.
+- Sessions: [2026-03-16 research session 5, 2026-03-16 paper trade session 6]
+
+## Confirmed
+(none — H-012 promoted to LIVE)
 
 ## Pending
 

@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (BTC daily EMA, LONG 0.055 BTC, +0.15%) + H-011 (funding rate arb 5x, OUT)
-- **Confirmed:** H-012 (cross-sectional momentum, 14 assets) — ready for paper trade
+- **Paper trading:** H-009 (+0.20%) + H-011 (OUT) + H-012 (-0.24%, just entered) — all 3 strategies LIVE
+- **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78, +40.1%, 10.1% DD
 - **Rejected:** H-001–H-007 (7 hypotheses), calendar patterns, EW trend
-- **Last session:** 2026-03-16 research (session 5)
-- **Key insight:** All 3 strategies are uncorrelated (r ≈ 0 pairwise). 3-strategy portfolio improves Sharpe from 2.43 → 2.78.
+- **Last session:** 2026-03-16 paper trade (session 6)
+- **Key insight:** All 3 strategies are uncorrelated (r ≈ 0 pairwise). Full portfolio now in paper trade.
 - **Risk watch:** Funding rates declining (Q1 2024: 22.7% → Q1 2026: 1.6%)
 - **Open user questions:** none
 
@@ -71,5 +71,13 @@
 - Focus: Tested 3 tracks: cross-sectional momentum (14 assets), equal-weight all-asset trend, BTC calendar patterns
 - Done: **H-012 CONFIRMED** — cross-sectional momentum (60d lookback, 5d rebalance, top/bottom 4). IS Sharpe 1.11, rolling OOS Sharpe 0.84 (+27.5%, 20.6% DD). 45/45 params positive (100%). Fee robust to 5x. Correlation with H-009: 0.015, with H-011: -0.050. 3-strategy portfolio (20/60/20): **Sharpe 2.78, +40.1%, 10.1% DD** (up from 2.43/34%/7.2%). EW all-asset trend rejected (IS Sharpe 0.43). Calendar patterns rejected (no significant effects).
 - Next: **Implement H-012 paper trade runner**. Monitor H-009 and H-011 paper trades.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-16 paper trade (session 6)
+- Goal: Paper Trade — deploy H-012 cross-sectional momentum, monitor H-009 + H-011
+- Focus: Implement H-012 paper trade runner and execute initial positions
+- Done: Built `paper_trades/h012_xsmom/runner.py` — market-neutral XSMom (60d lookback, 5d rebal, top/bottom 4). Initial rebalance: LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP. Equity $9,976 after entry fees. H-009: LONG BTC +$24 (equity $10,020). H-011: OUT, no new settlements. **All 3 portfolio strategies now in paper trade.**
+- Next: Monitor all 3 paper trades every session. H-012 next rebal 2026-03-21. Consider 4th strategy leg if needed.
 - Questions added: none
 - Self-modifications: none
