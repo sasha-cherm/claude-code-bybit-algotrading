@@ -1,0 +1,14 @@
+[
+  {
+    "type": "open",
+    "time": "2026-03-16T15:05:01.014023+00:00",
+    "signal_date": "2026-03-16",
+    "direction": "LONG",
+    "entry_price": 73524.1,
+    "size_btc": 0.05488462,
+    "notional": 4035.34,
+    "leverage": 0.4,
+    "fee": 4.04,
+    "capital_after": 9995.96
+  }
+]

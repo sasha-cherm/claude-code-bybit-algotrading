@@ -1,0 +1,19 @@
+{
+  "started": "2026-03-16T15:12:24.454274+00:00",
+  "capital": 10000.0,
+  "in_position": false,
+  "position_entry_time": null,
+  "notional": 50000.0,
+  "total_funding_collected": 0.0,
+  "total_funding_paid": 0.0,
+  "total_fees": 0.0,
+  "equity_history": [
+    {
+      "date": "2026-03-16 08:00:00+00:00",
+      "equity": 10000.0,
+      "in_position": false
+    }
+  ],
+  "last_funding_time": "2026-03-16 08:00:00+00:00",
+  "settlements_count": 1
+}

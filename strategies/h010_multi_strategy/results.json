@@ -1,0 +1,245 @@
+{
+  "leveraged_funding": [
+    {
+      "leverage": 1,
+      "annual_return": 0.0669,
+      "max_drawdown": 0.0008,
+      "sharpe": 24.8868,
+      "total_return": 0.1385,
+      "max_consecutive_loss_pct": 0.07,
+      "liquidation_threshold_pct": 100.0
+    },
+    {
+      "leverage": 2,
+      "annual_return": 0.1383,
+      "max_drawdown": 0.0015,
+      "sharpe": 24.8868,
+      "total_return": 0.2963,
+      "max_consecutive_loss_pct": 0.15,
+      "liquidation_threshold_pct": 50.0
+    },
+    {
+      "leverage": 3,
+      "annual_return": 0.2144,
+      "max_drawdown": 0.0023,
+      "sharpe": 24.8868,
+      "total_return": 0.4758,
+      "max_consecutive_loss_pct": 0.22,
+      "liquidation_threshold_pct": 33.3
+    },
+    {
+      "leverage": 5,
+      "annual_return": 0.3822,
+      "max_drawdown": 0.0038,
+      "sharpe": 24.8868,
+      "total_return": 0.9128,
+      "max_consecutive_loss_pct": 0.36,
+      "liquidation_threshold_pct": 20.0
+    },
+    {
+      "leverage": 7,
+      "annual_return": 0.5731,
+      "max_drawdown": 0.0053,
+      "sharpe": 24.8868,
+      "total_return": 1.4789,
+      "max_consecutive_loss_pct": 0.51,
+      "liquidation_threshold_pct": 14.3
+    },
+    {
+      "leverage": 10,
+      "annual_return": 0.91,
+      "max_drawdown": 0.0075,
+      "sharpe": 24.8868,
+      "total_return": 2.6567,
+      "max_consecutive_loss_pct": 0.73,
+      "liquidation_threshold_pct": 10.0
+    }
+  ],
+  "basis_trade": [
+    {
+      "lookback": 7,
+      "annual_return": 0.0735,
+      "max_drawdown": 0.0001,
+      "sharpe": 15.726
+    },
+    {
+      "lookback": 14,
+      "annual_return": 0.071,
+      "max_drawdown": 0.0002,
+      "sharpe": 15.2692
+    },
+    {
+      "lookback": 30,
+      "annual_return": 0.0691,
+      "max_drawdown": 0.0002,
+      "sharpe": 15.1398
+    }
+  ],
+  "weekly_momentum": [
+    {
+      "lookback_weeks": 4,
+      "vol_regime": "all",
+      "annual_return": 0.1921,
+      "max_drawdown": 0.3589,
+      "sharpe": 0.6256,
+      "n_trades": 27,
+      "win_rate": 0.4074
+    },
+    {
+      "lookback_weeks": 4,
+      "vol_regime": "low",
+      "annual_return": 0.0887,
+      "max_drawdown": 0.2994,
+      "sharpe": 0.4145,
+      "n_trades": 23,
+      "win_rate": 0.4348
+    },
+    {
+      "lookback_weeks": 4,
+      "vol_regime": "high",
+      "annual_return": 0.0455,
+      "max_drawdown": 0.4284,
+      "sharpe": 0.3141,
+      "n_trades": 27,
+      "win_rate": 0.4074
+    },
+    {
+      "lookback_weeks": 8,
+      "vol_regime": "low",
+      "annual_return": -0.067,
+      "max_drawdown": 0.3071,
+      "sharpe": -0.011,
+      "n_trades": 16,
+      "win_rate": 0.375
+    },
+    {
+      "lookback_weeks": 2,
+      "vol_regime": "all",
+      "annual_return": -0.1775,
+      "max_drawdown": 0.4819,
+      "sharpe": -0.2474,
+      "n_trades": 32,
+      "win_rate": 0.25
+    },
+    {
+      "lookback_weeks": 8,
+      "vol_regime": "all",
+      "annual_return": -0.1788,
+      "max_drawdown": 0.5923,
+      "sharpe": -0.2538,
+      "n_trades": 18,
+      "win_rate": 0.3333
+    },
+    {
+      "lookback_weeks": 2,
+      "vol_regime": "high",
+      "annual_return": -0.1966,
+      "max_drawdown": 0.514,
+      "sharpe": -0.3094,
+      "n_trades": 32,
+      "win_rate": 0.2812
+    },
+    {
+      "lookback_weeks": 8,
+      "vol_regime": "high",
+      "annual_return": -0.2089,
+      "max_drawdown": 0.6357,
+      "sharpe": -0.3591,
+      "n_trades": 18,
+      "win_rate": 0.3333
+    },
+    {
+      "lookback_weeks": 2,
+      "vol_regime": "low",
+      "annual_return": -0.1885,
+      "max_drawdown": 0.4944,
+      "sharpe": -0.3875,
+      "n_trades": 25,
+      "win_rate": 0.28
+    }
+  ],
+  "daily_mean_reversion": [
+    {
+      "threshold": 0.03,
+      "hold_days": 3,
+      "annual_return": -0.9079,
+      "max_drawdown": 0.992,
+      "sharpe": -5.3387,
+      "n_trades": 91,
+      "win_rate": 0.1209
+    },
+    {
+      "threshold": 0.01,
+      "hold_days": 3,
+      "annual_return": -0.949,
+      "max_drawdown": 0.9976,
+      "sharpe": -6.0958,
+      "n_trades": 193,
+      "win_rate": 0.1865
+    },
+    {
+      "threshold": 0.03,
+      "hold_days": 2,
+      "annual_return": -0.9282,
+      "max_drawdown": 0.9949,
+      "sharpe": -6.1325,
+      "n_trades": 108,
+      "win_rate": 0.0833
+    },
+    {
+      "threshold": 0.02,
+      "hold_days": 3,
+      "annual_return": -0.9514,
+      "max_drawdown": 0.9978,
+      "sharpe": -6.384,
+      "n_trades": 146,
+      "win_rate": 0.1027
+    },
+    {
+      "threshold": 0.03,
+      "hold_days": 1,
+      "annual_return": -0.9681,
+      "max_drawdown": 0.999,
+      "sharpe": -8.4765,
+      "n_trades": 134,
+      "win_rate": 0.0
+    },
+    {
+      "threshold": 0.02,
+      "hold_days": 2,
+      "annual_return": -0.9789,
+      "max_drawdown": 0.9996,
+      "sharpe": -8.7382,
+      "n_trades": 187,
+      "win_rate": 0.0909
+    },
+    {
+      "threshold": 0.01,
+      "hold_days": 2,
+      "annual_return": -0.9837,
+      "max_drawdown": 0.9997,
+      "sharpe": -9.1236,
+      "n_trades": 272,
+      "win_rate": 0.1581
+    },
+    {
+      "threshold": 0.02,
+      "hold_days": 1,
+      "annual_return": -0.9926,
+      "max_drawdown": 0.9999,
+      "sharpe": -11.9453,
+      "n_trades": 243,
+      "win_rate": 0.0
+    },
+    {
+      "threshold": 0.01,
+      "hold_days": 1,
+      "annual_return": -0.9985,
+      "max_drawdown": 1.0,
+      "sharpe": -16.8786,
+      "n_trades": 432,
+      "win_rate": 0.0
+    }
+  ],
+  "portfolio_combination": []
+}

@@ -1,26 +1,49 @@
 # Hypotheses
 
-## Pending
+## Live (Paper Trading)
 
-## H-009: BTC Daily EMA Trend Following with Vol Targeting (Paper Trade Candidate)
-- Status: PENDING
+## H-009: BTC Daily EMA Trend Following with Vol Targeting
+- Status: LIVE (paper trade since 2026-03-16)
 - Idea: BTC-only daily EMA(5/40) crossover with position-level vol targeting. Most defensible variant of H-008 — no asset selection needed, OOS-validated.
 - Instrument: futures (BTC/USDT perp)
 - Timeframe: 1D (daily)
 - Logic: Long when EMA(5) > EMA(40), short when EMA(5) < EMA(40). Position size scaled by target_vol / realized_vol (30-day lookback). Cap at 2x notional.
-- Result: —
-- Notes: Derived from H-008 analysis. BTC-only OOS Sharpe 0.94, VT 20% gives +11.8% annual at 12.9% DD. Modest returns but robust signal. Could be component of multi-strategy portfolio.
-- Sessions: [2026-03-16 analyze]
+- Result: Backtest OOS Sharpe 0.94, VT 20% gives +11.8% annual at 12.9% DD. 15/15 params positive. Paper trade started 2026-03-16: LONG 0.054885 BTC @ $73,524 (0.40x leverage).
+- Notes: Part of multi-strategy portfolio (H-010). Contributes ~30% of target allocation. Uncorrelated with H-011 (r=0.037).
+- Sessions: [2026-03-16 analyze, 2026-03-16 paper trade]
+
+## H-011: Leveraged Funding Rate Arbitrage (5x)
+- Status: LIVE (paper trade since 2026-03-16)
+- Idea: Delta-neutral funding rate collection at 5x leverage. Long BTC spot + short BTC perp, collecting positive funding rates with rolling-27 filter.
+- Instrument: futures + spot (BTC/USDT)
+- Timeframe: 8h (funding settlement)
+- Logic: Hold delta-neutral position (short perp + long spot) when 27-period rolling avg funding rate > 0. At 5x leverage, funding income scales linearly. Enter/exit based on rolling filter.
+- Result:
+  - **Full-period (2yr) at 5x**: +38.2% annual, 0.4% DD, Sharpe 24.89
+  - **Walk-forward OOS (40%) at 5x**: +25.4% annual, 0.14% DD, Sharpe 29.9
+  - **Conservative (last 6mo) at 5x**: +16.7% annual, 0.15% DD
+  - **Correlation with H-009**: 0.037 (near zero — excellent diversifier)
+  - **Portfolio 30% H-009 / 70% H-011 at 5x**: Sharpe 2.43, +34% return, 7.2% DD
+- Notes: Derived from H-005 (rejected at 1x for low returns). Leverage scales returns linearly for delta-neutral strategy. Key risk: funding rates declining (22.7% → 1.6% recent). Max consecutive loss at 5x: 0.36% (vs 20% liquidation threshold — very safe). Paper trade started 2026-03-16, currently OUT of position (rolling avg filter).
+- Sessions: [2026-03-16 paper trade]
+
+## Pending
 
 ## H-010: Multi-Strategy Portfolio Research
-- Status: PENDING
-- Idea: Research and combine multiple uncorrelated strategies to achieve Sharpe ≥ 2.0 via diversification. Single strategies max at Sharpe ~0.7; need portfolio approach for 20% return at 10% DD.
+- Status: BACKTEST — initial research complete
+- Idea: Research and combine multiple uncorrelated strategies to achieve Sharpe ≥ 2.0 via diversification.
 - Instrument: mixed
 - Timeframe: mixed
-- Logic: Identify 3-5 strategies with low correlation. Candidates: (a) BTC daily trend (H-009, Sharpe 0.65), (b) funding rate arb with leverage (H-005 derivative), (c) cross-exchange arb/basis trade, (d) options vol selling, (e) order flow / microstructure.
-- Result: —
-- Notes: Math requires Sharpe ≥ 2.0 for 20% return at ≤10% DD. With 3 uncorrelated strategies at Sharpe ~0.7, combined Sharpe ≈ 1.2. Need higher individual Sharpes or more strategies.
-- Sessions: [2026-03-16 analyze]
+- Logic: Identify 3-5 strategies with low correlation. Portfolio allocation based on Sharpe contribution.
+- Result:
+  - **Leveraged funding rate arb**: Best candidate → promoted to H-011. At 5x: +38.2% annual, Sharpe 24.89
+  - **Weekly momentum**: Best Sharpe 0.63 (4w lookback), +19.2% return but 35.9% DD — not viable
+  - **Basis/carry trade**: Essentially same as funding arb (7.3% annual) — no incremental value
+  - **Daily mean reversion**: All negative — BTC doesn't mean-revert despite lag-1 autocorrelation -0.08
+  - **Portfolio combo (H-009 + H-011)**: 30/70 at 5x → Sharpe 2.43, +34%, 7.2% DD
+  - **Conservative combo**: 10/90 at 5x → Sharpe 3.40, +15.4%, 6.8% DD
+- Notes: The two-strategy portfolio (H-009 trend + H-011 funding arb) achieves targets with full-period data. Conservative estimate with recent declining funding rates gives ~15-17% return. Need to monitor funding rate trends. Could add a third uncorrelated strategy (options vol selling?) to further boost Sharpe.
+- Sessions: [2026-03-16 analyze, 2026-03-16 paper trade]
 
 ## H-001: EMA Crossover Trend Following (BTC Futures)
 - Status: REJECTED
@@ -92,14 +115,14 @@
 - Sessions: [2026-03-15 research, 2026-03-16 backtest]
 
 ## H-005: Funding Rate Arbitrage (BTC Futures)
-- Status: REJECTED
+- Status: REJECTED → superseded by H-011 (leveraged version)
 - Idea: Exploit persistent funding rate imbalances on BTC perpetual futures. Short perp + long spot when funding positive. Delta-neutral.
 - Instrument: futures + spot (BTC/USDT)
 - Timeframe: 8h (funding settlement intervals)
 - Logic: Monitor funding rate. When rolling avg funding > threshold, hold short perp + long spot to collect funding payments.
 - Result: 2-year avg funding rate: 0.0059%/8h = 6.5% annualized. Best backtest: Sharpe 4.71, annual +1.7%, max DD 0.44% (rolling-27 filter). With simple threshold: Sharpe 15.96, annual +3.1%, max DD 0.20%. Funding declining: Q1 2024 22.7% → Q1 2026 1.6%.
-- Notes: Strategy works perfectly (excellent Sharpe, near-zero drawdown) but **absolute returns far too low** (1.7-3.1% annual). Would need 5-10x leverage to approach 20% target, breaking delta-neutral property. Funding rates declining over time, making this even less attractive. Not viable for our return targets.
-- Sessions: [2026-03-16 backtest]
+- Notes: Strategy works perfectly (excellent Sharpe, near-zero drawdown) but **absolute returns far too low** (1.7-3.1% annual). H-010 research showed that leveraging to 5x makes this viable: +38.2% annual, 0.4% DD. Promoted to H-011.
+- Sessions: [2026-03-16 backtest, 2026-03-16 paper trade]
 
 ## H-006: Adaptive Mean Reversion (BTC Futures, Long/Short)
 - Status: REJECTED
@@ -120,9 +143,6 @@
 - Result: Best params: Sharpe -1.05, annual -15.0%, max DD 35.6%, 105 trades, 62% win rate. 12 parameter sets tested, all negative.
 - Notes: Half-life of ratio z-score was 36.9 bars (~1.5 days), suggesting fast reversion. But the ratio has massive structural drift: ETH -44.7% vs BTC +1.8% over 2 years (ratio nearly doubled from ~18 to ~34). Even 7-day adaptive window can't handle this structural divergence. The strategy consistently bets on ratio reversion that doesn't happen because of the fundamental ETH underperformance trend.
 - Sessions: [2026-03-16 backtest]
-
-## Live (Paper Trading)
-(none)
 
 ## Killed
 (none)

@@ -1,0 +1,20 @@
+{
+  "started": "2026-03-16T15:04:53.830600+00:00",
+  "capital": 9995.964657400968,
+  "position": 1,
+  "entry_price": 73524.1,
+  "entry_time": "2026-03-16",
+  "size_btc": 0.05488462,
+  "leverage": 0.4035,
+  "equity_history": [
+    {
+      "date": "2026-03-16",
+      "equity": 9995.16,
+      "price": 73509.4,
+      "position": 1,
+      "vol_scale": 0.4
+    }
+  ],
+  "last_signal_date": "2026-03-16",
+  "trades_count": 0
+}
