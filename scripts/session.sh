@@ -4,6 +4,7 @@
 
 set -euo pipefail
 
+export PATH="/home/cctrd/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 PROJECT_DIR="/home/cctrd/cc-bybit-algotrading"
 LOG_DIR="$PROJECT_DIR/logs"
 mkdir -p "$LOG_DIR"
@@ -21,7 +22,7 @@ You are the autonomous trading research agent for this project.
 Follow the Session Protocol in CLAUDE.md exactly.
 Start by loading context (MEMORY.md, memory/state.md, memory/hypotheses.md, questions/USER_QA.md).
 Then pick a session goal and execute it.
-End by updating all state files and appending to MEMORY.md.
+End by updating all state files, appending to MEMORY.md commiting and pushing the changes.
 " \
     --dangerously-skip-permissions --model opus --effort high </dev/null 2>&1 | tee -a "$LOGFILE"
 

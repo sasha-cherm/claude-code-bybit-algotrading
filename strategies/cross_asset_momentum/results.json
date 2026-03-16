@@ -1,0 +1,45 @@
+{
+  "total_return": -0.0839,
+  "annual_return": -0.0428,
+  "max_drawdown": 0.2641,
+  "sharpe_ratio": -0.0782,
+  "sortino_ratio": -0.0819,
+  "calmar_ratio": -0.1622,
+  "n_periods": 17520,
+  "n_trades": 171,
+  "win_rate": 0.4152,
+  "profit_factor": 0.861,
+  "avg_trade": -4.0999,
+  "best_trade": 525.81,
+  "worst_trade": -182.57,
+  "strategy": "H-003: Cross-Asset Momentum Rotation",
+  "mode": "futures",
+  "initial_capital": 10000.0,
+  "final_capital": 9161.48,
+  "position_size_pct": 0.1,
+  "params": {
+    "fast_window": 168,
+    "slow_window": 504,
+    "rebalance_bars": 72,
+    "fast_weight": 0.6,
+    "slow_weight": 0.4,
+    "position_size_pct": 0.1
+  },
+  "per_asset": {
+    "BTC/USDT": {
+      "n_trades": 57,
+      "total_pnl": -256.38,
+      "avg_pnl": -4.5
+    },
+    "ETH/USDT": {
+      "n_trades": 52,
+      "total_pnl": -406.97,
+      "avg_pnl": -7.83
+    },
+    "SOL/USDT": {
+      "n_trades": 62,
+      "total_pnl": -37.73,
+      "avg_pnl": -0.61
+    }
+  }
+}

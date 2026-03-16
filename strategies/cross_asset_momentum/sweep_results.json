@@ -1,0 +1,272 @@
+[
+  {
+    "total_return": 0.0799,
+    "annual_return": 0.0392,
+    "max_drawdown": 0.3893,
+    "sharpe_ratio": 0.3346,
+    "sortino_ratio": 0.3545,
+    "calmar_ratio": 0.1006,
+    "n_periods": 17520,
+    "n_trades": 101,
+    "win_rate": 0.4851,
+    "profit_factor": 1.148,
+    "avg_trade": 9.4175,
+    "best_trade": 697.34,
+    "worst_trade": -470.28,
+    "strategy": "H-003: Cross-Asset Momentum Rotation",
+    "mode": "futures",
+    "initial_capital": 10000.0,
+    "final_capital": 10798.73,
+    "position_size_pct": 0.2,
+    "params": {
+      "fast_window": 168,
+      "slow_window": 504,
+      "rebalance_bars": 168,
+      "fast_weight": 0.6,
+      "slow_weight": 0.4,
+      "position_size_pct": 0.2
+    },
+    "per_asset": {
+      "BTC/USDT": {
+        "n_trades": 32,
+        "total_pnl": -1006.01,
+        "avg_pnl": -31.44
+      },
+      "ETH/USDT": {
+        "n_trades": 36,
+        "total_pnl": -842.19,
+        "avg_pnl": -23.39
+      },
+      "SOL/USDT": {
+        "n_trades": 33,
+        "total_pnl": 2799.37,
+        "avg_pnl": 84.83
+      }
+    }
+  },
+  {
+    "total_return": 0.0336,
+    "annual_return": 0.0167,
+    "max_drawdown": 0.2278,
+    "sharpe_ratio": 0.1855,
+    "sortino_ratio": 0.1898,
+    "calmar_ratio": 0.0732,
+    "n_periods": 17520,
+    "n_trades": 101,
+    "win_rate": 0.4851,
+    "profit_factor": 1.1148,
+    "avg_trade": 4.1863,
+    "best_trade": 361.11,
+    "worst_trade": -258.36,
+    "strategy": "H-003: Cross-Asset Momentum Rotation",
+    "mode": "futures",
+    "initial_capital": 10000.0,
+    "final_capital": 10336.23,
+    "position_size_pct": 0.1,
+    "params": {
+      "fast_window": 168,
+      "slow_window": 504,
+      "rebalance_bars": 168,
+      "fast_weight": 0.6,
+      "slow_weight": 0.4,
+      "position_size_pct": 0.1
+    },
+    "per_asset": {
+      "BTC/USDT": {
+        "n_trades": 32,
+        "total_pnl": -576.57,
+        "avg_pnl": -18.02
+      },
+      "ETH/USDT": {
+        "n_trades": 36,
+        "total_pnl": -466.45,
+        "avg_pnl": -12.96
+      },
+      "SOL/USDT": {
+        "n_trades": 33,
+        "total_pnl": 1465.84,
+        "avg_pnl": 44.42
+      }
+    }
+  },
+  {
+    "total_return": 0.0292,
+    "annual_return": 0.0145,
+    "max_drawdown": 0.2096,
+    "sharpe_ratio": 0.1786,
+    "sortino_ratio": 0.1852,
+    "calmar_ratio": 0.0692,
+    "n_periods": 17520,
+    "n_trades": 219,
+    "win_rate": 0.4658,
+    "profit_factor": 1.0819,
+    "avg_trade": 2.2015,
+    "best_trade": 449.59,
+    "worst_trade": -205.92,
+    "strategy": "H-003: Cross-Asset Momentum Rotation",
+    "mode": "futures",
+    "initial_capital": 10000.0,
+    "final_capital": 10292.29,
+    "position_size_pct": 0.1,
+    "params": {
+      "fast_window": 72,
+      "slow_window": 336,
+      "rebalance_bars": 72,
+      "fast_weight": 0.6,
+      "slow_weight": 0.4,
+      "position_size_pct": 0.1
+    },
+    "per_asset": {
+      "BTC/USDT": {
+        "n_trades": 71,
+        "total_pnl": -176.65,
+        "avg_pnl": -2.49
+      },
+      "ETH/USDT": {
+        "n_trades": 72,
+        "total_pnl": 26.15,
+        "avg_pnl": 0.36
+      },
+      "SOL/USDT": {
+        "n_trades": 76,
+        "total_pnl": 632.63,
+        "avg_pnl": 8.32
+      }
+    }
+  },
+  {
+    "total_return": 0.0154,
+    "annual_return": 0.0077,
+    "max_drawdown": 0.1245,
+    "sharpe_ratio": 0.1256,
+    "sortino_ratio": 0.1268,
+    "calmar_ratio": 0.0616,
+    "n_periods": 17520,
+    "n_trades": 101,
+    "win_rate": 0.4851,
+    "profit_factor": 1.1008,
+    "avg_trade": 1.9849,
+    "best_trade": 198.26,
+    "worst_trade": -135.62,
+    "strategy": "H-003: Cross-Asset Momentum Rotation",
+    "mode": "futures",
+    "initial_capital": 10000.0,
+    "final_capital": 10153.88,
+    "position_size_pct": 0.05,
+    "params": {
+      "fast_window": 168,
+      "slow_window": 504,
+      "rebalance_bars": 168,
+      "fast_weight": 0.6,
+      "slow_weight": 0.4,
+      "position_size_pct": 0.05
+    },
+    "per_asset": {
+      "BTC/USDT": {
+        "n_trades": 32,
+        "total_pnl": -311.91,
+        "avg_pnl": -9.75
+      },
+      "ETH/USDT": {
+        "n_trades": 36,
+        "total_pnl": -245.85,
+        "avg_pnl": -6.83
+      },
+      "SOL/USDT": {
+        "n_trades": 33,
+        "total_pnl": 758.23,
+        "avg_pnl": 22.98
+      }
+    }
+  },
+  {
+    "total_return": -0.0034,
+    "annual_return": -0.0017,
+    "max_drawdown": 0.2216,
+    "sharpe_ratio": 0.0994,
+    "sortino_ratio": 0.1051,
+    "calmar_ratio": -0.0078,
+    "n_periods": 17520,
+    "n_trades": 52,
+    "win_rate": 0.5,
+    "profit_factor": 1.0035,
+    "avg_trade": 0.179,
+    "best_trade": 302.81,
+    "worst_trade": -302.2,
+    "strategy": "H-003: Cross-Asset Momentum Rotation",
+    "mode": "futures",
+    "initial_capital": 10000.0,
+    "final_capital": 9965.6,
+    "position_size_pct": 0.1,
+    "params": {
+      "fast_window": 336,
+      "slow_window": 720,
+      "rebalance_bars": 336,
+      "fast_weight": 0.6,
+      "slow_weight": 0.4,
+      "position_size_pct": 0.1
+    },
+    "per_asset": {
+      "BTC/USDT": {
+        "n_trades": 16,
+        "total_pnl": -194.2,
+        "avg_pnl": -12.14
+      },
+      "ETH/USDT": {
+        "n_trades": 16,
+        "total_pnl": -972.73,
+        "avg_pnl": -60.8
+      },
+      "SOL/USDT": {
+        "n_trades": 20,
+        "total_pnl": 1176.24,
+        "avg_pnl": 58.81
+      }
+    }
+  },
+  {
+    "total_return": -0.0839,
+    "annual_return": -0.0428,
+    "max_drawdown": 0.2641,
+    "sharpe_ratio": -0.0782,
+    "sortino_ratio": -0.0819,
+    "calmar_ratio": -0.1622,
+    "n_periods": 17520,
+    "n_trades": 171,
+    "win_rate": 0.4152,
+    "profit_factor": 0.861,
+    "avg_trade": -4.0999,
+    "best_trade": 525.81,
+    "worst_trade": -182.57,
+    "strategy": "H-003: Cross-Asset Momentum Rotation",
+    "mode": "futures",
+    "initial_capital": 10000.0,
+    "final_capital": 9161.48,
+    "position_size_pct": 0.1,
+    "params": {
+      "fast_window": 168,
+      "slow_window": 504,
+      "rebalance_bars": 72,
+      "fast_weight": 0.6,
+      "slow_weight": 0.4,
+      "position_size_pct": 0.1
+    },
+    "per_asset": {
+      "BTC/USDT": {
+        "n_trades": 57,
+        "total_pnl": -256.38,
+        "avg_pnl": -4.5
+      },
+      "ETH/USDT": {
+        "n_trades": 52,
+        "total_pnl": -406.97,
+        "avg_pnl": -7.83
+      },
+      "SOL/USDT": {
+        "n_trades": 62,
+        "total_pnl": -37.73,
+        "avg_pnl": -0.61
+      }
+    }
+  }
+]
