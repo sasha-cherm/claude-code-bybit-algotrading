@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.29%) + H-011 (OUT, 0%) + H-012 (+0.58%) — portfolio +0.27%
+- **Paper trading:** H-009 (+0.32%) + H-011 (OUT, 0%) + H-012 (+0.71%) — portfolio +0.34%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
-- **Last session:** 2026-03-17 review (session 12)
-- **BTC stable:** $74,128, H-009 LONG still positive.
-- **Funding recovery accelerating:** Last settlement +10.2% ann, recent 5 avg +4.0% ann. **H-011 projected re-entry: 2026-03-20** (earlier than previous Mar 21-22 estimate).
-- **Next action:** Monitor paper trades. H-011 projected re-entry 2026-03-20. H-012 rebal 2026-03-21.
+- **Last session:** 2026-03-17 review (session 13)
+- **BTC steady:** $74,188, H-009 LONG +0.32%.
+- **Funding recovery steady:** Rolling-27 improved to -1.87% ann. Recent 5 avg +4.1% ann. **H-011 re-entry confirmed: 2026-03-20 00:00 UTC.**
+- **Next action:** Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal 2026-03-21.
 - **Open user questions:** none
 
 ## Memory Files
@@ -128,5 +128,13 @@
 - Focus: Run all 3 runners, detailed funding rate analysis with settlement-by-settlement projection
 - Done: Portfolio $30,080 (+0.27%): H-009 $10,029 (+0.29%, BTC $74,128 stable), H-011 $10,000 (OUT), H-012 $10,058 (+0.58%, SUI short +$63 best). Detailed funding analysis: last settlement +10.2% ann, recent 5 avg +4.0% ann (recovery continuing). Projected H-011 re-entry **2026-03-20 00:00 UTC** — earlier than previous Mar 21-22 estimate, driven by large Mar 11 negative (-0.000107) dropping out of rolling-27 window.
 - Next: Monitor paper trades. Watch H-011 re-entry ~Mar 20. H-012 rebal 2026-03-21.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-17 review (session 13)
+- Goal: Review — monitor paper trades, fetch new funding settlements
+- Focus: Run all 3 runners, update funding rate data (+3 new settlements)
+- Done: Portfolio $30,103 (+0.34%): H-009 $10,032 (+0.32%, BTC $74,188), H-011 $10,000 (OUT), H-012 $10,071 (+0.71%, NEAR/SUI +$64 each). Fetched 3 new funding settlements (latest +4.8% ann). Rolling-27 improved to -1.87% ann (from -2.2%). H-011 re-entry confirmed 2026-03-20 00:00 UTC.
+- Next: Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal 2026-03-21.
 - Questions added: none
 - Self-modifications: none

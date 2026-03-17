@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,029.11 (+0.29%) — live mark @ BTC $74,128.10
+- **Mark equity**: $10,032.40 (+0.32%) — live mark @ BTC $74,187.90
 - **Leverage**: 0.40x (vol targeting: 50.0% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -13,25 +13,25 @@
 
 ### H-011: Leveraged Funding Rate Arb (5x)
 - **Status**: LIVE paper trade (started 2026-03-16)
-- **Position**: OUT (rolling-27 avg funding -2.2% ann, negative since 2026-03-07)
+- **Position**: OUT (rolling-27 avg funding -1.87% ann, negative since 2026-03-07)
 - **Capital**: $10,000.00
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
-- **Funding trend**: Still OUT. Last settlement 2026-03-17 00:00 at +10.2% ann. Rolling-27 sum = -0.000547, needs ~9 more settlements to turn positive. Recovery accelerating as Mar 8-11 negatives roll out. **Projected re-entry: 2026-03-20 00:00 UTC** (assumes new rates at recent avg +4.0% ann).
-- **Next check**: Next funding settlement at 08:00 UTC
+- **Funding trend**: Still OUT. Last settlement 2026-03-17 08:00 at +4.8% ann. Rolling-27 sum = -0.000460, needs ~8 more settlements to turn positive. Recovery steady — recent 5 avg +4.1% ann. **Projected re-entry: 2026-03-20 00:00 UTC** (confirmed — big negative from Mar 11 drops out at +8 settlements).
+- **Next check**: Next funding settlement at 16:00 UTC
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (+$5), NEAR (+$33), ATOM (-$40), AVAX (+$24)
-  - SHORT: SOL (+$12), SUI (+$63), ARB (+$13), OP (-$32)
-- **Mark equity**: $10,057.62 (+0.58%) — shorts outperforming, SUI short best position (+$63)
+  - LONG: BTC (+$7), NEAR (+$64), ATOM (-$28), AVAX (+$22)
+  - SHORT: SOL (+$2), SUI (+$64), ARB (+$4), OP (-$44)
+- **Mark equity**: $10,070.88 (+0.71%) — NEAR long and SUI short leading (+$64 each)
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (4 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-17 07:00 UTC)
-- **Total equity**: $30,080 (+0.27%)
-- **H-009**: $10,029 (+0.29%) | **H-011**: $10,000 (0%) | **H-012**: $10,058 (+0.58%)
+## Portfolio Summary (live mark-to-market 2026-03-17 09:00 UTC)
+- **Total equity**: $30,103 (+0.34%)
+- **H-009**: $10,032 (+0.32%) | **H-011**: $10,000 (0%) | **H-012**: $10,071 (+0.71%)
 - **Paper trade age**: 1-2 days / 28 required
 
 ## Target Portfolio Allocation
@@ -54,10 +54,10 @@
 | H-013: Multi-Asset Funding Arb | REJECTED | — | Fees kill returns, all rates correlated |
 
 ## Risk Watch
-- **BTC stable**: BTC at $74,128, essentially flat from last check ($74,145). H-009 LONG still positive (+0.29%).
-- **H-012 steady**: SUI short best position (+$63), OP short worst (-$32). ATOM long still dragging (-$40). Net: +0.58%.
-- **Funding rate recovery accelerating**: Last settlement +10.2% ann. Recent 5 avg +4.0% ann (3/5 positive). Rolling-27 still negative (-2.2% ann) but improving. Mar 8-11 negatives dropping out of window. **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (earlier than previous Mar 21-22 estimate).
-- **Decision**: No action needed. All strategies operating within expectations.
+- **BTC stable**: BTC at $74,188, steady around $74k. H-009 LONG +0.32%.
+- **H-012 improving**: NEAR long (+$64) and SUI short (+$64) both strong. OP short worst (-$44). Net: +0.71%.
+- **Funding rate recovery steady**: Latest +4.8% ann. Recent 5 avg +4.1% ann. Rolling-27 improved to -1.87% ann (from -2.2%). **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (confirmed — Mar 11 big negative drops out at +8 settlements).
+- **Decision**: No action needed. All strategies operating within expectations. Portfolio improving.
 - **Watchlist**: H-011 projected re-entry 2026-03-20. H-012 rebalance on 2026-03-21.
 
 ## Rejected Strategies
@@ -84,7 +84,7 @@
 - H-012 paper trade runner (XSMom, internal simulation)
 - **Portfolio monitor**: `scripts/portfolio_monitor.py` — live mark-to-market across all strategies
 - Cached data (1h, 2yr): BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM (14 assets)
-- Cached data: BTC funding rates (2yr, 2194 records)
+- Cached data: BTC funding rates (2yr, 2197 records)
 - Cached data: 14-asset funding rates (2yr, 2190 records each)
 
 ## Key Learnings
