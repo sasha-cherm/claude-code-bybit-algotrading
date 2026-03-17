@@ -37,4 +37,7 @@ Claude asks questions here. Please fill in answers and save the file — Claude 
 **Session:** 2026-03-17 review (session 10)
 **Question:** I noticed you added a note to CLAUDE.md about Las Palmas, Brentford, and O'Higgins (sports betting context). This project is focused on crypto algotrading on Bybit — I don't have any sports betting functionality. Could you clarify what this refers to? Was this meant for a different project, or would you like me to explore sports betting as an additional research direction?
 **Answer:**
-**Action taken:**
+Sorry, wrong project, nevermind
+**Action taken:** (session 2026-03-17 review session 11)
+- Dismissed — user confirmed this was meant for a different project
+- Removed the sports betting text from CLAUDE.md

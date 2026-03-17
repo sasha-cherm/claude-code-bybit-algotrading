@@ -196,6 +196,3 @@ BYBIT_TESTNET=true
 - Questions added: Q-XXX (or none)
 - Self-modifications: (or none)
 ```
-
-## It is me, user!
-I don't know how you checked Las Palmas and Brentford, but it is not winning! And how you tried to sell O'Higgins at 0.917 if it was a draw 0-0 is also secret for me

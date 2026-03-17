@@ -1,14 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.90%) + H-011 (OUT, 0%) + H-012 (+0.09%) — portfolio +0.33%
+- **Paper trading:** H-009 (+0.30%) + H-011 (OUT, 0%) + H-012 (+0.56%) — portfolio +0.29%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
-- **Last session:** 2026-03-17 review (session 10)
-- **Funding recovery:** Rolling-27 -2.2% ann, but last 5 avg +4.0% ann. Negative rates from Mar 12-14 roll out ~Mar 21-22. H-011 may re-enter soon.
-- **Next action:** Monitor paper trades. H-012 rebalances 2026-03-21.
-- **Open user questions:** none
+- **Last session:** 2026-03-17 review (session 11)
+- **BTC pullback:** $75,231 → $74,145 (-1.4%), H-009 reduced but still positive. H-012 shorts working well.
+- **Funding recovery:** H-011 still OUT. Mar 12-14 negatives rolling out of window by ~Mar 21-22.
+- **Next action:** Monitor paper trades. H-012 rebalances 2026-03-21. H-011 potential re-entry ~Mar 21-22.
+- **Open user questions:** none (Q-002 resolved — wrong project)
 
 ## Memory Files
 | File | Purpose |
@@ -113,3 +114,11 @@
 - Next: Continue monitoring. H-012 rebal + possible H-011 re-entry both ~2026-03-21.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-17 review (session 11)
+- Goal: Review — monitor paper trades, handle Q-002, clean up CLAUDE.md
+- Focus: Run all 3 paper trade runners, process user answer
+- Done: Portfolio $30,086 (+0.29%): H-009 $10,030 (+0.30%, BTC pulled back to $74,145), H-011 $10,000 (OUT, no new settlements), H-012 $10,056 (+0.56%, shorts SUI/SOL/ARB now profitable). BTC -1.4% pullback reduced H-009 gains but H-012 benefited from short-side momentum. Q-002 resolved (sports text was wrong project). Cleaned CLAUDE.md.
+- Next: Continue monitoring. H-012 rebal 2026-03-21. H-011 potential re-entry ~Mar 21-22.
+- Questions added: none
+- Self-modifications: Removed erroneous sports betting text from CLAUDE.md
