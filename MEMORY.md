@@ -1,13 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.08%) + H-011 (OUT, 0%) + H-012 (+0.97%) — portfolio +0.35%
+- **Paper trading:** H-009 (+0.53%) + H-011 (OUT, 0%) + H-012 (+0.36%) — portfolio +0.30%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013–H-017 (all fail walk-forward or redundant)
-- **Last session:** 2026-03-17 review (session 16)
-- **BTC stable:** $73,742, flat. H-009 LONG +0.08%. H-012 short side excelling (SUI +$98).
-- **Funding recovery on track:** H-011 re-entry projected 2026-03-20 00:00 UTC. Rolling-27 -1.87% ann.
+- **Last session:** 2026-03-17 review (session 17)
+- **BTC rallying:** $74,557, up $815. H-009 LONG +0.53%. H-012 short side gave back gains (OP -$46, SOL -$13).
+- **Funding recovery on track:** H-011 re-entry projected 2026-03-20 00:00 UTC. Rolling-27 -1.87% ann. Next settlement 16:00 UTC.
 - **Research exhaustion on BTC daily:** 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Next action:** Monitor paper trades. H-011 re-entry Mar 20. H-012 rebal Mar 21.
 - **Open user questions:** none
@@ -160,6 +160,14 @@
 - Goal: Review — monitor all 3 paper trades
 - Focus: Run runners, mark-to-market update
 - Done: Portfolio $30,105 (+0.35%): H-009 $10,008 (+0.08%, BTC $73,742 flat), H-011 $10,000 (OUT), H-012 $10,097 (+0.97%, SUI short +$98 leading, ARB short +$32 improving). H-012 short side strong — all shorts profitable. No new daily bars or funding settlements. H-011 re-entry still projected Mar 20.
+- Next: Continue monitoring. H-011 re-entry Mar 20. H-012 rebal Mar 21.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-17 review (session 17)
+- Goal: Review — monitor all 3 paper trades
+- Focus: Run runners, mark-to-market update
+- Done: Portfolio $30,089 (+0.30%): H-009 $10,053 (+0.53%, BTC rallied to $74,557), H-011 $10,000 (OUT), H-012 $10,036 (+0.36%, gave back gains — OP short -$46, SOL short -$13, but SUI short +$60 still leading). BTC rally helped H-009 but hurt H-012 short-side on some positions. No new daily bars or funding settlements. Next funding at 16:00 UTC.
 - Next: Continue monitoring. H-011 re-entry Mar 20. H-012 rebal Mar 21.
 - Questions added: none
 - Self-modifications: none

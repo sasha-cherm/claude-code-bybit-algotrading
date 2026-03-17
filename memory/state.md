@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,008 (+0.08%) — live mark @ BTC $73,742
+- **Mark equity**: $10,053 (+0.53%) — live mark @ BTC $74,557
 - **Leverage**: 0.40x (vol targeting: 50.0% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -22,16 +22,16 @@
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (-$8), NEAR (+$24), ATOM (-$40), AVAX (+$7)
-  - SHORT: SOL (+$28), SUI (+$98), ARB (+$32), OP (-$23)
-- **Mark equity**: $10,097 (+0.97%) — SUI short leading (+$98), ATOM long worst (-$40)
+  - LONG: BTC (+$20), NEAR (+$45), ATOM (-$28), AVAX (+$24)
+  - SHORT: SOL (-$13), SUI (+$60), ARB (-$5), OP (-$46)
+- **Mark equity**: $10,036 (+0.36%) — SUI short leading (+$60), OP short worst (-$46)
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (4 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-17 13:00 UTC)
-- **Total equity**: $30,105 (+0.35%)
-- **H-009**: $10,008 (+0.08%) | **H-011**: $10,000 (0%) | **H-012**: $10,097 (+0.97%)
+## Portfolio Summary (live mark-to-market 2026-03-17 15:01 UTC)
+- **Total equity**: $30,089 (+0.30%)
+- **H-009**: $10,053 (+0.53%) | **H-011**: $10,000 (0%) | **H-012**: $10,036 (+0.36%)
 - **Paper trade age**: 1-2 days / 28 required
 
 ## Target Portfolio Allocation
@@ -58,9 +58,9 @@
 | H-017: MTF Momentum | REJECTED | — | r=0.89 with H-009, redundant |
 
 ## Risk Watch
-- **BTC stable**: BTC at $73,742, virtually flat from $73,733. H-009 LONG +0.08%.
-- **H-012 strong**: Short side excelling (SUI +$98, ARB +$32, SOL +$28). Long side mixed (NEAR +$24, AVAX +$7, BTC -$8, ATOM -$40). Net: +0.97%.
-- **Funding rate recovery on track**: Latest +4.8% ann. Rolling-27 still -1.87% ann. **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (~8 more settlements).
+- **BTC rallying**: BTC at $74,557, up $815 from $73,742. H-009 LONG benefiting (+0.53%).
+- **H-012 gave back gains**: Short side OP/SOL moved against us (OP -$46, SOL -$13). SUI short still leading (+$60). Long side improved (AVAX +$24, BTC +$20). Net: +0.36% (was +0.97%).
+- **Funding rate recovery on track**: Latest +4.8% ann. Rolling-27 still -1.87% ann. **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (~8 more settlements). Next settlement 16:00 UTC.
 - **Research exhaustion on BTC daily signals**: 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Decision**: Current 3-strategy portfolio is optimal. No viable 4th leg found.
 - **Watchlist**: H-011 re-entry 2026-03-20. H-012 rebalance 2026-03-21.
