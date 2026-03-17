@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,053 (+0.53%) — live mark @ BTC $74,557
+- **Mark equity**: $10,035 (+0.35%) — live mark @ BTC $74,229
 - **Leverage**: 0.40x (vol targeting: 50.0% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -13,25 +13,25 @@
 
 ### H-011: Leveraged Funding Rate Arb (5x)
 - **Status**: LIVE paper trade (started 2026-03-16)
-- **Position**: OUT (rolling-27 avg funding -1.87% ann, negative since 2026-03-07)
+- **Position**: OUT (rolling-27 avg funding -1.9% ann, negative since 2026-03-07)
 - **Capital**: $10,000.00
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
-- **Funding trend**: Still OUT. Last settlement 2026-03-17 08:00 at +4.8% ann. Rolling-27 sum = -0.000460, needs ~8 more settlements to turn positive. Recovery steady — recent 5 avg +4.1% ann. **Projected re-entry: 2026-03-20 00:00 UTC** (confirmed — big negative from Mar 11 drops out at +8 settlements).
-- **Next check**: Next funding settlement at 16:00 UTC
+- **Funding trend**: Still OUT. Last settlement 2026-03-17 16:00 at -4.2% ann (setback). Rolling-27 sum = -0.000467. Recovery intact despite latest negative — big -11.7% ann from Mar 11 00:00 drops out in ~7 settlements. **Projected re-entry: 2026-03-20 00:00 UTC** (still holds — confirmed with forward simulation assuming +5.4% ann future rate).
+- **Next check**: Next funding settlement at 00:00 UTC Mar 18
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (+$20), NEAR (+$45), ATOM (-$28), AVAX (+$24)
-  - SHORT: SOL (-$13), SUI (+$60), ARB (-$5), OP (-$46)
-- **Mark equity**: $10,036 (+0.36%) — SUI short leading (+$60), OP short worst (-$46)
+  - LONG: BTC (+$8), NEAR (+$52), ATOM (-$26), AVAX (+$19)
+  - SHORT: SOL (-$4), SUI (+$65), ARB (+$11), OP (-$48)
+- **Mark equity**: $10,058 (+0.58%) — SUI short leading (+$65), ARB short now positive (+$11)
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (4 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-17 15:01 UTC)
-- **Total equity**: $30,089 (+0.30%)
-- **H-009**: $10,053 (+0.53%) | **H-011**: $10,000 (0%) | **H-012**: $10,036 (+0.36%)
+## Portfolio Summary (live mark-to-market 2026-03-17 17:01 UTC)
+- **Total equity**: $30,093 (+0.31%)
+- **H-009**: $10,035 (+0.35%) | **H-011**: $10,000 (0%) | **H-012**: $10,058 (+0.58%)
 - **Paper trade age**: 1-2 days / 28 required
 
 ## Target Portfolio Allocation
@@ -58,9 +58,9 @@
 | H-017: MTF Momentum | REJECTED | — | r=0.89 with H-009, redundant |
 
 ## Risk Watch
-- **BTC rallying**: BTC at $74,557, up $815 from $73,742. H-009 LONG benefiting (+0.53%).
-- **H-012 gave back gains**: Short side OP/SOL moved against us (OP -$46, SOL -$13). SUI short still leading (+$60). Long side improved (AVAX +$24, BTC +$20). Net: +0.36% (was +0.97%).
-- **Funding rate recovery on track**: Latest +4.8% ann. Rolling-27 still -1.87% ann. **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (~8 more settlements). Next settlement 16:00 UTC.
+- **BTC pulled back**: BTC at $74,229, down $328 from $74,557. H-009 LONG gave back some gains (+0.35% vs +0.53%).
+- **H-012 improving**: ARB short now profitable (+$11, was -$5). SUI short +$65 still leading. OP short worst (-$48). Overall +0.58% (up from +0.36%).
+- **Funding rate setback**: Latest settlement -4.2% ann (first negative in 3 sessions). Rolling-27 -1.9% ann (was -1.87%). Recovery still intact — Mar 11 big negative (-11.7%) drops out in ~7 settlements. **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (still confirmed via forward simulation).
 - **Research exhaustion on BTC daily signals**: 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Decision**: Current 3-strategy portfolio is optimal. No viable 4th leg found.
 - **Watchlist**: H-011 re-entry 2026-03-20. H-012 rebalance 2026-03-21.
