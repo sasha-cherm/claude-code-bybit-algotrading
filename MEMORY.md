@@ -1,13 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.59%) + H-011 (OUT, 0%) + H-012 (-0.32%) — portfolio +0.09%
+- **Paper trading:** H-009 (+0.97%) + H-011 (OUT, 0%) + H-012 (+0.38%) — portfolio +0.45%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
-- **Last session:** 2026-03-17 research (session 8)
-- **Risk resolution:** H-013 research concluded — current 20/60/20 is optimal. H-011 OUT = automatic de-risking. Multi-asset funding fails (rates correlated r=0.49). Dynamic reallocation worse (Sharpe 1.42 vs 2.14). Accept cyclicality.
-- **Next action:** Monitor paper trades. Research new strategy type only if portfolio Sharpe < 1.0.
+- **Last session:** 2026-03-17 review (session 9)
+- **Funding recovery:** Rolling-27 still negative (-2.2% ann) but last settlement +10.2% ann, 3 of 5 recent positive. H-011 may re-enter soon.
+- **Next action:** Monitor paper trades. H-012 rebalances 2026-03-21.
 - **Open user questions:** none
 
 ## Memory Files
@@ -95,5 +95,13 @@
 - Focus: Can we fix H-011's low-funding problem via multi-asset diversification or dynamic reallocation?
 - Done: Fetched 2yr funding rates for 14 assets. **H-013 REJECTED**: all crypto funding rates correlated (r=0.49 with BTC), multi-asset diversification doesn't help in low-funding regimes, fees kill top-N rotation. Dynamic allocation also rejected: static 20/60/20 outperforms all dynamic variants (Sharpe 2.14 vs 1.42 recent 180d). Key insight: H-011 OUT = auto-derisking (60% idle reduces vol). Portfolio is self-regulating. Portfolio at $30,027 (+0.09%): H-009 $10,059 (+0.59%), H-011 $10,000 (0%), H-012 $9,968 (-0.32%).
 - Next: Monitor paper trades. H-012 rebalances 2026-03-21. Research new strategy types (options, orderflow) only if portfolio Sharpe drops below 1.0.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-17 review (session 9)
+- Goal: Review — monitor all 3 paper trades, update mark-to-market
+- Focus: Run paper trade runners, check funding rate recovery
+- Done: Ran all 3 runners. Portfolio $30,134 (+0.45%): H-009 $10,097 (+0.97%, BTC $75,358 LONG), H-011 $10,000 (OUT, rolling-27 -2.2% ann), H-012 $10,038 (+0.38%, longs recovered). Funding showing recovery — last settlement +10.2% ann, 3 of 5 recent positive. H-012 next rebal 2026-03-21.
+- Next: Continue monitoring. Watch for H-011 re-entry as funding rates recover.
 - Questions added: none
 - Self-modifications: none
