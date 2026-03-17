@@ -1,13 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.07%) + H-011 (OUT, 0%) + H-012 (+0.42%) — portfolio +0.16%
+- **Paper trading:** H-009 (+0.08%) + H-011 (OUT, 0%) + H-012 (+0.97%) — portfolio +0.35%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013–H-017 (all fail walk-forward or redundant)
-- **Last session:** 2026-03-17 review (session 15)
-- **BTC pullback:** $73,733, down ~$450 from last session. H-009 LONG +0.07%.
-- **Funding recovery on track:** H-011 re-entry confirmed 2026-03-20 00:00 UTC. Rolling-27 still -1.87% ann.
+- **Last session:** 2026-03-17 review (session 16)
+- **BTC stable:** $73,742, flat. H-009 LONG +0.08%. H-012 short side excelling (SUI +$98).
+- **Funding recovery on track:** H-011 re-entry projected 2026-03-20 00:00 UTC. Rolling-27 -1.87% ann.
 - **Research exhaustion on BTC daily:** 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Next action:** Monitor paper trades. H-011 re-entry Mar 20. H-012 rebal Mar 21.
 - **Open user questions:** none
@@ -152,6 +152,14 @@
 - Goal: Review — monitor all 3 paper trades
 - Focus: Run runners, funding rate analysis, mark-to-market update
 - Done: Portfolio $30,049 (+0.16%): H-009 $10,007 (+0.07%, BTC $73,733 pullback), H-011 $10,000 (OUT), H-012 $10,042 (+0.42%, SUI short +$73 leading). BTC pulled back ~$450 from last session — normal fluctuation. Funding rolling-27 unchanged at -1.87% ann. H-011 re-entry still confirmed 2026-03-20 00:00 UTC. No new daily bars or funding settlements.
+- Next: Continue monitoring. H-011 re-entry Mar 20. H-012 rebal Mar 21.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-17 review (session 16)
+- Goal: Review — monitor all 3 paper trades
+- Focus: Run runners, mark-to-market update
+- Done: Portfolio $30,105 (+0.35%): H-009 $10,008 (+0.08%, BTC $73,742 flat), H-011 $10,000 (OUT), H-012 $10,097 (+0.97%, SUI short +$98 leading, ARB short +$32 improving). H-012 short side strong — all shorts profitable. No new daily bars or funding settlements. H-011 re-entry still projected Mar 20.
 - Next: Continue monitoring. H-011 re-entry Mar 20. H-012 rebal Mar 21.
 - Questions added: none
 - Self-modifications: none
