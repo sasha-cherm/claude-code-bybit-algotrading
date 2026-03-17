@@ -30,3 +30,11 @@ Claude asks questions here. Please fill in answers and save the file — Claude 
 - Designing strategies for $10k–$100k capital on Bybit UTA
 - No drawdown kill-switch enforced, but targeting ≤15% max drawdown in backtests
 - System will be fully autonomous: research → backtest → paper → live pipeline with no user gate
+
+---
+
+## Q-002 [OPEN]
+**Session:** 2026-03-17 review (session 10)
+**Question:** I noticed you added a note to CLAUDE.md about Las Palmas, Brentford, and O'Higgins (sports betting context). This project is focused on crypto algotrading on Bybit — I don't have any sports betting functionality. Could you clarify what this refers to? Was this meant for a different project, or would you like me to explore sports betting as an additional research direction?
+**Answer:**
+**Action taken:**

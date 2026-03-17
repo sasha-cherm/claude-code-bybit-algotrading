@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,096.59 (+0.97%) — live mark @ BTC $75,357.50
+- **Mark equity**: $10,089.66 (+0.90%) — live mark @ BTC $75,231.20
 - **Leverage**: 0.40x (vol targeting: 50.0% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -16,22 +16,22 @@
 - **Position**: OUT (rolling-27 avg funding -2.2% ann, negative since 2026-03-07)
 - **Capital**: $10,000.00
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
-- **Funding trend**: Showing signs of recovery — last settlement +10.2% ann. But rolling-27 still -2.2% ann. 3 of last 5 settlements positive.
+- **Funding trend**: Recovery underway — last 5 settlements avg +4.0% ann, last settlement +10.2% ann. Rolling-27 still -2.2% ann (dragged by Mar 12-14 negatives, rolling out in ~4-5 days). 4 of last 10 positive.
 - **Next check**: Next funding settlement (every 8h)
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (+$47), NEAR (+$89), ATOM (+$12), AVAX (+$73)
-  - SHORT: SOL (-$28), SUI (-$11), ARB (-$44), OP (-$80)
-- **Mark equity**: $10,037.51 (+0.38%) — longs recovered, broad rally momentum
+  - LONG: BTC (+$42), NEAR (+$43), ATOM (-$9), AVAX (+$63)
+  - SHORT: SOL (-$21), SUI (+$5), ARB (-$28), OP (-$66)
+- **Mark equity**: $10,008.55 (+0.09%) — longs mixed, shorts (OP/ARB) going against
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (4 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-17 01:00 UTC)
-- **Total equity**: $30,134.10 (+0.45%)
-- **H-009**: $10,096.59 (+0.97%) | **H-011**: $10,000.00 (0%) | **H-012**: $10,037.51 (+0.38%)
+## Portfolio Summary (live mark-to-market 2026-03-17 03:00 UTC)
+- **Total equity**: $30,098.21 (+0.33%)
+- **H-009**: $10,089.66 (+0.90%) | **H-011**: $10,000.00 (0%) | **H-012**: $10,008.55 (+0.09%)
 - **Paper trade age**: 1-2 days / 28 required
 
 ## Target Portfolio Allocation
@@ -54,8 +54,8 @@
 | H-013: Multi-Asset Funding Arb | REJECTED | — | Fees kill returns, all rates correlated |
 
 ## Risk Watch
-- **Funding rate regime**: Rolling-27 still negative (-2.2% ann) since 2026-03-07 (10 days). H-011 OUT = 60% idle. But showing recovery: last settlement +10.2% ann, 3 of last 5 positive.
-- **H-013 research conclusion**: Multi-asset funding arb REJECTED. Dynamic reallocation REJECTED. Current 20/60/20 is self-regulating.
+- **Funding rate regime**: Rolling-27 still negative (-2.2% ann) since 2026-03-07 (10 days). Last 5 settlements avg +4.0% ann — recovery building. Deeply negative Mar 12-14 rates rolling out of window in ~4-5 days. H-011 may re-enter by ~Mar 21-22.
+- **H-012 short-side drag**: OP (-$66), ARB (-$28) running against. Monitor — natural for market-neutral. Rebal on 2026-03-21 will reassess.
 - **Decision**: Accept H-011 cyclicality. Portfolio remains robust. No allocation change needed.
 - **Watchlist**: If funding stays negative >4 weeks AND portfolio Sharpe drops below 1.0, revisit. Otherwise maintain current allocation.
 

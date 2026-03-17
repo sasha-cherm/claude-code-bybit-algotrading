@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.97%) + H-011 (OUT, 0%) + H-012 (+0.38%) — portfolio +0.45%
+- **Paper trading:** H-009 (+0.90%) + H-011 (OUT, 0%) + H-012 (+0.09%) — portfolio +0.33%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
-- **Last session:** 2026-03-17 review (session 9)
-- **Funding recovery:** Rolling-27 still negative (-2.2% ann) but last settlement +10.2% ann, 3 of 5 recent positive. H-011 may re-enter soon.
+- **Last session:** 2026-03-17 review (session 10)
+- **Funding recovery:** Rolling-27 -2.2% ann, but last 5 avg +4.0% ann. Negative rates from Mar 12-14 roll out ~Mar 21-22. H-011 may re-enter soon.
 - **Next action:** Monitor paper trades. H-012 rebalances 2026-03-21.
 - **Open user questions:** none
 
@@ -103,5 +103,13 @@
 - Focus: Run paper trade runners, check funding rate recovery
 - Done: Ran all 3 runners. Portfolio $30,134 (+0.45%): H-009 $10,097 (+0.97%, BTC $75,358 LONG), H-011 $10,000 (OUT, rolling-27 -2.2% ann), H-012 $10,038 (+0.38%, longs recovered). Funding showing recovery — last settlement +10.2% ann, 3 of 5 recent positive. H-012 next rebal 2026-03-21.
 - Next: Continue monitoring. Watch for H-011 re-entry as funding rates recover.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-17 review (session 10)
+- Goal: Review — monitor all 3 paper trades, check funding recovery
+- Focus: Run runners, funding rate analysis
+- Done: No new daily bars or funding settlements. Portfolio $30,098 (+0.33%): H-009 $10,090 (+0.90%, BTC $75,231), H-011 $10,000 (OUT), H-012 $10,009 (+0.09%, shorts OP/ARB dragging). Funding recovery building: last 5 avg +4.0% ann. Negative Mar 12-14 rates roll out of 27-window in ~4-5 days — H-011 may re-enter ~Mar 21-22.
+- Next: Continue monitoring. H-012 rebal + possible H-011 re-entry both ~2026-03-21.
 - Questions added: none
 - Self-modifications: none
