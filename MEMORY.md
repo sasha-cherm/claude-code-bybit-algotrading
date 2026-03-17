@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.59%) + H-011 (OUT, 0%) + H-012 (+0.08%) — portfolio +0.22%
+- **Paper trading:** H-009 (+0.39%) + H-011 (OUT, 0%) + H-012 (-0.12%) — portfolio +0.09%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013–H-017 (all fail walk-forward or redundant)
-- **Last session:** 2026-03-17 review (session 19)
-- **BTC rallied:** $74,682. H-009 LONG +0.59%. H-012 short side gave back gains (+0.08% vs +0.58%).
+- **Last session:** 2026-03-18 review (session 20)
+- **BTC pulled back:** $74,312 (from $74,682). H-009 LONG +0.39%. H-012 OP short -$70 main drag.
 - **Funding:** Rolling-27 -1.9% ann. Re-entry still projected 2026-03-20 00:00 UTC.
 - **Research exhaustion on BTC daily:** 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Next action:** Monitor paper trades. H-011 re-entry Mar 20. H-012 rebal Mar 21.
@@ -184,6 +184,14 @@
 - Goal: Review — monitor all 3 paper trades
 - Focus: Run runners, mark-to-market update
 - Done: Portfolio $30,067 (+0.22%): H-009 $10,059 (+0.59%, BTC rallied to $74,682), H-011 $10,000 (OUT), H-012 $10,008 (+0.08%, short side gave back gains — SOL -$26, SUI +$42 vs +$65). BTC rally helped H-009 but hurt H-012 shorts. No new daily bars or funding settlements.
+- Next: Continue monitoring. H-011 re-entry Mar 20. H-012 rebal Mar 21.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-18 review (session 20)
+- Goal: Review — monitor all 3 paper trades
+- Focus: Run runners, mark-to-market update
+- Done: Portfolio $30,027 (+0.09%): H-009 $10,039 (+0.39%, BTC pulled back to $74,312), H-011 $10,000 (OUT), H-012 $9,988 (-0.12%, OP short -$70 is main drag). No new daily bars or funding settlements (next in ~1 hour). Fixed Q-002 status to ANSWERED.
 - Next: Continue monitoring. H-011 re-entry Mar 20. H-012 rebal Mar 21.
 - Questions added: none
 - Self-modifications: none
