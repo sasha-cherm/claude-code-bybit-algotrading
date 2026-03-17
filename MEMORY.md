@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.30%) + H-011 (OUT, 0%) + H-012 (+0.56%) — portfolio +0.29%
+- **Paper trading:** H-009 (+0.29%) + H-011 (OUT, 0%) + H-012 (+0.58%) — portfolio +0.27%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
-- **Last session:** 2026-03-17 review (session 11)
-- **BTC pullback:** $75,231 → $74,145 (-1.4%), H-009 reduced but still positive. H-012 shorts working well.
-- **Funding recovery:** H-011 still OUT. Mar 12-14 negatives rolling out of window by ~Mar 21-22.
-- **Next action:** Monitor paper trades. H-012 rebalances 2026-03-21. H-011 potential re-entry ~Mar 21-22.
-- **Open user questions:** none (Q-002 resolved — wrong project)
+- **Last session:** 2026-03-17 review (session 12)
+- **BTC stable:** $74,128, H-009 LONG still positive.
+- **Funding recovery accelerating:** Last settlement +10.2% ann, recent 5 avg +4.0% ann. **H-011 projected re-entry: 2026-03-20** (earlier than previous Mar 21-22 estimate).
+- **Next action:** Monitor paper trades. H-011 projected re-entry 2026-03-20. H-012 rebal 2026-03-21.
+- **Open user questions:** none
 
 ## Memory Files
 | File | Purpose |
@@ -122,3 +122,11 @@
 - Next: Continue monitoring. H-012 rebal 2026-03-21. H-011 potential re-entry ~Mar 21-22.
 - Questions added: none
 - Self-modifications: Removed erroneous sports betting text from CLAUDE.md
+
+### Session 2026-03-17 review (session 12)
+- Goal: Review — monitor paper trades, funding rate re-entry projection
+- Focus: Run all 3 runners, detailed funding rate analysis with settlement-by-settlement projection
+- Done: Portfolio $30,080 (+0.27%): H-009 $10,029 (+0.29%, BTC $74,128 stable), H-011 $10,000 (OUT), H-012 $10,058 (+0.58%, SUI short +$63 best). Detailed funding analysis: last settlement +10.2% ann, recent 5 avg +4.0% ann (recovery continuing). Projected H-011 re-entry **2026-03-20 00:00 UTC** — earlier than previous Mar 21-22 estimate, driven by large Mar 11 negative (-0.000107) dropping out of rolling-27 window.
+- Next: Monitor paper trades. Watch H-011 re-entry ~Mar 20. H-012 rebal 2026-03-21.
+- Questions added: none
+- Self-modifications: none
