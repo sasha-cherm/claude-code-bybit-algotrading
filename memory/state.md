@@ -52,13 +52,18 @@
 |-----------|--------|----------|-----------|
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | All 3 strategies now in paper trade |
 | H-013: Multi-Asset Funding Arb | REJECTED | — | Fees kill returns, all rates correlated |
+| H-014: Anti-Martingale | REJECTED | — | Fails walk-forward (1/4 folds), too correlated with H-009 |
+| H-015: RSI Mean Reversion | REJECTED | — | Fails walk-forward (0/4 folds), no edge OOS |
+| H-016: BB Squeeze Breakout | REJECTED | — | Too few trades (18), overfit |
+| H-017: MTF Momentum | REJECTED | — | r=0.89 with H-009, redundant |
 
 ## Risk Watch
 - **BTC stable**: BTC at $74,188, steady around $74k. H-009 LONG +0.32%.
 - **H-012 improving**: NEAR long (+$64) and SUI short (+$64) both strong. OP short worst (-$44). Net: +0.71%.
-- **Funding rate recovery steady**: Latest +4.8% ann. Recent 5 avg +4.1% ann. Rolling-27 improved to -1.87% ann (from -2.2%). **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (confirmed — Mar 11 big negative drops out at +8 settlements).
-- **Decision**: No action needed. All strategies operating within expectations. Portfolio improving.
-- **Watchlist**: H-011 projected re-entry 2026-03-20. H-012 rebalance on 2026-03-21.
+- **Funding rate recovery steady**: Latest +4.8% ann. Recent 5 avg +4.1% ann. Rolling-27 improved to -1.87% ann (from -2.2%). **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (confirmed).
+- **Research exhaustion on BTC daily signals**: 7 new hypotheses tested this project, only H-009 (EMA trend) survives walk-forward. Future research should explore different asset classes, timeframes (sub-daily), or non-price signals (on-chain, orderbook).
+- **Decision**: Current 3-strategy portfolio is optimal. No viable 4th leg found.
+- **Watchlist**: H-011 re-entry 2026-03-20. H-012 rebalance 2026-03-21.
 
 ## Rejected Strategies
 | Hypothesis | Reason |
@@ -71,6 +76,10 @@
 | H-006: Adaptive Mean Reversion (1h) | All params negative even with regime filter. |
 | H-007: BTC/ETH Pairs Trading | Structural BTC/ETH divergence defeats mean reversion. |
 | H-013: Multi-Asset Funding Arb | Rates too correlated (r=0.49), fees kill multi-asset rotation. |
+| H-014: Anti-Martingale | Fails walk-forward (1/4 folds). Corr 0.42 with H-009, redundant. |
+| H-015: RSI Mean Reversion | 0/4 OOS folds positive. Interesting -0.73 corr with H-009 but no edge. |
+| H-016: BB Squeeze Breakout | Only 18 trades in 2yr. 36% params positive. Overfit. |
+| H-017: MTF Momentum | Corr 0.89 with H-009. 44-51% DD. Redundant. |
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -105,3 +114,6 @@
 - **Multi-asset funding arb doesn't help**: all crypto funding rates correlated (r=0.49). Fees from rotation kill returns.
 - **Dynamic allocation not needed**: H-011 OUT = 60% idle = auto-derisking. Static 20/60/20 has best Sharpe in all periods.
 - **Current portfolio is self-regulating**: accept H-011 cyclicality, maintain allocation
+- **Anti-martingale (pyramiding) fails OOS**: 88% IS positive but walk-forward 1/4 folds. Corr 0.42 with H-009 — fundamentally same signal (trend following)
+- **RSI mean reversion has strong negative corr with H-009 (-0.73)** but no edge OOS (0/4 folds). Reduces DD but drags Sharpe.
+- **BTC daily signal exhaustion**: 17 hypotheses tested, only EMA crossover survives. Future research should explore sub-daily timeframes, on-chain data, or orderbook microstructure

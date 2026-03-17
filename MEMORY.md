@@ -4,11 +4,12 @@
 - **Paper trading:** H-009 (+0.32%) + H-011 (OUT, 0%) + H-012 (+0.71%) — portfolio +0.34%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
-- **Rejected:** H-001–H-007, H-013 (multi-asset funding + dynamic alloc)
-- **Last session:** 2026-03-17 review (session 13)
+- **Rejected:** H-001–H-007, H-013–H-017 (all fail walk-forward or redundant)
+- **Last session:** 2026-03-17 research (session 14)
 - **BTC steady:** $74,188, H-009 LONG +0.32%.
-- **Funding recovery steady:** Rolling-27 improved to -1.87% ann. Recent 5 avg +4.1% ann. **H-011 re-entry confirmed: 2026-03-20 00:00 UTC.**
-- **Next action:** Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal 2026-03-21.
+- **Funding recovery steady:** H-011 re-entry confirmed 2026-03-20 00:00 UTC.
+- **Research exhaustion on BTC daily:** 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
+- **Next action:** Monitor paper trades. H-011 re-entry Mar 20. H-012 rebal Mar 21. Consider sub-daily or non-price signal research.
 - **Open user questions:** none
 
 ## Memory Files
@@ -138,3 +139,11 @@
 - Next: Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal 2026-03-21.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-17 research (session 14)
+- Goal: Research — anti-martingale strategy (user suggestion) + alternative strategies
+- Focus: H-014 anti-martingale backtest + walk-forward, H-015 RSI MR, H-016 BB squeeze, H-017 MTF momentum
+- Done: Ran paper trade runners (no new bars). **H-014 REJECTED**: 88% IS positive but walk-forward fails (1/4 folds, mean OOS -1.12), corr 0.42 with H-009. **H-015 REJECTED**: 0/4 OOS folds, interesting -0.73 corr with H-009 but no edge. **H-016 REJECTED**: overfit (18 trades). **H-017 REJECTED**: 0.89 corr with H-009. Portfolio stable at +0.34%. Acted on user suggestion (anti-martingale), removed from CLAUDE.md.
+- Next: Monitor paper trades. H-011 re-entry Mar 20. H-012 rebal Mar 21. Future research: sub-daily timeframes, on-chain data, or orderbook microstructure signals.
+- Questions added: none
+- Self-modifications: Removed user suggestion from CLAUDE.md after acting on it

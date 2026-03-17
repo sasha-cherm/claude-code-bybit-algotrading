@@ -183,6 +183,57 @@
 - Notes: Current 20/60/20 static allocation is self-regulating and optimal across all periods tested. Accept H-011 cyclicality. Multi-asset funding rates decline together — no diversification benefit. 14-asset funding rate data cached for future reference.
 - Sessions: [2026-03-17 research session 8]
 
+## H-014: Anti-Martingale Pyramiding (BTC Daily)
+- Status: REJECTED
+- Idea: Buy on N-day high breakout, add to position every N% rise (pyramid), sell all on trailing stop X% from peak. User-suggested strategy.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D (daily)
+- Logic: Entry on 20-day high breakout with 10-20% capital. Add 10-20% more every 3-10% rise. Trail stop at 8-15% from peak. Exit everything on stop. Cooldown 5 bars. Long-only or long+short.
+- Result:
+  - **In-sample**: 88% params positive Sharpe (144 tested). Best Sharpe 0.69, +16.4% ann, 23.1% DD.
+  - **Fixed-split OOS (30%)**: All top 5 params negative. Best OOS Sharpe -1.31. Mean -1.85.
+  - **Rolling walk-forward (12mo/3mo)**: 1/4 folds positive. Mean OOS Sharpe -1.12.
+  - **Long+short mode**: Worse than long-only (shorts hurt in crypto).
+  - **Multi-asset**: Very inconsistent. XRP +101% (overfit), SOL -12%, ETH -8.6%.
+  - **Correlation with H-009**: 0.424 — moderately correlated (both BTC trend followers).
+- Notes: Fundamentally just another trend-following strategy with fancy position sizing. Doesn't survive walk-forward validation — works in strong trending periods but loses in chop. Too correlated with H-009 to provide diversification. Rejected.
+- Sessions: [2026-03-17 research session 14]
+
+## H-015: Daily RSI Mean Reversion (BTC Futures)
+- Status: REJECTED
+- Idea: Long when RSI oversold, short when overbought. Contra-trend strategy to diversify against H-009.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D (daily)
+- Logic: RSI(7-21). Long when RSI < 20-40, short when RSI > 60-80. Exit at RSI 40-55. Full allocation.
+- Result:
+  - **In-sample**: 67% positive Sharpe (120 tested). Best Sharpe 0.97.
+  - **Fixed-split OOS**: All top 10 negative except one. Mean OOS Sharpe -0.43.
+  - **Rolling walk-forward**: 0/4 folds positive. Mean OOS Sharpe -0.65.
+  - **Correlation with H-009**: -0.569 IS, -0.732 OOS — strongly negatively correlated.
+  - **Portfolio (H-009+H-015)**: Sharpe improves 0.28→0.34 but negative alpha drags returns.
+- Notes: Excellent negative correlation with H-009, but the signal itself has no edge OOS. Combining it reduces DD (19.9%→6.9%) but barely improves Sharpe. Mean reversion on daily BTC doesn't work — confirmed again after H-002/H-006.
+- Sessions: [2026-03-17 research session 14]
+
+## H-016: BB Squeeze Breakout (BTC Daily)
+- Status: REJECTED
+- Idea: Trade Bollinger Band breakouts only after a vol squeeze (bandwidth below 10-30th percentile).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: Detect squeeze (BB bandwidth < N-th percentile of 100-bar history). Trade breakout above/below band. Hold for fixed N bars.
+- Result: Only 36% params positive (81 tested). Best Sharpe 1.45 but only 18 trades in 2 years — clear overfit. Mean Sharpe -0.28.
+- Notes: Too few signal events on daily timeframe. The high-Sharpe results are artifacts of tiny sample size. Not worth pursuing.
+- Sessions: [2026-03-17 research session 14]
+
+## H-017: Multi-Timeframe Momentum Filter (BTC)
+- Status: REJECTED
+- Idea: Only trade when weekly and daily EMA trends agree. Weekly filters out noise.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: Weekly + Daily
+- Logic: Weekly EMA(4/12) for trend direction, daily EMA(5-10/20-40) for entry. Only trade when both agree.
+- Result: Best Sharpe 0.29, terrible DD (44-51%). Correlation with H-009: 0.892 — essentially redundant.
+- Notes: Adding a weekly filter just makes H-009 worse by delaying entries. The weekly EMA signal is too slow for crypto. Redundant with existing strategy.
+- Sessions: [2026-03-17 research session 14]
+
 ## Killed
 (none)
 
