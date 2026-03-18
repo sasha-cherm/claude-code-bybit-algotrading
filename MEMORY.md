@@ -1,13 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.12%) + H-011 (OUT, 0%) + H-012 (+0.25%) — portfolio +0.12%
+- **Paper trading:** H-009 (+0.41%) + H-011 (OUT, 0%) + H-012 (+0.57%) — portfolio +0.32%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
 - **Rejected:** H-001–H-007, H-013–H-017 (all fail walk-forward or redundant)
-- **Last session:** 2026-03-18 review (session 21)
-- **BTC continued pullback:** $73,824 (from $74,312). H-009 LONG +0.12%. H-012 recovered to +0.25%.
-- **Funding:** Rolling-27 -1.9% ann. Live rate -4.6% ann (setback). Re-entry pushed to **2026-03-21 00:00 UTC**.
+- **Last session:** 2026-03-18 review (session 22)
+- **BTC recovering:** $74,362 (from $73,824). H-009 LONG +0.41%. H-012 improving to +0.57%.
+- **Funding:** Rolling-27 ~-1.9% ann. Live rate -2.0% ann (improved from -4.6%). Re-entry projected **2026-03-21 00:00 UTC**.
 - **Research exhaustion on BTC daily:** 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Next action:** Monitor paper trades. Both H-011 re-entry and H-012 rebal on Mar 21.
 - **Open user questions:** none
@@ -200,6 +200,14 @@
 - Goal: Review — monitor all 3 paper trades, funding re-entry update
 - Focus: Run runners, new daily bar for H-012, funding rate analysis
 - Done: Portfolio $30,037 (+0.12%): H-009 $10,012 (+0.12%, BTC $73,824 continued pullback), H-011 $10,000 (OUT, 6 settlements), H-012 $10,025 (+0.25%, recovered — SUI short +$66, new daily bar processed). Live funding rate -4.6% ann (setback). H-011 re-entry pushed to 2026-03-21 00:00 UTC (from Mar 20). Both H-011 re-entry and H-012 rebal now align on Mar 21.
+- Next: Monitor paper trades. Key date: Mar 21 (H-011 re-entry + H-012 rebal).
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-18 review (session 22)
+- Goal: Review — monitor all 3 paper trades
+- Focus: Run runners, mark-to-market update
+- Done: Portfolio $30,097 (+0.32%): H-009 $10,041 (+0.41%, BTC recovered to $74,362), H-011 $10,000 (OUT, 6 settlements), H-012 $10,057 (+0.57%, NEAR long +$50, long side all positive). Live funding rate -2.0% ann (improved from -4.6%). No new daily bars or funding settlements. H-011 re-entry still projected Mar 21.
 - Next: Monitor paper trades. Key date: Mar 21 (H-011 re-entry + H-012 rebal).
 - Questions added: none
 - Self-modifications: none
