@@ -45,7 +45,7 @@
 - Sessions: [2026-03-16 research session 5, 2026-03-16 paper trade session 6]
 
 ## Confirmed
-(none — H-012 promoted to LIVE)
+(none — H-012/H-019 promoted to LIVE)
 
 ## Pending
 
@@ -249,7 +249,7 @@
 - Sessions: [2026-03-18 research session 24]
 
 ## H-019: Low-Volatility Anomaly (Cross-Sectional, 14 Assets)
-- Status: CONFIRMED — ready for paper trade deployment
+- Status: LIVE (paper trade since 2026-03-18)
 - Idea: Long low-vol assets, short high-vol assets. Classic cross-sectional factor (low-vol earns risk-adjusted excess returns).
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 21 days)
@@ -268,8 +268,8 @@
   - **Regime filter**: None improves WF over baseline
   - **Combined factor (LV+Mom)**: 30/70 blend WF mean 1.57 but overlaps with H-012
   - **4-strategy portfolio (15/50/15/20, actual H-009)**: Sharpe 1.75, +23.8%, 14.0% DD (vs 3-strat 1.38)
-- Notes: Standard vol variant preferred over downside vol for portfolio use — lower correlation with H-012 (0.076 vs 0.223) and more negative correlation with H-009 (-0.094 vs -0.020), giving better portfolio improvement (Sharpe +0.37 vs +0.01). Main risk: underperforms during strong BTC uptrends. The 48% standalone DD is acceptable in a diversified portfolio (portfolio DD 14%). Critical correction: previous 3-strat Sharpe was 2.78 using BTC proxy for H-009; actual H-009 equity gives 1.38. H-019 brings it to 1.75 — meeting the ≥1.5 target.
-- Sessions: [2026-03-18 research session 24, 2026-03-18 research session 25]
+- Notes: Standard vol variant preferred over downside vol for portfolio use — lower correlation with H-012 (0.076 vs 0.223) and more negative correlation with H-009 (-0.094 vs -0.020), giving better portfolio improvement (Sharpe +0.37 vs +0.01). Main risk: underperforms during strong BTC uptrends. The 48% standalone DD is acceptable in a diversified portfolio (portfolio DD 14%). Critical correction: previous 3-strat Sharpe was 2.78 using BTC proxy for H-009; actual H-009 equity gives 1.38. H-019 brings it to 1.75 — meeting the ≥1.5 target. Paper trade deployed 2026-03-18: LONG ATOM/ARB/XRP (low vol), SHORT DOGE/DOT/NEAR (high vol). Next rebal 2026-04-08.
+- Sessions: [2026-03-18 research session 24, 2026-03-18 research session 25, 2026-03-18 paper trade session 26]
 
 ## H-020: Funding Rate Dispersion (Cross-Sectional Carry)
 - Status: REJECTED

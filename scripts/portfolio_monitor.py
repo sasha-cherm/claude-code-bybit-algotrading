@@ -2,7 +2,7 @@
 Portfolio Monitor — Combined view of all paper trade strategies.
 
 Reads state from each paper trade runner and computes portfolio-level
-metrics with the target allocation (20% H-009 / 60% H-011 / 20% H-012).
+metrics with the target allocation (15% H-009 / 50% H-011 / 15% H-012 / 20% H-019).
 
 Usage:
     python3 scripts/portfolio_monitor.py
@@ -21,18 +21,20 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Target portfolio allocation
 ALLOCATION = {
-    "H-009": 0.20,  # BTC daily EMA trend
-    "H-011": 0.60,  # Funding rate arb
-    "H-012": 0.20,  # Cross-sectional momentum
+    "H-009": 0.15,  # BTC daily EMA trend
+    "H-011": 0.50,  # Funding rate arb
+    "H-012": 0.15,  # Cross-sectional momentum
+    "H-019": 0.20,  # Low-volatility anomaly
 }
 
-INITIAL_PORTFOLIO = 30_000  # $10k per strategy = $30k total
+INITIAL_PORTFOLIO = 40_000  # $10k per strategy = $40k total
 
 # State file paths
 STATE_FILES = {
     "H-009": ROOT / "paper_trades" / "h009_btc_daily_trend" / "state.json",
     "H-011": ROOT / "paper_trades" / "h011_funding_rate_arb" / "state.json",
     "H-012": ROOT / "paper_trades" / "h012_xsmom" / "state.json",
+    "H-019": ROOT / "paper_trades" / "h019_lowvol" / "state.json",
 }
 
 
@@ -85,7 +87,7 @@ def get_strategy_equity(name: str, state: dict, prices: dict | None = None) -> f
             return capital + unrealized
         return capital
 
-    if name == "H-012":
+    if name in ("H-012", "H-019"):
         capital = state.get("capital", 10_000)
         positions = state.get("positions", {})
         if positions and prices:
@@ -121,7 +123,7 @@ def run(detailed: bool = False):
         print(f"  BTC/USDT: ${btc_price:,.2f}")
     print()
 
-    for name in ["H-009", "H-011", "H-012"]:
+    for name in ["H-009", "H-011", "H-012", "H-019"]:
         state = load_strategy_state(name)
         if state is None:
             print(f"  {name}: no state file found")
@@ -193,6 +195,19 @@ def run(detailed: bool = False):
         else:
             print(f"  H-012: FLAT")
 
+    # H-019
+    if "H-019" in strategy_data:
+        s = strategy_data["H-019"]["state"]
+        positions = s.get("positions", {})
+        if positions:
+            longs = [sym.replace("/USDT", "") for sym, p in positions.items() if p["weight"] > 0]
+            shorts = [sym.replace("/USDT", "") for sym, p in positions.items() if p["weight"] < 0]
+            print(f"  H-019: L {'/'.join(longs)} | S {'/'.join(shorts)}")
+            print(f"         Rebal {s.get('rebal_count', 0)}, next in "
+                  f"{21 - s.get('days_since_rebal', 0)}d")
+        else:
+            print(f"  H-019: FLAT")
+
     print()
 
     # Risk metrics
@@ -238,7 +253,7 @@ def _print_detailed(strategy_data: dict):
     print("  Equity History")
     print(f"  {'-'*55}")
 
-    for name in ["H-009", "H-011", "H-012"]:
+    for name in ["H-009", "H-011", "H-012", "H-019"]:
         if name not in strategy_data:
             continue
         eq_hist = strategy_data[name]["state"].get("equity_history", [])

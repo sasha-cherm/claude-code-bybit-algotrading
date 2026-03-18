@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.25%) + H-011 (OUT, 0%) + H-012 (+0.92%) — portfolio +0.40%
+- **Paper trading:** H-009 (+0.17%) + H-011 (OUT, 0%) + H-012 (+1.55%) + H-019 (-0.24%, just deployed) — portfolio +0.37%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
-- **H-019 CONFIRMED:** Deep validation complete. Standard vol V20_R21_N3. Portfolio Sharpe 1.38→1.75.
-- **Portfolio correction:** 3-strat Sharpe is 1.38 (actual H-009), not 2.78 (proxy). 4-strat with H-019: 1.75.
+- **H-019 DEPLOYED:** LONG ATOM/ARB/XRP (low vol), SHORT DOGE/DOT/NEAR (high vol). Next rebal 2026-04-08.
+- **4-strat portfolio**: Sharpe 1.75, +23.8%, 14.0% DD (backtest). All 4 strategies now in paper trade.
 - **Rejected:** H-001–H-007, H-013–H-018, H-020 (20 hypotheses tested total)
-- **Last session:** 2026-03-18 research (session 25)
-- **BTC:** $74,061. H-009 LONG +0.25%. H-012 SUI short +$65 leading.
+- **Last session:** 2026-03-18 paper trade (session 26)
+- **BTC:** $73,910. H-009 LONG +0.17%. H-012 ATOM long +$67 / SUI short +$73 leading.
 - **Funding:** H-011 re-entry projected **2026-03-20 16:00 UTC**.
-- **Next action:** Monitor paper trades. Prepare H-019 paper trade runner. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
+- **Next action:** Monitor all 4 paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
 - **Open user questions:** none
 
 ## Memory Files
@@ -235,3 +235,11 @@
 - Next: Monitor paper trades. Prepare H-019 paper trade runner. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
 - Questions added: none
 - Self-modifications: Added h019_deep_validation_v2.py framework
+
+### Session 2026-03-18 paper trade (session 26)
+- Goal: Paper Trade — deploy H-019 low-volatility anomaly, monitor existing strategies
+- Focus: Build H-019 paper trade runner, execute initial rebalance, update portfolio monitor
+- Done: Built `paper_trades/h019_lowvol/runner.py` (V20_R21_N3). Initial rebalance: LONG ATOM/ARB/XRP (lowest 20d vol), SHORT DOGE/DOT/NEAR (highest vol). Equity $9,976 after fees. Updated portfolio monitor for 4-strat allocation (15/50/15/20). Portfolio $40,148 (+0.37%): H-009 $10,017 (+0.17%), H-011 $10,000 (OUT), H-012 $10,155 (+1.55%), H-019 $9,976 (-0.24%). **All 4 strategies now in paper trade.** H-012 performing best — ATOM +$67, SUI short +$73.
+- Next: Monitor all 4 paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21. H-019 next rebal Apr 8.
+- Questions added: none
+- Self-modifications: Updated portfolio_monitor.py for 4-strategy layout
