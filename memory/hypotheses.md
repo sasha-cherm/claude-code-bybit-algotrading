@@ -45,7 +45,7 @@
 - Sessions: [2026-03-16 research session 5, 2026-03-16 paper trade session 6]
 
 ## Confirmed
-(none — H-012/H-019 promoted to LIVE)
+(none — H-012/H-019/H-021 promoted to LIVE)
 
 ## Pending
 
@@ -286,7 +286,7 @@
 - Sessions: [2026-03-18 research session 24]
 
 ## H-021: Volume Momentum Factor (Cross-Sectional, 14 Assets)
-- Status: CONFIRMED
+- Status: LIVE (paper trade since 2026-03-18)
 - Idea: Long assets with highest short-term volume growth relative to long-term average, short lowest. Volume expansion precedes price moves.
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 3 days)
@@ -302,8 +302,8 @@
   - **Correlation with H-019**: -0.032 (near zero)
   - **Regime analysis**: BTC UP Sharpe 3.67, FLAT 0.92, DOWN 0.18 — works in all regimes
   - **5-strat portfolio (10/40/10/15/25)**: Sharpe 2.10, +31.6%, 12.9% DD
-- Notes: **Best WF performance of any strategy tested** (6/6, mean 1.83). Key caveat: ONLY works at high-frequency rebalance (3-day). Low-frequency versions (14-21 day) FAIL WF badly (2/6). This means high turnover (1409 trades) — fee management critical. Must use maker orders. Alternative: VS7_VL20_R3_N4 (IS 1.81, WF 5/6 mean 1.77) also strong. Volume z-score variant (IS 1.91) fails WF. Volume data quality is clean (no zeros, CV 0.43-0.65). Ready for paper trade — design runner with careful fee tracking.
-- Sessions: [2026-03-18 research session 28]
+- Notes: **Best WF performance of any strategy tested** (6/6, mean 1.83). Key caveat: ONLY works at high-frequency rebalance (3-day). Low-frequency versions (14-21 day) FAIL WF badly (2/6). This means high turnover (1409 trades) — fee management critical. Must use maker orders. Alternative: VS7_VL20_R3_N4 (IS 1.81, WF 5/6 mean 1.77) also strong. Volume z-score variant (IS 1.91) fails WF. Volume data quality is clean (no zeros, CV 0.43-0.65). Paper trade deployed 2026-03-18: LONG DOT/LINK/XRP/DOGE (vol surge), SHORT ARB/SUI/NEAR/ATOM (vol drop). Next rebal 2026-03-21.
+- Sessions: [2026-03-18 research session 28, 2026-03-18 paper trade session 29]
 
 ## H-022: Amihud Illiquidity Premium (Cross-Sectional, 14 Assets)
 - Status: REJECTED

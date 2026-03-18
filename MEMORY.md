@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (-1.32%) + H-011 (OUT, 0%) + H-012 (+1.77%) + H-019 (-0.43%) — portfolio +0.01%
-- **H-021 CONFIRMED**: Volume momentum factor. 6/6 WF, mean OOS Sharpe 1.83. Ready for paper trade.
-- **5-strat portfolio target**: Sharpe 2.10, +31.6%, 12.9% DD (with H-021 at 25% allocation)
-- **BTC at $71,194** (-3.9%). H-009 LONG signal fragile. Diversification working.
+- **Paper trading (5 strategies):** H-009 (-1.23%) + H-011 (OUT, 0%) + H-012 (+1.31%) + H-019 (-0.85%) + H-021 (-0.24%) — portfolio -0.19%
+- **H-021 DEPLOYED**: Volume momentum paper trade live. LONG DOT/LINK/XRP/DOGE, SHORT ARB/SUI/NEAR/ATOM.
+- **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
+- **BTC at $71,360** (-3.9%). H-009 LONG signal fragile. Diversification working.
 - **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023 (18 rejected, 23 total tested)
-- **Last session:** 2026-03-18 research (session 28)
+- **Last session:** 2026-03-18 paper trade (session 29)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **Next action:** Deploy H-021 paper trade. Monitor H-009 flip risk. H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
+- **Next action:** Monitor all 5 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Continue research if time permits.
 - **Open user questions:** none
 
 ## Memory Files
@@ -258,3 +258,11 @@
 - Next: Deploy H-021 paper trade runner. Monitor all 4 paper trades. H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - Questions added: none
 - Self-modifications: Added volume_factors_research.py and h021_deep_validation.py
+
+### Session 2026-03-18 paper trade (session 29)
+- Goal: Paper Trade — deploy H-021 volume momentum, monitor all strategies
+- Focus: Build H-021 paper trade runner, execute initial rebalance, update portfolio to 5-strat
+- Done: Built `paper_trades/h021_volmom/runner.py` (VS5_VL20_R3_N4, 3-day rebal). Initial rebalance: LONG DOT/LINK/XRP/DOGE (volume surge), SHORT ARB/SUI/NEAR/ATOM (volume drop). Equity $9,976 after fees. Updated portfolio monitor for 5-strategy allocation (10/40/10/15/25). Portfolio $49,904 (-0.19%): H-009 $9,877 (-1.23%), H-011 $10,000 (OUT), H-012 $10,131 (+1.31%), H-019 $9,915 (-0.85%), H-021 $9,980 (-0.20%). **All 5 strategies now in paper trade.** H-012 still best performer — short side dominating during market drop.
+- Next: Monitor all 5 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Continue research if pipeline empty.
+- Questions added: none
+- Self-modifications: Updated portfolio_monitor.py for 5-strategy layout
