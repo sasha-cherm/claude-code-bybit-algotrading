@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.17%) + H-011 (OUT, 0%) + H-012 (+1.55%) + H-019 (-0.24%, just deployed) — portfolio +0.37%
-- **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
-- **H-019 DEPLOYED:** LONG ATOM/ARB/XRP (low vol), SHORT DOGE/DOT/NEAR (high vol). Next rebal 2026-04-08.
-- **4-strat portfolio**: Sharpe 1.75, +23.8%, 14.0% DD (backtest). All 4 strategies now in paper trade.
+- **Paper trading:** H-009 (-1.42%) + H-011 (OUT, 0%) + H-012 (+1.95%) + H-019 (-0.86%) — portfolio -0.08%
+- **BTC SELLOFF**: $71,017 (-3.9%). Portfolio only -0.08% — diversification working.
+- **H-009 signal fragile**: EMA gap +0.84%. Flips SHORT if daily close < $70,579.
+- **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP. Short side +$670. Next rebal 2026-03-21.
+- **H-019 positions:** LONG ATOM/ARB/XRP, SHORT DOGE/DOT/NEAR. Next rebal 2026-04-08.
 - **Rejected:** H-001–H-007, H-013–H-018, H-020 (20 hypotheses tested total)
-- **Last session:** 2026-03-18 paper trade (session 26)
-- **BTC:** $73,910. H-009 LONG +0.17%. H-012 ATOM long +$67 / SUI short +$73 leading.
-- **Funding:** H-011 re-entry projected **2026-03-20 16:00 UTC**.
-- **Next action:** Monitor all 4 paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
+- **Last session:** 2026-03-18 review (session 27)
+- **Funding:** Rolling-27 at -1.6% ann. H-011 re-entry pushed to **2026-03-22 to 2026-03-23**.
+- **Next action:** Monitor H-009 signal (close to flip). H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - **Open user questions:** none
 
 ## Memory Files
@@ -243,3 +243,11 @@
 - Next: Monitor all 4 paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21. H-019 next rebal Apr 8.
 - Questions added: none
 - Self-modifications: Updated portfolio_monitor.py for 4-strategy layout
+
+### Session 2026-03-18 review (session 27)
+- Goal: Review — monitor all 4 paper trades, BTC selloff analysis
+- Focus: Run runners, funding rate projection, EMA signal analysis
+- Done: Portfolio $39,967 (-0.08%): H-009 $9,858 (-1.42%, BTC dropped to $71,017), H-011 $10,000 (OUT), H-012 $10,195 (+1.95%, short side dominating +$670), H-019 $9,914 (-0.86%). **BTC -3.9% but portfolio only -0.08% — diversification proven.** H-009 signal fragile: EMA gap 0.84%, flips SHORT below $70,579. H-011 re-entry pushed to Mar 22-23 (from Mar 20) due to negative funding from selloff. H-012 best performer — market-neutral shorts profiting from broad altcoin decline.
+- Next: Watch H-009 signal closely (near flip). H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
+- Questions added: none
+- Self-modifications: none

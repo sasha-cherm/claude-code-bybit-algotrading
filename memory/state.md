@@ -5,44 +5,45 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,017 (+0.17%) — live mark @ BTC $73,910
+- **Mark equity**: $9,858 (-1.42%) — live mark @ BTC $71,017
 - **Leverage**: 0.40x (vol targeting: 50.0% realized -> 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
-- **Signal**: EMA(5) > EMA(40) on daily close -> LONG
-- **Next check**: Next daily bar close
+- **Signal**: EMA(5) > EMA(40) on daily close -> LONG. **Gap narrowing: +0.84%. Flip to SHORT if daily close < $70,579.**
+- **Next check**: Next daily bar close — **signal at risk if BTC continues dropping**
 
 ### H-011: Leveraged Funding Rate Arb (5x)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: OUT (rolling-27 avg funding negative, since 2026-03-07)
 - **Capital**: $10,000.00
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
-- **Funding trend**: Still OUT. 7d avg negative. **Projected re-entry: 2026-03-20 16:00 UTC**.
+- **Funding trend**: Rolling-27 at -1.6% ann. BTC selloff generating negative rates. **Projected re-entry: 2026-03-22 to 2026-03-23** (pushed back from Mar 20 due to new negative rates).
 - **Next check**: Next funding settlement
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (-$2), NEAR (+$43), ATOM (+$67), AVAX (-$1)
-  - SHORT: SOL (+$17), SUI (+$73), ARB (+$29), OP (-$51)
-- **Mark equity**: $10,155 (+1.55%) — ATOM long and SUI short leading
+  - LONG: BTC (-$100), NEAR (-$88), ATOM (-$105), AVAX (-$162)
+  - SHORT: SOL (+$147), SUI (+$193), ARB (+$193), OP (+$137)
+- **Mark equity**: $10,195 (+1.95%) — **short side dominating** (+$670 vs -$455 longs). Market drop benefits shorts.
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (3 days)
 
-### H-019: Low-Volatility Anomaly (14 Assets) -- NEW
+### H-019: Low-Volatility Anomaly (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-18)
 - **Position**: 6 positions (3 long, 3 short)
-  - LONG (low vol): ATOM (-$1), ARB (-$1), XRP (-$1)
-  - SHORT (high vol): DOGE (-$1), DOT (-$1), NEAR (-$1)
-- **Mark equity**: $9,976 (-0.24%) — just deployed, fee drag only
+  - LONG (low vol): ATOM (-$223), ARB (-$221), XRP (-$141)
+  - SHORT (high vol): DOGE (+$157), DOT (+$191), NEAR (+$171)
+- **Mark equity**: $9,914 (-0.86%) — longs hit harder than shorts benefit from market drop
 - **Runner**: `paper_trades/h019_lowvol/runner.py`
 - **Params**: 20d vol window, 21d rebalance, top/bottom 3
 - **Next rebal**: 2026-04-08 (21 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-18)
-- **Total equity**: $40,148 (+0.37%)
-- **H-009**: $10,017 (+0.17%) | **H-011**: $10,000 (0%) | **H-012**: $10,155 (+1.55%) | **H-019**: $9,976 (-0.24%)
+## Portfolio Summary (live mark-to-market 2026-03-18 15:00 UTC)
+- **Total equity**: $39,967 (-0.08%)
+- **H-009**: $9,858 (-1.42%) | **H-011**: $10,000 (0%) | **H-012**: $10,195 (+1.95%) | **H-019**: $9,914 (-0.86%)
 - **Paper trade age**: H-009/H-011/H-012: 2 days / 28 required. H-019: day 0.
+- **BTC dropped 3.9%** ($73,910 → $71,017) — portfolio only -0.08% thanks to H-012 short side hedging.
 
 ## Target Portfolio Allocation
 - **15% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -64,11 +65,12 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 4-strat portfolio analysis |
 
 ## Risk Watch
-- **BTC stable**: BTC at $73,910, H-009 LONG +0.17%.
-- **H-012 strong**: +1.55% (up from +0.92% last session). ATOM long +$67, SUI short +$73 leading. OP short (-$51) only drag.
-- **H-019 deployed**: Initial positions: LONG ATOM/ARB/XRP (low vol), SHORT DOGE/DOT/NEAR (high vol). Next rebal Apr 8.
-- **Funding rate**: H-011 re-entry projected **2026-03-20 16:00 UTC**.
-- **Watchlist**: H-011 re-entry ~Mar 20. H-012 rebalance 2026-03-21.
+- **BTC SELLOFF**: BTC dropped to $71,017 (-3.9%). H-009 LONG signal fragile — **flips SHORT if daily close < $70,579** (only 0.6% away).
+- **H-012 strong**: +1.95% — short side (+$670) more than compensates for long side losses (-$455). Best performer during selloff.
+- **H-019 slightly negative**: -0.86% — low-vol longs hit harder than high-vol shorts benefit. Expected behavior during broad market drops.
+- **Funding rate**: Rolling-27 at -1.6% ann. BTC drop generating negative rates (-6.24% upcoming). **H-011 re-entry pushed to Mar 22-23** (from Mar 20).
+- **Diversification working**: 3.9% BTC drop → only 0.08% portfolio drawdown. Market-neutral strategies hedging directional exposure.
+- **Watchlist**: H-009 signal flip risk. H-011 re-entry ~Mar 22-23. H-012 rebalance 2026-03-21.
 
 ## Rejected Strategies
 | Hypothesis | Reason |
