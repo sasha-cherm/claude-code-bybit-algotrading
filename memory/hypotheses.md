@@ -387,6 +387,54 @@
 - Notes: Very strong standalone factor (97% positive) but is fundamentally just another way to measure momentum. Assets near their rolling highs = recent winners = exactly what H-012 captures. The 0.682 correlation confirms this. Walk-forward only 3/6 positive vs H-012's 5/6 — so it's also a weaker version of momentum. No portfolio value.
 - Sessions: [2026-03-18 research session 30]
 
+## H-027: Lead-Lag Cross-Sectional Factor (14 Assets, 1h)
+- Status: REJECTED
+- Idea: BTC moves first, altcoins follow. Long altcoins that haven't responded to BTC's recent move, short over-responders.
+- Instrument: futures (14 perps)
+- Timeframe: 1h (rebalance every 1-5 days)
+- Logic: Compute BTC return over past N hours (4-24h). For each altcoin, compute lag score = BTC_return - altcoin_return. Rank. Long top N, short bottom N.
+- Result:
+  - **75 param sets tested** (lookback 4-24h, rebal 1-5d, N 3-5)
+  - **Only 1% positive Sharpe** (1/75)
+  - **Best Sharpe: 0.014** — essentially zero edge
+  - **Mean Sharpe: -2.605**
+  - **Walk-forward**: Best 3/6 positive, mean OOS 0.378. FAIL.
+- Notes: The BTC-altcoin lead-lag effect either doesn't exist at hourly timescales or is already arbitraged away. Short lookbacks (4h, 8h) catastrophic — pure fee drag into noise. The relationship may exist at minute-level but not capturable with hourly bars.
+- Sessions: [2026-03-18 review+research session 31]
+
+## H-028: Volume Trend Change Factor (OI Proxy, 14 Assets, 1h)
+- Status: REJECTED
+- Idea: Assets with accelerating volume (short MA / long MA ratio) attract capital → continuation signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1h (rebalance every 24-72h)
+- Logic: Compute ratio of short-window avg volume to long-window avg volume. Rank. Long top N (volume accelerating), short bottom N.
+- Result:
+  - **204 param sets tested**
+  - **Only 6% positive Sharpe** (12/204)
+  - **Best Sharpe: 0.774** (VS6_VL48_R72_N5, 22.1% ann, 24.3% DD) — but narrow params
+  - **Mean Sharpe: -1.143**
+  - **Walk-forward**: All tested sets FAIL. Best 3/6, mean -0.195.
+  - **Fee sensitivity**: Negative at 3x fees.
+- Notes: Volume trend as OI proxy has no reliable cross-sectional signal. The few IS-positive results are narrow parameter overfitting. Actual OI data might behave differently but wasn't available in cache.
+- Sessions: [2026-03-18 review+research session 31]
+
+## H-029: Hourly Cross-Sectional Momentum (14 Assets, 1h)
+- Status: REJECTED
+- Idea: Higher-frequency cross-sectional momentum using 1h bars. Potentially different alpha from daily H-012.
+- Instrument: futures (14 perps)
+- Timeframe: 1h (rebalance every 4-48h)
+- Logic: Rank assets by past 24h-336h returns using 1h bars. Long top N, short bottom N.
+- Result:
+  - **90 param sets tested** (lookback 24-336h, rebal 4-48h, N 3-5)
+  - **16% positive Sharpe** (14/90)
+  - **336h (14-day) lookback ONLY works**: 93% sub-params positive. All shorter lookbacks 0%.
+  - **Walk-forward (336h)**: LB336_R48_N3: **5/6 positive, mean OOS 1.001** — PASS
+  - **Fee sensitivity**: Sharpe 0.807 at 3x fees — PASS
+  - **BUT: Correlation with H-012 = 0.484** — FAIL (threshold <0.4)
+  - **Cross-sectional rank corr with H-012**: 0.415
+- Notes: The 336h lookback that works is essentially 14-day momentum — a noisier, shorter version of H-012's 60-day momentum. Not an independent alpha source. Shorter hourly lookbacks (24-168h) that would be truly differentiated all fail. No unique hourly momentum alpha exists.
+- Sessions: [2026-03-18 review+research session 31]
+
 ## Killed
 (none)
 

@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1 strategies):** H-009 (-1.25%) + H-011 (OUT, 0%) + H-012 (+1.42%) + H-019 (-0.73%) + H-021 (-0.61%) — portfolio $49,883 (-0.23%). H-024 (-0.25%) tracking as comparison.
-- **H-024 DEPLOYED**: Low-beta anomaly paper trade live. LONG ATOM/OP/BTC, SHORT XRP/NEAR/SUI. Comparing against H-019 — backtests show H-024 should replace H-019 (portfolio Sharpe 1.80→2.33).
+- **Paper trading (5+1 strategies):** H-009 (-1.37%) + H-011 (OUT, 0%) + H-012 (+1.47%) + H-019 (-0.26%) + H-021 (-0.57%) — portfolio $49,927 (-0.15%). H-024 (-0.19%) tracking as comparison.
+- **H-024 vs H-019**: H-024 -0.19% vs H-019 -0.26% — H-024 slightly better early on, as backtests predicted.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at $71,324** (-4.3% 24h). H-009 LONG signal fragile. Diversification working.
-- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025, H-026 (20 rejected, 26 total tested)
-- **Last session:** 2026-03-18 review+research (session 30)
+- **BTC at $71,250** (-4.0% 24h). H-009 LONG signal fragile (~$670 above flip). Diversification working.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-029 (23 rejected, 29 total tested)
+- **Last session:** 2026-03-18 review+research (session 31)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019 performance.
+- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019. Explore options/on-chain/ML research directions.
 - **Open user questions:** none
 
 ## Memory Files
@@ -274,3 +274,11 @@
 - Next: Monitor all 6 paper trades. Track H-024 vs H-019 head-to-head. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk.
 - Questions added: none
 - Self-modifications: Added risk_factors_research.py, h024_deep_validation.py, h024_beta paper trade runner. Updated portfolio_monitor.py for 6-strategy tracking.
+
+### Session 2026-03-18 review+research (session 31)
+- Goal: Review + Research — monitor paper trades, explore 1h-frequency cross-sectional factors
+- Focus: H-027 (lead-lag), H-028 (volume trend/OI proxy), H-029 (hourly momentum)
+- Done: Portfolio $49,927 (-0.15%): H-009 $9,863 (-1.37%), H-011 $10,000 (OUT), H-012 $10,147 (+1.47%), H-019 $9,974 (-0.26%), H-021 $9,943 (-0.57%). BTC $71,250 stable. Tested 3 hourly-frequency factors (369 param sets). **H-027 REJECTED** (1% positive, lead-lag not exploitable). **H-028 REJECTED** (6% positive, overfitting). **H-029 REJECTED** (336h lookback works but corr 0.484 with H-012 — redundant). No new daily bars during session. 29 hypotheses tested total, 23 rejected.
+- Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Explore new research directions: options, on-chain data, ML/ensemble methods.
+- Questions added: none
+- Self-modifications: Added leadlag_research/ framework.
