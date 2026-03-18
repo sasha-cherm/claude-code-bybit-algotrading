@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.19%) + H-011 (OUT, 0%) + H-012 (+0.62%) — portfolio +0.27%
+- **Paper trading:** H-009 (+0.25%) + H-011 (OUT, 0%) + H-012 (+0.92%) — portfolio +0.40%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
-- **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
-- **Rejected:** H-001–H-007, H-013–H-018, H-020 (20 hypotheses, all fail walk-forward or redundant)
-- **Last session:** 2026-03-18 research (session 24)
-- **BTC down:** $73,949. H-009 LONG +0.19%. H-012 SUI short +$56 leading.
-- **Funding:** 7d avg -1.4% ann. Re-entry projected **2026-03-20 16:00 UTC**.
-- **New research:** H-019 (low-vol anomaly) is promising 4th strategy candidate — 89% robust, 5/8 WF, corr -0.27 with H-009. Needs more validation.
-- **Next action:** Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21. Continue H-019 validation.
+- **H-019 CONFIRMED:** Deep validation complete. Standard vol V20_R21_N3. Portfolio Sharpe 1.38→1.75.
+- **Portfolio correction:** 3-strat Sharpe is 1.38 (actual H-009), not 2.78 (proxy). 4-strat with H-019: 1.75.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020 (20 hypotheses tested total)
+- **Last session:** 2026-03-18 research (session 25)
+- **BTC:** $74,061. H-009 LONG +0.25%. H-012 SUI short +$65 leading.
+- **Funding:** H-011 re-entry projected **2026-03-20 16:00 UTC**.
+- **Next action:** Monitor paper trades. Prepare H-019 paper trade runner. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
 - **Open user questions:** none
 
 ## Memory Files
@@ -227,3 +227,11 @@
 - Next: Monitor paper trades. Continue H-019 validation (more OOS testing, regime analysis). H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
 - Questions added: none
 - Self-modifications: Added cross-sectional factor research framework; saved user feedback memory about continued research
+
+### Session 2026-03-18 research (session 25)
+- Goal: Research — H-019 deep validation v2 + paper trade monitoring
+- Focus: Per-fold WF analysis, alternative vol measures, regime filters, actual H-009 correlation, combined factors
+- Done: Portfolio $30,120 (+0.40%): H-009 $10,025 (+0.25%), H-011 OUT, H-012 $10,092 (+0.92%). **H-019 CONFIRMED** after exhaustive validation (7 tests). KEY FINDINGS: (1) Failing WF folds = strong BTC uptrends (avg +31.8%). (2) Downside vol variant: 99% param robust, 7/8 WF — but standard vol better for portfolio (corr 0.076 vs 0.223 with H-012). (3) Actual H-009 correlation: -0.094 (corrected from -0.268 proxy). (4) No regime filter helps. (5) **CRITICAL**: 3-strat Sharpe with actual H-009 equity is 1.38 (not 2.78 from BTC proxy). Adding H-019 (15/50/15/20): Sharpe 1.75, +23.8%, 14.0% DD. (6) Adaptive WF: 4/6 positive, mean OOS 1.58.
+- Next: Monitor paper trades. Prepare H-019 paper trade runner. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
+- Questions added: none
+- Self-modifications: Added h019_deep_validation_v2.py framework

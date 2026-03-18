@@ -249,22 +249,27 @@
 - Sessions: [2026-03-18 research session 24]
 
 ## H-019: Low-Volatility Anomaly (Cross-Sectional, 14 Assets)
-- Status: BACKTEST — promising, needs more OOS validation
+- Status: CONFIRMED — ready for paper trade deployment
 - Idea: Long low-vol assets, short high-vol assets. Classic cross-sectional factor (low-vol earns risk-adjusted excess returns).
 - Instrument: futures (14 perps)
-- Timeframe: 1D (rebalance every 7-28 days)
-- Logic: Rank assets by NEGATIVE of realized volatility (low vol ranks high). Long top quartile, short bottom quartile.
+- Timeframe: 1D (rebalance every 21 days)
+- Logic: Rank assets by NEGATIVE of realized volatility (20d window, low vol ranks high). Long top 3, short bottom 3. Rebalance every 21 days using lagged ranking.
 - Result:
-  - **In-sample (full)**: Best V20_R21_N3: Sharpe 1.17, +57.8% annual, 47.9% DD
-  - **Parameter robustness**: 89% positive (124/140). Mean Sharpe 0.52. Robust across vol windows (V10-V60) and N (2-5).
-  - **Fee sensitivity**: Very robust. Sharpe 1.03 at 5x fees (192 trades, low turnover).
-  - **Rolling walk-forward (8 folds, 80d test)**: 5/8 positive, mean OOS Sharpe 0.76, median 0.60
-  - **Correlation with H-012**: 0.076 (near zero — good)
-  - **Correlation with H-009**: -0.268 (moderately negative — excellent diversifier!)
-  - **Vol targeting (VT 20%)**: Reduces DD from 48% to 37% but Sharpe drops from 1.17 to 0.85
-  - **4-strategy portfolio (15/50/15/20)**: Sharpe 1.77, +24.0%, 11.5% DD
-- Notes: Most promising 4th strategy candidate found. The negative correlation with H-009 is very valuable (H-009 suffers in trends, low-vol benefits from calm markets). Main concerns: (1) 3 of 8 WF folds negative (folds during strong trending periods), (2) 48% DD is high. The WF pass rate (62.5%) is lower than H-012 (83%). Should be validated with more OOS data before paper trading.
-- Sessions: [2026-03-18 research session 24]
+  - **In-sample (full, standard vol V20_R21_N3)**: Sharpe 1.17, +57.8% annual, 47.9% DD
+  - **Parameter robustness (standard vol)**: 89% positive (124/140). Mean Sharpe 0.52.
+  - **Parameter robustness (downside vol)**: 99% positive (138/140). Mean Sharpe 0.92.
+  - **Fee sensitivity**: Sharpe 0.75 at 5x fees (very robust, low turnover).
+  - **Walk-forward (8 folds, 80d, standard vol)**: 5/8 positive, mean OOS Sharpe 0.76, median 0.60
+  - **Walk-forward (8 folds, 80d, downside vol)**: 7/8 positive, mean OOS Sharpe ~2.24
+  - **Adaptive WF (param opt per fold)**: 4/6 positive, mean OOS Sharpe 1.58
+  - **Actual H-009 correlation**: -0.094 (slightly negative — corrected from -0.268 BTC proxy)
+  - **H-012 correlation**: 0.076 (standard vol), 0.223 (downside vol)
+  - **Failing WF folds**: Strong BTC uptrends (avg BTC +31.8% in fails vs -10.1% in passes)
+  - **Regime filter**: None improves WF over baseline
+  - **Combined factor (LV+Mom)**: 30/70 blend WF mean 1.57 but overlaps with H-012
+  - **4-strategy portfolio (15/50/15/20, actual H-009)**: Sharpe 1.75, +23.8%, 14.0% DD (vs 3-strat 1.38)
+- Notes: Standard vol variant preferred over downside vol for portfolio use — lower correlation with H-012 (0.076 vs 0.223) and more negative correlation with H-009 (-0.094 vs -0.020), giving better portfolio improvement (Sharpe +0.37 vs +0.01). Main risk: underperforms during strong BTC uptrends. The 48% standalone DD is acceptable in a diversified portfolio (portfolio DD 14%). Critical correction: previous 3-strat Sharpe was 2.78 using BTC proxy for H-009; actual H-009 equity gives 1.38. H-019 brings it to 1.75 — meeting the ≥1.5 target.
+- Sessions: [2026-03-18 research session 24, 2026-03-18 research session 25]
 
 ## H-020: Funding Rate Dispersion (Cross-Sectional Carry)
 - Status: REJECTED
