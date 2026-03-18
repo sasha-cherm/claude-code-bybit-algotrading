@@ -285,6 +285,55 @@
 - Notes: Complete failure. Crypto funding rates are too correlated across assets (r=0.49 with BTC, confirmed by H-013 analysis). High-funding assets don't outperform relative to low-funding. Cross-sectional carry doesn't work because all assets enter positive/negative funding regimes together. This also confirms H-013's finding that multi-asset funding diversification is futile.
 - Sessions: [2026-03-18 research session 24]
 
+## H-021: Volume Momentum Factor (Cross-Sectional, 14 Assets)
+- Status: CONFIRMED
+- Idea: Long assets with highest short-term volume growth relative to long-term average, short lowest. Volume expansion precedes price moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3 days)
+- Logic: Compute ratio of 5-day avg volume to 20-day avg volume for each asset. Rank. Long top 4 (highest volume surge), short bottom 4. Rebalance every 3 days using lagged ranking.
+- Result:
+  - **In-sample (VS5_VL20_R3_N4)**: Sharpe 1.52, +63.3% annual, 24.7% DD, 1409 trades
+  - **Parameter robustness**: 90% positive (162/180). Mean Sharpe 0.73.
+  - **Walk-forward (6 folds, 180d/80d)**: **6/6 positive** (perfect!), mean OOS Sharpe **1.83**, median 1.55
+  - **WF folds**: 0.45, 3.26, 3.01, 1.24, 1.86, 1.17 — all positive
+  - **Fee sensitivity**: Sharpe 1.63→1.41→1.19→0.76 at 1x→2x→3x→5x fees
+  - **Correlation with H-009**: -0.068 (near zero)
+  - **Correlation with H-012**: 0.057 (near zero)
+  - **Correlation with H-019**: -0.032 (near zero)
+  - **Regime analysis**: BTC UP Sharpe 3.67, FLAT 0.92, DOWN 0.18 — works in all regimes
+  - **5-strat portfolio (10/40/10/15/25)**: Sharpe 2.10, +31.6%, 12.9% DD
+- Notes: **Best WF performance of any strategy tested** (6/6, mean 1.83). Key caveat: ONLY works at high-frequency rebalance (3-day). Low-frequency versions (14-21 day) FAIL WF badly (2/6). This means high turnover (1409 trades) — fee management critical. Must use maker orders. Alternative: VS7_VL20_R3_N4 (IS 1.81, WF 5/6 mean 1.77) also strong. Volume z-score variant (IS 1.91) fails WF. Volume data quality is clean (no zeros, CV 0.43-0.65). Ready for paper trade — design runner with careful fee tracking.
+- Sessions: [2026-03-18 research session 28]
+
+## H-022: Amihud Illiquidity Premium (Cross-Sectional, 14 Assets)
+- Status: REJECTED
+- Idea: Long illiquid assets (high |return|/volume ratio), short liquid assets. Academic illiquidity premium.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5-21 days)
+- Logic: Compute Amihud illiquidity measure: avg(|daily return| / dollar volume) over 10-60 day window. Rank. Long top quartile (illiquid), short bottom quartile.
+- Result:
+  - **48 param sets tested**
+  - **0% positive Sharpe** (0/48)
+  - **Best Sharpe: -1.15** — no edge whatsoever
+  - **Mean Sharpe: -1.40**
+- Notes: Complete failure. Illiquidity premium doesn't exist in crypto. Illiquid assets (small-cap alts) consistently underperform liquid ones. The academic illiquidity premium relies on institutional constraints absent in crypto markets. Longing illiquid crypto = catching falling knives.
+- Sessions: [2026-03-18 research session 28]
+
+## H-023: Price-Volume Confirmation (Cross-Sectional, 14 Assets)
+- Status: REJECTED
+- Idea: Long assets with momentum + volume confirmation (both positive), short assets with momentum but declining volume (exhaustion). Smart money signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5-21 days)
+- Logic: Ranking = momentum(N-day) * volume_change(M-day). Both dimensions must agree for strong signal.
+- Result:
+  - **96 param sets tested**
+  - **93% positive Sharpe** (89/96). Mean 0.62, best 1.53.
+  - **Walk-forward (M60_V20_R5_N3)**: 5/6 positive, mean OOS Sharpe 1.00
+  - **Fee sensitivity**: Sharpe 1.27 at 5x fees (excellent)
+  - **BUT: Correlation with H-012 = 0.864** — essentially redundant with momentum
+- Notes: Strong factor on its own, but is just momentum with a volume multiplier. At 60d momentum lookback, it's nearly identical to H-012 (r=0.864). No portfolio diversification value. Would only be useful as a REPLACEMENT for H-012, not an addition. H-012 is simpler and already deployed — no reason to switch.
+- Sessions: [2026-03-18 research session 28]
+
 ## Killed
 (none)
 

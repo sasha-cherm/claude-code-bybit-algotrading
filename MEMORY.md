@@ -1,15 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (-1.42%) + H-011 (OUT, 0%) + H-012 (+1.95%) + H-019 (-0.86%) — portfolio -0.08%
-- **BTC SELLOFF**: $71,017 (-3.9%). Portfolio only -0.08% — diversification working.
-- **H-009 signal fragile**: EMA gap +0.84%. Flips SHORT if daily close < $70,579.
-- **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP. Short side +$670. Next rebal 2026-03-21.
-- **H-019 positions:** LONG ATOM/ARB/XRP, SHORT DOGE/DOT/NEAR. Next rebal 2026-04-08.
-- **Rejected:** H-001–H-007, H-013–H-018, H-020 (20 hypotheses tested total)
-- **Last session:** 2026-03-18 review (session 27)
-- **Funding:** Rolling-27 at -1.6% ann. H-011 re-entry pushed to **2026-03-22 to 2026-03-23**.
-- **Next action:** Monitor H-009 signal (close to flip). H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
+- **Paper trading:** H-009 (-1.32%) + H-011 (OUT, 0%) + H-012 (+1.77%) + H-019 (-0.43%) — portfolio +0.01%
+- **H-021 CONFIRMED**: Volume momentum factor. 6/6 WF, mean OOS Sharpe 1.83. Ready for paper trade.
+- **5-strat portfolio target**: Sharpe 2.10, +31.6%, 12.9% DD (with H-021 at 25% allocation)
+- **BTC at $71,194** (-3.9%). H-009 LONG signal fragile. Diversification working.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023 (18 rejected, 23 total tested)
+- **Last session:** 2026-03-18 research (session 28)
+- **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
+- **Next action:** Deploy H-021 paper trade. Monitor H-009 flip risk. H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - **Open user questions:** none
 
 ## Memory Files
@@ -251,3 +250,11 @@
 - Next: Watch H-009 signal closely (near flip). H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-18 research (session 28)
+- Goal: Research — volume-based cross-sectional factors
+- Focus: H-021 (volume momentum), H-022 (Amihud illiquidity), H-023 (price-volume confirmation)
+- Done: Tested 3 new volume factors (324 total param sets). **H-021 CONFIRMED**: 90% positive, **6/6 WF folds** (best ever), mean OOS Sharpe 1.83. Corr near zero with all existing strategies. 5-strat portfolio Sharpe 2.10 (+31.6%, 12.9% DD). Only works at high-frequency rebal (3-day). **H-022 REJECTED**: 0% positive — no illiquidity premium in crypto. **H-023 REJECTED**: 93% positive but corr 0.864 with H-012 — just momentum in disguise. Portfolio $40,004 (+0.01%). Paper trades stable.
+- Next: Deploy H-021 paper trade runner. Monitor all 4 paper trades. H-012 rebal Mar 21. H-011 re-entry ~Mar 22-23.
+- Questions added: none
+- Self-modifications: Added volume_factors_research.py and h021_deep_validation.py
