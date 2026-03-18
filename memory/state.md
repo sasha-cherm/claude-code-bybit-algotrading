@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,039 (+0.39%) — live mark @ BTC $74,312
+- **Mark equity**: $10,012 (+0.12%) — live mark @ BTC $73,824
 - **Leverage**: 0.40x (vol targeting: 50.0% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -16,23 +16,23 @@
 - **Position**: OUT (rolling-27 avg funding -1.9% ann, negative since 2026-03-07)
 - **Capital**: $10,000.00
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
-- **Funding trend**: Still OUT. No new settlements since 16:00 UTC. Rolling-27 -1.9% ann. Recovery intact — big -11.7% ann from Mar 11 00:00 drops out in ~6 settlements. **Projected re-entry: 2026-03-20 00:00 UTC**.
-- **Next check**: Next funding settlement at 00:00 UTC Mar 18 (~1 hour)
+- **Funding trend**: Still OUT. 6 settlements processed. Rolling-27 -1.9% ann. Live funding rate -4.6% ann (setback). Recovery still intact — big -11.7% ann from Mar 11 drops out in ~8 settlements. **Projected re-entry: 2026-03-21 00:00 UTC** (pushed back 1 day by negative rates).
+- **Next check**: Next funding settlement at 08:00 UTC Mar 18
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (+$11), NEAR (+$45), ATOM (-$12), AVAX (+$12)
-  - SHORT: SOL (-$25), SUI (+$42), ARB (+$4), OP (-$70)
-- **Mark equity**: $9,988 (-0.12%) — OP short -$70 is main drag
+  - LONG: BTC (-$5), NEAR (+$47), ATOM (-$7), AVAX (+$2)
+  - SHORT: SOL (-$4), SUI (+$66), ARB (+$13), OP (-$66)
+- **Mark equity**: $10,025 (+0.25%) — SUI short +$66 leading, OP short -$66 still dragging
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
-- **Next rebal**: 2026-03-21 (4 days)
+- **Next rebal**: 2026-03-21 (3 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-17 23:00 UTC)
-- **Total equity**: $30,027 (+0.09%)
-- **H-009**: $10,039 (+0.39%) | **H-011**: $10,000 (0%) | **H-012**: $9,988 (-0.12%)
-- **Paper trade age**: 1-2 days / 28 required
+## Portfolio Summary (live mark-to-market 2026-03-18 01:00 UTC)
+- **Total equity**: $30,037 (+0.12%)
+- **H-009**: $10,012 (+0.12%) | **H-011**: $10,000 (0%) | **H-012**: $10,025 (+0.25%)
+- **Paper trade age**: 2 days / 28 required
 
 ## Target Portfolio Allocation
 - **20% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -58,12 +58,12 @@
 | H-017: MTF Momentum | REJECTED | — | r=0.89 with H-009, redundant |
 
 ## Risk Watch
-- **BTC pulled back**: BTC at $74,312, down from $74,682 last session. H-009 LONG still positive (+0.39%).
-- **H-012 OP short dragging**: OP short now -$70 (was -$55). SOL short -$25, SUI short +$42. Overall -0.12% (was +0.08%). OP relative outperformance is the main concern — but rebalance in 4 days will reassess.
-- **Funding rate**: No new settlements since 16:00 UTC. Rolling-27 -1.9% ann. **Projected H-011 re-entry: 2026-03-20 00:00 UTC** (unchanged). Next settlement in ~1 hour.
+- **BTC continued pullback**: BTC at $73,824, down from $74,312 last session (-0.66%). H-009 LONG still positive (+0.12%) but reduced from +0.39%.
+- **H-012 recovered**: Was -0.12%, now +0.25%. SUI short +$66 leading. OP short -$66 still main drag but improved from -$70. New daily bar processed.
+- **Funding rate setback**: Live rate -4.6% ann (negative). Rolling-27 still -1.9% ann. **Projected H-011 re-entry pushed to 2026-03-21 00:00 UTC** (was Mar 20). Big -11.7% ann from Mar 11 drops out at step 8.
 - **Research exhaustion on BTC daily signals**: 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
 - **Decision**: Current 3-strategy portfolio is optimal. No viable 4th leg found.
-- **Watchlist**: H-011 re-entry 2026-03-20. H-012 rebalance 2026-03-21.
+- **Watchlist**: H-011 re-entry 2026-03-21. H-012 rebalance 2026-03-21. Both events now on same day.
 
 ## Rejected Strategies
 | Hypothesis | Reason |

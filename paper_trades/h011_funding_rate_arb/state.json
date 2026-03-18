@@ -32,8 +32,13 @@
       "date": "2026-03-17 16:00:00+00:00",
       "equity": 10000.0,
       "in_position": false
+    },
+    {
+      "date": "2026-03-18 00:00:00+00:00",
+      "equity": 10000.0,
+      "in_position": false
     }
   ],
-  "last_funding_time": "2026-03-17 16:00:00+00:00",
-  "settlements_count": 5
+  "last_funding_time": "2026-03-18 00:00:00+00:00",
+  "settlements_count": 6
 }
