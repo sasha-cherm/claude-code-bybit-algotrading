@@ -38,12 +38,13 @@ STATE_FILES = {
     "H-012": ROOT / "paper_trades" / "h012_xsmom" / "state.json",
     "H-019": ROOT / "paper_trades" / "h019_lowvol" / "state.json",
     "H-021": ROOT / "paper_trades" / "h021_volmom" / "state.json",
+    "H-024": ROOT / "paper_trades" / "h024_beta" / "state.json",
 }
 
 
 def load_strategy_state(name: str) -> dict | None:
-    path = STATE_FILES[name]
-    if not path.exists():
+    path = STATE_FILES.get(name)
+    if path is None or not path.exists():
         return None
     with open(path) as f:
         return json.load(f)
@@ -90,7 +91,7 @@ def get_strategy_equity(name: str, state: dict, prices: dict | None = None) -> f
             return capital + unrealized
         return capital
 
-    if name in ("H-012", "H-019", "H-021"):
+    if name in ("H-012", "H-019", "H-021", "H-024"):
         capital = state.get("capital", 10_000)
         positions = state.get("positions", {})
         if positions and prices:
@@ -126,16 +127,16 @@ def run(detailed: bool = False):
         print(f"  BTC/USDT: ${btc_price:,.2f}")
     print()
 
-    for name in ["H-009", "H-011", "H-012", "H-019", "H-021"]:
+    for name in ["H-009", "H-011", "H-012", "H-019", "H-021", "H-024"]:
         state = load_strategy_state(name)
         if state is None:
-            print(f"  {name}: no state file found")
             continue
 
         equity = get_strategy_equity(name, state, prices)
         initial = 10_000
         ret_pct = (equity / initial - 1) * 100
-        total_equity += equity
+        if name in ALLOCATION:
+            total_equity += equity
 
         strategy_data[name] = {
             "equity": equity,
@@ -161,6 +162,12 @@ def run(detailed: bool = False):
 
     print(f"  {'-'*12} {'-'*10} {'-'*8} {'-'*6} {'-'*9}")
     print(f"  {'Portfolio':<12} ${total_equity:>9,.2f} {portfolio_return:>+7.2f}%        {weighted_return:>+8.3f}%")
+
+    # Show comparison strategy (H-024) if available
+    if "H-024" in strategy_data:
+        d024 = strategy_data["H-024"]
+        print(f"\n  Comparison: H-024 (beta) ${d024['equity']:>9,.2f} {d024['return_pct']:>+7.2f}% "
+              f"  (candidate to replace H-019)")
     print()
 
     # Position summary
@@ -224,6 +231,17 @@ def run(detailed: bool = False):
         else:
             print(f"  H-021: FLAT")
 
+    # H-024 (comparison)
+    if "H-024" in strategy_data:
+        s = strategy_data["H-024"]["state"]
+        positions = s.get("positions", {})
+        if positions:
+            longs = [sym.replace("/USDT", "") for sym, p in positions.items() if p["weight"] > 0]
+            shorts = [sym.replace("/USDT", "") for sym, p in positions.items() if p["weight"] < 0]
+            print(f"  H-024: L {'/'.join(longs)} | S {'/'.join(shorts)} (comparison)")
+            print(f"         Rebal {s.get('rebal_count', 0)}, next in "
+                  f"{21 - s.get('days_since_rebal', 0)}d")
+
     print()
 
     # Risk metrics
@@ -269,7 +287,7 @@ def _print_detailed(strategy_data: dict):
     print("  Equity History")
     print(f"  {'-'*55}")
 
-    for name in ["H-009", "H-011", "H-012", "H-019", "H-021"]:
+    for name in ["H-009", "H-011", "H-012", "H-019", "H-021", "H-024"]:
         if name not in strategy_data:
             continue
         eq_hist = strategy_data[name]["state"].get("equity_history", [])

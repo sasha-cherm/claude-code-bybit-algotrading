@@ -45,7 +45,7 @@
 - Sessions: [2026-03-16 research session 5, 2026-03-16 paper trade session 6]
 
 ## Confirmed
-(none — H-012/H-019/H-021 promoted to LIVE)
+(none — H-012/H-019/H-021/H-024 promoted to LIVE)
 
 ## Pending
 
@@ -333,6 +333,59 @@
   - **BUT: Correlation with H-012 = 0.864** — essentially redundant with momentum
 - Notes: Strong factor on its own, but is just momentum with a volume multiplier. At 60d momentum lookback, it's nearly identical to H-012 (r=0.864). No portfolio diversification value. Would only be useful as a REPLACEMENT for H-012, not an addition. H-012 is simpler and already deployed — no reason to switch.
 - Sessions: [2026-03-18 research session 28]
+
+## H-024: Low-Beta Anomaly (Cross-Sectional, 14 Assets)
+- Status: LIVE (paper trade since 2026-03-18) — **comparing against H-019**
+- Idea: Long low-beta assets (less sensitive to BTC), short high-beta assets. Rolling 60-day beta vs BTC as market proxy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 21 days)
+- Logic: Compute rolling 60-day beta of each asset vs BTC returns. Rank. Long top 3 lowest-beta, short bottom 3 highest-beta. Rebalance every 21 days using lagged ranking.
+- Result:
+  - **In-sample (W60_R21_N3)**: Sharpe 1.56, +90.1% annual, 49.2% DD, 105 trades
+  - **Parameter robustness**: 100% positive (48/48). Mean Sharpe 1.08.
+  - **Walk-forward (6 folds, 360d/80d)**: **5/6 positive**, mean OOS Sharpe **2.12**, median 1.36
+  - **WF folds**: 4.78, 1.47, -0.60, 1.25, 0.86, 4.95
+  - **Fee sensitivity**: Sharpe 1.56→1.54→1.52→1.48 at 1x→2x→3x→5x fees (extremely robust — only 105 trades)
+  - **Head-to-head vs H-019 (vol)**: Beta wins 12/12 at matched params (100%)
+  - **Correlation with H-009**: -0.027 (near zero)
+  - **Correlation with H-012**: 0.319 (moderate)
+  - **Correlation with H-019**: 0.660 (high — related factors)
+  - **Correlation with H-021**: 0.069 (near zero)
+  - **Portfolio (replacing H-019)**: Sharpe 1.80 → **2.33** (+0.53 improvement)
+  - **6-strat (both H-019 + H-024)**: Sharpe 1.96 (worse than replacement — correlated)
+  - **Multiple WF configs**: W60_R14_N4 (5/6, mean 1.72), W30_R14_N3 (5/6, mean 1.70)
+  - **Idiosyncratic vol variant**: Only 67% positive, corr 0.808 with H-019, not useful
+- Notes: **Strongest factor discovery since H-021.** Beta captures systematic risk (sensitivity to BTC), while H-019 captures total risk (including idiosyncratic). Beta is strictly better: higher IS Sharpe, better WF, more fee-robust, and bigger portfolio improvement. Should replace H-019 after parallel paper trade validation. Deployed 2026-03-18: LONG ATOM/OP/BTC (low beta), SHORT XRP/NEAR/SUI (high beta).
+- Sessions: [2026-03-18 research session 30]
+
+## H-025: Skewness Factor (Cross-Sectional, 14 Assets)
+- Status: REJECTED
+- Idea: Long negative-skew assets (underpriced risk), short positive-skew assets (overpriced lottery tickets).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5-21 days)
+- Logic: Compute rolling skewness of returns (20-90 day window). Rank by NEGATIVE skewness. Long top quartile, short bottom quartile.
+- Result:
+  - **48 param sets tested**
+  - **Only 15% positive Sharpe** (7/48)
+  - **Best Sharpe: 0.49** — weak edge
+  - **Mean Sharpe: -0.51**
+- Notes: The skewness premium (buying assets with negatively skewed returns, avoiding lottery-like payoffs) doesn't exist in crypto. Crypto asset return distributions are too similar across the universe for cross-sectional differentiation. Only 30d window showed any signal (7 positive), and even those were marginal. The academic skewness premium relies on retail investor preferences absent in crypto.
+- Sessions: [2026-03-18 research session 30]
+
+## H-026: Drawdown Distance Factor (Cross-Sectional, 14 Assets)
+- Status: REJECTED
+- Idea: Long assets near their rolling highs, short assets deep in drawdown. Continuation signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5-21 days)
+- Logic: Compute close/rolling_max(N-day) for each asset. Rank (closer to peak = higher rank). Long top quartile, short bottom quartile.
+- Result:
+  - **60 param sets tested**
+  - **97% positive Sharpe** (58/60). Mean 0.79, best 1.54.
+  - **Walk-forward (W90_R5_N5)**: 3/6 positive, mean OOS Sharpe 1.40, median 0.90
+  - **BUT: Correlation with H-012 = 0.682** — essentially momentum in disguise
+  - **Correlation with H-019**: 0.353 (moderate)
+- Notes: Very strong standalone factor (97% positive) but is fundamentally just another way to measure momentum. Assets near their rolling highs = recent winners = exactly what H-012 captures. The 0.682 correlation confirms this. Walk-forward only 3/6 positive vs H-012's 5/6 — so it's also a weaker version of momentum. No portfolio value.
+- Sessions: [2026-03-18 research session 30]
 
 ## Killed
 (none)

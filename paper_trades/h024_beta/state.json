@@ -1,0 +1,56 @@
+{
+  "started": "2026-03-18T21:08:59.413030+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "ATOM/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 1.892378,
+      "size": 1761.45179703,
+      "direction": "LONG"
+    },
+    "OP/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 0.126925,
+      "size": 26262.14972398,
+      "direction": "LONG"
+    },
+    "BTC/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 71202.83772,
+      "size": 0.04681461,
+      "direction": "LONG"
+    },
+    "XRP/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 1.458308,
+      "size": -2285.75355365,
+      "direction": "SHORT"
+    },
+    "NEAR/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 1.39872,
+      "size": -2383.13090305,
+      "direction": "SHORT"
+    },
+    "SUI/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 0.979904,
+      "size": -3401.69384079,
+      "direction": "SHORT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-03-18",
+      "equity": 9976.01,
+      "positions": 6,
+      "rebalanced": true
+    }
+  ],
+  "last_daily_date": "2026-03-18",
+  "last_rebal_date": "2026-03-18",
+  "days_since_rebal": 0,
+  "rebal_count": 1,
+  "total_trades": 6,
+  "total_fees": 19.999999999999996
+}

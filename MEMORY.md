@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5 strategies):** H-009 (-1.23%) + H-011 (OUT, 0%) + H-012 (+1.31%) + H-019 (-0.85%) + H-021 (-0.24%) — portfolio -0.19%
-- **H-021 DEPLOYED**: Volume momentum paper trade live. LONG DOT/LINK/XRP/DOGE, SHORT ARB/SUI/NEAR/ATOM.
+- **Paper trading (5+1 strategies):** H-009 (-1.25%) + H-011 (OUT, 0%) + H-012 (+1.42%) + H-019 (-0.73%) + H-021 (-0.61%) — portfolio $49,883 (-0.23%). H-024 (-0.25%) tracking as comparison.
+- **H-024 DEPLOYED**: Low-beta anomaly paper trade live. LONG ATOM/OP/BTC, SHORT XRP/NEAR/SUI. Comparing against H-019 — backtests show H-024 should replace H-019 (portfolio Sharpe 1.80→2.33).
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at $71,360** (-3.9%). H-009 LONG signal fragile. Diversification working.
-- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023 (18 rejected, 23 total tested)
-- **Last session:** 2026-03-18 paper trade (session 29)
+- **BTC at $71,324** (-4.3% 24h). H-009 LONG signal fragile. Diversification working.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025, H-026 (20 rejected, 26 total tested)
+- **Last session:** 2026-03-18 review+research (session 30)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **Next action:** Monitor all 5 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Continue research if time permits.
+- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019 performance.
 - **Open user questions:** none
 
 ## Memory Files
@@ -266,3 +266,11 @@
 - Next: Monitor all 5 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Continue research if pipeline empty.
 - Questions added: none
 - Self-modifications: Updated portfolio_monitor.py for 5-strategy layout
+
+### Session 2026-03-18 review+research (session 30)
+- Goal: Review + Research — monitor all paper trades, explore risk-based cross-sectional factors
+- Focus: H-024 (beta), H-025 (skewness), H-026 (drawdown distance) + paper trade monitoring
+- Done: Portfolio $49,883 (-0.23%): H-009 $9,875 (-1.25%), H-011 $10,000 (OUT), H-012 $10,142 (+1.42%), H-019 $9,927 (-0.73%), H-021 $9,939 (-0.61%). BTC $71,324 (-4.3% 24h). Tested 3 risk factors (156 param sets). **H-024 CONFIRMED**: 100% IS positive (48/48), WF 5/6 (mean 2.12), beats H-019 at every param set (12/12), portfolio Sharpe 1.80→2.33 as replacement. **H-025 REJECTED** (15% positive). **H-026 REJECTED** (97% positive but corr 0.682 with H-012 = redundant). Deployed H-024 paper trade: LONG ATOM/OP/BTC, SHORT XRP/NEAR/SUI. Updated portfolio monitor for 6-strategy tracking.
+- Next: Monitor all 6 paper trades. Track H-024 vs H-019 head-to-head. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk.
+- Questions added: none
+- Self-modifications: Added risk_factors_research.py, h024_deep_validation.py, h024_beta paper trade runner. Updated portfolio_monitor.py for 6-strategy tracking.
