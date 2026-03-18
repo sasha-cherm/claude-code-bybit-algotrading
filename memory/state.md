@@ -5,7 +5,7 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $10,032 (+0.32%) — live mark @ BTC $74,181
+- **Mark equity**: $10,021 (+0.19%) — live mark @ BTC $73,949
 - **Leverage**: 0.40x (vol targeting: 50.0% realized → 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) > EMA(40) on daily close → LONG
@@ -13,25 +13,25 @@
 
 ### H-011: Leveraged Funding Rate Arb (5x)
 - **Status**: LIVE paper trade (started 2026-03-16)
-- **Position**: OUT (rolling-27 avg funding -1.7% ann, negative since 2026-03-07)
+- **Position**: OUT (rolling-27 avg funding negative, since 2026-03-07)
 - **Capital**: $10,000.00
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
-- **Funding trend**: Still OUT. 8 settlements processed (6 at start + 2 new: Mar 17 16:00 = -4.2% ann, Mar 18 00:00 = +0.5% ann). Rolling-27 improved to -1.7% ann. Live upcoming rate +3.2% ann. **Projected re-entry: 2026-03-20 16:00 UTC** (earlier than prev Mar 21 estimate).
+- **Funding trend**: Still OUT. 7d avg -1.4% ann, 30d avg +0.4% ann. **Projected re-entry: 2026-03-20 16:00 UTC**.
 - **Next check**: Next funding settlement at 08:00 UTC Mar 18
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (+$7), NEAR (+$43), ATOM (+$29), AVAX (+$9)
-  - SHORT: SOL (+$8), SUI (+$38), ARB (+$6), OP (-$42)
-- **Mark equity**: $10,078 (+0.78%) — NEAR long +$43 leading, SOL short now profitable +$8
+  - LONG: BTC (~$0), NEAR (+$13), ATOM (+$16), AVAX (+$9)
+  - SHORT: SOL (+$3), SUI (+$56), ARB (+$18), OP (-$38)
+- **Mark equity**: $10,062 (+0.62%) — SUI short +$56 leading
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (3 days)
 
-## Portfolio Summary (live mark-to-market 2026-03-18 05:01 UTC)
-- **Total equity**: $30,110 (+0.37%)
-- **H-009**: $10,032 (+0.32%) | **H-011**: $10,000 (0%) | **H-012**: $10,078 (+0.78%)
+## Portfolio Summary (live mark-to-market 2026-03-18 07:04 UTC)
+- **Total equity**: $30,081 (+0.27%)
+- **H-009**: $10,021 (+0.19%) | **H-011**: $10,000 (0%) | **H-012**: $10,062 (+0.62%)
 - **Paper trade age**: 2 days / 28 required
 
 ## Target Portfolio Allocation
@@ -51,19 +51,16 @@
 | Hypothesis | Status | Priority | Next Step |
 |-----------|--------|----------|-----------|
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | All 3 strategies now in paper trade |
-| H-013: Multi-Asset Funding Arb | REJECTED | — | Fees kill returns, all rates correlated |
-| H-014: Anti-Martingale | REJECTED | — | Fails walk-forward (1/4 folds), too correlated with H-009 |
-| H-015: RSI Mean Reversion | REJECTED | — | Fails walk-forward (0/4 folds), no edge OOS |
-| H-016: BB Squeeze Breakout | REJECTED | — | Too few trades (18), overfit |
-| H-017: MTF Momentum | REJECTED | — | r=0.89 with H-009, redundant |
+| H-019: Low-Volatility Anomaly | BACKTEST | Medium | 89% robust, 5/8 WF, corr -0.27 w/ H-009. Needs more OOS validation |
+| H-018: Short-Term Reversal | REJECTED | — | 4% positive, crypto doesn't reverse cross-sectionally |
+| H-020: Funding Rate Dispersion | REJECTED | — | 0% positive, funding rates too correlated |
 
 ## Risk Watch
-- **BTC stable**: BTC at $74,181, slight pullback from $74,362. H-009 LONG +0.32%.
-- **H-012 strong**: +0.78% (was +0.57%). SOL short turned profitable (+$8). Only OP short (-$42) still negative.
-- **Funding rate recovering**: Rolling-27 improved to -1.7% ann (from -1.9%). Live upcoming rate +3.2% ann. **H-011 re-entry projected 2026-03-20 16:00 UTC** (moved up from Mar 21).
-- **Research exhaustion on BTC daily signals**: 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
-- **Decision**: Current 3-strategy portfolio is optimal. No viable 4th leg found.
-- **Watchlist**: H-011 re-entry ~Mar 20-21. H-012 rebalance 2026-03-21.
+- **BTC pulled back**: BTC at $73,949, down from $74,181 last session. H-009 LONG +0.19%.
+- **H-012 solid**: +0.62% (was +0.78%). SUI short +$56 leading. Only OP short (-$38) still negative.
+- **Funding rate**: 7d avg -1.4% ann. **H-011 re-entry projected 2026-03-20 16:00 UTC**.
+- **New research direction**: H-019 (low-vol anomaly) shows promise as potential 4th strategy.
+- **Watchlist**: H-011 re-entry ~Mar 20. H-012 rebalance 2026-03-21. H-019 deeper validation.
 
 ## Rejected Strategies
 | Hypothesis | Reason |
@@ -80,6 +77,8 @@
 | H-015: RSI Mean Reversion | 0/4 OOS folds positive. Interesting -0.73 corr with H-009 but no edge. |
 | H-016: BB Squeeze Breakout | Only 18 trades in 2yr. 36% params positive. Overfit. |
 | H-017: MTF Momentum | Corr 0.89 with H-009. 44-51% DD. Redundant. |
+| H-018: Short-Term Reversal | 4% positive. Crypto momentum dominates, reversal doesn't work. |
+| H-020: Funding Rate Dispersion | 0% positive. Cross-sectional carry doesn't work (rates too correlated). |
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -88,6 +87,7 @@
 - H-008 strategy code with walk-forward validation framework
 - H-010 multi-strategy research framework
 - H-012 research + validation framework (XSMom)
+- **New**: Cross-sectional factor research framework (`strategies/new_factors_research/`)
 - H-009 paper trade runner (internal simulation)
 - H-011 paper trade runner (funding rate arb simulation)
 - H-012 paper trade runner (XSMom, internal simulation)
@@ -114,6 +114,7 @@
 - **Multi-asset funding arb doesn't help**: all crypto funding rates correlated (r=0.49). Fees from rotation kill returns.
 - **Dynamic allocation not needed**: H-011 OUT = 60% idle = auto-derisking. Static 20/60/20 has best Sharpe in all periods.
 - **Current portfolio is self-regulating**: accept H-011 cyclicality, maintain allocation
-- **Anti-martingale (pyramiding) fails OOS**: 88% IS positive but walk-forward 1/4 folds. Corr 0.42 with H-009 — fundamentally same signal (trend following)
-- **RSI mean reversion has strong negative corr with H-009 (-0.73)** but no edge OOS (0/4 folds). Reduces DD but drags Sharpe.
-- **BTC daily signal exhaustion**: 17 hypotheses tested, only EMA crossover survives. Future research should explore sub-daily timeframes, on-chain data, or orderbook microstructure
+- **Short-term reversal doesn't work in crypto**: 4% positive (72 params). Momentum dominates at all timeframes.
+- **Low-volatility anomaly is promising**: 89% params positive (140 tested), 5/8 WF folds, Sharpe 1.17 IS. Corr -0.27 with H-009 (valuable diversifier). BUT: 48% DD, 3 bad WF folds. Needs more validation.
+- **Cross-sectional carry (funding dispersion) doesn't work**: 0% positive (50 params). All crypto funding rates move together.
+- **20 hypotheses tested total**: Only H-009/H-011/H-012 confirmed. H-019 is the most promising candidate for a 4th strategy.

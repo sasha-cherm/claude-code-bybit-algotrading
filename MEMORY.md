@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading:** H-009 (+0.32%) + H-011 (OUT, 0%) + H-012 (+0.78%) — portfolio +0.37%
+- **Paper trading:** H-009 (+0.19%) + H-011 (OUT, 0%) + H-012 (+0.62%) — portfolio +0.27%
 - **H-012 positions:** LONG BTC/NEAR/ATOM/AVAX, SHORT SOL/SUI/ARB/OP (next rebal 2026-03-21)
 - **Target portfolio:** 20% H-009 / 60% H-011 / 20% H-012 → Sharpe 2.78 (self-regulating)
-- **Rejected:** H-001–H-007, H-013–H-017 (all fail walk-forward or redundant)
-- **Last session:** 2026-03-18 review (session 23)
-- **BTC stable:** $74,181. H-009 LONG +0.32%. H-012 improving to +0.78% (SOL short now profitable).
-- **Funding:** Rolling-27 improved to -1.7% ann. Upcoming rate +3.2% ann. Re-entry projected **2026-03-20 16:00 UTC** (moved up from Mar 21).
-- **Research exhaustion on BTC daily:** 17 hypotheses tested, only H-009/H-011/H-012 survive. Future research: sub-daily, on-chain, or orderbook signals.
-- **Next action:** Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020 (20 hypotheses, all fail walk-forward or redundant)
+- **Last session:** 2026-03-18 research (session 24)
+- **BTC down:** $73,949. H-009 LONG +0.19%. H-012 SUI short +$56 leading.
+- **Funding:** 7d avg -1.4% ann. Re-entry projected **2026-03-20 16:00 UTC**.
+- **New research:** H-019 (low-vol anomaly) is promising 4th strategy candidate — 89% robust, 5/8 WF, corr -0.27 with H-009. Needs more validation.
+- **Next action:** Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21. Continue H-019 validation.
 - **Open user questions:** none
 
 ## Memory Files
@@ -219,3 +219,11 @@
 - Next: Monitor paper trades. H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-18 research (session 24)
+- Goal: Research — explore new cross-sectional factor strategies
+- Focus: H-018 (short-term reversal), H-019 (low-volatility anomaly), H-020 (funding rate dispersion)
+- Done: Tested 3 new cross-sectional factors (262 total param sets). **H-018 REJECTED**: 4% positive, crypto momentum dominates — reversal doesn't work. **H-020 REJECTED**: 0% positive, funding rates too correlated cross-sectionally. **H-019 PROMISING**: 89% params positive (140 tested), Sharpe 1.17 IS, 5/8 WF folds, fee-robust (1.03 at 5x fees). Correlation: -0.27 with H-009 (excellent diversifier), 0.076 with H-012. 4-strat portfolio (15/50/15/20) → Sharpe 1.77, +24%, 11.5% DD. Vol targeting tested but doesn't help much. Paper trades: $30,081 (+0.27%).
+- Next: Monitor paper trades. Continue H-019 validation (more OOS testing, regime analysis). H-011 re-entry ~Mar 20. H-012 rebal Mar 21.
+- Questions added: none
+- Self-modifications: Added cross-sectional factor research framework; saved user feedback memory about continued research
