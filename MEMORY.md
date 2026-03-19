@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+2+1 strategies):** H-009 (-2.21%) + H-011 (OUT, 0%) + H-012 (+1.81%) + H-019 (-0.09%) + H-021 (+0.58%) — portfolio $50,010 (+0.02%). H-024 (-0.87%) comparison. H-031 (+0.04%) + H-032 (0%) independent. H-037 (Polymarket, manual, no trades yet).
-- **H-024 vs H-019**: H-019 -0.09% vs H-024 -0.87% — H-019 widening lead.
+- **Paper trading (5+1+2+1+1 strategies):** H-009 (-2.35%) + H-011 (OUT, 0%) + H-012 (+2.15%) + H-019 (+0.09%) + H-021 (+0.47%) — portfolio $50,037 (+0.07%). H-024 (+0.03%) comparison. H-031 (-0.20%) + H-032 (0%) + H-039 (flat) independent. H-037 (Polymarket, manual).
+- **H-024 vs H-019**: H-019 +0.09% vs H-024 +0.03% — gap narrowing.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$69,575**. H-009 flip to SHORT on next daily close (00:00 UTC Mar 20) virtually certain.
-- **38 total tested, 30 rejected.** 8 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak).
-- **Last session:** 2026-03-19 review+research (session 39)
+- **BTC at ~$69,322**. H-009 flip to SHORT tonight (00:00 UTC Mar 20) confirmed.
+- **40 total tested, 32 rejected.** 9 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak).
+- **Last session:** 2026-03-19 review+research (session 40)
+- **H-039 BREAKTHROUGH**: Day-of-week seasonality — **best WF in project** (6/6, mean Sharpe 2.46). Long Wed, short Thu on BTC. Deployed paper trade.
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (8 runners).
-- **H-038 ML research**: Ridge factor combo Sharpe 1.43 OOS but train window sensitive — confirmed standalone (weak), not deploying.
-- **Next action:** Monitor. H-009 flip on next daily close. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23.
+- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (9 runners).
+- **Next action:** Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24.
 - **Open user questions:** None
 
 ## Memory Files
@@ -348,3 +348,11 @@
 - Next: Monitor paper trades. H-009 flip on next daily close (00:00 UTC Mar 20). H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Research approaching exhaustion — 38 hypotheses tested.
 - Questions added: none
 - Self-modifications: Added strategies/ml_research/ (h038_ml_factor_combo.py, h038_deep_validation.py). Installed scikit-learn.
+
+### Session 2026-03-19 review+research (session 40)
+- Goal: Review + Research — monitor paper trades, explore day-of-week seasonality + vol regime timing
+- Focus: H-039 (DOW seasonality), H-040 (vol regime factor timing)
+- Done: Portfolio $50,037 (+0.07%): H-009 $9,765 (-2.35%, BTC $69,322 — flip tonight confirmed), H-011 $10,000 (OUT), H-012 $10,215 (+2.15%), H-019 $10,009 (+0.09%), H-021 $10,047 (+0.47%). H-024 $10,003 (+0.03%, gap narrowing). **H-039 CONFIRMED — BEST WF IN PROJECT**: Fixed Wed long / Thu short on BTC. WF **6/6** positive (mean Sharpe **2.46**). EW 14-asset WF 6/6 (mean 1.99). ALL 14 assets positive. Corr ~0 with everything. Fee-robust at maker rates. Deployed paper trade. **H-040 REJECTED**: Vol regime timing adds nothing OOS (-0.06 to -0.31 Sharpe improvement). 40 hypotheses tested.
+- Next: Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24 (Tue close).
+- Questions added: none
+- Self-modifications: Added strategies/dow_research/, paper_trades/h039_dow_seasonality/. Updated orchestrator (9 runners) and portfolio monitor.

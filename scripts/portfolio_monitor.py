@@ -41,6 +41,7 @@ STATE_FILES = {
     "H-024": ROOT / "paper_trades" / "h024_beta" / "state.json",
     "H-031": ROOT / "paper_trades" / "h031_size" / "state.json",
     "H-032": ROOT / "paper_trades" / "h032_pairs" / "state.json",
+    "H-039": ROOT / "paper_trades" / "h039_dow_seasonality" / "state.json",
 }
 
 
@@ -93,6 +94,15 @@ def get_strategy_equity(name: str, state: dict, prices: dict | None = None) -> f
             return capital + unrealized
         return capital
 
+    if name == "H-039":
+        capital = state.get("capital", 10_000)
+        pos = state.get("position", 0)
+        if pos != 0 and prices:
+            price = prices.get("BTC/USDT", state.get("entry_price", 0))
+            unrealized = pos * state.get("size_btc", 0) * (price - state.get("entry_price", 0))
+            return capital + unrealized
+        return capital
+
     if name in ("H-012", "H-019", "H-021", "H-024"):
         capital = state.get("capital", 10_000)
         positions = state.get("positions", {})
@@ -129,7 +139,7 @@ def run(detailed: bool = False):
         print(f"  BTC/USDT: ${btc_price:,.2f}")
     print()
 
-    for name in ["H-009", "H-011", "H-012", "H-019", "H-021", "H-024"]:
+    for name in ["H-009", "H-011", "H-012", "H-019", "H-021", "H-024", "H-039"]:
         state = load_strategy_state(name)
         if state is None:
             continue
@@ -243,6 +253,18 @@ def run(detailed: bool = False):
             print(f"  H-024: L {'/'.join(longs)} | S {'/'.join(shorts)} (comparison)")
             print(f"         Rebal {s.get('rebal_count', 0)}, next in "
                   f"{21 - s.get('days_since_rebal', 0)}d")
+
+    # H-039
+    if "H-039" in strategy_data:
+        s = strategy_data["H-039"]["state"]
+        pos = s.get("position", 0)
+        d039 = strategy_data["H-039"]
+        if pos != 0:
+            direction = "LONG" if pos == 1 else "SHORT"
+            print(f"  H-039: {direction} {s.get('size_btc', 0):.6f} BTC "
+                  f"@ ${s.get('entry_price', 0):,.2f} (DOW seasonality)")
+        else:
+            print(f"  H-039: FLAT (DOW) | ${d039['equity']:>9,.2f} {d039['return_pct']:>+.2f}%")
 
     print()
 

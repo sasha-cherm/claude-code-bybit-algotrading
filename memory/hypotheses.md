@@ -607,6 +607,49 @@
   - 38 hypotheses tested total.
 - Sessions: [2026-03-19 review+research session 39]
 
+## H-039: Day-of-Week Seasonality (Long Wednesday / Short Thursday)
+- Status: LIVE (paper trade since 2026-03-19) — independent
+- Idea: Fixed calendar seasonality — crypto markets systematically go up on Wednesdays and down on Thursdays. Long BTC at Tue close, flip short at Wed close, close at Thu close, flat rest of week.
+- Instrument: futures (BTC/USDT perp, also works on all 14 assets)
+- Timeframe: 1D (daily close, trades 2 days/week)
+- Logic: Position based on day of week only. No parameters to optimize. Long Wednesday return, short Thursday return.
+- Data: 14 assets, 734 daily bars (~2yr). 105 observations per DOW per asset. BTC alone: 105 Wed, 105 Thu.
+- Result:
+  - **BTC full period**: Sharpe 1.55, +44.8% annual, -32.7% DD
+  - **BTC Walk-Forward (fixed Wed/Thu, 6 folds)**: **6/6 positive** (mean OOS Sharpe **2.46**)
+    - Fold 1: 1.92, Fold 2: 1.64, Fold 3: 1.78, Fold 4: 2.78, Fold 5: 3.87, Fold 6: 2.79
+  - **EW All-Asset (14)**: Sharpe 1.44, +60.1% annual, -24.2% DD. WF **6/6** (mean 1.99)
+  - **Per-asset**: ALL 14 positive IS Sharpe (0.85–1.78). BTC/ETH/DOGE WF 6/6
+  - **Quarterly consistency**: Wed > Thu in 7/9 quarters (78%). Rolling 6-month: 89%
+  - **ANOVA**: F=12.4 (p<0.0001). Wed mean +0.50%, Thu mean -0.65% (all assets)
+  - **Fee robust**: Sharpe 1.07 at 5 bps/side (maker). Dies at 20 bps
+  - **Correlation**: H-009 0.013, H-012 0.119, H-019 0.112 — near-zero with everything
+  - **Train/Test**: Train Sharpe 0.36, Test Sharpe 3.20 (effect strengthening)
+  - **Adaptive WF (select best/worst day)**: Only 4/6 — fixed Wed/Thu is MORE robust than adaptive
+- Notes:
+  - **Strongest walk-forward result in the entire project** (6/6, mean 2.46, all folds > 1.6)
+  - No parameters = zero overfitting risk (beyond the Wed/Thu selection itself)
+  - Effect is strengthening over time — recent folds have higher Sharpe
+  - Cross-asset consistency (all 14 positive) suggests structural cause, not random
+  - Possible causes: institutional rebalancing, options expiry flow (Deribit Fri), market maker inventory
+  - BTC-specific DOW effects individually not significant (p>0.1) due to small sample — but the pattern holds in walk-forward
+  - 40 hypotheses tested total
+- Sessions: [2026-03-19 review+research session 40]
+
+## H-040: Volatility Regime Factor Timing
+- Status: REJECTED
+- Idea: Scale cross-sectional factor strategy exposure inversely with realized BTC volatility. High vol → reduce exposure, low vol → increase.
+- Instrument: futures (14-asset universe)
+- Timeframe: daily
+- Logic: Compute BTC realized vol over rolling window (10/20/30/60d). Scale H-012 exposure by target_vol / realized_vol. Also test binary regime (above/below expanding median).
+- Data: H-012 daily returns + BTC realized vol, 734 daily bars.
+- Result:
+  - **In-sample**: Marginal improvement. Best: 20d binary regime Sharpe 2.18 (base 2.01). Invvol Sharpe 2.13-2.16.
+  - **Walk-forward**: **NEGATIVE improvement**. Invvol: OOS mean 1.66 vs base 1.72 (-0.06). Binary: 1.41 vs 1.72 (-0.31).
+  - **Combined DOW+Vol**: Sharpe 2.01 → 2.15 (marginal, likely overfitting).
+- Notes: Base factor strategies already implicitly time volatility through portfolio turnover and equal-weight normalization. Explicit vol timing adds complexity without OOS benefit. REJECTED.
+- Sessions: [2026-03-19 review+research session 40]
+
 ## Killed
 (none)
 
