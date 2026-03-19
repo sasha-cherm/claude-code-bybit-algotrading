@@ -1,0 +1,64 @@
+{
+  "hypothesis": "H-032",
+  "name": "Pairwise Cointegration Statistical Arbitrage",
+  "status": "CONFIRMED (standalone, weak)",
+  "data": {
+    "assets": 14,
+    "pairs_tested": 91,
+    "daily_bars": 734,
+    "period": "2024-03-16 to 2026-03-19"
+  },
+  "cointegration": {
+    "strict_p005": 3,
+    "relaxed_p020": 12,
+    "viable_half_life_5_60d": 12,
+    "cointegrated_pairs": ["DOT/ATOM", "DOGE/LINK", "LINK/ADA"],
+    "stability": "poor - most pairs < 30% of rolling windows significant"
+  },
+  "in_sample": {
+    "total_param_sets": 2160,
+    "positive_sharpe_pct": 50,
+    "best_pair_sharpe": {"DOT/ATOM": 1.30, "SOL/DOGE": 1.23, "AVAX/DOT": 0.96},
+    "12pair_portfolio_sharpe": 1.67,
+    "12pair_portfolio_annual": 0.152,
+    "12pair_portfolio_dd": 0.090
+  },
+  "fee_robustness": {
+    "pairs_tested": 12,
+    "passed_3x_fees": 10,
+    "pct_passed": 83
+  },
+  "walk_forward_120d": {
+    "pairs_passing_3of4": 5,
+    "best_pair": "DOGE/LINK",
+    "doge_link_folds": [1.14, 2.89, 0.46, 1.48],
+    "doge_link_mean": 1.49
+  },
+  "train_test_split_50_50": {
+    "pairs_passing": 5,
+    "best_pair": "DOGE/LINK",
+    "doge_link_test_sharpe": 0.75,
+    "dot_atom_test_sharpe": 0.36,
+    "doge_ada_test_sharpe": 0.61
+  },
+  "oos_portfolio": {
+    "8pair_sharpe": 1.33,
+    "8pair_annual": 0.095,
+    "8pair_dd": 0.058,
+    "3pair_non_overlapping_sharpe": 0.62,
+    "3pair_non_overlapping_annual": 0.072,
+    "3pair_non_overlapping_dd": 0.130
+  },
+  "correlations_with_h012": {
+    "portfolio": -0.31,
+    "dot_atom": -0.043,
+    "doge_link": -0.182,
+    "arb_atom": -0.240,
+    "doge_ada": -0.070
+  },
+  "regime_analysis": {
+    "btc_up": {"sharpe": 1.20},
+    "btc_flat": {"sharpe": 1.84},
+    "btc_down": {"sharpe": 2.36}
+  }
+}

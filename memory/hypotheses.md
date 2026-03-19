@@ -480,6 +480,29 @@
 - Notes: Genuine size effect in crypto — large-cap consistently outperforms small-cap (100% positive, 4/4 WF, extremely fee-robust). Correlated with momentum/low-vol so doesn't diversify the current portfolio, but excellent standalone: +78.5% annual, 31.3% DD, Sharpe 1.58. Very low turnover makes this practical. Could be deployed independently or as a replacement for momentum if H-012 underperforms in paper trade.
 - Sessions: [2026-03-19 review+research session 32, 2026-03-19 review+system session 33]
 
+## H-032: Pairwise Cointegration Statistical Arbitrage
+- Status: CONFIRMED (standalone, weak) — not added to portfolio (OOS evidence mixed, trade frequency too low)
+- Idea: Test all 91 crypto pairs for cointegration, trade mean-reverting spreads using z-score entry/exit. Fundamentally different from cross-sectional factor approaches.
+- Instrument: futures (14 perps, pairwise)
+- Timeframe: 1D (daily, trades last 20-40 days)
+- Logic: Engle-Granger cointegration test on log prices. Compute log-spread = log(A) - HR*log(B) where HR = OLS hedge ratio. Rolling z-score of spread. Long spread when z < -entry_z, short when z > +entry_z. Exit at +-exit_z. Stop at +-stop_z.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). 91 pairs tested. 2160 param sets across 12 candidate pairs.
+- Result:
+  - **Cointegration**: Only 3/91 pairs strictly cointegrated (p<0.05): DOT/ATOM (p=0.031), DOGE/LINK (p=0.027), LINK/ADA (p=0.045). 12 pairs at relaxed p<0.20.
+  - **Cointegration stability**: Poor — most pairs significant in <30% of rolling 180d windows. DOT/ATOM 26%, NEAR/OP 37%, SOL/DOGE 32%.
+  - **In-sample (best params)**: DOT/ATOM Sharpe 1.30 (+29.4%, 21.1% DD, 35 trades). SOL/DOGE 1.23. AVAX/DOT 0.96. 50% of 2160 param sets positive.
+  - **Fee robustness (3x)**: 10/12 pairs pass. DOT/ATOM 1.30->0.67. SOL/DOGE 1.23->0.68.
+  - **Walk-forward (5 folds x 120d)**: 5/12 pairs pass (>=3/4 positive). DOGE/LINK 4/4 (mean 1.49). DOT/OP 3/4 (mean 1.69). DOGE/ADA 3/4 (mean 0.70).
+  - **50/50 train/test split**: 5/12 pass. DOGE/LINK test Sharpe 0.75. DOGE/ADA 0.61. DOT/ATOM 0.36.
+  - **Both OOS tests passed**: Only 2 pairs (DOGE/LINK, DOGE/ADA).
+  - **Multi-pair portfolio (8 pairs, IS)**: Sharpe 1.30, Ann +12.7%, DD 7.4%.
+  - **Multi-pair portfolio (8 pairs, OOS)**: Sharpe 1.33, Ann +9.5%, DD 5.8%.
+  - **Non-overlapping 3-pair portfolio (OOS)**: Sharpe 0.62, Ann +7.2%, DD 13.0%.
+  - **Correlation with H-012**: -0.31 (NEGATIVE — excellent diversifier)
+  - **Regime analysis**: BTC UP Sharpe 1.20, FLAT 1.84, DOWN 2.36 — performs best in downtrends
+- Notes: Fundamentally different alpha source from cross-sectional factors. Negative correlation with momentum (-0.31) makes it an excellent diversifier. However, OOS evidence is mixed: only 2/12 pairs pass both walk-forward AND train/test split. The core issue is cointegration instability — crypto pairs drift in and out of cointegrated relationships over months. With half-lives of 20-40d and entry thresholds of 1-2.5 sigma, each pair generates only 8-35 trades over 2 years, making OOS validation statistically weak. The 8-pair portfolio OOS Sharpe of 1.33 is promising but relies on diversification across many marginal signals. Could be deployed as a low-allocation diversifier (~5-10% of portfolio) but not as a core strategy. Key advantage: works in all BTC regimes and is negatively correlated with everything else.
+- Sessions: [2026-03-19 research session 34]
+
 ## Killed
 (none)
 

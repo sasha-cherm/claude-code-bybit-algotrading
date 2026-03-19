@@ -5,8 +5,8 @@
 - **H-024 vs H-019**: H-019 +0.12% vs H-024 +0.02% — H-019 slightly ahead but too early to call.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
 - **BTC at $71,082**. H-009 LONG signal still fragile near flip point.
-- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-029 (23 rejected, 31 total tested). **Confirmed standalone:** H-030 (composite, Sharpe 2.05), H-031 (size, Sharpe 1.58).
-- **Last session:** 2026-03-19 review+system (session 33)
+- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-029 (23 rejected, 32 total tested). **Confirmed standalone:** H-030 (composite, Sharpe 2.05), H-031 (size, Sharpe 1.58), H-032 (pairs cointegration, OOS Sharpe 1.33 portfolio, weak).
+- **Last session:** 2026-03-19 research (session 34)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
 - **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019.
 - **Open user questions:** none
@@ -298,3 +298,11 @@
 - Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk.
 - Questions added: none
 - Self-modifications: Removed handled user input from CLAUDE.md. Added feedback memory. Added "Confirmed Standalone" section to state.md.
+
+### Session 2026-03-19 research (session 34)
+- Goal: Research — H-032 pairwise cointegration statistical arbitrage
+- Focus: Test all 91 crypto pairs for cointegration, backtest spread trading, walk-forward validate
+- Done: Full pipeline: Engle-Granger on 91 pairs, param sweeps (2160 sets), fee robustness, WF validation (5 folds x 120d), 50/50 split, multi-pair portfolio, H-012 correlation. **H-032 CONFIRMED (standalone, weak)**: 3/91 pairs cointegrated (p<0.05). IS: DOT/ATOM Sharpe 1.30, 12-pair portfolio 1.67. OOS: 8-pair portfolio Sharpe 1.33 (+9.5%, 5.8% DD). Only 2/12 pairs pass both WF and split. Cointegration unstable (<30% rolling windows). Corr with H-012: -0.31 (excellent diversifier). Works best in BTC downtrends (Sharpe 2.36 down vs 1.20 up). 32 hypotheses tested total.
+- Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Consider H-032 as low-allocation (5-10%) diversifier if OOS improves with more data.
+- Questions added: none
+- Self-modifications: Added strategies/pairs_research/ (cointegration_research.py, cointegration_research_v2.py, deep_validation.py, results.json)

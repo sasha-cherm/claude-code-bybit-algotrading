@@ -106,7 +106,7 @@
 - **H-021 struggling**: -0.69% (worsened from -0.18%). ATOM short and DOT long dragging. Next rebal in 2 days.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
 - **Portfolio stable**: BTC -3.4% since entry → only -0.09% portfolio loss.
-- **Research status**: 31 hypotheses tested, 23 rejected, 2 confirmed standalone (H-030, H-031), 5 in paper trade + 1 comparison.
+- **Research status**: 32 hypotheses tested, 23 rejected, 3 confirmed standalone (H-030, H-031, H-032), 5 in paper trade + 1 comparison.
 - **Watchlist**: H-009 signal flip risk. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
 
 ## Rejected Strategies
@@ -139,6 +139,7 @@
 |-----------|---------|---------------------|
 | H-030: Composite Multi-Factor | Sharpe 2.05, +101.7% ann, 25% DD, WF 5/6, 100% params positive | Portfolio of individual strategies (Sharpe 2.26) beats composite (2.14) |
 | H-031: Size Factor (Long Large) | Sharpe 1.58, +78.5% ann, 31% DD, WF 4/4, 100% params positive | Corr 0.49 with H-012 momentum — redundant in current portfolio |
+| H-032: Cointegration Pairs (weak) | IS Sharpe 1.30 (12-pair), OOS 1.33 (8-pair portfolio), DD 5.8% OOS | OOS evidence mixed (2/12 pairs pass both tests). Cointegration unstable. Low trade frequency. |
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -187,4 +188,5 @@
 - **Composite multi-factor doesn't beat portfolio of individuals**: Combining 3 factors into 1 strategy (Sharpe 2.14) is worse than running them separately (Sharpe 2.26). Diversification from independent rebalance schedules adds value.
 - **Size factor (long large-cap) is genuine but redundant**: 100% IS positive (long_large), WF 4/4, but corr 0.486 with momentum. Large-cap outperformance ≈ momentum.
 - **Cross-sectional factor space exhausted**: Tested momentum, volume momentum, beta, volatility, reversal, skewness, drawdown, illiquidity, funding dispersion, lead-lag, size, composite. Only 3 orthogonal signals found (momentum, volume momentum, beta/vol).
+- **Pairwise cointegration (H-032)**: 3/91 pairs strictly cointegrated. Multi-pair portfolio IS Sharpe 1.67, OOS 1.33 — but only 2/12 pairs pass both WF and split tests. Cointegration unstable (<30% of windows). Negative corr with H-012 (-0.31) is attractive. Confirmed standalone (weak).
 - **All 5 portfolio strategies now in paper trade + H-024 comparison** -- monitor for >=4 weeks before live consideration
