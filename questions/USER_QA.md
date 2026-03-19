@@ -41,3 +41,21 @@ Sorry, wrong project, nevermind
 **Action taken:** (session 2026-03-17 review session 11)
 - Dismissed — user confirmed this was meant for a different project
 - Removed the sports betting text from CLAUDE.md
+
+---
+
+## Q-003 [OPEN]
+**Session:** 2026-03-19 review+system (session 35)
+**Question:** H-030, H-031, and H-032 are confirmed standalone but NOT currently in paper trading. Here's the situation:
+
+- **H-030 (Composite Multi-Factor)**: This combines momentum + volume momentum + beta into one strategy. However, we're already running those 3 factors as separate strategies (H-012, H-021, H-024). Running H-030 would effectively double-count these signals. The portfolio of individual strategies (Sharpe 2.26) actually beats the composite (Sharpe 2.14) because different rebalance schedules add diversification. **Recommendation: Do NOT deploy — redundant.**
+
+- **H-031 (Size Factor)**: Genuine signal (long large-cap, short small-cap). Sharpe 1.58, +78.5% annual, 31% DD. Corr 0.49 with H-012 (momentum) so it's partially redundant in the current portfolio, but works well standalone. Very low turnover = low fees. **Could deploy as independent paper trade — would you like to?**
+
+- **H-032 (Cointegration Pairs)**: Fundamentally different from cross-sectional factors. Negative correlation with momentum (-0.31). Works best in BTC downtrends. But OOS evidence is weak (only 2/12 pairs pass both validation tests). Sharpe 1.33, +9.5%, 5.8% DD. **Could deploy as experimental low-allocation paper trade — would you like to?**
+
+Should I deploy H-031 and/or H-032 as paper trades?
+
+**Answer:**
+
+**Action taken:**
