@@ -503,6 +503,66 @@
 - Notes: Fundamentally different alpha source from cross-sectional factors. Negative correlation with momentum (-0.31) makes it an excellent diversifier. However, OOS evidence is mixed: only 2/12 pairs pass both walk-forward AND train/test split. The core issue is cointegration instability — crypto pairs drift in and out of cointegrated relationships over months. With half-lives of 20-40d and entry thresholds of 1-2.5 sigma, each pair generates only 8-35 trades over 2 years, making OOS validation statistically weak. The 8-pair portfolio OOS Sharpe of 1.33 is promising but relies on diversification across many marginal signals. Could be deployed as a low-allocation diversifier (~5-10% of portfolio) but not as a core strategy. Key advantage: works in all BTC regimes and is negatively correlated with everything else.
 - Sessions: [2026-03-19 research session 34]
 
+## H-033: Idiosyncratic Momentum (Alpha Momentum)
+- Status: REJECTED
+- Idea: Decompose each asset's return into market component (beta * BTC_return) + idiosyncratic residual. Rank on cumulative residual momentum. Assets with positive alpha continue outperforming.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-14 days)
+- Logic: For each asset, compute rolling beta vs BTC (30-90d). Residual return = actual - beta*BTC_return. Rank on sum of residual returns over past 10-60 days. Long top N, short bottom N.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). 144 param sets tested.
+- Result:
+  - **In-sample**: 99% positive (142/144). Mean Sharpe 0.77. Best B90_M60_R5_N3: Sharpe 1.56, +90.6% ann, 26.4% DD.
+  - **Walk-forward (4 folds, 360d/80d)**: 1/4 positive. Mean OOS Sharpe -0.16. **FAILS.**
+  - **Correlation with H-012**: 0.832 — essentially redundant with raw momentum.
+  - **Correlation with H-009**: 0.000 (orthogonal).
+  - **Fee sensitivity**: Robust (1.32 at 5x fees).
+- Notes: Stripping out the market (BTC) component doesn't create an independent signal. The residual momentum is still capturing the same cross-sectional patterns as raw momentum because altcoin relative performance is what drives both. Walk-forward failure confirms overfitting. The high IS positive rate (99%) is misleading.
+- Sessions: [2026-03-19 research session 37]
+
+## H-034: Funding Rate as BTC Timing Signal
+- Status: REJECTED
+- Idea: Use extreme funding rate levels as a contrarian predictor of BTC returns. High funding = crowded longs = short. Low funding = oversold = long.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: Compute rolling avg funding rate (3-45 day window). Long BTC when funding below expanding N-th percentile (oversold). Short when above P-th percentile (crowded). Hysteresis (stay in position).
+- Data: BTC, 730 daily bars + 2190 funding rate records. 100 param sets tested.
+- Result:
+  - **In-sample**: 49% positive (49/100) — essentially random.
+  - **Best**: F45_L10_S80: Sharpe 0.54, +14.8% ann, 39.9% DD — but only 5 trades.
+  - **Walk-forward**: 2/6 positive, mean 0.33.
+  - **Correlation with H-009**: -0.175.
+- Notes: No edge. 49% positive = noise. The few positive results have tiny sample sizes (5 trades). Funding rate level does not predict BTC price direction reliably. This confirms that funding rates reflect positioning but don't have predictive power for directional moves.
+- Sessions: [2026-03-19 research session 37]
+
+## H-035: Momentum with Volatility Timing
+- Status: REJECTED (as standalone — logged as potential H-012 enhancement)
+- Idea: Scale H-012 momentum exposure based on recent portfolio volatility. When realized vol is high, reduce exposure. When low, increase.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Standard H-012 momentum ranking (60d). Multiply weights by min(vol_target / realized_vol_N_day, 2.0). Vol targets 0.3-1.0, windows 10-60d.
+- Data: 14 assets, 734 daily bars. 144 param sets tested.
+- Result:
+  - **In-sample**: 100% positive (144/144). 21% beat base H-012 (Sharpe 1.12).
+  - **Best**: VT0.3_VW10_R5_N4: Sharpe 1.61, +68.3% ann, 21.3% DD (vs base 30.6% DD).
+  - **Walk-forward**: 3/4 positive, mean 0.76 (weaker than base H-012's 5/6).
+- Notes: Not a new strategy — just an enhancement that reduces drawdown by scaling down during high-vol periods. Walk-forward weaker than base H-012 (3/4 vs 5/6). Could be applied as a refinement to H-012 if drawdown is a concern, but not worth deploying as a separate paper trade.
+- Sessions: [2026-03-19 research session 37]
+
+## H-036: Intraday Hour-of-Day Seasonality (BTC)
+- Status: REJECTED
+- Idea: Test if BTC returns vary systematically by hour of day. If persistent, trade best/worst hours.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1h
+- Logic: Compute average return per hour of day using expanding window. Long during best N hours, flat (or short) during worst N hours.
+- Data: BTC, 17,610 hourly bars (~2yr).
+- Result:
+  - **Patterns are real**: Train/test correlation of hourly returns = 0.439. Cross-asset corr = 0.625.
+  - **Best hours**: 22:00 (Sharpe 9.75), 21:00 (8.85), 09:00 (5.39).
+  - **Worst hours**: 23:00 (-9.74), 19:00 (-4.90), 13:00 (-3.20).
+  - **Strategy performance**: Best Sharpe 0.30 (BEST4), +1.1% ann, 17.4% DD. Long/short: Sharpe 0.17.
+- Notes: Persistent intraday patterns exist in crypto but the absolute return per hour is tiny (~0.05% per best hour). Transaction costs make any hourly trading unprofitable. The patterns are likely driven by timezone-based trading activity (Asian session 21-02 UTC shows accumulation, European/US session shows distribution). Interesting for understanding market microstructure but not actionable.
+- Sessions: [2026-03-19 research session 37]
+
 ## Killed
 (none)
 

@@ -79,13 +79,13 @@
 - **Runner**: `paper_trades/h032_pairs/runner.py`
 - **Note**: OOS Sharpe 1.33, DD 5.8%. Negative corr with H-012 (-0.31). Entries are infrequent — trade on z-score extremes only.
 
-## Portfolio Summary (live mark-to-market 2026-03-19 session 36)
-- **Total equity**: $50,029 (+0.06%) — 5-strat portfolio only
-- **H-009**: $9,806 (-1.94%) | **H-011**: $10,000 (0%) | **H-012**: $10,148 (+1.48%) | **H-019**: $10,006 (+0.06%) | **H-021**: $10,068 (+0.68%)
-- **H-024 (comparison)**: $9,948 (-0.52%)
-- **H-031 (independent)**: $9,976 (-0.24%) | **H-032 (independent)**: $10,000 (0%)
+## Portfolio Summary (live mark-to-market 2026-03-19 session 37)
+- **Total equity**: $50,002 (+0.00%) — 5-strat portfolio only
+- **H-009**: $9,811 (-1.89%) | **H-011**: $10,000 (0%) | **H-012**: $10,122 (+1.22%) | **H-019**: $9,974 (-0.26%) | **H-021**: $10,095 (+0.95%)
+- **H-024 (comparison)**: $9,864 (-1.36%)
+- **H-031 (independent)**: $10,021 (+0.21%) | **H-032 (independent)**: $10,000 (0%)
 - **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days. H-031/H-032: 0 days.
-- **BTC at ~$70,069** — H-009 flip likely imminent.
+- **BTC at ~$70,147** — H-009 flip likely imminent.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -120,15 +120,17 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **H-009 flip imminent**: BTC at ~$70,069 — very likely below EMA flip point. Daily close will determine.
-- **H-012 best performer**: +1.48% — short side dominating. Market-neutral proven.
-- **H-019 vs H-024**: H-019 +0.06% vs H-024 -0.52% — H-019 still ahead.
-- **H-021 recovering**: +0.68% (improved further). Short side profitable.
+- **H-009 flip imminent**: BTC at ~$70,147 — very likely below EMA flip point. Daily close will determine.
+- **H-012 best performer**: +1.22% — short side dominating. Market-neutral proven.
+- **H-019 vs H-024**: H-019 -0.26% vs H-024 -1.36% — H-019 widening lead.
+- **H-021 improving**: +0.95% (up from +0.68%). Short side profitable.
+- **H-031 positive**: +0.21% — promising start for size factor.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
-- **Portfolio stable**: BTC -4.7% since entry → only +0.06% portfolio. Diversification working.
-- **Research status**: 32 hypotheses tested, 25 rejected, 1 confirmed standalone (H-030), 7 in paper trade + 1 comparison.
+- **Portfolio stable**: BTC -4.6% since entry → +0.00% portfolio. Diversification working.
+- **Research status**: 36 hypotheses tested, 29 rejected, 1 confirmed standalone (H-030), 7 in paper trade + 1 comparison.
+- **Research exhaustion**: Cross-sectional factors, idiosyncratic momentum, funding timing, vol timing, and intraday seasonality all explored. Future alpha likely requires new data sources (options, on-chain, order book).
 - **Watchlist**: H-009 signal flip IMMINENT. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
-- **Open user questions**: None (Q-003 resolved)
+- **Open user questions**: None
 
 ## Automation
 - **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 8 active runners sequentially
@@ -161,6 +163,10 @@
 | H-027: Lead-Lag XS | 1% positive. BTC-altcoin lag not exploitable at hourly frequency. |
 | H-028: Volume Trend Change | 6% positive. Overfitting, fails WF. OI proxy has no XS signal. |
 | H-029: Hourly XS Momentum | 16% positive. 336h lookback works but corr 0.484 with H-012 — redundant. |
+| H-033: Idiosyncratic Momentum | 99% IS positive but corr 0.832 with H-012. Fails WF (1/4). Redundant. |
+| H-034: Funding Rate BTC Timing | 49% positive (noise). Only 5 trades in 2yr. No edge. |
+| H-035: Momentum + Vol Timing | Enhancement to H-012, not independent strategy. WF 3/4, mean 0.76. |
+| H-036: Intraday Seasonality | Real patterns (train/test corr 0.44) but untradeable — Sharpe 0.30 max. |
 
 ## Confirmed Standalone (not in portfolio — good for independent deployment)
 | Hypothesis | Metrics | Why Not In Portfolio |
@@ -214,11 +220,16 @@
 - **Lead-lag (BTC→alt) not exploitable**: 1% IS positive at hourly frequency. Effect may exist at tick level but not at 1h bars.
 - **Volume trend change no cross-sectional signal**: 6% IS positive. OI proxy via volume ratios doesn't work.
 - **Hourly momentum ≈ daily momentum**: 336h lookback works (5/6 WF) but corr 0.484 with H-012. No unique intraday momentum alpha.
-- **32 hypotheses tested total**: 7 in paper trade + 1 comparison (H-024), 25 rejected, 1 confirmed standalone (H-030)
+- **36 hypotheses tested total**: 7 in paper trade + 1 comparison (H-024), 29 rejected, 1 confirmed standalone (H-030)
 - **Risk**: funding rates declining (Q1 2024: 22.7% -> Q1 2026: 1.6%) -- rolling-27 negative since 2026-03-07
 - Fee drag critical at 1h; daily/3-day/5-day/21-day rebalance minimizes fee impact
 - **Composite multi-factor doesn't beat portfolio of individuals**: Combining 3 factors into 1 strategy (Sharpe 2.14) is worse than running them separately (Sharpe 2.26). Diversification from independent rebalance schedules adds value.
 - **Size factor (long large-cap) is genuine but redundant**: 100% IS positive (long_large), WF 4/4, but corr 0.486 with momentum. Large-cap outperformance ≈ momentum.
 - **Cross-sectional factor space exhausted**: Tested momentum, volume momentum, beta, volatility, reversal, skewness, drawdown, illiquidity, funding dispersion, lead-lag, size, composite. Only 3 orthogonal signals found (momentum, volume momentum, beta/vol).
 - **Pairwise cointegration (H-032)**: 3/91 pairs strictly cointegrated. Multi-pair portfolio IS Sharpe 1.67, OOS 1.33 — but only 2/12 pairs pass both WF and split tests. Cointegration unstable (<30% of windows). Negative corr with H-012 (-0.31) is attractive. Confirmed standalone (weak).
+- **Idiosyncratic momentum ≈ raw momentum**: Decomposing returns into beta*BTC + residual doesn't create independent signal. Corr 0.832 with H-012. Fails WF.
+- **Funding rate doesn't predict BTC price**: 49% IS positive = noise. Contrarian funding signal non-existent.
+- **Vol timing can enhance H-012**: VT0.3/VW10 → Sharpe 1.12→1.61, DD 30.6%→21.3%. WF 3/4. Log as potential refinement.
+- **Intraday hour-of-day patterns are real but untradeable**: Train/test corr 0.44. Cross-asset corr 0.63. But absolute returns per hour too small vs fees.
+- **Research exhaustion after 36 hypotheses**: All tradeable alpha in price/volume/funding data has been found. Future alpha requires options IV, on-chain data, or order book.
 - **All 5 portfolio strategies now in paper trade + H-024 comparison** -- monitor for >=4 weeks before live consideration

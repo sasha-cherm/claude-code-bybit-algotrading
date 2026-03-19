@@ -1,15 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+2 strategies):** H-009 (-1.94%) + H-011 (OUT, 0%) + H-012 (+1.48%) + H-019 (+0.06%) + H-021 (+0.68%) — portfolio $50,029 (+0.06%). H-024 (-0.52%) comparison. H-031 (-0.24%) + H-032 (0%) independent.
-- **H-024 vs H-019**: H-019 +0.06% vs H-024 -0.52% — H-019 still ahead.
+- **Paper trading (5+1+2 strategies):** H-009 (-1.89%) + H-011 (OUT, 0%) + H-012 (+1.22%) + H-019 (-0.26%) + H-021 (+0.95%) — portfolio $50,002 (+0.00%). H-024 (-1.36%) comparison. H-031 (+0.21%) + H-032 (0%) independent.
+- **H-024 vs H-019**: H-019 -0.26% vs H-024 -1.36% — H-019 widening lead.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,069**. H-009 flip likely imminent.
-- **32 total tested, 25 rejected.** 7 in paper trade + 1 comparison. Confirmed standalone: H-030 only.
-- **Last session:** 2026-03-19 review+paper trade (session 36)
+- **BTC at ~$70,147**. H-009 flip likely imminent.
+- **36 total tested, 29 rejected.** 7 in paper trade + 1 comparison. Confirmed standalone: H-030 only.
+- **Last session:** 2026-03-19 review+research (session 37)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
 - **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (8 runners).
-- **Next action:** Monitor. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Continue research.
+- **Research exhaustion:** Cross-sectional factors, idiosyncratic momentum, funding timing, vol timing, intraday seasonality all explored. Future alpha needs new data sources.
+- **Next action:** Monitor. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - **Open user questions:** None
 
 ## Memory Files
@@ -323,3 +324,11 @@
 - Next: Monitor all 8 paper trades. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Continue research.
 - Questions added: none
 - Self-modifications: Added H-031 + H-032 paper trade runners. Updated orchestrator (8 runners) and portfolio monitor.
+
+### Session 2026-03-19 review+research (session 37)
+- Goal: Review + Research — monitor paper trades, explore new alpha sources beyond exhausted factor space
+- Focus: H-033 (idiosyncratic momentum), H-034 (funding timing), H-035 (momentum vol timing), H-036 (intraday seasonality)
+- Done: Portfolio $50,002 (+0.00%): H-009 $9,811 (-1.89%), H-011 $10,000 (OUT), H-012 $10,122 (+1.22%), H-019 $9,974 (-0.26%), H-021 $10,095 (+0.95%). H-024 $9,864 (-1.36%, H-019 widening lead). H-031 $10,021 (+0.21%, positive). H-032 $10,000 (flat). **H-033 REJECTED**: 99% IS positive but corr 0.832 with H-012 (redundant), WF 1/4. **H-034 REJECTED**: 49% positive = noise, only 5 trades. **H-035 REJECTED** (as standalone): enhancement to H-012 (Sharpe 1.12→1.61, DD 30.6%→21.3%) but WF 3/4 weaker than base. **H-036 REJECTED**: Real hour-of-day patterns (train/test corr 0.44) but Sharpe 0.30 max — untradeable. 36 hypotheses tested total.
+- Next: Monitor paper trades. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Research largely exhausted — future alpha needs new data sources (options, on-chain, order book).
+- Questions added: none
+- Self-modifications: Added h033_h034_research.py and h035_h036_research.py
