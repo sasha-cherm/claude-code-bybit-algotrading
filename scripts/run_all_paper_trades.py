@@ -32,6 +32,7 @@ RUNNERS = [
     ("H-031", ROOT / "paper_trades" / "h031_size" / "runner.py"),
     ("H-032", ROOT / "paper_trades" / "h032_pairs" / "runner.py"),
     ("H-039", ROOT / "paper_trades" / "h039_dow_seasonality" / "runner.py"),
+    ("H-044", ROOT / "paper_trades" / "h044_oi_divergence" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

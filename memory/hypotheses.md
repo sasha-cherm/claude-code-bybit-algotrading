@@ -682,6 +682,41 @@
 - Notes: The hypothesis as posed (dispersion conditioning) does not work — dispersion filter hurts more than it helps. The genuine signal here is a short-term (20d) XSMom, distinct from H-012 (60d). Corr with H-012 is 0.686 — moderately high. This is NOT added to the portfolio because it is partially redundant with H-012 and the WF mean OOS Sharpe (0.548) is weak. Confirmed standalone (meets all 3 criteria) but portfolio impact marginal due to H-012 overlap.
 - Sessions: [2026-03-19 research session 41]
 
+## H-043: Open Interest Changes as Cross-Sectional Factor
+- Status: REJECTED
+- Idea: Rank assets by OI change (pct change in open interest over various windows). Long high OI change (momentum into leveraged positions) or short high OI change (contrarian).
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (various rebalancing: 3, 5, 10 days)
+- Logic: Compute N-day pct change in open interest for each asset. Rank cross-sectionally. Long top-N / short bottom-N. Tested both momentum (long high OI change) and contrarian (short high OI change) at windows 1, 3, 5, 10, 20 days.
+- Data: 14 assets, 734 daily OI bars from Bybit (2024-03-16 to 2026-03-19), aligned with price data. OI data fetched from Bybit V5 historical API (up to 2053 bars per asset).
+- Result:
+  - **IS overall**: Only 34.4% of 90 param sets positive — weak.
+  - **OI_CHG_1d (best)**: IS Sharpe 1.41 at n=5 r=3. But only works at 3-day rebal — fails at 5d and 10d. Walk-forward **1/5 folds positive**, mean OOS -0.90. FAILS.
+  - **OI_CHG_20d_INV (contrarian, all positive)**: 100% IS positive (9/9) but best Sharpe only 0.60, mean 0.35. Very weak absolute edge.
+  - **Fee robustness (OI_CHG_1d)**: Sharpe -0.60 at 5x fees. Not fee-robust.
+- Notes: OI change alone is NOT a robust cross-sectional signal. Short-term (1d) OI change captures some mean-reversion in positioning but fails walk-forward. Long-term (20d) contrarian OI signal is too weak. The signal only works when combined with price (see H-044).
+- Sessions: [2026-03-20 review+research session 42]
+
+## H-044: OI-Price Divergence Factor
+- Status: LIVE (paper trade since 2026-03-20, independent)
+- Idea: Rank assets by divergence between price momentum and OI change. "Price up + OI down" = sustainable rally (shorts closing, not new leverage). "Price down + OI up" = leverage buildup (potential further decline).
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (10-day rebalancing)
+- Logic: Compute 20-day price change z-score and 20-day OI change z-score cross-sectionally. Signal = price_z - oi_z (lagged 1 day). Long top 5, short bottom 5.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19), OI from Bybit V5 API. ~101 OOS observations per WF fold.
+- Result:
+  - **IS (full, correctly lagged)**: Sharpe 1.46, +26.3% annual, 13.9% DD, 53.4% WR (n=5, r=10). **100% params positive (9/9)** — strongest IS robustness.
+  - **Walk-forward (5 folds, ~101d OOS each)**: **4/5 folds positive** across ALL param sets tested. Mean OOS Sharpe ranges from +0.95 to +1.51 depending on params. Best: n=3 r=5 (mean OOS 1.51), n=4 r=5 (mean OOS 1.50).
+  - **WF fold detail (n=5 r=10)**: +2.40, -1.36, +2.28, +1.64, +1.38 → mean +1.27
+  - **Fee robustness**: Sharpe 1.15 at 5x fees (20bps), 0.76 at 10x fees (40bps) — extremely fee-robust.
+  - **Correlation with H-009**: 0.016 (near zero)
+  - **Correlation with H-012**: 0.565 (moderate — partially captures momentum)
+  - **Correlation with H-019**: 0.154 (low)
+  - **Correlation with H-021**: 0.064 (near zero)
+  - **Correlation with H-024**: 0.249 (moderate)
+- Notes: First strategy using genuinely new data (open interest). The OI divergence signal captures information beyond price momentum — assets where rallies are driven by deleveraging (OI down) tend to continue, while assets with increasing leverage during declines tend to fall further. Confirmed standalone with strong metrics. NOT in main portfolio due to 0.565 corr with H-012 (momentum), but deployed as independent paper trade. Initial rebalance: LONG SUI/OP/NEAR/SOL/ETH, SHORT ADA/ARB/DOT/XRP/DOGE.
+- Sessions: [2026-03-20 review+research session 42]
+
 ## Killed
 (none)
 

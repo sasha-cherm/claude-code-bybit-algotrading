@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+2+1+1 strategies):** H-009 (-2.02%) + H-011 (OUT, 0%) + H-012 (+1.98%) + H-019 (-0.22%) + H-021 (+0.91%) — portfolio $50,065 (+0.13%). H-024 (-0.52%) comparison. H-031 (-0.28%) + H-032 (0%) + H-039 (flat) independent. H-037 (Polymarket, manual).
-- **H-024 vs H-019**: H-019 -0.22% vs H-024 -0.52% — H-019 leading.
+- **Paper trading (5+1+3+1+1 strategies):** H-009 (-1.60%) + H-011 (OUT, 0%) + H-012 (+1.73%) + H-019 (-0.30%) + H-021 (+1.28%) — portfolio $50,112 (+0.22%). H-024 (-0.78%) comparison. H-031 (+0.34%) + H-032 (0%) + H-039 (flat) + H-044 (-0.28%) independent. H-037 (Polymarket, manual).
+- **H-024 vs H-019**: H-019 -0.30% vs H-024 -0.78% — H-019 still leading.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$69,920**. H-009 flip to SHORT tonight (00:00 UTC Mar 20) confirmed.
-- **42 total tested, 34 rejected.** 9 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak), H-042 (weak, redundant with H-012).
-- **Last session:** 2026-03-19 review+research (session 41)
-- **H-039 BREAKTHROUGH**: Day-of-week seasonality — **best WF in project** (6/6, mean Sharpe 2.46). Long Wed, short Thu on BTC. Deployed paper trade.
+- **BTC at ~$70,685**. H-009 flip to SHORT tonight (00:00 UTC Mar 20) confirmed.
+- **44 total tested, 35 rejected.** 10 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak), H-042 (weak).
+- **Last session:** 2026-03-20 review+research (session 42)
+- **H-044 NEW**: OI-Price divergence factor — first strategy using open interest data. WF 4/5 (mean OOS 1.27), Sharpe 1.46, 100% params positive. Deployed independent.
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (9 runners).
-- **Next action:** Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24.
+- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (10 runners).
+- **Next action:** Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
 - **Open user questions:** None
 
 ## Memory Files
@@ -364,3 +364,11 @@
 - Next: Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: Added strategies/dominance_dispersion_research/ (h041_h042_research.py, results_summary.txt).
+
+### Session 2026-03-20 review+research (session 42)
+- Goal: Review + Research — monitor paper trades, explore open interest as new data source
+- Focus: H-043 (OI change as XS factor), H-044 (OI-Price divergence)
+- Done: Portfolio $50,112 (+0.22%): H-009 $9,840 (-1.60%, BTC $70,685), H-011 $10,000 (OUT), H-012 $10,173 (+1.73%), H-019 $9,970 (-0.30%), H-021 $10,128 (+1.28%). H-024 $9,922 (-0.78%, H-019 leading). H-031 $10,034 (+0.34%, turned positive). Fetched 2yr daily OI for all 14 assets from Bybit V5 API. **H-043 REJECTED**: OI change alone is NOT a cross-sectional signal (34% IS positive, WF 1/5). **H-044 CONFIRMED and DEPLOYED**: OI-Price divergence (20d) — 100% IS positive (9/9), WF 4/5 (mean OOS 1.27), Sharpe 1.46, +26.3%, 13.9% DD. Fee-robust (1.15 at 5x). First strategy using genuinely new data (open interest). Corr 0.565 with H-012 — independent deployment. Initial: L SUI/OP/NEAR/SOL/ETH, S ADA/ARB/DOT/XRP/DOGE. 44 hypotheses tested.
+- Next: Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
+- Questions added: none
+- Self-modifications: Added strategies/oi_research/, paper_trades/h044_oi_divergence/. Updated orchestrator (10 runners) and portfolio monitor. Fetched and cached OI data for 14 assets.
