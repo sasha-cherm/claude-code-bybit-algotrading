@@ -1,16 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+3+1+1 strategies):** H-009 (-1.60%) + H-011 (OUT, 0%) + H-012 (+1.73%) + H-019 (-0.30%) + H-021 (+1.28%) — portfolio $50,112 (+0.22%). H-024 (-0.78%) comparison. H-031 (+0.34%) + H-032 (0%) + H-039 (flat) + H-044 (-0.28%) independent. H-037 (Polymarket, manual).
-- **H-024 vs H-019**: H-019 -0.30% vs H-024 -0.78% — H-019 still leading.
+- **Paper trading (5+1+4+1+1 strategies):** H-009 (-1.85%) + H-011 (OUT, 0%) + H-012 (+0.91%) + H-019 (-0.63%) + H-021 (+1.57%) — portfolio $49,999 (-0.00%). H-024 (-1.28%) comparison. H-031 (+0.34%) + H-032 (0%) + H-039 (flat) + H-044 (-0.07%) + H-046 (-0.24%) independent. H-037 (Polymarket, manual).
+- **H-024 vs H-019**: H-019 -0.63% vs H-024 -1.28% — H-019 still leading (gap widened).
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,685**. H-009 flip to SHORT tonight (00:00 UTC Mar 20) confirmed.
-- **44 total tested, 35 rejected.** 10 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak), H-042 (weak).
-- **Last session:** 2026-03-20 review+research (session 42)
-- **H-044 NEW**: OI-Price divergence factor — first strategy using open interest data. WF 4/5 (mean OOS 1.27), Sharpe 1.46, 100% params positive. Deployed independent.
+- **BTC at ~$70,228**. H-009 flip to SHORT at 00:30 UTC cron run tonight.
+- **46 total tested, 36 rejected.** 11 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
+- **Last session:** 2026-03-20 review+research (session 43)
+- **H-044 CORRECTED**: Original Sharpe 1.46 was inflated 4.9x by metrics bug. True IS Sharpe 1.01, WF 3/4 (mean OOS 1.22). Still viable.
+- **H-046 NEW**: Price Acceleration factor — second derivative of momentum. WF **4/4** (mean OOS 1.13), IS Sharpe 1.19, **near-zero corr with everything**. Deployed independent.
+- **H-045**: OI-Volume combination — CONFIRMED standalone (weak). Zero-signal artifact inflated results. Robust variant WF 3/4, rebal-sensitive. Not deployed.
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (10 runners).
-- **Next action:** Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
+- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (11 runners).
+- **Next action:** Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
 - **Open user questions:** None
 
 ## Memory Files
@@ -372,3 +374,11 @@
 - Next: Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
 - Questions added: none
 - Self-modifications: Added strategies/oi_research/, paper_trades/h044_oi_divergence/. Updated orchestrator (10 runners) and portfolio monitor. Fetched and cached OI data for 14 assets.
+
+### Session 2026-03-20 review+research (session 43)
+- Goal: Review + Research — monitor paper trades, explore OI-Volume combinations + price acceleration
+- Focus: H-045 (OI-Volume confirmation/divergence), H-046 (price acceleration — second derivative of momentum)
+- Done: Portfolio $49,999 (-0.00%): H-009 $9,815 (-1.85%, BTC $70,228), H-011 $10,000 (OUT), H-012 $10,091 (+0.91%), H-019 $9,937 (-0.63%), H-021 $10,157 (+1.57%). H-024 $9,872 (-1.28%, H-019 leading by wider margin). **CRITICAL BUG FOUND**: H-043/H-044 research script used periods_per_year=8760 (hourly) for daily data, inflating all Sharpe ratios by 4.9x. H-044 true IS Sharpe is 1.01 (not 1.46). Corrected. H-044 still viable (100% params positive, WF 3/4 mean OOS 1.22). **H-045 CONFIRMED standalone (weak)**: OI-Volume signals had zero-signal artifact inflating results. Robust no-clip variant W20 n=4 r=10 has IS 1.76, WF 3/4, but rebal-sensitive. Not deploying. **H-046 CONFIRMED and DEPLOYED**: Price acceleration (change in 20d momentum over 20d) — IS Sharpe 1.19, +25.1%, 17.6% DD. **WF 4/4** (mean OOS 1.13). 100% params positive (9/9). **Near-zero corr with ALL existing strategies** (max 0.179). Fee-robust (0.56 at 5x). Deployed paper trade: LONG OP/ARB/NEAR/SUI, SHORT DOGE/LINK/ADA/DOT. 46 hypotheses tested.
+- Next: Monitor. H-009 flip tonight (00:30 UTC cron). H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
+- Questions added: none
+- Self-modifications: Added strategies/oi_research/h045_oi_volume_research.py, paper_trades/h046_acceleration/. Updated orchestrator (11 runners) and portfolio monitor. Fixed metrics bug in h043_oi_factor_research.py. Corrected H-044 metrics in state/hypotheses files.

@@ -201,8 +201,8 @@ def xs_backtest(signal_df, return_df, n_long=4, n_short=4, rebal_days=5,
 
     cum = (1 + equity).cumprod()
     metrics = {
-        'sharpe': sharpe_ratio(equity),
-        'annual_return': annual_return(equity),
+        'sharpe': sharpe_ratio(equity, periods_per_year=365),
+        'annual_return': annual_return(cum, periods_per_year=365),
         'max_dd': max_drawdown(cum),
         'win_rate': (equity > 0).mean(),
         'n_days': len(equity),

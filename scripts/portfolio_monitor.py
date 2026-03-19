@@ -43,6 +43,7 @@ STATE_FILES = {
     "H-032": ROOT / "paper_trades" / "h032_pairs" / "state.json",
     "H-039": ROOT / "paper_trades" / "h039_dow_seasonality" / "state.json",
     "H-044": ROOT / "paper_trades" / "h044_oi_divergence" / "state.json",
+    "H-046": ROOT / "paper_trades" / "h046_acceleration" / "state.json",
 }
 
 

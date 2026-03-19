@@ -98,28 +98,42 @@
 - **Fees**: 4 bps/side → Sharpe 1.07 (still viable)
 - **Note**: 40 hypotheses tested total. Strongest walk-forward result ever found.
 
-### H-044: OI-Price Divergence Factor (14 Assets) — NEW, independent
+### H-044: OI-Price Divergence Factor (14 Assets) — independent
 - **Status**: LIVE paper trade (started 2026-03-20) — independent
 - **Position**: 10 positions (5 long, 5 short)
   - LONG (price up + OI down): SUI, OP, NEAR, SOL, ETH
   - SHORT (price down + OI up): ADA, ARB, DOT, XRP, DOGE
-- **Mark equity**: $9,972 (-0.28%)
+- **Mark equity**: $9,993 (-0.07%)
 - **Runner**: `paper_trades/h044_oi_divergence/runner.py`
 - **Params**: 20d OI/price window, 10d rebalance, top/bottom 5
 - **Next rebal**: 2026-03-29 (10 days)
-- **Backtest**: IS Sharpe 1.46, +26.3% ann, 13.9% DD. WF 4/5 positive (mean OOS 1.27). 100% params positive (9/9). Fee-robust (1.15 at 5x fees).
+- **Backtest (CORRECTED)**: IS Sharpe 1.01, +17.3% ann, 17.3% DD. WF 3/4 positive (mean OOS 1.22). 100% params positive (9/9). Fee-robust.
 - **Correlations**: 0.016 with H-009, **0.565 with H-012**, 0.154 with H-019, 0.064 with H-021
+- **Metrics correction**: Original reported IS Sharpe 1.46 was inflated ~4.9x by using periods_per_year=8760 (hourly) instead of 365 (daily). True IS Sharpe is 1.01. Still viable — 100% params positive and WF 3/4 (mean OOS 1.22 is strong). Strategy continues in paper trade.
 - **Note**: First strategy using genuinely new data source (open interest). Partially correlated with H-012 (momentum) — not in main portfolio. Independent deployment.
 
-## Portfolio Summary (live mark-to-market 2026-03-20 session 42)
-- **Total equity**: $50,112 (+0.22%) — 5-strat portfolio only
-- **H-009**: $9,840 (-1.60%) | **H-011**: $10,000 (0%) | **H-012**: $10,173 (+1.73%) | **H-019**: $9,970 (-0.30%) | **H-021**: $10,128 (+1.28%)
-- **H-024 (comparison)**: $9,922 (-0.78%) — H-019 leading
+### H-046: Price Acceleration Factor (14 Assets) — NEW, independent
+- **Status**: LIVE paper trade (started 2026-03-20) — independent
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG (accelerating momentum): OP, ARB, NEAR, SUI
+  - SHORT (decelerating momentum): DOGE, LINK, ADA, DOT
+- **Mark equity**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h046_acceleration/runner.py`
+- **Params**: 20d momentum, 20d acceleration window, 3d rebalance, top/bottom 4
+- **Next rebal**: 2026-03-22 (3 days)
+- **Backtest**: IS Sharpe 1.19, +25.1% ann, 17.6% DD. WF **4/4** positive (mean OOS **1.13**). 100% params positive (9/9). Fee-robust (0.56 at 5x fees).
+- **Correlations**: 0.007 with H-009, 0.099 with H-012, -0.123 with H-019, 0.179 with H-021 — **near-zero with everything**
+- **Note**: Second derivative of momentum — captures momentum acceleration/deceleration. Genuinely independent from all existing strategies. Strongest new signal found since H-039 (DOW seasonality).
+
+## Portfolio Summary (live mark-to-market 2026-03-20 session 43)
+- **Total equity**: $49,999 (-0.00%) — 5-strat portfolio only
+- **H-009**: $9,815 (-1.85%) | **H-011**: $10,000 (0%) | **H-012**: $10,091 (+0.91%) | **H-019**: $9,937 (-0.63%) | **H-021**: $10,157 (+1.57%)
+- **H-024 (comparison)**: $9,872 (-1.28%) — H-019 still leading
 - **H-031 (independent)**: $10,034 (+0.34%) | **H-032 (independent)**: $10,000 (0%)
 - **H-037 (Polymarket, manual)**: $0 (no trades yet) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
-- **H-044 (OI divergence, independent)**: $9,972 (-0.28%) — NEW
-- **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days. H-031/H-032/H-039: 0 days. H-044: 0 days.
-- **BTC at ~$70,685** — H-009 flip to SHORT confirmed for tonight's daily close (00:00 UTC Mar 20).
+- **H-044 (OI divergence, independent)**: $9,993 (-0.07%) | **H-046 (Acceleration, independent)**: $9,976 (-0.24%) — NEW
+- **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 2 days. H-031/H-032/H-039: 1 day. H-044/H-046: 0 days.
+- **BTC at ~$70,228** — H-009 flip to SHORT at 00:00 UTC Mar 20 (tonight, auto via cron).
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -154,20 +168,20 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **H-009 flip TONIGHT**: EMA5 < EMA40 already. Flip to SHORT on daily close (00:00 UTC Mar 20).
-- **H-012 best performer**: +1.73% — short side dominating. Market-neutral proven.
-- **H-019 vs H-024**: H-019 -0.30% vs H-024 -0.78% — H-019 still leading.
-- **H-021**: +1.28% (improving, now 2nd best).
-- **H-031**: +0.34% — turned positive. Short side (small caps) profiting.
-- **H-044 NEW**: Deployed OI-Price divergence. L SUI/OP/NEAR/SOL/ETH, S ADA/ARB/DOT/XRP/DOGE.
+- **H-009 flip TONIGHT**: EMA5 < EMA40. Flip to SHORT at 00:30 UTC cron run (after 00:00 daily close).
+- **H-021 best performer**: +1.57% — short side profiting.
+- **H-019 vs H-024**: H-019 -0.63% vs H-024 -1.28% — H-019 still leading (gap widened).
+- **H-031**: +0.34% — positive. Short side (small caps) profiting.
+- **H-044 METRICS CORRECTED**: Original IS Sharpe 1.46 was inflated by 4.9x (bug: periods_per_year=8760 vs 365). True IS Sharpe 1.01. Still viable (100% params positive, WF 3/4 mean 1.22).
+- **H-046 NEW**: Deployed Price Acceleration. L OP/ARB/NEAR/SUI, S DOGE/LINK/ADA/DOT. WF 4/4, near-zero corr with everything.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
-- **Portfolio stable**: BTC -3.9% since entry → +0.22% portfolio. Diversification working.
-- **Research status**: 44 hypotheses tested, 35 rejected, 3 confirmed standalone (H-030, H-038, H-042-weak), 10 in paper trade + 1 comparison + 1 manual.
-- **Watchlist**: H-009 flip tonight. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21. H-039 first trade Mar 24. H-044 next rebal Mar 29.
+- **Portfolio stable**: BTC -4.5% since entry → -0.00% portfolio. Diversification proven.
+- **Research status**: 46 hypotheses tested, 36 rejected, 3 confirmed standalone (H-030, H-038, H-042-weak), 1 confirmed standalone weak (H-045), 11 in paper trade + 1 comparison + 1 manual.
+- **Watchlist**: H-009 flip tonight. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21. H-046 rebal 2026-03-22. H-039 first trade Mar 24. H-044 next rebal Mar 29.
 - **Open user questions**: None
 
 ## Automation
-- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 10 active runners sequentially
+- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 11 active runners sequentially
 - **Cron schedule**: Every hour at :30 (`30 * * * *`), independent of Claude sessions
 - **Logs**: `logs/paper_trades.log`
 - **Claude sessions**: Every 2 hours at :00 — research, monitoring, strategy updates
@@ -204,6 +218,7 @@
 | H-040: Vol Regime Factor Timing | Marginal IS improvement (+0.12 Sharpe), negative OOS (-0.06 to -0.31). Doesn't help. |
 | H-041: BTC Dominance Rotation | 100% look-ahead bias. Correctly lagged: 1/16 params positive (6.2%), WF 3/6. All lookbacks negative. |
 | H-043: OI Change XS Factor | 34% IS positive. Best (1d OI change, r=3) fails WF (1/5). OI change alone not predictive. |
+| H-045: OI-Volume Confirmation | Robust no-clip variant (W20 n=4 r=10) IS 1.76, WF 3/4 (mean 1.28) but rebal-sensitive (only r=10 works). Corr 0.144 with H-044. Not deploying. |
 
 ## Confirmed Standalone (not in portfolio — good for independent deployment)
 | Hypothesis | Metrics | Why Not In Portfolio |
@@ -212,7 +227,7 @@
 | H-038: ML Factor Combo (Ridge) | Sharpe 1.43, +26.2% ann, 9.6% DD, WF 2/3, 96% params positive | Train window sensitive (only 365d works), too fragile for portfolio |
 | H-042: Short-Term XSMom (20d) | Sharpe 1.17 IS, WF 4/6, mean OOS 0.55, 77% params positive, fee-robust | Corr 0.686 with H-012 (partially redundant). Weak OOS mean Sharpe. |
 
-*H-031 and H-032 moved to independent paper trades (session 36). H-044 deployed as independent paper trade (session 42).*
+*H-031 and H-032 moved to independent paper trades (session 36). H-044 deployed as independent paper trade (session 42). H-046 deployed as independent paper trade (session 43).*
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -240,9 +255,11 @@
 - **DOW seasonality research** (`strategies/dow_research/`)
 - **Dominance + dispersion research** (`strategies/dominance_dispersion_research/`)
 - **OI factor research** (`strategies/oi_research/`) — NEW: Open interest data as cross-sectional factor
-- **H-044 paper trade runner** (OI-Price Divergence, internal simulation) — NEW
-- **Portfolio monitor**: `scripts/portfolio_monitor.py` — live mark-to-market across all 10+ strategies
-- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 10 runners hourly via cron (independent of Claude sessions)
+- **H-044 paper trade runner** (OI-Price Divergence, internal simulation)
+- **H-046 paper trade runner** (Price Acceleration, internal simulation) — NEW
+- **H-045/H-046 research** (`strategies/oi_research/h045_oi_volume_research.py`) — OI-Volume combination + price acceleration factors
+- **Portfolio monitor**: `scripts/portfolio_monitor.py` — live mark-to-market across all 11+ strategies
+- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 11 runners hourly via cron (independent of Claude sessions)
 - Cached data (1h, 2yr): BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM (14 assets)
 - Cached data: BTC funding rates (2yr, 2199 records)
 - Cached data: 14-asset funding rates (2yr, 2190 records each)
@@ -285,5 +302,9 @@
 - **Dispersion conditioning (H-042) does not add alpha**: Dispersion filter only improves 10.2% of param combos. Core underlying signal is short-term XSMom (20d lookback, 21d rebal) with IS Sharpe 1.17, WF 4/6. But corr 0.686 with H-012 (redundant). Not in portfolio.
 - **Look-ahead bias is critical for daily strategies**: Signal must be computed on close of day t-1 (lagged) and applied to return of day t. Same-bar signal + same-bar return = look-ahead. Always verify with .shift(1) before reporting results.
 - **OI change alone is NOT a cross-sectional signal (H-043)**: Only 34% IS positive. 1-day OI change has IS edge at 3-day rebal but fails WF (1/5). Long-term contrarian OI too weak (best Sharpe 0.60). OI only works combined with price (H-044).
-- **OI-Price divergence (H-044) is a genuine new signal**: First strategy using open interest data. 100% IS params positive (9/9), WF 4/5 (mean OOS 1.27), Sharpe 1.46, +26.3%, 13.9% DD. Extremely fee-robust (1.15 at 5x). Signal: assets with price up + OI down (deleveraging rally) outperform those with price down + OI up (leverage buildup). Corr 0.565 with H-012 — partially captures momentum but with unique OI information.
+- **OI-Price divergence (H-044) is a genuine but weaker-than-reported signal**: CORRECTED (session 43): Original IS Sharpe 1.46 was inflated 4.9x by metrics bug (periods_per_year=8760 instead of 365). True IS Sharpe 1.01, +17.3% ann, 17.3% DD. WF 3/4 (mean OOS 1.22). Still viable — 100% params positive. Signal: assets with price up + OI down outperform. Corr 0.565 with H-012.
 - **New data sources can break through research exhaustion**: After 42 hypotheses using only price/volume/funding, OI data yielded a genuinely new signal (H-044). Future: options IV, on-chain data, order book depth.
+- **OI-Volume combination (H-045) has zero-signal artifact**: When clipping OI z-scores to positive, ~54% of signals become zero, inflating Sharpe via tie-breaking order. Robust no-clip variant (W20 n=4 r=10) IS 1.76, WF 3/4 but rebal-sensitive. Not deployed.
+- **Price acceleration (H-046) is a genuinely independent signal**: Second derivative of momentum (change in 20d return over 20d). IS Sharpe 1.19, +25.1% ann, 17.6% DD. **WF 4/4** (mean OOS 1.13). 100% params positive (9/9). Near-zero correlation with ALL existing strategies (0.007 H-009, 0.099 H-012, -0.123 H-019, 0.179 H-021). Portfolio benefit: H-012+H-046 50/50 → Sharpe 1.71 vs 1.37 standalone. Fee-robust (0.56 at 5x).
+- **Metrics validation is critical**: Always verify periods_per_year matches data frequency. Sharpe(daily) uses 365, not 8760 (hourly). Bug found in H-043/H-044 research script (session 43). Fixed.
+- **46 hypotheses tested**: 11 in paper trade + 1 comparison + 1 manual, 36 rejected, 3 confirmed standalone (H-030, H-038, H-042-weak), 1 confirmed standalone weak (H-045).

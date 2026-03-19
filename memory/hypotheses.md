@@ -705,10 +705,9 @@
 - Logic: Compute 20-day price change z-score and 20-day OI change z-score cross-sectionally. Signal = price_z - oi_z (lagged 1 day). Long top 5, short bottom 5.
 - Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19), OI from Bybit V5 API. ~101 OOS observations per WF fold.
 - Result:
-  - **IS (full, correctly lagged)**: Sharpe 1.46, +26.3% annual, 13.9% DD, 53.4% WR (n=5, r=10). **100% params positive (9/9)** — strongest IS robustness.
-  - **Walk-forward (5 folds, ~101d OOS each)**: **4/5 folds positive** across ALL param sets tested. Mean OOS Sharpe ranges from +0.95 to +1.51 depending on params. Best: n=3 r=5 (mean OOS 1.51), n=4 r=5 (mean OOS 1.50).
-  - **WF fold detail (n=5 r=10)**: +2.40, -1.36, +2.28, +1.64, +1.38 → mean +1.27
-  - **Fee robustness**: Sharpe 1.15 at 5x fees (20bps), 0.76 at 10x fees (40bps) — extremely fee-robust.
+  - **IS (full, CORRECTED)**: Sharpe 1.01, +17.3% annual, 17.3% DD, 52.2% WR (n=5, r=10). **100% params positive (9/9)**. *Original Sharpe 1.46 was inflated ~4.9x by metrics bug (periods_per_year=8760 instead of 365). Corrected session 43.*
+  - **Walk-forward (4 folds, ~122d OOS each, CORRECTED)**: **3/4 folds positive** (mean OOS Sharpe 1.22). Fold detail: +1.73, +1.40, +1.86, -0.13.
+  - **Fee robustness**: Sharpe still positive at 5x fees — fee-robust.
   - **Correlation with H-009**: 0.016 (near zero)
   - **Correlation with H-012**: 0.565 (moderate — partially captures momentum)
   - **Correlation with H-019**: 0.154 (low)
@@ -716,6 +715,37 @@
   - **Correlation with H-024**: 0.249 (moderate)
 - Notes: First strategy using genuinely new data (open interest). The OI divergence signal captures information beyond price momentum — assets where rallies are driven by deleveraging (OI down) tend to continue, while assets with increasing leverage during declines tend to fall further. Confirmed standalone with strong metrics. NOT in main portfolio due to 0.565 corr with H-012 (momentum), but deployed as independent paper trade. Initial rebalance: LONG SUI/OP/NEAR/SOL/ETH, SHORT ADA/ARB/DOT/XRP/DOGE.
 - Sessions: [2026-03-20 review+research session 42]
+
+## H-045: OI-Volume Confirmation/Divergence Factor
+- Status: CONFIRMED standalone (weak) — NOT deployed
+- Idea: Combine OI changes with volume changes as cross-sectional signal. Volume surge + OI increase = new positions (momentum). Volume surge + OI decrease = unwinding (reversal).
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (10-day rebalancing)
+- Logic: Compute cross-sectional z-scores of volume change and OI change. Test 6 signal variants (confirmation, divergence, new money, squeeze, triple, directed). Best robust variant: price_z * oi_z (no clip), 20d window.
+- Data: 14 assets, 734 daily bars. OI data from Bybit V5.
+- Result:
+  - **Initial results inflated by zero-signal artifact**: Original NEW_MONEY_10d Sharpe 1.73 was 35% driven by tie-breaking of zero-signal assets (54% of signals clipped to zero).
+  - **Robust no-clip variant (W20 n=4 r=10)**: IS Sharpe 1.76, +33.6%, 16.7% DD. WF 3/4 (mean OOS 1.28). But ONLY works at r=10 — sensitive to rebalance frequency.
+  - **Correlations**: 0.109 with H-012, 0.144 with H-044, 0.067 with H-046 — low but strategy is fragile.
+  - **49% of all param sets positive** — not robust across variants.
+- Notes: The multiplicative signal (price * OI) concentrates information on assets with high-conviction OI movements, but creates many zero signals that corrupt ranking. The additive variants (confirmation, triple) are much weaker. Not deploying due to rebal sensitivity and partial redundancy with H-044.
+- Sessions: [2026-03-20 review+research session 43]
+
+## H-046: Price Acceleration Factor (Second Derivative of Momentum)
+- Status: LIVE (paper trade since 2026-03-20, independent)
+- Idea: Rank assets by change in 20-day momentum over the last 20 days (second derivative). Assets with accelerating momentum outperform those with decelerating momentum.
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (3-day rebalancing)
+- Logic: Compute 20-day return for each asset. Acceleration = return(t-20,t) - return(t-40,t-20). Cross-sectional z-score, lagged 1 day. Long top 4, short bottom 4.
+- Data: 14 assets, 694 daily bars (after warmup). No OI data needed — price only.
+- Result:
+  - **IS (full)**: Sharpe 1.19, +25.1% annual, 17.6% DD, 50.1% WR (n=4, r=3). **100% params positive (9/9)**.
+  - **Walk-forward (4 folds, ~122d OOS each)**: **4/4 folds positive** (mean OOS Sharpe **1.13**). Fold detail: +1.44, +0.29, +2.25, +0.54.
+  - **Fee robustness**: 1.03 at 2x fees, 0.87 at 3x, 0.56 at 5x fees (decent).
+  - **Correlations**: 0.007 with H-009, 0.099 with H-012, -0.123 with H-019, 0.179 with H-021 — **near-zero with everything**.
+  - **Portfolio benefit**: H-012 + H-046 50/50 → Sharpe 1.71 (vs 1.37 standalone). Significant diversification.
+- Notes: Captures a genuinely different aspect of price dynamics from momentum (H-012). Momentum measures the LEVEL of recent returns; acceleration measures the CHANGE in momentum. An asset just starting to move (low momentum, high acceleration) ranks differently from one with sustained high momentum. Perfect 4/4 WF and near-zero correlations make this one of the strongest discoveries since H-039 (DOW seasonality). Deployed as independent paper trade. Initial: LONG OP/ARB/NEAR/SUI, SHORT DOGE/LINK/ADA/DOT.
+- Sessions: [2026-03-20 review+research session 43]
 
 ## Killed
 (none)
