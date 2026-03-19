@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1 strategies):** H-009 (-1.38%) + H-011 (OUT, 0%) + H-012 (+1.22%) + H-019 (-0.21%) + H-021 (-0.18%) — portfolio $49,948 (-0.10%). H-024 (-0.22%) tracking as comparison.
-- **H-024 vs H-019**: Neck-and-neck — H-019 -0.21% vs H-024 -0.22%. Too early to differentiate.
+- **Paper trading (5+1 strategies):** H-009 (-1.38%) + H-011 (OUT, 0%) + H-012 (+1.50%) + H-019 (+0.12%) + H-021 (-0.69%) — portfolio $49,957 (-0.09%). H-024 (+0.02%) tracking as comparison.
+- **H-024 vs H-019**: H-019 +0.12% vs H-024 +0.02% — H-019 slightly ahead but too early to call.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at $71,084**. H-009 LONG signal still fragile near flip point.
-- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-031 (25 rejected, 31 total tested)
-- **Last session:** 2026-03-19 review+research (session 32)
+- **BTC at $71,082**. H-009 LONG signal still fragile near flip point.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-029 (23 rejected, 31 total tested). **Confirmed standalone:** H-030 (composite, Sharpe 2.05), H-031 (size, Sharpe 1.58).
+- **Last session:** 2026-03-19 review+system (session 33)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019. Research exhausted cross-sectional factors — consider options data, on-chain metrics, or alternative asset classes.
+- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019.
 - **Open user questions:** none
 
 ## Memory Files
@@ -290,3 +290,11 @@
 - Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Cross-sectional factor space exhausted — future research needs new data sources (options, on-chain) or fundamentally different approaches.
 - Questions added: none
 - Self-modifications: Added composite_factor_research.py + composite_deep_validation.py
+
+### Session 2026-03-19 review+system (session 33)
+- Goal: Review + System — handle user feedback, monitor paper trades, reclassify strategies
+- Focus: User feedback on rejection policy, paper trade monitoring, test set size documentation
+- Done: Portfolio $49,957 (-0.09%): H-009 $9,862 (-1.38%), H-011 $10,000 (OUT), H-012 $10,150 (+1.50%), H-019 $10,012 (+0.12%), H-021 $9,931 (-0.69%). H-024 $10,002 (+0.02%). **Handled user feedback**: reclassified H-030 and H-031 from REJECTED to CONFIRMED (standalone) — both have excellent returns (H-030: Sharpe 2.05, +101% ann; H-031: Sharpe 1.58, +78.5% ann). Added test set size info (data period, OOS days, trade counts) to all CONFIRMED/LIVE hypotheses. Saved feedback memory. H-019 now slightly ahead of H-024. H-021 worsened to -0.69%.
+- Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk.
+- Questions added: none
+- Self-modifications: Removed handled user input from CLAUDE.md. Added feedback memory. Added "Confirmed Standalone" section to state.md.

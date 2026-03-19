@@ -8,6 +8,7 @@
 - Instrument: futures (BTC/USDT perp)
 - Timeframe: 1D (daily)
 - Logic: Long when EMA(5) > EMA(40), short when EMA(5) < EMA(40). Position size scaled by target_vol / realized_vol (30-day lookback). Cap at 2x notional.
+- Data: BTC only, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). OOS: 30% fixed split (~220 days).
 - Result: Backtest OOS Sharpe 0.94, VT 20% gives +11.8% annual at 12.9% DD. 15/15 params positive. Paper trade started 2026-03-16: LONG 0.054885 BTC @ $73,524 (0.40x leverage).
 - Notes: Part of multi-strategy portfolio (H-010). Contributes ~30% of target allocation. Uncorrelated with H-011 (r=0.037).
 - Sessions: [2026-03-16 analyze, 2026-03-16 paper trade]
@@ -33,6 +34,7 @@
 - Instrument: futures (14 perps: BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM)
 - Timeframe: 1D (rebalance every 5 days)
 - Logic: Compute 60-day return for each asset. Rank. Long top 4 (25% each), short bottom 4 (25% each). Rebalance every 5 days using lagged (t-1) ranking.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). ~389 IS trades over 1.8yr. WF: 6 folds x 90d test = 540 total OOS days.
 - Result:
   - **In-sample (full)**: Sharpe 1.11, +49.7% annual, 30.6% DD
   - **Rolling walk-forward OOS (6 folds, 90d each)**: Sharpe 0.84, +27.5% annual, 20.6% DD
@@ -254,6 +256,7 @@
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 21 days)
 - Logic: Rank assets by NEGATIVE of realized volatility (20d window, low vol ranks high). Long top 3, short bottom 3. Rebalance every 21 days using lagged ranking.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). WF: 8 folds x 80d test = 640 total OOS days.
 - Result:
   - **In-sample (full, standard vol V20_R21_N3)**: Sharpe 1.17, +57.8% annual, 47.9% DD
   - **Parameter robustness (standard vol)**: 89% positive (124/140). Mean Sharpe 0.52.
@@ -291,6 +294,7 @@
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 3 days)
 - Logic: Compute ratio of 5-day avg volume to 20-day avg volume for each asset. Rank. Long top 4 (highest volume surge), short bottom 4. Rebalance every 3 days using lagged ranking.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). 1409 IS trades over 2.0yr. WF: 6 folds x 80d test = 480 total OOS days (180d train).
 - Result:
   - **In-sample (VS5_VL20_R3_N4)**: Sharpe 1.52, +63.3% annual, 24.7% DD, 1409 trades
   - **Parameter robustness**: 90% positive (162/180). Mean Sharpe 0.73.
@@ -340,6 +344,7 @@
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 21 days)
 - Logic: Compute rolling 60-day beta of each asset vs BTC returns. Rank. Long top 3 lowest-beta, short bottom 3 highest-beta. Rebalance every 21 days using lagged ranking.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). 105 IS trades over ~1.8yr. WF: 6 folds x 80d test = 480 total OOS days (360d train).
 - Result:
   - **In-sample (W60_R21_N3)**: Sharpe 1.56, +90.1% annual, 49.2% DD, 105 trades
   - **Parameter robustness**: 100% positive (48/48). Mean Sharpe 1.08.
@@ -436,43 +441,44 @@
 - Sessions: [2026-03-18 review+research session 31]
 
 ## H-030: Composite Multi-Factor (Momentum + Volume Momentum + Beta)
-- Status: REJECTED (for portfolio use — confirmed as standalone)
+- Status: CONFIRMED (standalone) — not added to portfolio (individual strategies combined are better)
 - Idea: Combine confirmed cross-sectional factors (momentum, volume momentum, beta) into a single composite z-score ranking. Test 2/3/4-factor blends.
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 3 days)
 - Logic: Z-score normalize each factor cross-sectionally, then weighted average. Best: Mom=0.33/Vol=0.33/Beta=0.34, R3_N5.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr)
 - Result:
   - **In-sample (3-factor best)**: Sharpe 2.05, +101.7% annual, 24.9% DD
   - **In-sample (4-factor best)**: Sharpe 2.14, +106.6% annual, 25.1% DD
   - **Parameter robustness**: 135/135 positive (3-factor), 243/243 positive (4-factor) — 100%
-  - **Walk-forward (3-factor, 6 folds)**: 5/6 positive, mean OOS Sharpe 1.71
+  - **Walk-forward (3-factor, 6 folds, 360d train / 80d test)**: 5/6 positive, mean OOS Sharpe 1.71 (480 total OOS days)
   - **Walk-forward (4-factor, 6 folds)**: 5/6 positive, mean OOS Sharpe 2.01
   - **Fee sensitivity**: Sharpe 1.52-1.55 at 5x fees (robust)
   - **Param neighborhood**: 36/36 positive (100%), min 1.09
-  - **BUT: Portfolio of 3 individuals (Sharpe 2.26) > Composite (Sharpe 2.14)**
-  - **Correlations**: 0.61 with H-012, 0.44 with H-021, 0.57 with H-024 — no new alpha
-- Notes: The composite doesn't beat the portfolio approach because it loses the diversification benefit of running strategies separately. Each individual strategy captures different temporal patterns (3-day vs 5-day vs 21-day rebalance). The composite at R3 frequency also has higher turnover. Conclusion: keep running individual strategies, composite is redundant.
-- Sessions: [2026-03-19 review+research session 32]
+  - **Portfolio note**: Portfolio of 3 individual strategies (Sharpe 2.26) > single composite (Sharpe 2.14)
+  - **Correlations**: 0.61 with H-012, 0.44 with H-021, 0.57 with H-024
+- Notes: Excellent standalone strategy (Sharpe 2.05, 100%+ annual, 25% DD, passes WF 5/6). Not added to current portfolio because running individual factors separately preserves diversification from different rebalance schedules (3d/5d/21d). Could be deployed as a simpler alternative to running 3 separate cross-sectional strategies. High-frequency rebal (3-day) means higher turnover — use maker orders.
+- Sessions: [2026-03-19 review+research session 32, 2026-03-19 review+system session 33]
 
 ## H-031: Size Factor (Dollar Volume Proxy, Long Large)
-- Status: REJECTED (for portfolio use — confirmed as standalone)
+- Status: CONFIRMED (standalone) — not added to portfolio (corr 0.49 with momentum)
 - Idea: Long assets with highest average dollar volume (large-cap proxy), short lowest. Size effect in crypto.
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 5 days)
 - Logic: Compute 30-day rolling average dollar volume (close * volume). Rank. Long top 5 (largest), short bottom 5.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). ~94 IS trades over 1.9yr.
 - Result:
-  - **In-sample (W30_R5_N5)**: Sharpe 1.58, +78.5% annual, 31.3% DD
+  - **In-sample (W30_R5_N5)**: Sharpe 1.58, +78.5% annual, 31.3% DD, ~94 trades
   - **Parameter robustness (long_large)**: 48/48 positive (100%)
   - **Parameter robustness (long_small)**: 0/48 positive (0%)
-  - **Walk-forward (W30_R5_N5)**: 4/4 positive, mean OOS Sharpe 1.47
+  - **Walk-forward (W30_R5_N5, 4 folds, 360d train / 80d test)**: 4/4 positive, mean OOS Sharpe 1.47 (320 total OOS days)
   - **Walk-forward (W30_R5_N4)**: 4/4 positive, mean OOS Sharpe 1.78
   - **Fee sensitivity**: Sharpe 1.54 at 5x fees (extremely robust — low turnover)
   - **Typical positions**: LONG BTC/ETH/SOL/XRP/DOGE, SHORT NEAR/DOT/OP/ARB/ATOM
-  - **BUT: Correlation with H-012 (momentum) = 0.486** — above 0.4 threshold
-  - **Correlation with H-019 (low-vol) = 0.461** — also high
+  - **Portfolio note**: Corr with H-012 (momentum) = 0.486, with H-019 (low-vol) = 0.461
   - **Adding to 4-factor composite DECREASES Sharpe**: 2.14 → 1.82-1.97
-- Notes: Genuine size effect in crypto — large-cap consistently outperforms small-cap. But this is highly correlated with momentum (winners = BTC/ETH = large-cap) and low-vol (large-cap = lower vol). No independent portfolio diversification value. Same conclusion as H-026 (drawdown distance) — strong signal but redundant.
-- Sessions: [2026-03-19 review+research session 32]
+- Notes: Genuine size effect in crypto — large-cap consistently outperforms small-cap (100% positive, 4/4 WF, extremely fee-robust). Correlated with momentum/low-vol so doesn't diversify the current portfolio, but excellent standalone: +78.5% annual, 31.3% DD, Sharpe 1.58. Very low turnover makes this practical. Could be deployed independently or as a replacement for momentum if H-012 underperforms in paper trade.
+- Sessions: [2026-03-19 review+research session 32, 2026-03-19 review+system session 33]
 
 ## Killed
 (none)
