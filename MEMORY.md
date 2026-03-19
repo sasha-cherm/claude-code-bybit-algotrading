@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+2+1+1 strategies):** H-009 (-2.35%) + H-011 (OUT, 0%) + H-012 (+2.15%) + H-019 (+0.09%) + H-021 (+0.47%) — portfolio $50,037 (+0.07%). H-024 (+0.03%) comparison. H-031 (-0.20%) + H-032 (0%) + H-039 (flat) independent. H-037 (Polymarket, manual).
-- **H-024 vs H-019**: H-019 +0.09% vs H-024 +0.03% — gap narrowing.
+- **Paper trading (5+1+2+1+1 strategies):** H-009 (-2.02%) + H-011 (OUT, 0%) + H-012 (+1.98%) + H-019 (-0.22%) + H-021 (+0.91%) — portfolio $50,065 (+0.13%). H-024 (-0.52%) comparison. H-031 (-0.28%) + H-032 (0%) + H-039 (flat) independent. H-037 (Polymarket, manual).
+- **H-024 vs H-019**: H-019 -0.22% vs H-024 -0.52% — H-019 leading.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$69,322**. H-009 flip to SHORT tonight (00:00 UTC Mar 20) confirmed.
+- **BTC at ~$69,920**. H-009 flip to SHORT tonight (00:00 UTC Mar 20) confirmed.
 - **42 total tested, 34 rejected.** 9 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak), H-042 (weak, redundant with H-012).
-- **Last session:** 2026-03-19 research (session 41) — H-041 REJECTED, H-042 CONFIRMED standalone (weak)
+- **Last session:** 2026-03-19 review+research (session 41)
 - **H-039 BREAKTHROUGH**: Day-of-week seasonality — **best WF in project** (6/6, mean Sharpe 2.46). Long Wed, short Thu on BTC. Deployed paper trade.
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
 - **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (9 runners).
@@ -357,10 +357,10 @@
 - Questions added: none
 - Self-modifications: Added strategies/dow_research/, paper_trades/h039_dow_seasonality/. Updated orchestrator (9 runners) and portfolio monitor.
 
-### Session 2026-03-19 research (session 41)
-- Goal: Research — H-041 BTC Dominance Rotation + H-042 Cross-Sectional Return Dispersion Trading
-- Focus: Two fundamentally new signal types: market structure rotation and dispersion conditioning
-- Done: **H-041 REJECTED** — BTC dominance rotation is pure look-ahead bias. Without lag: IS Sharpe 3.96, WF 6/6 (fake). With correct 1-day signal lag: 1/16 params positive (6.2%), WF 3/6, best IS Sharpe 0.24. Root cause: BTC dominance mean-reverts next day. **H-042 CONFIRMED standalone (weak)** — core signal is short-term XSMom (20d lookback, 21d rebal, N=4). IS Sharpe 1.166, 77.1% positive, WF 4/6, mean OOS 0.548, fee-robust (1.082 at 2x fees). Dispersion filter does NOT add alpha (improves only 10.2% of params, hurts H-012 overlay). Corr with H-012: 0.686 (high — partially redundant). Not adding to portfolio. 42 hypotheses tested total.
-- Next: Monitor paper trades. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. Research continues needed — 34 rejected, need new data sources.
+### Session 2026-03-19 review+research (session 41)
+- Goal: Review + Research — monitor paper trades, explore BTC dominance rotation + dispersion trading
+- Focus: H-041 (BTC dominance rotation), H-042 (cross-sectional return dispersion)
+- Done: Portfolio $50,065 (+0.13%): H-009 $9,798 (-2.02%, BTC $69,920), H-011 $10,000 (OUT), H-012 $10,198 (+1.98%), H-019 $9,978 (-0.22%), H-021 $10,091 (+0.91%). H-024 $9,948 (-0.52%, H-019 leading). **H-041 REJECTED**: BTC dominance rotation is pure look-ahead bias. Correctly lagged: 1/16 params positive (6.2%), WF 3/6. Dominance mean-reverts next day. **H-042 CONFIRMED standalone (weak)**: short-term XSMom (20d). IS Sharpe 1.17, WF 4/6. Dispersion filter does NOT add alpha. Corr 0.686 with H-012 — redundant for portfolio. 42 hypotheses tested.
+- Next: Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: Added strategies/dominance_dispersion_research/ (h041_h042_research.py, results_summary.txt).
