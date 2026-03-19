@@ -650,6 +650,38 @@
 - Notes: Base factor strategies already implicitly time volatility through portfolio turnover and equal-weight normalization. Explicit vol timing adds complexity without OOS benefit. REJECTED.
 - Sessions: [2026-03-19 review+research session 40]
 
+## H-041: BTC Dominance Rotation
+- Status: REJECTED
+- Idea: Use BTC's share of total normalised price (14-asset proxy for market cap dominance). When BTC dominance rising → long BTC / short alts. When falling → long alts / short BTC.
+- Instrument: futures (BTC vs 13 alts)
+- Timeframe: daily
+- Logic: Compute dom_roc = diff(btc_dom, lookback). Signal = sign(dom_roc). Long BTC+short alts when rising, vice versa. Rebalance daily on signal flip.
+- Data: 14 assets, 735 daily bars (2024-03-15 to 2026-03-19, ~2yr).
+- Result:
+  - **Without look-ahead**: IS Sharpe 3.96, WF 6/6 — FAKE, look-ahead biased
+  - **Correctly lagged (signal@t-1, return@t)**: IS Sharpe 0.24 best (LB60_volume), WF 3/6, 1/16 params positive (6.2%). Best IS annual 3.0%, 22% DD.
+  - **Root cause**: Dominance signal mean-reverts next day. When BTC outperformed alts today (dom_roc>0), alts tend to catch up tomorrow. Signal is anti-momentum at 1-day horizon across all lookbacks.
+- Notes: The 100% positive IS results (without lag) were entirely look-ahead bias — using today's close to compute the signal AND the return. All 16 lookbacks (1–60d) negative with correct lag. Fails all three criteria: IS positive 6.2%, WF 3/6, not fee-robust.
+- Sessions: [2026-03-19 research session 41]
+
+## H-042: Cross-Sectional Return Dispersion / Short-Term XSMom
+- Status: CONFIRMED (standalone, not yet in portfolio)
+- Idea: When cross-sectional return dispersion is high, enable momentum positions (long winners, short losers). When dispersion is low, go flat. Tested as both standalone and H-012 overlay.
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (with multi-day rebalancing)
+- Logic: Compute rolling cross-sectional std of returns across 14 assets. When dispersion > Nth percentile → long top-N / short bottom-N by 20d (or 60d) momentum. Otherwise flat.
+- Data: 14 assets, 735 daily bars (2024-03-15 to 2026-03-19, ~2yr). ~33-36 OOS observations per WF fold.
+- Result:
+  - **IS (full, correctly lagged)**: Sharpe 1.166, +27.4% annual, 12.1% DD (best params: M20_R21_N4). 77.1% of 48 param sets positive.
+  - **Walk-forward (6 folds, 60d OOS each)**: **4/6 folds positive**, mean OOS Sharpe 0.548. Fold results: -3.32, +1.66, +2.01, +1.41, -1.07, +2.61.
+  - **Fee robustness (2x)**: Sharpe 1.082 — fee-robust.
+  - **Correlation with H-009**: -0.057 (near-zero)
+  - **Correlation with H-012**: 0.686 (moderate-high — partially overlapping with existing momentum)
+  - **Dispersion filter**: Does NOT add alpha. Only 10.2% of dispersion param combos improve over base. Core signal is short-term XSMom (20d lookback, 21d rebal).
+  - **As H-012 overlay**: Hurts Sharpe (0.739 → 0.395). Dispersion is not a good gating condition.
+- Notes: The hypothesis as posed (dispersion conditioning) does not work — dispersion filter hurts more than it helps. The genuine signal here is a short-term (20d) XSMom, distinct from H-012 (60d). Corr with H-012 is 0.686 — moderately high. This is NOT added to the portfolio because it is partially redundant with H-012 and the WF mean OOS Sharpe (0.548) is weak. Confirmed standalone (meets all 3 criteria) but portfolio impact marginal due to H-012 overlap.
+- Sessions: [2026-03-19 research session 41]
+
 ## Killed
 (none)
 

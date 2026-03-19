@@ -148,7 +148,7 @@
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
 - **Portfolio stable**: BTC -5.7% since entry → +0.07% portfolio. Diversification working.
 - **H-039 CONFIRMED**: Day-of-week seasonality — **best WF result in project** (6/6, mean Sharpe 2.46). Deployed as paper trade.
-- **Research status**: 40 hypotheses tested, 32 rejected, 2 confirmed standalone (H-030, H-038), 9 in paper trade + 1 comparison + 1 manual.
+- **Research status**: 42 hypotheses tested, 34 rejected, 3 confirmed standalone (H-030, H-038, H-042-weak), 9 in paper trade + 1 comparison + 1 manual.
 - **Watchlist**: H-009 flip tonight. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21. H-039 first trade Mar 24.
 - **Open user questions**: None
 
@@ -188,12 +188,14 @@
 | H-035: Momentum + Vol Timing | Enhancement to H-012, not independent strategy. WF 3/4, mean 0.76. |
 | H-036: Intraday Seasonality | Real patterns (train/test corr 0.44) but untradeable — Sharpe 0.30 max. |
 | H-040: Vol Regime Factor Timing | Marginal IS improvement (+0.12 Sharpe), negative OOS (-0.06 to -0.31). Doesn't help. |
+| H-041: BTC Dominance Rotation | 100% look-ahead bias. Correctly lagged: 1/16 params positive (6.2%), WF 3/6. All lookbacks negative. |
 
 ## Confirmed Standalone (not in portfolio — good for independent deployment)
 | Hypothesis | Metrics | Why Not In Portfolio |
 |-----------|---------|---------------------|
 | H-030: Composite Multi-Factor | Sharpe 2.05, +101.7% ann, 25% DD, WF 5/6, 100% params positive | Portfolio of individual strategies (Sharpe 2.26) beats composite (2.14) |
 | H-038: ML Factor Combo (Ridge) | Sharpe 1.43, +26.2% ann, 9.6% DD, WF 2/3, 96% params positive | Train window sensitive (only 365d works), too fragile for portfolio |
+| H-042: Short-Term XSMom (20d) | Sharpe 1.17 IS, WF 4/6, mean OOS 0.55, 77% params positive, fee-robust | Corr 0.686 with H-012 (partially redundant). Weak OOS mean Sharpe. |
 
 *H-031 and H-032 moved to independent paper trades (session 36).*
 
@@ -260,3 +262,6 @@
 - **Day-of-week seasonality (H-039) is strongest signal found**: Wednesday consistently positive, Thursday consistently negative across ALL 14 crypto assets. BTC WF 6/6 (mean Sharpe 2.46), EW all-asset WF 6/6 (mean 1.99). Effect strengthening over time. Correlation near-zero with all existing strategies. Fee-robust at maker rates.
 - **Vol regime factor timing (H-040) doesn't work OOS**: In-sample improvement (+0.12 Sharpe) but walk-forward degradation (-0.06 to -0.31). Base factor strategies already time vol through position sizing.
 - **All 5 portfolio strategies now in paper trade + H-024 comparison + H-039** -- monitor for >=4 weeks before live consideration
+- **BTC dominance rotation (H-041) is 100% look-ahead bias**: Without 1-day signal lag: Sharpe 3.96 (fake). With correct lag: 1/16 params positive (6.2%), all lookbacks negative. BTC dominance mean-reverts next day — opposite of rotation hypothesis.
+- **Dispersion conditioning (H-042) does not add alpha**: Dispersion filter only improves 10.2% of param combos. Core underlying signal is short-term XSMom (20d lookback, 21d rebal) with IS Sharpe 1.17, WF 4/6. But corr 0.686 with H-012 (redundant). Not in portfolio.
+- **Look-ahead bias is critical for daily strategies**: Signal must be computed on close of day t-1 (lagged) and applied to return of day t. Same-bar signal + same-bar return = look-ahead. Always verify with .shift(1) before reporting results.

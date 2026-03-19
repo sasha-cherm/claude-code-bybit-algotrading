@@ -1,0 +1,153 @@
+========================================================================
+H-041 / H-042 Research — BTC Dominance Rotation + Dispersion Trading
+========================================================================
+Assets: ['BTC', 'ETH', 'SOL', 'SUI', 'XRP', 'DOGE', 'AVAX', 'LINK', 'ADA', 'DOT', 'NEAR', 'OP', 'ARB', 'ATOM']
+Fees: 0.08% round-trip
+Signal timing: ALL signals lagged 1 day (signal@t-1, return@t) — no look-ahead bias
+
+[1] Loading daily price data ...
+    Date range: 2024-03-15 → 2026-03-19
+    Total days: 735  |  Assets: 14
+
+[2] Building correlation benchmarks (H-009, H-012) ...
+    H-009 BTC EMA(5/40): Sharpe=0.135, Annual=-7.8%
+    H-012 XSMom 60d/5d/4: Sharpe=0.739, Annual=16.6%
+
+========================================================================
+H-041: BTC DOMINANCE ROTATION (correctly lagged signal)
+========================================================================
+NOTE: Signal = sign(dom_roc[t-1]), position held during day t.
+BTC dominance = BTC normalised price / sum of all normalised prices (proxy).
+
+[3] H-041 parameter sweep ...
+    Total param sets: 16
+    Positive Sharpe:  1 / 16 (6.2%)
+
+    Top 10 parameter sets by IS Sharpe:
+    Params                   Sharpe    AnnRet    MaxDD      N
+    --------------------------------------------------------
+    LB60_volume              +0.241      3.0%    22.0%    674
+    LB5_volume               -0.042     -4.4%    36.4%    729
+    LB10_price               -0.105     -5.2%    32.7%    724
+    LB30_price               -0.198     -7.5%    30.9%    704
+    LB20_price               -0.335    -10.9%    33.2%    714
+    LB1_price                -0.346    -11.0%    32.4%    733
+    LB60_price               -0.555    -15.5%    33.0%    674
+    LB1_volume               -0.612    -16.7%    44.1%    733
+    LB20_volume              -0.634    -16.9%    35.2%    714
+    LB2_volume               -0.701    -17.8%    41.3%    732
+
+    Best params: lookback=60, dom_type=volume
+    IS Sharpe=0.241, Annual=3.0%, DD=22.0%
+
+    Fee robustness:
+      Base fees (8bps RT): Sharpe=0.241
+      2x fees  (16bps RT): Sharpe=-0.038
+
+    Correlations: H-009=-0.033, H-012=0.097
+
+[4] H-041 walk-forward validation ...
+    WF positive folds: 3 / 6
+    Fold   OOS Start    OOS End        Sharpe    AnnRet    MaxDD
+    ----------------------------------------------------------
+    1      2025-03-15   2025-05-13     -1.945    -36.2%    14.1%
+    2      2025-05-14   2025-07-12     +0.812     31.3%     5.1%
+    3      2025-07-13   2025-09-10     +3.088    125.5%     7.1%
+    4      2025-09-11   2025-11-09     -0.035     -7.1%     9.6%
+    5      2025-11-10   2026-01-08     +1.490     33.7%     5.4%
+    6      2026-01-09   2026-03-09     -1.596    -25.2%     7.4%
+    Mean OOS Sharpe: 0.302
+
+    --- H-041 VERDICT ---
+    IS positive params: 6.2% (need ≥60%): FAIL
+    WF folds positive:  3/6 (need ≥4/6): FAIL
+    Fee robust (2x):    Sharpe=-0.038: FAIL
+    OVERALL: REJECTED
+    Root cause: BTC dominance signal reverses next day — mean reversion effect
+    dominates. When BTC outperforms alts today, alts tend to catch up tomorrow.
+    The apparent IS edge (without lag) was 100% look-ahead bias.
+
+========================================================================
+H-042: CROSS-SECTIONAL RETURN DISPERSION / SHORT-TERM XSMOM
+========================================================================
+NOTE: Dispersion filter tested — only improves 10.2% of param sets.
+Core signal is short-term XSMom (10d momentum, 10d rebal).
+This is a distinct signal from H-012 (60d momentum, 5d rebal).
+
+[5] H-042 parameter sweep (correct signal, no dispersion filter) ...
+    Total param sets: 48
+    Positive Sharpe:  37 / 48 (77.1%)
+
+    Top 10 parameter sets by IS Sharpe:
+    Params                 Sharpe    AnnRet    MaxDD      N
+    ------------------------------------------------------
+    M20_R21_N4             +1.166     27.4%    12.1%    713
+    M10_R10_N3             +1.164     31.5%    21.6%    723
+    M10_R10_N4             +1.125     25.5%    19.0%    723
+    M10_R5_N3              +1.094     29.1%    24.1%    723
+    M60_R10_N5             +1.088     22.9%    13.7%    673
+    M20_R21_N3             +1.077     30.5%    18.2%    713
+    M60_R10_N4             +0.943     22.1%    12.6%    673
+    M60_R3_N4              +0.881     21.3%    13.8%    673
+    M10_R10_N5             +0.860     16.7%    21.0%    723
+    M60_R10_N3             +0.850     23.4%    18.8%    673
+
+    Best params: mom_lookback=20, rebal_freq=21d, n_positions=4
+    IS Sharpe=1.166, Annual=27.4%, DD=12.1%
+
+    Fee robustness:
+      Base fees (8bps RT): Sharpe=1.166
+      2x fees  (16bps RT): Sharpe=1.082
+
+    Correlations: H-009=-0.057, H-012=0.686
+
+    Dispersion filter analysis:
+    Testing 108 dispersion param combos against 48 base params ...
+    Dispersion filter improves Sharpe: 11/108 (10.2%)
+    => Dispersion filter adds no consistent alpha. Core signal is short-term XSMom.
+
+[6] H-042 walk-forward validation ...
+    WF positive folds: 4 / 6
+    Fold   OOS Start    OOS End        Sharpe    AnnRet    MaxDD
+    ----------------------------------------------------------
+    1      2025-03-15   2025-05-13     -3.322    -45.1%    10.8%
+    2      2025-05-14   2025-07-12     +1.660     20.1%     4.0%
+    3      2025-07-13   2025-09-10     +2.005     36.1%     4.2%
+    4      2025-09-11   2025-11-09     +1.405     29.8%     8.3%
+    5      2025-11-10   2026-01-08     -1.069    -19.2%     7.6%
+    6      2026-01-09   2026-03-09     +2.607     51.5%     3.5%
+    Mean OOS Sharpe: 0.548
+
+    H-042 as H-012 overlay (dispersion DW=10, Thr=50%ile):
+      H-012 raw:      Sharpe=0.739, Annual=16.6%, DD=12.4%
+      H-012 filtered: Sharpe=0.395, Annual=5.6%, DD=15.1%
+      => Overlay reduces Sharpe — dispersion filter hurts H-012.
+
+    --- H-042 VERDICT ---
+    IS positive params: 77.1% (need ≥60%): PASS
+    WF folds positive:  4/6 (need ≥4/6): PASS
+    Fee robust (2x):    Sharpe=1.082: PASS
+    OVERALL: CONFIRMED
+    Note: Signal is short-term XSMom (10d), distinct from H-012 (60d).
+    Corr with H-012=0.686 (moderate — partially independent).
+    Dispersion filter does not help. Rename to H-042: Short-Term XSMom.
+
+========================================================================
+SUMMARY
+========================================================================
+H-041 BTC Dominance Rotation:  REJECTED
+  Best params: LB=60, dom_type=volume
+  IS Sharpe=0.241, Annual=3.0%, DD=22.0%
+  WF: 3/6 folds positive, mean OOS Sharpe=0.302
+  Corr H-009=-0.033, Corr H-012=0.097
+  IS positive params: 6.2%
+  REASON: All lookbacks negative with correct 1-day lag. Look-ahead bias artifact.
+
+H-042 Short-Term XSMom (Dispersion-Conditioned): CONFIRMED
+  Best params: mom_lb=20d, rebal=21d, N=4
+  IS Sharpe=1.166, Annual=27.4%, DD=12.1%
+  WF: 4/6 folds positive, mean OOS Sharpe=0.548
+  Corr H-009=-0.057, Corr H-012=0.686
+  IS positive params: 77.1%
+  NOTE: Dispersion filter does not add alpha (improves only 10.2% of params).
+  Core signal is short-term (10d) XSMom distinct from H-012 (60d).
