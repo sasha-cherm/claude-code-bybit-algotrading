@@ -563,6 +563,24 @@
 - Notes: Persistent intraday patterns exist in crypto but the absolute return per hour is tiny (~0.05% per best hour). Transaction costs make any hourly trading unprofitable. The patterns are likely driven by timezone-based trading activity (Asian session 21-02 UTC shows accumulation, European/US session shows distribution). Interesting for understanding market microstructure but not actionable.
 - Sessions: [2026-03-19 research session 37]
 
+## H-037: Polymarket 1hr BTC UP/DOWN + Intraday Seasonality
+- Status: CONFIRMED (paper trade — Polymarket only, no Bybit)
+- Idea: Combine H-036's statistically proven hour-of-day BTC direction bias with Polymarket's 1hr BTC UP/DOWN binary markets. The patterns failed on Bybit (fees kill tiny returns) but Polymarket has a different cost structure (prediction market spread, not exchange fees).
+- Instrument: Polymarket binary prediction markets (NOT Bybit)
+- Timeframe: 1h
+- Logic: Bet on the direction of BTC's next 1-hour candle during hours with statistically significant (p < 0.05) directional bias. Top 5 hours: 17:00 UTC (UP, 56.3%), 21:00 UTC (UP, 54.9%), 22:00 UTC (UP, 54.0%), 23:00 UTC (DOWN, 54.1%), 13:00 UTC (DOWN, 53.8%).
+- Data: BTC, 17,611 hourly bars (~2yr). Train/test green probability correlation: 0.522. All 5 target hours show consistent direction in both train and test halves.
+- Result:
+  - **Green/red probability per hour**: Statistically significant bias at 5 hours (p < 0.05). 17:00 UTC strongest at 56.3% green.
+  - **Train/test consistency**: All 5 target hours consistent across halves.
+  - **Rolling stability (6mo window)**: Green hours (17/21/22) always > 50% (min 52.0%). Red hours (23/13/00) always < 50%.
+  - **OOS simulation (top 5 hours)**: 1,835 bets, 53.7% win rate, 10/13 months profitable, +$586 on $10 bets. ~$0.32/bet.
+  - **EV at 50c**: +$0.032-$0.058 per $1 bet depending on hour.
+  - **EV at 52c**: Most hours still +EV at 52c entry price, but edge halved.
+  - **CRITICAL CAVEAT**: Edge only exists if Polymarket prices at ~50c. If market already prices in seasonality (e.g., 17:00 UP at 55c), edge vanishes.
+- Notes: This is a creative cross-platform arbitrage idea from the user. No historical Polymarket data exists to verify pricing inefficiency — must paper trade to find out. The statistical patterns are robust (0.52 train/test corr, consistent across rolling windows). Key unknown: does Polymarket market price in the hour-of-day bias? Paper trade involves monitoring actual Polymarket prices at target hours and comparing to historical probabilities.
+- Sessions: [2026-03-19 review+research session 38]
+
 ## Killed
 (none)
 

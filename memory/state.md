@@ -79,13 +79,21 @@
 - **Runner**: `paper_trades/h032_pairs/runner.py`
 - **Note**: OOS Sharpe 1.33, DD 5.8%. Negative corr with H-012 (-0.31). Entries are infrequent — trade on z-score extremes only.
 
-## Portfolio Summary (live mark-to-market 2026-03-19 session 37)
-- **Total equity**: $50,002 (+0.00%) — 5-strat portfolio only
-- **H-009**: $9,811 (-1.89%) | **H-011**: $10,000 (0%) | **H-012**: $10,122 (+1.22%) | **H-019**: $9,974 (-0.26%) | **H-021**: $10,095 (+0.95%)
-- **H-024 (comparison)**: $9,864 (-1.36%)
-- **H-031 (independent)**: $10,021 (+0.21%) | **H-032 (independent)**: $10,000 (0%)
-- **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days. H-031/H-032: 0 days.
-- **BTC at ~$70,147** — H-009 flip likely imminent.
+### H-037: Polymarket 1hr BTC UP/DOWN (Manual Paper Trade)
+- **Status**: CONFIRMED for paper trade (started 2026-03-19) — MANUAL, Polymarket only
+- **Position**: No trades yet — requires user to check Polymarket prices at target hours
+- **Target hours (UTC)**: 17:00 (UP), 21:00 (UP), 22:00 (UP), 23:00 (DOWN), 13:00 (DOWN)
+- **Tracker**: `paper_trades/h037_polymarket/tracker.py`
+- **Note**: OOS 53.7% win rate, +$0.32/bet at 50c. Edge depends on Polymarket mispricing. 37 hypotheses tested total.
+
+## Portfolio Summary (live mark-to-market 2026-03-19 session 38)
+- **Total equity**: $49,965 (-0.07%) — 5-strat portfolio only
+- **H-009**: $9,760 (-2.40%) | **H-011**: $10,000 (0%) | **H-012**: $10,154 (+1.54%) | **H-019**: $9,981 (-0.19%) | **H-021**: $10,070 (+0.70%)
+- **H-024 (comparison)**: $9,953 (-0.47%)
+- **H-031 (independent)**: $9,963 (-0.37%) | **H-032 (independent)**: $10,000 (0%)
+- **H-037 (Polymarket, manual)**: $0 (no trades yet)
+- **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days. H-031/H-032: 0 days. H-037: 0 days.
+- **BTC at ~$69,250** — H-009 flip on next daily close virtually certain.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -120,16 +128,16 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **H-009 flip imminent**: BTC at ~$70,147 — very likely below EMA flip point. Daily close will determine.
-- **H-012 best performer**: +1.22% — short side dominating. Market-neutral proven.
-- **H-019 vs H-024**: H-019 -0.26% vs H-024 -1.36% — H-019 widening lead.
-- **H-021 improving**: +0.95% (up from +0.68%). Short side profitable.
-- **H-031 positive**: +0.21% — promising start for size factor.
+- **H-009 flip imminent**: BTC at ~$69,250 — below EMA flip point. Daily close will trigger flip to SHORT.
+- **H-012 best performer**: +1.54% — short side dominating. Market-neutral proven.
+- **H-019 vs H-024**: H-019 -0.19% vs H-024 -0.47% — H-019 still ahead.
+- **H-021 weakened**: +0.70% (down from +0.95%).
+- **H-031 turned negative**: -0.37% — size factor struggling in selloff.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
-- **Portfolio stable**: BTC -4.6% since entry → +0.00% portfolio. Diversification working.
-- **Research status**: 36 hypotheses tested, 29 rejected, 1 confirmed standalone (H-030), 7 in paper trade + 1 comparison.
-- **Research exhaustion**: Cross-sectional factors, idiosyncratic momentum, funding timing, vol timing, and intraday seasonality all explored. Future alpha likely requires new data sources (options, on-chain, order book).
-- **Watchlist**: H-009 signal flip IMMINENT. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
+- **Portfolio stable**: BTC -5.8% since entry → -0.07% portfolio. Diversification working.
+- **Research status**: 37 hypotheses tested, 29 rejected, 1 confirmed standalone (H-030), 8 in paper trade + 1 comparison. H-037 (Polymarket) is first cross-platform strategy.
+- **New: H-037 Polymarket**: Requires manual paper trading — user checks Polymarket prices at target hours. 5 statistically significant hours identified.
+- **Watchlist**: H-009 signal flip on next daily close. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
 - **Open user questions**: None
 
 ## Automation

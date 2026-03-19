@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+2 strategies):** H-009 (-1.89%) + H-011 (OUT, 0%) + H-012 (+1.22%) + H-019 (-0.26%) + H-021 (+0.95%) — portfolio $50,002 (+0.00%). H-024 (-1.36%) comparison. H-031 (+0.21%) + H-032 (0%) independent.
-- **H-024 vs H-019**: H-019 -0.26% vs H-024 -1.36% — H-019 widening lead.
+- **Paper trading (5+1+2+1 strategies):** H-009 (-2.40%) + H-011 (OUT, 0%) + H-012 (+1.54%) + H-019 (-0.19%) + H-021 (+0.70%) — portfolio $49,965 (-0.07%). H-024 (-0.47%) comparison. H-031 (-0.37%) + H-032 (0%) independent. H-037 (Polymarket, manual, no trades yet).
+- **H-024 vs H-019**: H-019 -0.19% vs H-024 -0.47% — H-019 still ahead.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,147**. H-009 flip likely imminent.
-- **36 total tested, 29 rejected.** 7 in paper trade + 1 comparison. Confirmed standalone: H-030 only.
-- **Last session:** 2026-03-19 review+research (session 37)
+- **BTC at ~$69,250**. H-009 flip to SHORT on next daily close virtually certain.
+- **37 total tested, 29 rejected.** 8 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030 only.
+- **Last session:** 2026-03-19 review+research (session 38)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
 - **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (8 runners).
-- **Research exhaustion:** Cross-sectional factors, idiosyncratic momentum, funding timing, vol timing, intraday seasonality all explored. Future alpha needs new data sources.
-- **Next action:** Monitor. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23.
+- **NEW: H-037 Polymarket paper trade** — user-suggested cross-platform strategy. 5 statistically significant hours for BTC direction. Requires manual monitoring of Polymarket prices.
+- **Next action:** Monitor. H-009 flip on next daily close. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. User to start H-037 Polymarket paper trading manually.
 - **Open user questions:** None
 
 ## Memory Files
@@ -332,3 +332,11 @@
 - Next: Monitor paper trades. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Research largely exhausted — future alpha needs new data sources (options, on-chain, order book).
 - Questions added: none
 - Self-modifications: Added h033_h034_research.py and h035_h036_research.py
+
+### Session 2026-03-19 review+research (session 38)
+- Goal: Review + Research — monitor paper trades, explore H-037 Polymarket hourly BTC direction (user suggestion)
+- Focus: H-037 Polymarket 1hr BTC UP/DOWN using H-036 intraday seasonality patterns
+- Done: Portfolio $49,965 (-0.07%): H-009 $9,760 (-2.40%, BTC $69,250 — flip on next close), H-011 $10,000 (OUT), H-012 $10,154 (+1.54%), H-019 $9,981 (-0.19%), H-021 $10,070 (+0.70%). H-024 $9,953 (-0.47%). H-031 $9,963 (-0.37%). H-032 $10,000 (flat). **H-037 CONFIRMED for paper trade**: analyzed BTC green/red probability per hour — 5 statistically significant hours (p<0.05): 17:00 UP (56.3%), 21:00 UP (54.9%), 22:00 UP (54.0%), 23:00 DOWN (54.1%), 13:00 DOWN (53.8%). Train/test prob corr 0.52. OOS sim: 53.7% WR, 10/13 months profitable. **Edge only exists if Polymarket misprices** — requires manual paper trade. Built tracker tool.
+- Next: Monitor paper trades. H-009 flip on next daily close. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. User to start H-037 Polymarket paper trading.
+- Questions added: Q-004 (self-answering — handled user CLAUDE.md question about H-036+Polymarket)
+- Self-modifications: Added strategies/polymarket_research/h037_polymarket_hourly.py, paper_trades/h037_polymarket/tracker.py. Removed user question from CLAUDE.md.

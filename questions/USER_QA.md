@@ -64,3 +64,19 @@ yes, deploy them
 - Deployed H-032 (Cointegration Pairs) as paper trade: 8-pair portfolio (DOT/ATOM, DOGE/LINK, DOGE/ADA, DOT/OP, SOL/DOGE, AVAX/DOT, NEAR/OP, ARB/ATOM). $10k allocated. No entries yet (z-scores within thresholds).
 - Added both to cron orchestrator (hourly automated execution).
 - Both are tracked independently from the main 5-strategy portfolio.
+
+---
+
+## Q-004 [ANSWERED]
+**Session:** 2026-03-19 review+research (session 38)
+**Question:** (User asked via CLAUDE.md) Regarding H-036 — if there is statistically proved data regarding green/red hour candles, maybe we can combine it with Polymarket 1 hour BTC UP/DOWN market? The Polymarket doesn't have historical data so it is only possible to place a paper trade.
+**Answer:** User asked this directly — self-answering question.
+**Action taken:** (session 2026-03-19 review+research session 38)
+- Ran full H-037 analysis of BTC green/red probability per hour with statistical significance tests
+- **Confirmed 5 statistically significant hours** (p < 0.05): 17:00 UTC (UP 56.3%), 21:00 UTC (UP 54.9%), 22:00 UTC (UP 54.0%), 23:00 UTC (DOWN 54.1%), 13:00 UTC (DOWN 53.8%)
+- All 5 hours show consistent direction in both train (year 1) and test (year 2) halves
+- OOS simulation: 53.7% win rate, 10/13 months profitable at $0.32/bet
+- **Key caveat**: Edge only exists if Polymarket prices at ~50c. If market already prices in the seasonality, edge vanishes
+- Created H-037 hypothesis (CONFIRMED for paper trade) and `paper_trades/h037_polymarket/tracker.py`
+- **This requires MANUAL paper trading** — user needs to check Polymarket prices at target hours and record them
+- Usage: `python3 paper_trades/h037_polymarket/tracker.py log <hour> <UP/DOWN> <price> <outcome>`
