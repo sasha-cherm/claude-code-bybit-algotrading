@@ -581,6 +581,32 @@
 - Notes: This is a creative cross-platform arbitrage idea from the user. No historical Polymarket data exists to verify pricing inefficiency — must paper trade to find out. The statistical patterns are robust (0.52 train/test corr, consistent across rolling windows). Key unknown: does Polymarket market price in the hour-of-day bias? Paper trade involves monitoring actual Polymarket prices at target hours and comparing to historical probabilities.
 - Sessions: [2026-03-19 review+research session 38]
 
+## H-038: ML Factor Combination (Ridge Regression)
+- Status: CONFIRMED (standalone, weak) — **NOT for portfolio deployment**
+- Idea: Use ML (Ridge regression) to learn optimal non-linear combination of cross-sectional factor signals (momentum, volume momentum, beta, volatility, size, reversal) for predicting next-period returns.
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (5d rebalance)
+- Logic: Compute 7 factor z-scores per asset per day. Train Ridge regression on cross-sectional demeaned forward 5d returns. Walk-forward (365d train, 90d test). Long top-5, short bottom-5 by predicted score.
+- Data: 14 assets, 734 daily bars (~2yr). 659 usable dates after warmup. 9,226 observation-rows.
+- Result:
+  - **Best config**: Ridge alpha=100, zscore features, R5, N5
+  - **OOS (walk-forward)**: Sharpe 1.43, +26.2% annual, 9.6% DD
+  - **Folds**: 2/3 positive (67%) — fold 0 negative at -0.41
+  - **Fee robust**: 1.43 → 0.97 at 5x fees
+  - **Param robustness (Ridge)**: 96% positive Sharpe (104/108 configs)
+  - **RF/GB**: 100% and 97% positive, but lower best Sharpe (1.14, 1.19) — linear combo sufficient
+  - **Correlation**: H-012 0.295, H-021 0.197, H-019 0.232, H-024 0.274
+  - **Portfolio impact**: 3-strat XS Sharpe 1.54 → 1.68 (+9%) when added
+  - **Train window sensitivity**: CRITICAL — 180d: -0.10, 270d: -0.17, **365d: 1.43**, 450d: 0.46
+- Notes:
+  - Train window sensitivity is a major red flag — model only works with ~365d window.
+  - Feature importance: beta (most stable, 8.34 stability), reversal (11.12), momentum, volume momentum. Reversal contributes in combination despite failing standalone (H-018).
+  - Linear model (Ridge) beats tree-based (RF, GB) — factor combination is approximately linear.
+  - With only 3 OOS folds (limited by 2yr data), statistical confidence is low.
+  - Revisit when more data accumulates (4+ folds for better validation).
+  - 38 hypotheses tested total.
+- Sessions: [2026-03-19 review+research session 39]
+
 ## Killed
 (none)
 

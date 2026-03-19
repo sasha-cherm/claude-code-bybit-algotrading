@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+2+1 strategies):** H-009 (-2.40%) + H-011 (OUT, 0%) + H-012 (+1.54%) + H-019 (-0.19%) + H-021 (+0.70%) — portfolio $49,965 (-0.07%). H-024 (-0.47%) comparison. H-031 (-0.37%) + H-032 (0%) independent. H-037 (Polymarket, manual, no trades yet).
-- **H-024 vs H-019**: H-019 -0.19% vs H-024 -0.47% — H-019 still ahead.
+- **Paper trading (5+1+2+1 strategies):** H-009 (-2.21%) + H-011 (OUT, 0%) + H-012 (+1.81%) + H-019 (-0.09%) + H-021 (+0.58%) — portfolio $50,010 (+0.02%). H-024 (-0.87%) comparison. H-031 (+0.04%) + H-032 (0%) independent. H-037 (Polymarket, manual, no trades yet).
+- **H-024 vs H-019**: H-019 -0.09% vs H-024 -0.87% — H-019 widening lead.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$69,250**. H-009 flip to SHORT on next daily close virtually certain.
-- **37 total tested, 29 rejected.** 8 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030 only.
-- **Last session:** 2026-03-19 review+research (session 38)
+- **BTC at ~$69,575**. H-009 flip to SHORT on next daily close (00:00 UTC Mar 20) virtually certain.
+- **38 total tested, 30 rejected.** 8 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak).
+- **Last session:** 2026-03-19 review+research (session 39)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
 - **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (8 runners).
-- **NEW: H-037 Polymarket paper trade** — user-suggested cross-platform strategy. 5 statistically significant hours for BTC direction. Requires manual monitoring of Polymarket prices.
-- **Next action:** Monitor. H-009 flip on next daily close. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. User to start H-037 Polymarket paper trading manually.
+- **H-038 ML research**: Ridge factor combo Sharpe 1.43 OOS but train window sensitive — confirmed standalone (weak), not deploying.
+- **Next action:** Monitor. H-009 flip on next daily close. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - **Open user questions:** None
 
 ## Memory Files
@@ -340,3 +340,11 @@
 - Next: Monitor paper trades. H-009 flip on next daily close. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. User to start H-037 Polymarket paper trading.
 - Questions added: Q-004 (self-answering — handled user CLAUDE.md question about H-036+Polymarket)
 - Self-modifications: Added strategies/polymarket_research/h037_polymarket_hourly.py, paper_trades/h037_polymarket/tracker.py. Removed user question from CLAUDE.md.
+
+### Session 2026-03-19 review+research (session 39)
+- Goal: Review + Research — monitor paper trades, explore ML factor combination (H-038)
+- Focus: H-038 ML (Ridge/RF/GB) combination of cross-sectional factor signals
+- Done: Portfolio $50,010 (+0.02%): H-009 $9,779 (-2.21%, BTC $69,575 — flip on next close), H-011 $10,000 (OUT), H-012 $10,181 (+1.81%), H-019 $9,991 (-0.09%), H-021 $10,058 (+0.58%). H-024 $9,913 (-0.87%, H-019 widening lead). H-031 $10,004 (+0.04%). H-032 $10,000 (flat). Cron automation verified working (8/8 runners OK). **H-038 CONFIRMED standalone (weak)**: Ridge alpha=100 on 7 factor z-scores → OOS Sharpe 1.43, +26.2%, 9.6% DD, fee-robust (0.97 at 5x). 96% params positive. BUT train window sensitive: 180d=-0.10, 270d=-0.17, 365d=1.43, 450d=0.46. Only 2/3 WF folds positive. Not deploying. Key finding: beta most stable feature, reversal contributes in combination despite failing alone.
+- Next: Monitor paper trades. H-009 flip on next daily close (00:00 UTC Mar 20). H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Research approaching exhaustion — 38 hypotheses tested.
+- Questions added: none
+- Self-modifications: Added strategies/ml_research/ (h038_ml_factor_combo.py, h038_deep_validation.py). Installed scikit-learn.

@@ -5,11 +5,11 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $9,806 (-1.94%) — live mark @ BTC $70,069
+- **Mark equity**: $9,779 (-2.21%) — live mark @ BTC $69,575
 - **Leverage**: 0.40x (vol targeting: 50.0% realized -> 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
-- **Signal**: EMA(5) > EMA(40) on daily close -> LONG. **BTC at ~$70,069 — flip likely imminent or may have already happened.**
-- **Next check**: Next daily bar close
+- **Signal**: EMA(5) > EMA(40) on daily close -> LONG. **BTC at ~$69,575 — flip to SHORT virtually certain on next daily close (00:00 UTC Mar 20).**
+- **Next check**: Next daily bar close (00:00 UTC 2026-03-20)
 
 ### H-011: Leveraged Funding Rate Arb (5x)
 - **Status**: LIVE paper trade (started 2026-03-16)
@@ -22,9 +22,9 @@
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG: BTC (-$121), NEAR (-$119), ATOM (-$106), AVAX (-$152)
-  - SHORT: SOL (+$119), SUI (+$196), ARB (+$163), OP (+$173)
-- **Mark equity**: $10,133 (+1.33%) — **short side dominating** (+$651 vs -$498 longs)
+  - LONG: BTC, NEAR, ATOM, AVAX
+  - SHORT: SOL, SUI, ARB, OP
+- **Mark equity**: $10,181 (+1.81%) — **short side dominating**
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (2 days)
@@ -32,9 +32,9 @@
 ### H-019: Low-Volatility Anomaly (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-18)
 - **Position**: 6 positions (3 long, 3 short)
-  - LONG (low vol): ATOM (-$225), ARB (-$181), XRP (-$91)
-  - SHORT (high vol): DOGE (+$148), DOT (+$183), NEAR (+$212)
-- **Mark equity**: $10,026 (+0.26%)
+  - LONG (low vol): ATOM, ARB, XRP
+  - SHORT (high vol): DOGE, DOT, NEAR
+- **Mark equity**: $9,991 (-0.09%)
 - **Runner**: `paper_trades/h019_lowvol/runner.py`
 - **Params**: 20d vol window, 21d rebalance, top/bottom 3
 - **Next rebal**: 2026-04-08 (21 days)
@@ -42,9 +42,9 @@
 ### H-021: Volume Momentum Factor (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-18)
 - **Position**: 8 positions (4 long, 4 short)
-  - LONG (vol surge): DOT (-$29), LINK (-$17), XRP (+$21), DOGE (-$6)
-  - SHORT (vol drop): ARB (+$12), SUI (+$16), NEAR (+$46), ATOM (+$2)
-- **Mark equity**: $10,026 (+0.26%)
+  - LONG (vol surge): DOT, LINK, XRP, DOGE
+  - SHORT (vol drop): ARB, SUI, NEAR, ATOM
+- **Mark equity**: $10,058 (+0.58%)
 - **Runner**: `paper_trades/h021_volmom/runner.py`
 - **Params**: VS5_VL20_R3_N4 (5d/20d volume ratio, 3-day rebalance, top/bottom 4)
 - **Next rebal**: 2026-03-21 (2 days)
@@ -52,9 +52,9 @@
 ### H-024: Low-Beta Anomaly (14 Assets) — comparison
 - **Status**: LIVE paper trade (started 2026-03-18) — **comparing against H-019**
 - **Position**: 6 positions (3 long, 3 short)
-  - LONG (low beta): ATOM (-$11), OP (-$85), BTC (-$37)
-  - SHORT (high beta): XRP (-$23), NEAR (+$83), SUI (+$27)
-- **Mark equity**: $9,933 (-0.67%)
+  - LONG (low beta): ATOM, OP, BTC
+  - SHORT (high beta): XRP, NEAR, SUI
+- **Mark equity**: $9,913 (-0.87%)
 - **Runner**: `paper_trades/h024_beta/runner.py`
 - **Params**: W60_R21_N3 (60d rolling beta vs BTC, 21d rebalance, top/bottom 3)
 - **Next rebal**: 2026-04-08 (21 days)
@@ -65,7 +65,7 @@
 - **Position**: 10 positions (5 long, 5 short)
   - LONG (large cap): BTC, ETH, SOL, XRP, DOGE
   - SHORT (small cap): LINK, DOT, OP, ARB, ATOM
-- **Mark equity**: $9,976 (-0.24%) — just deployed
+- **Mark equity**: $10,004 (+0.04%)
 - **Runner**: `paper_trades/h031_size/runner.py`
 - **Params**: W30_R5_N5 (30-day avg dollar volume, 5-day rebalance, top/bottom 5)
 - **Next rebal**: 2026-03-24 (5 days)
@@ -86,14 +86,14 @@
 - **Tracker**: `paper_trades/h037_polymarket/tracker.py`
 - **Note**: OOS 53.7% win rate, +$0.32/bet at 50c. Edge depends on Polymarket mispricing. 37 hypotheses tested total.
 
-## Portfolio Summary (live mark-to-market 2026-03-19 session 38)
-- **Total equity**: $49,965 (-0.07%) — 5-strat portfolio only
-- **H-009**: $9,760 (-2.40%) | **H-011**: $10,000 (0%) | **H-012**: $10,154 (+1.54%) | **H-019**: $9,981 (-0.19%) | **H-021**: $10,070 (+0.70%)
-- **H-024 (comparison)**: $9,953 (-0.47%)
-- **H-031 (independent)**: $9,963 (-0.37%) | **H-032 (independent)**: $10,000 (0%)
+## Portfolio Summary (live mark-to-market 2026-03-19 session 39)
+- **Total equity**: $50,010 (+0.02%) — 5-strat portfolio only
+- **H-009**: $9,779 (-2.21%) | **H-011**: $10,000 (0%) | **H-012**: $10,181 (+1.81%) | **H-019**: $9,991 (-0.09%) | **H-021**: $10,058 (+0.58%)
+- **H-024 (comparison)**: $9,913 (-0.87%)
+- **H-031 (independent)**: $10,004 (+0.04%) | **H-032 (independent)**: $10,000 (0%)
 - **H-037 (Polymarket, manual)**: $0 (no trades yet)
 - **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days. H-031/H-032: 0 days. H-037: 0 days.
-- **BTC at ~$69,250** — H-009 flip on next daily close virtually certain.
+- **BTC at ~$69,575** — H-009 flip to SHORT on next daily close (00:00 UTC Mar 20) virtually certain.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -128,15 +128,15 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **H-009 flip imminent**: BTC at ~$69,250 — below EMA flip point. Daily close will trigger flip to SHORT.
-- **H-012 best performer**: +1.54% — short side dominating. Market-neutral proven.
-- **H-019 vs H-024**: H-019 -0.19% vs H-024 -0.47% — H-019 still ahead.
-- **H-021 weakened**: +0.70% (down from +0.95%).
-- **H-031 turned negative**: -0.37% — size factor struggling in selloff.
+- **H-009 flip imminent**: BTC at ~$69,575 — well below EMA flip point. Flip to SHORT on next daily close (00:00 UTC Mar 20) virtually certain.
+- **H-012 best performer**: +1.81% — short side dominating. Market-neutral proven.
+- **H-019 vs H-024**: H-019 -0.09% vs H-024 -0.87% — H-019 widening lead.
+- **H-021 improved**: +0.58% (recovering).
+- **H-031 turned positive**: +0.04% — size factor stabilizing.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
-- **Portfolio stable**: BTC -5.8% since entry → -0.07% portfolio. Diversification working.
-- **Research status**: 37 hypotheses tested, 29 rejected, 1 confirmed standalone (H-030), 8 in paper trade + 1 comparison. H-037 (Polymarket) is first cross-platform strategy.
-- **New: H-037 Polymarket**: Requires manual paper trading — user checks Polymarket prices at target hours. 5 statistically significant hours identified.
+- **Portfolio stable**: BTC -5.4% since entry → +0.02% portfolio. Diversification working.
+- **Research status**: 38 hypotheses tested, 30 rejected, 2 confirmed standalone (H-030, H-038), 8 in paper trade + 1 comparison. H-037 (Polymarket) is first cross-platform strategy.
+- **H-038 ML research**: Ridge factor combo Sharpe 1.43 OOS but fragile (train window sensitive). CONFIRMED standalone (weak). Not deploying.
 - **Watchlist**: H-009 signal flip on next daily close. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
 - **Open user questions**: None
 
@@ -180,6 +180,7 @@
 | Hypothesis | Metrics | Why Not In Portfolio |
 |-----------|---------|---------------------|
 | H-030: Composite Multi-Factor | Sharpe 2.05, +101.7% ann, 25% DD, WF 5/6, 100% params positive | Portfolio of individual strategies (Sharpe 2.26) beats composite (2.14) |
+| H-038: ML Factor Combo (Ridge) | Sharpe 1.43, +26.2% ann, 9.6% DD, WF 2/3, 96% params positive | Train window sensitive (only 365d works), too fragile for portfolio |
 
 *H-031 and H-032 moved to independent paper trades (session 36).*
 
@@ -240,4 +241,5 @@
 - **Vol timing can enhance H-012**: VT0.3/VW10 → Sharpe 1.12→1.61, DD 30.6%→21.3%. WF 3/4. Log as potential refinement.
 - **Intraday hour-of-day patterns are real but untradeable**: Train/test corr 0.44. Cross-asset corr 0.63. But absolute returns per hour too small vs fees.
 - **Research exhaustion after 36 hypotheses**: All tradeable alpha in price/volume/funding data has been found. Future alpha requires options IV, on-chain data, or order book.
+- **ML factor combination (H-038)**: Ridge regression on factor z-scores achieves OOS Sharpe 1.43, beats individual factors. But train window sensitive (only 365d works) — fragile. Linear model beats trees (RF, GB) — factor interaction is linear, not non-linear. Reversal (failed alone) contributes in combination. Beta most stable feature.
 - **All 5 portfolio strategies now in paper trade + H-024 comparison** -- monitor for >=4 weeks before live consideration
