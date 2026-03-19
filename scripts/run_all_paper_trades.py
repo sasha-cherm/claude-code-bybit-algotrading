@@ -29,6 +29,8 @@ RUNNERS = [
     ("H-019", ROOT / "paper_trades" / "h019_lowvol" / "runner.py"),
     ("H-021", ROOT / "paper_trades" / "h021_volmom" / "runner.py"),
     ("H-024", ROOT / "paper_trades" / "h024_beta" / "runner.py"),
+    ("H-031", ROOT / "paper_trades" / "h031_size" / "runner.py"),
+    ("H-032", ROOT / "paper_trades" / "h032_pairs" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

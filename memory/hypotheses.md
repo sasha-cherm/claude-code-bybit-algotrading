@@ -461,7 +461,7 @@
 - Sessions: [2026-03-19 review+research session 32, 2026-03-19 review+system session 33]
 
 ## H-031: Size Factor (Dollar Volume Proxy, Long Large)
-- Status: CONFIRMED (standalone) — not added to portfolio (corr 0.49 with momentum)
+- Status: LIVE (paper trade since 2026-03-19) — independent, not in main portfolio (corr 0.49 with momentum)
 - Idea: Long assets with highest average dollar volume (large-cap proxy), short lowest. Size effect in crypto.
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 5 days)
@@ -481,7 +481,7 @@
 - Sessions: [2026-03-19 review+research session 32, 2026-03-19 review+system session 33]
 
 ## H-032: Pairwise Cointegration Statistical Arbitrage
-- Status: CONFIRMED (standalone, weak) — not added to portfolio (OOS evidence mixed, trade frequency too low)
+- Status: LIVE (paper trade since 2026-03-19) — independent, experimental (OOS evidence mixed)
 - Idea: Test all 91 crypto pairs for cointegration, trade mean-reverting spreads using z-score entry/exit. Fundamentally different from cross-sectional factor approaches.
 - Instrument: futures (14 perps, pairwise)
 - Timeframe: 1D (daily, trades last 20-40 days)

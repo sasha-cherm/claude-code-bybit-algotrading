@@ -44,7 +44,7 @@ Sorry, wrong project, nevermind
 
 ---
 
-## Q-003 [OPEN]
+## Q-003 [ANSWERED]
 **Session:** 2026-03-19 review+system (session 35)
 **Question:** H-030, H-031, and H-032 are confirmed standalone but NOT currently in paper trading. Here's the situation:
 
@@ -57,5 +57,10 @@ Sorry, wrong project, nevermind
 Should I deploy H-031 and/or H-032 as paper trades?
 
 **Answer:**
+yes, deploy them
 
-**Action taken:**
+**Action taken:** (session 2026-03-19 review+paper trade session 36)
+- Deployed H-031 (Size Factor) as paper trade: LONG BTC/ETH/SOL/XRP/DOGE, SHORT LINK/DOT/OP/ARB/ATOM. $10k allocated.
+- Deployed H-032 (Cointegration Pairs) as paper trade: 8-pair portfolio (DOT/ATOM, DOGE/LINK, DOGE/ADA, DOT/OP, SOL/DOGE, AVAX/DOT, NEAR/OP, ARB/ATOM). $10k allocated. No entries yet (z-scores within thresholds).
+- Added both to cron orchestrator (hourly automated execution).
+- Both are tracked independently from the main 5-strategy portfolio.

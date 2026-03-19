@@ -1,0 +1,74 @@
+{
+  "started": "2026-03-19T09:05:32.813022+00:00",
+  "capital": 10000.0,
+  "pair_positions": {
+    "DOT/ATOM": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "DOGE/LINK": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "DOGE/ADA": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "DOT/OP": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "SOL/DOGE": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "AVAX/DOT": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "NEAR/OP": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    },
+    "ARB/ATOM": {
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
+      "entry_equity": 1250.0,
+      "cumulative_pnl": 0.0
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-03-19",
+      "equity": 10000.0,
+      "active_pairs": 0,
+      "trades_today": 0
+    }
+  ],
+  "last_daily_date": "2026-03-19",
+  "total_trades": 0,
+  "total_fees": 0.0,
+  "trades_log": []
+}

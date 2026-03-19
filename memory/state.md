@@ -5,10 +5,10 @@
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: LONG 0.054885 BTC @ $73,524.10
-- **Mark equity**: $9,825 (-1.75%) — live mark @ BTC $70,410
+- **Mark equity**: $9,806 (-1.94%) — live mark @ BTC $70,069
 - **Leverage**: 0.40x (vol targeting: 50.0% realized -> 20% target)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
-- **Signal**: EMA(5) > EMA(40) on daily close -> LONG. **~$300 above flip point. VERY close to SHORT flip. Watch daily close.**
+- **Signal**: EMA(5) > EMA(40) on daily close -> LONG. **BTC at ~$70,069 — flip likely imminent or may have already happened.**
 - **Next check**: Next daily bar close
 
 ### H-011: Leveraged Funding Rate Arb (5x)
@@ -60,12 +60,32 @@
 - **Next rebal**: 2026-04-08 (21 days)
 - **Note**: In backtests, H-024 dominates H-019 at every param set (12/12), WF 5/6 positive (mean 2.12). Portfolio Sharpe improves from 1.80 to 2.33 by replacing H-019. Tracking in parallel for live comparison.
 
-## Portfolio Summary (live mark-to-market 2026-03-19 session 35)
-- **Total equity**: $50,010 (+0.02%) — 5-strat portfolio only
-- **H-009**: $9,825 (-1.75%) | **H-011**: $10,000 (0%) | **H-012**: $10,133 (+1.33%) | **H-019**: $10,026 (+0.26%) | **H-021**: $10,026 (+0.26%)
-- **H-024 (comparison)**: $9,933 (-0.67%)
-- **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days.
-- **BTC at $70,410** — H-009 flip risk continues.
+### H-031: Size Factor (Dollar Volume Proxy, Long Large) — independent
+- **Status**: LIVE paper trade (started 2026-03-19) — independent, not in main portfolio
+- **Position**: 10 positions (5 long, 5 short)
+  - LONG (large cap): BTC, ETH, SOL, XRP, DOGE
+  - SHORT (small cap): LINK, DOT, OP, ARB, ATOM
+- **Mark equity**: $9,976 (-0.24%) — just deployed
+- **Runner**: `paper_trades/h031_size/runner.py`
+- **Params**: W30_R5_N5 (30-day avg dollar volume, 5-day rebalance, top/bottom 5)
+- **Next rebal**: 2026-03-24 (5 days)
+- **Note**: Confirmed standalone (Sharpe 1.58, +78.5% ann, 31% DD). Corr 0.49 with H-012.
+
+### H-032: Cointegration Pairs (8-pair portfolio) — independent
+- **Status**: LIVE paper trade (started 2026-03-19) — independent, experimental
+- **Position**: ALL FLAT — waiting for z-score entry signals
+- **Pairs**: DOT/ATOM, DOGE/LINK, DOGE/ADA, DOT/OP, SOL/DOGE, AVAX/DOT, NEAR/OP, ARB/ATOM
+- **Mark equity**: $10,000 (0%)
+- **Runner**: `paper_trades/h032_pairs/runner.py`
+- **Note**: OOS Sharpe 1.33, DD 5.8%. Negative corr with H-012 (-0.31). Entries are infrequent — trade on z-score extremes only.
+
+## Portfolio Summary (live mark-to-market 2026-03-19 session 36)
+- **Total equity**: $50,029 (+0.06%) — 5-strat portfolio only
+- **H-009**: $9,806 (-1.94%) | **H-011**: $10,000 (0%) | **H-012**: $10,148 (+1.48%) | **H-019**: $10,006 (+0.06%) | **H-021**: $10,068 (+0.68%)
+- **H-024 (comparison)**: $9,948 (-0.52%)
+- **H-031 (independent)**: $9,976 (-0.24%) | **H-032 (independent)**: $10,000 (0%)
+- **Paper trade age**: H-009/H-011/H-012: 3 days / 28 required. H-019/H-021/H-024: 1-2 days. H-031/H-032: 0 days.
+- **BTC at ~$70,069** — H-009 flip likely imminent.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -100,18 +120,18 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **H-009 flip imminent**: BTC at $70,410 — very close to EMA flip point. Daily close will determine.
-- **H-012 best performer**: +1.33% — short side dominating (+$651). Market-neutral proven.
-- **H-019 vs H-024**: H-019 +0.26% vs H-024 -0.67% — H-019 widening lead further.
-- **H-021 recovering**: +0.26% (improved from -0.28%). Short side turning profitable.
+- **H-009 flip imminent**: BTC at ~$70,069 — very likely below EMA flip point. Daily close will determine.
+- **H-012 best performer**: +1.48% — short side dominating. Market-neutral proven.
+- **H-019 vs H-024**: H-019 +0.06% vs H-024 -0.52% — H-019 still ahead.
+- **H-021 recovering**: +0.68% (improved further). Short side profitable.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
-- **Portfolio stable**: BTC -4.3% since entry → only +0.02% portfolio. Diversification working.
-- **Research status**: 32 hypotheses tested, 25 rejected, 3 confirmed standalone (H-030, H-031, H-032), 5 in paper trade + 1 comparison.
+- **Portfolio stable**: BTC -4.7% since entry → only +0.06% portfolio. Diversification working.
+- **Research status**: 32 hypotheses tested, 25 rejected, 1 confirmed standalone (H-030), 7 in paper trade + 1 comparison.
 - **Watchlist**: H-009 signal flip IMMINENT. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
-- **Open user questions**: Q-003 (deploy H-031/H-032 as paper trades?)
+- **Open user questions**: None (Q-003 resolved)
 
 ## Automation
-- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 6 active runners sequentially
+- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 8 active runners sequentially
 - **Cron schedule**: Every hour at :30 (`30 * * * *`), independent of Claude sessions
 - **Logs**: `logs/paper_trades.log`
 - **Claude sessions**: Every 2 hours at :00 — research, monitoring, strategy updates
@@ -146,8 +166,8 @@
 | Hypothesis | Metrics | Why Not In Portfolio |
 |-----------|---------|---------------------|
 | H-030: Composite Multi-Factor | Sharpe 2.05, +101.7% ann, 25% DD, WF 5/6, 100% params positive | Portfolio of individual strategies (Sharpe 2.26) beats composite (2.14) |
-| H-031: Size Factor (Long Large) | Sharpe 1.58, +78.5% ann, 31% DD, WF 4/4, 100% params positive | Corr 0.49 with H-012 momentum — redundant in current portfolio |
-| H-032: Cointegration Pairs (weak) | IS Sharpe 1.30 (12-pair), OOS 1.33 (8-pair portfolio), DD 5.8% OOS | OOS evidence mixed (2/12 pairs pass both tests). Cointegration unstable. Low trade frequency. |
+
+*H-031 and H-032 moved to independent paper trades (session 36).*
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -168,9 +188,11 @@
 - H-012 paper trade runner (XSMom, internal simulation)
 - H-019 paper trade runner (LowVol, internal simulation)
 - H-021 paper trade runner (VolMom, internal simulation)
-- **H-024 paper trade runner** (Beta, internal simulation) — NEW
-- **Portfolio monitor**: `scripts/portfolio_monitor.py` — live mark-to-market across all 6 strategies (5 portfolio + 1 comparison)
-- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all runners hourly via cron (independent of Claude sessions)
+- H-024 paper trade runner (Beta, internal simulation)
+- **H-031 paper trade runner** (Size Factor, internal simulation) — NEW
+- **H-032 paper trade runner** (Cointegration Pairs, 8-pair portfolio) — NEW
+- **Portfolio monitor**: `scripts/portfolio_monitor.py` — live mark-to-market across all 8 strategies (5 portfolio + 1 comparison + 2 independent)
+- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 8 runners hourly via cron (independent of Claude sessions)
 - Cached data (1h, 2yr): BTC, ETH, SOL, SUI, XRP, DOGE, AVAX, LINK, ADA, DOT, NEAR, OP, ARB, ATOM (14 assets)
 - Cached data: BTC funding rates (2yr, 2199 records)
 - Cached data: 14-asset funding rates (2yr, 2190 records each)
@@ -192,7 +214,7 @@
 - **Lead-lag (BTC→alt) not exploitable**: 1% IS positive at hourly frequency. Effect may exist at tick level but not at 1h bars.
 - **Volume trend change no cross-sectional signal**: 6% IS positive. OI proxy via volume ratios doesn't work.
 - **Hourly momentum ≈ daily momentum**: 336h lookback works (5/6 WF) but corr 0.484 with H-012. No unique intraday momentum alpha.
-- **32 hypotheses tested total**: 5 in paper trade + 1 comparison (H-024), 25 rejected, 3 confirmed standalone
+- **32 hypotheses tested total**: 7 in paper trade + 1 comparison (H-024), 25 rejected, 1 confirmed standalone (H-030)
 - **Risk**: funding rates declining (Q1 2024: 22.7% -> Q1 2026: 1.6%) -- rolling-27 negative since 2026-03-07
 - Fee drag critical at 1h; daily/3-day/5-day/21-day rebalance minimizes fee impact
 - **Composite multi-factor doesn't beat portfolio of individuals**: Combining 3 factors into 1 strategy (Sharpe 2.14) is worse than running them separately (Sharpe 2.26). Diversification from independent rebalance schedules adds value.

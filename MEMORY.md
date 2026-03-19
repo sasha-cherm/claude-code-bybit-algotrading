@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1 strategies):** H-009 (-1.75%) + H-011 (OUT, 0%) + H-012 (+1.33%) + H-019 (+0.26%) + H-021 (+0.26%) — portfolio $50,010 (+0.02%). H-024 (-0.67%) tracking as comparison.
-- **H-024 vs H-019**: H-019 +0.26% vs H-024 -0.67% — H-019 widening lead further.
+- **Paper trading (5+1+2 strategies):** H-009 (-1.94%) + H-011 (OUT, 0%) + H-012 (+1.48%) + H-019 (+0.06%) + H-021 (+0.68%) — portfolio $50,029 (+0.06%). H-024 (-0.52%) comparison. H-031 (-0.24%) + H-032 (0%) independent.
+- **H-024 vs H-019**: H-019 +0.06% vs H-024 -0.52% — H-019 still ahead.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at $70,410**. H-009 flip risk continues.
-- **32 total tested, 25 rejected.** Confirmed standalone: H-030 (composite, Sharpe 2.05), H-031 (size, Sharpe 1.58), H-032 (pairs, OOS Sharpe 1.33, weak).
-- **Last session:** 2026-03-19 review+system (session 35)
+- **BTC at ~$70,069**. H-009 flip likely imminent.
+- **32 total tested, 25 rejected.** 7 in paper trade + 1 comparison. Confirmed standalone: H-030 only.
+- **Last session:** 2026-03-19 review+paper trade (session 36)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py`.
-- **Next action:** Monitor. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Awaiting user answer on Q-003 (deploy H-031/H-032).
-- **Open user questions:** Q-003 (deploy H-031/H-032 as paper trades?)
+- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (8 runners).
+- **Next action:** Monitor. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Continue research.
+- **Open user questions:** None
 
 ## Memory Files
 | File | Purpose |
@@ -315,3 +315,11 @@
 - Next: Monitor. Await Q-003 answer. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23.
 - Questions added: Q-003 (deploy H-031/H-032?)
 - Self-modifications: Added run_all_paper_trades.py orchestrator, added cron automation, removed user input from CLAUDE.md
+
+### Session 2026-03-19 review+paper trade (session 36)
+- Goal: Review + Paper Trade — deploy H-031 and H-032 per user request (Q-003)
+- Focus: Build and deploy H-031 (size factor) and H-032 (cointegration pairs) paper trade runners
+- Done: Portfolio $50,029 (+0.06%): H-009 $9,806 (-1.94%, BTC ~$70,069), H-011 $10,000 (OUT), H-012 $10,148 (+1.48%), H-019 $10,006 (+0.06%), H-021 $10,068 (+0.68%). H-024 $9,948 (-0.52%). **Deployed H-031**: Size factor (W30_R5_N5, long large-cap, short small-cap). Initial: LONG BTC/ETH/SOL/XRP/DOGE, SHORT LINK/DOT/OP/ARB/ATOM. $9,976 after fees. **Deployed H-032**: 8-pair cointegration portfolio (DOT/ATOM, DOGE/LINK, DOGE/ADA, DOT/OP, SOL/DOGE, AVAX/DOT, NEAR/OP, ARB/ATOM). All flat — waiting for z-score entry signals. Updated orchestrator and portfolio monitor to include both. Acted on Q-003 (user said "yes, deploy them").
+- Next: Monitor all 8 paper trades. H-009 flip IMMINENT. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Continue research.
+- Questions added: none
+- Self-modifications: Added H-031 + H-032 paper trade runners. Updated orchestrator (8 runners) and portfolio monitor.

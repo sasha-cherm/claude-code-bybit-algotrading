@@ -39,6 +39,8 @@ STATE_FILES = {
     "H-019": ROOT / "paper_trades" / "h019_lowvol" / "state.json",
     "H-021": ROOT / "paper_trades" / "h021_volmom" / "state.json",
     "H-024": ROOT / "paper_trades" / "h024_beta" / "state.json",
+    "H-031": ROOT / "paper_trades" / "h031_size" / "state.json",
+    "H-032": ROOT / "paper_trades" / "h032_pairs" / "state.json",
 }
 
 
