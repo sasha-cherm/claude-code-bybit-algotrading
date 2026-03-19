@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1 strategies):** H-009 (-1.37%) + H-011 (OUT, 0%) + H-012 (+1.47%) + H-019 (-0.26%) + H-021 (-0.57%) — portfolio $49,927 (-0.15%). H-024 (-0.19%) tracking as comparison.
-- **H-024 vs H-019**: H-024 -0.19% vs H-019 -0.26% — H-024 slightly better early on, as backtests predicted.
+- **Paper trading (5+1 strategies):** H-009 (-1.38%) + H-011 (OUT, 0%) + H-012 (+1.22%) + H-019 (-0.21%) + H-021 (-0.18%) — portfolio $49,948 (-0.10%). H-024 (-0.22%) tracking as comparison.
+- **H-024 vs H-019**: Neck-and-neck — H-019 -0.21% vs H-024 -0.22%. Too early to differentiate.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at $71,250** (-4.0% 24h). H-009 LONG signal fragile (~$670 above flip). Diversification working.
-- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-029 (23 rejected, 29 total tested)
-- **Last session:** 2026-03-18 review+research (session 31)
+- **BTC at $71,084**. H-009 LONG signal still fragile near flip point.
+- **Rejected:** H-001–H-007, H-013–H-018, H-020, H-022, H-023, H-025–H-031 (25 rejected, 31 total tested)
+- **Last session:** 2026-03-19 review+research (session 32)
 - **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019. Explore options/on-chain/ML research directions.
+- **Next action:** Monitor all 6 paper trades. H-009 flip risk. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. Track H-024 vs H-019. Research exhausted cross-sectional factors — consider options data, on-chain metrics, or alternative asset classes.
 - **Open user questions:** none
 
 ## Memory Files
@@ -282,3 +282,11 @@
 - Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Explore new research directions: options, on-chain data, ML/ensemble methods.
 - Questions added: none
 - Self-modifications: Added leadlag_research/ framework.
+
+### Session 2026-03-19 review+research (session 32)
+- Goal: Review + Research — monitor paper trades, explore composite multi-factor and size factor
+- Focus: H-030 (composite multi-factor), H-031 (size/dollar volume)
+- Done: Portfolio $49,948 (-0.10%): H-009 $9,862 (-1.38%), H-011 $10,000 (OUT), H-012 $10,122 (+1.22%), H-019 $9,979 (-0.21%), H-021 $9,982 (-0.18%). Tested 2 new hypotheses (468+ param sets). **H-030 CONFIRMED standalone** (100% IS positive, WF 5/6 mean 1.71-2.01, fee-robust) but **REJECTED for portfolio** — portfolio of 3 individual strategies (Sharpe 2.26) beats single composite (Sharpe 2.14). **H-031 CONFIRMED standalone** (100% long_large positive, WF 4/4 mean 1.47-1.78, extremely fee-robust) but **REJECTED for portfolio** — corr 0.486 with H-012 (momentum), redundant. 31 hypotheses tested, 25 rejected.
+- Next: Monitor all 6 paper trades. H-012 + H-021 rebal Mar 21. H-011 re-entry ~Mar 22-23. H-009 flip risk. Cross-sectional factor space exhausted — future research needs new data sources (options, on-chain) or fundamentally different approaches.
+- Questions added: none
+- Self-modifications: Added composite_factor_research.py + composite_deep_validation.py

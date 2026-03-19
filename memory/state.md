@@ -24,7 +24,7 @@
 - **Position**: 8 positions (4 long, 4 short)
   - LONG: BTC (-$97), NEAR (-$81), ATOM (-$83), AVAX (-$128)
   - SHORT: SOL (+$121), SUI (+$166), ARB (+$142), OP (+$127)
-- **Mark equity**: $10,147 (+1.47%) — **short side dominating** (+$556 vs -$389 longs)
+- **Mark equity**: $10,122 (+1.22%) — **short side dominating** (+$558 vs -$416 longs)
 - **Runner**: `paper_trades/h012_xsmom/runner.py`
 - **Params**: 60d lookback, 5d rebalance, top/bottom 4
 - **Next rebal**: 2026-03-21 (3 days)
@@ -34,7 +34,7 @@
 - **Position**: 6 positions (3 long, 3 short)
   - LONG (low vol): ATOM (-$195), ARB (-$153), XRP (-$107)
   - SHORT (high vol): DOGE (+$139), DOT (+$148), NEAR (+$162)
-- **Mark equity**: $9,974 (-0.26%)
+- **Mark equity**: $9,979 (-0.21%)
 - **Runner**: `paper_trades/h019_lowvol/runner.py`
 - **Params**: 20d vol window, 21d rebalance, top/bottom 3
 - **Next rebal**: 2026-04-08 (21 days)
@@ -44,7 +44,7 @@
 - **Position**: 8 positions (4 long, 4 short)
   - LONG (vol surge): DOT (-$2), LINK (-$3), XRP (+$8), DOGE (+$1)
   - SHORT (vol drop): ARB (-$10), SUI (-$16), NEAR (+$7), ATOM (-$22)
-- **Mark equity**: $9,943 (-0.57%)
+- **Mark equity**: $9,982 (-0.18%)
 - **Runner**: `paper_trades/h021_volmom/runner.py`
 - **Params**: VS5_VL20_R3_N4 (5d/20d volume ratio, 3-day rebalance, top/bottom 4)
 - **Next rebal**: 2026-03-21 (3 days)
@@ -54,18 +54,18 @@
 - **Position**: 6 positions (3 long, 3 short)
   - LONG (low beta): ATOM (+$20), OP (-$22), BTC (-$5)
   - SHORT (high beta): XRP (-$7), NEAR (+$30), SUI (-$17)
-- **Mark equity**: $9,981 (-0.19%)
+- **Mark equity**: $9,978 (-0.22%)
 - **Runner**: `paper_trades/h024_beta/runner.py`
 - **Params**: W60_R21_N3 (60d rolling beta vs BTC, 21d rebalance, top/bottom 3)
 - **Next rebal**: 2026-04-08 (21 days)
 - **Note**: In backtests, H-024 dominates H-019 at every param set (12/12), WF 5/6 positive (mean 2.12). Portfolio Sharpe improves from 1.80 to 2.33 by replacing H-019. Tracking in parallel for live comparison.
 
-## Portfolio Summary (live mark-to-market 2026-03-18 23:03 UTC)
-- **Total equity**: $49,927 (-0.15%) — 5-strat portfolio only
-- **H-009**: $9,863 (-1.37%) | **H-011**: $10,000 (0%) | **H-012**: $10,147 (+1.47%) | **H-019**: $9,974 (-0.26%) | **H-021**: $9,943 (-0.57%)
-- **H-024 (comparison)**: $9,981 (-0.19%)
-- **Paper trade age**: H-009/H-011/H-012: 2-3 days / 28 required. H-019/H-021/H-024: 1 day.
-- **BTC at $71,250** — portfolio barely down despite -4.0% BTC 24h drop.
+## Portfolio Summary (live mark-to-market 2026-03-19)
+- **Total equity**: $49,948 (-0.10%) — 5-strat portfolio only
+- **H-009**: $9,862 (-1.38%) | **H-011**: $10,000 (0%) | **H-012**: $10,122 (+1.22%) | **H-019**: $9,979 (-0.21%) | **H-021**: $9,982 (-0.18%)
+- **H-024 (comparison)**: $9,978 (-0.22%)
+- **Paper trade age**: H-009/H-011/H-012: 3-4 days / 28 required. H-019/H-021/H-024: 1-2 days.
+- **BTC at $71,084** — portfolio recovering slightly from -0.15% yesterday.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -100,14 +100,13 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **BTC selloff stabilizing**: BTC at $71,250 (-4.0% 24h). H-009 LONG signal fragile — ~$670 above flip point (~$70,579).
-- **H-012 best performer**: +1.47% — short side (+$556) dominating. Market-neutral design proven.
-- **H-019 recovering**: -0.26% (from -0.73%), shorts profitable.
-- **H-019 vs H-024**: Both tracking in parallel. H-024 -0.19% vs H-019 -0.26% (H-024 slightly better as expected).
-- **H-021 slightly negative**: -0.57%, first rebal in 3 days.
+- **BTC stable**: BTC at $71,084. H-009 LONG signal still fragile — near flip point.
+- **H-012 best performer**: +1.22% — short side dominating. Market-neutral proven.
+- **H-019 vs H-024**: Very close — H-019 -0.21% vs H-024 -0.22% (neck-and-neck). Too early to call.
+- **H-021 recovering**: -0.18% (from -0.57%), improving.
 - **Funding rate**: Rolling-7 at -1.4% ann. **H-011 re-entry ~Mar 22-23.**
-- **Diversification working**: 4.0% BTC drop → only 0.15% portfolio loss across 5 strategies.
-- **Research pipeline**: 29 hypotheses tested, 23 rejected. Lead-lag, volume trend, hourly momentum all rejected. Cross-sectional factor space thoroughly explored.
+- **Portfolio stable**: BTC drop → only -0.10% portfolio loss.
+- **Research status**: 31 hypotheses tested, 25 rejected, 5 in paper trade + 1 comparison. Composite multi-factor (H-030) and size factor (H-031) both confirmed as standalone signals but NOT useful for portfolio — composite doesn't beat portfolio of individuals, size is redundant with momentum.
 - **Watchlist**: H-009 signal flip risk. H-011 re-entry ~Mar 22-23. H-012 + H-021 rebalance 2026-03-21.
 
 ## Rejected Strategies
@@ -134,6 +133,8 @@
 | H-027: Lead-Lag XS | 1% positive. BTC-altcoin lag not exploitable at hourly frequency. |
 | H-028: Volume Trend Change | 6% positive. Overfitting, fails WF. OI proxy has no XS signal. |
 | H-029: Hourly XS Momentum | 16% positive. 336h lookback works but corr 0.484 with H-012 — redundant. |
+| H-030: Composite Multi-Factor | CONFIRMED standalone (WF 5/6, Sharpe 2.05-2.14) but portfolio of individuals (Sharpe 2.26) beats it. |
+| H-031: Size Factor (Long Large) | CONFIRMED standalone (100% IS, WF 4/4) but corr 0.486 with H-012 — redundant. |
 
 ## Infrastructure Status
 - Data fetcher: operational (ccxt, parquet caching)
@@ -146,7 +147,8 @@
 - H-019 deep validation v2 framework
 - H-021 volume factor research + deep validation
 - H-024 beta factor research + deep validation
-- **Lead-lag / hourly factor research** (`strategies/leadlag_research/`) — NEW
+- Lead-lag / hourly factor research (`strategies/leadlag_research/`)
+- **Composite multi-factor research** (`strategies/new_factors_research/composite_factor_research.py`) — NEW
 - H-009 paper trade runner (internal simulation)
 - H-011 paper trade runner (funding rate arb simulation)
 - H-012 paper trade runner (XSMom, internal simulation)
@@ -175,7 +177,10 @@
 - **Lead-lag (BTC→alt) not exploitable**: 1% IS positive at hourly frequency. Effect may exist at tick level but not at 1h bars.
 - **Volume trend change no cross-sectional signal**: 6% IS positive. OI proxy via volume ratios doesn't work.
 - **Hourly momentum ≈ daily momentum**: 336h lookback works (5/6 WF) but corr 0.484 with H-012. No unique intraday momentum alpha.
-- **29 hypotheses tested total**: 5 in paper trade + 1 comparison (H-024), 23 rejected
+- **31 hypotheses tested total**: 5 in paper trade + 1 comparison (H-024), 25 rejected
 - **Risk**: funding rates declining (Q1 2024: 22.7% -> Q1 2026: 1.6%) -- rolling-27 negative since 2026-03-07
 - Fee drag critical at 1h; daily/3-day/5-day/21-day rebalance minimizes fee impact
+- **Composite multi-factor doesn't beat portfolio of individuals**: Combining 3 factors into 1 strategy (Sharpe 2.14) is worse than running them separately (Sharpe 2.26). Diversification from independent rebalance schedules adds value.
+- **Size factor (long large-cap) is genuine but redundant**: 100% IS positive (long_large), WF 4/4, but corr 0.486 with momentum. Large-cap outperformance ≈ momentum.
+- **Cross-sectional factor space exhausted**: Tested momentum, volume momentum, beta, volatility, reversal, skewness, drawdown, illiquidity, funding dispersion, lead-lag, size, composite. Only 3 orthogonal signals found (momentum, volume momentum, beta/vol).
 - **All 5 portfolio strategies now in paper trade + H-024 comparison** -- monitor for >=4 weeks before live consideration

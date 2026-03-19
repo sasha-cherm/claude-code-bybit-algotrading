@@ -435,6 +435,45 @@
 - Notes: The 336h lookback that works is essentially 14-day momentum — a noisier, shorter version of H-012's 60-day momentum. Not an independent alpha source. Shorter hourly lookbacks (24-168h) that would be truly differentiated all fail. No unique hourly momentum alpha exists.
 - Sessions: [2026-03-18 review+research session 31]
 
+## H-030: Composite Multi-Factor (Momentum + Volume Momentum + Beta)
+- Status: REJECTED (for portfolio use — confirmed as standalone)
+- Idea: Combine confirmed cross-sectional factors (momentum, volume momentum, beta) into a single composite z-score ranking. Test 2/3/4-factor blends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3 days)
+- Logic: Z-score normalize each factor cross-sectionally, then weighted average. Best: Mom=0.33/Vol=0.33/Beta=0.34, R3_N5.
+- Result:
+  - **In-sample (3-factor best)**: Sharpe 2.05, +101.7% annual, 24.9% DD
+  - **In-sample (4-factor best)**: Sharpe 2.14, +106.6% annual, 25.1% DD
+  - **Parameter robustness**: 135/135 positive (3-factor), 243/243 positive (4-factor) — 100%
+  - **Walk-forward (3-factor, 6 folds)**: 5/6 positive, mean OOS Sharpe 1.71
+  - **Walk-forward (4-factor, 6 folds)**: 5/6 positive, mean OOS Sharpe 2.01
+  - **Fee sensitivity**: Sharpe 1.52-1.55 at 5x fees (robust)
+  - **Param neighborhood**: 36/36 positive (100%), min 1.09
+  - **BUT: Portfolio of 3 individuals (Sharpe 2.26) > Composite (Sharpe 2.14)**
+  - **Correlations**: 0.61 with H-012, 0.44 with H-021, 0.57 with H-024 — no new alpha
+- Notes: The composite doesn't beat the portfolio approach because it loses the diversification benefit of running strategies separately. Each individual strategy captures different temporal patterns (3-day vs 5-day vs 21-day rebalance). The composite at R3 frequency also has higher turnover. Conclusion: keep running individual strategies, composite is redundant.
+- Sessions: [2026-03-19 review+research session 32]
+
+## H-031: Size Factor (Dollar Volume Proxy, Long Large)
+- Status: REJECTED (for portfolio use — confirmed as standalone)
+- Idea: Long assets with highest average dollar volume (large-cap proxy), short lowest. Size effect in crypto.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: Compute 30-day rolling average dollar volume (close * volume). Rank. Long top 5 (largest), short bottom 5.
+- Result:
+  - **In-sample (W30_R5_N5)**: Sharpe 1.58, +78.5% annual, 31.3% DD
+  - **Parameter robustness (long_large)**: 48/48 positive (100%)
+  - **Parameter robustness (long_small)**: 0/48 positive (0%)
+  - **Walk-forward (W30_R5_N5)**: 4/4 positive, mean OOS Sharpe 1.47
+  - **Walk-forward (W30_R5_N4)**: 4/4 positive, mean OOS Sharpe 1.78
+  - **Fee sensitivity**: Sharpe 1.54 at 5x fees (extremely robust — low turnover)
+  - **Typical positions**: LONG BTC/ETH/SOL/XRP/DOGE, SHORT NEAR/DOT/OP/ARB/ATOM
+  - **BUT: Correlation with H-012 (momentum) = 0.486** — above 0.4 threshold
+  - **Correlation with H-019 (low-vol) = 0.461** — also high
+  - **Adding to 4-factor composite DECREASES Sharpe**: 2.14 → 1.82-1.97
+- Notes: Genuine size effect in crypto — large-cap consistently outperforms small-cap. But this is highly correlated with momentum (winners = BTC/ETH = large-cap) and low-vol (large-cap = lower vol). No independent portfolio diversification value. Same conclusion as H-026 (drawdown distance) — strong signal but redundant.
+- Sessions: [2026-03-19 review+research session 32]
+
 ## Killed
 (none)
 
