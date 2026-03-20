@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+6+1+1 strategies):** H-009 (-2.11%, SHORT) + H-011 (OUT, 0%) + H-012 (+0.98%) + H-019 (-0.62%) + H-021 (+1.36%) — portfolio $49,961 (-0.08%). H-024 (-1.15%) comparison. H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (-0.16%) + H-046 (-0.24%) + H-049 (-0.24%) + **H-052 (-0.24%, NEW)** independent. H-037 (Polymarket, manual).
-- **H-052 CONFIRMED + DEPLOYED**: Premium index contrarian — 100% IS positive, WF 6/6 (mean 1.86), split-half 2.18/2.95. Corr -0.14 with H-012. LONG ARB/ATOM/ETH/LINK, SHORT OP/DOGE/NEAR/SOL.
+- **Paper trading (5+1+7+1+1 strategies):** H-009 (-2.31%, SHORT) + H-011 (OUT, 0%) + H-012 (+0.77%) + H-019 (-0.61%) + H-021 (+0.78%) — portfolio $49,863 (-0.27%). H-024 (-0.53%) comparison (**now leads H-019**). H-031 (-0.20%) + H-032 (0%) + H-039 (flat) + H-044 (-0.20%) + H-046 (-0.20%) + H-049 (-0.20%) + H-052 (-0.20%) + **H-053 (-0.24%, NEW)** independent. H-037 (Polymarket, manual).
+- **H-053 CONFIRMED + DEPLOYED**: Funding rate XS contrarian — 93% IS positive, **WF 6/6 (mean OOS 2.29)**. Split-half 1.31/1.91. Corr 0.004 H-012, 0.36 H-052, 0.48 H-049. LONG DOT/ATOM/SOL/BTC, SHORT OP/NEAR/ARB/ADA.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,477**. H-009 SHORT.
-- **52 total tested, 40 rejected.** 13 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
-- **Last session:** 2026-03-20 review+research (session 46)
-- **Funding:** R27 at -2.75% ann. H-011 re-entry pushed to ~Mar 25-26.
-- **AUTOMATED:** Paper trades run independently via cron (hourly). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
-- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
-- **Research directions**: Premium index exploited (H-052). Price/volume/OI/macro/calendar exhausted. Future alpha: (1) options IV surface (collecting, ~2-3 months), (2) order book depth (collecting, ~2-3 months), (3) on-chain signals, (4) alternative data APIs.
+- **BTC at ~$70,302**. H-009 SHORT.
+- **53 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
+- **Last session:** 2026-03-20 review+research (session 47)
+- **Funding:** R27 negative. H-011 re-entry pushed to ~Mar 25-26.
+- **AUTOMATED:** Paper trades run independently via cron (hourly, 14 runners). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
+- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29.
+- **Research directions**: Funding rate XS exploited (H-053). All immediately backtestable Bybit data sources now exhausted (price, volume, OI, funding, premium, LSR, macro, calendar). Future alpha: (1) options IV surface (collecting, ~2-3 months), (2) order book depth (collecting, ~2-3 months), (3) on-chain signals, (4) alternative data APIs. Liquidation data NOT available via Bybit API.
 - **Open user questions:** None
 
 ## Memory Files
@@ -404,3 +404,11 @@
 - Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29. Research: all immediately backtestable signals explored — future alpha depends on IV surface + OB depth data collection (60-90 days).
 - Questions added: none
 - Self-modifications: Added strategies/premium_research/, paper_trades/h052_premium/. Added scripts/collect_orderbook_depth.py + daily cron. Updated orchestrator (13 runners). Cached premium index data.
+
+### Session 2026-03-20 review+research (session 47)
+- Goal: Review + Research — monitor paper trades, explore funding rate XS factor and liquidation data
+- Focus: H-053 (funding rate cross-sectional factor), liquidation data availability
+- Done: Portfolio $49,863 (-0.27%): BTC $70,302. **H-024 overtook H-019** (-0.53% vs -0.61%, gap reversed). All 14 runners OK via cron. **H-053 CONFIRMED and DEPLOYED**: Funding rate XS contrarian — rank assets by rolling 3-day avg funding rate, long lowest (shorts paying longs), short highest (crowded longs). IS 93% positive (42/45). Best W3 R10 N4: Sharpe 1.52, +32.9% ann, 22.2% DD. **WF 6/6 positive (mean OOS 2.29)** — tied for strongest WF in project. Split-half 1.31/1.91. Fee-robust (0.92 at 5x). Corr 0.004 H-012 (near zero!), 0.360 H-052 (moderate), 0.480 H-049. Deployed: LONG DOT/ATOM/SOL/BTC, SHORT OP/NEAR/ARB/ADA. **Liquidation data NOT available**: Bybit has no public historical liquidation endpoint (ccxt fetchLiquidations unsupported). Would need WebSocket collector. 53 hypotheses tested, 40 rejected.
+- Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29. All immediately backtestable Bybit data sources now exhausted.
+- Questions added: none
+- Self-modifications: Added strategies/funding_xs_research/, paper_trades/h053_funding_xs/. Updated orchestrator (14 runners).

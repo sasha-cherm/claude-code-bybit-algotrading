@@ -846,6 +846,24 @@
 - Notes: One of the strongest signals found. Negative correlation with momentum (excellent diversifier). Premium captures directional sentiment pressure — assets with extreme negative premium (shorts aggressive) tend to revert. Level_momentum (0% positive) and basis change (43%) fail, confirming it's a contrarian mean-reversion effect. Deployed with W5 R5 N4 (6/6 WF).
 - Sessions: [2026-03-20 review+research session 46]
 
+## H-053: Funding Rate Cross-Sectional Factor (Contrarian)
+- Status: LIVE (paper trade since 2026-03-20)
+- Idea: Rank 14 crypto assets by rolling 3-day average funding rate. Contrarian: long lowest funding (shorts paying longs, weak sentiment), short highest funding (crowded longs). Funding rate is mechanically related to premium index (H-052) but captures different time dynamics (8h discrete settlements vs continuous premium).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 10 days)
+- Logic: Compute 3-day rolling avg of daily mean funding rate per asset. Rank cross-sectionally. Long bottom 4 (lowest funding), short top 4 (highest funding). Market-neutral.
+- Data: 14 assets, 730 daily bars (2024-03-17 to 2026-03-16, ~2yr). 8h Bybit funding rates aggregated to daily avg. Cross-sectional mean correlation 0.694 (high — rates move together, but rank differences still predictive).
+- Result:
+  - **In-sample (full, contrarian only)**: 93% params positive (42/45). Best W3 R10 N4: Sharpe 1.52, +32.9% ann, 22.2% DD
+  - **Momentum direction**: 0% positive (0/45) — crowded longs continue to underperform
+  - **Walk-forward (6 folds, 90d test)**: **6/6 positive** for W3 R10 N4 (mean OOS **2.29**, folds: 4.91, 0.94, 2.84, 0.06, 1.60, 3.42)
+  - **Split-half**: First half 1.31, Second half 1.91
+  - **Fee sensitivity**: 1x Sharpe 1.52, 2x 1.37, 5x 0.92, 10x 0.17
+  - **Correlations**: 0.004 H-012 (XSMom), 0.109 H-046 (Accel), **0.360 H-052 (Premium)**, **0.480 H-049 (LSR)**
+  - **Without ATOM**: Still Sharpe 1.22 (ATOM has anomalous -1.32% ann funding, in bottom 3 49% of days)
+- Notes: Strongest WF result in project (tied with H-039 at 6/6). Moderate correlation with H-052 (0.36) expected since funding ≈ f(premium). High correlation with H-049 (0.48) since both are contrarian positioning signals. Near-zero correlation with momentum factors. The 0% positive for long_high direction strongly confirms contrarian mechanism: crowded longs (high funding) reliably underperform.
+- Sessions: [2026-03-20 review+research session 47]
+
 ## Killed
 (none)
 

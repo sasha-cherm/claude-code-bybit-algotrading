@@ -137,16 +137,30 @@
 - **Correlations**: -0.142 H-012, 0.097 H-021, 0.167 H-046 (low/negative — great diversifier)
 - **Data source**: Bybit premium index (perp-vs-spot premium/discount) — genuinely new data source.
 
-## Portfolio Summary (live mark-to-market 2026-03-20 session 46)
-- **Total equity**: $49,961 (-0.08%) — 5-strat portfolio only
-- **H-009**: $9,789 (-2.11%, SHORT) | **H-011**: $10,000 (0%) | **H-012**: $10,098 (+0.98%) | **H-019**: $9,938 (-0.62%) | **H-021**: $10,136 (+1.36%)
-- **H-024 (comparison)**: $9,885 (-1.15%) — H-019 still leading
-- **H-031 (independent)**: $10,026 (+0.26%) | **H-032 (independent)**: $10,000 (0%)
+### H-053: Funding Rate Cross-Sectional Factor (Contrarian, 14 Assets) — NEW, independent
+- **Status**: LIVE paper trade (started 2026-03-20) — independent
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG (lowest funding): DOT, ATOM, SOL, BTC
+  - SHORT (highest funding): OP, NEAR, ARB, ADA
+- **Mark equity**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h053_funding_xs/runner.py`
+- **Params**: W3_R10_N4 (3-day funding avg, 10-day rebalance, top/bottom 4, contrarian)
+- **Next rebal**: 2026-03-29 (10 days)
+- **Backtest (full 2yr)**: IS 93% positive (42/45). Best Sharpe 1.52, +32.9% ann, 22.2% DD. **WF 6/6 positive (mean OOS 2.29)**. Split-half: 1.31/1.91. Fee-robust (0.92 at 5x fees).
+- **Correlations**: 0.004 H-012, 0.109 H-046, **0.360 H-052** (moderate — related contrarian signals), **0.480 H-049** (high)
+- **Data source**: Bybit funding rates (8h, aggregated to daily avg) — same underlying market positioning as H-052 (premium).
+
+## Portfolio Summary (live mark-to-market 2026-03-20 session 47)
+- **Total equity**: $49,863 (-0.27%) — 5-strat portfolio only
+- **H-009**: $9,769 (-2.31%, SHORT) | **H-011**: $10,000 (0%) | **H-012**: $10,077 (+0.77%) | **H-019**: $9,939 (-0.61%) | **H-021**: $10,078 (+0.78%)
+- **H-024 (comparison)**: $9,947 (-0.53%) — **H-024 now leads H-019** (-0.53% vs -0.61%)
+- **H-031 (independent)**: ~$9,980 (-0.20%) | **H-032 (independent)**: $10,000 (0%)
 - **H-037 (Polymarket, manual)**: $0 (no trades yet) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
-- **H-044 (OI divergence)**: $9,984 (-0.16%) | **H-046 (Acceleration)**: $9,976 (-0.24%)
-- **H-049 (LSR sentiment)**: $9,976 (-0.24%) | **H-052 (Premium, NEW)**: $9,976 (-0.24%)
-- **Paper trade age**: H-009/H-011/H-012: 4 days / 28 required. H-019/H-021/H-024: 2 days. H-031/H-032/H-039: 1 day. H-044/H-046/H-049/H-052: 0 days.
-- **BTC at ~$70,477** — H-009 SHORT.
+- **H-044 (OI divergence)**: $9,980 (-0.20%) | **H-046 (Acceleration)**: $9,980 (-0.20%)
+- **H-049 (LSR sentiment)**: $9,980 (-0.20%) | **H-052 (Premium)**: $9,980 (-0.20%)
+- **H-053 (Funding XS, NEW)**: $9,976 (-0.24%)
+- **Paper trade age**: H-009/H-011/H-012: 4 days / 28 required. H-019/H-021/H-024: 2 days. H-031/H-032/H-039: 1 day. H-044/H-046/H-049/H-052/H-053: 0 days.
+- **BTC at ~$70,302** — H-009 SHORT.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -158,7 +172,7 @@
 
 ## Proposed Upgrade: Replace H-019 with H-024
 - **If confirmed in paper trade**: H-024 (beta) replaces H-019 (vol) at same 15% allocation
-- **Current status**: H-019 -0.62% vs H-024 -1.16% — H-019 still leading
+- **Current status**: H-024 -0.53% vs H-019 -0.61% — **H-024 now leading** (gap reversed session 47)
 - **Decision point**: After 4 weeks of parallel paper trading
 
 ## Key Correlations
@@ -170,6 +184,9 @@
   - H-049/H-012: -0.091 (near zero)
   - **H-052/H-012: -0.142** (negative — excellent diversifier!)
   - H-052/H-021: 0.097, H-052/H-046: 0.167 (low)
+  - **H-053/H-012: 0.004** (near zero — excellent!)
+  - H-053/H-046: 0.109 (low), **H-053/H-052: 0.360** (moderate — related signals)
+  - **H-053/H-049: 0.480** (high — both contrarian positioning)
 
 ## Active Live Strategies
 (none)
@@ -183,23 +200,21 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by 5-strat portfolio analysis |
 
 ## Risk Watch
-- **H-009 now SHORT**: Flipped from LONG at Mar 19 close. EMA gap -0.55%. PnL: -2.11%.
-- **BUG FIXED (critical)**: Incomplete daily bar bug in all 10 paper trade runners. Runners were processing intra-day incomplete bars as complete daily closes, causing stale signals. H-009 missed the SHORT flip by ~1 day due to this bug.
-- **H-021 best performer**: +1.36% — short side profiting.
-- **H-012 recovering**: +0.98% — short side (SOL/SUI/ARB/OP) dominating in altcoin selloff.
-- **H-019 vs H-024**: H-019 -0.62% vs H-024 -1.16% — H-019 still leading.
-- **H-049 NEW**: Deployed LSR sentiment contrarian. LONG BTC/ETH/LINK, SHORT ARB/SUI/OP. Strongest IS result (Sharpe 2.58) but only 200 days of data.
-- **Funding rate**: R27 at -2.75% ann. H-011 re-entry pushed to ~Mar 25-26.
-- **Portfolio stable**: BTC -4.9% since entry → -0.11% portfolio. Diversification proven.
-- **Research status**: 52 hypotheses tested, 40 rejected, 3 confirmed standalone, 13 in paper trade + 1 comparison + 1 manual.
-- **H-052 CONFIRMED + DEPLOYED**: Premium index contrarian — strongest new signal found. 100% IS positive, WF 6/6, split-half 2.18/2.95, corr -0.14 with momentum.
-- **IV collector**: Daily cron at 01:00 UTC captures Bybit options IV surface (2400 records/day, 5 assets). Building history for future options-based signals.
-- **OB depth collector NEW**: Daily cron at 01:30 UTC captures order book depth snapshots (14 assets). Building history for future research.
-- **Watchlist**: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
+- **H-009 SHORT**: EMA gap widening. PnL: -2.31%.
+- **H-024 overtook H-019**: -0.53% vs -0.61%. First time H-024 leads. Still too early to decide (2 days vs 28 required).
+- **H-021 best performer**: +0.78%. H-012 at +0.77%.
+- **H-053 CONFIRMED + DEPLOYED**: Funding rate XS contrarian — WF 6/6 (mean OOS 2.29). Corr 0.36 with H-052, 0.48 with H-049 (moderate overlap). LONG DOT/ATOM/SOL/BTC, SHORT OP/NEAR/ARB/ADA.
+- **Funding rate**: R27 negative. H-011 re-entry pushed to ~Mar 25-26.
+- **Portfolio dipping**: -0.27% (was -0.08%). BTC at $70,302 (down from $70,477).
+- **Research status**: 53 hypotheses tested, 40 rejected, 3 confirmed standalone, 14 in paper trade + 1 comparison + 1 manual.
+- **Liquidation data NOT available**: Bybit API has no historical liquidation endpoint. Would need WebSocket collector (60-90 day build).
+- **IV collector**: Daily cron at 01:00 UTC. Building history.
+- **OB depth collector**: Daily cron at 01:30 UTC. Building history.
+- **Watchlist**: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29.
 - **Open user questions**: None
 
 ## Automation
-- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 13 active runners sequentially
+- **Paper trade orchestrator**: `scripts/run_all_paper_trades.py` — runs all 14 active runners sequentially
 - **Cron schedule**: Every hour at :30 (`30 * * * *`), independent of Claude sessions
 - **Logs**: `logs/paper_trades.log`
 - **Claude sessions**: Every 2 hours at :00 — research, monitoring, strategy updates
@@ -252,7 +267,7 @@
 - Data fetcher: operational (ccxt, parquet caching)
 - Metrics library: operational
 - Backtest engine: operational
-- **Paper trade runners**: 13 active (H-009, H-011, H-012, H-019, H-021, H-024, H-031, H-032, H-039, H-044, H-046, H-049, H-052)
+- **Paper trade runners**: 14 active (H-009, H-011, H-012, H-019, H-021, H-024, H-031, H-032, H-039, H-044, H-046, H-049, H-052, H-053)
 - **Bug fix (session 44)**: Incomplete daily bar bug in all runners. Runners now drop today's incomplete bar before processing.
 - **New data sources**: Bybit LSR (`data/all_assets_lsr_daily.parquet`), premium index (`data/all_assets_premium_daily.parquet`)
 - Vol dynamics research: `strategies/vol_dynamics_research/`
@@ -280,7 +295,9 @@
 - **Macro signals (H-050) have NO predictive power**: SPY-BTC same-day corr +0.37, but lagged corr <0.08. Info fully priced in. 50% positive = noise across all lookbacks.
 - **Monthly calendar effects (H-051) don't persist**: DOM train/test corr -0.13. Only DOW effects (H-039) work — likely need 100+ observations per bucket.
 - **Premium index is a powerful contrarian signal (H-052)**: 100% IS positive, WF 6/6 (mean 1.86), split-half 2.18/2.95. Corr -0.14 with momentum — excellent diversifier. Assets with deepest perp discount (shorts aggressive) outperform.
-- **52 hypotheses tested**: 13 in paper trade + 1 comparison + 1 manual, 40 rejected, 3 confirmed standalone + 1 weak.
+- **Funding rate XS contrarian (H-053)**: 93% IS positive, WF 6/6 (mean OOS 2.29), split-half 1.31/1.91. Assets with lowest funding rate outperform. Corr 0.36 with H-052 (moderate overlap — both measure positioning). Without ATOM still Sharpe 1.22.
+- **Liquidation data not accessible**: Bybit has no public historical liquidation endpoint. Only via WebSocket real-time stream.
+- **53 hypotheses tested**: 14 in paper trade + 1 comparison + 1 manual, 40 rejected, 3 confirmed standalone + 1 weak.
 - Fee drag critical at 1h; daily/3-day/5-day/21-day rebalance minimizes fee impact
 - **Research: Bybit API rich data sources**: Premium index (exploited in H-052), options IV (collecting), order book depth (collecting), LSR (exploited in H-049).
 - **Options IV surface data collection started**: BTC/ETH/SOL/XRP/DOGE daily snapshots. ATM IV levels: BTC ~46-52%, ETH ~63-75%, SOL ~70-79%, DOGE ~67-96%. After 60-90 days of collection, options-based cross-sectional signals become backtestable.

@@ -36,6 +36,7 @@ RUNNERS = [
     ("H-046", ROOT / "paper_trades" / "h046_acceleration" / "runner.py"),
     ("H-049", ROOT / "paper_trades" / "h049_lsr_sentiment" / "runner.py"),
     ("H-052", ROOT / "paper_trades" / "h052_premium" / "runner.py"),
+    ("H-053", ROOT / "paper_trades" / "h053_funding_xs" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"
