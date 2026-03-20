@@ -124,16 +124,16 @@
 - **CAVEAT**: Only 200 days of backtest data (~6.5 months) vs 2-year standard. Needs extended paper trade to build confidence.
 - **Data source**: Bybit long/short ratio — genuinely new data source (first non-price/volume/OI signal).
 
-## Portfolio Summary (live mark-to-market 2026-03-20 session 44)
-- **Total equity**: $49,947 (-0.11%) — 5-strat portfolio only
-- **H-009**: $9,789 (-2.11%, now SHORT) | **H-011**: $10,000 (0%) | **H-012**: $10,098 (+0.98%) | **H-019**: $9,938 (-0.62%) | **H-021**: $10,136 (+1.36%)
-- **H-024 (comparison)**: $9,885 (-1.16%) — H-019 still leading
+## Portfolio Summary (live mark-to-market 2026-03-20 session 45)
+- **Total equity**: $49,961 (-0.08%) — 5-strat portfolio only
+- **H-009**: $9,789 (-2.11%, SHORT) | **H-011**: $10,000 (0%) | **H-012**: $10,098 (+0.98%) | **H-019**: $9,938 (-0.62%) | **H-021**: $10,136 (+1.36%)
+- **H-024 (comparison)**: $9,885 (-1.15%) — H-019 still leading
 - **H-031 (independent)**: $10,026 (+0.26%) | **H-032 (independent)**: $10,000 (0%)
 - **H-037 (Polymarket, manual)**: $0 (no trades yet) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
 - **H-044 (OI divergence)**: $9,984 (-0.16%) | **H-046 (Acceleration)**: $9,976 (-0.24%)
-- **H-049 (LSR sentiment, NEW)**: $9,976 (-0.24%)
+- **H-049 (LSR sentiment)**: $9,976 (-0.24%)
 - **Paper trade age**: H-009/H-011/H-012: 4 days / 28 required. H-019/H-021/H-024: 2 days. H-031/H-032/H-039: 1 day. H-044/H-046/H-049: 0 days.
-- **BTC at ~$70,303** — H-009 now SHORT.
+- **BTC at ~$70,477** — H-009 SHORT.
 
 ## Target Portfolio Allocation (5-strat)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -176,7 +176,10 @@
 - **H-049 NEW**: Deployed LSR sentiment contrarian. LONG BTC/ETH/LINK, SHORT ARB/SUI/OP. Strongest IS result (Sharpe 2.58) but only 200 days of data.
 - **Funding rate**: R27 at -2.75% ann. H-011 re-entry pushed to ~Mar 25-26.
 - **Portfolio stable**: BTC -4.9% since entry → -0.11% portfolio. Diversification proven.
-- **Research status**: 49 hypotheses tested, 38 rejected, 3 confirmed standalone, 12 in paper trade + 1 comparison + 1 manual.
+- **Research status**: 51 hypotheses tested, 40 rejected, 3 confirmed standalone, 12 in paper trade + 1 comparison + 1 manual.
+- **H-050 REJECTED**: Macro signals (SPY/GLD/VIX/DXY/TNX) → 50% positive = no edge. Info priced in same-day.
+- **H-051 REJECTED**: Monthly/DOM calendar seasonality → train/test corr -0.13, WF 3/6. No persistence.
+- **IV collector**: Daily cron at 01:00 UTC captures Bybit options IV surface (2400 records/day, 5 assets). Building history for future options-based signals.
 - **Watchlist**: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
 - **Open user questions**: None
 
@@ -219,6 +222,8 @@
 | H-043: OI Change XS Factor | 34% IS positive. Fails WF. |
 | H-047: Volatility Change Factor | 50% positive = noise. No signal in vol dynamics. |
 | H-048: Correlation Change Factor | 50% positive = noise. No signal in correlation dynamics. |
+| H-050: Inter-Market Macro Signals | 50% positive = noise. Lagged corr all <0.08. Info priced in same-day. |
+| H-051: Monthly Calendar Seasonality | DOM train/test corr -0.13. WF 3/6. No persistence. |
 
 ## Confirmed Standalone (not in portfolio)
 | Hypothesis | Metrics | Why Not In Portfolio |
@@ -237,6 +242,8 @@
 - **New data source**: Bybit long/short ratio (daily, 14 assets) — cached in `data/all_assets_lsr_daily.parquet`
 - H-049 paper trade runner with LSR caching
 - Vol dynamics research: `strategies/vol_dynamics_research/`
+- **Options IV surface collector**: `scripts/collect_iv_surface.py` — daily cron at 01:00 UTC, data in `data/iv_snapshots/`
+- Macro research: `strategies/macro_research/`
 
 ## Key Learnings
 - 2024-2026 BTC: +1.8% total, 50% drawdown -- extremely hostile for directional strategies
@@ -254,6 +261,9 @@
 - **Volatility change (H-047) has NO signal**: 50% positive = random noise. Vol dynamics not predictive cross-sectionally.
 - **Correlation change (H-048) has NO signal**: 50% positive = random noise.
 - **Incomplete daily bar bug**: Critical bug found and fixed. Runners were processing intra-day incomplete bars, causing stale signals. H-009 missed SHORT flip by ~1 day.
-- **49 hypotheses tested**: 12 in paper trade + 1 comparison + 1 manual, 38 rejected, 3 confirmed standalone + 1 weak.
+- **Macro signals (H-050) have NO predictive power**: SPY-BTC same-day corr +0.37, but lagged corr <0.08. Info fully priced in. 50% positive = noise across all lookbacks.
+- **Monthly calendar effects (H-051) don't persist**: DOM train/test corr -0.13. Only DOW effects (H-039) work — likely need 100+ observations per bucket.
+- **51 hypotheses tested**: 12 in paper trade + 1 comparison + 1 manual, 40 rejected, 3 confirmed standalone + 1 weak.
 - Fee drag critical at 1h; daily/3-day/5-day/21-day rebalance minimizes fee impact
-- **Research: Bybit API rich data sources**: 2200 options markets (Greeks/IV), long/short ratio history, order book depth. Future: options IV surface, liquidation data.
+- **Research: Bybit API rich data sources**: 2200 options markets (Greeks/IV), long/short ratio history, order book depth. Future: options IV surface (collecting daily since 2026-03-20), liquidation data.
+- **Options IV surface data collection started**: BTC/ETH/SOL/XRP/DOGE daily snapshots. ATM IV levels: BTC ~46-52%, ETH ~63-75%, SOL ~70-79%, DOGE ~67-96%. After 60-90 days of collection, options-based cross-sectional signals become backtestable.

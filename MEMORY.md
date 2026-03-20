@@ -1,19 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+5+1+1 strategies):** H-009 (-2.11%, now SHORT) + H-011 (OUT, 0%) + H-012 (+0.98%) + H-019 (-0.62%) + H-021 (+1.36%) — portfolio $49,947 (-0.11%). H-024 (-1.16%) comparison. H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (-0.16%) + H-046 (-0.24%) + H-049 (-0.24%, NEW) independent. H-037 (Polymarket, manual).
-- **H-009 FLIPPED TO SHORT**: Processed Mar 19 close ($69,923) — EMA5 < EMA40. Bug found and fixed (see below).
-- **BUG FIXED (critical)**: Incomplete daily bar bug in all 10 paper trade runners. Runners processed intra-day incomplete bars as complete daily closes. H-009 missed SHORT flip by ~1 day. Fixed by dropping today's incomplete bar.
-- **H-049 NEW**: LSR Sentiment Factor (contrarian) — Bybit long/short ratio. IS Sharpe **2.58**, 100% params positive, fee-robust. BUT only 200 days backtest data. LONG BTC/ETH/LINK, SHORT ARB/SUI/OP. Corr 0.581 with H-046.
-- **H-047 REJECTED**: Vol change factor — 50% positive = noise.
-- **H-048 REJECTED**: Corr change factor — 50% positive = noise.
+- **Paper trading (5+1+5+1+1 strategies):** H-009 (-2.11%, SHORT) + H-011 (OUT, 0%) + H-012 (+0.98%) + H-019 (-0.62%) + H-021 (+1.36%) — portfolio $49,961 (-0.08%). H-024 (-1.15%) comparison. H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (-0.16%) + H-046 (-0.24%) + H-049 (-0.24%) independent. H-037 (Polymarket, manual).
+- **H-050 REJECTED**: Macro signals (SPY/GLD/VIX/DXY/TNX) → 50% positive = no edge. Crypto co-moves with equities same-day (r=0.37) but info is priced in by close.
+- **H-051 REJECTED**: Monthly/DOM calendar seasonality → train/test corr -0.13. WF 3/6. No persistence.
+- **IV collector deployed**: Daily cron (01:00 UTC) captures Bybit options IV surface (2400 records, 5 assets). First snapshot: 2026-03-20. Building history for future options-based research.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,303**. H-009 now SHORT.
-- **49 total tested, 38 rejected.** 12 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
-- **Last session:** 2026-03-20 review+research (session 44)
+- **BTC at ~$70,477**. H-009 SHORT.
+- **51 total tested, 40 rejected.** 12 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
+- **Last session:** 2026-03-20 review+research (session 45)
 - **Funding:** R27 at -2.75% ann. H-011 re-entry pushed to ~Mar 25-26.
-- **AUTOMATED:** Paper trades run independently via cron (hourly). `scripts/run_all_paper_trades.py` (12 runners).
+- **AUTOMATED:** Paper trades run independently via cron (hourly). IV collector daily at 01:00 UTC.
 - **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
+- **Research directions**: Cross-sectional price/volume/OI factor space exhausted. Macro signals exhausted. Calendar effects exhausted. Future alpha needs: (1) options IV surface (collecting data now, backtest in ~2-3 months), (2) liquidation data, (3) order book microstructure, (4) on-chain signals.
 - **Open user questions:** None
 
 ## Memory Files
@@ -391,3 +390,11 @@
 - Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
 - Questions added: none
 - Self-modifications: Fixed incomplete daily bar bug in all 10 runners. Added strategies/vol_dynamics_research/. Added paper_trades/h049_lsr_sentiment/. Updated orchestrator (12 runners). Cached LSR data. Explored Bybit options API.
+
+### Session 2026-03-20 review+research (session 45)
+- Goal: Review + Research — monitor paper trades, test macro signals and calendar seasonality, set up IV collector
+- Focus: H-050 (inter-market macro signals), H-051 (monthly calendar seasonality), options IV data infrastructure
+- Done: Portfolio $49,961 (-0.08%): unchanged from session 44 (no new daily bar). BTC $70,477. **H-050 REJECTED**: Macro signals (SPY/GLD/VIX/DXY/TNX) have zero lagged predictive power for crypto. 50 param sets tested, exactly 50% positive = random noise. Same-day SPY-BTC correlation (+0.37) is real but info priced in by close. VIX regime filters also useless. **H-051 REJECTED**: Monthly/DOM calendar seasonality — train/test DOM correlation -0.13 (negative = no persistence). WF 3/6, mean OOS -0.97. Only DOW effects (H-039) survive. **IV collector deployed**: Daily cron (01:00 UTC) captures Bybit options IV surface for BTC/ETH/SOL/XRP/DOGE (2400 records/day). First snapshot captured. After ~60-90 days of collection, options-based signals become backtestable. 51 hypotheses tested, 40 rejected.
+- Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29. Research: explore liquidation data, order book microstructure, or alternative data APIs (CoinGlass, Glassnode).
+- Questions added: none
+- Self-modifications: Added strategies/macro_research/h050_macro_signals.py. Added scripts/collect_iv_surface.py + daily cron. Installed yfinance.

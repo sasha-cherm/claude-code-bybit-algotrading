@@ -795,6 +795,40 @@
 - Notes: The strongest IS result ever found in this project (Sharpe 2.58, 100% params, 7% DD). However, the **200-day backtest limitation** is a serious caveat. Walk-forward validation is not possible with proper fold sizes. The signal captures genuine retail crowd positioning errors — when most traders are long an asset relative to peers, it tends to underperform. BTC and ETH are frequently in the contrarian LONG basket (crowd relatively less long / more short on these). High correlation with H-046 (acceleration, 0.581) suggests both capture "smart money vs. crowd" dynamics. Deployed as independent paper trade with extended monitoring period. Data source: Bybit `fetchLongShortRatioHistory` API, cached in `data/all_assets_lsr_daily.parquet`.
 - Sessions: [2026-03-20 review+research session 44]
 
+## H-050: Inter-Market Macro Signals for Crypto Timing
+- Status: REJECTED
+- Idea: Use traditional macro asset returns (S&P 500, Gold, DXY, VIX, 10Y yield) to predict next-day BTC/crypto returns. Test both directional BTC timing and cross-sectional beta tilting.
+- Instrument: futures (BTC/USDT perp, 14-asset universe)
+- Timeframe: 1D
+- Logic: Compute N-day (1-20d) rolling macro asset return. Use sign as BTC timing signal (lagged 1 day). Also test VIX level regimes and combined risk-on composite. Also test macro-driven beta tilt in crypto universe.
+- Data: SPY, GLD, UUP, ^VIX, ^TNX from Yahoo Finance (514 bars), aligned with 739 daily crypto bars (2024-03 to 2026-03).
+- Result:
+  - **Same-day correlations**: SPY-BTC +0.374 (significant), VIX-BTC -0.354. Crypto co-moves with equities.
+  - **Lagged correlations**: ALL near zero (max |0.079|). No predictive power.
+  - **BTC timing strategies**: 50 param sets tested. **Exactly 50% positive** = random noise. Mean Sharpe 0.000.
+  - **VIX regime filter**: No edge. VIX < 20 Sharpe -0.25, VIX percentile < 0.5 Sharpe +0.13.
+  - **Cross-sectional beta tilt**: All negative Sharpe.
+  - **Combined macro composite**: All negative Sharpe.
+- Notes: Crypto co-moves with equities same-day (SPY-BTC r=0.37) but the information is fully priced in by day's end. No lagged predictive power exists. This confirms efficient cross-market pricing — macro signals are absorbed intra-day. 50% positive rate across all lookbacks and directions proves there is zero edge.
+- Sessions: [2026-03-20 review+research session 45]
+
+## H-051: Monthly/Calendar Seasonality (Day-of-Month, Week-of-Month)
+- Status: REJECTED
+- Idea: Test if BTC returns vary systematically by day of month (turn-of-month effect, week-of-month pattern). If persistent, trade the best/worst days.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: Compute mean return per day of month (1-31), week of month (1-5), month of year (Jan-Dec). Train/test split and walk-forward validation.
+- Data: BTC, 739 daily bars (2024-03 to 2026-03). ~24 observations per day-of-month.
+- Result:
+  - **Day of month**: No statistically significant days (all |t| < 1.96). Week 5 (days 29-31) t=-2.40 borderline.
+  - **Month of year**: No significant months (best Feb t=-1.32).
+  - **Turn of month**: Negative (-0.21%) vs mid-month (+0.09%) — not significant.
+  - **Train/test DOM correlation**: -0.133 (NEGATIVE — no persistence whatsoever)
+  - **Walk-forward (6 folds, 180d train / 60d test)**: 3/6 positive, mean OOS -0.97. FAILS.
+  - **Cross-asset**: BTC/ETH/SOL all show month-end weakness but not significant.
+- Notes: The day-of-week effect (H-039: Wed+/Thu-) remains the ONLY calendar seasonality that works. Day-of-month patterns don't persist across periods (train/test corr -0.13). Walk-forward fails 3/6. The difference: day-of-week has 105+ observations per day (2yr), while day-of-month has only ~24 — insufficient for robust estimation. Monthly patterns (Jan-Dec) also too few observations. Calendar effects require high-frequency recurrence to be exploitable.
+- Sessions: [2026-03-20 review+research session 45]
+
 ## Killed
 (none)
 
