@@ -177,6 +177,11 @@ def run():
     daily = df_1h.groupby('date').agg({'close': 'last'}).reset_index()
     daily = daily.sort_values('date').reset_index(drop=True)
 
+    # Drop today's incomplete bar — only act on fully closed daily bars
+    today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if len(daily) > 0 and str(daily['date'].iloc[-1]) == today_utc:
+        daily = daily.iloc[:-1]
+
     latest_date = str(daily['date'].iloc[-1])
     current_price = float(daily['close'].iloc[-1])
     latest_dow = pd.Timestamp(latest_date).dayofweek  # 0=Mon, 6=Sun

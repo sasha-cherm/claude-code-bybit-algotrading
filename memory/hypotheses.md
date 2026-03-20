@@ -747,6 +747,54 @@
 - Notes: Captures a genuinely different aspect of price dynamics from momentum (H-012). Momentum measures the LEVEL of recent returns; acceleration measures the CHANGE in momentum. An asset just starting to move (low momentum, high acceleration) ranks differently from one with sustained high momentum. Perfect 4/4 WF and near-zero correlations make this one of the strongest discoveries since H-039 (DOW seasonality). Deployed as independent paper trade. Initial: LONG OP/ARB/NEAR/SUI, SHORT DOGE/LINK/ADA/DOT.
 - Sessions: [2026-03-20 review+research session 43]
 
+## H-047: Volatility Change Factor (Cross-Sectional, 14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by change in realized volatility (short-window vol / long-window vol). Long assets with decreasing vol (stable), short assets with increasing vol. Or reverse.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (various rebalancing: 3, 5, 10, 21 days)
+- Logic: Compute rolling short-window (5/10/20d) and long-window (30/60/90d) realized vol. Ratio = short/long. Cross-sectional z-score. Test both long_low (decreasing vol) and long_high (increasing vol). 216 param sets.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr).
+- Result:
+  - **Overall**: 108/216 positive (50%) — exactly random
+  - **long_low direction**: 30% positive, mean Sharpe -1.46
+  - **long_high direction**: 70% positive, mean Sharpe +1.46
+  - **Metrics severely broken**: Top Sharpe values (9+) are artifacts from sparse R21 rebalancing. Returns showing inf, DD >300%.
+- Notes: 50% positive rate is the clearest signal of NO systematic edge. The asymmetry between directions (30% vs 70%) is due to the mirroring property of long/short portfolios. Vol dynamics (rising vs falling volatility) do not predict cross-sectional returns. Different from H-019 (vol LEVEL) which works.
+- Sessions: [2026-03-20 review+research session 44]
+
+## H-048: Realized Correlation Change Factor (Cross-Sectional, 13 non-BTC Assets)
+- Status: REJECTED
+- Idea: Rank assets by change in rolling correlation with BTC. Long assets becoming LESS correlated (diversifiers), short assets becoming MORE correlated.
+- Instrument: futures (13 non-BTC perps)
+- Timeframe: 1D (various rebalancing: 5, 10, 21 days)
+- Logic: Compute rolling N-day (30/60/90) correlation of each alt with BTC. Delta = corr(t) - corr(t-M) where M=10/20/30. Cross-sectional z-score. 144 param sets.
+- Data: 14 assets, 734 daily bars.
+- Result:
+  - **Overall**: 72/144 positive (50%) — exactly random
+  - **Both directions 50/50** — no preference
+  - **Top Sharpe values (6+) are artifacts** — metrics broken (inf returns)
+- Notes: Correlation dynamics have no cross-sectional predictive power. Assets whose correlation with BTC is changing (up or down) don't systematically outperform. This is unsurprising — correlation is a slow-moving, noisy statistic with weak signal-to-noise at daily frequency.
+- Sessions: [2026-03-20 review+research session 44]
+
+## H-049: Long/Short Ratio Sentiment Factor (Contrarian, 14 Assets) — NEW
+- Status: LIVE (paper trade since 2026-03-20, independent)
+- Idea: Rank assets by Bybit long/short ratio (crowd positioning). Contrarian: long assets where crowd is MOST SHORT (lowest LSR), short assets where crowd is MOST LONG (highest LSR).
+- Instrument: futures (14-asset universe)
+- Timeframe: daily (5-day rebalancing)
+- Logic: Fetch daily long/short ratio from Bybit API for all 14 assets. Cross-sectional z-score. Contrarian direction: long bottom 3, short top 3. Lagged 1 day.
+- Data: 14 assets, **200 daily bars only** (2025-09-02 to 2026-03-20, ~6.5 months). **CAVEAT: well below 2-year standard.**
+- Result:
+  - **IS (full, R5_N3)**: Sharpe **2.58**, +59.1% annual, 7.2% DD, 55.3% WR. **100% params positive (12/12)** across all contrarian variants.
+  - **All param range**: Sharpe 1.49 (R10_N5) to 2.80 (R1_N3) — ALL strongly positive
+  - **Split-half**: First half Sharpe 2.01, second half **3.75** — both positive, effect STRENGTHENING
+  - **Fee sensitivity (R5_N3)**: Zero-fee 2.58 → 4bps 2.38 → 8bps 2.18 → 12bps 1.98 → **20bps 1.58** (still positive at 5x fees!)
+  - **Turnover**: 1.09 / 6 positions change per day (18%) — relatively stable
+  - **Correlations**: H-012 -0.091, H-019 -0.127, H-021 0.231, **H-046 0.581** (high)
+  - **Portfolio benefit**: 4 existing + H-049 → Sharpe 4.60 (from 4.29 without). H-012 + H-049 50/50 → 2.84 (vs 1.36 alone).
+  - **Momentum direction**: 0/12 positive — purely contrarian edge, not momentum
+- Notes: The strongest IS result ever found in this project (Sharpe 2.58, 100% params, 7% DD). However, the **200-day backtest limitation** is a serious caveat. Walk-forward validation is not possible with proper fold sizes. The signal captures genuine retail crowd positioning errors — when most traders are long an asset relative to peers, it tends to underperform. BTC and ETH are frequently in the contrarian LONG basket (crowd relatively less long / more short on these). High correlation with H-046 (acceleration, 0.581) suggests both capture "smart money vs. crowd" dynamics. Deployed as independent paper trade with extended monitoring period. Data source: Bybit `fetchLongShortRatioHistory` API, cached in `data/all_assets_lsr_daily.parquet`.
+- Sessions: [2026-03-20 review+research session 44]
+
 ## Killed
 (none)
 

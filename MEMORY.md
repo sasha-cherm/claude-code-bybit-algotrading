@@ -1,18 +1,19 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+4+1+1 strategies):** H-009 (-1.85%) + H-011 (OUT, 0%) + H-012 (+0.91%) + H-019 (-0.63%) + H-021 (+1.57%) — portfolio $49,999 (-0.00%). H-024 (-1.28%) comparison. H-031 (+0.34%) + H-032 (0%) + H-039 (flat) + H-044 (-0.07%) + H-046 (-0.24%) independent. H-037 (Polymarket, manual).
-- **H-024 vs H-019**: H-019 -0.63% vs H-024 -1.28% — H-019 still leading (gap widened).
+- **Paper trading (5+1+5+1+1 strategies):** H-009 (-2.11%, now SHORT) + H-011 (OUT, 0%) + H-012 (+0.98%) + H-019 (-0.62%) + H-021 (+1.36%) — portfolio $49,947 (-0.11%). H-024 (-1.16%) comparison. H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (-0.16%) + H-046 (-0.24%) + H-049 (-0.24%, NEW) independent. H-037 (Polymarket, manual).
+- **H-009 FLIPPED TO SHORT**: Processed Mar 19 close ($69,923) — EMA5 < EMA40. Bug found and fixed (see below).
+- **BUG FIXED (critical)**: Incomplete daily bar bug in all 10 paper trade runners. Runners processed intra-day incomplete bars as complete daily closes. H-009 missed SHORT flip by ~1 day. Fixed by dropping today's incomplete bar.
+- **H-049 NEW**: LSR Sentiment Factor (contrarian) — Bybit long/short ratio. IS Sharpe **2.58**, 100% params positive, fee-robust. BUT only 200 days backtest data. LONG BTC/ETH/LINK, SHORT ARB/SUI/OP. Corr 0.581 with H-046.
+- **H-047 REJECTED**: Vol change factor — 50% positive = noise.
+- **H-048 REJECTED**: Corr change factor — 50% positive = noise.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,228**. H-009 flip to SHORT at 00:30 UTC cron run tonight.
-- **46 total tested, 36 rejected.** 11 in paper trade + 1 comparison + 1 manual (Polymarket). Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
-- **Last session:** 2026-03-20 review+research (session 43)
-- **H-044 CORRECTED**: Original Sharpe 1.46 was inflated 4.9x by metrics bug. True IS Sharpe 1.01, WF 3/4 (mean OOS 1.22). Still viable.
-- **H-046 NEW**: Price Acceleration factor — second derivative of momentum. WF **4/4** (mean OOS 1.13), IS Sharpe 1.19, **near-zero corr with everything**. Deployed independent.
-- **H-045**: OI-Volume combination — CONFIRMED standalone (weak). Zero-signal artifact inflated results. Robust variant WF 3/4, rebal-sensitive. Not deployed.
-- **Funding:** Rolling-7 at -1.4% ann. H-011 re-entry ~Mar 22-23.
-- **AUTOMATED:** Paper trades now run independently via cron (hourly). `scripts/run_all_paper_trades.py` (11 runners).
-- **Next action:** Monitor. H-009 flip tonight. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
+- **BTC at ~$70,303**. H-009 now SHORT.
+- **49 total tested, 38 rejected.** 12 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
+- **Last session:** 2026-03-20 review+research (session 44)
+- **Funding:** R27 at -2.75% ann. H-011 re-entry pushed to ~Mar 25-26.
+- **AUTOMATED:** Paper trades run independently via cron (hourly). `scripts/run_all_paper_trades.py` (12 runners).
+- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
 - **Open user questions:** None
 
 ## Memory Files
@@ -382,3 +383,11 @@
 - Next: Monitor. H-009 flip tonight (00:30 UTC cron). H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-011 re-entry ~Mar 22-23. H-039 first trade Mar 24. H-044 next rebal Mar 29.
 - Questions added: none
 - Self-modifications: Added strategies/oi_research/h045_oi_volume_research.py, paper_trades/h046_acceleration/. Updated orchestrator (11 runners) and portfolio monitor. Fixed metrics bug in h043_oi_factor_research.py. Corrected H-044 metrics in state/hypotheses files.
+
+### Session 2026-03-20 review+research (session 44)
+- Goal: Review + Research — monitor paper trades, fix critical bug, explore new data sources (Bybit LSR, options, vol dynamics)
+- Focus: H-009 flip bug fix, H-047 (vol change), H-048 (correlation change), H-049 (LSR sentiment)
+- Done: Portfolio $49,947 (-0.11%): H-009 $9,789 (-2.11%, **now SHORT** at $69,909), H-011 $10,000 (OUT), H-012 $10,098 (+0.98%), H-019 $9,938 (-0.62%), H-021 $10,136 (+1.36%). H-024 $9,885 (-1.16%, H-019 leading). **CRITICAL BUG FOUND AND FIXED**: All 10 paper trade runners had incomplete daily bar bug — processing intra-day bars as complete daily closes. H-009 missed SHORT flip by ~1 day. Fixed by dropping today's incomplete bar in all runners. **H-009 manually corrected and flipped to SHORT** at Mar 19 close ($69,923). **H-047 REJECTED**: Vol change factor — 50% positive = pure noise. **H-048 REJECTED**: Correlation change factor — 50% positive = pure noise. **H-049 CONFIRMED and DEPLOYED**: LSR sentiment contrarian — Bybit long/short ratio. IS Sharpe **2.58**, 100% params positive (12/12), split-half 2.01/3.75, fee-robust (1.58 at 5x fees). 7.2% DD. **BUT only 200 days of data** (6.5 months). Corr -0.091 with H-012, **0.581 with H-046**. First non-price/volume/OI signal. Deployed: LONG BTC/ETH/LINK, SHORT ARB/SUI/OP. Also explored Bybit API: 2200 options markets (Greeks/IV available), liquidation data (not yet via ccxt). 49 hypotheses tested.
+- Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
+- Questions added: none
+- Self-modifications: Fixed incomplete daily bar bug in all 10 runners. Added strategies/vol_dynamics_research/. Added paper_trades/h049_lsr_sentiment/. Updated orchestrator (12 runners). Cached LSR data. Explored Bybit options API.

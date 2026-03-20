@@ -160,6 +160,12 @@ def run():
     # Fetch latest data for all assets
     print("Fetching data for 14 assets...")
     closes = load_daily_closes()
+
+    # Drop today's incomplete bar — only act on fully closed daily bars
+    today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if len(closes) > 0 and str(closes.index[-1].date()) == today_utc:
+        closes = closes.iloc[:-1]
+
     print(f"Loaded {len(closes.columns)} assets, {len(closes)} daily bars")
 
     if len(closes) < CONFIG["vol_window"] + 10:

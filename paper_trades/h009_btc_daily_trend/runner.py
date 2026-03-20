@@ -106,6 +106,11 @@ def run():
     df_1h = fetch_and_cache("BTC/USDT", "1h", limit_days=120)
     daily = resample_to_daily(df_1h)
 
+    # Drop today's incomplete bar — only act on fully closed daily bars
+    today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if str(daily.index[-1].date()) == today_utc:
+        daily = daily.iloc[:-1]
+
     latest_date = str(daily.index[-1].date())
     current_price = float(daily["close"].iloc[-1])
     slippage = CONFIG["slippage_bps"] / 10_000

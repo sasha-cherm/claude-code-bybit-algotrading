@@ -1,0 +1,21 @@
+[
+  {
+    "type": "rebalance",
+    "time": "2026-03-20T01:20:52.788400+00:00",
+    "signal_date": "2026-03-18",
+    "bar_date": "2026-03-19",
+    "longs": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "LINK/USDT"
+    ],
+    "shorts": [
+      "ARB/USDT",
+      "SUI/USDT",
+      "OP/USDT"
+    ],
+    "fees": 20.0,
+    "trades": 6,
+    "capital_after": 9980.0
+  }
+]

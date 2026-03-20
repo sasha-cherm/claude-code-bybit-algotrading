@@ -1,11 +1,11 @@
 {
   "started": "2026-03-16T15:04:53.830600+00:00",
-  "capital": 9995.964657400968,
-  "position": 1,
-  "entry_price": 73524.1,
-  "entry_time": "2026-03-16",
-  "size_btc": 0.05488462,
-  "leverage": 0.4035,
+  "capital": 9789.965568474854,
+  "position": -1,
+  "entry_price": 69909.32,
+  "entry_time": "2026-03-19",
+  "size_btc": 0.05387065,
+  "leverage": 0.3845,
   "equity_history": [
     {
       "date": "2026-03-16",
@@ -30,12 +30,12 @@
     },
     {
       "date": "2026-03-19",
-      "equity": 9862.03,
-      "price": 71083.8,
-      "position": 1,
-      "vol_scale": 0.39
+      "equity": 9789.21,
+      "price": 69923.3,
+      "position": -1,
+      "vol_scale": 0.38
     }
   ],
   "last_signal_date": "2026-03-19",
-  "trades_count": 0
+  "trades_count": 1
 }

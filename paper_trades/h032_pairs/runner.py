@@ -133,6 +133,12 @@ def run():
     # Fetch latest data
     print("Fetching data for pair assets...")
     closes = load_daily_data()
+
+    # Drop today's incomplete bar — only act on fully closed daily bars
+    today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if len(closes) > 0 and str(closes.index[-1].date()) == today_utc:
+        closes = closes.iloc[:-1]
+
     print(f"Loaded {len(closes.columns)} assets, {len(closes)} daily bars")
 
     if len(closes) < 200:
