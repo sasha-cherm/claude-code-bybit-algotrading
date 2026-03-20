@@ -1,17 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+7+1+1 strategies):** H-009 (-2.31%, SHORT) + H-011 (OUT, 0%) + H-012 (+0.77%) + H-019 (-0.61%) + H-021 (+0.78%) — portfolio $49,863 (-0.27%). H-024 (-0.53%) comparison (**now leads H-019**). H-031 (-0.20%) + H-032 (0%) + H-039 (flat) + H-044 (-0.20%) + H-046 (-0.20%) + H-049 (-0.20%) + H-052 (-0.20%) + **H-053 (-0.24%, NEW)** independent. H-037 (Polymarket, manual).
-- **H-053 CONFIRMED + DEPLOYED**: Funding rate XS contrarian — 93% IS positive, **WF 6/6 (mean OOS 2.29)**. Split-half 1.31/1.91. Corr 0.004 H-012, 0.36 H-052, 0.48 H-049. LONG DOT/ATOM/SOL/BTC, SHORT OP/NEAR/ARB/ADA.
-- **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
-- **BTC at ~$70,302**. H-009 SHORT.
-- **54 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak), **H-054 (multi-asset Polymarket)**.
-- **H-054 CONFIRMED**: Multi-asset Polymarket candle direction — **per-asset independent report** (user request). 39 sig results, 8 Bonferroni survivors. Strongest: XRP 23:00 57.2% DOWN, BNB 21:00 56.8% UP, BTC 17:00 56.4% UP.
-- **Last session:** 2026-03-20 research (session 48)
+- **Paper trading (5+1+7+1+1 strategies):** H-009 (-2.46%, SHORT) + H-011 (OUT, 0%) + H-012 (-0.01%) + H-019 (-0.93%) + H-021 (+1.18%) — portfolio $49,778 (-0.44%). H-024 (-0.79%) comparison (**leads H-019**, gap widening). H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (+0.24%) + H-046 (-0.24%) + H-049 (-0.24%) + H-052 (-0.24%) + H-053 (-0.24%) independent. H-037 (Polymarket, manual).
+- **H-055 CONFIRMED**: Portfolio optimization — **8-strat portfolio Sharpe 5.13, +46.0%, 7.3% DD** vs current 5-strat Sharpe 2.58, +35.3%, 13.9% DD. New allocation: H-009(12%)/H-011(40%)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%). Drops H-012 (redundant w/ H-031) and H-019 (inferior to H-024).
+- **BTC at ~$70,581**. H-009 SHORT.
+- **55 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak), H-054, **H-055 (portfolio optimization)**.
+- **Last session:** 2026-03-20 review+research (session 50)
 - **Funding:** R27 negative. H-011 re-entry pushed to ~Mar 25-26.
 - **AUTOMATED:** Paper trades run independently via cron (hourly, 14 runners). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
-- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29.
-- **Research directions**: Funding rate XS exploited (H-053). All immediately backtestable Bybit data sources now exhausted (price, volume, OI, funding, premium, LSR, macro, calendar). Future alpha: (1) options IV surface (collecting, ~2-3 months), (2) order book depth (collecting, ~2-3 months), (3) on-chain signals, (4) alternative data APIs. Liquidation data NOT available via Bybit API.
+- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29. Continue paper trade validation (28 days minimum before implementing new allocation).
+- **Research directions**: All immediately backtestable sources exhausted. Future alpha: (1) options IV surface (collecting, ~2-3 months), (2) order book depth (collecting, ~2-3 months), (3) on-chain signals, (4) alternative data APIs.
 - **Open user questions:** None
 
 ## Memory Files
@@ -429,3 +427,11 @@
 - Next: Monitor existing 14 runners. H-012 + H-021 rebal Mar 21.
 - Questions added: none
 - Self-modifications: Added strategies/polymarket_research/h054_per_asset_report.py. Removed user input from CLAUDE.md.
+
+### Session 2026-03-20 review+research (session 50)
+- Goal: Review + Research — monitor paper trades, comprehensive portfolio optimization across all strategies
+- Focus: H-055 portfolio optimization with mean-variance, risk parity, exhaustive N-strategy subsets
+- Done: Portfolio $49,778 (-0.44%): H-009 $9,754 (-2.46%), H-011 $10,000 (OUT), H-012 $9,999 (-0.01%), H-019 $9,908 (-0.93%), H-021 $10,118 (+1.18%). H-024 $9,921 (-0.79%, leads H-019). H-031 $10,026 (+0.26%). H-044 $10,024 (+0.24%). **H-055 CONFIRMED**: Built full portfolio optimizer (12 strategies, 700 days). Full correlation matrix computed. Current 5-strat Sharpe 2.58 → **optimal 8-strat Sharpe 5.13** (+46.0%, 7.3% DD). Best allocation: H-009(12%)/H-011(40%)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%). Key findings: H-012 dropped (replaced by H-031, corr 0.517, higher Sharpe), H-019 dropped (replaced by positioning signals + H-024). H-039 DOW seasonality is an excellent diversifier (corr <0.11 with everything). 55 hypotheses tested.
+- Next: Monitor paper trades. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. Continue paper trade validation (28 days min before implementing H-055 allocation).
+- Questions added: none
+- Self-modifications: Added strategies/portfolio_optimization/h055_portfolio_optimizer.py.

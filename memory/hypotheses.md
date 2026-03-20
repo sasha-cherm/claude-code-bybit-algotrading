@@ -78,6 +78,28 @@
 - Notes: Re-analyzed per user request to report each asset independently (not just cross-asset consensus). Report script: `strategies/polymarket_research/h054_per_asset_report.py`. Edge ~4-7% above 50% — only viable if Polymarket prices at ~50c.
 - Sessions: [2026-03-20 research], [2026-03-20 research — per-asset independent report]
 
+## H-055: Comprehensive Portfolio Optimization (12 Strategies)
+- Status: CONFIRMED
+- Idea: Full mean-variance portfolio optimization across all 12 deployable strategies (excluding H-049 due to only 200 days of data). Find optimal allocations using max Sharpe, risk parity, and exhaustive N-strategy subset search.
+- Instrument: portfolio of all instruments
+- Timeframe: daily (portfolio-level)
+- Logic: Generate daily return series for each strategy on 2yr data. Build full correlation matrix. Optimize using scipy constrained optimization. Test N-strategy subsets exhaustively.
+- Data: 12 strategies, 700 overlapping daily bars (2024-04-16 to 2026-03-16).
+- Result:
+  - **Current 5-strat portfolio**: Sharpe 2.58, +35.3%, 13.9% DD
+  - **H-024 replacing H-019**: Sharpe 3.35, +46.9%, 13.6% DD (+30% Sharpe improvement)
+  - **Best 5-strat**: H-011(40%)/H-021(14%)/H-031(19%)/H-052(16%)/H-053(11%) → **Sharpe 4.77, +62.6%, 7.5% DD**
+  - **Best 6-strat**: + H-039(14%) → Sharpe 4.95, +55.8%, 7.4% DD
+  - **Best 8-strat**: H-009(12%)/H-011(40%)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%) → **Sharpe 5.13, +46.0%, 7.3% DD**
+  - **Optimal 12 (40% cap)**: Sharpe 5.14, +46.3%, 7.8% DD
+  - **Equal weight 12**: Sharpe 2.81, +36.2%, 16.8% DD
+  - **H-012 (momentum) DROPPED from optimal**: replaced by H-031 (size, corr 0.517, higher Sharpe 2.48 vs 0.93)
+  - **H-019 (low vol) DROPPED from optimal**: replaced by H-024 (beta, corr 0.657, Sharpe 2.21 vs 0.40) and H-052/H-053
+  - **Key correlations**: H-019/H-024: 0.657, H-012/H-031: 0.517, H-052/H-053: 0.377, H-012/H-044: 0.467
+  - **Risk parity**: Sharpe 5.73 — over-allocates to H-009 (low vol) and under-allocates to H-011 (high Sharpe)
+- Notes: This is full-sample optimization (in-sample). Actual OOS Sharpe will be lower. The proposed 8-strat portfolio roughly doubles the current 5-strat Sharpe from 2.58 to 5.13 while halving max drawdown from 13.9% to 7.3%. Major improvements come from (1) adding H-052 premium and H-053 funding XS as diversifiers, (2) replacing H-012 with H-031, (3) adding H-039 DOW seasonality. Still need 4+ weeks of paper trading before implementing.
+- Sessions: [2026-03-20 research session 50]
+
 ## Pending
 
 ## H-010: Multi-Strategy Portfolio Research
