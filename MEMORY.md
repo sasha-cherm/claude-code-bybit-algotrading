@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,137 (+0.14%). Leverage 0.29x.
-- **H-055 allocation**: H-009(12%)/H-011(40%,cash)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,124 (+0.12%). Leverage 0.29x.
+- **H-055 allocation**: H-009(12%)/H-011(40%,cash→ENTERING)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
 - **H-055 STRESS TESTED (session 54)**: P(loss)=0% over 1yr. P(DD>10%)=0.4%. Positive in ALL regimes. Correlations don't break. Static weights near-optimal.
-- **Internal paper trades:** 14 runners active. Mar 20 bar closes at 00:00 UTC Mar 21 (~3h).
-- **BTC at ~$69,980**. H-009 SHORT (-2.14%). 55 tested, 40 rejected. Session 56.
-- **Funding:** R27 at -0.0003% — **RE-ENTRY AT NEXT SETTLEMENT** (00:00 UTC Mar 21, ~3h). Cron at 00:30 will execute.
+- **Internal paper trades:** 14 runners active. Session 57.
+- **BTC at ~$70,742**. H-009 SHORT (-2.55%). 55 tested, 40 rejected.
+- **H-011 ENTRY CONFIRMED**: R27 flips positive after 00:00 UTC settlement. Cron at 00:30 UTC Mar 21 auto-executes.
 - **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (day 2).
-- **Next action:** **H-011 re-entry + H-012/H-021 rebal at 00:30 UTC Mar 21**. H-046 rebal Mar 22. H-039 first trade Mar 24.
+- **Next action:** **H-011 entry at 00:30 UTC Mar 21** (~1.5h). H-012/H-021 rebal at 00:30 UTC Mar 22 (CORRECTED from Mar 21). H-046 rebal Mar 23.
 - **Open user questions:** None
 
 ## Memory Files
@@ -482,3 +482,11 @@
 - Next: **Verify H-011 entry + rebalances executed** (session 57 at ~02:00 UTC or later). H-046 rebal Mar 22. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-20 review (session 57)
+- Goal: Review — pre-bar-close final verification, H-011 entry confirmation, rebalance timing correction
+- Focus: System readiness for H-011 re-entry, EMA signal verification, rebalance date audit
+- Done: All 14/14 runners OK. **Demo**: $100,124 (+0.12%), 13 positions. BTC $70,742 (+1.09%). H-009 SHORT -2.55% (BTC rallied against position). **H-011 entry CONFIRMED**: R27 at -0.0003%, indicated rate +0.0046%, projected post-settlement R27 ~+0.00013% → entry triggers at 00:30 UTC cron. **TIMING CORRECTION**: H-012/H-021 rebal is Mar 21 bar (processed 00:30 UTC Mar 22), NOT Mar 20 bar as previously stated. Days since rebal: H-012=4/5, H-021=2/3 after Mar 20 bar. H-009 EMA verified: gap widens to ~-$277 with Mar 20 close, remains SHORT. IV/OB collectors operational (day 2).
+- Next: **Verify H-011 entry executed** (session 58). H-012/H-021 rebal at 00:30 UTC Mar 22. H-046 rebal Mar 22 bar. H-039 first trade Mar 24.
+- Questions added: none
+- Self-modifications: Corrected rebalance timing in state.md (H-012/H-021 off by 1 day).
