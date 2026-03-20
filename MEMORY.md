@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,029 (+0.03%). Leverage 0.29x.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,082 (+0.08%). Leverage 0.29x.
 - **H-055 allocation**: H-009(12%)/H-011(40%,cash)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
 - **H-055 STRESS TESTED (session 54)**: P(loss)=0% over 1yr. P(DD>10%)=0.4%. Positive in ALL regimes. Correlations don't break. Static weights near-optimal.
 - **Internal paper trades:** 14 runners active. No new daily bar since Mar 19. All positions unchanged.
-- **BTC at ~$69,634**. H-009 SHORT. 55 tested, 40 rejected. Session 54.
-- **Funding:** R27 negative. H-011 re-entry ~Mar 25-26 (most important event — 40% of weight).
+- **BTC at ~$69,779**. H-009 SHORT. 55 tested, 40 rejected. Session 55.
+- **Funding:** R27 at -0.007% — **IMMINENT re-entry ~Mar 21** (last 5 settlements positive). Most important event — 40% of weight.
 - **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (day 1).
-- **Next action:** H-012+H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
+- **Next action:** **H-011 re-entry ~Mar 21 (IMMINENT)**. H-012+H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24.
 - **Open user questions:** None
 
 ## Memory Files
@@ -466,3 +466,11 @@
 - Next: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
 - Questions added: none
 - Self-modifications: Added h055_stress_test.py. Updated state.md with stress test findings.
+
+### Session 2026-03-20 review (session 55)
+- Goal: Review — monitor paper trades, demo account, funding rate check
+- Focus: System health check, H-011 funding rate re-entry timeline
+- Done: All 14/14 runners OK (no new daily bar since Mar 19). **Demo**: $100,082 (+0.08%), 13 positions, short side profitable (OP +$79, NEAR +$55, ADA +$41). Internal: $139,705 (-0.21%). BTC $69,779. Cron verified (hourly runs OK). IV+OB collectors day 1. **KEY FINDING: H-011 re-entry IMMINENT** — R27 at -0.007% (was -2.75% ann last check). Last 5 funding settlements all positive (0.0014%-0.0053%). Estimated re-entry ~Mar 21 11:00 UTC (~16h). Previous estimate was Mar 25-26. This is the most important event for portfolio returns (40% weight, Sharpe ~18 backtest).
+- Next: **H-011 re-entry ~Mar 21 (watch closely)**. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24.
+- Questions added: none
+- Self-modifications: none
