@@ -1,15 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio executing on Bybit demo ($100k account). 13 positions open. Equity ~$100,086 (+0.09%). Leverage 0.29x.
-- **Demo positions**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI. LONG DOGE/ETH/SOL/XRP. Short side profitable (OP +$89, NEAR +$36, ARB +$32).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,029 (+0.03%). Leverage 0.29x.
 - **H-055 allocation**: H-009(12%)/H-011(40%,cash)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **Internal paper trades:** 14 runners active. H-021 best (+1.34%). H-049 worst (-1.01%). No new daily bar since Mar 19.
-- **BTC at ~$69,634** (down from $70,376). H-009 SHORT, profiting.
-- **55 total tested, 40 rejected.** 14 in paper trade. Last session 53.
-- **Funding:** R27 negative. H-011 re-entry ~Mar 25-26.
-- **AUTOMATED:** Paper trades run hourly via cron (14 runners + demo portfolio runner). IV/OB depth collectors running (day 1).
-- **Next action:** Monitor. H-012+H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
+- **H-055 STRESS TESTED (session 54)**: P(loss)=0% over 1yr. P(DD>10%)=0.4%. Positive in ALL regimes. Correlations don't break. Static weights near-optimal.
+- **Internal paper trades:** 14 runners active. No new daily bar since Mar 19. All positions unchanged.
+- **BTC at ~$69,634**. H-009 SHORT. 55 tested, 40 rejected. Session 54.
+- **Funding:** R27 negative. H-011 re-entry ~Mar 25-26 (most important event — 40% of weight).
+- **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (day 1).
+- **Next action:** H-012+H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
 - **Open user questions:** None
 
 ## Memory Files
@@ -459,3 +458,11 @@
 - Next: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-20 optimize (session 54)
+- Goal: Optimize — stress test H-055 portfolio, regime analysis, adaptive allocation
+- Focus: Tail risk, correlation breakdown, regime performance, regime-adaptive weights, Monte Carlo, strategy contribution
+- Done: Demo $100,029 (+0.03%), all 14 runners OK (no new daily bar). Built `h055_stress_test.py`. **Key findings**: (1) 95% VaR -0.56%/day, max DD -7.25% (recovered 33 days). (2) Correlations DON'T break during stress (0.041 vs 0.044 full). Rolling 30d corr NEVER >0.30. (3) Positive ALL regimes: uptrend Sharpe 7.46, downtrend 2.89, deep DD 4.71. (4) 88% months positive. (5) Static weights near-optimal — adaptive adds no value. (6) Monte Carlo: P(loss)=0%, P(>20%)=96.5%, P(DD>10%)=0.4%. (7) H-011 most critical; H-009 slightly negative marginal. H-046 only weakness in downtrend.
+- Next: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
+- Questions added: none
+- Self-modifications: Added h055_stress_test.py. Updated state.md with stress test findings.

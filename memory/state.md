@@ -176,19 +176,19 @@
 - **Correlations**: 0.004 H-012, 0.109 H-046, **0.360 H-052** (moderate — related contrarian signals), **0.480 H-049** (high)
 - **Data source**: Bybit funding rates (8h, aggregated to daily avg) — same underlying market positioning as H-052 (premium).
 
-## Portfolio Summary (live mark-to-market 2026-03-20 session 53)
-- **Bybit Demo**: $100,086 (+0.09%) — H-055 allocation, 13 positions, 0.29x leverage. Short bias profitable.
-- **Total internal equity (14 strats, live MTM)**: $139,675 (-0.23%)
-- **H-009**: $9,805 (-1.95%, SHORT) | **H-011**: $10,000 (0%, OUT) | **H-012**: $10,025 (+0.25%) | **H-019**: $9,929 (-0.71%) | **H-021**: $10,134 (+1.34%)
-- **H-024 (comparison)**: $9,956 (-0.44%) — **H-024 leads H-019** (-0.44% vs -0.71%).
-- **H-031 (independent)**: $10,007 (+0.07%) | **H-032 (independent)**: $10,000 (0%, flat)
+## Portfolio Summary (live mark-to-market 2026-03-20 session 54)
+- **Bybit Demo**: $100,029 (+0.03%) — H-055 allocation, 13 positions, 0.29x leverage. Short bias profitable.
+- **Total internal equity (14 strats)**: $139,590 (-0.29%)
+- **H-009**: $9,790 (-2.10%, SHORT) | **H-011**: $10,000 (0%, OUT) | **H-012**: $9,980 (-0.20%) | **H-019**: $9,980 (-0.20%) | **H-021**: $9,980 (-0.20%)
+- **H-024 (comparison)**: $9,980 (-0.20%).
+- **H-031 (independent)**: $9,980 (-0.20%) | **H-032 (independent)**: $10,000 (0%, flat)
 - **H-037 (Polymarket, manual)**: $0 (no trades yet) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
-- **H-044 (OI divergence)**: $10,016 (+0.16%) | **H-046 (Acceleration)**: $10,013 (+0.13%)
-- **H-049 (LSR sentiment)**: $9,899 (-1.01%) | **H-052 (Premium)**: $9,930 (-0.70%)
-- **H-053 (Funding XS)**: $9,977 (-0.23%)
+- **H-044 (OI divergence)**: $9,980 (-0.20%) | **H-046 (Acceleration)**: $9,980 (-0.20%)
+- **H-049 (LSR sentiment)**: $9,980 (-0.20%) | **H-052 (Premium)**: $9,980 (-0.20%)
+- **H-053 (Funding XS)**: $9,980 (-0.20%)
 - **Paper trade age**: H-009/H-011/H-012: 4 days / 28 required. H-019/H-021/H-024: 2 days. H-031/H-032/H-039: 1 day. H-044/H-046/H-049/H-052/H-053: 0 days.
 - **BTC at ~$69,634** — H-009 SHORT, profiting.
-- **Key observation**: H-021 is the best XS strat (+1.34%), driven by NEAR/ATOM/ARB shorts. H-049 (LSR) is the worst (-1.01%) — contrarian longs (BTC/ETH/LINK) getting hammered in continuing selloff. Demo account slightly positive despite BTC dropping $700 — short bias working.
+- **No new daily bar since Mar 19** — all positions unchanged, MTM only reflects initial fee drag ($20 per strategy).
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -239,13 +239,23 @@
 | H-010: Multi-Strategy Portfolio | BACKTEST | Low | Superseded by H-055 portfolio optimization |
 | H-055: Portfolio Optimization | CONFIRMED | High | Implement new 8-strat allocation after paper trade validation |
 
+## H-055 Stress Test Results (session 54, 700 days backtest)
+- **Tail Risk**: 95% daily VaR -0.56%, 99% VaR -0.89%. Worst day: -3.4% (Aug 8 2024, BTC flash). Max DD: -7.25%, recovered in 33 days.
+- **Distribution**: 62% positive days, skew +0.18 (slightly positive), kurtosis 7.5 (fat tails but manageable). Only 0.6% of days below -1%.
+- **Correlation Stability**: Avg pairwise corr 0.044. During BTC stress: 0.041 (unchanged). Rolling 30d corr NEVER >0.30. No correlation breakdown.
+- **Regime Performance**: Uptrend Sharpe 7.46, Downtrend 2.89. High vol 5.64, Low vol 5.25. Deep DD 4.71. Positive in ALL regimes.
+- **Year-by-year**: 2024: Sharpe 4.74, 2025: 5.50, 2026: 5.24. Consistent.
+- **Monthly**: 88% positive (21/24). Worst month -3.26%. Mean +3.11%.
+- **Regime Adaptive**: Static weights are near-optimal. Momentum reweight +0.53 Sharpe but risk of overfit. Trend/vol/DD protection all slightly hurt.
+- **Monte Carlo (5000 sims, 1yr)**: P(loss)=0.0%. 5th pct return: +22.3%. P(>20%): 96.5%. P(DD>10%): 0.4%. Median Sharpe 5.36.
+- **Critical Strategy**: H-011 most valuable (removing it: Sharpe 5.13→3.64). H-009 slightly negative marginal (Sharpe +0.23 without it — consider replacing or reducing weight).
+- **H-046 Weakness**: Only strategy with negative Sharpe in downtrend (-0.87). Acceleration signal breaks when momentum reverses.
+- **Action items**: (1) Keep static weights — don't add complexity. (2) Monitor H-009 marginal value; may reduce weight if paper trade confirms. (3) H-011 re-entry is the single most important event for portfolio returns.
+
 ## Risk Watch
-- **H-012/H-019 in deep drawdown**: -13.56% and -13.85% respectively. Momentum longs (BTC/NEAR/ATOM/AVAX) entered at $74k BTC, now at $70.4k. Market-neutral but longs dropped more than shorts = momentum reversal. Expected in backtest (OOS DD was 20.6%). **Both are DROPPED from H-055 allocation** — demo portfolio unaffected.
-- **H-009 SHORT**: EMA gap widening. PnL: -2.35%.
-- **H-049 best performer**: +1.94% (LSR sentiment). H-046 second at +1.49%. All newer positioning strategies positive.
-- **Demo account healthy**: $99,956 (-0.04%), 0.29x leverage. Low exposure because H-011 (40% weight) is cash.
-- **H-055 CONFIRMED**: 8-strat portfolio LIVE on demo. Sharpe 5.13 backtest.
-- **Funding rate**: R27 negative. H-011 re-entry pushed to ~Mar 25-26.
+- **Demo account healthy**: $100,029 (+0.03%), 0.29x leverage. Low exposure because H-011 (40% weight) is cash.
+- **H-055 CONFIRMED**: 8-strat portfolio LIVE on demo. Sharpe 5.13 backtest. Stress tested: positive in ALL regimes.
+- **Funding rate**: R27 negative. H-011 re-entry pushed to ~Mar 25-26. **Most important near-term event** (40% of portfolio weight).
 - **Research status**: 55 hypotheses tested, 40 rejected, 5 confirmed standalone, 14 in paper trade + 1 comparison + 1 manual.
 - **All backtestable sources exhausted**: Future alpha from IV surface + OB depth data (60-90 day collection underway).
 - **IV collector**: Daily cron at 01:00 UTC. Day 1 of collection (2,400 records captured).
@@ -337,6 +347,7 @@
 - **Premium index is a powerful contrarian signal (H-052)**: 100% IS positive, WF 6/6 (mean 1.86), split-half 2.18/2.95. Corr -0.14 with momentum — excellent diversifier. Assets with deepest perp discount (shorts aggressive) outperform.
 - **Funding rate XS contrarian (H-053)**: 93% IS positive, WF 6/6 (mean OOS 2.29), split-half 1.31/1.91. Assets with lowest funding rate outperform. Corr 0.36 with H-052 (moderate overlap — both measure positioning). Without ATOM still Sharpe 1.22.
 - **Liquidation data not accessible**: Bybit has no public historical liquidation endpoint. Only via WebSocket real-time stream.
+- **H-055 stress test (session 54)**: Portfolio is highly robust. P(1yr loss)=0% across 5000 Monte Carlo sims. Correlations DON'T break during stress (0.041 in stress vs 0.044 overall). Positive in all regimes (uptrend/downtrend/deep DD). 88% positive months. Static weights outperform all adaptive approaches tested. H-011 is the critical strategy (Sharpe drops from 5.13→3.64 without it). H-009 has slightly negative marginal value. H-046 is the only weakness (Sharpe -0.87 in downtrend).
 - **53 hypotheses tested**: 14 in paper trade + 1 comparison + 1 manual, 40 rejected, 3 confirmed standalone + 1 weak.
 - Fee drag critical at 1h; daily/3-day/5-day/21-day rebalance minimizes fee impact
 - **Research: Bybit API rich data sources**: Premium index (exploited in H-052), options IV (collecting), order book depth (collecting), LSR (exploited in H-049).
