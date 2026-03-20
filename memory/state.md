@@ -2,11 +2,12 @@
 
 ## Bybit Demo Account (LIVE since 2026-03-20)
 
-**Account**: $100k USDT demo. Equity ~$99,973 (session 51).
+**Account**: $100k USDT demo. Equity ~$99,956 (session 52, -0.04%).
 **Architecture**: `scripts/demo_portfolio_runner.py` reads all strategy state.json files, computes net H-055 weighted positions, rebalances on Bybit demo after each `run_all_paper_trades.py` run.
 **H-055 weights**: H-009(12%) H-011(40%,cash) H-021(7%) H-031(13%) H-039(9%) H-046(5%) H-052(8%) H-053(6%)
+**Gross leverage**: 0.29x (low — H-011 40% in cash). Net exposure: -$4,587 (slight short bias).
 
-### Current Demo Positions (as of 2026-03-20 12:30 UTC):
+### Current Demo Positions (as of 2026-03-20 13:03 UTC):
 | Symbol | Side | Size | Entry | Notional |
 |--------|------|------|-------|----------|
 | ADAUSDT | SHORT | 10,269 | $0.2678 | $-2,750 |
@@ -175,17 +176,19 @@
 - **Correlations**: 0.004 H-012, 0.109 H-046, **0.360 H-052** (moderate — related contrarian signals), **0.480 H-049** (high)
 - **Data source**: Bybit funding rates (8h, aggregated to daily avg) — same underlying market positioning as H-052 (premium).
 
-## Portfolio Summary (live mark-to-market 2026-03-20 session 50)
-- **Total equity**: $49,778 (-0.44%) — 5-strat portfolio only
-- **H-009**: $9,754 (-2.46%, SHORT) | **H-011**: $10,000 (0%) | **H-012**: $9,999 (-0.01%) | **H-019**: $9,908 (-0.93%) | **H-021**: $10,118 (+1.18%)
-- **H-024 (comparison)**: $9,921 (-0.79%) — **H-024 leads H-019** (-0.79% vs -0.93%)
-- **H-031 (independent)**: $10,026 (+0.26%) | **H-032 (independent)**: $10,000 (0%)
+## Portfolio Summary (live mark-to-market 2026-03-20 session 52)
+- **Bybit Demo**: $99,956 (-0.04%) — H-055 allocation, 13 positions, 0.29x leverage
+- **Total internal equity (14 strats)**: $136,776 (-2.30% from fees+MTM)
+- **H-009**: $9,765 (-2.35%, SHORT) | **H-011**: $10,000 (0%, OUT) | **H-012**: $8,644 (-13.56%) | **H-019**: $8,615 (-13.85%) | **H-021**: $9,586 (-4.14%)
+- **H-024 (comparison)**: $9,530 (-4.70%) — **H-019 now leads H-024** (-13.85% vs -4.70% — BUT H-024 entered later)
+- **H-031 (independent)**: $9,912 (-0.88%) | **H-032 (independent)**: $10,000 (0%, flat)
 - **H-037 (Polymarket, manual)**: $0 (no trades yet) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
-- **H-044 (OI divergence)**: $10,024 (+0.24%) | **H-046 (Acceleration)**: $9,976 (-0.24%)
-- **H-049 (LSR sentiment)**: $9,976 (-0.24%) | **H-052 (Premium)**: $9,976 (-0.24%)
-- **H-053 (Funding XS)**: $9,976 (-0.24%)
+- **H-044 (OI divergence)**: $10,118 (+1.18%) | **H-046 (Acceleration)**: $10,149 (+1.49%)
+- **H-049 (LSR sentiment)**: $10,194 (+1.94%) | **H-052 (Premium)**: $10,125 (+1.25%)
+- **H-053 (Funding XS)**: $10,137 (+1.37%)
 - **Paper trade age**: H-009/H-011/H-012: 4 days / 28 required. H-019/H-021/H-024: 2 days. H-031/H-032/H-039: 1 day. H-044/H-046/H-049/H-052/H-053: 0 days.
-- **BTC at ~$70,581** — H-009 SHORT.
+- **BTC at ~$70,376** — H-009 SHORT.
+- **Key observation**: Newer strategies (H-044/H-046/H-049/H-052/H-053) all positive. Older XS strats (H-012/H-019) hit hard by BTC crash from $74k→$70k — momentum longs that entered at highs.
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9
@@ -210,7 +213,7 @@
 
 ## Proposed Upgrade: Replace H-019 with H-024
 - **If confirmed in paper trade**: H-024 (beta) replaces H-019 (vol) — H-055 optimization also drops H-019
-- **Current status**: H-024 -0.79% vs H-019 -0.93% — **H-024 leading** (gap widening)
+- **Current status**: H-024 -4.70% vs H-019 -13.85% — both in drawdown from BTC crash. Note: H-019 entered 2 days earlier at higher prices.
 - **Decision point**: After 4 weeks of parallel paper trading
 
 ## Key Correlations (12-strat, full 2yr, 700 days)
@@ -237,16 +240,16 @@
 | H-055: Portfolio Optimization | CONFIRMED | High | Implement new 8-strat allocation after paper trade validation |
 
 ## Risk Watch
-- **H-009 SHORT**: EMA gap widening. PnL: -2.46%.
-- **H-024 leads H-019**: -0.79% vs -0.93%. Gap widening in H-024's favor.
-- **H-021 best performer**: +1.18%. H-044 second at +0.24%.
-- **H-055 CONFIRMED**: 8-strat portfolio optimization — Sharpe 5.13 (+46%, 7.3% DD) vs current 5-strat Sharpe 2.58 (+35%, 14% DD). Drops H-012 and H-019. Adds H-031, H-039, H-046, H-052, H-053. Pending paper trade validation.
+- **H-012/H-019 in deep drawdown**: -13.56% and -13.85% respectively. Momentum longs (BTC/NEAR/ATOM/AVAX) entered at $74k BTC, now at $70.4k. Market-neutral but longs dropped more than shorts = momentum reversal. Expected in backtest (OOS DD was 20.6%). **Both are DROPPED from H-055 allocation** — demo portfolio unaffected.
+- **H-009 SHORT**: EMA gap widening. PnL: -2.35%.
+- **H-049 best performer**: +1.94% (LSR sentiment). H-046 second at +1.49%. All newer positioning strategies positive.
+- **Demo account healthy**: $99,956 (-0.04%), 0.29x leverage. Low exposure because H-011 (40% weight) is cash.
+- **H-055 CONFIRMED**: 8-strat portfolio LIVE on demo. Sharpe 5.13 backtest.
 - **Funding rate**: R27 negative. H-011 re-entry pushed to ~Mar 25-26.
-- **Portfolio**: -0.44% (was -0.27%). BTC at $70,581.
 - **Research status**: 55 hypotheses tested, 40 rejected, 5 confirmed standalone, 14 in paper trade + 1 comparison + 1 manual.
 - **All backtestable sources exhausted**: Future alpha from IV surface + OB depth data (60-90 day collection underway).
-- **IV collector**: Daily cron at 01:00 UTC. Building history.
-- **OB depth collector**: Daily cron at 01:30 UTC. Building history.
+- **IV collector**: Daily cron at 01:00 UTC. Day 1 of collection (2,400 records captured).
+- **OB depth collector**: Daily cron at 01:30 UTC. Day 1 of collection (14 assets).
 - **Watchlist**: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29.
 - **Open user questions**: None
 

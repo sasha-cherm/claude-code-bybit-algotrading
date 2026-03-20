@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio executing on Bybit demo ($100k account). 13 positions open. `lib/bybit_demo_client.py` + `scripts/demo_portfolio_runner.py`. Runs after each `run_all_paper_trades.py` invocation. H-011 stays cash until funding signal fires.
-- **Demo positions**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI. LONG DOGE/ETH/SOL/XRP. Equity ~$99,973.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio executing on Bybit demo ($100k account). 13 positions open. Equity ~$99,956 (-0.04%). Leverage 0.29x.
+- **Demo positions**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI. LONG DOGE/ETH/SOL/XRP.
 - **H-055 allocation**: H-009(12%)/H-011(40%,cash)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **Internal paper trades:** All 14 runners still computing signals independently (internal simulation unchanged).
-- **BTC at ~$70,400**. H-009 SHORT.
-- **55 total tested, 40 rejected.** 14 in paper trade. Last research session 50.
+- **Internal paper trades:** 14 runners active. Newer strats (H-044/H-046/H-049/H-052/H-053) all positive. Older XS strats (H-012 -13.6%, H-019 -13.9%) in momentum crash drawdown — NOT in H-055 allocation.
+- **BTC at ~$70,376**. H-009 SHORT.
+- **55 total tested, 40 rejected.** 14 in paper trade. Last session 52.
 - **Funding:** R27 negative. H-011 re-entry ~Mar 25-26.
-- **AUTOMATED:** Paper trades run hourly via cron (14 runners + demo portfolio runner). IV/OB depth collectors running.
-- **Next action:** Monitor demo execution. Check rebal triggers hourly. H-012+H-021 rebal Mar 21. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
+- **AUTOMATED:** Paper trades run hourly via cron (14 runners + demo portfolio runner). IV/OB depth collectors running (day 1).
+- **Next action:** Monitor. H-012+H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
 - **Open user questions:** None
 
 ## Memory Files
@@ -443,3 +443,11 @@
 - Next: Monitor hourly execution. Next rebal triggers as strategies update signals.
 - Questions added: none
 - Self-modifications: New files: lib/bybit_demo_client.py, scripts/demo_portfolio_runner.py.
+
+### Session 2026-03-20 review (session 52)
+- Goal: Review — monitor paper trades, demo account, data collection
+- Focus: Full system health check and mark-to-market update
+- Done: Ran all 14 paper trade runners (all OK, no new daily bar). **Demo account**: $99,956 (-0.04%), 0.29x leverage, 13 positions healthy. **Internal MTM**: H-012 -13.56%, H-019 -13.85% (momentum crash — longs entered at $74k BTC, now $70.4k). Newer positioning strats all positive: H-049 +1.94%, H-046 +1.49%, H-053 +1.37%, H-052 +1.25%, H-044 +1.18%. H-012/H-019 drawdown is within backtest expectations (OOS DD was 20.6%) and irrelevant to demo (both dropped from H-055). IV/OB depth collectors: day 1, running correctly (2,400 IV records, 14 OB snapshots).
+- Next: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
+- Questions added: none
+- Self-modifications: none
