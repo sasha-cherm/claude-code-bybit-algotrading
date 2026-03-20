@@ -1,18 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+5+1+1 strategies):** H-009 (-2.11%, SHORT) + H-011 (OUT, 0%) + H-012 (+0.98%) + H-019 (-0.62%) + H-021 (+1.36%) — portfolio $49,961 (-0.08%). H-024 (-1.15%) comparison. H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (-0.16%) + H-046 (-0.24%) + H-049 (-0.24%) independent. H-037 (Polymarket, manual).
-- **H-050 REJECTED**: Macro signals (SPY/GLD/VIX/DXY/TNX) → 50% positive = no edge. Crypto co-moves with equities same-day (r=0.37) but info is priced in by close.
-- **H-051 REJECTED**: Monthly/DOM calendar seasonality → train/test corr -0.13. WF 3/6. No persistence.
-- **IV collector deployed**: Daily cron (01:00 UTC) captures Bybit options IV surface (2400 records, 5 assets). First snapshot: 2026-03-20. Building history for future options-based research.
+- **Paper trading (5+1+6+1+1 strategies):** H-009 (-2.11%, SHORT) + H-011 (OUT, 0%) + H-012 (+0.98%) + H-019 (-0.62%) + H-021 (+1.36%) — portfolio $49,961 (-0.08%). H-024 (-1.15%) comparison. H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (-0.16%) + H-046 (-0.24%) + H-049 (-0.24%) + **H-052 (-0.24%, NEW)** independent. H-037 (Polymarket, manual).
+- **H-052 CONFIRMED + DEPLOYED**: Premium index contrarian — 100% IS positive, WF 6/6 (mean 1.86), split-half 2.18/2.95. Corr -0.14 with H-012. LONG ARB/ATOM/ETH/LINK, SHORT OP/DOGE/NEAR/SOL.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
 - **BTC at ~$70,477**. H-009 SHORT.
-- **51 total tested, 40 rejected.** 12 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
-- **Last session:** 2026-03-20 review+research (session 45)
+- **52 total tested, 40 rejected.** 13 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
+- **Last session:** 2026-03-20 review+research (session 46)
 - **Funding:** R27 at -2.75% ann. H-011 re-entry pushed to ~Mar 25-26.
-- **AUTOMATED:** Paper trades run independently via cron (hourly). IV collector daily at 01:00 UTC.
-- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
-- **Research directions**: Cross-sectional price/volume/OI factor space exhausted. Macro signals exhausted. Calendar effects exhausted. Future alpha needs: (1) options IV surface (collecting data now, backtest in ~2-3 months), (2) liquidation data, (3) order book microstructure, (4) on-chain signals.
+- **AUTOMATED:** Paper trades run independently via cron (hourly). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
+- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29.
+- **Research directions**: Premium index exploited (H-052). Price/volume/OI/macro/calendar exhausted. Future alpha: (1) options IV surface (collecting, ~2-3 months), (2) order book depth (collecting, ~2-3 months), (3) on-chain signals, (4) alternative data APIs.
 - **Open user questions:** None
 
 ## Memory Files
@@ -398,3 +396,11 @@
 - Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29. Research: explore liquidation data, order book microstructure, or alternative data APIs (CoinGlass, Glassnode).
 - Questions added: none
 - Self-modifications: Added strategies/macro_research/h050_macro_signals.py. Added scripts/collect_iv_surface.py + daily cron. Installed yfinance.
+
+### Session 2026-03-20 review+research (session 46)
+- Goal: Review + Research — monitor paper trades, explore premium index and order book depth as new data sources
+- Focus: H-052 (premium index cross-sectional factor), order book depth collection infrastructure
+- Done: Portfolio $49,961 (-0.08%): unchanged (no new daily bar since Mar 19). BTC $70,477. **H-052 CONFIRMED and DEPLOYED**: Premium index contrarian — rank assets by perp-vs-spot premium, long most discounted (shorts aggressive), short least discounted. IS: **100% params positive** (30/30), best Sharpe 2.25. WF: **6/6 positive** for W5_R5_N4 (mean OOS 1.86), 23/24 majority positive overall (mean 1.35). Split-half: 2.18/2.95 (strong in both halves). Correlations: **-0.142 H-012** (negative!), 0.097 H-021, 0.167 H-046. Deployed paper trade: LONG ARB/ATOM/ETH/LINK, SHORT OP/DOGE/NEAR/SOL. **Order book depth collector deployed**: Daily cron at 01:30 UTC captures bid/ask imbalance at 5/10/25 levels for 14 assets. Building history for future microstructure research. 52 hypotheses tested, 40 rejected.
+- Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-044 next rebal Mar 29. Research: all immediately backtestable signals explored — future alpha depends on IV surface + OB depth data collection (60-90 days).
+- Questions added: none
+- Self-modifications: Added strategies/premium_research/, paper_trades/h052_premium/. Added scripts/collect_orderbook_depth.py + daily cron. Updated orchestrator (13 runners). Cached premium index data.

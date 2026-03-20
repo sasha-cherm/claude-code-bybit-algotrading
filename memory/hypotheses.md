@@ -829,6 +829,23 @@
 - Notes: The day-of-week effect (H-039: Wed+/Thu-) remains the ONLY calendar seasonality that works. Day-of-month patterns don't persist across periods (train/test corr -0.13). Walk-forward fails 3/6. The difference: day-of-week has 105+ observations per day (2yr), while day-of-month has only ~24 — insufficient for robust estimation. Monthly patterns (Jan-Dec) also too few observations. Calendar effects require high-frequency recurrence to be exploitable.
 - Sessions: [2026-03-20 review+research session 45]
 
+## H-052: Premium Index Cross-Sectional Factor (Contrarian)
+- Status: LIVE (paper trade since 2026-03-20)
+- Idea: Rank 14 crypto assets by average perpetual-to-spot premium/discount. Contrarian: long most discounted (shorts aggressive), short least discounted. Premium index is a genuinely different data source from price, volume, OI, or funding rate.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: Compute avg premium index (close) over 5 days per asset. Rank cross-sectionally. Long bottom 4 (most discounted), short top 4 (least discounted). Market-neutral.
+- Data: 14 assets, 734 daily bars (2024-03-16 to 2026-03-19, ~2yr). Bybit V5 premium-index-price-kline endpoint.
+- Result:
+  - **In-sample (full)**: 100% params positive (30/30). Best W5 R3 N4: Sharpe 2.25, +40.4%, DD -11.8%
+  - **Walk-forward (6 folds, 120d train / 90d test)**: 23/24 majority positive, 3/24 ALL folds positive. Mean OOS Sharpe 1.35.
+    - Best WF: W10 R3 N4 mean 2.01 (5/6). W5 R5 N4 mean 1.86 (6/6 ALL positive).
+  - **Split-half**: First half Sharpe 2.18, Second half Sharpe 2.95 — BOTH strong.
+  - **Fee sensitivity**: 1x fees Sharpe 1.88, 2x fees 1.50, 5x fees 0.39
+  - **Correlations**: -0.142 H-012 (XSMom), 0.097 H-021 (VolMom), 0.167 H-046 (Accel)
+- Notes: One of the strongest signals found. Negative correlation with momentum (excellent diversifier). Premium captures directional sentiment pressure — assets with extreme negative premium (shorts aggressive) tend to revert. Level_momentum (0% positive) and basis change (43%) fail, confirming it's a contrarian mean-reversion effect. Deployed with W5 R5 N4 (6/6 WF).
+- Sessions: [2026-03-20 review+research session 46]
+
 ## Killed
 (none)
 
