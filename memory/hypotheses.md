@@ -49,6 +49,22 @@
 ## Confirmed
 (none — H-012/H-019/H-021/H-024 promoted to LIVE)
 
+## H-054: Multi-Asset Polymarket Hourly + 4H Candle Direction (7 Assets)
+- Status: CONFIRMED (research complete, extends H-037)
+- Idea: Analyze green/red candle probability at each 1h and 4h time slot for all Polymarket crypto assets (BTC, ETH, SOL, XRP, DOGE, HYPE, BNB). Find statistically significant time-of-day biases.
+- Instrument: Polymarket binary options (1h UP/DOWN, 4h UP/DOWN)
+- Timeframe: 1h and 4h
+- Logic: Binomial test (H0: P(green)=50%) per slot per asset. Train/test split validation. Cross-asset consensus scoring.
+- Data: ~17,600 hourly bars (2yr) per asset for BTC/ETH/SOL/XRP/DOGE/BNB; ~6,000 bars (8mo) for HYPE. 210 total statistical tests.
+- Result:
+  - **38 significant results** (p<0.05) vs 10.5 expected by chance → **3.62x enrichment** (patterns are real)
+  - **1h strongest**: 17:00 UTC GREEN (7/7 agree, 54.6% avg, 4 individually sig), 23:00 UTC RED (7/7 agree, 44.7% avg, 5 sig), 21:00 GREEN (6/7, 53.9%, 5 sig), 22:00 GREEN (7/7, 54.0%, 3 sig)
+  - **4h strongest**: 12-16 UTC RED (7/7, 45.8%, 5 sig), 00-04 UTC GREEN (7/7, 54.0%, 4 sig)
+  - **Bonferroni survivors**: BTC 17:00 (p=0.0006), ETH 23:00 (p=0.0005), SOL 23:00 (p=0.0019), XRP 23:00 (p=0.0001), BNB 21:00 (p=0.0002), BNB 22:00 (p=0.0013), SOL 4h 12-16 (p=0.0013), XRP 4h 20-24 (p=0.0013)
+  - **Cross-asset patterns are correlated** — bets on multiple assets at same hour are NOT independent
+- Notes: Extends H-037 (BTC-only) to all 7 Polymarket assets. HYPE has only 8 months of data (low confidence). The 23:00 UTC RED and 17:00 UTC GREEN patterns are the most robust — consistent across all assets, survive multiple testing correction. Patterns likely driven by daily close mechanics (23:00) and US equity session spillover (17:00). Edge per bet is ~4-7% above 50% — only viable if Polymarket prices at ~50c.
+- Sessions: [2026-03-20 research]
+
 ## Pending
 
 ## H-010: Multi-Strategy Portfolio Research

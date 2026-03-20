@@ -5,7 +5,8 @@
 - **H-053 CONFIRMED + DEPLOYED**: Funding rate XS contrarian — 93% IS positive, **WF 6/6 (mean OOS 2.29)**. Split-half 1.31/1.91. Corr 0.004 H-012, 0.36 H-052, 0.48 H-049. LONG DOT/ATOM/SOL/BTC, SHORT OP/NEAR/ARB/ADA.
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
 - **BTC at ~$70,302**. H-009 SHORT.
-- **53 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak).
+- **54 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak), **H-054 (multi-asset Polymarket)**.
+- **H-054 CONFIRMED**: Multi-asset Polymarket candle direction. 38 sig results (3.62x random). 23:00 RED (7/7 assets), 17:00 GREEN (7/7), 4h 12-16 RED (7/7). Extends H-037.
 - **Last session:** 2026-03-20 review+research (session 47)
 - **Funding:** R27 negative. H-011 re-entry pushed to ~Mar 25-26.
 - **AUTOMATED:** Paper trades run independently via cron (hourly, 14 runners). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
@@ -412,3 +413,11 @@
 - Next: Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29. All immediately backtestable Bybit data sources now exhausted.
 - Questions added: none
 - Self-modifications: Added strategies/funding_xs_research/, paper_trades/h053_funding_xs/. Updated orchestrator (14 runners).
+
+### Session 2026-03-20 research (session 48)
+- Goal: Research — Multi-asset Polymarket candle direction analysis (user request)
+- Focus: H-054: Analyze green/red candle probability per 1h and 4h slot for BTC, ETH, SOL, XRP, DOGE, HYPE, BNB
+- Done: **H-054 CONFIRMED**. 210 total tests, **38 significant** (3.62x expected by chance). Strongest 1h patterns: **23:00 UTC RED** (7/7 assets agree, avg 44.7% green, 5 individually sig, XRP p=0.0001 survives Bonferroni), **17:00 UTC GREEN** (7/7 agree, 54.6% avg, 4 sig, BTC p=0.0006 survives Bonferroni), **21:00 GREEN** (6/7, 53.9%, 5 sig), **22:00 GREEN** (7/7, 54.0%, 3 sig). Strongest 4h: **12-16 RED** (7/7, 45.8%, 5 sig), **00-04 GREEN** (7/7, 54.0%, 4 sig). Cross-asset patterns highly correlated — bets on different assets same hour NOT independent. HYPE only 8 months data (low confidence). Results saved to strategies/polymarket_research/h054_results.json.
+- Next: Paper trade H-054 manually on Polymarket (requires manual tracking like H-037). Monitor existing 14 runners.
+- Questions added: none
+- Self-modifications: Added strategies/polymarket_research/h054_multi_asset_hourly.py

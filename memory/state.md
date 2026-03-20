@@ -206,7 +206,8 @@
 - **H-053 CONFIRMED + DEPLOYED**: Funding rate XS contrarian — WF 6/6 (mean OOS 2.29). Corr 0.36 with H-052, 0.48 with H-049 (moderate overlap). LONG DOT/ATOM/SOL/BTC, SHORT OP/NEAR/ARB/ADA.
 - **Funding rate**: R27 negative. H-011 re-entry pushed to ~Mar 25-26.
 - **Portfolio dipping**: -0.27% (was -0.08%). BTC at $70,302 (down from $70,477).
-- **Research status**: 53 hypotheses tested, 40 rejected, 3 confirmed standalone, 14 in paper trade + 1 comparison + 1 manual.
+- **H-054 CONFIRMED**: Multi-asset Polymarket candle direction analysis. 38 significant results (3.62x random). Strongest: 23:00 RED (7/7, p=0.0001 XRP), 17:00 GREEN (7/7, p=0.0006 BTC), 4h 12-16 RED (7/7). All assets correlated.
+- **Research status**: 54 hypotheses tested, 40 rejected, 4 confirmed standalone, 14 in paper trade + 1 comparison + 1 manual.
 - **Liquidation data NOT available**: Bybit API has no historical liquidation endpoint. Would need WebSocket collector (60-90 day build).
 - **IV collector**: Daily cron at 01:00 UTC. Building history.
 - **OB depth collector**: Daily cron at 01:30 UTC. Building history.
