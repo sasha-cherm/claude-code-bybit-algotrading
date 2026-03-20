@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio executing on Bybit demo ($100k account). 13 positions open. Equity ~$99,956 (-0.04%). Leverage 0.29x.
-- **Demo positions**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI. LONG DOGE/ETH/SOL/XRP.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio executing on Bybit demo ($100k account). 13 positions open. Equity ~$100,086 (+0.09%). Leverage 0.29x.
+- **Demo positions**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI. LONG DOGE/ETH/SOL/XRP. Short side profitable (OP +$89, NEAR +$36, ARB +$32).
 - **H-055 allocation**: H-009(12%)/H-011(40%,cash)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **Internal paper trades:** 14 runners active. Newer strats (H-044/H-046/H-049/H-052/H-053) all positive. Older XS strats (H-012 -13.6%, H-019 -13.9%) in momentum crash drawdown — NOT in H-055 allocation.
-- **BTC at ~$70,376**. H-009 SHORT.
-- **55 total tested, 40 rejected.** 14 in paper trade. Last session 52.
+- **Internal paper trades:** 14 runners active. H-021 best (+1.34%). H-049 worst (-1.01%). No new daily bar since Mar 19.
+- **BTC at ~$69,634** (down from $70,376). H-009 SHORT, profiting.
+- **55 total tested, 40 rejected.** 14 in paper trade. Last session 53.
 - **Funding:** R27 negative. H-011 re-entry ~Mar 25-26.
 - **AUTOMATED:** Paper trades run hourly via cron (14 runners + demo portfolio runner). IV/OB depth collectors running (day 1).
 - **Next action:** Monitor. H-012+H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
@@ -448,6 +448,14 @@
 - Goal: Review — monitor paper trades, demo account, data collection
 - Focus: Full system health check and mark-to-market update
 - Done: Ran all 14 paper trade runners (all OK, no new daily bar). **Demo account**: $99,956 (-0.04%), 0.29x leverage, 13 positions healthy. **Internal MTM**: H-012 -13.56%, H-019 -13.85% (momentum crash — longs entered at $74k BTC, now $70.4k). Newer positioning strats all positive: H-049 +1.94%, H-046 +1.49%, H-053 +1.37%, H-052 +1.25%, H-044 +1.18%. H-012/H-019 drawdown is within backtest expectations (OOS DD was 20.6%) and irrelevant to demo (both dropped from H-055). IV/OB depth collectors: day 1, running correctly (2,400 IV records, 14 OB snapshots).
+- Next: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-20 review (session 53)
+- Goal: Review — monitor paper trades, demo account health, system verification
+- Focus: Full system health check, live MTM update, cron verification
+- Done: Ran all 14 paper trade runners (all OK, no new daily bar since Mar 19). **Demo account**: $100,086 (+0.09%), 13 positions, short side profitable (OP +$89, NEAR +$36, ARB +$32). BTC dropped to $69,634 (-1.05% from session 52). **Live MTM**: H-021 best XS strat (+1.34%), H-049 worst (-1.01%, contrarian longs losing in selloff). H-024 still leads H-019 (-0.44% vs -0.71%). H-009 SHORT profiting ($+15 unrealized). Cron jobs verified: 81 successful hourly runs, all 14/14 OK. IV + OB depth data files confirmed (day 1).
 - Next: H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
 - Questions added: none
 - Self-modifications: none
