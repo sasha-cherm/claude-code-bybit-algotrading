@@ -1,6 +1,31 @@
 # Strategy State
 
-## Active Paper Trades
+## Bybit Demo Account (LIVE since 2026-03-20)
+
+**Account**: $100k USDT demo. Equity ~$99,973 (session 51).
+**Architecture**: `scripts/demo_portfolio_runner.py` reads all strategy state.json files, computes net H-055 weighted positions, rebalances on Bybit demo after each `run_all_paper_trades.py` run.
+**H-055 weights**: H-009(12%) H-011(40%,cash) H-021(7%) H-031(13%) H-039(9%) H-046(5%) H-052(8%) H-053(6%)
+
+### Current Demo Positions (as of 2026-03-20 12:30 UTC):
+| Symbol | Side | Size | Entry | Notional |
+|--------|------|------|-------|----------|
+| ADAUSDT | SHORT | 10,269 | $0.2678 | $-2,750 |
+| ARBUSDT | SHORT | 25,889 | $0.1004 | $-2,600 |
+| ATOMUSDT | SHORT | 470.8 | $1.8054 | $-850 |
+| BTCUSDT | SHORT | 0.007 | $70,402 | $-493 |
+| DOGEUSDT | LONG | 11,717 | $0.0939 | $+1,100 |
+| DOTUSDT | SHORT | 392.5 | $1.5284 | $-600 |
+| ETHUSDT | LONG | 2.15 | $2,141.55 | $+4,604 |
+| LINKUSDT | SHORT | 11.0 | $9.0850 | $-100 |
+| NEARUSDT | SHORT | 2,996.7 | $1.3352 | $-4,000 |
+| OPUSDT | SHORT | 38,759.7 | $0.1251 | $-4,850 |
+| SOLUSDT | LONG | 23.5 | $89.19 | $+2,096 |
+| SUIUSDT | SHORT | 510 | $0.9676 | $-493 |
+| XRPUSDT | LONG | 3,004 | $1.4480 | $+4,350 |
+
+---
+
+## Active Paper Trades (Internal Simulation)
 
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)

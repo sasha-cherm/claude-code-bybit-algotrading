@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **Paper trading (5+1+7+1+1 strategies):** H-009 (-2.46%, SHORT) + H-011 (OUT, 0%) + H-012 (-0.01%) + H-019 (-0.93%) + H-021 (+1.18%) — portfolio $49,778 (-0.44%). H-024 (-0.79%) comparison (**leads H-019**, gap widening). H-031 (+0.26%) + H-032 (0%) + H-039 (flat) + H-044 (+0.24%) + H-046 (-0.24%) + H-049 (-0.24%) + H-052 (-0.24%) + H-053 (-0.24%) independent. H-037 (Polymarket, manual).
-- **H-055 CONFIRMED**: Portfolio optimization — **8-strat portfolio Sharpe 5.13, +46.0%, 7.3% DD** vs current 5-strat Sharpe 2.58, +35.3%, 13.9% DD. New allocation: H-009(12%)/H-011(40%)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%). Drops H-012 (redundant w/ H-031) and H-019 (inferior to H-024).
-- **BTC at ~$70,581**. H-009 SHORT.
-- **55 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak), H-054, **H-055 (portfolio optimization)**.
-- **Last session:** 2026-03-20 review+research (session 50)
-- **Funding:** R27 negative. H-011 re-entry pushed to ~Mar 25-26.
-- **AUTOMATED:** Paper trades run independently via cron (hourly, 14 runners). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
-- **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29. Continue paper trade validation (28 days minimum before implementing new allocation).
-- **Research directions**: All immediately backtestable sources exhausted. Future alpha: (1) options IV surface (collecting, ~2-3 months), (2) order book depth (collecting, ~2-3 months), (3) on-chain signals, (4) alternative data APIs.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio executing on Bybit demo ($100k account). 13 positions open. `lib/bybit_demo_client.py` + `scripts/demo_portfolio_runner.py`. Runs after each `run_all_paper_trades.py` invocation. H-011 stays cash until funding signal fires.
+- **Demo positions**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI. LONG DOGE/ETH/SOL/XRP. Equity ~$99,973.
+- **H-055 allocation**: H-009(12%)/H-011(40%,cash)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **Internal paper trades:** All 14 runners still computing signals independently (internal simulation unchanged).
+- **BTC at ~$70,400**. H-009 SHORT.
+- **55 total tested, 40 rejected.** 14 in paper trade. Last research session 50.
+- **Funding:** R27 negative. H-011 re-entry ~Mar 25-26.
+- **AUTOMATED:** Paper trades run hourly via cron (14 runners + demo portfolio runner). IV/OB depth collectors running.
+- **Next action:** Monitor demo execution. Check rebal triggers hourly. H-012+H-021 rebal Mar 21. H-039 first trade Mar 24. H-011 re-entry ~Mar 25-26.
 - **Open user questions:** None
 
 ## Memory Files
@@ -435,3 +435,11 @@
 - Next: Monitor paper trades. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. Continue paper trade validation (28 days min before implementing H-055 allocation).
 - Questions added: none
 - Self-modifications: Added strategies/portfolio_optimization/h055_portfolio_optimizer.py.
+
+### Session 2026-03-20 system (session 51)
+- Goal: System — migrate paper trades to Bybit demo trading
+- Focus: Build Bybit demo execution layer for H-055 portfolio
+- Done: Built `lib/bybit_demo_client.py` (DemoTrader class, full CRUD for positions/orders/prices). Built `scripts/demo_portfolio_runner.py` (reads 7 strategy state.json files, nets positions by H-055 weights, rebalances on Bybit demo). Updated `scripts/run_all_paper_trades.py` to call demo runner after individual runners. **Placed initial 13 positions on Bybit demo**: SHORT ADA/ARB/ATOM/BTC/DOT/LINK/NEAR/OP/SUI, LONG DOGE/ETH/SOL/XRP. Account: $99,973 equity. H-011 stays cash buffer until funding signal fires.
+- Next: Monitor hourly execution. Next rebal triggers as strategies update signals.
+- Questions added: none
+- Self-modifications: New files: lib/bybit_demo_client.py, scripts/demo_portfolio_runner.py.

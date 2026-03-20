@@ -13,6 +13,7 @@ if no new data.
 
 import importlib.util
 import json
+import subprocess
 import sys
 import traceback
 from datetime import datetime, timezone
@@ -100,8 +101,23 @@ def run_all():
     total = len(results)
     total_equity = sum(r.get("equity", 0) or 0 for r in results if r["status"] == "OK")
     log(f"Complete: {ok}/{total} runners OK. Total equity: ${total_equity:,.2f}")
-    log("=" * 60)
 
+    # Run demo portfolio runner (Bybit demo execution)
+    log("Running demo portfolio runner...")
+    demo_runner = ROOT / "scripts" / "demo_portfolio_runner.py"
+    try:
+        r = subprocess.run(
+            [sys.executable, str(demo_runner)],
+            capture_output=True, text=True, timeout=120,
+        )
+        for line in (r.stdout + r.stderr).strip().splitlines():
+            log(f"  [demo] {line}")
+        if r.returncode != 0:
+            log(f"  [demo] exited with code {r.returncode}")
+    except Exception as e:
+        log(f"  [demo] failed: {e}")
+
+    log("=" * 60)
     return results
 
 
