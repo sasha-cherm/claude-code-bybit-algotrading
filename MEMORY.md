@@ -6,8 +6,8 @@
 - **5-strat portfolio**: Sharpe 2.10, +31.6%, 12.9% DD (target allocation 10/40/10/15/25)
 - **BTC at ~$70,302**. H-009 SHORT.
 - **54 total tested, 40 rejected.** 14 in paper trade + 1 comparison + 1 manual. Confirmed standalone: H-030, H-038 (weak), H-042 (weak), H-045 (weak), **H-054 (multi-asset Polymarket)**.
-- **H-054 CONFIRMED**: Multi-asset Polymarket candle direction. 38 sig results (3.62x random). 23:00 RED (7/7 assets), 17:00 GREEN (7/7), 4h 12-16 RED (7/7). Extends H-037.
-- **Last session:** 2026-03-20 review+research (session 47)
+- **H-054 CONFIRMED**: Multi-asset Polymarket candle direction — **per-asset independent report** (user request). 39 sig results, 8 Bonferroni survivors. Strongest: XRP 23:00 57.2% DOWN, BNB 21:00 56.8% UP, BTC 17:00 56.4% UP.
+- **Last session:** 2026-03-20 research (session 48)
 - **Funding:** R27 negative. H-011 re-entry pushed to ~Mar 25-26.
 - **AUTOMATED:** Paper trades run independently via cron (hourly, 14 runners). IV collector daily 01:00 UTC. OB depth collector daily 01:30 UTC.
 - **Next action:** Monitor. H-012 + H-021 rebal Mar 21. H-046 rebal Mar 22. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-011 re-entry ~Mar 25-26. H-053 + H-044 rebal Mar 29.
@@ -421,3 +421,11 @@
 - Next: Paper trade H-054 manually on Polymarket (requires manual tracking like H-037). Monitor existing 14 runners.
 - Questions added: none
 - Self-modifications: Added strategies/polymarket_research/h054_multi_asset_hourly.py
+
+### Session 2026-03-20 research (session 49)
+- Goal: Research — Re-run H-054 per user request: independent per-asset hourly report (not cross-asset consensus)
+- Focus: H-054 per-asset independent report
+- Done: Created `strategies/polymarket_research/h054_per_asset_report.py`. **39 significant results** (p<0.05 + consistent train/test), **8 Bonferroni survivors**. Per-asset breakdown: BTC 4 sig hours (17:00 UP***), ETH 3 (23:00 DOWN***), SOL 5 (23:00 DOWN***), XRP 4 (23:00 DOWN***), DOGE 2, HYPE 1, BNB 5 (21:00 UP***, 22:00 UP***). 4H: SOL 12-16 DOWN***, XRP 20-24 DOWN***. Removed user input from CLAUDE.md.
+- Next: Monitor existing 14 runners. H-012 + H-021 rebal Mar 21.
+- Questions added: none
+- Self-modifications: Added strategies/polymarket_research/h054_per_asset_report.py. Removed user input from CLAUDE.md.

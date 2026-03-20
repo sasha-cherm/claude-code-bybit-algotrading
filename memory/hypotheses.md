@@ -57,13 +57,26 @@
 - Logic: Binomial test (H0: P(green)=50%) per slot per asset. Train/test split validation. Cross-asset consensus scoring.
 - Data: ~17,600 hourly bars (2yr) per asset for BTC/ETH/SOL/XRP/DOGE/BNB; ~6,000 bars (8mo) for HYPE. 210 total statistical tests.
 - Result:
-  - **38 significant results** (p<0.05) vs 10.5 expected by chance → **3.62x enrichment** (patterns are real)
-  - **1h strongest**: 17:00 UTC GREEN (7/7 agree, 54.6% avg, 4 individually sig), 23:00 UTC RED (7/7 agree, 44.7% avg, 5 sig), 21:00 GREEN (6/7, 53.9%, 5 sig), 22:00 GREEN (7/7, 54.0%, 3 sig)
-  - **4h strongest**: 12-16 UTC RED (7/7, 45.8%, 5 sig), 00-04 UTC GREEN (7/7, 54.0%, 4 sig)
-  - **Bonferroni survivors**: BTC 17:00 (p=0.0006), ETH 23:00 (p=0.0005), SOL 23:00 (p=0.0019), XRP 23:00 (p=0.0001), BNB 21:00 (p=0.0002), BNB 22:00 (p=0.0013), SOL 4h 12-16 (p=0.0013), XRP 4h 20-24 (p=0.0013)
-  - **Cross-asset patterns are correlated** — bets on multiple assets at same hour are NOT independent
-- Notes: Extends H-037 (BTC-only) to all 7 Polymarket assets. HYPE has only 8 months of data (low confidence). The 23:00 UTC RED and 17:00 UTC GREEN patterns are the most robust — consistent across all assets, survive multiple testing correction. Patterns likely driven by daily close mechanics (23:00) and US equity session spillover (17:00). Edge per bet is ~4-7% above 50% — only viable if Polymarket prices at ~50c.
-- Sessions: [2026-03-20 research]
+  - **39 significant results** (p<0.05, consistent train/test) across 7 assets, 8 survive Bonferroni
+  - **Per-asset 1H significant hours**:
+    - BTC: 17:00 56.4% UP (p=0.0006***), 21:00 54.8% UP, 23:00 54.1% DOWN, 22:00 53.9% UP
+    - ETH: 23:00 56.5% DOWN (p=0.0005***), 21:00 55.1% UP, 17:00 54.4% UP
+    - SOL: 23:00 55.8% DOWN (p=0.0019***), 22:00 55.5% UP, 17:00 55.2% UP, 21:00 54.7% UP, 01:00 53.7% UP
+    - XRP: 23:00 57.2% DOWN (p=0.0001***), 20:00 54.9% DOWN, 00:00 53.8% DOWN, 07:00 53.8% UP
+    - DOGE: 21:00 55.2% UP, 17:00 54.9% UP
+    - HYPE: 12:00 58.7% DOWN (only 8mo data)
+    - BNB: 21:00 56.8% UP (p=0.0002***), 22:00 56.0% UP (p=0.0013***), 03:00 55.1% UP, 23:00 54.5% DOWN, 19:00 53.7% UP
+  - **Per-asset 4H significant hours**:
+    - ETH: 20-24 54.5% UP, 12-16 54.4% DOWN
+    - SOL: 12-16 56.0% DOWN (p=0.0013***), 00-04 54.8% UP
+    - XRP: 20-24 56.0% DOWN (p=0.0013***), 08-12 54.3% UP, 00-04 54.1% UP
+    - DOGE: 00-04 54.5% UP, 12-16 54.0% DOWN, 20-24 53.8% UP
+    - HYPE: 12-16 57.9% DOWN
+    - BNB: 00-04 54.4% UP, 12-16 54.2% DOWN, 20-24 54.2% UP, 16-20 53.8% UP
+  - **Bonferroni survivors (8)**: XRP 23:00 DOWN, BNB 21:00 UP, ETH 23:00 DOWN, BTC 17:00 UP, BNB 22:00 UP, SOL 4h 12-16 DOWN, XRP 4h 20-24 DOWN, SOL 23:00 DOWN
+  - **Universal themes**: 23:00 RED (5 assets), 17:00/21:00 GREEN (4-5 assets), 12-16 4H RED (5 assets)
+- Notes: Re-analyzed per user request to report each asset independently (not just cross-asset consensus). Report script: `strategies/polymarket_research/h054_per_asset_report.py`. Edge ~4-7% above 50% — only viable if Polymarket prices at ~50c.
+- Sessions: [2026-03-20 research], [2026-03-20 research — per-asset independent report]
 
 ## Pending
 
