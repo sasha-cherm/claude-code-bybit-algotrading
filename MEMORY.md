@@ -1,14 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,124 (+0.12%). Leverage 0.29x.
-- **H-055 allocation**: H-009(12%)/H-011(40%,cash→ENTERING)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-055 STRESS TESTED (session 54)**: P(loss)=0% over 1yr. P(DD>10%)=0.4%. Positive in ALL regimes. Correlations don't break. Static weights near-optimal.
-- **Internal paper trades:** 14 runners active. Session 57.
-- **BTC at ~$70,742**. H-009 SHORT (-2.55%). 55 tested, 40 rejected.
-- **H-011 ENTRY CONFIRMED**: R27 flips positive after 00:00 UTC settlement. Cron at 00:30 UTC Mar 21 auto-executes.
-- **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (day 2).
-- **Next action:** **H-011 entry at 00:30 UTC Mar 21** (~1.5h). H-012/H-021 rebal at 00:30 UTC Mar 22 (CORRECTED from Mar 21). H-046 rebal Mar 23.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,131 (+0.13%). Leverage 0.29x.
+- **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION**)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **H-011 ENTERED** at 00:00 UTC Mar 21. $49.8k notional (5x). First funding $2.51 collected. ~+27.5% ann.
+- **Internal paper trades:** 14 runners active. Session 58. Total equity: $139,837 (-0.12%).
+- **BTC at ~$70,510**. H-009 SHORT (-2.54%). H-021 best XS strat (+1.32%). 55 tested, 40 rejected.
+- **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (day 3, 2 snapshots).
+- **Next action:** **H-012 + H-021 rebal at 00:30 UTC Mar 22** (TOMORROW). H-046 rebal Mar 23. H-039 first trade Mar 24.
 - **Open user questions:** None
 
 ## Memory Files
@@ -490,3 +489,11 @@
 - Next: **Verify H-011 entry executed** (session 58). H-012/H-021 rebal at 00:30 UTC Mar 22. H-046 rebal Mar 22 bar. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: Corrected rebalance timing in state.md (H-012/H-021 off by 1 day).
+
+### Session 2026-03-21 review (session 58)
+- Goal: Review — verify H-011 entry, process Mar 20 bar, full system health check
+- Focus: H-011 entry verification, all strategy MTM update, IV data collection
+- Done: **H-011 ENTERED** at 00:00 UTC Mar 21 — $49.8k notional (5x), fee $50, first funding $2.51 collected (rate 0.005%, annualized ~+27.5%). R27 flipped to +0.000145%. 14/14 runners OK, Mar 20 bar processed. **Demo**: $100,131 (+0.13%). **Internal**: $139,837 (-0.12%). H-021 best +1.32%, H-009 worst -2.54% (SHORT, BTC $70,510). H-024 leads H-019 (+0.16% vs 0.00%). IV snapshot Mar 21 collected (2 days total). All systems operational.
+- Next: **H-012 + H-021 rebal at 00:30 UTC Mar 22**. H-046 rebal Mar 23. H-039 first trade Mar 24.
+- Questions added: none
+- Self-modifications: none
