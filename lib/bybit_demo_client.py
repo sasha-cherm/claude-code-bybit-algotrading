@@ -202,3 +202,46 @@ class DemoTrader:
             self.client.cancel_all_orders(**kwargs)
         except Exception as e:
             print(f"  [cancel] {e}")
+
+    # ── Spot ──────────────────────────────────────────────────────────────
+
+    def spot_market_order(
+        self,
+        symbol: str,
+        side: str,
+        qty: float,
+        quote: bool = False,
+    ) -> dict:
+        """
+        Place a spot market order.
+
+        Args:
+            symbol: Bybit symbol, e.g. 'BTCUSDT'
+            side: 'Buy' or 'Sell'
+            qty: base currency qty (e.g. BTC). If quote=True, qty is in USDT.
+            quote: if True, use marketUnit='quoteCoin' (buy with USDT amount)
+        """
+        params: dict = {
+            "category": "spot",
+            "symbol": symbol,
+            "side": side,
+            "orderType": "Market",
+            "qty": str(qty),
+        }
+        if quote:
+            params["marketUnit"] = "quoteCoin"
+        r = self.client.place_order(**params)
+        time.sleep(0.25)
+        return r
+
+    def get_spot_balance(self, coin: str) -> float:
+        """Get wallet balance for a coin (includes spot holdings in UTA)."""
+        try:
+            r = self.client.get_wallet_balance(accountType="UNIFIED", coin=coin)
+            coins = r["result"]["list"][0].get("coin", [])
+            for c in coins:
+                if c.get("coin") == coin:
+                    return float(c.get("walletBalance", 0) or 0)
+        except Exception as e:
+            print(f"  [spot balance] {coin}: {e}")
+        return 0.0

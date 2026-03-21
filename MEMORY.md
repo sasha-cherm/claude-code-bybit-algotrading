@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,163 (+0.16%). Leverage 0.29x.
-- **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION**)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 IN POSITION** since 00:00 UTC Mar 21. $49.8k notional (5x). First funding $2.51 collected. ~+27.5% ann.
-- **Internal paper trades:** 14 runners active. Session 59. Total equity: ~$139,913 (-0.06%).
-- **BTC at ~$70,510**. H-009 SHORT (-2.42%). H-021 best XS (+0.96%). H-049 worst (-0.71%). 55 tested, 40 rejected.
-- **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (2 IV snapshots, 1 OB snapshot).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 perp positions + BTC spot. Equity ~$100,131 (+0.13%). Leverage 0.29x.
+- **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION**,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **H-011 IN POSITION** since 00:00 UTC Mar 21. $49.8k notional (5x). Funding: $2.51 collected. Current rate 0.0068% (37.4% ann at 5x).
+- **Internal paper trades:** 14 runners active. Session 60. Total equity: ~$140,036 (+0.03%).
+- **BTC at ~$70,650**. H-021 best XS (+1.23%). H-053 second (+0.66%). H-046 worst (-0.17%). 55 tested, 40 rejected.
+- **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h (changed from 2h). IV/OB collectors running.
 - **Next action:** **H-012 + H-021 rebal at 00:30 UTC Mar 22** (TOMORROW). H-046 rebal Mar 23. H-039 first trade Mar 24.
 - **Open user questions:** None
 
@@ -505,3 +505,11 @@
 - Next: **H-012 + H-021 rebal at 00:30 UTC Mar 22**. H-046 rebal Mar 23. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-21 system+review (session 60)
+- Goal: System + Review — address user cron question, fix uncommitted leverage issue, MTM update
+- Focus: Cron schedule change, H-011 leverage revert, demo runner H-011 spot+perp management, full MTM
+- Done: **Cron changed from 2h → 4h** (user requested; research exhausted, paper trades hourly). **Reverted H-011 leverage 10x → 5x** (undocumented change from interrupted session; all backtests/metrics at 5x). Kept structural demo_portfolio_runner.py improvements (H-011 spot+perp leg management, spot_market_order in bybit_demo_client). 14/14 runners OK. **Demo**: $100,131 (+0.13%). **Internal**: ~$140,036 (+0.03%). H-021 best +1.23%, H-053 jumped +0.66% (second-best). **H-046 turned negative** (-0.17%, was +0.39%). H-049 recovering (-0.27%, was -0.71%). H-019/H-024 virtually tied (+0.23%/+0.28%). H-011 funding rate 0.0068% (37.4% ann at 5x). BTC $70,650.
+- Next: **H-012 + H-021 rebal at 00:30 UTC Mar 22**. H-046 rebal Mar 23. H-039 first trade Mar 24.
+- Questions added: none
+- Self-modifications: Cron 2h→4h. Reverted H-011 runner leverage 10→5. Fixed demo_portfolio_runner comments. Removed user input from CLAUDE.md.

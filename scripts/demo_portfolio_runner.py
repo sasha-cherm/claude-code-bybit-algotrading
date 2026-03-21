@@ -13,9 +13,10 @@ Architecture:
   - Individual runners continue computing signals + tracking internal P&L
   - This runner handles REAL execution (Bybit demo account)
   - Positions are netted across strategies per symbol to avoid conflicts
-  - H-011 (delta-neutral, 40% allocation) stays as cash buffer until signal fires
+  - H-011 (delta-neutral, 40%): spot BTC long (~$33k) + perp BTC short (~$33k at 5x)
+    managed here — spot via handle_h011_spot(), perp via extract_target_notionals()
 
-H-055 allocation: H-009(12%) H-011(40%,cash) H-021(7%) H-031(13%)
+H-055 allocation: H-009(12%) H-011(40%,spot+perp@5x) H-021(7%) H-031(13%)
                   H-039(9%) H-046(5%) H-052(8%) H-053(6%)
 """
 
@@ -35,7 +36,7 @@ TOTAL_CAPITAL = 100_000.0   # Demo account target capital (USDT)
 REBAL_LEVERAGE = 2          # Bybit leverage for all positions
 REBAL_THRESHOLD = 0.10      # Rebalance only if drift > 10% of target notional
 
-# H-055 strategy allocations (H-011 excluded from execution — cash buffer)
+# H-055 strategy allocations (H-011 handled separately — spot + perp legs)
 H055_WEIGHTS: dict[str, float] = {
     "h009": 0.12,   # BTC daily trend (vol-targeted)
     "h021": 0.07,   # Volume momentum XS
@@ -44,8 +45,14 @@ H055_WEIGHTS: dict[str, float] = {
     "h046": 0.05,   # Price acceleration XS
     "h052": 0.08,   # Premium index XS
     "h053": 0.06,   # Funding rate XS contrarian
-    # h011: 0.40 — delta-neutral, stays as cash; included when signal fires
+    # h011: 0.40 — managed separately via handle_h011_spot() + perp in extract_target_notionals()
 }
+
+# H-011 constants
+H011_WEIGHT    = 0.40
+H011_LEVERAGE  = 5.0
+H011_DIR       = "h011_funding_rate_arb"
+H011_SYMBOL    = "BTCUSDT"  # same symbol for spot and perp
 
 # Map strategy key → paper_trades directory name
 STRATEGY_DIRS: dict[str, str] = {
@@ -167,6 +174,17 @@ def extract_target_notionals() -> dict[str, float]:
                 sym = sym_to_bybit(sym_raw)
                 target[sym] = target.get(sym, 0.0) + notional
 
+    # H-011: add perp short to BTCUSDT when in position
+    h011_path = PAPER_DIR / H011_DIR / "state.json"
+    if h011_path.exists():
+        with open(h011_path) as f:
+            h011_st = json.load(f)
+        if h011_st.get("in_position"):
+            # Notional = capital * L / (L+1) so spot + perp margin = capital exactly
+            # e.g. $40k * 5/6 = $33,333 notional; spot=$33,333 + perp margin=$6,667 = $40k
+            h011_notional = H011_WEIGHT * TOTAL_CAPITAL * H011_LEVERAGE / (H011_LEVERAGE + 1)
+            target[H011_SYMBOL] = target.get(H011_SYMBOL, 0.0) - h011_notional
+
     return target
 
 
@@ -190,6 +208,58 @@ def save_portfolio_state(state: dict):
         json.dump(state, f, indent=2, default=str)
 
 
+# ── H-011 Spot Leg ────────────────────────────────────────────────────────
+
+def handle_h011_spot(trader, btc_price: float, in_position: bool):
+    """
+    Manage H-011 spot BTC leg on the demo account.
+
+    When H-011 is in_position: buy ~$33k of BTC spot (capital*L/(L+1)).
+    When H-011 is out: sell all BTC spot held for this strategy.
+    The perp short (~$33k at 5x) is handled via extract_target_notionals().
+    """
+    h011_capital = H011_WEIGHT * TOTAL_CAPITAL  # $40,000
+    # Notional = capital * L/(L+1) = $40k * 5/6 = $33,333 at 5x
+    h011_notional = h011_capital * H011_LEVERAGE / (H011_LEVERAGE + 1)
+    target_btc = round(h011_notional / btc_price, 5) if in_position else 0.0
+    current_btc = trader.get_spot_balance("BTC")
+
+    log(f"\nH-011 spot leg: in_position={in_position}, "
+        f"BTC held={current_btc:.5f}, target={target_btc:.5f} "
+        f"(${current_btc * btc_price:,.0f} / ${h011_notional:,.0f})")
+
+    if in_position and current_btc < target_btc * 0.90:
+        # Buy the missing BTC with USDT (targeting h011_notional, not full h011_capital)
+        buy_usdt = h011_notional - current_btc * btc_price
+        buy_usdt = round(max(buy_usdt, 0), 2)
+        if buy_usdt > 10:
+            log(f"  H-011 spot: buying ${buy_usdt:,.2f} USDT of BTC")
+            try:
+                r = trader.spot_market_order(H011_SYMBOL, "Buy", buy_usdt, quote=True)
+                if r.get("retCode") == 0:
+                    log(f"    ✓ orderId={r['result'].get('orderId', '?')}")
+                else:
+                    log(f"    ✗ {r.get('retMsg', 'unknown error')}")
+            except Exception as e:
+                log(f"    ✗ Exception: {e}")
+
+    elif not in_position and current_btc > 0.001:
+        # Sell all spot BTC (H-011 exited)
+        sell_qty = round(current_btc, 5)
+        log(f"  H-011 spot: selling {sell_qty} BTC")
+        try:
+            r = trader.spot_market_order(H011_SYMBOL, "Sell", sell_qty)
+            if r.get("retCode") == 0:
+                log(f"    ✓ orderId={r['result'].get('orderId', '?')}")
+            else:
+                log(f"    ✗ {r.get('retMsg', 'unknown error')}")
+        except Exception as e:
+            log(f"    ✗ Exception: {e}")
+
+    else:
+        log("  H-011 spot: no action needed")
+
+
 # ── Main ──────────────────────────────────────────────────────────────────
 
 def run():
@@ -197,6 +267,20 @@ def run():
     log("Demo Portfolio Runner starting")
 
     trader = DemoTrader()
+
+    # Load H-011 state early — needed to pre-set BTCUSDT leverage before any orders
+    h011_path = PAPER_DIR / H011_DIR / "state.json"
+    h011_in_position = False
+    if h011_path.exists():
+        with open(h011_path) as f:
+            h011_st = json.load(f)
+        h011_in_position = h011_st.get("in_position", False)
+    log(f"H-011: in_position={h011_in_position}")
+
+    # Pre-set BTCUSDT leverage to H011_LEVERAGE so perp short margin is correct.
+    # Must happen before any BTCUSDT market_order call (leverage is cached per session).
+    if h011_in_position:
+        trader.ensure_leverage(H011_SYMBOL, int(H011_LEVERAGE))
 
     # Account snapshot
     equity = trader.get_equity()
@@ -276,6 +360,13 @@ def run():
             log(f"    ✗ Exception: {e}")
 
     log(f"\nTrades executed this run: {trades_executed}")
+
+    # H-011 spot leg — buy/sell BTC spot to hedge the perp short
+    btc_price = prices.get(H011_SYMBOL, 0.0)
+    if btc_price > 0:
+        handle_h011_spot(trader, btc_price, h011_in_position)
+    else:
+        log("H-011 spot: no BTC price available, skipping")
 
     # Refresh equity after trades
     time_str = datetime.now(timezone.utc).isoformat()
