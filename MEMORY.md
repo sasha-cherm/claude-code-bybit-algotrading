@@ -1,12 +1,12 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,131 (+0.13%). Leverage 0.29x.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 positions. Equity ~$100,163 (+0.16%). Leverage 0.29x.
 - **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION**)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 ENTERED** at 00:00 UTC Mar 21. $49.8k notional (5x). First funding $2.51 collected. ~+27.5% ann.
-- **Internal paper trades:** 14 runners active. Session 58. Total equity: $139,837 (-0.12%).
-- **BTC at ~$70,510**. H-009 SHORT (-2.54%). H-021 best XS strat (+1.32%). 55 tested, 40 rejected.
-- **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (day 3, 2 snapshots).
+- **H-011 IN POSITION** since 00:00 UTC Mar 21. $49.8k notional (5x). First funding $2.51 collected. ~+27.5% ann.
+- **Internal paper trades:** 14 runners active. Session 59. Total equity: ~$139,913 (-0.06%).
+- **BTC at ~$70,510**. H-009 SHORT (-2.42%). H-021 best XS (+0.96%). H-049 worst (-0.71%). 55 tested, 40 rejected.
+- **AUTOMATED:** Paper trades hourly via cron. IV/OB depth collectors running (2 IV snapshots, 1 OB snapshot).
 - **Next action:** **H-012 + H-021 rebal at 00:30 UTC Mar 22** (TOMORROW). H-046 rebal Mar 23. H-039 first trade Mar 24.
 - **Open user questions:** None
 
@@ -494,6 +494,14 @@
 - Goal: Review — verify H-011 entry, process Mar 20 bar, full system health check
 - Focus: H-011 entry verification, all strategy MTM update, IV data collection
 - Done: **H-011 ENTERED** at 00:00 UTC Mar 21 — $49.8k notional (5x), fee $50, first funding $2.51 collected (rate 0.005%, annualized ~+27.5%). R27 flipped to +0.000145%. 14/14 runners OK, Mar 20 bar processed. **Demo**: $100,131 (+0.13%). **Internal**: $139,837 (-0.12%). H-021 best +1.32%, H-009 worst -2.54% (SHORT, BTC $70,510). H-024 leads H-019 (+0.16% vs 0.00%). IV snapshot Mar 21 collected (2 days total). All systems operational.
+- Next: **H-012 + H-021 rebal at 00:30 UTC Mar 22**. H-046 rebal Mar 23. H-039 first trade Mar 24.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-21 review (session 59)
+- Goal: Review — full system health check, MTM update, data collector verification
+- Focus: All 14 paper trades + demo account + IV/OB collectors
+- Done: 14/14 runners OK (no new daily bar since Mar 20). **Demo**: $100,163 (+0.16%), all drifts within threshold. **Internal MTM**: ~$139,913 (-0.06%). H-021 best XS +0.96%, H-049 worst -0.71% (contrarian OP short losing). **H-019 overtook H-024** (+0.54% vs +0.31%, comparison reversed). H-052 recovered -0.26%→-0.06%. IV collector: 2 snapshots OK. OB collector: 1 snapshot OK. H-011 still in position, $2.51 funding collected, next settlement 08:00 UTC.
 - Next: **H-012 + H-021 rebal at 00:30 UTC Mar 22**. H-046 rebal Mar 23. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: none
