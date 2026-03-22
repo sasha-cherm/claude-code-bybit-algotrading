@@ -1,17 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions. Equity ~$100,445 (+0.45%).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions. Equity ~$100,521 (+0.52%).
 - **H-055 allocation**: H-009(12%)/H-011(40%,OUT,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 OUT** — R27 at -0.11% ann. Indicated rate turning positive (+5.1%). Re-entry possible soon.
-- **Internal paper trades:** 16 runners active. Session 69. Total MTM: ~$150,595 (+0.40%).
-- **Top performers**: H-012 (+2.47%), H-049 (+2.39%), H-031 (+2.25%), H-053 (+2.00%). 8/16 positive, 2 flat.
-- **H-024 overtakes H-019**: -0.01% vs -0.56%. Beta factor pulling ahead of volatility factor.
-- **NEW H-062 deployed**: DD momentum factor (L60_R5_N3). WF 6/6, split-half stable. LONG NEAR/BTC/AVAX, SHORT SUI/ARB/OP.
-- **Research**: 4 hypotheses tested. H-062 CONFIRMED+deployed, H-061 CONDITIONAL, H-060+H-063 REJECTED.
-- **BTC at ~$68,752** (stable). H-046 worst (-0.86%), H-009 SHORT (-1.50%).
+- **H-011 OUT** — R27 at -0.11% ann. Re-entry projected Mar 23 08:00-16:00 UTC (big Mar 14 negatives dropping from window).
+- **Internal paper trades:** 16 runners active. Session 70. Total MTM: ~$160,984 (+0.62%).
+- **Top performers**: H-012 (+2.80%), H-049 (+2.46%), H-031 (+2.05%), H-053 (+1.89%), H-062 (+1.70%). 8/16 positive, 2 flat.
+- **H-019 vs H-024**: Virtual tie (-0.03% vs +0.06%). Both recovering.
+- **H-062 surging**: +1.70% in first day — DD momentum factor showing immediate strength.
+- **Research**: 8 hypotheses tested (H-064-H-071), all REJECTED. 71 total hypotheses, ~48 rejected. All price/volume/OI/funding/premium/LSR sources exhausted.
+- **BTC at ~$68,084** (down from $68,752). H-046 worst (-0.65%), H-009 SHORT (-1.12%).
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
-- **Next action:** H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-062 rebal Mar 26. H-059 rebal Mar 28.
+- **Next action:** H-046 rebal tonight (00:30 UTC Mar 23). H-011 re-entry Mar 23 08:00-16:00. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-062 rebal Mar 26. H-059 rebal Mar 28.
 - **Open user questions:** None
 
 ## Memory Files
@@ -589,3 +589,11 @@
 - Next: H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27 (may re-enter soon).
 - Questions added: none
 - Self-modifications: Added H-062 runner to cron orchestrator
+
+### Session 2026-03-22 review+research (session 70)
+- Goal: Review + Research — full MTM update, H-011 R27 analysis, 8 novel factor hypotheses
+- Focus: Paper trade monitoring, H-011 re-entry projection, exhaustive novel factor research
+- Done: 16/16 runners OK. Demo $100,521 (+0.52%). Internal MTM $160,984 (+0.62%). BTC $68,084 (down $668). **H-011 R27 deep projection**: Re-entry likely Mar 23 08:00-16:00 UTC — big negative rates from Mar 14 (-3.8%, -6.7%, -9.6% ann) dropping from R27 window. Rate at 08:00 only needs to be > -3.2% ann. **H-062 surging** +1.70% in day 1. **H-019/H-024 virtual tie** (-0.03% vs +0.06%). **RESEARCH (8 hypotheses, all REJECTED)**: H-064 (weekend effect) — no day-of-week signal in crypto. H-065 (sector rotation) — 0.611 corr H-012, 0.515 corr H-031 (redundant). H-066 (intraday range) — 50% positive = noise. H-067 (Amihud illiquidity) — 0.910 corr H-031 (identical to size factor). H-068 (open-close gap) — artifact in 24/7 markets. H-069 (extreme move freq) — WF 6/6 but OOS 0.24, fee-fragile. H-070 (vol-of-vol) — 50% noise. H-071 (return-volume corr) — 50% noise. All price/vol/OI/funding/premium/LSR data sources now fully explored. 71 hypotheses tested, ~48 rejected.
+- Next: Verify H-046 rebal tonight (00:30 UTC). H-011 re-entry Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. Future alpha requires IV surface + OB depth data (collecting, need 60-90 days).
+- Questions added: none
+- Self-modifications: none

@@ -245,6 +245,54 @@
 - Idea: Rank by lag-1 return autocorrelation. Neither direction worked reliably. Best: 42% positive, Sharpe 1.08 but inconsistent.
 - Sessions: [2026-03-22 research session 69]
 
+## H-064: Weekend Effect Cross-Sectional Factor (14 Assets)
+- Status: REJECTED — no signal
+- Idea: Test if crypto assets behave differently on weekends vs weekdays. XS weekend momentum/reversal.
+- Result: No asset shows significant weekend vs weekday return difference (all p>0.2). Monday returns also non-significant (best: XRP p=0.123). No exploitable day-of-week effect beyond H-039 (already captured).
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-065: Crypto Sector Rotation Factor
+- Status: REJECTED — redundant with momentum/size
+- Idea: Group 14 assets into sectors (L1/L2/Payment/DeFi), rotate based on sector momentum.
+- Result: IS Sharpe 1.77, OOS 0.98 for best setting (LB=30 REB=10). WF 3/4. 90% params positive. BUT: corr 0.611 with H-012, 0.515 with H-031, 0.655 with static Payment/L2 bet. Only 4 sectors with 0.78-0.90 correlations — essentially a coarser version of existing momentum/size.
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-066: Intraday Range Factor (14 Assets)
+- Status: REJECTED — no signal
+- Idea: Rank assets by (high-low)/close ratio. Test narrow-range (accumulation) vs wide-range (breakout) directions.
+- Result: 50% params positive (24/48) — exactly random. Mirror image pattern: narrow_long and wide_long are perfect inverses. No edge.
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-067: Amihud Illiquidity Factor (14 Assets)
+- Status: REJECTED — redundant with size factor
+- Idea: Rank by |return|/volume (Amihud illiquidity ratio). Test illiquidity premium vs liquidity preference.
+- Result: Liquid_long direction has 100% positive params, best Sharpe 1.90, WF 3/4. BUT: corr **0.910** with H-031 (size). Always LONG BTC/ETH/SOL/XRP (liquid=large), SHORT DOT/OP/ARB/ATOM (illiquid=small). Identical to size factor.
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-068: Open-Close Gap Factor (14 Assets)
+- Status: REJECTED — no signal (artifact)
+- Idea: Rank by average open-close gap. Gap momentum or reversal.
+- Result: 100% params positive (48/48) BUT both directions identical — gap_up_long and gap_down_long produce same results. In 24/7 crypto markets, open ≈ previous close, so gap is ~0 and rankings are arbitrary. Artifact, not signal.
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-069: Extreme Move Frequency Factor (14 Assets)
+- Status: REJECTED — OOS degrades, fee fragile
+- Idea: Count days with |return| > 2*rolling_std in recent window. Long assets with more extreme moves (attention/regime signal).
+- Result: 78% params positive, best Sharpe 2.63, WF **6/6** positive (mean 3.09). BUT: split-half 4.11→0.20 (collapses), 70/30 OOS 0.24, fee-fragile (2x fees Sharpe 0.10). Corr 0.40 H-012, 0.43 H-062.
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-070: Volatility-of-Volatility Factor (14 Assets)
+- Status: REJECTED — no signal
+- Idea: Rank by std of rolling volatility (vol-of-vol). Test if stable-vol or unstable-vol assets outperform.
+- Result: 50% params positive (24/48) — noise. Both directions roughly mirrored.
+- Sessions: [2026-03-22 review+research session 70]
+
+## H-071: Return-Volume Correlation Factor (14 Assets)
+- Status: REJECTED — no signal
+- Idea: Rank by rolling correlation between returns and volume. Positive corr = healthy trend.
+- Result: 50% params positive (12/24) — noise. Best individual Sharpe 1.57 but no consistency.
+- Sessions: [2026-03-22 review+research session 70]
+
 ## H-056: Short-Term Reversal Factor (1-5 Day, 14 Assets)
 - Status: REJECTED
 - Idea: Cross-sectional reversal — long recent losers (1-5d), short winners. Anti-correlated with momentum.
