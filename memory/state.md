@@ -192,20 +192,35 @@ All drifts within threshold, 0 trades this run.
 - **Correlations**: 0.312 H-012, **0.034 H-019** (near zero — excellent diversifier)
 - **Data source**: Price-derived realized volatility only — no external data needed.
 
-## Portfolio Summary (live mark-to-market 2026-03-22 session 68, 13:04 UTC)
-- **Bybit Demo**: $100,392 (+0.39%) — 14 perp positions. Total unrealized PnL +$436.
-- **Total internal MTM (15 strats)**: ~$150,419 (+0.28%). BTC at $68,784 (stable from session 67).
-- **H-009**: $9,843 (-1.57%, SHORT) | **H-011**: $9,899 (-1.01%, **OUT**, R27 -0.1% ann) | **H-012**: $10,194 (+1.94%) | **H-019**: $9,979 (-0.21%) | **H-021**: $10,131 (+1.31%)
-- **H-024 (comparison)**: $9,975 (-0.25%) — H-019 -0.21% vs H-024 -0.25%. **H-019 leads slightly** — close race.
-- **H-031 (independent)**: $10,200 (+2.00%) | **H-032 (independent)**: $10,000 (flat)
+### H-062: Max Drawdown Momentum Factor (14 Assets) — NEW, independent
+- **Status**: LIVE paper trade (started 2026-03-22) — independent
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG (near 60d peak): NEAR, BTC, AVAX
+  - SHORT (deep drawdown): SUI, ARB, OP
+- **Mark equity**: $9,976 (-0.24%) — just deployed, fee drag only
+- **Runner**: `paper_trades/h062_dd_momentum/runner.py`
+- **Params**: L60_R5_N3 (60-day lookback, 5-day rebalance, top/bottom 3, long near-peak)
+- **Next rebal**: 2026-03-26 (5 days)
+- **Backtest (full 2yr)**: IS Sharpe 1.67, +44.9% ann, 21.2% DD. WF **6/6 positive** (mean 2.23). Split-half: 1.59/1.79 (stable). Fee-robust (1.36 at 5x fees). 92% params positive.
+- **Correlations**: **0.600 H-012** (high — momentum variant), -0.044 H-021, 0.424 H-019
+- **Data source**: Price-derived (distance from 60-day peak) — no external data needed.
+
+## Portfolio Summary (live mark-to-market 2026-03-22 session 69, 17:17 UTC)
+- **Bybit Demo**: $100,445 (+0.45%) — 14 perp positions. Total unrealized PnL +$464.
+- **Total internal MTM (16 strats)**: ~$150,595 (+0.40%). BTC at $68,752 (stable).
+- **H-009**: $9,850 (-1.50%, SHORT) | **H-011**: $9,899 (-1.01%, **OUT**, R27 -0.11% ann) | **H-012**: $10,247 (+2.47%) | **H-019**: $9,944 (-0.56%) | **H-021**: $10,112 (+1.12%)
+- **H-024 (comparison)**: $9,999 (-0.01%) — H-019 -0.56% vs H-024 -0.01%. **H-024 now leads**.
+- **H-031 (independent)**: $10,225 (+2.25%) | **H-032 (independent)**: $10,000 (flat)
 - **H-037 (Polymarket, manual)**: $0 (no trades) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
-- **H-044 (OI divergence)**: $10,063 (+0.63%) | **H-046 (Acceleration)**: $9,895 (-1.05%)
-- **H-049 (LSR sentiment)**: $10,204 (+2.04%) | **H-052 (Premium)**: $9,983 (-0.17%)
-- **H-053 (Funding XS)**: $10,177 (+1.77%) | **H-059 (Vol Term)**: $9,929 (-0.71%, day 1)
-- **Paper trade age**: H-009/H-011/H-012: 6 days / 28 required. H-019/H-021/H-024: 4 days. H-031/H-032/H-039: 3 days. H-044/H-046/H-049/H-052/H-053: 2 days. H-059: 0 days.
-- **Top performers**: H-049 (+2.04%), H-031 (+2.00%), H-012 (+1.94%), H-053 (+1.77%), H-021 (+1.31%). 9/15 positive or flat, 6 negative.
-- **H-046 worst** at -1.05% — acceleration factor struggling. H-009 also negative (-1.57%) but SHORT recovering with BTC decline.
-- **H-055 re-optimized with H-059**: H-059 gets 10-14% allocation in all optimal portfolios. Best 8-strat Sharpe 8.02. H-059 has uniquely low correlations with core portfolio.
+- **H-044 (OI divergence)**: $10,118 (+1.18%) | **H-046 (Acceleration)**: $9,914 (-0.86%)
+- **H-049 (LSR sentiment)**: $10,239 (+2.39%) | **H-052 (Premium)**: $9,940 (-0.60%)
+- **H-053 (Funding XS)**: $10,200 (+2.00%) | **H-059 (Vol Term)**: $9,908 (-0.92%, day 1)
+- **H-062 (DD Mom, NEW)**: $9,976 (-0.24%, day 0)
+- **Paper trade age**: H-009/H-011/H-012: 6 days / 28 required. H-019/H-021/H-024: 4 days. H-031/H-032/H-039: 3 days. H-044/H-046/H-049/H-052/H-053: 2 days. H-059: 0.5 days. H-062: 0 days.
+- **Top performers**: H-012 (+2.47%), H-049 (+2.39%), H-031 (+2.25%), H-053 (+2.00%), H-044 (+1.18%). 8/16 positive, 2 flat, 6 negative.
+- **H-024 overtakes H-019**: H-024 now -0.01% vs H-019 -0.56%. Beta factor pulling ahead of volatility factor.
+- **H-055 re-optimized with H-059**: H-059 gets 10-14% in all optimal allocations. Best 8-strat Sharpe 8.02.
+- **Research**: H-062 (DD momentum) CONFIRMED + deployed. H-061 (IVOL) CONDITIONAL. H-060 (skewness) REJECTED. H-063 (autocorrelation) REJECTED.
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9

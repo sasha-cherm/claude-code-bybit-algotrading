@@ -1,0 +1,20 @@
+[
+  {
+    "type": "rebalance",
+    "time": "2026-03-22T17:17:16.824650+00:00",
+    "date": "2026-03-21",
+    "longs": [
+      "NEAR/USDT",
+      "BTC/USDT",
+      "AVAX/USDT"
+    ],
+    "shorts": [
+      "SUI/USDT",
+      "ARB/USDT",
+      "OP/USDT"
+    ],
+    "trades": 6,
+    "fees": 20.0,
+    "capital": 9980.0
+  }
+]

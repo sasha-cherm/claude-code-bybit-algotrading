@@ -189,10 +189,61 @@
   - **Recommendation**: BTC-only variant (H-009) is paper-trade ready. Multi-asset needs better selection method.
 - Sessions: [2026-03-16 backtest, 2026-03-16 analyze]
 
+## H-062: Max Drawdown Momentum Factor (14 Assets)
+- Status: LIVE (paper trade since 2026-03-22)
+- Idea: Rank assets by distance from 60-day peak. Long top 3 (nearest peak = momentum winners), short bottom 3 (deepest drawdown = losers). Momentum variant using peak distance rather than raw returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: For each asset, compute price / 60-day-high - 1. Rank. Long top 3 (nearest peak), short bottom 3 (farthest from peak). Lagged (t-1).
+- Data: 14 assets, 740 daily bars (~2yr).
+- Result:
+  - **IS (full)**: Sharpe 1.67, +44.9% ann, 21.2% DD
+  - **Param robustness**: **33/36 positive (92%)** — exceptionally strong
+  - **Walk-forward**: **6/6 positive**, mean OOS Sharpe **2.23**, min 0.15, max 4.04
+  - **Split-half**: 1.59 / 1.79 — **stable across both halves**
+  - **70/30 split**: IS 1.15, OOS 3.41 — OOS outperforms IS
+  - **Fee sensitivity**: 1.36 at 5x fees (very robust)
+  - **Correlation with H-012**: **0.600** (high — momentum variant)
+  - **Correlation with H-019**: 0.424, H-021: -0.044
+  - **Portfolio contribution**: Adding to 3-factor base improves Sharpe 1.15 → 1.49, gets 58% weight
+- Notes: Strongest validation of any new factor. Essentially captures momentum from a different angle (distance from peak vs cumulative return). High correlation with H-012 but better standalone metrics (6/6 WF vs 5/6). Deployed as independent paper trade for comparison.
+- Sessions: [2026-03-22 research session 69]
+
+## H-061: Idiosyncratic Volatility Factor (14 Assets)
+- Status: CONDITIONAL — strong OOS but regime-dependent
+- Idea: Regress each alt's returns on BTC (market factor). Rank by residual volatility. Long low-IVOL (stable alphas), short high-IVOL (lottery-ticket alts).
+- Instrument: futures (13 perps, excludes BTC)
+- Timeframe: 1D
+- Logic: For each alt, OLS regress daily returns on BTC returns over lookback. Compute std(residuals) = idiosyncratic vol. Rank. Long lowest 5, short highest 5.
+- Data: 14 assets, 740 daily bars (~2yr).
+- Result:
+  - **IS (full)**: Best Sharpe 1.10, +18.8% ann, 19.9% DD (L20_R10_N5)
+  - **Param robustness**: **27/36 positive (75%)**
+  - **Walk-forward**: 5/6 positive, mean OOS Sharpe 1.76
+  - **Split-half**: H1 0.08 / H2 2.49 — **only works in second half (regime-dependent)**
+  - **70/30 split**: IS 0.29, OOS 3.82 — OOS massively better (suspicious)
+  - **Fee sensitivity**: 1.00 at 5x fees (very robust — low turnover R10)
+  - **Correlation with H-019**: **0.563** (related to low-vol factor)
+  - **Correlation with H-012**: -0.167 (negative — good diversifier from momentum)
+  - **Portfolio contribution**: Adding replaces H-019 entirely, improves Sharpe 1.15 → 1.46
+- Notes: Low-IVOL puzzle exists in crypto. However, the signal only works in the second half of the sample (2025+). Could be a regime shift or could be a spurious result. Need to observe before deploying. Would replace H-019 in portfolio if confirmed.
+- Sessions: [2026-03-22 research session 69]
+
 ## Confirmed
 (none)
 
 ## Rejected
+
+## H-060: Return Skewness Factor (14 Assets)
+- Status: REJECTED — OOS decay, redundant with momentum
+- Idea: Rank assets by return skewness. Long positive-skew (upside potential), short negative-skew.
+- Result: 72% params positive, best Sharpe 1.52. But OOS: IS 2.10 → OOS 0.02 (decays). Split-half: 2.84/0.14 (unstable). Corr 0.609 with H-012 (essentially momentum). Rejected.
+- Sessions: [2026-03-22 research session 69]
+
+## H-063: Return Autocorrelation Factor (14 Assets)
+- Status: REJECTED — weak, no clear direction
+- Idea: Rank by lag-1 return autocorrelation. Neither direction worked reliably. Best: 42% positive, Sharpe 1.08 but inconsistent.
+- Sessions: [2026-03-22 research session 69]
 
 ## H-056: Short-Term Reversal Factor (1-5 Day, 14 Assets)
 - Status: REJECTED

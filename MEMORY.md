@@ -1,15 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions. Equity ~$100,392 (+0.39%).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions. Equity ~$100,445 (+0.45%).
 - **H-055 allocation**: H-009(12%)/H-011(40%,OUT,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 OUT** — R27 at -0.1% ann (razor-thin negative). Last 3 funding rates strongly negative. Re-entry uncertain.
-- **Internal paper trades:** 15 runners active. Session 68. Total MTM: ~$150,419 (+0.28%).
-- **Top performers**: H-049 (+2.04%), H-031 (+2.00%), H-012 (+1.94%), H-053 (+1.77%). 9/15 positive or flat.
-- **H-055 re-optimized with H-059**: H-059 gets 10-14% in all optimal allocations. Best 8-strat Sharpe 8.02. Keep monitoring.
-- **BTC at ~$68,784** (stable). H-046 worst (-1.05%), H-009 SHORT (-1.57%) recovering.
+- **H-011 OUT** — R27 at -0.11% ann. Indicated rate turning positive (+5.1%). Re-entry possible soon.
+- **Internal paper trades:** 16 runners active. Session 69. Total MTM: ~$150,595 (+0.40%).
+- **Top performers**: H-012 (+2.47%), H-049 (+2.39%), H-031 (+2.25%), H-053 (+2.00%). 8/16 positive, 2 flat.
+- **H-024 overtakes H-019**: -0.01% vs -0.56%. Beta factor pulling ahead of volatility factor.
+- **NEW H-062 deployed**: DD momentum factor (L60_R5_N3). WF 6/6, split-half stable. LONG NEAR/BTC/AVAX, SHORT SUI/ARB/OP.
+- **Research**: 4 hypotheses tested. H-062 CONFIRMED+deployed, H-061 CONDITIONAL, H-060+H-063 REJECTED.
+- **BTC at ~$68,752** (stable). H-046 worst (-0.86%), H-009 SHORT (-1.50%).
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
-- **Next action:** H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28.
+- **Next action:** H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-062 rebal Mar 26. H-059 rebal Mar 28.
 - **Open user questions:** None
 
 ## Memory Files
@@ -579,3 +581,11 @@
 - Next: H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28. Monitor H-011 R27.
 - Questions added: none
 - Self-modifications: Added H-059 to H-055 portfolio optimizer (gen_h059_returns function)
+
+### Session 2026-03-22 review+research (session 69)
+- Goal: Review + Research — MTM update, H-011 R27 check, 4 new factor hypotheses
+- Focus: Paper trade monitoring, new cross-sectional factor research
+- Done: 16/16 runners OK. Demo $100,445 (+0.45%). Internal MTM $150,595 (+0.40%). BTC $68,752 (stable). H-011 R27 -0.11% ann (still OUT), indicated rate +5.1% (turning positive). **H-024 overtakes H-019** (-0.01% vs -0.56%). **RESEARCH (4 hypotheses)**: H-060 (return skewness) REJECTED — OOS decays, 0.609 corr with H-012. H-061 (idiosyncratic vol) CONDITIONAL — strong OOS but only works in second half, 0.563 corr with H-019. **H-062 (DD momentum) CONFIRMED** — WF 6/6 (mean 2.23), split-half stable (1.59/1.79), 92% params positive, Sharpe 1.67. Deployed paper trade: LONG NEAR/BTC/AVAX, SHORT SUI/ARB/OP. H-063 (autocorrelation) REJECTED — weak signal.
+- Next: H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27 (may re-enter soon).
+- Questions added: none
+- Self-modifications: Added H-062 runner to cron orchestrator
