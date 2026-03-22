@@ -1,13 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 perp positions + BTC spot. Equity ~$100,108 (+0.11%). Unrealized PnL +$345.
-- **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION**,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 IN POSITION** since 00:00 UTC Mar 21. $49.8k notional (5x). Funding net $3.29 (3 settlements). R27 +0.000559%, projected +0.000425% post-midnight (holds but declining). Indicated -0.0079%.
-- **Internal paper trades:** 14 runners active. Session 64. Total equity: ~$139,914 (-0.06%).
-- **BTC at ~$70,446**. H-021 best XS (+0.96%). H-049 worst (-0.71%). H-009 SHORT at -2.42%. 9/14 positive or flat.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 perp positions + BTC spot. Equity ~$100,270 (+0.27%). Unrealized PnL +$1,240.
+- **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION but EXIT IMMINENT**,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **H-011 EXIT IMMINENT**: R27 +0.000362% (razor-thin). Indicated rate -0.0152%. R27 projected **negative** after 08:00 UTC → auto-exit at next cron. Net funding -$1.50 this entry.
+- **Internal paper trades:** 14 runners active. Session 65. Total equity: ~$140,236 (+0.17%).
+- **BTC at ~$68,973** (down 2.1%). H-021 best XS (+1.64%). H-009 SHORT -2.10%. H-049 recovered +0.55%. 10/14 positive or flat.
+- **H-012/H-021 REBALANCED** at 00:30 UTC Mar 22. Demo rebalanced (7 trades). H-012: SOL→ETH swap in shorts. H-021: 6/8 positions changed.
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
-- **Next action:** **H-012 + H-021 rebal at 00:30 UTC Mar 22** (~3h). H-046 rebal Mar 23. H-039 first trade Mar 24.
+- **Next action:** **H-011 likely exits ~08:00 UTC Mar 22.** H-046 rebal Mar 23. H-039 first trade Mar 24.
 - **Open user questions:** None
 
 ## Memory Files
@@ -543,5 +544,13 @@
 - Focus: All 14 paper trades + demo account + H-011 funding rate deep-dive
 - Done: 14/14 runners OK (no new daily bar since Mar 20). **Demo**: $100,108 (+0.11%). **Internal MTM**: ~$139,914 (-0.06%). BTC $70,446 (up from $70,230). H-021 best XS (+0.96%). H-049 worst (-0.71%). **H-044 reversed** from +0.57% to -0.16% (BTC rally hurt OI divergence). **H-019 leads H-024** again (+0.54% vs +0.31%). H-011 R27 +0.000559%, projected +0.000425% post-midnight (holds but slowly declining). Indicated rate -0.0079%, will pay ~$3.93. 9/14 positive or flat. IV: 2 snapshots. OB: 1 snapshot. All cron operational. H-012/H-021 rebalances in ~3h.
 - Next: **Verify H-012 + H-021 rebalances executed** (session 65). H-046 rebal Mar 23. H-039 first trade Mar 24.
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-22 review (session 65)
+- Goal: Review — verify H-012/H-021 rebalances, full system health check, H-011 R27 analysis
+- Focus: Post-rebalance verification, H-011 exit projection, full MTM update
+- Done: 14/14 runners OK. Mar 21 bar processed. **H-012 REBALANCED**: SOL→ETH swap in shorts, longs unchanged (BTC/NEAR/ATOM/AVAX). **H-021 REBALANCED**: major reshuffle, BTC→longs, SOL/AVAX/DOGE→shorts (6/8 changed). Demo rebalanced with 7 trades, equity $100,270 (+0.27%). **H-011 EXIT IMMINENT**: R27 +0.000362% (razor-thin), indicated rate -0.0152%, projected R27 -0.000387% after 08:00 UTC → exit. Net funding -$1.50 this entry (collected $4.43, paid $5.93). BTC dropped to $68,973 (-2.1%). Internal MTM: $140,236 (+0.17%). H-021 best +1.64%. H-049 strong recovery -0.71%→+0.55%. 10/14 positive or flat.
+- Next: **H-011 likely exits ~08:00 UTC Mar 22** (cron will auto-execute). H-046 rebal Mar 23. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: none
