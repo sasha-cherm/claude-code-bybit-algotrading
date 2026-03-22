@@ -78,27 +78,28 @@
 - Notes: Re-analyzed per user request to report each asset independently (not just cross-asset consensus). Report script: `strategies/polymarket_research/h054_per_asset_report.py`. Edge ~4-7% above 50% — only viable if Polymarket prices at ~50c.
 - Sessions: [2026-03-20 research], [2026-03-20 research — per-asset independent report]
 
-## H-055: Comprehensive Portfolio Optimization (12 Strategies)
+## H-055: Comprehensive Portfolio Optimization (14 Strategies)
 - Status: CONFIRMED
-- Idea: Full mean-variance portfolio optimization across all 12 deployable strategies (excluding H-049 due to only 200 days of data). Find optimal allocations using max Sharpe, risk parity, and exhaustive N-strategy subset search.
+- Idea: Full mean-variance portfolio optimization across all 14 deployable strategies. Find optimal allocations using max Sharpe, risk parity, and exhaustive N-strategy subset search.
 - Instrument: portfolio of all instruments
 - Timeframe: daily (portfolio-level)
 - Logic: Generate daily return series for each strategy on 2yr data. Build full correlation matrix. Optimize using scipy constrained optimization. Test N-strategy subsets exhaustively.
-- Data: 12 strategies, 700 overlapping daily bars (2024-04-16 to 2026-03-16).
+- Data: 14 strategies, 195 overlapping daily bars (2025-09-03 to 2026-03-16, limited by H-049 data).
 - Result:
-  - **Current 5-strat portfolio**: Sharpe 2.58, +35.3%, 13.9% DD
-  - **H-024 replacing H-019**: Sharpe 3.35, +46.9%, 13.6% DD (+30% Sharpe improvement)
-  - **Best 5-strat**: H-011(40%)/H-021(14%)/H-031(19%)/H-052(16%)/H-053(11%) → **Sharpe 4.77, +62.6%, 7.5% DD**
-  - **Best 6-strat**: + H-039(14%) → Sharpe 4.95, +55.8%, 7.4% DD
-  - **Best 8-strat**: H-009(12%)/H-011(40%)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%) → **Sharpe 5.13, +46.0%, 7.3% DD**
-  - **Optimal 12 (40% cap)**: Sharpe 5.14, +46.3%, 7.8% DD
-  - **Equal weight 12**: Sharpe 2.81, +36.2%, 16.8% DD
-  - **H-012 (momentum) DROPPED from optimal**: replaced by H-031 (size, corr 0.517, higher Sharpe 2.48 vs 0.93)
-  - **H-019 (low vol) DROPPED from optimal**: replaced by H-024 (beta, corr 0.657, Sharpe 2.21 vs 0.40) and H-052/H-053
-  - **Key correlations**: H-019/H-024: 0.657, H-012/H-031: 0.517, H-052/H-053: 0.377, H-012/H-044: 0.467
-  - **Risk parity**: Sharpe 5.73 — over-allocates to H-009 (low vol) and under-allocates to H-011 (high Sharpe)
-- Notes: This is full-sample optimization (in-sample). Actual OOS Sharpe will be lower. The proposed 8-strat portfolio roughly doubles the current 5-strat Sharpe from 2.58 to 5.13 while halving max drawdown from 13.9% to 7.3%. Major improvements come from (1) adding H-052 premium and H-053 funding XS as diversifiers, (2) replacing H-012 with H-031, (3) adding H-039 DOW seasonality. Still need 4+ weeks of paper trading before implementing.
-- Sessions: [2026-03-20 research session 50]
+  - **Current 5-strat portfolio**: Sharpe 4.32, +55.6%, 4.7% DD
+  - **H-024 replacing H-019**: Sharpe 4.76, +61.8%, 4.0% DD
+  - **Optimal 14 (40% cap)**: Sharpe 7.74, +64.4%, 1.2% DD — H-011(40%)/H-039(12%)/H-059(12%)/H-053(9%)/H-044(9%)/H-021(5%)/H-049(5%)
+  - **Best 5-strat (no H-011)**: H-021/H-024/H-039/H-049/H-053 → **Sharpe 7.88, +146.9%, 3.6% DD**
+  - **Best 7-strat**: H-011(50%)/H-021/H-024/H-039/H-044/H-053/H-059 → **Sharpe 7.96, +58.2%, 1.1% DD**
+  - **Best 8-strat**: H-011(50%)/H-021(4%)/H-024(4%)/H-039(11%)/H-044(10%)/H-049(3%)/H-053(8%)/H-059(11%) → **Sharpe 8.02, +58.6%, 1.1% DD**
+  - **Equal weight 14**: Sharpe 5.96, +88.2%, 4.0% DD
+  - **Risk parity 14**: Sharpe 6.04, +72.4%, 3.2% DD
+  - **H-059 appears in ALL optimal allocations** at 10-14% weight — uniquely low correlations with core
+  - **H-059 key correlations**: -0.109 H-011, -0.107 H-044, -0.148 H-049, 0.003 H-046, 0.036 H-039
+  - **H-044 (OI divergence) gains importance**: appears in best 7-strat and 8-strat
+  - **H-012 and H-019 still drop** from optimal — replaced by H-024, H-031, H-059
+- Notes: Updated session 68 to include H-059 (vol term structure). The 195-day common period (limited by H-049) may inflate Sharpe numbers vs the full 700-day optimization. H-059 is a strong diversifier — its vol-expansion signal captures something fundamentally different from positioning/momentum factors. Still need 4+ weeks of paper trading before implementing any allocation changes.
+- Sessions: [2026-03-20 research session 50, 2026-03-22 research session 68]
 
 ## H-059: Volatility Term Structure Factor (Expansion-Long, 14 Assets)
 - Status: LIVE (paper trade since 2026-03-22)

@@ -1,11 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions (BTC spot sold). Equity ~$100,306 (+0.31%).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions. Equity ~$100,392 (+0.39%).
 - **H-055 allocation**: H-009(12%)/H-011(40%,OUT,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 EXITED** at 08:00 UTC Mar 22. R27 went negative. Capital $9,899 (-1.01%). Demo spot sell bug fixed (floor-rounding).
-- **Internal paper trades:** 15 runners active. Session 67. Total MTM: ~$150,159 (+0.11%).
-- **BTC at ~$68,774** (dropping). H-012 best (+1.65%). H-024 overtakes H-019 again (-0.53% vs -0.73%). 8/15 positive.
+- **H-011 OUT** — R27 at -0.1% ann (razor-thin negative). Last 3 funding rates strongly negative. Re-entry uncertain.
+- **Internal paper trades:** 15 runners active. Session 68. Total MTM: ~$150,419 (+0.28%).
+- **Top performers**: H-049 (+2.04%), H-031 (+2.00%), H-012 (+1.94%), H-053 (+1.77%). 9/15 positive or flat.
+- **H-055 re-optimized with H-059**: H-059 gets 10-14% in all optimal allocations. Best 8-strat Sharpe 8.02. Keep monitoring.
+- **BTC at ~$68,784** (stable). H-046 worst (-1.05%), H-009 SHORT (-1.57%) recovering.
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
 - **Next action:** H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28.
 - **Open user questions:** None
@@ -569,3 +571,11 @@
 - Next: H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28. Monitor H-011 R27 for re-entry.
 - Questions added: none
 - Self-modifications: Fixed floor-rounding bug in demo_portfolio_runner.py handle_h011_spot()
+
+### Session 2026-03-22 review+research (session 68)
+- Goal: Review + Research — full MTM update, H-011 R27 check, H-055 re-optimization with H-059
+- Focus: Paper trade monitoring, portfolio optimization research
+- Done: 15/15 runners OK. Demo $100,392 (+0.39%). Internal MTM $150,419 (+0.28%). BTC $68,784 (stable). **Top**: H-049 (+2.04%), H-031 (+2.00%), H-012 (+1.94%), H-053 (+1.77%). **Worst**: H-046 (-1.05%), H-059 (-0.71%, day 1). H-011 R27 at -0.1% ann — razor-thin negative, last 3 rates strongly negative (-2.5%, -10.5%, -6.6% ann), re-entry unlikely without BTC stabilization. **H-055 re-optimized with H-059**: H-059 appears in ALL optimal allocations at 10-14% weight. Best 8-strat: H-011/H-021/H-024/H-039/H-044/H-049/H-053/H-059 → Sharpe 8.02, +58.6%, 1.1% DD (195-day common period). H-059 has uniquely low/negative correlations with portfolio core (-0.109 H-011, -0.107 H-044, -0.148 H-049).
+- Next: H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28. Monitor H-011 R27.
+- Questions added: none
+- Self-modifications: Added H-059 to H-055 portfolio optimizer (gen_h059_returns function)

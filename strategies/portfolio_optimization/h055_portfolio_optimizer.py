@@ -1,7 +1,7 @@
 """
 H-055: Comprehensive Portfolio Optimization
 
-Generate daily return series for all 13 deployable strategies,
+Generate daily return series for all 14 deployable strategies,
 compute the full correlation matrix, and find optimal allocations
 using mean-variance optimization with various constraints.
 
@@ -19,6 +19,7 @@ Strategies:
   H-049: LSR Sentiment Contrarian (5d rebal, top/bot 3) [only 200 days]
   H-052: Premium Index Contrarian (5d window, 5d rebal, top/bot 4)
   H-053: Funding Rate XS Contrarian (3d window, 10d rebal, top/bot 4)
+  H-059: Volatility Term Structure (7d/30d vol ratio, 7d rebal, top/bot 5)
 """
 
 import sys, os
@@ -509,6 +510,19 @@ def gen_h053_returns(closes):
     return run_xs_factor(closes_sub, ranking, rebal_freq=10, n_long=4, warmup=10)
 
 
+# ── H-059: Volatility Term Structure Factor ──
+
+def gen_h059_returns(closes):
+    """Generate H-059 daily return series.
+    Long assets with expanding vol (short/long ratio > 1),
+    short assets with contracting vol."""
+    daily_rets = closes.pct_change()
+    short_vol = daily_rets.rolling(7).std()
+    long_vol = daily_rets.rolling(30).std()
+    vol_ratio = short_vol / long_vol  # > 1 means expanding vol
+    return run_xs_factor(closes, vol_ratio, rebal_freq=7, n_long=5, warmup=35)
+
+
 # ═══════════════════════════════════════════════════════════════
 # Portfolio Optimization
 # ═══════════════════════════════════════════════════════════════
@@ -613,6 +627,7 @@ def main():
         'H-049': lambda: gen_h049_returns(closes),
         'H-052': lambda: gen_h052_returns(closes),
         'H-053': lambda: gen_h053_returns(closes),
+        'H-059': lambda: gen_h059_returns(closes),
     }
 
     for name, gen_func in strategies.items():
@@ -807,6 +822,7 @@ def main():
     print("    XS Value/Anomaly: H-019 (low vol), H-024 (low beta), H-031 (size)")
     print("    XS Positioning: H-049 (LSR), H-052 (premium), H-053 (funding XS)")
     print("    XS Fundamental: H-044 (OI divergence)")
+    print("    XS Volatility: H-059 (vol term structure)")
 
     # Save results
     results = {
