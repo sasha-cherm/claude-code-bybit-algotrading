@@ -2,29 +2,29 @@
 
 ## Bybit Demo Account (LIVE since 2026-03-20)
 
-**Account**: $100k USDT demo. Equity ~$100,270 (session 65, +0.27%).
+**Account**: $100k USDT demo. Equity ~$100,296 (session 66, +0.30%).
 **Architecture**: `scripts/demo_portfolio_runner.py` reads all strategy state.json files, computes net H-055 weighted positions, rebalances on Bybit demo after each `run_all_paper_trades.py` run. H-011 spot+perp legs managed via handle_h011_spot() + extract_target_notionals().
-**H-055 weights**: H-009(12%) H-011(40%,IN POSITION,spot+perp@5x) H-021(7%) H-031(13%) H-039(9%) H-046(5%) H-052(8%) H-053(6%)
-**Gross leverage**: ~0.29x. H-011 delta-neutral: ~0.51 BTC spot long + 0.52 BTC perp short on demo. Net exposure: short bias (BTC $68,973). **H-011 EXIT IMMINENT** — R27 will flip negative at 08:00 UTC if indicated rate fires.
+**H-055 weights**: H-009(12%) H-011(40%,**EXIT at 08:00 UTC**,spot+perp@5x) H-021(7%) H-031(13%) H-039(9%) H-046(5%) H-052(8%) H-053(6%)
+**Gross leverage**: ~0.29x. H-011 delta-neutral: ~0.51 BTC spot long + 0.47 BTC perp short on demo. **H-011 EXIT at 08:00 UTC** — R27 +0.00036% currently, indicated rate -0.0084%, projected R27 -0.00013% post-settlement.
 
-### Current Demo Positions (as of 2026-03-22 01:03 UTC):
-Post-rebalance (7 trades executed). New: AVAXUSDT short, ATOMUSDT flipped long, DOGEUSDT flipped short, reduced ARBUSDT/NEARUSDT/SOLUSDT, increased BTCUSDT.
+### Current Demo Positions (as of 2026-03-22 05:03 UTC):
+All drifts within threshold, 0 trades this run.
 | Symbol | Side | Size | uPnL |
 |--------|------|------|------|
-| ADAUSDT | SHORT | 10,269 | $+104 |
-| ARBUSDT | SHORT | 8,825 | $+107 |
-| ATOMUSDT | LONG | 503 | $+8 |
-| AVAXUSDT | SHORT | 189 | new |
-| BTCUSDT | SHORT | 0.465 | $+862 |
-| DOGEUSDT | SHORT | 26,178 | new |
-| DOTUSDT | SHORT | 392.5 | $+23 |
-| ETHUSDT | LONG | 2.15 | $-113 |
+| ADAUSDT | SHORT | 10,269 | $+100 |
+| ARBUSDT | SHORT | 8,825 | $+37 |
+| ATOMUSDT | LONG | 503 | $+3 |
+| AVAXUSDT | SHORT | 189.4 | $-9 |
+| BTCUSDT | SHORT | 0.465 | $+665 |
+| DOGEUSDT | SHORT | 26,178 | $-21 |
+| DOTUSDT | SHORT | 392.5 | $+22 |
+| ETHUSDT | LONG | 2.15 | $-53 |
 | LINKUSDT | SHORT | 11.0 | $+2 |
-| NEARUSDT | SHORT | 1,738 | $+122 |
-| OPUSDT | SHORT | 38,760 | $+248 |
-| SOLUSDT | LONG | 4.0 | $-39 |
-| SUIUSDT | SHORT | 510 | $+17 |
-| XRPUSDT | LONG | 3,004 | $-101 |
+| NEARUSDT | SHORT | 1,738 | $+65 |
+| OPUSDT | SHORT | 38,760 | $+226 |
+| SOLUSDT | LONG | 4.0 | $-1 |
+| SUIUSDT | SHORT | 510 | $+14 |
+| XRPUSDT | LONG | 3,004 | $-97 |
 | BTC (spot) | LONG | 0.514 | ~$0 |
 
 ---
@@ -180,22 +180,34 @@ Post-rebalance (7 trades executed). New: AVAXUSDT short, ATOMUSDT flipped long, 
 - **Correlations**: 0.004 H-012, 0.109 H-046, **0.360 H-052** (moderate — related contrarian signals), **0.480 H-049** (high)
 - **Data source**: Bybit funding rates (8h, aggregated to daily avg) — same underlying market positioning as H-052 (premium).
 
-## Portfolio Summary (live mark-to-market 2026-03-22 session 65, 01:04 UTC)
-- **Bybit Demo**: $100,270 (+0.27%) — 13 perp positions + 0.514 BTC spot. 7 rebalance trades executed (H-012/H-021 changes). Total unrealized PnL +$1,240.
-- **Total internal equity (14 strats)**: ~$140,236 (+0.17%) — improved from session 64.
-- **H-009**: $9,790 (-2.10%, SHORT, recovering) | **H-011**: $9,949 (-0.52%, **IN POSITION**, net funding **-$1.50**, **EXIT IMMINENT**) | **H-012**: $10,129 (+1.29%, **rebalanced**) | **H-019**: $9,993 (-0.07%) | **H-021**: $10,164 (+1.64%, **best XS**, **rebalanced**)
-- **H-024 (comparison)**: $9,978 (-0.22%) — H-019 leads (-0.07% vs -0.22%)
-- **H-031 (independent)**: $10,076 (+0.76%) | **H-032 (independent)**: $10,000 (0%, flat)
+### H-059: Volatility Term Structure Factor (Expansion-Long, 14 Assets) — NEW, independent
+- **Status**: LIVE paper trade (started 2026-03-22) — independent
+- **Position**: 10 positions (5 long, 5 short)
+  - LONG (vol expanding): OP, ARB, XRP, ATOM, ETH
+  - SHORT (vol contracting): DOGE, SUI, BTC, NEAR, DOT
+- **Mark equity**: $9,976 (-0.24%) — just deployed, fee drag only
+- **Runner**: `paper_trades/h059_vol_term/runner.py`
+- **Params**: SW7_LW30_R7_N5 (7-day short vol, 30-day long vol, 7-day rebalance, top/bottom 5, expansion-long)
+- **Next rebal**: 2026-03-28 (7 days)
+- **Backtest (full 2yr)**: IS Sharpe 2.57, +149.9% ann, 24.5% DD. **OOS (70/30) Sharpe 2.48, +96.4%, 8.7% DD**. WF 4/6 positive (mean 1.23). **90% params positive** (130/144). Fee-robust (2.10 at 5x fees).
+- **Correlations**: 0.312 H-012, **0.034 H-019** (near zero — excellent diversifier)
+- **Data source**: Price-derived realized volatility only — no external data needed.
+
+## Portfolio Summary (live mark-to-market 2026-03-22 session 66, 05:03 UTC)
+- **Bybit Demo**: $100,296 (+0.30%) — 14 perp positions + 0.514 BTC spot. 0 trades this run (all drifts within threshold). Total unrealized PnL +$953.
+- **Total internal equity (15 strats)**: ~$149,692 (+0.35%) — improved from session 65. BTC recovered $68,973→$69,281.
+- **H-009**: $9,824 (-1.76%, SHORT) | **H-011**: $9,949 (-0.51%, **EXIT at 08:00 UTC**) | **H-012**: $10,099 (+0.99%) | **H-019**: $10,014 (+0.14%) | **H-021**: $10,096 (+0.96%)
+- **H-024 (comparison)**: $9,988 (-0.12%) — H-019 leads (+0.14% vs -0.12%)
+- **H-031 (independent)**: $10,225 (+2.25%, **best XS**) | **H-032 (independent)**: $10,000 (flat)
 - **H-037 (Polymarket, manual)**: $0 (no trades) | **H-039 (DOW, independent)**: $10,000 (flat, first trade Mar 24)
-- **H-044 (OI divergence)**: $10,042 (+0.42%, recovered) | **H-046 (Acceleration)**: $9,984 (-0.16%)
-- **H-049 (LSR sentiment)**: $10,055 (+0.55%, **recovered strongly**) | **H-052 (Premium)**: $9,985 (-0.15%)
-- **H-053 (Funding XS)**: $10,090 (+0.90%, strong)
-- **Paper trade age**: H-009/H-011/H-012: 6 days / 28 required. H-019/H-021/H-024: 4 days. H-031/H-032/H-039: 3 days. H-044/H-046/H-049/H-052/H-053: 2 days.
-- **BTC at ~$68,973** (down from $70,446 session 64, -2.1%). H-009 SHORT recovering.
-- **H-011 EXIT IMMINENT**: R27 = +0.000362% (razor-thin positive). Indicated rate -0.0152%. R27 projected **-0.000387% after 08:00 UTC** → auto-exit at next cron. This entry lasted ~1 day with net negative funding.
-- **H-012/H-021 REBALANCED**: H-012 swapped SOL→ETH in shorts. H-021 major reshuffle (6/8 positions changed). Demo portfolio rebalanced with 7 trades.
-- **H-049 recovered**: -0.71% → +0.55%. BTC selloff validates contrarian signal.
-- **10/14 strats positive or flat**, 4 negative (H-009, H-011, H-019, H-024). Mar 21 daily bar processed.
+- **H-044 (OI divergence)**: $10,168 (+1.68%, strong) | **H-046 (Acceleration)**: $9,995 (-0.05%)
+- **H-049 (LSR sentiment)**: $10,167 (+1.67%, strong) | **H-052 (Premium)**: $9,987 (-0.13%)
+- **H-053 (Funding XS)**: $10,178 (+1.78%, strong) | **H-059 (Vol Term, NEW)**: $9,976 (-0.24%, just deployed)
+- **Paper trade age**: H-009/H-011/H-012: 6 days / 28 required. H-019/H-021/H-024: 4 days. H-031/H-032/H-039: 3 days. H-044/H-046/H-049/H-052/H-053: 2 days. H-059: 0 days.
+- **BTC at ~$69,281** (up from $68,973 session 65). H-009 SHORT -1.76%.
+- **H-011 EXIT at 08:00 UTC**: R27 +0.00036% (positive), indicated rate -0.0084%. Post-settlement R27 projected -0.00013% → exit at next cron after 08:00.
+- **H-031 leads** at +2.25%. H-053 (+1.78%), H-044 (+1.68%), H-049 (+1.67%) all strong. 9/15 positive or flat.
+- **Research session**: H-056 (short-term reversal) REJECTED, H-057 (lead-lag) REJECTED, H-058 (residual momentum) CONDITIONAL, **H-059 (vol term structure) CONFIRMED and deployed**.
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9

@@ -100,7 +100,42 @@
 - Notes: This is full-sample optimization (in-sample). Actual OOS Sharpe will be lower. The proposed 8-strat portfolio roughly doubles the current 5-strat Sharpe from 2.58 to 5.13 while halving max drawdown from 13.9% to 7.3%. Major improvements come from (1) adding H-052 premium and H-053 funding XS as diversifiers, (2) replacing H-012 with H-031, (3) adding H-039 DOW seasonality. Still need 4+ weeks of paper trading before implementing.
 - Sessions: [2026-03-20 research session 50]
 
+## H-059: Volatility Term Structure Factor (Expansion-Long, 14 Assets)
+- Status: LIVE (paper trade since 2026-03-22)
+- Idea: Compare short-term (7d) vs long-term (30d) realized volatility. Long assets with expanding vol (short/long ratio > 1), short assets with contracting vol. Vol expansion signals emerging trends and capital inflows.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: For each asset, compute ratio = std(returns, 7d) / std(returns, 30d). Rank. Long top 5 (most expanding vol), short bottom 5 (most contracting).
+- Data: 14 assets, 740 daily bars (~2yr).
+- Result:
+  - **IS (full)**: Sharpe 2.57, +149.9% ann, 24.5% DD
+  - **OOS (70/30)**: Sharpe **2.48**, +96.4% ann, 8.7% DD — OOS matches IS
+  - **Walk-forward (6 folds, 90d)**: **4/6 positive**, mean Sharpe 1.23. Recent folds strongest (2.93, 2.38)
+  - **Split-half**: 2.75 / 1.53 — both halves strong
+  - **Param robustness**: **130/144 positive** (90%), mean Sharpe 0.64
+  - **Fee sensitivity**: 2.10 at 5x fees (very robust)
+  - **Correlation**: 0.312 H-012, **0.034 H-019** (near zero)
+- Notes: Counterintuitive direction — expanding vol (not contracting) predicts positive returns. In crypto, vol expansion signals money flowing into an asset (attention, volume, institutional interest). Contracting vol signals being ignored. Paper trade deployed 2026-03-22: LONG OP/ARB/XRP/ATOM/ETH, SHORT DOGE/SUI/BTC/NEAR/DOT.
+- Sessions: [2026-03-22 research+paper trade session 66]
+
 ## Pending
+
+## H-058: Residual Momentum Factor (14 Assets)
+- Status: CONDITIONAL — promising but too correlated with H-012
+- Idea: Cross-sectional momentum after stripping out BTC beta. Rank assets by cumulative residual returns (after OLS regression vs BTC). Long top residual momentum, short bottom.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: For each alt, compute daily residuals = alt_return - beta * BTC_return over lookback window. Rank by cumulative residual. Long top N, short bottom N.
+- Data: 14 assets, 740 daily bars (~2yr).
+- Result:
+  - **IS (full)**: Best Sharpe 1.31 (LB=30, REB=7, N=3), +66.1% ann, 31.7% DD
+  - **Param robustness**: **48/48 positive** (100%) — exceptionally strong
+  - **Walk-forward**: 4/6 positive, mean Sharpe 0.87
+  - **70/30 split**: IS 1.75, OOS -0.30 (fails)
+  - **Correlation with H-012**: **0.672** (too high — limited diversification value)
+  - **Fee sensitivity**: 1.00 at 5x fees
+- Notes: Would only deploy if replacing H-012 from portfolio. Signal is fundamentally momentum with BTC beta stripped out — not different enough.
+- Sessions: [2026-03-22 research session 66]
 
 ## H-010: Multi-Strategy Portfolio Research
 - Status: BACKTEST — expanded to 3-strategy portfolio
@@ -157,6 +192,24 @@
 (none)
 
 ## Rejected
+
+## H-056: Short-Term Reversal Factor (1-5 Day, 14 Assets)
+- Status: REJECTED
+- Idea: Cross-sectional reversal — long recent losers (1-5d), short winners. Anti-correlated with momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS Sharpe 1.26 (LB=2, REB=3, N=4), but **70/30 OOS Sharpe -1.61** (complete failure). WF 3/5 positive but mean -0.26. Only 35% of params positive. Edge decayed — last WF fold Sharpe -3.03.
+- Notes: Short-term reversal was viable historically but has completely decayed in crypto. Classic alpha decay.
+- Sessions: [2026-03-22 research session 66]
+
+## H-057: Cross-Asset Lead-Lag Factor (BTC/ETH→Alts)
+- Status: REJECTED
+- Idea: Exploit information diffusion from BTC/ETH to altcoins. Score alts by residual vs leader return (lagging alts expected to catch up).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS Sharpe 1.68 (BTC, LB=2, REB=7, N=5). WF 3/5 positive but extreme variation (-3.39 to +1.52), mean -0.35. 70/30 OOS Sharpe 0.65 (marginal). Only 31% of params positive.
+- Notes: Signal too unstable across folds. Information diffusion in crypto is too fast for daily frequency — alts catch up within hours, not days.
+- Sessions: [2026-03-22 research session 66]
 
 ## H-002: Bollinger Band Mean Reversion (BTC Spot)
 - Status: REJECTED

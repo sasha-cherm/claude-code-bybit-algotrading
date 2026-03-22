@@ -1,0 +1,24 @@
+[
+  {
+    "time": "2026-03-22T05:21:09.926703+00:00",
+    "event": "rebalance",
+    "date": "2026-03-21",
+    "longs": [
+      "OP",
+      "ARB",
+      "XRP",
+      "ATOM",
+      "ETH"
+    ],
+    "shorts": [
+      "DOGE",
+      "SUI",
+      "BTC",
+      "NEAR",
+      "DOT"
+    ],
+    "trades": 10,
+    "fees": 24.0,
+    "capital": 9976.0
+  }
+]

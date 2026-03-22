@@ -1,0 +1,81 @@
+{
+  "started": "2026-03-22T05:21:09.860778+00:00",
+  "capital": 9976.0,
+  "positions": {
+    "OP/USDT": {
+      "weight": 0.2,
+      "entry_price": 0.1177,
+      "size": 16951.57179269329,
+      "direction": "LONG"
+    },
+    "ARB/USDT": {
+      "weight": 0.2,
+      "entry_price": 0.0963,
+      "size": 20718.58774662513,
+      "direction": "LONG"
+    },
+    "XRP/USDT": {
+      "weight": 0.2,
+      "entry_price": 1.4088,
+      "size": 1416.2407722884725,
+      "direction": "LONG"
+    },
+    "ATOM/USDT": {
+      "weight": 0.2,
+      "entry_price": 1.794,
+      "size": 1112.1516164994425,
+      "direction": "LONG"
+    },
+    "ETH/USDT": {
+      "weight": 0.2,
+      "entry_price": 2084.98,
+      "size": 0.9569396349125652,
+      "direction": "LONG"
+    },
+    "DOGE/USDT": {
+      "weight": -0.2,
+      "entry_price": 0.09135,
+      "size": -21841.26984126984,
+      "direction": "SHORT"
+    },
+    "SUI/USDT": {
+      "weight": -0.2,
+      "entry_price": 0.9327,
+      "size": -2139.1658625495875,
+      "direction": "SHORT"
+    },
+    "BTC/USDT": {
+      "weight": -0.2,
+      "entry_price": 68919.7,
+      "size": -0.02894963268847659,
+      "direction": "SHORT"
+    },
+    "NEAR/USDT": {
+      "weight": -0.2,
+      "entry_price": 1.282,
+      "size": -1556.3182527301092,
+      "direction": "SHORT"
+    },
+    "DOT/USDT": {
+      "weight": -0.2,
+      "entry_price": 1.467,
+      "size": -1360.054533060668,
+      "direction": "SHORT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-03-21",
+      "equity": 9976.0,
+      "positions": 10,
+      "rebalanced": true
+    }
+  ],
+  "last_daily_date": "2026-03-21",
+  "last_rebal_date": "2026-03-21",
+  "days_since_rebal": 0,
+  "rebal_count": 1,
+  "total_trades": 10,
+  "total_fees": 24.0,
+  "equity": 9976.0
+}

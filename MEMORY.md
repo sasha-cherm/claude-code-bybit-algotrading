@@ -1,14 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 13 perp positions + BTC spot. Equity ~$100,270 (+0.27%). Unrealized PnL +$1,240.
-- **H-055 allocation**: H-009(12%)/H-011(40%,**IN POSITION but EXIT IMMINENT**,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 EXIT IMMINENT**: R27 +0.000362% (razor-thin). Indicated rate -0.0152%. R27 projected **negative** after 08:00 UTC → auto-exit at next cron. Net funding -$1.50 this entry.
-- **Internal paper trades:** 14 runners active. Session 65. Total equity: ~$140,236 (+0.17%).
-- **BTC at ~$68,973** (down 2.1%). H-021 best XS (+1.64%). H-009 SHORT -2.10%. H-049 recovered +0.55%. 10/14 positive or flat.
-- **H-012/H-021 REBALANCED** at 00:30 UTC Mar 22. Demo rebalanced (7 trades). H-012: SOL→ETH swap in shorts. H-021: 6/8 positions changed.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + BTC spot. Equity ~$100,296 (+0.30%).
+- **H-055 allocation**: H-009(12%)/H-011(40%,**EXIT at 08:00 UTC**,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **H-011 EXIT at 08:00 UTC**: R27 +0.00036%, indicated rate -0.0084%. R27 projected negative after settlement → auto-exit.
+- **Internal paper trades:** 15 runners active (H-059 NEW). Session 66. Total equity: ~$149,692 (+0.35%).
+- **BTC at ~$69,281** (recovering). H-031 best XS (+2.25%). H-053 +1.78%. 9/15 positive or flat.
+- **H-059 DEPLOYED**: Vol Term Structure factor (expansion-long). IS Sharpe 2.57, OOS 2.48. 90% param robust.
+- **RESEARCH**: H-056 (reversal) REJECTED, H-057 (lead-lag) REJECTED, H-058 (residual mom) CONDITIONAL, H-059 CONFIRMED.
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
-- **Next action:** **H-011 likely exits ~08:00 UTC Mar 22.** H-046 rebal Mar 23. H-039 first trade Mar 24.
+- **Next action:** **H-011 exits 08:00 UTC Mar 22.** H-046 rebal Mar 23. H-039 first trade Mar 24. H-059 rebal Mar 28.
 - **Open user questions:** None
 
 ## Memory Files
@@ -554,3 +555,11 @@
 - Next: **H-011 likely exits ~08:00 UTC Mar 22** (cron will auto-execute). H-046 rebal Mar 23. H-039 first trade Mar 24.
 - Questions added: none
 - Self-modifications: none
+
+### Session 2026-03-22 review+research (session 66)
+- Goal: Review + Research — monitor paper trades, research new cross-sectional factors
+- Focus: H-011 exit confirmation, 4 new hypotheses tested, H-059 deployed
+- Done: 15/15 runners OK. Demo $100,296 (+0.30%). Internal $149,692 (+0.35%, 15 strats). BTC $69,281 (recovered from $68,973). **H-011 EXIT CONFIRMED for 08:00 UTC** — R27 +0.00036%, indicated -0.0084%, projected -0.00013% post-settlement. **RESEARCH (4 hypotheses)**: H-056 (short-term reversal) REJECTED — WF fails, OOS Sharpe -1.61, edge decayed. H-057 (BTC→alt lead-lag) REJECTED — too unstable, WF mean -0.35. H-058 (residual momentum) CONDITIONAL — 100% param positive but 0.672 corr with H-012. **H-059 (vol term structure) CONFIRMED** — IS Sharpe 2.57, OOS 2.48, WF 4/6 positive (mean 1.23), 90% params positive, 0.034 corr H-019. **Deployed H-059 paper trade**: LONG OP/ARB/XRP/ATOM/ETH (vol expanding), SHORT DOGE/SUI/BTC/NEAR/DOT (vol contracting).
+- Next: **H-011 exits 08:00 UTC Mar 22.** H-046 rebal Mar 23. H-039 first trade Mar 24. H-059 rebal Mar 28. Consider adding H-059 to H-055 portfolio optimization.
+- Questions added: none
+- Self-modifications: Added H-059 runner to cron orchestrator
