@@ -36,5 +36,11 @@
     "rolling_avg": 3.62e-06,
     "pnl": -4.78,
     "capital": 9948.5
+  },
+  {
+    "type": "exit",
+    "time": "2026-03-22 08:00:00+00:00",
+    "reason": "rolling_avg_negative",
+    "fee": 49.74
   }
 ]

@@ -25,8 +25,8 @@
   - **Conservative (last 6mo) at 5x**: +16.7% annual, 0.15% DD
   - **Correlation with H-009**: 0.037 (near zero — excellent diversifier)
   - **Portfolio 30% H-009 / 70% H-011 at 5x**: Sharpe 2.43, +34% return, 7.2% DD
-- Notes: Derived from H-005 (rejected at 1x for low returns). Leverage scales returns linearly for delta-neutral strategy. Key risk: funding rates declining (22.7% → 1.6% recent). Max consecutive loss at 5x: 0.36% (vs 20% liquidation threshold — very safe). Paper trade started 2026-03-16, currently OUT of position (rolling avg filter).
-- Sessions: [2026-03-16 paper trade]
+- Notes: Derived from H-005 (rejected at 1x for low returns). Leverage scales returns linearly for delta-neutral strategy. Key risk: funding rates declining (22.7% → 1.6% recent). Max consecutive loss at 5x: 0.36% (vs 20% liquidation threshold — very safe). Paper trade started 2026-03-16. First full entry-exit cycle (Mar 21 00:00 → Mar 22 08:00, 32h): -1.01% due to fees + negative net funding. Currently OUT.
+- Sessions: [2026-03-16 paper trade, 2026-03-22 review session 67]
 
 ## H-012: Cross-Sectional Momentum (14 Crypto Assets, Daily)
 - Status: LIVE (paper trade since 2026-03-16)

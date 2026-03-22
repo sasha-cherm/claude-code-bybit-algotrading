@@ -21,6 +21,7 @@ H-055 allocation: H-009(12%) H-011(40%,spot+perp@5x) H-021(7%) H-031(13%)
 """
 
 import json
+import math
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -245,7 +246,7 @@ def handle_h011_spot(trader, btc_price: float, in_position: bool):
 
     elif not in_position and current_btc > 0.001:
         # Sell all spot BTC (H-011 exited)
-        sell_qty = round(current_btc, 5)
+        sell_qty = math.floor(current_btc * 100000) / 100000
         log(f"  H-011 spot: selling {sell_qty} BTC")
         try:
             r = trader.spot_market_order(H011_SYMBOL, "Sell", sell_qty)

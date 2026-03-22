@@ -1,15 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + BTC spot. Equity ~$100,296 (+0.30%).
-- **H-055 allocation**: H-009(12%)/H-011(40%,**EXIT at 08:00 UTC**,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 EXIT at 08:00 UTC**: R27 +0.00036%, indicated rate -0.0084%. R27 projected negative after settlement → auto-exit.
-- **Internal paper trades:** 15 runners active (H-059 NEW). Session 66. Total equity: ~$149,692 (+0.35%).
-- **BTC at ~$69,281** (recovering). H-031 best XS (+2.25%). H-053 +1.78%. 9/15 positive or flat.
-- **H-059 DEPLOYED**: Vol Term Structure factor (expansion-long). IS Sharpe 2.57, OOS 2.48. 90% param robust.
-- **RESEARCH**: H-056 (reversal) REJECTED, H-057 (lead-lag) REJECTED, H-058 (residual mom) CONDITIONAL, H-059 CONFIRMED.
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions (BTC spot sold). Equity ~$100,306 (+0.31%).
+- **H-055 allocation**: H-009(12%)/H-011(40%,OUT,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
+- **H-011 EXITED** at 08:00 UTC Mar 22. R27 went negative. Capital $9,899 (-1.01%). Demo spot sell bug fixed (floor-rounding).
+- **Internal paper trades:** 15 runners active. Session 67. Total MTM: ~$150,159 (+0.11%).
+- **BTC at ~$68,774** (dropping). H-012 best (+1.65%). H-024 overtakes H-019 again (-0.53% vs -0.73%). 8/15 positive.
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
-- **Next action:** **H-011 exits 08:00 UTC Mar 22.** H-046 rebal Mar 23. H-039 first trade Mar 24. H-059 rebal Mar 28.
+- **Next action:** H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28.
 - **Open user questions:** None
 
 ## Memory Files
@@ -563,3 +561,11 @@
 - Next: **H-011 exits 08:00 UTC Mar 22.** H-046 rebal Mar 23. H-039 first trade Mar 24. H-059 rebal Mar 28. Consider adding H-059 to H-055 portfolio optimization.
 - Questions added: none
 - Self-modifications: Added H-059 runner to cron orchestrator
+
+### Session 2026-03-22 review (session 67)
+- Goal: Review — verify H-011 exit, fix demo spot sell bug, full MTM update
+- Focus: H-011 exit verification, demo portfolio cleanup, all 15 runners
+- Done: 15/15 runners OK. **H-011 EXITED at 08:00 UTC** (rolling_avg_negative). Capital $9,899 (-1.01%). Net funding -$1.50, fees $99.74. 32h hold, net loss. **Fixed demo spot sell bug**: `round(btc, 5)` rounded UP past available balance → `math.floor(btc*100000)/100000` (floor-rounding). BTC spot (0.514) successfully sold. Demo equity $100,306 (+0.31%). BTC perp flipped from SHORT 0.465 → LONG 0.018 (non-H-011 strategies). **Internal MTM**: $150,159 (+0.11%). BTC $68,774 (-0.7%). H-012 leads +1.65%. H-024 overtakes H-019 again (-0.53% vs -0.73%). 8/15 positive, 3 flat, 4 negative.
+- Next: H-046 rebal Mar 23. H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24. H-059 rebal Mar 28. Monitor H-011 R27 for re-entry.
+- Questions added: none
+- Self-modifications: Fixed floor-rounding bug in demo_portfolio_runner.py handle_h011_spot()
