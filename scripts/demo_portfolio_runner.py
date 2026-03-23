@@ -92,6 +92,15 @@ MIN_QTY: dict[str, float] = {
     "ATOMUSDT": 0.1,
 }
 
+# Max qty per single order (Bybit contract limit, base currency)
+# Derived from error messages; symbols not listed have no known limit
+MAX_ORDER_QTY: dict[str, float] = {
+    "OPUSDT":   80_000.0,
+    "ARBUSDT":  500_000.0,
+    "DOGEUSDT": 500_000.0,
+    "ADAUSDT":  500_000.0,
+}
+
 # Qty decimal places matching step size
 QTY_DECIMALS: dict[str, int] = {
     "BTCUSDT":  3,
@@ -329,15 +338,26 @@ def run(reset: bool = False):
             f" | cur={current_size:+.3f} → tgt={target_size:+.3f}"
         )
 
-        try:
-            r = trader.market_order(sym, side, qty)
-            if r.get("retCode") == 0:
-                log(f"    ✓ orderId={r['result'].get('orderId','?')}")
-                trades_executed += 1
-            else:
-                log(f"    ✗ {r.get('retMsg', 'unknown error')}")
-        except Exception as e:
-            log(f"    ✗ Exception: {e}")
+        # Split into chunks if qty exceeds per-order limit
+        max_chunk = MAX_ORDER_QTY.get(sym, float("inf"))
+        remaining = qty
+        order_ok = True
+        while remaining > 0 and order_ok:
+            chunk = round_qty(sym, min(remaining, max_chunk))
+            if chunk < MIN_QTY.get(sym, 1.0):
+                break
+            try:
+                r = trader.market_order(sym, side, chunk)
+                if r.get("retCode") == 0:
+                    log(f"    ✓ orderId={r['result'].get('orderId','?')} chunk={chunk}")
+                    trades_executed += 1
+                    remaining = round_qty(sym, remaining - chunk)
+                else:
+                    log(f"    ✗ {r.get('retMsg', 'unknown error')}")
+                    order_ok = False
+            except Exception as e:
+                log(f"    ✗ Exception: {e}")
+                order_ok = False
 
     log(f"\nTrades executed this run: {trades_executed}")
 
