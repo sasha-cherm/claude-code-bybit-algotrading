@@ -42,5 +42,19 @@
     "time": "2026-03-22 08:00:00+00:00",
     "reason": "rolling_avg_negative",
     "fee": 49.74
+  },
+  {
+    "type": "enter",
+    "time": "2026-03-23 00:00:00+00:00",
+    "notional": 49493.81,
+    "fee": 49.49
+  },
+  {
+    "type": "funding",
+    "time": "2026-03-23 00:00:00+00:00",
+    "rate": -3.128e-05,
+    "rolling_avg": 8e-08,
+    "pnl": -1.55,
+    "capital": 9847.72
   }
 ]
