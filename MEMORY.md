@@ -1,16 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + 0.489 BTC spot. Equity ~$100,458 (+0.46%).
-- **H-055 allocation**: H-009(12%)/H-011(40%,IN,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 R7**: +0.07% ann (barely positive, trending up). Latest rate +6.1% ann. 7 settlements since re-entry. Net funding +$0.21.
+- **BYBIT DEMO H-056** (reset 2026-03-23): New MVO-optimal allocation. All old positions closed, spot BTC sold. Run `python scripts/demo_portfolio_runner.py --reset` to deploy.
+- **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
+- **H-056 backtest**: +225% ann, Sharpe 5.41, Max DD -26.3% (2x MN config). P(liquidation)=0%.
+- **H-011 status**: DROPPED from demo. R27 recovering (+0.07% ann). Re-add when R27 >0.5% ann and capital grows (needs $2k+ for proper sizing). Internal paper trade continues.
 - **Internal paper trades:** 16 runners active. Session 75. Total MTM: ~$160,681 (+0.43%).
-- **Top performers**: H-031 (+4.24%), H-049 (+3.77%), H-012 (+2.82%), H-062 (+2.81%), H-053 (+2.43%). 6/16 positive, 2 flat, 8 negative.
-- **H-019 vs H-024**: H-019 now leads (-0.73% vs -2.13%). Both declining.
+- **Top performers**: H-031 (+4.24%), H-049 (+3.77%), H-012 (+2.82%), H-062 (+2.81%), H-053 (+2.43%).
 - **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface (collecting, 4 days).
-- **BTC at ~$70,586**. Portfolio slightly down from session 74. Market-neutral strategies show mixed performance.
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV collector running.
-- **Next action:** H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R7.
+- **Next action:** Deploy H-056 (`--reset` run). Monitor new allocation performance. H-011 re-add criteria: R27 >0.5% ann sustained.
 - **Open user questions:** None
 
 ## Memory Files

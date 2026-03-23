@@ -1,11 +1,13 @@
 # Strategy State
 
-## Bybit Demo Account (LIVE since 2026-03-20)
+## Bybit Demo Account (LIVE since 2026-03-20, H-056 since 2026-03-23)
 
-**Account**: $100k USDT demo. Equity ~$100,458 (session 75, +0.46%).
-**Architecture**: `scripts/demo_portfolio_runner.py` reads all strategy state.json files, computes net H-055 weighted positions, rebalances on Bybit demo after each `run_all_paper_trades.py` run. H-011 spot+perp legs managed via handle_h011_spot() + extract_target_notionals().
-**H-055 weights**: H-009(12%) H-011(40%,IN,spot+perp@5x) H-021(7%) H-031(13%) H-039(9%) H-046(5%) H-052(8%) H-053(6%)
-**Gross leverage**: H-011 in — BTC spot 0.489 + perp short. Net perp SHORT 0.454 BTC.
+**Account**: $100k USDT demo. Reset 2026-03-23: closed all H-055 positions, sold spot BTC, redeployed as H-056.
+**Architecture**: `scripts/demo_portfolio_runner.py` reads all strategy state.json files, computes net H-056 weighted positions with per-strategy leverage, rebalances on Bybit demo after each `run_all_paper_trades.py` run.
+**H-056 weights**: H-031(30%,3x) H-052(23%,3x) H-053(16%,3x) H-021(15%,3x) H-039(10%,1x) H-046(6%,3x)
+**Dropped**: H-011 (funding arb — can re-add later when R27 recovers), H-009 (BTC trend — near-zero MVO weight)
+**Gross leverage**: 3x on 5 MN strategies (90% of capital), 1x on H-039. All perp, no spot.
+**To deploy**: run `python scripts/demo_portfolio_runner.py --reset` once to close old positions and enter new ones.
 
 ### Current Demo Positions (as of 2026-03-23 17:03 UTC):
 All drifts within threshold, 0 trades this run. H-011 spot+perp active.
