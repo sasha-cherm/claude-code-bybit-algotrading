@@ -1,15 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + 0.489 BTC spot. Equity ~$100,320 (+0.32%).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + 0.490 BTC spot. Equity ~$100,238 (+0.24%).
 - **H-055 allocation**: H-009(12%)/H-011(40%,IN,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 RE-ENTERED** 00:00 UTC Mar 23 — R27 +8e-08 (razor-thin). Capital $9,848 (-1.52%). Whipsaw risk: $149 fees, -$3 net funding.
-- **Internal paper trades:** 16 runners active. Session 71. Total MTM: ~$160,780 (+0.49%).
-- **Top performers**: H-012 (+2.57%), H-049 (+2.26%), H-031 (+1.94%), H-053 (+1.67%), H-062 (+1.54%). 9/16 positive or flat.
-- **H-019 vs H-024**: H-024 micro-leading (-0.05% vs -0.11%).
-- **H-046 REBALANCED**: LONG OP/ETH/SUI/BTC, SHORT AVAX/NEAR/ADA/DOT (Mar 22 bar).
-- **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface + OB depth (collecting).
-- **BTC at ~$67,862** (down from $68,084). H-011 worst overall (-1.52%), H-046 worst XS (-0.87%).
+- **H-011 R27 recovering**: +0.01% ann, projected +0.5% as Mar 14 negative rates exit window. Indicated +2.8% ann. Whipsaw risk diminishing.
+- **Internal paper trades:** 16 runners active. Session 72. Total MTM: ~$160,802 (+0.50%).
+- **Top performers**: H-012 (+2.58%), H-049 (+2.17%), H-031 (+1.88%), H-053 (+1.74%), H-062 (+1.46%). 10/16 positive or flat.
+- **H-019 vs H-024**: H-024 still leading (+0.04% vs -0.02%).
+- **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface + OB depth (collecting, 3 days).
+- **BTC at ~$68,669** (up $807 from $67,862). H-011 worst overall (-1.52%), H-046 worst XS (-0.83%).
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV/OB collectors running.
 - **Next action:** H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27.
 - **Open user questions:** None
@@ -603,5 +602,13 @@
 - Focus: Paper trade monitoring, system health check
 - Done: 16/16 runners OK. Demo $100,320 (+0.32%). Internal MTM $160,780 (+0.49%). BTC $67,862 (down $222). **H-011 RE-ENTERED** at 00:00 UTC Mar 23 — R27 flipped to +8e-08 (razor-thin). Capital $9,848 (-1.52%). Whipsawed: $149 fees, -$3 net funding over 2 entry cycles. Demo re-bought BTC spot (0.489), perp SHORT 0.454. **H-046 REBALANCED** on Mar 22 bar: LONG OP/ETH/SUI/BTC, SHORT AVAX/NEAR/ADA/DOT. Top: H-012 (+2.57%), H-049 (+2.26%), H-031 (+1.94%). H-024 micro-leads H-019 (-0.05% vs -0.11%). 9/16 positive or flat.
 - Next: H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. Monitor H-011 R27 (whipsaw risk).
+- Questions added: none
+- Self-modifications: none
+
+### Session 2026-03-23 review (session 72)
+- Goal: Review — full system health check, MTM update, H-011 R27 recovery analysis
+- Focus: Paper trade monitoring, H-011 funding rate projection
+- Done: 16/16 runners OK. Demo $100,238 (+0.24%). Internal MTM $160,802 (+0.50%). BTC $68,669 (up $807). **H-011 R27 RECOVERING**: +0.01% ann but projected to +0.5% as Mar 14 negative cluster exits window. Indicated rate +2.8% ann (positive). Whipsaw risk diminishing. Top: H-012 (+2.58%), H-049 (+2.17%), H-031 (+1.88%). H-024 leads H-019 (+0.04% vs -0.02%). 10/16 positive or flat. IV: 3 snapshots. OB: 3 snapshots. All systems operational.
+- Next: H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27.
 - Questions added: none
 - Self-modifications: none
