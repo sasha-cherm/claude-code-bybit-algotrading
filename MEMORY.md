@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + 0.489 BTC spot. Equity ~$100,385 (+0.38%).
+- **BYBIT DEMO LIVE** (2026-03-20): H-055 portfolio on Bybit demo. 14 perp positions + 0.489 BTC spot. Equity ~$100,458 (+0.46%).
 - **H-055 allocation**: H-009(12%)/H-011(40%,IN,spot+perp@5x)/H-021(7%)/H-031(13%)/H-039(9%)/H-046(5%)/H-052(8%)/H-053(6%)
-- **H-011 R27 stable**: +0.19% ann. Latest rate +1.1% ann. Mar 14 negatives exit next 2 settlements → ~+0.7%. Mar 22 negatives in window.
-- **Internal paper trades:** 16 runners active. Session 74. Total MTM: ~$161,045 (+0.65%).
-- **Top performers**: H-049 (+3.28%), H-053 (+3.01%), H-012 (+2.91%), H-031 (+2.62%), H-062 (+2.24%). 11/16 positive or flat.
-- **H-019 vs H-024**: Both near breakeven (-0.15% vs -0.10%). Gap compressed by BTC rally.
+- **H-011 R7**: +0.07% ann (barely positive, trending up). Latest rate +6.1% ann. 7 settlements since re-entry. Net funding +$0.21.
+- **Internal paper trades:** 16 runners active. Session 75. Total MTM: ~$160,681 (+0.43%).
+- **Top performers**: H-031 (+4.24%), H-049 (+3.77%), H-012 (+2.82%), H-062 (+2.81%), H-053 (+2.43%). 6/16 positive, 2 flat, 8 negative.
+- **H-019 vs H-024**: H-019 now leads (-0.73% vs -2.13%). Both declining.
 - **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface (collecting, 4 days).
-- **BTC at ~$70,660** (up $2,450 from session 73). Portfolio resilient to rally (market-neutral). H-009 worst (-2.10%, SHORT).
+- **BTC at ~$70,586**. Portfolio slightly down from session 74. Market-neutral strategies show mixed performance.
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV collector running.
-- **Next action:** H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27.
+- **Next action:** H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R7.
 - **Open user questions:** None
 
 ## Memory Files
@@ -628,3 +628,11 @@
 - Next: H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27.
 - Questions added: none
 - Self-modifications: none (session 74)
+
+### Session 2026-03-23 review (session 75)
+- Goal: Review — full system health check, MTM update, H-011 R7 status
+- Focus: Paper trade monitoring, H-019 vs H-024 reversal, H-011 funding recovery
+- Done: 16/16 runners OK. Demo $100,458 (+0.46%). Internal MTM $160,681 (+0.43%). BTC $70,586. **H-031 now #1** (+4.24%), H-049 #2 (+3.77%). **H-019 vs H-024 reversed**: H-019 leads (-0.73% vs -2.13%). H-021 turned negative (-0.24%), H-052 turned negative (-0.43%). **H-011**: 7 settlements since re-entry, R7 +0.07% ann (barely positive), latest rate +6.1% ann (strong). Net funding +$0.21. 6/16 positive, 2 flat, 8 negative.
+- Next: H-039 first trade Mar 24. H-021/H-049/H-031/H-052 rebal Mar 24 bar. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R7.
+- Questions added: none
+- Self-modifications: none (session 75)
