@@ -8,24 +8,24 @@
 **Dropped**: H-011 (funding arb — can re-add later when R7 sustains), H-009 (BTC trend — near-zero MVO weight)
 **Gross leverage**: 2.79x actual. All perp, no spot.
 
-### Current Demo Positions (as of 2026-03-24 01:09 UTC):
+### Current Demo Positions (as of 2026-03-24 05:03 UTC):
 All drifts within threshold, 0 trades this run. No spot BTC.
 | Symbol | Side | Size | Notional | uPnL |
 |--------|------|------|----------|------|
-| ADAUSDT | SHORT | 63,291 | $16,500 | $+70 |
-| ARBUSDT | SHORT | 134,821 | $12,750 | $-249 |
-| ATOMUSDT | LONG | 6,388 | $11,250 | $+120 |
-| AVAXUSDT | SHORT | 1,669 | $15,750 | $-144 |
-| BTCUSDT | LONG | 0.645 | $45,750 | $-218 |
-| DOGEUSDT | SHORT | 110,701 | $10,500 | $+149 |
-| DOTUSDT | LONG | 525 | $750 | $-5 |
-| ETHUSDT | LONG | 18.51 | $39,750 | $-130 |
-| LINKUSDT | LONG | 1,155 | $10,500 | $-38 |
-| NEARUSDT | SHORT | 25,952 | $33,750 | $-231 |
-| OPUSDT | SHORT | 374,671 | $42,750 | $+390 |
-| SOLUSDT | LONG | 16.5 | $1,500 | $-4 |
-| SUIUSDT | SHORT | 7,050 | $6,750 | $+87 |
-| XRPUSDT | LONG | 20,358 | $29,250 | $-366 |
+| ADAUSDT | SHORT | 63,291 | $16,500 | $+44 |
+| ARBUSDT | SHORT | 134,821 | $12,750 | $-201 |
+| ATOMUSDT | LONG | 6,388 | $11,250 | $+105 |
+| AVAXUSDT | SHORT | 1,669 | $15,750 | $-120 |
+| BTCUSDT | LONG | 0.645 | $45,750 | $-431 |
+| DOGEUSDT | SHORT | 110,701 | $10,500 | $+164 |
+| DOTUSDT | LONG | 525 | $750 | $-9 |
+| ETHUSDT | LONG | 18.51 | $39,750 | $-273 |
+| LINKUSDT | LONG | 1,155 | $10,500 | $-47 |
+| NEARUSDT | SHORT | 25,952 | $33,750 | $-10 |
+| OPUSDT | SHORT | 374,671 | $42,750 | $+693 |
+| SOLUSDT | LONG | 16.5 | $1,500 | $-14 |
+| SUIUSDT | SHORT | 7,050 | $6,750 | $+127 |
+| XRPUSDT | LONG | 20,358 | $29,250 | $-588 |
 
 ---
 
@@ -34,7 +34,7 @@ All drifts within threshold, 0 trades this run. No spot BTC.
 ### H-009: BTC Daily EMA Trend Following (VT 20%)
 - **Status**: LIVE paper trade (started 2026-03-16)
 - **Position**: SHORT 0.053871 BTC @ $69,909.32 — flipped from LONG (session 44)
-- **Mark equity**: ~$9,737 (-2.63%) — BTC at $70,615, SHORT losing.
+- **Mark equity**: ~$9,737 (-2.63%) — BTC at $70,190, SHORT losing.
 - **Leverage**: 0.38x (vol targeting)
 - **Runner**: `paper_trades/h009_btc_daily_trend/runner.py`
 - **Signal**: EMA(5) < EMA(40), remains SHORT.
@@ -45,10 +45,10 @@ All drifts within threshold, 0 trades this run. No spot BTC.
 - **Position**: IN — re-entered at 00:00 UTC Mar 23. Notional $49,264 (5x). 24 settlements total.
 - **Capital**: $9,852.84 (-1.47%)
 - **Funding**: $9.55 collected, $7.48 paid (net **+$2.07**). Total fees $149.24 (3 legs).
-- **R7 status**: -1.54% ann (Mar 22 negative cluster still in window). R27: +1.16% ann (positive). Indicated +2.93% ann. Mar 22 negatives exit R7 in ~2 days → R7 should turn positive by Mar 25-26.
+- **R7 status**: -1.52% ann (Mar 22 negative cluster exiting window). R27: +1.16% ann (positive). Indicated +0.48% ann. **R7 projects positive after 08:00 UTC Mar 24** (~3h) — big -10.5% Mar 22 00:00 rate drops from R7 window. Earlier than Mar 25-26 estimate.
 - **Runner**: `paper_trades/h011_funding_rate_arb/runner.py`
 - **Demo execution**: NOT on demo (H-056 excludes H-011). Internal paper trade only.
-- **Risk**: R27 positive (no exit risk). R7 recovering — negative Mar 22 cluster exiting window.
+- **Risk**: R27 positive (no exit risk). R7 recovery accelerating — 3 consecutive positive settlements (+1.1%, +6.1%, +4.1% ann).
 
 ### H-012: Cross-Sectional Momentum (14 Assets)
 - **Status**: LIVE paper trade (started 2026-03-16)
@@ -206,25 +206,24 @@ All drifts within threshold, 0 trades this run. No spot BTC.
 - **Correlations**: **0.600 H-012** (high — momentum variant), -0.044 H-021, 0.424 H-019
 - **Data source**: Price-derived (distance from 60-day peak) — no external data needed.
 
-## Portfolio Summary (live mark-to-market 2026-03-24 session 77, 01:09 UTC)
-- **Bybit Demo**: $99,882 (-0.12%) — 14 perp positions, no spot BTC. H-056 positions aligned. Leverage 2.79x.
-- **Total internal MTM (16 strats)**: ~$160,779 (+0.49%). BTC at $70,615 (down $296 from session 76).
+## Portfolio Summary (live mark-to-market 2026-03-24 session 78, 05:03 UTC)
+- **Bybit Demo**: $99,765 (-0.24%) — 14 perp positions, no spot BTC. H-056 positions aligned. Leverage 2.79x.
+- **Total internal MTM (16 strats)**: ~$160,779 (+0.49%). BTC at $70,190 (down $425 from session 77).
 - **H-009**: $9,737 (-2.63%, SHORT) | **H-011**: $9,853 (-1.47%, **IN**, R27 +1.16% ann) | **H-012**: $10,268 (+2.68%) | **H-019**: $10,048 (+0.48%) | **H-021**: $9,927 (-0.73%)
-- **H-024 (comparison)**: $9,785 (-2.15%) — H-019 +0.48% vs H-024 -2.15%. **H-019 leads by 2.63%**. Gap widening further.
+- **H-024 (comparison)**: $9,785 (-2.15%) — H-019 +0.48% vs H-024 -2.15%. **H-019 leads by 2.63%**.
 - **H-031 (independent)**: $10,431 (+4.31%) | **H-032 (independent)**: $10,000 (flat)
-- **H-037 (Polymarket, manual)**: $0 (no trades) | **H-039 (DOW, independent)**: $10,000 (flat, first trade tomorrow)
+- **H-037 (Polymarket, manual)**: $0 (no trades) | **H-039 (DOW, independent)**: $10,000 (flat, first trade tonight)
 - **H-044 (OI divergence)**: $10,094 (+0.94%) | **H-046 (Acceleration)**: $9,904 (-0.96%)
 - **H-049 (LSR sentiment)**: $10,369 (+3.69%) | **H-052 (Premium)**: $10,052 (+0.52%)
 - **H-053 (Funding XS)**: $10,192 (+1.92%) | **H-059 (Vol Term)**: $9,838 (-1.62%, day 3)
 - **H-062 (DD Mom)**: $10,281 (+2.81%)
 - **Paper trade age**: H-009/H-011/H-012: 9 days / 28 required. H-019/H-021/H-024: 7 days. H-031/H-032/H-039: 6 days. H-044/H-046/H-049/H-052/H-053: 5 days. H-059/H-062: 3 days.
 - **Top performers**: H-031 (+4.31%), H-049 (+3.69%), H-062 (+2.81%), H-012 (+2.68%), H-053 (+1.92%). 8/16 positive, 2 flat, 6 negative.
-- **H-052 turned positive** (+0.52% from -0.42%). H-019 improved to +0.48% from -0.65%.
-- **H-011 R7**: -1.54% ann (Mar 22 negatives still in window). R27: +1.16% ann (positive, no exit risk). Indicated +2.93% ann. Mar 22 cluster exits R7 in ~2 days → R7 positive by Mar 25-26.
-- **Tomorrow's rebalances (00:30 UTC Mar 25)**: H-021, H-031, H-049, H-052 rebalance on Mar 24 bar. H-039 first trade (LONG for Wed). H-046 rebal Mar 25.
-- **Research**: 71 hypotheses total, ~48 rejected. All data sources exhausted. Future alpha: IV surface (6 days collecting).
+- **H-011 R7**: -1.52% ann but **projects positive after 08:00 UTC Mar 24** (big -10.5% rate exits window). Last 3 rates positive (+1.1%, +6.1%, +4.1%). R27: +1.16% ann (no exit risk).
+- **Tonight's rebalances (00:30 UTC Mar 25)**: H-021, H-031, H-049, H-052 rebalance on Mar 24 bar. H-039 first trade (LONG for Wed). H-046 rebal Mar 25.
+- **Research**: 71 hypotheses total, ~48 rejected. All data sources exhausted. Future alpha: IV surface (7 days collecting).
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV collector running.
-- **Next action:** H-021/H-049/H-031/H-052 rebal + H-039 first trade on Mar 24 bar (00:30 UTC Mar 25). H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R7.
+- **Next action:** H-021/H-049/H-031/H-052 rebal + H-039 first trade on Mar 24 bar (00:30 UTC Mar 25). H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R7 flip.
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
@@ -290,15 +289,15 @@ All drifts within threshold, 0 trades this run. No spot BTC.
 - **Action items**: (1) Keep static weights — don't add complexity. (2) Monitor H-009 marginal value; may reduce weight if paper trade confirms. (3) H-011 re-entry is the single most important event for portfolio returns.
 
 ## Risk Watch
-- **Demo account healthy**: $100,238 (+0.24%). All drifts within threshold. H-011 spot+perp legs active on demo.
-- **H-055 CONFIRMED**: 8-strat portfolio LIVE on demo. Sharpe 5.13 backtest. Stress tested: positive in ALL regimes.
-- **H-011 IN POSITION**: Re-entered 00:00 UTC Mar 23 (2nd entry). R27 +0.01% ann, recovering. Indicated +2.8% ann. Projected to strengthen as Mar 14 negative cluster exits window. Whipsaw risk diminishing.
-- **H-009 SHORT**: Entry $69,909, BTC at $68,669 → -1.00% equity. SHORT recovering.
-- **H-046 worst XS**: -0.83%. Acceleration factor underperforming.
-- **H-011 worst overall**: -1.52% ($149 fees, -$3 net funding from whipsaw).
+- **Demo account**: $99,765 (-0.24%). All drifts within threshold. No spot BTC.
+- **H-056 LIVE on demo**: 6-strat portfolio. Leverage 2.79x. Stress tested: positive in ALL regimes.
+- **H-011 IN POSITION**: Re-entered 00:00 UTC Mar 23 (2nd entry). R27 +1.16% ann (safe). **R7 projects positive after 08:00 UTC Mar 24** — recovery ahead of schedule. Last 3 rates positive.
+- **H-009 SHORT**: Entry $69,909, BTC at $70,190 → -2.63% equity. SHORT losing in BTC rally.
+- **H-046 worst XS**: -0.96%. Acceleration factor underperforming.
+- **H-011 worst overall**: -1.47% ($149 fees, net +$2.07 funding from 2 entry cycles).
 - **Research status**: 71 hypotheses tested, ~48 rejected. All backtestable sources exhausted.
-- **IV collector**: 3 snapshots. **OB collector**: 3 snapshots. Both operational.
-- **Watchlist**: **H-012 + H-021 rebal 00:30 UTC Mar 22** (TONIGHT, ~3h). H-046 rebal Mar 23. H-039 first trade Mar 24. H-049 + H-031 + H-052 rebal Mar 24. H-053 + H-044 rebal Mar 29.
+- **IV collector**: running (7 days). **OB collector**: running.
+- **Watchlist**: **Tonight 00:30 UTC Mar 25**: H-021/H-031/H-049/H-052 rebal + H-039 first trade. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. H-053/H-044 rebal Mar 29.
 - **Cron**: Claude sessions every 4 hours. Paper trades hourly.
 - **Open user questions**: None
 
