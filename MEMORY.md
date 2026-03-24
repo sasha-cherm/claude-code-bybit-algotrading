@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $99,720 (-0.28%), leverage 2.78x. Recovered from -1.51%.
+- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $99,821 (-0.18%), leverage 2.79x. Resilient through BTC -2.3% selloff.
 - **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
-- **H-011 status**: DROPPED from demo. R27 +0.39% ann, R7 +0.28% ann (sustaining positive). Internal paper trade continues IN.
-- **Internal paper trades:** 16 runners active. Session 80. Total MTM: ~$160,846 (+0.53%).
-- **Top performers**: H-031 (+4.33%), H-049 (+4.14%), H-062 (+2.40%), H-012 (+2.16%), H-044 (+1.43%).
-- **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface (collecting, 4 snapshots).
+- **H-011 status**: DROPPED from demo. R27 +1.25% ann, R7 +0.76% ann (improving). Internal paper trade continues IN. Latest rate +5.70% ann.
+- **Internal paper trades:** 16 runners active. Session 81. Total MTM: ~$160,928 (+0.58%). Portfolio flat despite BTC -2.3%.
+- **Top performers**: H-049 (+4.33%), H-031 (+4.01%), H-012 (+2.93%), H-062 (+2.92%), H-053 (+1.38%).
+- **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface (collecting).
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV collector running.
-- **Next action:** Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebalance + H-039 first trade on Mar 24 bar. H-046 rebal Mar 25. H-019 leads H-024 by 1.90%.
+- **Next action:** Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebalance + H-039 first trade on Mar 24 bar. H-046 rebal Mar 25. H-019 leads H-024 by 2.50%.
 - **Open user questions:** None
 
 ## Memory Files
@@ -674,3 +674,11 @@
 - Next: Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebal + H-039 first trade. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28.
 - Questions added: none
 - Self-modifications: none (session 80)
+
+### Session 2026-03-24 review (session 81)
+- Goal: Review — full system health check, MTM update, BTC selloff resilience test
+- Focus: Paper trade monitoring, demo account health, H-011 R7 improvement, H-019 vs H-024 gap
+- Done: 16/16 runners OK (no new daily bar since Mar 23). **Demo**: $99,821 (-0.18%, improved from -0.28%). **Internal MTM**: $160,928 (+0.58%, up from +0.53%). **BTC dropped to $69,231** (down $1,638 / -2.3% from session 80). Portfolio essentially flat — market neutrality working as designed. **H-011 R7 improved**: +0.76% ann (from +0.28%), R27 +1.25% ann. Latest rate +5.70% ann, 5/6 recent settlements positive. 26 total settlements. **H-019 vs H-024 gap widened**: +0.56% vs -1.94% (2.50% spread, up from 1.90%). **H-049 now #1** (+4.33%), H-031 #2 (+4.01%). Demo uPnL net -$514, dominated by BTC LONG loss (-$1,102) offset by OP SHORT gain (+$1,450). 8/16 positive, 2 flat, 6 negative.
+- Next: Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebal + H-039 first trade. H-046 rebal Mar 25. H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R7 sustaining.
+- Questions added: none
+- Self-modifications: none (session 81)
