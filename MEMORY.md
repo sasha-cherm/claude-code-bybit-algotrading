@@ -1,15 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,548 (+0.55%), leverage 3.04x. Positions drifting <5%, no rebalancing needed.
+- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,592 (+0.59%), leverage 3.04x. Positions drifting <6%, no rebalancing.
 - **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
-- **H-011 status**: DROPPED from demo. R7 +2.46% ann. Latest rate **+10.95% ann** (strongest yet). Internal paper trade IN.
-- **Internal paper trades:** 16 runners active. Session 85. Total MTM: $160,892 (+0.56%). BTC $71,215.
-- **Top performers**: H-031 (+5.15%), H-049 (+3.99%), H-062 (+2.40%), H-012 (+2.10%). 9/16 positive, 6 negative, 1 flat.
-- **H-019 vs H-024**: +1.00% vs -1.64% — H-019 pulling ahead (2.64% gap).
-- **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. IV surface collecting.
-- **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 26 (00:30 UTC): H-012/H-044/H-046/H-062 rebal + H-039 exit LONG/enter SHORT. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053.
+- **H-011 status**: DROPPED from demo. R7 +2.46% ann. Internal paper trade IN. 28 settlements.
+- **Internal paper trades:** 17 runners active (H-063 new). Session 86. Total MTM: $160,681 (+0.43%). BTC $71,673.
+- **Top performers**: H-031 (+4.97%), H-049 (+3.58%), H-062 (+1.94%), H-012 (+1.72%). 9/17 positive, 6 negative, 2 flat.
+- **H-019 vs H-024**: +0.85% vs -1.51% — H-019 still ahead (2.36% gap, narrowed from 2.64%).
+- **NEW H-063**: Vol selling (short BTC strangle + delta hedge). Sharpe 1.54, 60/60 params, 6/6 WF folds. First options strategy.
+- **Research**: 72 total hypotheses. IV surface analysis complete — VRP confirmed (+4.3% mean).
+- **AUTOMATED:** Paper trades hourly via cron (17 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053.
 - **Open user questions:** None
 
 ## Memory Files
@@ -715,3 +716,11 @@
 - Next: Mar 26 (00:30 UTC): 4 strategy rebalances + H-039 position flip. Mar 27: H-021 rebal. Mar 28: H-059 rebal. Mar 29: H-031/H-049/H-052/H-053 rebal. Monitor H-011 rates.
 - Questions added: none
 - Self-modifications: none (session 85)
+
+### Session 2026-03-25 review+research (session 86)
+- Goal: Review + Research — system health check + IV surface analysis → new options strategy
+- Focus: MTM update, IV surface exploratory analysis, H-063 vol selling backtest + deployment
+- Done: 17/17 runners OK. **Demo**: $100,592 (+0.59%). **Internal MTM**: $160,681 (+0.43%). BTC $71,673. 9/17 positive, 6 negative, 2 flat. **IV surface analysis** (5 snapshots): BTC long-dated ATM IV stable at ~50%, VRP +4.3% mean (IV > RV 68% of time), near-term IV spikes during selloffs but far-dated barely moves. **NEW H-063: Systematic BTC Short Strangle** — sell 7d 3% OTM BTC strangle, delta-hedge daily, 10% stop. Backtest: **Sharpe 1.54, +52.5% ann, -18.4% DD, 73% WR**. Walk-forward **6/6 positive** (mean Sharpe 1.91). Param robustness **60/60 positive (100%)**. Fee robust (Sharpe 1.24 at 5% spread). Correlation -0.10 vs H-009 — market-neutral. Created paper trade runner, added to cron orchestrator. First entry at 01:00 UTC Mar 26.
+- Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00 UTC): H-063 first trade. Monitor H-063 execution.
+- Questions added: none
+- Self-modifications: Added H-063 runner to cron orchestrator (session 86)

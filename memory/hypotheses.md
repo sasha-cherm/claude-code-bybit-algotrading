@@ -119,6 +119,31 @@
 - Notes: Counterintuitive direction — expanding vol (not contracting) predicts positive returns. In crypto, vol expansion signals money flowing into an asset (attention, volume, institutional interest). Contracting vol signals being ignored. Paper trade deployed 2026-03-22: LONG OP/ARB/XRP/ATOM/ETH, SHORT DOGE/SUI/BTC/NEAR/DOT.
 - Sessions: [2026-03-22 research+paper trade session 66]
 
+## H-063: Systematic BTC Short Strangle with Delta Hedging (Vol Selling)
+- Status: LIVE (paper trade since 2026-03-25)
+- Idea: Sell weekly 3% OTM BTC strangles, delta-hedge daily with BTCUSDT perp. Captures the volatility risk premium (IV consistently exceeds realized vol ~68% of the time). 10% stop-loss to limit tail risk.
+- Instrument: options (BTC-USDT strangles) + futures (BTCUSDT perp for delta hedge)
+- Timeframe: 7 days (weekly trade cycle)
+- Logic: Every 7 days, sell 1 ATM-3% OTM call + 1 ATM-3% OTM put on the nearest weekly expiry. Delta-hedge daily using BTCUSDT perp. If running PnL < -10% of notional, close at market (stop-loss). At expiry, settle and repeat.
+- Data: BTC daily, 740 bars (~2yr). IV surface: 5 snapshots (2026-03-20 to 2026-03-24).
+- Result:
+  - **Full-period (3% OTM, 7d, 10% stop)**: Sharpe **1.54**, +52.5% ann, -18.4% DD, 73% WR, 101 trades
+  - **Walk-forward (6 folds, 90d)**: **6/6 positive**, mean Sharpe **1.91**
+  - **Split-half**: 0.74 / 1.53 — both halves positive, second half stronger
+  - **70/30 split**: IS 1.37, OOS 0.54 — OOS positive
+  - **Param robustness**: **60/60 positive** (100%) — strongest of any strategy tested
+  - **Fee sensitivity**: Sharpe 1.24 even at **5% option spread** (extremely robust)
+  - **Correlation**: -0.104 vs H-009 (BTC trend), 0.006 vs BTC returns — truly market-neutral
+  - **VRP stats**: Mean VRP +4.3%, IV > RV 68% of time. Long-dated BTC ATM IV stable at ~50%.
+  - **Liquidity**: BTC weekly options on Bybit: OI 7-8k, vol 1-2k/day, near-ATM spreads 1-5%
+  - **Variant comparison (all 7d, 10% stop)**:
+    - ATM straddle: Sharpe 1.81, +60.8%, -17.7% DD
+    - 3% OTM strangle: Sharpe 1.54, +52.5%, -18.4% DD
+    - 5% OTM strangle: Sharpe 1.87, +44.8%, -15.3% DD, 78% WR — best risk-adjusted
+    - 7% OTM: Sharpe 1.62, +27.5%, -10.1% DD, 86% WR — lowest risk
+- Notes: First options strategy in the system. Edge comes from: (1) theta decay fastest in final week, (2) BTC IV ~50% consistently exceeds average RV ~46%, (3) delta hedging isolates vol premium from directional risk. Key risk: tail events (worst trade -13.4% with stop). Real execution uses Bybit option bids for selling, actual mark prices for MTM. Paper trade runner queries live Bybit options quotes. Entry at 01:00 UTC daily.
+- Sessions: [2026-03-25 research+paper trade session 86]
+
 ## Pending
 
 ## H-058: Residual Momentum Factor (14 Assets)
