@@ -335,6 +335,44 @@
 - **Key finding**: Also discovered that H-012 (momentum) and H-062 (DD momentum) have **100% position agreement** — effectively the same signal. H-021 (vol mom) and H-046 (acceleration) also align 4/4. This matters for H-056 portfolio construction.
 - Sessions: [2026-03-25 review+research session 87]
 
+## H-073: Session-Based Crypto Return Decomposition (14 Assets)
+- Status: REJECTED — no stable session bias across time periods
+- Idea: Trade session-specific return biases. Short during Europe (08-16 UTC, negative avg return), long during US (16-00 UTC, positive avg return). Cross-asset equal-weight portfolio.
+- Instrument: futures (14 perps)
+- Timeframe: 8h (session-level)
+- Logic: Decompose daily returns into Asia/Europe/US sessions. Europe has avg -0.05%/session across 12/14 assets; US has +0.05% across 10/14. Strategy: Short Europe + Long US.
+- Data: 14 assets, ~1,725 days of 1h data (~4.7yr for BTC, shorter for some alts).
+- Result:
+  - **Per-asset train/test**: Only **2/14 consistent** (DOGE, NEAR). Mean train Sharpe +0.79, mean test -0.17.
+  - **Equal-weight portfolio**: Train Sharpe -0.08, Test Sharpe -0.19. Both periods negative.
+  - **Walk-forward (6 folds, 90d)**: Only 2/6 positive (mean Sharpe 2.02 skewed by Fold 4 outlier +11.95).
+  - **Significant individual sessions**: XRP US (p=0.003), SUI US (p=0.028) — but not tradeable standalone.
+  - **ANOVA significant**: XRP (p=0.007), DOGE (p=0.042) — but session effects flip between periods.
+  - **After fees**: Completely washed out (4 trades/day × 0.055% = 80% annual fee drag).
+- Notes: The session bias exists in aggregate (Europe underperforms, US outperforms) but is not stable across time periods. The effect flips between bullish and bearish regimes. With 4 trades per day, fees destroy any residual edge. Not viable.
+- Sessions: [2026-03-25 review+research session 88]
+
+## H-074: Volume-Price Divergence Factor (14 Assets)
+- Status: CONDITIONAL — real signal but inconsistent walk-forward
+- Idea: Cross-sectional factor based on volume-price divergence. Long assets where volume is rising faster than price (accumulation signal), short assets where volume is falling relative to price (distribution signal).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: For each asset, compute divergence_score = (volume_change_10d - price_change_5d). Rank. Long top 4 (high divergence = accumulation), short bottom 4 (low divergence = distribution).
+- Data: 14 assets, 740 daily bars (~2yr).
+- Result:
+  - **Full period (VL=10, PL=5, REB=7, N=4)**: Sharpe **1.27**, +46.1% ann, -36.2% DD, 54% WR
+  - **After fees**: Sharpe **0.51**, +18.5% ann (1.37 trades/day, 27.6% fee drag)
+  - **IS (70%)**: Sharpe 1.23 | **OOS (30%)**: Sharpe **1.90** — OOS outperforms IS (unusual and positive)
+  - **Split-half**: 1.49 / 2.89 — **both halves strong**, second half better
+  - **Walk-forward (6 folds, 90d)**: Only **2/6 positive** (mean 0.71, inflated by outlier fold)
+  - **Param robustness (neighbors)**: **49/81 positive (60%)**
+  - **Param robustness (full sweep)**: **56/81 positive (69%)**
+  - **Correlation**: -0.18 vs H-012 (momentum), +0.34 vs H-021 (vol mom), -0.06 vs H-031 (size), +0.01 vs BTC
+  - **Best fee-robust params (VL=30, PL=5, REB=10, N=4)**: Sharpe 3.21 full but OOS -1.33 — fails
+  - **Regime note**: Momentum direction (reversed) works in OOS for long-lookback params — signal may flip between contrarian and momentum modes
+- Notes: Signal is real — the OOS outperforming IS is strong evidence. Low correlation with existing factors makes this a good diversifier. However, walk-forward failure (2/6) indicates the signal is regime-dependent. The factor seems to work well in trending markets (2025-H2) and poorly in choppy markets (2024-Q4). Would need an adaptive component or longer observation before deployment. Could be combined with existing momentum signals as a secondary filter.
+- Sessions: [2026-03-25 review+research session 88]
+
 ## H-056: Short-Term Reversal Factor (1-5 Day, 14 Assets)
 - Status: REJECTED
 - Idea: Cross-sectional reversal — long recent losers (1-5d), short winners. Anti-correlated with momentum.

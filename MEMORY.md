@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,457 (+0.46%), leverage 3.04x. Positions drifting <5%, no rebalancing.
+- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,866 (+0.87%), leverage 3.04x. Positions drifting <5%, no rebalancing.
 - **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
-- **H-011 status**: DROPPED from demo. R7 **+4.99% ann** (up). Internal paper trade IN. 13 settlements. Rolling avg positive.
-- **Internal paper trades:** 17 runners active. Session 87. Total MTM: $170,614 (+0.36%). BTC $71,331.
-- **Top performers**: H-031 (+4.73%), H-049 (+3.82%), H-062 (+1.85%), H-012 (+1.45%). 7/17 positive, 8 negative, 2 flat.
-- **H-019 vs H-024**: +0.97% vs -1.69% — H-019 still ahead (2.66% gap).
+- **H-011 status**: DROPPED from demo. R7 **+4.99% ann** (up). Internal paper trade IN. 9/13 settlements positive. Rolling avg positive.
+- **Internal paper trades:** 17 runners active. Session 88. Total MTM: $170,219. BTC $70,967.
+- **Top performers**: H-031 (+4.08%), H-049 (+3.87%), H-062 (+2.30%), H-012 (+2.20%). 9/17 positive, 6 negative, 2 flat.
+- **H-019 vs H-024**: +0.63% vs -1.32% — H-019 still ahead (1.94% gap, narrowed from 2.66%).
 - **H-063**: Vol selling — FLAT, first entry at 01:00 UTC Mar 26.
-- **Research**: 73 total hypotheses. H-072 REJECTED (expanded 25-asset universe worse than 14-asset for momentum).
-- **KEY FINDING**: H-012 ≡ H-062 (100% position overlap), H-021 ≡ H-046 (4/4 overlap). H-049/H-062 are top performers but NOT in H-056 — future re-optimization needed.
+- **Research**: 74 total hypotheses. H-073 REJECTED (session returns). H-074 CONDITIONAL (vol-price divergence, Sharpe 1.27, OOS 1.90, WF 2/6).
+- **KEY FINDING (session 87)**: H-012 ≡ H-062 (100% position overlap), H-021 ≡ H-046 (4/4 overlap). H-049/H-062 are top performers but NOT in H-056 — future re-optimization needed.
 - **AUTOMATED:** Paper trades hourly via cron (17 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 26 (00:30 UTC): 4 rebalances (H-012/H-044/H-046/H-062) + H-039 flip. Mar 26 (01:00): H-063 first entry. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053.
 - **Open user questions:** None
@@ -733,3 +733,11 @@
 - Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Future session should re-optimize H-056 weights using live correlation data + portfolio overlap insights.
 - Questions added: none
 - Self-modifications: none (session 87)
+
+### Session 2026-03-25 review+research (session 88)
+- Goal: Review + Research — system health check + new factor research (session returns, volume-price divergence)
+- Focus: MTM update, H-073 session-based returns, H-074 volume-price divergence factor
+- Done: 17/17 runners OK. **Demo**: $100,866 (+0.87%, up from +0.46%). **Internal MTM**: $170,219. BTC $70,967 (-0.5%). 9/17 positive, 6 negative, 2 flat. H-019 vs H-024 gap narrowed to 1.94% (from 2.66%). Rebalances at 00:30 UTC Mar 26 not yet executed (session at 21:00 UTC). **H-073 REJECTED**: Session-based return decomposition (Asia/Europe/US). Europe avg -0.05%/session, US +0.05%. But only 2/14 assets consistent in train/test. Portfolio Sharpe negative in both train and test. After fees completely washed out. **H-074 CONDITIONAL**: Volume-price divergence factor. VL=10, PL=5, REB=7, N=4. Sharpe 1.27 full (+46% ann), **OOS 1.90 > IS 1.23** (unusual positive sign). Split-half 1.49/2.89. After fees Sharpe 0.51 (+18.5%). BUT walk-forward only 2/6 positive. Low correlation with momentum (-0.18). Regime-dependent — works in trending markets, fails in choppy.
+- Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Verify rebalances and H-063 entry in next session.
+- Questions added: none
+- Self-modifications: none (session 88)

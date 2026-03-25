@@ -203,26 +203,26 @@ No rebalancing needed — all drift <5%. Positions unchanged from session 83 reb
 - **Logic**: Sell 7-day 3% OTM BTC strangle, delta-hedge daily, 10% stop
 - **Correlation**: -0.10 vs H-009, ~0 vs BTC — truly market-neutral
 
-## Portfolio Summary (live mark-to-market 2026-03-25 session 86, 13:15 UTC)
-- **Bybit Demo**: $100,592 (+0.59%) — 14 perp positions, all drift <6%, no rebalancing.
-- **Total internal MTM (17 strats)**: $160,681 (+0.43%). BTC $71,673.
-- **Positive (9)**: H-031 (+4.97%), H-049 (+3.58%), H-062 (+1.94%), H-012 (+1.72%), H-039 (+1.19%), H-019 (+0.85%), H-052 (+0.50%), H-053 (+0.47%), H-044 (+0.26%)
-- **Negative (6)**: H-009 (-2.10%), H-024 (-1.51%), H-011 (-1.36%), H-059 (-1.11%), H-021 (-0.77%), H-046 (-0.56%)
-- **Flat (2)**: H-032 (0.00%), H-063 (0.00%, new)
-- **H-009**: $9,695 (-3.05%, SHORT) | **H-011**: $9,864 (-1.36%, **IN**) | **H-012**: $10,172 (+1.72%) | **H-019**: $10,085 (+0.85%) | **H-021**: $9,923 (-0.77%)
-- **H-024 (comparison)**: $9,849 (-1.51%) — H-019 +0.85% vs H-024 -1.51%. **Gap 2.36%** (narrowed from 2.64%).
-- **H-031 (independent)**: $10,498 (+4.97%) | **H-032 (independent)**: $10,000 (flat)
-- **H-037 (Polymarket, manual)**: $0 (no trades) | **H-039 (DOW, independent)**: $10,119 (+1.19%, LONG BTC for Wed)
-- **H-044 (OI divergence)**: $10,026 (+0.26%) | **H-046 (Acceleration)**: $9,942 (-0.56%)
-- **H-049 (LSR sentiment)**: $10,358 (+3.58%) | **H-052 (Premium)**: $10,050 (+0.50%)
-- **H-053 (Funding XS)**: $10,047 (+0.47%) | **H-059 (Vol Term)**: $9,889 (-1.11%, day 5)
-- **H-062 (DD Mom)**: $10,194 (+1.94%) | **H-063 (Vol Sell)**: $10,000 (0.00%, NEW)
-- **Paper trade age**: H-009/H-011/H-012: 10 days / 28 required. H-019/H-021/H-024: 7 days. H-031/H-032/H-039: 6 days. H-044/H-046/H-049/H-052/H-053: 5 days. H-059/H-062: 4 days. H-063: 0 days.
-- **Top performers**: H-031 (+4.97%), H-049 (+3.58%), H-062 (+1.94%), H-012 (+1.72%). 9/17 positive, 6 negative, 2 flat.
-- **H-011**: R7 +2.46% ann. 28 settlements. IN since Mar 23. Equity climbing.
-- **Research**: 72 hypotheses total (H-063 new). IV surface analysis complete — VRP confirmed. Next: more IV data for options backtesting.
+## Portfolio Summary (live mark-to-market 2026-03-25 session 88, 21:00 UTC)
+- **Bybit Demo**: $100,866 (+0.87%) — 14 perp positions, all drift <5%, no rebalancing.
+- **Total internal MTM (17 strats)**: $170,219 (+0.13% cron equity). BTC $70,967 (-0.5% from session 87).
+- **Positive (9)**: H-031 (+4.08%), H-049 (+3.87%), H-062 (+2.30%), H-012 (+2.20%), H-053 (+1.29%), H-052 (+0.86%), H-019 (+0.63%), H-044 (+0.60%), H-039 (+0.19%)
+- **Negative (6)**: H-009 (-2.67%), H-021 (-1.60%), H-011 (-1.36%), H-024 (-1.32%), H-059 (-0.99%), H-046 (-0.72%)
+- **Flat (2)**: H-032 (-0.03%), H-063 (0.00%, awaiting first entry)
+- **H-009**: $9,733 (-2.67%, SHORT) | **H-011**: $9,864 (-1.36%, **IN**) | **H-012**: $10,220 (+2.20%) | **H-019**: $10,063 (+0.63%) | **H-021**: $9,840 (-1.60%)
+- **H-024 (comparison)**: $9,868 (-1.32%) — H-019 +0.63% vs H-024 -1.32%. **Gap 1.94%** (narrowed from 2.66%).
+- **H-031 (independent)**: $10,408 (+4.08%) | **H-032 (independent)**: $9,997 (-0.03%)
+- **H-037 (Polymarket, manual)**: $0 (no trades) | **H-039 (DOW, independent)**: $10,019 (+0.19%, LONG BTC for Wed)
+- **H-044 (OI divergence)**: $10,060 (+0.60%) | **H-046 (Acceleration)**: $9,928 (-0.72%)
+- **H-049 (LSR sentiment)**: $10,387 (+3.87%) | **H-052 (Premium)**: $10,086 (+0.86%)
+- **H-053 (Funding XS)**: $10,129 (+1.29%) | **H-059 (Vol Term)**: $9,901 (-0.99%, day 5)
+- **H-062 (DD Mom)**: $10,230 (+2.30%) | **H-063 (Vol Sell)**: $10,000 (0.00%, awaiting first entry)
+- **Paper trade age**: H-009/H-011/H-012: 10 days / 28 required. H-019/H-021/H-024: 8 days. H-031/H-032/H-039: 7 days. H-044/H-046/H-049/H-052/H-053: 6 days. H-059/H-062: 4 days. H-063: 1 day.
+- **Top performers**: H-031 (+4.08%), H-049 (+3.87%), H-062 (+2.30%), H-012 (+2.20%). 9/17 positive, 6 negative, 2 flat.
+- **H-011**: R7 +4.99% ann (up from +2.46%). IN since Mar 23. 9/13 settlements positive.
+- **Research**: 74 hypotheses total. H-073 REJECTED (session returns not stable). H-074 CONDITIONAL (vol-price divergence: Sharpe 1.27 full, OOS 1.90, but WF only 2/6).
 - **AUTOMATED:** Paper trades hourly via cron (17 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 26 (00:30 UTC): H-012/H-044/H-046/H-062 rebal + H-039 exit LONG/enter SHORT. Mar 26 (01:00 UTC): H-063 first entry attempt. Mar 27: H-021 rebal. Mar 28: H-059 rebal. Mar 29: H-031/H-049/H-052/H-053 rebal.
+- **Next action:** Mar 26 (00:30 UTC): H-012/H-044/H-046/H-062 rebal + H-039 exit LONG/enter SHORT. Mar 26 (01:00 UTC): H-063 first entry. Mar 27: H-021 rebal. Mar 28: H-059 rebal. Mar 29: H-031/H-049/H-052/H-053 rebal.
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
