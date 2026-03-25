@@ -318,6 +318,23 @@
 - Result: 50% params positive (12/24) — noise. Best individual Sharpe 1.57 but no consistency.
 - Sessions: [2026-03-22 review+research session 70]
 
+## H-072: Expanded Universe Cross-Sectional Momentum (25 Assets)
+- Status: REJECTED — worse than 14-asset universe
+- Idea: Expand momentum universe from 14 to 25 assets (adding BNB, LTC, APT, TAO, AAVE, WLD, CRV, TRX, FIL, ICP, INJ) to increase cross-sectional dispersion and improve factor performance.
+- Instrument: futures (25 USDT perps)
+- Timeframe: 1D
+- Logic: Same as H-012 (XS momentum) but on expanded universe. Tested LB=14/30/60d, Rebal=3/5d, N=4-10.
+- Data: 741 daily bars (2024-03-15 to 2026-03-25) for all 25 assets. Also tested 37 assets for data availability.
+- Result:
+  - **14-asset (H-012 baseline)**: Sharpe **1.12**, +26.9% ann, -16.3% DD (LB=60, R=5, N=4)
+  - **25-asset (same params)**: Sharpe **-0.04**, -5.6% ann, -34.4% DD — dramatically worse
+  - **25-asset optimal N=7**: Sharpe 0.24 — still far worse than 14-asset
+  - **Individual additions**: Only BNB (+0.07 Sharpe) and APT (+0.11 Sharpe) marginally help. CRV (-0.40), ICP (-0.57), FIL (-0.28), LTC (-0.25), TRX (-0.26) all hurt badly.
+  - **Size factor also worse**: 14-asset Sharpe 0.16 vs 25-asset Sharpe -0.13
+- Notes: The original 14-asset universe was well-curated. New assets have poor momentum characteristics: LTC/TRX are low-vol stableish, ICP/FIL/WLD have persistent downtrends, CRV is choppy. Adding noise assets dilutes the cross-sectional signal. The 14-asset universe captures the right mix of liquid + volatile + trending assets.
+- **Key finding**: Also discovered that H-012 (momentum) and H-062 (DD momentum) have **100% position agreement** — effectively the same signal. H-021 (vol mom) and H-046 (acceleration) also align 4/4. This matters for H-056 portfolio construction.
+- Sessions: [2026-03-25 review+research session 87]
+
 ## H-056: Short-Term Reversal Factor (1-5 Day, 14 Assets)
 - Status: REJECTED
 - Idea: Cross-sectional reversal — long recent losers (1-5d), short winners. Anti-correlated with momentum.

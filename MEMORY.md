@@ -1,16 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,592 (+0.59%), leverage 3.04x. Positions drifting <6%, no rebalancing.
+- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,457 (+0.46%), leverage 3.04x. Positions drifting <5%, no rebalancing.
 - **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
-- **H-011 status**: DROPPED from demo. R7 +2.46% ann. Internal paper trade IN. 28 settlements.
-- **Internal paper trades:** 17 runners active (H-063 new). Session 86. Total MTM: $160,681 (+0.43%). BTC $71,673.
-- **Top performers**: H-031 (+4.97%), H-049 (+3.58%), H-062 (+1.94%), H-012 (+1.72%). 9/17 positive, 6 negative, 2 flat.
-- **H-019 vs H-024**: +0.85% vs -1.51% — H-019 still ahead (2.36% gap, narrowed from 2.64%).
-- **NEW H-063**: Vol selling (short BTC strangle + delta hedge). Sharpe 1.54, 60/60 params, 6/6 WF folds. First options strategy.
-- **Research**: 72 total hypotheses. IV surface analysis complete — VRP confirmed (+4.3% mean).
+- **H-011 status**: DROPPED from demo. R7 **+4.99% ann** (up). Internal paper trade IN. 13 settlements. Rolling avg positive.
+- **Internal paper trades:** 17 runners active. Session 87. Total MTM: $170,614 (+0.36%). BTC $71,331.
+- **Top performers**: H-031 (+4.73%), H-049 (+3.82%), H-062 (+1.85%), H-012 (+1.45%). 7/17 positive, 8 negative, 2 flat.
+- **H-019 vs H-024**: +0.97% vs -1.69% — H-019 still ahead (2.66% gap).
+- **H-063**: Vol selling — FLAT, first entry at 01:00 UTC Mar 26.
+- **Research**: 73 total hypotheses. H-072 REJECTED (expanded 25-asset universe worse than 14-asset for momentum).
+- **KEY FINDING**: H-012 ≡ H-062 (100% position overlap), H-021 ≡ H-046 (4/4 overlap). H-049/H-062 are top performers but NOT in H-056 — future re-optimization needed.
 - **AUTOMATED:** Paper trades hourly via cron (17 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053.
+- **Next action:** Mar 26 (00:30 UTC): 4 rebalances (H-012/H-044/H-046/H-062) + H-039 flip. Mar 26 (01:00): H-063 first entry. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053.
 - **Open user questions:** None
 
 ## Memory Files
@@ -724,3 +725,11 @@
 - Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00 UTC): H-063 first trade. Monitor H-063 execution.
 - Questions added: none
 - Self-modifications: Added H-063 runner to cron orchestrator (session 86)
+
+### Session 2026-03-25 review+research (session 87)
+- Goal: Review + Research — system health check + expanded universe analysis + portfolio overlap analysis
+- Focus: MTM update, H-072 expanded universe momentum test, H-056 position overlap analysis
+- Done: 17/17 runners OK. **Demo**: $100,457 (+0.46%). **Internal MTM**: $170,614 (+0.36%, down from +0.43%). BTC $71,331 (-0.48%). 7/17 positive, 8 negative, 2 flat. **H-011**: R7 +4.99% ann (up from +2.46%), 9/13 settlements positive, rolling avg still in. **H-072 REJECTED**: Expanded 25-asset universe (adding BNB/LTC/APT/TAO/AAVE/WLD/CRV/TRX/FIL/ICP/INJ) makes momentum WORSE — Sharpe drops from 1.12 to -0.04. Only BNB (+0.07) and APT (+0.11) marginally help. Size factor also worse with 25 assets. The 14-asset universe is well-curated. **Position overlap analysis**: H-012 ≡ H-062 (100% agreement, 6/6 positions match — momentum and DD-momentum are effectively identical signals). H-021 ≡ H-046 (4/4 agreement — vol momentum and acceleration are the same). H-056 is heavily net-long BTC/ETH/SOL, short NEAR/ARB/ATOM. H-049 and H-062 (top performers) are NOT in H-056 — future re-optimization should consider adding them.
+- Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Future session should re-optimize H-056 weights using live correlation data + portfolio overlap insights.
+- Questions added: none
+- Self-modifications: none (session 87)
