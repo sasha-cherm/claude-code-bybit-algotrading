@@ -70,5 +70,41 @@
       "DOGE/USDT": 0.891,
       "SUI/USDT": 0.8762
     }
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-03-25T00:30:39.377878+00:00",
+    "date": "2026-03-24",
+    "longs": [
+      "BTC/USDT",
+      "ARB/USDT",
+      "LINK/USDT",
+      "OP/USDT"
+    ],
+    "shorts": [
+      "DOT/USDT",
+      "XRP/USDT",
+      "NEAR/USDT",
+      "DOGE/USDT"
+    ],
+    "trades": 10,
+    "fees": 24.87,
+    "capital": 9844.23,
+    "vol_momentum": {
+      "BTC/USDT": 0.9894,
+      "ARB/USDT": 0.976,
+      "LINK/USDT": 0.9553,
+      "OP/USDT": 0.9027,
+      "ATOM/USDT": 0.8247,
+      "ADA/USDT": 0.811,
+      "SUI/USDT": 0.8044,
+      "SOL/USDT": 0.8006,
+      "ETH/USDT": 0.7633,
+      "AVAX/USDT": 0.7484,
+      "DOT/USDT": 0.7443,
+      "XRP/USDT": 0.744,
+      "NEAR/USDT": 0.6752,
+      "DOGE/USDT": 0.6276
+    }
   }
 ]

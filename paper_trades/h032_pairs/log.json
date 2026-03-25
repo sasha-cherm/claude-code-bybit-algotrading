@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "type": "open",
+    "time": "2026-03-25T00:30:39.564005+00:00",
+    "date": "2026-03-24",
+    "pair": "AVAX/DOT",
+    "direction": "short_spread",
+    "z": 1.002,
+    "hedge_ratio": 1.0074
+  }
+]

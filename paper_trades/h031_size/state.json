@@ -1,65 +1,65 @@
 {
   "started": "2026-03-19T09:03:47.897761+00:00",
-  "capital": 9980.0,
+  "capital": 10411.95,
   "positions": {
     "BTC/USDT": {
       "weight": 0.2,
-      "entry_price": 70163.0298,
-      "size": 0.02850504,
+      "entry_price": 70816.06038,
+      "size": 0.02940561,
       "direction": "LONG"
     },
     "ETH/USDT": {
       "weight": 0.2,
-      "entry_price": 2165.603034,
-      "size": 0.92353029,
+      "entry_price": 2161.23216,
+      "size": 0.9635194,
       "direction": "LONG"
     },
     "SOL/USDT": {
       "weight": 0.2,
-      "entry_price": 89.487894,
-      "size": 22.34939175,
+      "entry_price": 91.06821,
+      "size": 22.86625713,
       "direction": "LONG"
     },
     "XRP/USDT": {
       "weight": 0.2,
-      "entry_price": 1.458592,
-      "size": 1371.18568195,
+      "entry_price": 1.416883,
+      "size": 1469.69695891,
       "direction": "LONG"
     },
     "DOGE/USDT": {
       "weight": 0.2,
-      "entry_price": 0.094369,
-      "size": 21193.42957058,
+      "entry_price": 0.095229,
+      "size": 21867.1642894,
       "direction": "LONG"
     },
     "LINK/USDT": {
       "weight": -0.2,
-      "entry_price": 9.108178,
-      "size": -219.58288474,
+      "entry_price": 9.24815,
+      "size": -225.16818029,
       "direction": "SHORT"
     },
     "DOT/USDT": {
       "weight": -0.2,
-      "entry_price": 1.532693,
-      "size": -1304.8924201,
+      "entry_price": 1.40172,
+      "size": -1485.59605397,
       "direction": "SHORT"
     },
     "OP/USDT": {
       "weight": -0.2,
-      "entry_price": 0.122176,
-      "size": -16369.88608851,
+      "entry_price": 0.113777,
+      "size": -18302.33451379,
       "direction": "SHORT"
     },
     "ARB/USDT": {
       "weight": -0.2,
-      "entry_price": 0.10068,
-      "size": -19864.94617692,
+      "entry_price": 0.09758,
+      "size": -21340.22200481,
       "direction": "SHORT"
     },
     "ATOM/USDT": {
       "weight": -0.2,
-      "entry_price": 1.866627,
-      "size": -1071.45156937,
+      "entry_price": 1.786643,
+      "size": -1165.53199086,
       "direction": "SHORT"
     }
   },
@@ -93,12 +93,18 @@
       "equity": 10446.84,
       "positions": 10,
       "rebalanced": false
+    },
+    {
+      "date": "2026-03-24",
+      "equity": 10407.77,
+      "positions": 10,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-03-23",
-  "last_rebal_date": "2026-03-19",
-  "days_since_rebal": 4,
-  "rebal_count": 1,
+  "last_daily_date": "2026-03-24",
+  "last_rebal_date": "2026-03-24",
+  "days_since_rebal": 0,
+  "rebal_count": 2,
   "total_trades": 10,
   "total_fees": 20.0
 }

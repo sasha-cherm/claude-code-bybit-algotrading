@@ -37,7 +37,7 @@ from lib.bybit_demo_client import DemoTrader
 
 TOTAL_CAPITAL   = 100_000.0  # Demo account target capital (USDT)
 REBAL_THRESHOLD = 0.10       # Rebalance only if drift > 10% of target notional
-PERP_LEVERAGE   = 3          # Bybit leverage for all perp positions
+PERP_LEVERAGE   = 10         # Bybit account leverage (margin only, not exposure)
 
 # Strategy weights (sum = 1.0)
 H056_WEIGHTS: dict[str, float] = {

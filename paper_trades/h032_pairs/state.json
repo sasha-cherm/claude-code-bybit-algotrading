@@ -38,11 +38,11 @@
       "cumulative_pnl": 0.0
     },
     "AVAX/DOT": {
-      "position": 0,
-      "entry_date": null,
-      "entry_z": null,
+      "position": -1,
+      "entry_date": "2026-03-24",
+      "entry_z": 1.002,
       "entry_equity": 1250.0,
-      "cumulative_pnl": 0.0
+      "cumulative_pnl": -3.0000000000000004
     },
     "NEAR/OP": {
       "position": 0,
@@ -89,10 +89,16 @@
       "equity": 10000.0,
       "active_pairs": 0,
       "trades_today": 0
+    },
+    {
+      "date": "2026-03-24",
+      "equity": 9997.0,
+      "active_pairs": 1,
+      "trades_today": 1
     }
   ],
-  "last_daily_date": "2026-03-23",
-  "total_trades": 0,
-  "total_fees": 0.0,
+  "last_daily_date": "2026-03-24",
+  "total_trades": 1,
+  "total_fees": 3.0000000000000004,
   "trades_log": []
 }

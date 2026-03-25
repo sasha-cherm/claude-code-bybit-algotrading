@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "type": "open",
+    "time": "2026-03-25T00:30:39.578208+00:00",
+    "signal_date": "2026-03-24",
+    "direction": "LONG",
+    "entry_price": 70801.9,
+    "size_btc": 0.14123915,
+    "notional": 10000.0,
+    "fee": 4.0,
+    "capital_after": 9996.0
+  }
+]

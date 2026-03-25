@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $99,031 (-0.97%), leverage 2.79x. Short-side losing on BTC +2.4% recovery.
+- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $99,712 (-0.29%), leverage 3.04x, IM 30.7%. Major rebalance with position flips. Bybit leverage fixed 3x→10x.
 - **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
-- **H-011 status**: DROPPED from demo. R7 +0.86% ann (sustaining), R27 -0.27% ann (older positives rolling off). Internal paper trade continues IN. Latest rate +5.70% ann.
-- **Internal paper trades:** 16 runners active. Session 82. Total MTM: ~$160,782 (+0.49%). Portfolio flat despite BTC +2.4%.
-- **Top performers**: H-031 (+4.31%), H-049 (+3.69%), H-062 (+2.81%), H-012 (+2.68%), H-053 (+1.92%).
+- **H-011 status**: DROPPED from demo. R7 **+3.13% ann (tripled from +0.86%)**. Internal paper trade IN. Latest rate +6.05% ann. At 5x = 15.6%.
+- **Internal paper trades:** 16 runners active. Session 83. Total MTM: ~$160,214 (+0.13%). BTC $70,437.
+- **Top performers**: H-031 (+4.12%), H-049 (+3.91%), H-052 (+0.90%), H-012 (+0.39%). 4/16 positive, 10 negative, 2 flat.
 - **Research**: 71 total hypotheses, ~48 rejected. All data sources exhausted. Future alpha: IV surface (collecting).
 - **AUTOMATED:** Paper trades hourly via cron. Claude sessions every 4h. IV collector running.
-- **Next action:** Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebalance + H-039 first trade on Mar 24 bar. H-046/H-012/H-062 rebal Mar 26. H-019 leads H-024 by 2.63%.
+- **Next action:** Mar 26 (00:30 UTC): H-012/H-044/H-046/H-062 rebal + H-039 exit LONG/enter SHORT. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053. H-019≈H-024 (gap closed).
 - **Open user questions:** None
 
 ## Memory Files
@@ -690,3 +690,11 @@
 - Next: Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebal + H-039 first trade on Mar 24 bar. H-046/H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27 recovery.
 - Questions added: none
 - Self-modifications: none (session 82)
+
+### Session 2026-03-25 review (session 83)
+- Goal: Review — rebalance verification, margin fix, full MTM update
+- Focus: Verify 4 strategy rebalances (H-021/H-031/H-049/H-052) + H-039 first trade. Fix demo margin issue.
+- Done: 16/16 runners OK. Mar 24 bar processed by 00:30 cron. **4 rebalances confirmed**: H-021 (new: LONG BTC/ARB/LINK/OP, SHORT DOT/XRP/NEAR/DOGE), H-031 (unchanged), H-049 (new: LONG BTC/NEAR/ETH, SHORT XRP/OP/DOGE), H-052 (new: LONG DOT/LINK/ETH/OP, SHORT NEAR/AVAX/ATOM/ARB). **H-039 first trade**: LONG 0.14124 BTC @ $70,802 for Wed seasonal. **Demo margin crisis fixed**: IM was 98.1% (3x account leverage on 3.04x gross). Changed Bybit leverage from 3x→10x (affects margin only, not exposure). IM dropped to 30.7%, available $69k. NEAR short filled post-fix. **Demo**: $99,712 (-0.29%). **Internal MTM**: $160,214 (+0.13%). **H-011 R7 tripled**: +3.13% ann (from +0.86%), latest rate +6.05% ann, last 5 positive. **H-019 vs H-024 gap closed**: both ~-1.0% (was 2.63% spread). Only 4/16 positive (down from 9/16) — broad pullback in altcoin factors.
+- Next: Mar 26 (00:30 UTC): H-012/H-044/H-046/H-062 rebal + H-039 exit LONG/enter SHORT. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053. Monitor H-011 R7 sustaining.
+- Questions added: none
+- Self-modifications: demo_portfolio_runner.py PERP_LEVERAGE 3→10 (session 83)
