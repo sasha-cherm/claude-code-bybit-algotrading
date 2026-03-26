@@ -1203,6 +1203,42 @@
 - Notes: Opposite direction from H-060 (which was 72% positive but OOS decayed). This version has better OOS but weaker full-period. True daily Sharpe ~0.08 after metrics correction — too weak to deploy. The -0.345 momentum correlation is valuable but insufficient standalone alpha.
 - Sessions: [2026-03-26 review+research session 90]
 
+## H-079: Return Autocorrelation Factor (14 Assets)
+- Status: REJECTED — fragile, walk-forward fails
+- Idea: Rank assets by rolling lag-1 return autocorrelation. Long trending (positive AC), short mean-reverting (negative AC). Tests both directions.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: 42% params positive (51/120). Best Sharpe 1.181 (LB=20, REB=3, N=5, long_negative). WF **2/6 positive** (mean -0.57). Split-half 1.78→0.32 (degrades). Momentum correlation -0.236.
+- Notes: Autocorrelation is too noisy at the daily frequency for cross-sectional ranking. Best direction was "long mean-reverting" which is counterintuitive. Signal not robust.
+- Sessions: [2026-03-26 review+research session 91]
+
+## H-080: VWAP Trend Factor (14 Assets)
+- Status: REJECTED — too correlated with momentum
+- Idea: Compare current close to rolling VWAP (volume-weighted average price). Long assets above VWAP, short below.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: 43% params positive (62/144). Best Sharpe 1.228 (LB=60, REB=7, N=3, long_positive). WF 4/6 positive (mean 0.78). Split-half 1.95→0.33. **Correlation 0.647 with momentum** — essentially same signal via different mechanism.
+- Notes: VWAP trend is momentum in disguise. Above-VWAP = trending up = momentum. No diversification value.
+- Sessions: [2026-03-26 review+research session 91]
+
+## H-081: Hurst Exponent Factor (14 Assets)
+- Status: REJECTED — weak signal, computationally expensive
+- Idea: Rank assets by rolling Hurst exponent (R/S analysis). Long persistent (H>0.5), short mean-reverting (H<0.5).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: 25% params positive (9/36). Best Sharpe 0.787 (LB=60, REB=7, N=4, long_negative). WF **3/6 positive** (mean -0.98). Split-half 0.31→-1.09 (second half negative). Momentum correlation 0.215.
+- Notes: Hurst exponent is too noisy at the crypto daily frequency. R/S analysis needs longer time series for stable estimates. 90-day Hurst only marginally better than shorter windows.
+- Sessions: [2026-03-26 review+research session 91]
+
+## H-082: Risk-Adjusted Carry Factor (14 Assets)
+- Status: CONDITIONAL — interesting signal but parameter-sensitive
+- Idea: Rank by funding_rate / realized_volatility (per-asset funding "Sharpe"). Long highest risk-adjusted carry, short lowest.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: 44% params positive (84/192). Best Sharpe 1.239 (VW=20, FW=21, REB=7, N=3, long_positive). WF **4/6 positive** (mean **1.087** — strongest recent WF). Split-half 1.27→0.38 (second half weak). **Correlation -0.114 with momentum** (excellent diversifier).
+- Notes: Risk-adjusting the carry signal by volatility is theoretically sound. The negative correlation with momentum makes this highly attractive for portfolio diversification. However, only 44% params positive and significant split-half degradation indicate overfitting risk. Best params all use FW=21 (3-week funding window) with VW=20 (3-week vol) — requires extended lookback. Could be revisited if H-053 (raw funding XS) shows sustained success.
+- Sessions: [2026-03-26 review+research session 91]
+
 ## Killed
 (none)
 

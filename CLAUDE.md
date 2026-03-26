@@ -43,7 +43,7 @@ Log the chosen goal at the top of the session log entry.
 Before ending the session, update:
 - `memory/state.md` — current status of all strategies
 - `memory/hypotheses.md` — mark hypothesis outcomes
-- `MEMORY.md` — append a session log entry (≤10 lines)
+- `MEMORY.md` — append a session log entry (≤10 lines). **Keep only the last 10 sessions** in MEMORY.md; when it exceeds 10, move the oldest entries to `memory/session_archive.md` (append at end).
 - `questions/USER_QA.md` — add any questions for the user
 
 ### 5. Commit to Git
@@ -134,6 +134,17 @@ Questions for the user go in `questions/USER_QA.md`. Format:
 ```
 
 Check this file every session. If a question is ANSWERED and no action taken, act on it immediately.
+
+---
+
+## Demo Portfolio Change Policy
+
+**Never change the demo portfolio allocation autonomously.** Changes to the Bybit demo portfolio (H-056 weights, adding/removing strategies, leverage changes) require user approval. If analysis suggests a change:
+1. Write the proposal to `questions/USER_QA.md` with the rationale, expected impact, and proposed new allocation
+2. Wait for the user to answer before executing
+3. Only routine cron rebalancing (same weights, same strategies) runs autonomously
+
+This applies to: swapping strategies, changing weight percentages, adding/removing instruments, changing leverage multipliers.
 
 ---
 
