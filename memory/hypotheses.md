@@ -144,6 +144,25 @@
 - Notes: First options strategy in the system. Edge comes from: (1) theta decay fastest in final week, (2) BTC IV ~50% consistently exceeds average RV ~46%, (3) delta hedging isolates vol premium from directional risk. Key risk: tail events (worst trade -13.4% with stop). Real execution uses Bybit option bids for selling, actual mark prices for MTM. Paper trade runner queries live Bybit options quotes. Entry at 01:00 UTC daily.
 - Sessions: [2026-03-25 research+paper trade session 86]
 
+## H-085: Turnover Velocity Factor (14 Crypto Assets)
+- Status: LIVE (paper trade since 2026-03-26)
+- Idea: Rank 14 crypto assets by turnover velocity (5-day avg dollar volume / 20-day avg dollar volume). Long top 4 (highest volume surge = growing institutional attention), short bottom 4 (declining interest). Market-neutral.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: For each asset, compute ratio = mean(dollar_vol, 5d) / mean(dollar_vol, 20d). Rank. Long top 4, short bottom 4.
+- Data: 14 assets, 746 daily bars (~2yr).
+- Result:
+  - **Full-period (best)**: Sharpe **2.08** (L30_R10_N4), +109% ann, -23% DD, 50% WR
+  - **Parameter robustness**: **48/48 positive** (100%) — strongest ever tested, mean Sharpe 1.48
+  - **Walk-forward (param-selected, 4 folds)**: **3/4 positive**, mean Sharpe **2.37**
+  - **Walk-forward (fixed params, 4 folds)**: 2/4 positive, mean Sharpe 0.15 — param-dependent
+  - **Split-half**: 93.8% of params positive in both halves. Half means: 2.05 / 0.84
+  - **70/30 split**: Train 2.27, Test 0.23 — OOS weaker with fixed params
+  - **Correlation with H-012**: **0.21** (moderate)
+  - **Fee sensitivity**: Sharpe 1.48 median even with fees included
+- Notes: 100% param robustness is exceptional. The signal captures attention/interest shifts — volume surging means capital inflow. Fixed-param OOS is weaker (signal is real but optimal params shift over time). Deployed with L20_R7_N4 (recent WF best). Paper trade: LONG BTC/ARB/OP/ATOM, SHORT ETH/XRP/DOGE/NEAR.
+- Sessions: [2026-03-26 review+research session 92]
+
 ## Pending
 
 ## H-058: Residual Momentum Factor (14 Assets)
@@ -1238,6 +1257,24 @@
 - Result: 44% params positive (84/192). Best Sharpe 1.239 (VW=20, FW=21, REB=7, N=3, long_positive). WF **4/6 positive** (mean **1.087** — strongest recent WF). Split-half 1.27→0.38 (second half weak). **Correlation -0.114 with momentum** (excellent diversifier).
 - Notes: Risk-adjusting the carry signal by volatility is theoretically sound. The negative correlation with momentum makes this highly attractive for portfolio diversification. However, only 44% params positive and significant split-half degradation indicate overfitting risk. Best params all use FW=21 (3-week funding window) with VW=20 (3-week vol) — requires extended lookback. Could be revisited if H-053 (raw funding XS) shows sustained success.
 - Sessions: [2026-03-26 review+research session 91]
+
+## H-083: Idiosyncratic Volatility Factor (14 Assets)
+- Status: CONDITIONAL — strong recent performance but asymmetric historical behavior
+- Idea: Low idiosyncratic volatility anomaly. After removing BTC beta via OLS regression, rank assets by residual vol. Long lowest idio vol (quality), short highest idio vol.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: Best Sharpe 0.89 (LB=40, REB=5, N=3), +35.5% ann, -60.3% DD. **94% params positive** (45/48). **Correlation -0.011 with H-012** — near zero, excellent diversifier. WF **5/6 positive** (fold 0 was -3.30, rest 1.01-3.43). Split-half **-0.83 / +1.91** — bad first half, great second. 70/30: IS 0.15, OOS 2.53.
+- Notes: The signal clearly exists in recent data (2025-2026) but was terrible in 2024. This regime shift is concerning — the idio vol anomaly may be a newer phenomenon in crypto. The near-zero momentum correlation makes it an excellent diversifier IF it persists. Max DD 60% is too high for standalone. Revisit if the signal remains stable for another 6 months.
+- Sessions: [2026-03-26 review+research session 92]
+
+## H-084: BTC Correlation Factor (14 Assets)
+- Status: REJECTED — no consistent edge
+- Idea: Long assets with low BTC correlation (decorrelation premium), short high BTC correlation.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: Best Sharpe **0.42** (LB=20, REB=10, N=3). Only **31% params positive** (15/48). WF 3/6 positive — recent folds terrible (fold 5: -5.62). Split-half +1.98 / -1.82 — complete reversal. 70/30: IS 1.37, OOS -2.14. Corr 0.09 with H-012.
+- Notes: The BTC correlation factor worked in early data (2024) but completely reversed in 2025-2026. Crypto assets became more correlated over time, making the low-correlation premium disappear. Fundamental regime change killed the signal.
+- Sessions: [2026-03-26 review+research session 92]
 
 ## Killed
 (none)

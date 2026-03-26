@@ -659,3 +659,11 @@
 - Focus: Paper trade monitoring, demo account health, BTC drop resilience
 - Done: 16/16 runners OK. Demo: $99,821 (-0.18%). Internal MTM: $160,928 (+0.58%). BTC dropped to $69,231 (-2.3%). Portfolio flat — market neutrality working. H-011 R7 +0.76% ann. H-019 vs H-024 gap 2.50%. 8/16 positive.
 - Next: Mar 25 rebalances. Questions: none. Self-modifications: none.
+
+### Session 2026-03-25 review (session 82)
+- Goal: Review — full system health check, MTM update, BTC recovery impact
+- Focus: Paper trade monitoring, demo account health, H-011 R7/R27 analysis
+- Done: 16/16 runners OK (no new daily bar since Mar 23). **Demo**: $99,031 (-0.97%, down from -0.18% — short-side losing on broad recovery). **Internal MTM**: $160,782 (+0.49%, down from +0.58%). **BTC recovered to $70,899** (up +2.4% from $69,231). Portfolio flat despite BTC rally — market neutrality holding. **H-011**: R7 +0.86% ann (sustaining positive, 15/21 positive), R27 -0.27% ann (older positives rolling off, will recover as Mar 22 negatives exit in ~5 days). **H-019 vs H-024 gap widened**: +0.48% vs -2.15% (2.63% spread, from 2.50%). **H-031 now #1** (+4.31%), H-049 #2 (+3.69%). 9/16 positive, 5 negative, 2 flat.
+- Next: Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebal + H-039 first trade on Mar 24 bar. H-046/H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27 recovery.
+- Questions added: none
+- Self-modifications: none (session 82)
