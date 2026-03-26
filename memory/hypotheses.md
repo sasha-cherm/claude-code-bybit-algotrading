@@ -1276,6 +1276,33 @@
 - Notes: The BTC correlation factor worked in early data (2024) but completely reversed in 2025-2026. Crypto assets became more correlated over time, making the low-correlation premium disappear. Fundamental regime change killed the signal.
 - Sessions: [2026-03-26 review+research session 92]
 
+## H-086: Multi-Timeframe Momentum Composite (14 Assets)
+- Status: REJECTED — doesn't beat single 60d, high corr with H-012
+- Idea: Combine z-scored 5d, 20d, and 60d returns into a composite score. Long top N, short bottom N.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: Best Sharpe **1.25** (R3_N3), +59.9% ann, 34.7% DD. 100% params positive (9/9). WF 5/6 positive (mean 0.72). 70/30: train-best OOS Sharpe only 0.21. Split-half: both halves positive (mean 1.14/1.08). **Corr 0.68 with H-012.** Single 60d momentum: Sharpe 1.41 — beats the composite. 5d timeframe has NEGATIVE Sharpe (-0.97) and drags the composite down.
+- Notes: Adding short-term momentum to 60d signal hurts. Crypto short-term (5d) momentum is strongly mean-reverting, which offsets the longer-term trend. No added value over existing H-012.
+- Sessions: [2026-03-26 review+research session 93]
+
+## H-087: Amihud Illiquidity Factor (14 Assets)
+- Status: REJECTED — redundant with H-031 (size)
+- Idea: Amihud illiquidity ratio = |return|/dollar_volume. Test both directions: long liquid vs long illiquid.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: Long-liquid works, long-illiquid doesn't. Best Sharpe **2.37** (liquid_long_L20_R7_N4), +177.6% ann, 25.5% DD. WF fixed: **6/6 positive** (mean 1.82). WF selected: 5/6 positive (mean 1.40). 70/30 OOS Sharpe 2.02. Split-half corr **0.97**. BUT: **corr 0.916 with H-031 (size factor)**. Corr 0.435 with H-012.
+- Notes: In crypto, Amihud illiquidity is a near-perfect proxy for market cap/size — BTC and ETH are the most liquid, small alts are illiquid. "Long liquid, short illiquid" ≈ H-031 size factor. Despite excellent standalone metrics, adding this would double-count the size premium.
+- Sessions: [2026-03-26 review+research session 93]
+
+## H-088: Time-Series Momentum (TSMOM) Portfolio (14 Assets)
+- Status: REJECTED — WF fails, excessive DD
+- Idea: Trade each of 14 assets based on own L-day return sign (long if positive, short if negative). Net directional — can be fully long or short the entire market.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: Best Sharpe **1.03** (L60_R1, equal weight), +56.6% ann, **55.7% DD**. WF param selection: **2/6 positive** (mean -1.06). WF fixed: 4/6 positive (mean 0.22). 70/30 OOS Sharpe 0.91. Corr -0.37 with BTC (negative — would be diversifier). Corr 0.30 with H-012. Vol-scaled variant nearly identical (corr 0.997).
+- Notes: Interesting concept — negative BTC correlation is rare. But unreliable: WF param selection fails catastrophically (2/6), max DD 55.7% is unacceptable. The negative BTC correlation comes from going short during crypto downturns (=trend following), which H-009 already captures. Net directional risk too high for standalone deployment.
+- Sessions: [2026-03-26 review+research session 93]
+
 ## Killed
 (none)
 

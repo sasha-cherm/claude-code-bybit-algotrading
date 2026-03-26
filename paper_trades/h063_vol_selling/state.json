@@ -15,11 +15,11 @@
     "premium_collected": 364.1405091231581,
     "iv": 0.4894,
     "btc_at_entry": 71263.7,
-    "total_fees": 9.870282033775691,
-    "hedge_pnl": -11.147415324574542,
-    "last_btc_price": 69333.0
+    "total_fees": 12.74101293052573,
+    "hedge_pnl": -6.1179144294412104,
+    "last_btc_price": 68858.8
   },
-  "hedge_position": 0.02975870909350278,
+  "hedge_position": 0.04012863983314701,
   "total_trades": 0,
   "total_pnl": 0,
   "equity_history": [
@@ -220,8 +220,62 @@
       "equity": 9990.17,
       "btc_price": 69333.0,
       "in_trade": true
+    },
+    {
+      "time": "2026-03-26T13:30:49.146693+00:00",
+      "equity": 9992.64,
+      "btc_price": 69352.7,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T14:31:13.932704+00:00",
+      "equity": 10012.17,
+      "btc_price": 69684.8,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T15:31:50.661004+00:00",
+      "equity": 9977.96,
+      "btc_price": 69016.8,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T16:31:24.401350+00:00",
+      "equity": 9968.85,
+      "btc_price": 68878.3,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T17:32:01.648227+00:00",
+      "equity": 9983.71,
+      "btc_price": 69056.6,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T18:31:21.656189+00:00",
+      "equity": 9918.15,
+      "btc_price": 68228.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T19:32:22.327888+00:00",
+      "equity": 9932.07,
+      "btc_price": 68351.8,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T20:31:14.090275+00:00",
+      "equity": 10010.52,
+      "btc_price": 69202.4,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-26T21:04:17.200024+00:00",
+      "equity": 9986.99,
+      "btc_price": 68858.8,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-03-26T12:31:17.527326+00:00",
-  "equity": 9990.17
+  "last_check": "2026-03-26T21:04:17.200024+00:00",
+  "equity": 9986.99
 }

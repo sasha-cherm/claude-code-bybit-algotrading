@@ -1,0 +1,351 @@
+{
+  "hypothesis": "H-086",
+  "name": "Multi-Timeframe Momentum Composite",
+  "description": "Cross-sectional factor: z-scored 5d+20d+60d returns composite. Long top N, short bottom N.",
+  "timeframe_windows": [
+    5,
+    20,
+    60
+  ],
+  "fee_rate_bps": 5.999999999999999,
+  "universe_size": 14,
+  "n_days": 746,
+  "period": "2024-03-11 to 2026-03-26",
+  "full_scan": {
+    "n_combos": 9,
+    "pct_positive_sharpe": 1.0,
+    "mean_sharpe_daily": 0.853,
+    "median_sharpe_daily": 0.833,
+    "best_params": "R3_N3",
+    "best_sharpe_daily": 1.249,
+    "best_sharpe_raw": 6.117,
+    "best_annual_ret": 0.5993,
+    "best_max_dd": 0.3472,
+    "best_win_rate": 0.4752,
+    "best_n_trades": 1005,
+    "all_results": [
+      {
+        "tag": "R3_N3",
+        "rebal": 3,
+        "n_long": 3,
+        "sharpe_daily": 1.249,
+        "sharpe_raw": 6.117,
+        "annual_ret": 0.5993,
+        "max_dd": 0.3472,
+        "win_rate": 0.4752,
+        "n_trades": 1005,
+        "n_rebalances": 227
+      },
+      {
+        "tag": "R3_N4",
+        "rebal": 3,
+        "n_long": 4,
+        "sharpe_daily": 0.556,
+        "sharpe_raw": 2.725,
+        "annual_ret": 0.1536,
+        "max_dd": 0.3688,
+        "win_rate": 0.4711,
+        "n_trades": 1216,
+        "n_rebalances": 227
+      },
+      {
+        "tag": "R3_N5",
+        "rebal": 3,
+        "n_long": 5,
+        "sharpe_daily": 0.568,
+        "sharpe_raw": 2.782,
+        "annual_ret": 0.1478,
+        "max_dd": 0.3404,
+        "win_rate": 0.4671,
+        "n_trades": 1223,
+        "n_rebalances": 227
+      },
+      {
+        "tag": "R5_N3",
+        "rebal": 5,
+        "n_long": 3,
+        "sharpe_daily": 0.772,
+        "sharpe_raw": 3.782,
+        "annual_ret": 0.2896,
+        "max_dd": 0.3923,
+        "win_rate": 0.4832,
+        "n_trades": 773,
+        "n_rebalances": 137
+      },
+      {
+        "tag": "R5_N4",
+        "rebal": 5,
+        "n_long": 4,
+        "sharpe_daily": 0.833,
+        "sharpe_raw": 4.08,
+        "annual_ret": 0.2887,
+        "max_dd": 0.3537,
+        "win_rate": 0.4779,
+        "n_trades": 876,
+        "n_rebalances": 137
+      },
+      {
+        "tag": "R5_N5",
+        "rebal": 5,
+        "n_long": 5,
+        "sharpe_daily": 0.494,
+        "sharpe_raw": 2.42,
+        "annual_ret": 0.1187,
+        "max_dd": 0.3243,
+        "win_rate": 0.4711,
+        "n_trades": 907,
+        "n_rebalances": 137
+      },
+      {
+        "tag": "R7_N3",
+        "rebal": 7,
+        "n_long": 3,
+        "sharpe_daily": 1.162,
+        "sharpe_raw": 5.695,
+        "annual_ret": 0.5949,
+        "max_dd": 0.3903,
+        "win_rate": 0.4819,
+        "n_trades": 587,
+        "n_rebalances": 98
+      },
+      {
+        "tag": "R7_N4",
+        "rebal": 7,
+        "n_long": 4,
+        "sharpe_daily": 1.023,
+        "sharpe_raw": 5.014,
+        "annual_ret": 0.4203,
+        "max_dd": 0.3679,
+        "win_rate": 0.4658,
+        "n_trades": 642,
+        "n_rebalances": 98
+      },
+      {
+        "tag": "R7_N5",
+        "rebal": 7,
+        "n_long": 5,
+        "sharpe_daily": 1.021,
+        "sharpe_raw": 5.004,
+        "annual_ret": 0.3616,
+        "max_dd": 0.291,
+        "win_rate": 0.4711,
+        "n_trades": 647,
+        "n_rebalances": 98
+      }
+    ]
+  },
+  "timeframe_contribution": {
+    "single_5d": {
+      "sharpe_daily": -0.97,
+      "sharpe_raw": -4.751,
+      "annual_ret": -0.4594,
+      "max_dd": 0.8116
+    },
+    "single_20d": {
+      "sharpe_daily": 0.746,
+      "sharpe_raw": 3.655,
+      "annual_ret": 0.2902,
+      "max_dd": 0.36
+    },
+    "single_60d": {
+      "sharpe_daily": 1.306,
+      "sharpe_raw": 6.399,
+      "annual_ret": 0.6992,
+      "max_dd": 0.2307
+    },
+    "composite": {
+      "sharpe_daily": 1.249,
+      "sharpe_raw": 6.117,
+      "annual_ret": 0.5993,
+      "max_dd": 0.3472
+    }
+  },
+  "train_test_70_30": {
+    "train_best_params": "R7_N3",
+    "train_sharpe": 1.241,
+    "test_sharpe_daily": 0.212,
+    "test_sharpe_raw": 1.041,
+    "test_annual_ret": 0.0147,
+    "test_max_dd": 0.1948,
+    "test_win_rate": 0.3587,
+    "test_n_days": 224
+  },
+  "split_half": {
+    "sharpe_correlation": 0.258,
+    "both_positive_pct": 1.0,
+    "half1_mean_sharpe": 1.137,
+    "half2_mean_sharpe": 1.079
+  },
+  "walk_forward_fixed": {
+    "params": "R3_N3",
+    "n_folds": 6,
+    "positive_folds": 5,
+    "mean_oos_sharpe_daily": 0.723,
+    "mean_oos_sharpe_raw": 3.542,
+    "mean_oos_annual_ret": 0.8438,
+    "folds": [
+      {
+        "fold": 1,
+        "start": "2025-12-27",
+        "end": "2026-03-26",
+        "n_days": 90,
+        "sharpe_daily": 1.473,
+        "sharpe_raw": 7.217,
+        "annual_ret": 0.522,
+        "max_dd": 0.1223,
+        "win_rate": 0.2697
+      },
+      {
+        "fold": 2,
+        "start": "2025-09-28",
+        "end": "2025-12-26",
+        "n_days": 90,
+        "sharpe_daily": 0.775,
+        "sharpe_raw": 3.797,
+        "annual_ret": 0.2021,
+        "max_dd": 0.129,
+        "win_rate": 0.2472
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-30",
+        "end": "2025-09-27",
+        "n_days": 90,
+        "sharpe_daily": 0.963,
+        "sharpe_raw": 4.718,
+        "annual_ret": 0.2727,
+        "max_dd": 0.0995,
+        "win_rate": 0.2584
+      },
+      {
+        "fold": 4,
+        "start": "2025-04-01",
+        "end": "2025-06-29",
+        "n_days": 90,
+        "sharpe_daily": 0.205,
+        "sharpe_raw": 1.005,
+        "annual_ret": 0.0204,
+        "max_dd": 0.1105,
+        "win_rate": 0.2247
+      },
+      {
+        "fold": 5,
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "n_days": 90,
+        "sharpe_daily": -2.495,
+        "sharpe_raw": -12.224,
+        "annual_ret": -0.6294,
+        "max_dd": 0.3183,
+        "win_rate": 0.236
+      },
+      {
+        "fold": 6,
+        "start": "2024-10-03",
+        "end": "2024-12-31",
+        "n_days": 90,
+        "sharpe_daily": 3.417,
+        "sharpe_raw": 16.737,
+        "annual_ret": 4.6747,
+        "max_dd": 0.1384,
+        "win_rate": 0.3034
+      }
+    ]
+  },
+  "walk_forward_selected": {
+    "n_folds": 6,
+    "positive_folds": 4,
+    "mean_oos_sharpe_daily": 0.682,
+    "mean_oos_sharpe_raw": 3.343,
+    "folds": [
+      {
+        "fold": 1,
+        "start": "2025-12-27",
+        "end": "2026-03-26",
+        "n_days": 90,
+        "train_best_params": "R5_N5",
+        "train_sharpe": 2.474,
+        "oos_sharpe_daily": 2.522,
+        "oos_sharpe_raw": 12.357,
+        "oos_annual_ret": 0.688,
+        "oos_max_dd": 0.0363
+      },
+      {
+        "fold": 2,
+        "start": "2025-09-28",
+        "end": "2025-12-26",
+        "n_days": 90,
+        "train_best_params": "R7_N3",
+        "train_sharpe": 2.237,
+        "oos_sharpe_daily": -1.032,
+        "oos_sharpe_raw": -5.056,
+        "oos_annual_ret": -0.2212,
+        "oos_max_dd": 0.1343
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-30",
+        "end": "2025-09-27",
+        "n_days": 90,
+        "train_best_params": "R3_N3",
+        "train_sharpe": 0.712,
+        "oos_sharpe_daily": 0.963,
+        "oos_sharpe_raw": 4.718,
+        "oos_annual_ret": 0.2727,
+        "oos_max_dd": 0.0995
+      },
+      {
+        "fold": 4,
+        "start": "2025-04-01",
+        "end": "2025-06-29",
+        "n_days": 90,
+        "train_best_params": "R5_N5",
+        "train_sharpe": -0.615,
+        "oos_sharpe_daily": 0.72,
+        "oos_sharpe_raw": 3.528,
+        "oos_annual_ret": 0.1113,
+        "oos_max_dd": 0.0651
+      },
+      {
+        "fold": 5,
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "n_days": 90,
+        "train_best_params": "R3_N3",
+        "train_sharpe": 3.218,
+        "oos_sharpe_daily": -2.495,
+        "oos_sharpe_raw": -12.224,
+        "oos_annual_ret": -0.6294,
+        "oos_max_dd": 0.3183
+      },
+      {
+        "fold": 6,
+        "start": "2024-10-03",
+        "end": "2024-12-31",
+        "n_days": 90,
+        "train_best_params": "R3_N3",
+        "train_sharpe": 0.399,
+        "oos_sharpe_daily": 3.417,
+        "oos_sharpe_raw": 16.737,
+        "oos_annual_ret": 4.6747,
+        "oos_max_dd": 0.1384
+      }
+    ]
+  },
+  "h012_correlation": {
+    "corr_h012_60d": 0.68,
+    "corr_5d_mom": 0.534,
+    "corr_20d_mom": 0.74,
+    "h012_sharpe": 1.41,
+    "h012_annual_ret": 0.6837,
+    "mom5_sharpe": 0.856,
+    "mom5_annual_ret": 0.3255,
+    "mom20_sharpe": 0.803,
+    "mom20_annual_ret": 0.2862
+  },
+  "parameter_robustness": {
+    "pct_positive_sharpe": 1.0,
+    "mean_sharpe_daily": 0.853,
+    "median_sharpe_daily": 0.833
+  }
+}

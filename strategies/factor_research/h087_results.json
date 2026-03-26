@@ -1,0 +1,309 @@
+{
+  "hypothesis": "H-087",
+  "name": "Amihud Illiquidity Factor",
+  "description": "Cross-sectional factor: test both long-liquid and long-illiquid directions",
+  "fee_rate_bps": 5.999999999999999,
+  "universe_size": 14,
+  "n_days": 746,
+  "period": "2024-03-11 to 2026-03-26",
+  "verdict": "CONFIRMED",
+  "full_scan": {
+    "n_combos": 54,
+    "pct_positive_sharpe": 0.5,
+    "mean_sharpe_365": 0.218,
+    "median_sharpe_365": 0.211,
+    "best_params": "liquid_long_L20_R7_N4",
+    "best_sharpe_365": 2.368,
+    "best_sharpe_8760": 11.602,
+    "best_annual_ret": 1.7758,
+    "best_max_dd": 0.2549,
+    "best_win_rate": 0.5584,
+    "per_direction": {
+      "liquid_long": {
+        "n_combos": 27,
+        "pct_positive": 1.0,
+        "mean_sharpe_365": 2.137,
+        "median_sharpe_365": 2.133
+      },
+      "illiquid_long": {
+        "n_combos": 27,
+        "pct_positive": 0.0,
+        "mean_sharpe_365": -1.701,
+        "median_sharpe_365": -1.69
+      }
+    }
+  },
+  "train_test_70_30": {
+    "train_best_params": "liquid_long_L10_R3_N5",
+    "train_sharpe_365": 2.462,
+    "test_sharpe_365": 2.02,
+    "test_sharpe_8760": 9.897,
+    "test_annual_ret": 1.1557,
+    "test_max_dd": 0.2206,
+    "test_win_rate": 0.5381,
+    "test_n_days": 224
+  },
+  "split_half": {
+    "sharpe_correlation": 0.967,
+    "both_positive_pct": 0.5,
+    "half1_mean_sharpe": 0.227,
+    "half2_mean_sharpe": 0.197
+  },
+  "walk_forward_fixed_best": {
+    "params": "liquid_long_L20_R7_N4",
+    "n_folds": 6,
+    "positive_folds": 6,
+    "mean_oos_sharpe_365": 1.819,
+    "mean_oos_sharpe_8760": 8.911,
+    "folds": [
+      {
+        "fold": 1,
+        "start": "2025-12-27",
+        "end": "2026-03-26",
+        "n_days": 90,
+        "sharpe_365": 3.54,
+        "sharpe_8760": 17.342,
+        "annual_ret": 1.9096,
+        "max_dd": 0.0741,
+        "win_rate": 0.4382
+      },
+      {
+        "fold": 2,
+        "start": "2025-09-28",
+        "end": "2025-12-26",
+        "n_days": 90,
+        "sharpe_365": 1.277,
+        "sharpe_8760": 6.256,
+        "annual_ret": 0.6326,
+        "max_dd": 0.234,
+        "win_rate": 0.4494
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-30",
+        "end": "2025-09-27",
+        "n_days": 90,
+        "sharpe_365": 0.462,
+        "sharpe_8760": 2.261,
+        "annual_ret": 0.1039,
+        "max_dd": 0.0979,
+        "win_rate": 0.3596
+      },
+      {
+        "fold": 4,
+        "start": "2025-04-01",
+        "end": "2025-06-29",
+        "n_days": 90,
+        "sharpe_365": 3.141,
+        "sharpe_8760": 15.389,
+        "annual_ret": 2.3107,
+        "max_dd": 0.1367,
+        "win_rate": 0.4944
+      },
+      {
+        "fold": 5,
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "n_days": 90,
+        "sharpe_365": 0.984,
+        "sharpe_8760": 4.821,
+        "annual_ret": 0.4155,
+        "max_dd": 0.1769,
+        "win_rate": 0.3483
+      },
+      {
+        "fold": 6,
+        "start": "2024-10-03",
+        "end": "2024-12-31",
+        "n_days": 90,
+        "sharpe_365": 1.51,
+        "sharpe_8760": 7.399,
+        "annual_ret": 1.0496,
+        "max_dd": 0.2509,
+        "win_rate": 0.4157
+      }
+    ]
+  },
+  "walk_forward_fixed_other": {
+    "params": "illiquid_long_L30_R5_N5",
+    "n_folds": 6,
+    "positive_folds": 2,
+    "mean_oos_sharpe_365": -0.422,
+    "folds": [
+      {
+        "fold": 1,
+        "start": "2025-12-27",
+        "end": "2026-03-26",
+        "n_days": 90,
+        "sharpe_365": -1.897,
+        "sharpe_8760": -9.291,
+        "annual_ret": -0.4321,
+        "max_dd": 0.1683,
+        "win_rate": 0.2921
+      },
+      {
+        "fold": 2,
+        "start": "2025-09-28",
+        "end": "2025-12-26",
+        "n_days": 90,
+        "sharpe_365": -0.815,
+        "sharpe_8760": -3.993,
+        "annual_ret": -0.3579,
+        "max_dd": 0.2784,
+        "win_rate": 0.2247
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-30",
+        "end": "2025-09-27",
+        "n_days": 90,
+        "sharpe_365": -0.332,
+        "sharpe_8760": -1.625,
+        "annual_ret": -0.1175,
+        "max_dd": 0.1176,
+        "win_rate": 0.2697
+      },
+      {
+        "fold": 4,
+        "start": "2025-04-01",
+        "end": "2025-06-29",
+        "n_days": 90,
+        "sharpe_365": -1.085,
+        "sharpe_8760": -5.314,
+        "annual_ret": -0.3784,
+        "max_dd": 0.2678,
+        "win_rate": 0.2697
+      },
+      {
+        "fold": 5,
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "n_days": 90,
+        "sharpe_365": 1.284,
+        "sharpe_8760": 6.288,
+        "annual_ret": 0.4887,
+        "max_dd": 0.1303,
+        "win_rate": 0.3258
+      },
+      {
+        "fold": 6,
+        "start": "2024-10-03",
+        "end": "2024-12-31",
+        "n_days": 90,
+        "sharpe_365": 0.314,
+        "sharpe_8760": 1.539,
+        "annual_ret": 0.0151,
+        "max_dd": 0.2056,
+        "win_rate": 0.2809
+      }
+    ]
+  },
+  "walk_forward_selected": {
+    "n_folds": 6,
+    "positive_folds": 5,
+    "mean_oos_sharpe_365": 1.397,
+    "folds": [
+      {
+        "fold": 1,
+        "start": "2025-12-27",
+        "end": "2026-03-26",
+        "n_days": 90,
+        "train_best_params": "liquid_long_L10_R3_N3",
+        "train_sharpe_365": 2.548,
+        "oos_sharpe_365": 3.452,
+        "oos_sharpe_8760": 16.913,
+        "oos_annual_ret": 2.8779,
+        "oos_max_dd": 0.0851
+      },
+      {
+        "fold": 2,
+        "start": "2025-09-28",
+        "end": "2025-12-26",
+        "n_days": 90,
+        "train_best_params": "liquid_long_L10_R7_N4",
+        "train_sharpe_365": 1.961,
+        "oos_sharpe_365": 1.795,
+        "oos_sharpe_8760": 8.793,
+        "oos_annual_ret": 1.0883,
+        "oos_max_dd": 0.234
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-30",
+        "end": "2025-09-27",
+        "n_days": 90,
+        "train_best_params": "liquid_long_L20_R7_N3",
+        "train_sharpe_365": 3.443,
+        "oos_sharpe_365": 0.829,
+        "oos_sharpe_8760": 4.063,
+        "oos_annual_ret": 0.2338,
+        "oos_max_dd": 0.081
+      },
+      {
+        "fold": 4,
+        "start": "2025-04-01",
+        "end": "2025-06-29",
+        "n_days": 90,
+        "train_best_params": "liquid_long_L30_R7_N3",
+        "train_sharpe_365": 3.366,
+        "oos_sharpe_365": 2.215,
+        "oos_sharpe_8760": 10.852,
+        "oos_annual_ret": 1.2162,
+        "oos_max_dd": 0.1472
+      },
+      {
+        "fold": 5,
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "n_days": 90,
+        "train_best_params": "liquid_long_L20_R5_N5",
+        "train_sharpe_365": 2.711,
+        "oos_sharpe_365": 0.519,
+        "oos_sharpe_8760": 2.541,
+        "oos_annual_ret": 0.1384,
+        "oos_max_dd": 0.1723
+      },
+      {
+        "fold": 6,
+        "start": "2024-10-03",
+        "end": "2024-12-31",
+        "n_days": 90,
+        "train_best_params": "liquid_long_L10_R3_N3",
+        "train_sharpe_365": 2.125,
+        "oos_sharpe_365": -0.427,
+        "oos_sharpe_8760": -2.092,
+        "oos_annual_ret": -0.4224,
+        "oos_max_dd": 0.4356
+      }
+    ]
+  },
+  "correlations": {
+    "h012_momentum_corr": 0.435,
+    "h031_size_corr": 0.916,
+    "signal_xs_corr_amihud_size": -0.464
+  },
+  "parameter_robustness": {
+    "overall_pct_positive": 0.5,
+    "overall_mean_sharpe": 0.218,
+    "per_direction": {
+      "liquid_long": {
+        "n_combos": 27,
+        "pct_positive": 1.0,
+        "mean_sharpe_365": 2.137,
+        "median_sharpe_365": 2.133
+      },
+      "illiquid_long": {
+        "n_combos": 27,
+        "pct_positive": 0.0,
+        "mean_sharpe_365": -1.701,
+        "median_sharpe_365": -1.69
+      }
+    }
+  },
+  "assessment": [
+    "  [FAIL] Param robustness: 50% positive (threshold 70%)",
+    "  [PASS] OOS Sharpe(365): 2.020 > 0",
+    "  [PASS] Split-half correlation: 0.967 > 0.3",
+    "  [PASS] WF param selection: 83% positive folds"
+  ]
+}

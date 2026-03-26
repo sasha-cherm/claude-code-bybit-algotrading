@@ -68,12 +68,17 @@ def run_single(name: str, runner_path: Path) -> dict:
         spec.loader.exec_module(mod)
         mod.run()
 
-        # Read state to report equity
+        # Read state to report equity (prefer last equity_history entry for MTM)
         state_file = runner_path.parent / "state.json"
         if state_file.exists():
             with open(state_file) as f:
                 state = json.load(f)
-            equity = state.get("capital", state.get("equity", 0))
+            # Try equity_history last entry (includes unrealized PnL)
+            eq_hist = state.get("equity_history", [])
+            if eq_hist and "equity" in eq_hist[-1]:
+                equity = eq_hist[-1]["equity"]
+            else:
+                equity = state.get("equity", state.get("capital", 0))
             return {"name": name, "status": "OK", "equity": equity}
         return {"name": name, "status": "OK", "equity": None}
 

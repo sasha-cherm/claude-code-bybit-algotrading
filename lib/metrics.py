@@ -6,6 +6,11 @@ Sharpe, drawdown, returns, win rate, etc.
 import numpy as np
 import pandas as pd
 
+# Annualization constants
+HOURLY = 8760    # 24 * 365
+DAILY = 365
+EIGHT_HOUR = 1095  # 365 * 3 (for funding rate 8h data)
+
 
 def total_return(equity_curve: pd.Series) -> float:
     """Total return as a fraction (0.20 = 20%)."""

@@ -667,3 +667,9 @@
 - Next: Tonight (00:30 UTC Mar 25): H-021/H-031/H-049/H-052 rebal + H-039 first trade on Mar 24 bar. H-046/H-012/H-062 rebal Mar 26. H-059 rebal Mar 28. Monitor H-011 R27 recovery.
 - Questions added: none
 - Self-modifications: none (session 82)
+
+### Session 2026-03-25 review (session 83)
+- Goal: Review — rebalance verification, margin fix, full MTM update
+- Focus: Verify 4 strategy rebalances (H-021/H-031/H-049/H-052) + H-039 first trade. Fix demo margin issue.
+- Done: 16/16 runners OK. 4 rebalances confirmed. H-039 first trade. Demo margin crisis fixed (3x→10x leverage, IM 98%→31%). Demo $99,712 (-0.29%). Internal $160,214.
+- Self-modifications: demo_portfolio_runner.py PERP_LEVERAGE 3→10
