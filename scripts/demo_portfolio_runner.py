@@ -1,5 +1,5 @@
 """
-Demo Portfolio Runner — H-056 Optimal Allocation (No H-011, No H-009)
+Demo Portfolio Runner — H-056 v2 Optimal Allocation (No H-011, No H-009)
 
 Reads current signals from all active strategy state.json files,
 computes net target positions per symbol using portfolio weights + per-strategy
@@ -15,7 +15,11 @@ Allocation (MVO-optimised, no H-011/H-009):
     H-053  16%  funding rate XS           3x leverage (market-neutral)
     H-021  15%  volume momentum XS        3x leverage (market-neutral)
     H-039  10%  DOW seasonality (BTC)     1x leverage (directional)
-    H-046   6%  price acceleration XS     3x leverage (market-neutral)
+    H-049   6%  LSR sentiment contrarian  3x leverage (market-neutral)
+
+v2 change (session 90, 2026-03-26): Replaced H-046 with H-049.
+    H-046 had 4/4 position overlap with H-021 (redundant).
+    H-049 has Sharpe 3.33, negative corr with H-031 (-0.345) — better diversifier.
 
 Usage:
     python scripts/demo_portfolio_runner.py           # normal run
@@ -46,7 +50,7 @@ H056_WEIGHTS: dict[str, float] = {
     "h053": 0.16,   # Funding rate XS contrarian (market-neutral)
     "h021": 0.15,   # Volume momentum XS         (market-neutral)
     "h039": 0.10,   # Day-of-week seasonality    (directional BTC, 1x)
-    "h046": 0.06,   # Price acceleration XS      (market-neutral)
+    "h049": 0.06,   # LSR sentiment contrarian   (market-neutral)
 }
 
 # Per-strategy leverage multiplier applied to notional
@@ -57,7 +61,7 @@ STRATEGY_LEVERAGE: dict[str, float] = {
     "h053": 3.0,
     "h021": 3.0,
     "h039": 1.0,   # directional BTC — no extra leverage
-    "h046": 3.0,
+    "h049": 3.0,
 }
 
 # Map strategy key → paper_trades directory name
@@ -65,7 +69,7 @@ STRATEGY_DIRS: dict[str, str] = {
     "h021": "h021_volmom",
     "h031": "h031_size",
     "h039": "h039_dow_seasonality",
-    "h046": "h046_acceleration",
+    "h049": "h049_lsr_sentiment",
     "h052": "h052_premium",
     "h053": "h053_funding_xs",
 }

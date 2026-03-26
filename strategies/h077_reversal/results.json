@@ -1,0 +1,267 @@
+{
+  "hypothesis": "H-077",
+  "name": "Short-Term Reversal",
+  "full_scan": {
+    "n_combos": 24,
+    "pct_positive": 0.125,
+    "mean_sharpe": -0.593,
+    "median_sharpe": -0.57,
+    "best_params": "L3_R3_N3",
+    "best_sharpe": 0.165,
+    "best_annual_ret": -0.0535,
+    "best_max_dd": 0.4977
+  },
+  "walk_forward_fixed": {
+    "n_folds": 4,
+    "positive_folds": 3,
+    "mean_oos_sharpe": 1.348
+  },
+  "walk_forward_selected": {
+    "n_folds": 4,
+    "positive_folds": 3,
+    "mean_oos_sharpe": 1.05
+  },
+  "h012_correlation": -0.13,
+  "all_results": [
+    {
+      "tag": "L3_R1_N3",
+      "lookback": 3,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": -0.173,
+      "annual_ret": -0.1822,
+      "max_dd": 0.5989,
+      "n_trades": 3934
+    },
+    {
+      "tag": "L3_R1_N4",
+      "lookback": 3,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": -0.378,
+      "annual_ret": -0.2341,
+      "max_dd": 0.4889,
+      "n_trades": 4440
+    },
+    {
+      "tag": "L3_R3_N3",
+      "lookback": 3,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": 0.165,
+      "annual_ret": -0.0535,
+      "max_dd": 0.4977,
+      "n_trades": 1897
+    },
+    {
+      "tag": "L3_R3_N4",
+      "lookback": 3,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": 0.143,
+      "annual_ret": -0.0384,
+      "max_dd": 0.5061,
+      "n_trades": 2138
+    },
+    {
+      "tag": "L3_R5_N3",
+      "lookback": 3,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": -0.604,
+      "annual_ret": -0.3352,
+      "max_dd": 0.6075,
+      "n_trades": 1141
+    },
+    {
+      "tag": "L3_R5_N4",
+      "lookback": 3,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": -0.697,
+      "annual_ret": -0.3156,
+      "max_dd": 0.5902,
+      "n_trades": 1318
+    },
+    {
+      "tag": "L5_R1_N3",
+      "lookback": 5,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": -0.122,
+      "annual_ret": -0.1638,
+      "max_dd": 0.5306,
+      "n_trades": 3169
+    },
+    {
+      "tag": "L5_R1_N4",
+      "lookback": 5,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": 0.005,
+      "annual_ret": -0.0879,
+      "max_dd": 0.3569,
+      "n_trades": 3631
+    },
+    {
+      "tag": "L5_R3_N3",
+      "lookback": 5,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": -0.352,
+      "annual_ret": -0.2868,
+      "max_dd": 0.6999,
+      "n_trades": 1571
+    },
+    {
+      "tag": "L5_R3_N4",
+      "lookback": 5,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": -0.507,
+      "annual_ret": -0.2791,
+      "max_dd": 0.5419,
+      "n_trades": 1793
+    },
+    {
+      "tag": "L5_R5_N3",
+      "lookback": 5,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": -0.824,
+      "annual_ret": -0.4359,
+      "max_dd": 0.7735,
+      "n_trades": 1115
+    },
+    {
+      "tag": "L5_R5_N4",
+      "lookback": 5,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": -1.05,
+      "annual_ret": -0.4486,
+      "max_dd": 0.7899,
+      "n_trades": 1283
+    },
+    {
+      "tag": "L7_R1_N3",
+      "lookback": 7,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": -0.897,
+      "annual_ret": -0.4339,
+      "max_dd": 0.7233,
+      "n_trades": 2703
+    },
+    {
+      "tag": "L7_R1_N4",
+      "lookback": 7,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": -0.5,
+      "annual_ret": -0.2594,
+      "max_dd": 0.5357,
+      "n_trades": 3239
+    },
+    {
+      "tag": "L7_R3_N3",
+      "lookback": 7,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": -0.312,
+      "annual_ret": -0.2741,
+      "max_dd": 0.6254,
+      "n_trades": 1392
+    },
+    {
+      "tag": "L7_R3_N4",
+      "lookback": 7,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": -0.535,
+      "annual_ret": -0.2889,
+      "max_dd": 0.5661,
+      "n_trades": 1566
+    },
+    {
+      "tag": "L7_R5_N3",
+      "lookback": 7,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": -0.67,
+      "annual_ret": -0.3846,
+      "max_dd": 0.7111,
+      "n_trades": 1012
+    },
+    {
+      "tag": "L7_R5_N4",
+      "lookback": 7,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": -0.383,
+      "annual_ret": -0.2363,
+      "max_dd": 0.5491,
+      "n_trades": 1176
+    },
+    {
+      "tag": "L10_R1_N3",
+      "lookback": 10,
+      "rebal": 1,
+      "n_long": 3,
+      "sharpe": -0.962,
+      "annual_ret": -0.4632,
+      "max_dd": 0.7466,
+      "n_trades": 2331
+    },
+    {
+      "tag": "L10_R1_N4",
+      "lookback": 10,
+      "rebal": 1,
+      "n_long": 4,
+      "sharpe": -0.826,
+      "annual_ret": -0.35,
+      "max_dd": 0.6496,
+      "n_trades": 2677
+    },
+    {
+      "tag": "L10_R3_N3",
+      "lookback": 10,
+      "rebal": 3,
+      "n_long": 3,
+      "sharpe": -0.875,
+      "annual_ret": -0.468,
+      "max_dd": 0.7351,
+      "n_trades": 1236
+    },
+    {
+      "tag": "L10_R3_N4",
+      "lookback": 10,
+      "rebal": 3,
+      "n_long": 4,
+      "sharpe": -1.022,
+      "annual_ret": -0.4311,
+      "max_dd": 0.6943,
+      "n_trades": 1426
+    },
+    {
+      "tag": "L10_R5_N3",
+      "lookback": 10,
+      "rebal": 5,
+      "n_long": 3,
+      "sharpe": -1.407,
+      "annual_ret": -0.5619,
+      "max_dd": 0.8323,
+      "n_trades": 872
+    },
+    {
+      "tag": "L10_R5_N4",
+      "lookback": 10,
+      "rebal": 5,
+      "n_long": 4,
+      "sharpe": -1.454,
+      "annual_ret": -0.5021,
+      "max_dd": 0.7743,
+      "n_trades": 970
+    }
+  ]
+}

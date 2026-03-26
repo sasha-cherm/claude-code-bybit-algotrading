@@ -1183,6 +1183,26 @@
 - Notes: Strongest WF result in project (tied with H-039 at 6/6). Moderate correlation with H-052 (0.36) expected since funding ≈ f(premium). High correlation with H-049 (0.48) since both are contrarian positioning signals. Near-zero correlation with momentum factors. The 0% positive for long_high direction strongly confirms contrarian mechanism: crowded longs (high funding) reliably underperform.
 - Sessions: [2026-03-20 review+research session 47]
 
+## H-077: Short-Term Reversal Factor (14 Assets)
+- Status: REJECTED — no edge in crypto, fee-sensitive
+- Idea: Rank assets by 5-day return, LONG most oversold (bottom N), SHORT most overbought (top N). Classic contrarian reversal.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 1-5 days)
+- Logic: Compute N-day return, rank, long bottom N, short top N. Tests: lookback 3/5/7/10, rebal 1/3/5, N 3/4.
+- Result: **Only 12% params positive** (3/24). Best Sharpe 0.165 (L3_R3_N3), annual return -5.3%, max DD 49.8%. WF 3/4 positive but inflated by single outlier fold. Very fee-sensitive — negative at 2x fees. H-012 correlation -0.130.
+- Notes: Short-term reversal does not work in crypto. Assets too correlated — short leg destroyed in trending markets. Would need regime filter but not worth pursuing.
+- Sessions: [2026-03-26 review+research session 90]
+
+## H-078: Return Skewness Factor — Contrarian Direction (14 Assets)
+- Status: REJECTED — full-period Sharpe too weak despite interesting OOS
+- Idea: Rank assets by rolling return skewness. LONG negative-skew assets (crash risk premium), SHORT positive-skew (lottery overpricing). Opposite direction from H-060.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 5-21 days)
+- Logic: Compute rolling skewness (20-60d window), rank, long most negative skew (bottom N), short most positive (top N). Tests: window 20/30/40/60, rebal 5/10/21, N 3/4.
+- Result: 29% params positive (7/24). Best Sharpe 0.392 (W40_R21_N4), annual return +8.1%, max DD 50.3%. WF 4/4 positive with param selection (mean OOS Sharpe 1.681). Fee resilient (low turnover). **H-012 correlation -0.345** (good diversifier).
+- Notes: Opposite direction from H-060 (which was 72% positive but OOS decayed). This version has better OOS but weaker full-period. True daily Sharpe ~0.08 after metrics correction — too weak to deploy. The -0.345 momentum correlation is valuable but insufficient standalone alpha.
+- Sessions: [2026-03-26 review+research session 90]
+
 ## Killed
 (none)
 
