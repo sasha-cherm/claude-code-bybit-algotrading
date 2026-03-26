@@ -1,8 +1,24 @@
 {
   "started": "2026-03-25T13:15:24.371954+00:00",
   "capital": 10000,
-  "in_trade": false,
-  "trade": null,
+  "in_trade": true,
+  "trade": {
+    "entry_time": "2026-03-26T01:05:19.877333+00:00",
+    "expiry": "2026-04-03T08:00:00+00:00",
+    "call_symbol": "BTC/USDT:USDT-260403-73000-C",
+    "put_symbol": "BTC/USDT:USDT-260403-69000-P",
+    "call_strike": 73000.0,
+    "put_strike": 69000.0,
+    "call_premium": 1385.0,
+    "put_premium": 1210.0,
+    "num_contracts": 0.14032389561586053,
+    "premium_collected": 364.1405091231581,
+    "iv": 0.4894,
+    "btc_at_entry": 71263.7,
+    "total_fees": 7.282810182463162,
+    "hedge_pnl": 0,
+    "last_btc_price": 71263.7
+  },
   "hedge_position": 0,
   "total_trades": 0,
   "total_pnl": 0,
@@ -60,8 +76,38 @@
       "equity": 10000,
       "btc_price": 70716.1,
       "in_trade": false
+    },
+    {
+      "time": "2026-03-25T21:31:53.179066+00:00",
+      "equity": 10000,
+      "btc_price": 70961.3,
+      "in_trade": false
+    },
+    {
+      "time": "2026-03-25T22:31:13.582483+00:00",
+      "equity": 10000,
+      "btc_price": 71014.0,
+      "in_trade": false
+    },
+    {
+      "time": "2026-03-25T23:31:55.417795+00:00",
+      "equity": 10000,
+      "btc_price": 71289.0,
+      "in_trade": false
+    },
+    {
+      "time": "2026-03-26T00:31:18.552976+00:00",
+      "equity": 10000,
+      "btc_price": 71294.0,
+      "in_trade": false
+    },
+    {
+      "time": "2026-03-26T01:05:19.877333+00:00",
+      "equity": 10007.51,
+      "btc_price": 71263.7,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-03-25T20:31:15.118975+00:00",
-  "equity": 10000
+  "last_check": "2026-03-26T01:05:19.877333+00:00",
+  "equity": 10007.51
 }

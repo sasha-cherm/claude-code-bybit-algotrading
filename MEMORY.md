@@ -1,17 +1,19 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $100,866 (+0.87%), leverage 3.04x. Positions drifting <5%, no rebalancing.
+- **BYBIT DEMO H-056** (deployed 2026-03-23): Equity $101,419 (+1.42%). Rebalanced 7 trades at 00:31 UTC (H-046 position flip → H-056 net weight change).
 - **H-056 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-046(6%,3x). No H-011, no H-009.
-- **H-011 status**: DROPPED from demo. R7 **+4.99% ann** (up). Internal paper trade IN. 9/13 settlements positive. Rolling avg positive.
-- **Internal paper trades:** 17 runners active. Session 88. Total MTM: $170,219. BTC $70,967.
-- **Top performers**: H-031 (+4.08%), H-049 (+3.87%), H-062 (+2.30%), H-012 (+2.20%). 9/17 positive, 6 negative, 2 flat.
-- **H-019 vs H-024**: +0.63% vs -1.32% — H-019 still ahead (1.94% gap, narrowed from 2.66%).
-- **H-063**: Vol selling — FLAT, first entry at 01:00 UTC Mar 26.
-- **Research**: 74 total hypotheses. H-073 REJECTED (session returns). H-074 CONDITIONAL (vol-price divergence, Sharpe 1.27, OOS 1.90, WF 2/6).
-- **KEY FINDING (session 87)**: H-012 ≡ H-062 (100% position overlap), H-021 ≡ H-046 (4/4 overlap). H-049/H-062 are top performers but NOT in H-056 — future re-optimization needed.
-- **AUTOMATED:** Paper trades hourly via cron (17 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 26 (00:30 UTC): 4 rebalances (H-012/H-044/H-046/H-062) + H-039 flip. Mar 26 (01:00): H-063 first entry. Mar 27: H-021. Mar 28: H-059. Mar 29: H-031/H-049/H-052/H-053.
+- **H-011 status**: DROPPED from demo. R7 +4.99% ann. Internal paper trade IN. 9/13 settlements positive.
+- **Internal paper trades:** 18 runners active. Session 89. Total MTM: $170,928. BTC $71,264.
+- **Top performers**: H-031 (+5.15%), H-049 (+3.75%), H-062 (+1.59%), H-019 (+1.54%). **11/18 positive**, 4 negative, 3 flat.
+- **Key movements**: H-021 recovered -1.60%→-0.04%. H-019 surged +0.63%→+1.54%. H-046 flipped to positive.
+- **H-019 vs H-024**: +1.54% vs -1.68% — **gap 3.22%** (widened from 1.94%). Consider killing H-024 at 2 weeks.
+- **H-063**: Vol selling — FIRST TRADE. Sold 73000C/69000P strangle, expiry Apr 3. Premium $364. Equity $10,008 (+0.08%).
+- **H-076**: NEW — Price Efficiency Factor deployed. LONG OP/NEAR/ATOM/ARB, SHORT ADA/DOGE/SUI/XRP. Equity $9,976 (-0.24%, fees). WF 6/6, true daily Sharpe 1.94, corr 0.04 with H-012. Most novel signal.
+- **Research**: 76 total hypotheses. H-075 REJECTED (risk-adj momentum). H-076 CONFIRMED+deployed.
+- **Metrics note**: lib/metrics.py sharpe uses 8760 periods/yr for daily data — inflates Sharpe ~5x. True daily Sharpe = reported / 4.9. All relative comparisons valid.
+- **AUTOMATED:** Paper trades hourly via cron (18 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Mar 26 (01:30): IV+orderbook collection. Mar 27 (00:30): H-012/H-021/H-062 rebalances + H-039 exit SHORT. Mar 28: H-046/H-059. Mar 29: H-031/H-049/H-052/H-053. Mar 30: H-076.
 - **Open user questions:** None
 
 ## Memory Files
@@ -741,3 +743,11 @@
 - Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Verify rebalances and H-063 entry in next session.
 - Questions added: none
 - Self-modifications: none (session 88)
+
+### Session 2026-03-26 review+research (session 89)
+- Goal: Review + Research — verify cron rebalances, H-063 first entry, new factor research
+- Focus: MTM update, cron verification, H-075 risk-adj momentum, H-076 price efficiency factor
+- Done: 18/18 runners OK. **Demo**: $101,419 (+1.42%, up from +0.87%). 7 trades at 00:31 (H-056 adjusted for H-046 rebal). **Internal MTM**: $170,928. BTC $71,264. **11/18 positive** (up from 9/17). Key: H-021 recovered to flat (-0.04% from -1.60%), H-019 surged +1.54% (from +0.63%), H-046 turned positive (+0.27% from -0.72%). **H-046 rebalanced**: new LONG OP/ATOM/ARB/SUI, SHORT BTC/SOL/DOT/NEAR. **H-039 flipped**: SHORT for Thu. **H-063 FIRST TRADE**: Sold 73000C+69000P strangle, expiry Apr 3, premium $364, IV 48.94%, equity $10,008 (+0.08%). **H-075 REJECTED**: Risk-adjusted momentum. Split-half fails (11.02/-2.63), corr 0.76 with H-012. Risk-adjustment hurts at LB≥60. **H-076 CONFIRMED+DEPLOYED**: Price efficiency factor (abs(net_move)/sum(range)). True daily Sharpe 1.94, WF 6/6, corr **0.04** with H-012 — genuinely novel signal. 77% params positive. Deployed: LONG OP/NEAR/ATOM/ARB, SHORT ADA/DOGE/SUI/XRP. Added to cron (18 runners). **METRICS BUG NOTED**: lib/metrics.py sharpe uses 8760 (hourly) for daily data — all daily Sharpes inflated ~5x. Relative comparisons valid. H-019 vs H-024 gap widened to 3.22%.
+- Next: Mar 27 (00:30): H-012/H-021/H-062 rebalances + H-039 exit SHORT. Monitor H-063 delta hedge. Monitor H-076 first days. Consider killing H-024 at 2-week mark (Mar 31).
+- Questions added: none
+- Self-modifications: Added H-076 runner, added to cron orchestrator (session 89)

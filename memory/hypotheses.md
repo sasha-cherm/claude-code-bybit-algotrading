@@ -373,6 +373,41 @@
 - Notes: Signal is real — the OOS outperforming IS is strong evidence. Low correlation with existing factors makes this a good diversifier. However, walk-forward failure (2/6) indicates the signal is regime-dependent. The factor seems to work well in trending markets (2025-H2) and poorly in choppy markets (2024-Q4). Would need an adaptive component or longer observation before deployment. Could be combined with existing momentum signals as a secondary filter.
 - Sessions: [2026-03-25 review+research session 88]
 
+## H-075: Risk-Adjusted Momentum Factor (14 Assets)
+- Status: REJECTED — no improvement over raw momentum + high correlation
+- Idea: Rank assets by return/volatility (asset-level Sharpe ratio) instead of raw return. Long high risk-adjusted momentum, short low.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result:
+  - **Param robustness**: 92% positive (133/144) — but raw momentum is 94%
+  - **Head-to-head**: Inconsistent vs raw — helps at LB=40, hurts at LB=60/90
+  - **Best (LB=40, VW=60, REB=10, N=3)**: WF 4/6, mean Sharpe 2.31
+  - **Split-half**: 11.02 / -2.63 — **catastrophic second half**
+  - **Correlation with H-012**: 0.76 (too high)
+- Notes: Risk-adjustment doesn't consistently improve over raw momentum in crypto. Second-half failure = only works in trending markets. Redundant with H-012.
+- Sessions: [2026-03-26 review+research session 89]
+
+## H-076: Price Efficiency Factor (14 Assets)
+- Status: LIVE (paper trade since 2026-03-26)
+- Idea: Rank assets by price efficiency = abs(net_close_change) / sum(daily_high_low_range) over lookback. High efficiency = clean directional move, low = noisy/choppy. Long most efficient, short most noisy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: For each asset over 40 days (lagged t-1): efficiency = |close_end/close_start - 1| / sum(high_i/low_i - 1). Rank. Long top 4, short bottom 4.
+- Data: 14 assets, 745 daily bars (~2yr).
+- Result:
+  - **True daily Sharpe**: 1.94, +106.3% ann, -23.5% DD, 54.1% WR
+  - **70/30 split**: OOS matches IS (both ~1.4+ daily Sharpe)
+  - **Walk-forward**: **6/6 positive** (best of any factor tested)
+  - **Split-half**: both halves strongly positive
+  - **Param robustness**: 77% positive (46/60)
+  - **Fee sensitivity**: positive to 5x fees
+  - **Correlation with H-012 (momentum)**: **0.038** — genuinely different signal
+  - **Correlation with H-059/H-019**: <0.10 — near zero with all
+  - **Direction clarity**: Long efficient 79% positive, long noisy **0% positive**
+  - **Signal nature**: -0.13 rank correlation with momentum — NOT momentum in disguise
+- Notes: Most novel signal. Efficiency captures "trend quality" not direction. All existing strategies have <0.1 correlation. Note: lib/metrics.py Sharpe uses 8760 periods/yr (hourly default) for daily data — inflates by ~5x. True daily Sharpe is ~1.94. Deployed: LONG OP/NEAR/ATOM/ARB, SHORT ADA/DOGE/SUI/XRP.
+- Sessions: [2026-03-26 review+research session 89]
+
 ## H-056: Short-Term Reversal Factor (1-5 Day, 14 Assets)
 - Status: REJECTED
 - Idea: Cross-sectional reversal — long recent losers (1-5d), short winners. Anti-correlated with momentum.
