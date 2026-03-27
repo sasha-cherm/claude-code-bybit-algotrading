@@ -1331,6 +1331,36 @@
 - Notes: Volume concentration doesn't predict returns cross-sectionally in crypto. The 14-asset universe likely too small for this factor — all assets have similar volume patterns. Second half performance reverses first half. Dead end.
 - Sessions: [2026-03-27 review+research session 94]
 
+## H-092: Volume-Weighted Momentum Factor (14 Assets)
+- Status: REJECTED — too correlated with plain momentum, poor walk-forward
+- Idea: Weight each day's return by relative volume (volume / avg volume over lookback). High-volume moves matter more. Rank cross-sectionally, long top N, short bottom N.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: vol_weighted_momentum = sum(daily_log_return * relative_volume) over lookback. Rank. Long top N, short bottom N. Dollar-neutral.
+- Result: **100% params positive** (48/48), mean Sharpe 1.167, median 1.22, best L90_R7_N5 Sharpe 1.807 (+63.9% ann, -15.0% DD). 70/30: train 2.183, OOS 0.414 (decay). Split-half corr 0.172 (poor), half1 1.43 / half2 0.47. WF fixed **0/4 positive** (all zeros). WF selected **2/4** (mean 1.22: folds 3.19, -0.04, 2.31, -0.59). **Corr 0.586 with H-012** — highly correlated with plain momentum. Short lookback (20d) works better than long (40-90d) but becomes noisy.
+- Notes: Volume weighting doesn't add novel information beyond raw momentum in crypto. The 0.586 correlation with H-012 means this is largely the same signal with extra noise. Walk-forward inconsistency confirms it's not a robust independent factor. L20 params show better split-half but still degraded OOS. Dead end.
+- Sessions: [2026-03-27 review+research session 95]
+
+## H-093: Trend Consistency (Hit Rate) Factor (14 Assets)
+- Status: CONDITIONAL — strong walk-forward but split-half asymmetry
+- Idea: Fraction of positive daily returns over lookback period. High hit rate = consistent uptrend. Different from momentum (total return) and efficiency (path quality). Rank cross-sectionally, long top N, short bottom N.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: hit_rate = count(daily_return > 0) / lookback_days. Rank. Long top N (most consistently positive), short bottom N (most consistently negative). Dollar-neutral.
+- Result: **100% params positive** (60/60), mean Sharpe 0.753, median 0.685, best L10_R3_N3 Sharpe 1.784 (+109.1% ann, -36.5% DD). 70/30: train 1.553, **OOS 1.914** (OOS > IS — rare positive sign). Split-half corr **-0.118** (negative — concerning), 75% both positive, half1 0.49 / half2 1.30. WF fixed (L10_R3_N3): **3/4 positive** (mean 0.966: 1.71, 3.17, -1.33, 0.31). WF selected: **4/4 positive** (mean 1.152: 2.23, 0.71, 0.86, 0.81). **Corr 0.214 with H-012** — partially independent. Short lookback (10-20d) with N=3 works best.
+- Notes: The 4/4 walk-forward with param selection is strong, and OOS beating IS is unusual. But the negative split-half correlation signals a regime shift — this factor works much better in 2025-2026 than 2024. Short 10-day lookback captures recent price consistency effectively. The 0.214 momentum correlation means it captures some independent information. Revisit if H-076 (price efficiency, corr 0.04) shows it captures a similar signal. Best candidates for deployment: L10_R3_N3, L20_R5_N3, L20_R10_N3.
+- Sessions: [2026-03-27 review+research session 95]
+
+## H-094: Volume Asymmetry Factor (Buy vs Sell Volume, 14 Assets)
+- Status: REJECTED — OOS failure, highly correlated with momentum
+- Idea: Compare volume on up-days vs down-days. volume_asymmetry = (up_volume - down_volume) / (up_volume + down_volume). Long assets with buy-volume dominance, short assets with sell-volume dominance.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Over lookback window, compute up_volume (vol on close > prev_close days) and down_volume (close < prev_close days). volume_asymmetry ratio. Rank. Long highest, short lowest. Dollar-neutral.
+- Result: 96.7% params positive (58/60), mean Sharpe 0.605, median 0.601, best L60_R7_N5 Sharpe 1.435 (+48.1% ann, -20.7% DD). 70/30: train 1.591, **OOS -0.546** (fails). Split-half corr **-0.285** (negative), 66.7% both positive, half1 0.35 / half2 1.12. WF fixed (L60_R7_N5): **2/4 positive** (mean 1.107: 2.26, -0.47, -0.37, 3.00 — highly erratic). WF selected: **2/4** (mean 0.376: 2.10, -0.94, 2.22, -1.87). **Corr 0.633 with H-012** — essentially capturing momentum through volume lens.
+- Notes: The high momentum correlation (0.633) confirms this is not a novel signal — assets going up naturally have more volume on up-days. OOS failure is definitive. The negative split-half correlation and erratic walk-forward (alternating strong positive and negative folds) suggest the factor is regime-dependent rather than robust. Dead end.
+- Sessions: [2026-03-27 review+research session 95]
+
 ## Killed
 (none)
 

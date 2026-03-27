@@ -679,3 +679,9 @@
 - Focus: Paper trade monitoring, demo account recovery, broad market-neutral improvement
 - Done: 16/16 runners OK. Demo $100,078 (+0.08%). Internal $160,714. 8/16 positive. H-011 R7 +3.13% ann. H-019 vs H-024 gap 1.95%. IV collection ongoing.
 - Self-modifications: none
+
+### Session 2026-03-25 review (session 85)
+- Goal: Review — full system health check, MTM update, cron verification
+- Focus: Paper trade monitoring, demo account recovery, H-011 funding rate analysis
+- Done: 16/16 runners OK. Demo $100,548 (+0.55%). Internal $160,892 (+0.56%). BTC $71,215. 9/16 positive. H-031 +5.15% (#1). H-011 R7 +2.46% ann, latest +10.95% ann. H-019 vs H-024 gap 2.64%. Cron verified for Mar 26.
+- Self-modifications: none
