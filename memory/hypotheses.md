@@ -1303,6 +1303,34 @@
 - Notes: Interesting concept — negative BTC correlation is rare. But unreliable: WF param selection fails catastrophically (2/6), max DD 55.7% is unacceptable. The negative BTC correlation comes from going short during crypto downturns (=trend following), which H-009 already captures. Net directional risk too high for standalone deployment.
 - Sessions: [2026-03-26 review+research session 93]
 
+## H-089: Funding Rate Momentum (Change in Funding Rate, Contrarian)
+- Status: CONDITIONAL — fragile param selection, but second-best params promising
+- Idea: Rank assets by change in rolling-average funding rate (short window vs long window). Contrarian: long assets where funding is falling (shorts increasing), short assets where funding is rising (longs piling in).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Compute short_window avg funding rate minus long_window avg funding rate. Rank cross-sectionally. Contrarian: long bottom N (falling funding), short top N (rising funding). Rebalance every R days.
+- Result: 63% params positive (108 tested), mean Sharpe 0.17. Best IS (SW5/LW21/R7/N5): Sharpe 1.43, +25.1% ann, -19.8% DD — but WF 2/6, split-half decays (0.85→-1.79). **Second-best** (SW3/LW21/R10/N5): Sharpe 1.20, WF **4/6 positive (mean 0.94)**, split-half 0.45/0.15 (both positive). Corr **-0.25** with H-012 (negative — good diversifier).
+- Notes: Param selection is fragile — best IS params overfit completely. But robust params exist with decent WF performance. Negative momentum correlation makes it an interesting diversifier. May revisit if portfolio needs more diversification.
+- Sessions: [2026-03-27 review+research session 94]
+
+## H-090: BTC Correlation Breakaway Factor (13 Assets ex-BTC)
+- Status: REJECTED — split-half collapses, OOS negative
+- Idea: Rank assets by change in rolling correlation with BTC. Long assets decoupling from BTC, short assets increasingly correlated.
+- Instrument: futures (13 USDT perps, ex-BTC)
+- Timeframe: 1D
+- Result: 43.8% params positive (48 tested), mean Sharpe -0.13. Best (W20/R10/N3): Sharpe 1.10, +50.5% ann, -40.7% DD. But 70/30 OOS: Sharpe **-2.30**. Split-half: **2.28→-1.17** (massive decay). WF 3/5 positive, combined annual return -0.001. Low corr with momentum (0.10) and beta (0.08).
+- Notes: Signal worked in early period (2024) but completely reversed in 2025-2026. Likely spurious — correlation dynamics in crypto shift too fast for a static strategy. Not deployable.
+- Sessions: [2026-03-27 review+research session 94]
+
+## H-091: Volume Concentration (Herfindahl) Factor
+- Status: REJECTED — weak params, anti-correlated split-half
+- Idea: Measure how concentrated volume is across days using Herfindahl index. Long assets with uniform volume (organic interest), short assets with volume spikes (episodic attention).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Result: 33.3% params positive (48 tested), mean Sharpe -0.11. Best (W10/R3/N5): Sharpe 0.74, +19.7% ann, -37.4% DD. Split-half anti-correlated (-0.23), only 4.2% both positive. WF fixed 4/6, but WF selected **2/6** (mean -1.22). Corr -0.07 with momentum, -0.03 with size.
+- Notes: Volume concentration doesn't predict returns cross-sectionally in crypto. The 14-asset universe likely too small for this factor — all assets have similar volume patterns. Second half performance reverses first half. Dead end.
+- Sessions: [2026-03-27 review+research session 94]
+
 ## Killed
 (none)
 

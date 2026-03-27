@@ -673,3 +673,9 @@
 - Focus: Verify 4 strategy rebalances (H-021/H-031/H-049/H-052) + H-039 first trade. Fix demo margin issue.
 - Done: 16/16 runners OK. 4 rebalances confirmed. H-039 first trade. Demo margin crisis fixed (3x→10x leverage, IM 98%→31%). Demo $99,712 (-0.29%). Internal $160,214.
 - Self-modifications: demo_portfolio_runner.py PERP_LEVERAGE 3→10
+
+### Session 2026-03-25 review (session 84)
+- Goal: Review — full system health check, MTM update, H-011 R7 sustaining
+- Focus: Paper trade monitoring, demo account recovery, broad market-neutral improvement
+- Done: 16/16 runners OK. Demo $100,078 (+0.08%). Internal $160,714. 8/16 positive. H-011 R7 +3.13% ann. H-019 vs H-024 gap 1.95%. IV collection ongoing.
+- Self-modifications: none

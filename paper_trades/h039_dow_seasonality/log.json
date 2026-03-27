@@ -33,5 +33,18 @@
     "notional": 10071.7,
     "fee": 4.03,
     "capital_after": 10067.67
+  },
+  {
+    "type": "close",
+    "time": "2026-03-27T00:30:40.001744+00:00",
+    "signal_date": "2026-03-26",
+    "direction": "SHORT",
+    "entry_price": 71366.4,
+    "exit_price": 68734.7,
+    "size_btc": 0.1411266,
+    "gross_pnl": 371.4,
+    "fee": 3.88,
+    "net_pnl": 367.52,
+    "capital_after": 10435.19
   }
 ]

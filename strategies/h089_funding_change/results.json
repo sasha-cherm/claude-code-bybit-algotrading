@@ -1,0 +1,229 @@
+{
+  "hypothesis": "H-089",
+  "name": "Funding Rate Momentum (Change in Funding Rate)",
+  "verdict": "CONDITIONAL",
+  "data_range": "2024-03-17 to 2026-03-16",
+  "n_assets": 14,
+  "n_days": 730,
+  "param_robustness": {
+    "total_combinations": 108,
+    "pct_positive_sharpe": 63.0,
+    "mean_sharpe": 0.173,
+    "median_sharpe": 0.151,
+    "std_sharpe": 0.523,
+    "max_sharpe": 1.432,
+    "min_sharpe": -1.255
+  },
+  "best_params": {
+    "short_window": 5,
+    "long_window": 21,
+    "rebalance_days": 7,
+    "n_long_short": 5,
+    "sharpe": 1.432,
+    "annual_return": 0.2509,
+    "max_drawdown": 0.1979,
+    "total_return": 0.5561
+  },
+  "walk_forward": {
+    "n_folds": 6,
+    "folds": [
+      {
+        "fold": 0,
+        "start": "2024-09-23",
+        "end": "2024-12-21",
+        "sharpe": 3.25,
+        "days": 89,
+        "total_ret": 0.1916
+      },
+      {
+        "fold": 1,
+        "start": "2024-12-22",
+        "end": "2025-03-21",
+        "sharpe": -0.616,
+        "days": 89,
+        "total_ret": -0.0312
+      },
+      {
+        "fold": 2,
+        "start": "2025-03-22",
+        "end": "2025-06-19",
+        "sharpe": 0.805,
+        "days": 89,
+        "total_ret": 0.0326
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-20",
+        "end": "2025-09-17",
+        "sharpe": -1.638,
+        "days": 89,
+        "total_ret": -0.0471
+      },
+      {
+        "fold": 4,
+        "start": "2025-09-18",
+        "end": "2025-12-16",
+        "sharpe": -0.465,
+        "days": 89,
+        "total_ret": -0.0125
+      },
+      {
+        "fold": 5,
+        "start": "2025-12-17",
+        "end": "2026-03-16",
+        "sharpe": -1.921,
+        "days": 89,
+        "total_ret": -0.0673
+      }
+    ],
+    "mean_oos_sharpe": -0.097,
+    "pct_positive_folds": 33.3
+  },
+  "split_half": {
+    "first_half": {
+      "sharpe": 0.852,
+      "annual_ret": 0.1648,
+      "max_dd": 0.1901,
+      "days": 359,
+      "start": "2024-03-26",
+      "end": "2025-03-20"
+    },
+    "second_half": {
+      "sharpe": -1.785,
+      "annual_ret": -0.2101,
+      "max_dd": 0.2541,
+      "days": 360,
+      "start": "2025-03-21",
+      "end": "2026-03-16"
+    }
+  },
+  "best_wf_params": {
+    "short_window": 3,
+    "long_window": 21,
+    "rebalance_days": 10,
+    "n_long_short": 5,
+    "in_sample_sharpe": 1.203,
+    "annual_return": 0.2167,
+    "max_drawdown": 0.1616,
+    "wf_mean_oos_sharpe": 0.941,
+    "wf_median_oos_sharpe": 1.099,
+    "wf_positive_folds": "4/6",
+    "split_half_first": 0.446,
+    "split_half_second": 0.151,
+    "split_half_both_positive": true
+  },
+  "note": "Best IS params (SW5 LW21 R7 N5) overfit -- negative OOS. Second-best (SW3 LW21 R10 N5) has strong WF performance and stable split-half, suggesting the factor works but param selection is fragile.",
+  "correlation_with_h012": -0.252,
+  "top_10_params": [
+    {
+      "short_w": 5,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 5,
+      "sharpe": 1.432,
+      "annual_ret": 0.2509,
+      "total_ret": 0.5561,
+      "max_dd": 0.1979,
+      "days": 721
+    },
+    {
+      "short_w": 3,
+      "long_w": 21,
+      "rebal": 10,
+      "n": 5,
+      "sharpe": 1.203,
+      "annual_ret": 0.2167,
+      "total_ret": 0.4732,
+      "max_dd": 0.1616,
+      "days": 721
+    },
+    {
+      "short_w": 7,
+      "long_w": 21,
+      "rebal": 10,
+      "n": 5,
+      "sharpe": 1.203,
+      "annual_ret": 0.1995,
+      "total_ret": 0.4323,
+      "max_dd": 0.1822,
+      "days": 721
+    },
+    {
+      "short_w": 5,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 3,
+      "sharpe": 1.198,
+      "annual_ret": 0.2664,
+      "total_ret": 0.5944,
+      "max_dd": 0.2626,
+      "days": 721
+    },
+    {
+      "short_w": 5,
+      "long_w": 21,
+      "rebal": 10,
+      "n": 5,
+      "sharpe": 1.099,
+      "annual_ret": 0.1821,
+      "total_ret": 0.3915,
+      "max_dd": 0.1865,
+      "days": 721
+    },
+    {
+      "short_w": 5,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 4,
+      "sharpe": 1.078,
+      "annual_ret": 0.2154,
+      "total_ret": 0.4701,
+      "max_dd": 0.2187,
+      "days": 721
+    },
+    {
+      "short_w": 3,
+      "long_w": 21,
+      "rebal": 10,
+      "n": 3,
+      "sharpe": 0.951,
+      "annual_ret": 0.2031,
+      "total_ret": 0.4409,
+      "max_dd": 0.15,
+      "days": 721
+    },
+    {
+      "short_w": 3,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 4,
+      "sharpe": 0.914,
+      "annual_ret": 0.1736,
+      "total_ret": 0.3719,
+      "max_dd": 0.223,
+      "days": 721
+    },
+    {
+      "short_w": 7,
+      "long_w": 21,
+      "rebal": 10,
+      "n": 4,
+      "sharpe": 0.888,
+      "annual_ret": 0.1527,
+      "total_ret": 0.3241,
+      "max_dd": 0.2119,
+      "days": 721
+    },
+    {
+      "short_w": 3,
+      "long_w": 14,
+      "rebal": 10,
+      "n": 5,
+      "sharpe": 0.878,
+      "annual_ret": 0.1363,
+      "total_ret": 0.2884,
+      "max_dd": 0.1131,
+      "days": 724
+    }
+  ]
+}

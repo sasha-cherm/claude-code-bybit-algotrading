@@ -120,7 +120,7 @@ def load_oi_data() -> pd.DataFrame:
                 last_date = last_date.tz_localize("UTC")
             days_old = (pd.Timestamp.now("UTC") - last_date).days
 
-            if days_old > 2:
+            if days_old >= 1:
                 df = _fetch_oi_fresh(ticker)
                 if df is not None and len(df) > 0:
                     df.to_parquet(cache_file)
