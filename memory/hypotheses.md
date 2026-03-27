@@ -1361,6 +1361,36 @@
 - Notes: The high momentum correlation (0.633) confirms this is not a novel signal — assets going up naturally have more volume on up-days. OOS failure is definitive. The negative split-half correlation and erratic walk-forward (alternating strong positive and negative folds) suggest the factor is regime-dependent rather than robust. Dead end.
 - Sessions: [2026-03-27 review+research session 95]
 
+## H-095: Realized Semivariance Ratio Factor (14 Assets)
+- Status: REJECTED — WF selected 1/4 positive, regime-dependent signal
+- Idea: Rank assets by upside/downside realized volatility ratio. Long positive-skew assets, short negative-skew assets.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: For each asset over lookback, compute sqrt(upside_semivariance) / sqrt(downside_semivariance). High ratio = favorable skew. Rank. Long top-N, short bottom-N. Dollar-neutral.
+- Result: 97.8% params positive (44/45), mean Sharpe 0.757, best L10_R3_N3 Sharpe 1.789 (+88.9% ann, -28.6% DD). 70/30: train 2.162, test 0.727 (decays). Split-half: half1 1.602, **half2 -0.262** (asymmetric, corr -0.037). WF fixed (L10_R3_N3): **2/4** positive (mean 0.182). WF selected: **1/4** positive (mean -1.223 — severe failure). Corr 0.226 with H-012 (moderate).
+- Notes: High IS robustness (97.8%) is misleading — the signal is heavily regime-dependent. Works in recent period (fold 1 Sharpe 2.45) but fails badly in mid-2025 (fold 2: -4.22, fold 3: -1.58). The split-half confirms asymmetry — first half of data strong, second half negative. Not deployable.
+- Sessions: [2026-03-27 review+research session 96]
+
+## H-096: Intraday Return Dispersion Factor (14 Assets)
+- Status: REJECTED — only 28.9% params positive, mean Sharpe negative
+- Idea: Rank assets by ratio of mean intraday range to mean absolute close-to-close return (dispersion). Long efficient movers (low dispersion), short noisy ones (high dispersion).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: For each asset, dispersion = mean(high-low)/close / mean(abs(close-prev_close)/prev_close) over lookback. Low dispersion = trending efficiently. Rank. Long bottom-N (efficient), short top-N (noisy). Dollar-neutral.
+- Result: 28.9% params positive (13/45), mean Sharpe -0.187, best L10_R5_N4 Sharpe 0.539 (+13.9% ann, -35.7% DD). 70/30: train 0.280, test 1.949 (suspicious test > train). Split-half: half1 -0.466, half2 0.174 (corr 0.044). WF fixed: 1/4 positive (mean 0.174). WF selected: 2/4 positive (mean 0.286 — weak). Note: this is essentially the inverse of H-076 (price efficiency) but the specific formulation fails.
+- Notes: Despite being conceptually related to H-076 (which works well), this inverted ratio formulation doesn't capture the signal. The directional asymmetry matters — H-076 ranks by efficiency directly, while this ranks by noise, and the noise metric isn't as clean. Only 29% positive is a clear failure.
+- Sessions: [2026-03-27 review+research session 96]
+
+## H-097: Cross-Asset Lead-Lag Momentum Diffusion (14 Assets)
+- Status: REJECTED — 37% params positive, WF selected 1/4, unstable
+- Idea: Exploit information diffusion — some crypto assets lag behind cross-sectional average returns. Estimate lead-lag betas, then trade expected momentum spillover.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: For each asset, regress return(t) on equal-weight market return(t-lag) over lookback. lead_lag_beta captures responsiveness. Signal = beta * recent_market_return. High signal = laggard expected to catch up. Rank. Long top-N, short bottom-N.
+- Result: 37.0% params positive (20/54), mean Sharpe -0.323, best L60_LAG2_R3_N3 Sharpe 0.986 (+40.4% ann, -50.3% DD). 70/30: train 0.663, test 2.148 (suspicious test > train). Split-half: half1 -0.763, half2 0.142 (corr 0.167). WF fixed: 2/4 positive (mean 0.737). WF selected: **1/4** positive (mean -1.178). Corr -0.127 with H-012.
+- Notes: Information diffusion in crypto is too fast for daily-frequency exploitation. The lead-lag structure is noisy and unstable across periods. Best params have 50% DD — unacceptable. The negative correlation with momentum (-0.127) is interesting but the signal itself doesn't hold. Previously tested H-057 (BTC/ETH→Alts lead-lag) also failed — confirming daily lead-lag is not viable in crypto.
+- Sessions: [2026-03-27 review+research session 96]
+
 ## Killed
 (none)
 

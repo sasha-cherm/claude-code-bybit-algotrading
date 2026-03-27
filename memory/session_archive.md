@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 79)
+# Session Archive (Sessions bootstrap through 86)
 ### Session 2026-03-15 (bootstrap)
 - Goal: System — project initialization
 - Focus: Create project structure, CLAUDE.md, scaffolding
@@ -685,3 +685,9 @@
 - Focus: Paper trade monitoring, demo account recovery, H-011 funding rate analysis
 - Done: 16/16 runners OK. Demo $100,548 (+0.55%). Internal $160,892 (+0.56%). BTC $71,215. 9/16 positive. H-031 +5.15% (#1). H-011 R7 +2.46% ann, latest +10.95% ann. H-019 vs H-024 gap 2.64%. Cron verified for Mar 26.
 - Self-modifications: none
+
+### Session 2026-03-25 review+research (session 86)
+- Goal: Review + Research — system health check + IV surface analysis → new options strategy
+- Focus: MTM update, IV surface exploratory analysis, H-063 vol selling backtest + deployment
+- Done: 17/17 runners OK. Demo $100,592 (+0.59%). Internal $160,681 (+0.43%). BTC $71,673. 9/17 positive. NEW H-063 short strangle deployed. Backtest: Sharpe 1.54, +52.5% ann, -18.4% DD, WF 6/6, 60/60 params. Corr -0.10 vs H-009.
+- Self-modifications: Added H-063 runner to cron orchestrator (session 86)
