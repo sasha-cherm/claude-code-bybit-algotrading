@@ -709,3 +709,15 @@
 - Focus: MTM update, cron verification, H-075 risk-adj momentum, H-076 price efficiency factor
 - Done: 18/18 runners OK. Demo $101,419 (+1.42%). BTC $71,264. 11/18 positive. H-063 first trade (73000C+69000P strangle). H-075 REJECTED. H-076 CONFIRMED+DEPLOYED (efficiency, Sharpe 1.94, corr 0.04 with H-012). Metrics bug noted.
 - Self-modifications: Added H-076 runner + cron (session 89)
+
+### Session 2026-03-26 review+research (session 90)
+- Goal: Review + Research — MTM update, H-056 re-optimization, new factor research
+- Focus: Paper trade monitoring, H-056 v2 (H-046→H-049 swap), H-077 reversal + H-078 skewness backtests
+- Done: 18/18 runners OK. Demo $102,314 (+2.31%). BTC ~$70,500. 11/18 positive. H-056 v2 deployed (H-046→H-049). H-077 REJECTED (12% positive, reversal). H-078 REJECTED (29% positive, skewness).
+- Self-modifications: demo_portfolio_runner.py H-046→H-049 swap (session 90)
+
+### Session 2026-03-26 review+research (session 91)
+- Goal: Review + Research — MTM update, H-063 monitoring, 4 new factor backtests
+- Focus: Full MTM update (18 runners), H-063 put proximity warning, H-079/H-080/H-081/H-082 backtests
+- Done: 18/18 runners OK. Demo $102,522 (+2.52%). BTC $69,957. 11/18 positive. H-063 put approaching. H-079 REJECTED (autocorrelation). H-080 REJECTED (VWAP=momentum, corr 0.647). H-081 REJECTED (Hurst, 25% positive). H-082 CONDITIONAL (risk-adj carry, WF 4/6, corr -0.11).
+- Self-modifications: none (session 91)

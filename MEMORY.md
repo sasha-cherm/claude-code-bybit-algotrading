@@ -22,15 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 89) archived to `memory/session_archive.md`._
-
-### Session 2026-03-26 review+research (session 90)
-- Goal: Review + Research — MTM update, H-056 re-optimization, new factor research
-- Focus: Paper trade monitoring, H-056 v2 (H-046→H-049 swap), H-077 reversal + H-078 skewness backtests
-- Done: 18/18 runners OK. **Demo**: $102,314 (+2.31%, up from +1.42%). **Internal MTM**: $181,926. BTC ~$70,500 (-1.1%). **11/18 positive**, 5 negative, 2 flat. **H-056 v2 deployed**: Replaced H-046 with H-049. H-046 had 4/4 position overlap with H-021 (redundant). H-049 is #2 performer with negative corr vs H-031 — better diversifier. 11 trades executed (SUI/DOT closed, OP flipped to SHORT, BTC/ETH increased). **H-063 vol selling healthy**: BTC dropped to $70,503 but well within 73000C/69000P strikes. Premium accruing, equity $10,018 (+0.18%). Delta hedge active. **H-077 REJECTED**: Short-term reversal factor. Only 12% params positive, best Sharpe 0.165, annual return -5.3%. Crypto too correlated for reversal. **H-078 REJECTED**: Skewness factor (contrarian direction). 29% params positive, best Sharpe 0.392, but true daily Sharpe ~0.08 after metrics correction. WF 4/4 positive with param selection but insufficient standalone alpha.
-- Next: Mar 27 (00:30): H-021/H-012/H-062 rebal + H-039 exit SHORT. Apr 3: H-063 expiry. Apr 6-10: H-056 v3 re-optimization with H-076. Consider killing H-024 at Mar 31.
-- Questions added: none
-- Self-modifications: demo_portfolio_runner.py H-046→H-049 swap (session 90)
+_Older sessions (bootstrap through 91) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-26 review+research (session 91)
 - Goal: Review + Research — MTM update, H-063 monitoring, new factor research
@@ -103,3 +95,11 @@ _Older sessions (bootstrap through 89) archived to `memory/session_archive.md`._
 - Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 98)
+
+### Session 2026-03-28 backtest (session 100)
+- Goal: Backtest — H-106 Volume Profile Skewness Factor
+- Focus: 72-combo param scan (both directions), 60/40 IS/OOS, 6-fold walk-forward, split-half, factor correlations
+- Done: H-106 REJECTED. Contrarian direction dominates (97% params positive, mean Sharpe 0.935, best 1.792 full-period). But OOS Sharpe -0.122 (fail). Split-half cross-param correlation 0.014 (near zero — no persistent structure). WF mean 0.931 but fold variance extreme ([-0.36, 2.31, -0.11, 1.88]). Momentum direction barely works (8% positive). Contrarian signal is a regime artifact, not a stable factor. Corr H-012=0.068, H-031=0.150 (genuinely novel signal, just not robust). Results: strategies/h106_vol_skew/results.json.
+- Next: Continue cross-sectional factor research — H-107+
+- Questions added: none
+- Self-modifications: none (session 100)

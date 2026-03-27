@@ -1490,6 +1490,23 @@
 - Notes: The conviction direction has some IS alpha but it doesn't persist OOS. Correlation 0.428 with H-012 suggests it partially captures momentum (strong conviction moves are trending moves). Not genuinely independent. Strategy file: `strategies/h103_pv_correlation/backtest.py`.
 - Sessions: [2026-03-27 backtest session 98]
 
+## H-104: RSI Cross-Sectional Mean Reversion (14 Assets)
+- Status: REJECTED — only 3% params positive, mean Sharpe -0.66
+- Idea: Rank 14 assets by RSI. Go long most oversold (lowest RSI), short most overbought (highest RSI). Cross-sectional mean reversion.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Compute RSI over lookback, rank cross-sectionally. Long bottom-N (oversold), short top-N (overbought). Equal-weight, dollar-neutral. Tested 36 combos: RSI lookback [7,14,21], rebal [3,5,7,10]d, N [3,4,5].
+- Result:
+  - **Param scan (36 combos)**: **3% positive** (1/36). Mean Sharpe -0.656. Best RSI7_R10_N3 Sharpe 0.181.
+  - **IS/OOS (60/40)**: Best IS Sharpe 0.778 → OOS Sharpe **-0.398**, mean OOS Sharpe -1.010.
+  - **Walk-forward (4 folds)**: Mean OOS Sharpe **-2.017**. All folds negative: [-3.10, -0.98, -2.04, -1.95].
+  - **Split-half**: Mean H1 -0.794, Mean H2 -0.727. Corr **-0.291** (negative — inconsistent even in failure).
+  - **Fee sensitivity**: Best Sharpe 0.181 at 1x fees → -0.061 at 5x fees.
+  - **Corr H-012**: -0.393 (anti-correlated with momentum — expected since RSI MR is inverse of momentum)
+  - **Corr H-019**: -0.087 (low)
+- Notes: Cross-sectional mean reversion conclusively doesn't work in crypto. Crypto is momentum-driven — assets that are "overbought" continue rising, "oversold" continue falling. The -0.393 correlation with H-012 confirms RSI MR is simply the wrong side of momentum. Only 1/36 params positive. Dead end — do not revisit.
+- Sessions: [2026-03-28 backtest session 99]
+
 ## H-105: Close Location Value (CLV) Momentum Quality Factor (14 Assets)
 - Status: REJECTED — regime-dependent (split-half correlation negative)
 - Idea: CLV = (close - low) / (high - low) measures where close falls within daily range. Assets consistently closing near highs have strong buying pressure. Cross-sectional: long highest avg-CLV, short lowest.
@@ -1505,6 +1522,24 @@
   - **Corr H-012 (60d momentum)**: **0.343** (moderate — CLV captures some momentum premium)
   - **Corr H-019 (20d vol)**: 0.175 (low)
 - Notes: Interesting factor with clear directional logic. Short lookback (LB=5) completely fails (worst Sharpe -2.07) — likely noise. LB=20 is the sweet spot. The OOS number (2.0) looks great but is inflated by a very strong H1 2025 regime. WF fold 4 (Oct-Dec 2025) severely negative (-1.549) and split-half correlation is negative — the factor changes sign between regimes. The signal likely captures "momentum quality" in trending markets and reverses when momentum reverses (Oct-Dec 2025 was a drawdown period). Corr 0.343 with H-012 means it is partially redundant. Strategy file: `strategies/h105_close_location/backtest.py`.
+- Sessions: [2026-03-28 backtest session 99]
+
+## H-106: Volume Profile Skewness Factor (14 Assets)
+- Status: REJECTED — OOS Sharpe negative (-0.122), split-half correlation near zero (0.014)
+- Idea: Rank assets by rolling skewness of daily trading volume. High positive skew = occasional large volume spikes (institutional/event-driven). Cross-sectional: test both momentum (long high skew) and contrarian (long low skew) directions.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling scipy skewness of daily volume over [10,20,30,60]d windows. Rebal every [5,7,10]d. Long/short top/bottom [3,4,5] by skew rank. Equal-weight, dollar-neutral. 36 combos per direction, 72 total.
+- Result:
+  - **Direction**: CONTRARIAN strongly dominates (97% positive Sharpe vs only 8% for momentum direction). Momentum direction fails comprehensively — volume spikes signal exhaustion, not smart money.
+  - **Param scan (contrarian, 36 combos)**: **97% positive** (35/36). Mean Sharpe 0.935, Best LB10_R7_N4 Sharpe 1.792, +70.6% ann, 32.8% DD on full period.
+  - **IS/OOS (60/40 split)**: IS Sharpe 1.523 → OOS Sharpe **-0.122**, OOS Ann -7.3%, OOS DD 19.4%. Severe in-sample/out-of-sample degradation.
+  - **OOS split-half**: H1 (Jun-Oct 2025) Sharpe -0.203, H2 (Nov 2025-Mar 2026) Sharpe 1.139. Very inconsistent.
+  - **Split-half cross-param correlation**: **0.014** (essentially zero — no consistency across halves).
+  - **Walk-forward (4 folds, IS param selection)**: 2/4 positive, mean OOS 0.931 — misleading because fold variation is extreme ([-0.360, 2.309, -0.106, 1.883]).
+  - **Corr H-012 (XS momentum)**: 0.068 (low — independent signal)
+  - **Corr H-031 (size)**: 0.150 (low)
+- Notes: Contrarian direction (short high-skew, long low-skew) has very strong full-period performance but completely fails OOS validation. The strategy appears to capture a regime-specific effect — likely worked extremely well in late 2024/early 2025 but the relationship breaks down in 2025-2026. Split-half correlation of 0.014 is the smoking gun: the param ranking in H1 and H2 are essentially uncorrelated, meaning there is no persistent structure. Volume skewness is not a stable cross-sectional factor. The contrarian intuition (volume spikes = exhaustion) has merit but is too regime-dependent to be reliably exploitable. Strategy file: `strategies/h106_vol_skew/backtest.py`.
 - Sessions: [2026-03-28 backtest session 99]
 
 ## Killed

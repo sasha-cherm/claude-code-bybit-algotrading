@@ -1,0 +1,21 @@
+{
+  "hypothesis": "H-106",
+  "verdict": "REJECTED",
+  "rejection_reasons": [
+    "OOS Sharpe < 0.3 (-0.122)"
+  ],
+  "best_direction": "contrarian",
+  "best_params": "LB10_R5_N5",
+  "pos_pct_best_dir": 0.972,
+  "mean_sharpe_best_dir": 0.935,
+  "best_full_sharpe": 1.792,
+  "oos_sharpe": -0.122,
+  "oos_annual_ret": -0.0727,
+  "oos_max_dd": 0.1936,
+  "oos_half1_sharpe": -0.203,
+  "oos_half2_sharpe": 1.139,
+  "split_half_corr": 0.014,
+  "wf_mean_oos_sharpe": 0.931,
+  "corr_h012": 0.068,
+  "corr_h031": 0.15
+}
