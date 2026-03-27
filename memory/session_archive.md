@@ -697,3 +697,15 @@
 - Focus: MTM update, H-072 expanded universe momentum test, H-056 position overlap analysis
 - Done: 17/17 runners OK. Demo $100,457 (+0.46%). Internal $170,614 (+0.36%). BTC $71,331. 7/17 positive. H-072 REJECTED (expanded 25-asset universe). Position overlap: H-012≡H-062, H-021≡H-046.
 - Self-modifications: none (session 87)
+
+### Session 2026-03-25 review+research (session 88)
+- Goal: Review + Research — system health check + new factor research (session returns, volume-price divergence)
+- Focus: MTM update, H-073 session-based returns, H-074 volume-price divergence factor
+- Done: 17/17 runners OK. Demo $100,866 (+0.87%). Internal $170,219. BTC $70,967. 9/17 positive. H-073 REJECTED (session returns). H-074 CONDITIONAL (volume-price divergence, OOS>IS but WF 2/6).
+- Self-modifications: none (session 88)
+
+### Session 2026-03-26 review+research (session 89)
+- Goal: Review + Research — verify cron rebalances, H-063 first entry, new factor research
+- Focus: MTM update, cron verification, H-075 risk-adj momentum, H-076 price efficiency factor
+- Done: 18/18 runners OK. Demo $101,419 (+1.42%). BTC $71,264. 11/18 positive. H-063 first trade (73000C+69000P strangle). H-075 REJECTED. H-076 CONFIRMED+DEPLOYED (efficiency, Sharpe 1.94, corr 0.04 with H-012). Metrics bug noted.
+- Self-modifications: Added H-076 runner + cron (session 89)

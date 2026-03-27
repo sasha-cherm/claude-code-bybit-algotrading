@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,764 (+0.76%). Short side dominating (+$8.9k short, -$6.8k long). NEAR short biggest winner (+$3,264).
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,834 (+0.83%). Short side dominating (+$8.6k short, -$7.4k long). NEAR short biggest winner (+$3,367).
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
-- **H-011 status**: DROPPED from demo. Internal paper trade IN, 34 settlements, net funding +$17.33.
-- **Internal paper trades:** 19 runners active. Session 97. BTC $66,636 (-4.1% 24h, heavy selloff).
+- **H-011 status**: DROPPED from demo. Internal paper trade IN, 19 settlements, net funding +$15.23, fees $149.
+- **Internal paper trades:** 19 runners active. Session 98. BTC $65,966 (-4.3% 24h, continued heavy selloff).
 - **Top performers**: H-031 (+4.68%), H-039 (+4.35%), H-049 (+3.54%), H-062 (+1.25%), H-012 (+1.23%). **10/19 positive**, 3 flat, 6 negative.
-- **H-063 CRITICAL**: Vol selling strangle — BTC $66,636, put strike $69,000 — **PUT ITM by $2,364**. Equity $9,739 (-2.61%). **$739 to stop**. Delta hedge 0.084 BTC. 7 days to expiry. NEW low $9,709 at BTC $66,432.
+- **H-063 CRITICAL**: Vol selling strangle — BTC $65,966, put strike $69,000 — **PUT ITM by $3,035**. Equity $9,637 (-3.63%). **$637 to stop**. Delta hedge 0.095 BTC. 7 days to expiry. NEW low $9,601 at BTC $65,804.
 - **H-019 vs H-024**: +1.09% vs -1.29% — gap 2.38%. H-019 still winning. Kill H-024 at Mar 31.
-- **Research**: 100 total hypotheses. H-098 REJECTED (residual mom, corr 0.698 w/H-012). H-099 REJECTED (CVaR, corr 0.749 w/H-019). H-100 REJECTED (comovement, OOS failure).
+- **Research**: 103 total hypotheses. H-101 REJECTED (kurtosis, 96% IS but split-half -0.614). H-102 REJECTED (vol stability, 27% positive). H-103 REJECTED (PV corr, OOS failure).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 30: H-076. Mar 31: Kill H-024. Apr 1: H-085. Apr 3: H-063 expiry.
 - **Open user questions:** None
@@ -22,23 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 87) archived to `memory/session_archive.md`._
-
-### Session 2026-03-25 review+research (session 88)
-- Goal: Review + Research — system health check + new factor research (session returns, volume-price divergence)
-- Focus: MTM update, H-073 session-based returns, H-074 volume-price divergence factor
-- Done: 17/17 runners OK. **Demo**: $100,866 (+0.87%, up from +0.46%). **Internal MTM**: $170,219. BTC $70,967 (-0.5%). 9/17 positive, 6 negative, 2 flat. H-019 vs H-024 gap narrowed to 1.94% (from 2.66%). Rebalances at 00:30 UTC Mar 26 not yet executed (session at 21:00 UTC). **H-073 REJECTED**: Session-based return decomposition (Asia/Europe/US). Europe avg -0.05%/session, US +0.05%. But only 2/14 assets consistent in train/test. Portfolio Sharpe negative in both train and test. After fees completely washed out. **H-074 CONDITIONAL**: Volume-price divergence factor. VL=10, PL=5, REB=7, N=4. Sharpe 1.27 full (+46% ann), **OOS 1.90 > IS 1.23** (unusual positive sign). Split-half 1.49/2.89. After fees Sharpe 0.51 (+18.5%). BUT walk-forward only 2/6 positive. Low correlation with momentum (-0.18). Regime-dependent — works in trending markets, fails in choppy.
-- Next: Mar 26 (00:30 UTC): 4 rebalances + H-039 flip. Mar 26 (01:00): H-063 first entry. Verify rebalances and H-063 entry in next session.
-- Questions added: none
-- Self-modifications: none (session 88)
-
-### Session 2026-03-26 review+research (session 89)
-- Goal: Review + Research — verify cron rebalances, H-063 first entry, new factor research
-- Focus: MTM update, cron verification, H-075 risk-adj momentum, H-076 price efficiency factor
-- Done: 18/18 runners OK. **Demo**: $101,419 (+1.42%, up from +0.87%). 7 trades at 00:31 (H-056 adjusted for H-046 rebal). **Internal MTM**: $170,928. BTC $71,264. **11/18 positive** (up from 9/17). Key: H-021 recovered to flat (-0.04% from -1.60%), H-019 surged +1.54% (from +0.63%), H-046 turned positive (+0.27% from -0.72%). **H-046 rebalanced**: new LONG OP/ATOM/ARB/SUI, SHORT BTC/SOL/DOT/NEAR. **H-039 flipped**: SHORT for Thu. **H-063 FIRST TRADE**: Sold 73000C+69000P strangle, expiry Apr 3, premium $364, IV 48.94%, equity $10,008 (+0.08%). **H-075 REJECTED**: Risk-adjusted momentum. Split-half fails (11.02/-2.63), corr 0.76 with H-012. Risk-adjustment hurts at LB≥60. **H-076 CONFIRMED+DEPLOYED**: Price efficiency factor (abs(net_move)/sum(range)). True daily Sharpe 1.94, WF 6/6, corr **0.04** with H-012 — genuinely novel signal. 77% params positive. Deployed: LONG OP/NEAR/ATOM/ARB, SHORT ADA/DOGE/SUI/XRP. Added to cron (18 runners). **METRICS BUG NOTED**: lib/metrics.py sharpe uses 8760 (hourly) for daily data — all daily Sharpes inflated ~5x. Relative comparisons valid. H-019 vs H-024 gap widened to 3.22%.
-- Next: Mar 27 (00:30): H-012/H-021/H-062 rebalances + H-039 exit SHORT. Monitor H-063 delta hedge. Monitor H-076 first days. Consider killing H-024 at 2-week mark (Mar 31).
-- Questions added: none
-- Self-modifications: Added H-076 runner, added to cron orchestrator (session 89)
+_Older sessions (bootstrap through 89) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-26 review+research (session 90)
 - Goal: Review + Research — MTM update, H-056 re-optimization, new factor research
@@ -104,10 +88,10 @@ _Older sessions (bootstrap through 87) archived to `memory/session_archive.md`._
 - Questions added: none
 - Self-modifications: none (session 97)
 
-### Session 2026-03-27 backtest (session 97 — H-098)
-- Goal: Backtest — H-098 BTC-Residual Momentum (cross-sectional alpha after removing BTC beta)
-- Focus: H-098 full 90-combo param scan + walk-forward + split-half + H-012 correlation + fee sensitivity
-- Done: **H-098 REJECTED**. Signal: residual return = cumret_i - beta_i * cumret_btc. 100% params positive IS (mean Sharpe 1.138), best LB120_R14_N3 (1.765). But: split-half half1=1.844 vs half2=0.035 — factor collapses in 2025+. WF fixed 3/4 (mean 0.644), WF selected 1/3 (mean -0.239 — severe param overfit). **Correlation with H-012: 0.698** — captures same momentum signal. Factor adds no diversification and degrades OOS. Strategy file: `strategies/h098_residual_mom/backtest.py`. Bug fixed: pandas alignment issue in rolling beta computation (needed numpy arrays to avoid DataFrame outer-product on DatetimeIndex columns).
-- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry. Continue researching new factors.
+### Session 2026-03-27 review+research (session 98)
+- Goal: Review + Research — MTM update (BTC selloff to $65,966), H-063 critical monitoring, 3 new factor backtests
+- Focus: Full MTM update (19 runners), H-063 vol selling stress, H-101/H-102/H-103 backtests
+- Done: 19/19 runners OK. **Demo**: $100,834 (+0.83%). BTC $65,966 (-4.3% 24h). **10/19 positive**, 3 flat, 6 negative. Top: H-031(+4.68%), H-039(+4.35%), H-049(+3.54%). **H-063 WORSE**: equity $9,637 (-3.63%), put ITM by $3,035, **$637 to stop**. New low $9,601 at BTC $65,804. Delta hedge 0.095 BTC absorbing damage (BTC -$5,298 from entry, equity -$363). **H-011**: IN, 19 settlements, net funding +$15.23 vs $149 fees (still underwater on fees). **Research**: H-101 REJECTED (return kurtosis, **96% IS positive**, mean 0.514, corr **-0.009** with H-012 — genuinely novel. BUT split-half **-0.614** — extreme regime dependence. H1 mean 0.006 vs H2 mean 1.637. WF selected 1/4. Only works in late 2025+). H-102 REJECTED (volume stability CV, only 27% positive, mean -0.259, OOS -0.639, split-half -0.031). H-103 REJECTED (price-volume correlation, 75% IS but OOS -0.519, WF selected 2/4 mean -0.110, corr 0.428 with H-012).
+- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry.
 - Questions added: none
-- Self-modifications: none (session 97)
+- Self-modifications: none (session 98)

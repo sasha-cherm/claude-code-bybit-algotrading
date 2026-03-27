@@ -231,24 +231,24 @@ Note: Short side dominating (+$8,888 short PnL, -$6,772 long PnL, net +$2,116). 
 - **Next rebal**: Apr 1 bar
 - **Backtest**: 100% params positive (48/48), best Sharpe 2.08, mean 1.48. WF (selected) 3/4 positive. Corr 0.21 with H-012.
 
-## Portfolio Summary (live mark-to-market 2026-03-27 session 97, 13:05 UTC)
-- **Bybit Demo**: $100,764 (+0.76%, up from +0.18%) — 12 perp positions. All drifts <10%. Short side dominating (+$5.2k net uPnL). NEAR short biggest winner (+$3,264). ETH long biggest loser (-$3,000).
-- **Total internal MTM (19 strats, BTC ~$66,636)**: ~$191,022 (+0.53%). BTC $66,636 (-4.1% 24h, continued heavy selloff from $67,843).
+## Portfolio Summary (live mark-to-market 2026-03-27 session 98, 17:03 UTC)
+- **Bybit Demo**: $100,834 (+0.83%, up from +0.76%) — 12 perp positions. All drifts <10%. Short side dominating (+$8.6k short, -$7.4k long). NEAR short biggest winner (+$3,367). ETH long biggest loser (-$3,092).
+- **Total internal MTM (19 strats, BTC ~$65,966)**: ~$190,918 (+0.48%). BTC $65,966 (-4.3% 24h, continued heavy selloff).
 - **Positive (10)**: H-031 (+4.68%), H-039 (+4.35%), H-049 (+3.54%), H-062 (+1.25%), H-012 (+1.23%), H-052 (+1.14%), H-053 (+1.12%), H-019 (+1.09%), H-044 (+0.31%), H-076 (+0.14%)
-- **Near flat (3)**: H-085 (0.00%), H-046 (0.00%), H-032 (-0.03%)
-- **Negative (6)**: H-021 (-0.67%), H-059 (-1.25%), H-024 (-1.29%), H-011 (-1.32%), H-009 (-1.47%), **H-063 (-2.61%)**
-- **H-009**: $9,853 (-1.47%, SHORT) | **H-011**: $9,868 (-1.32%, IN, 34 settlements, net funding +$17.33) | **H-012**: $10,123 (+1.23%) | **H-019**: $10,109 (+1.09%) | **H-021**: $9,933 (-0.67%)
+- **Near flat (3)**: H-085 (0.00%), H-046 (-0.01%), H-032 (-0.03%)
+- **Negative (6)**: H-021 (-0.67%), H-059 (-1.25%), H-024 (-1.29%), H-011 (-1.34%), H-009 (-1.47%), **H-063 (-3.63%)**
+- **H-009**: $9,853 (-1.47%, SHORT) | **H-011**: $9,866 (-1.34%, IN, 19 settlements, net funding +$15.23) | **H-012**: $10,123 (+1.23%) | **H-019**: $10,109 (+1.09%) | **H-021**: $9,933 (-0.67%)
 - **H-024 (comparison)**: $9,871 (-1.29%) — H-019 +1.09% vs H-024 -1.29%. **Gap 2.38%**.
 - **H-031**: $10,468 (+4.68%) | **H-032**: $9,997 (-0.03%) | **H-039 (DOW)**: $10,435 (+4.35%, FLAT)
-- **H-044 (OI)**: $10,031 (+0.31%) | **H-046 (Accel)**: $9,999 (0.00%) | **H-049 (LSR)**: $10,354 (+3.54%)
+- **H-044 (OI)**: $10,031 (+0.31%) | **H-046 (Accel)**: $9,999 (-0.01%) | **H-049 (LSR)**: $10,354 (+3.54%)
 - **H-052 (Premium)**: $10,114 (+1.14%) | **H-053 (Funding XS)**: $10,112 (+1.12%)
 - **H-059 (Vol Term)**: $9,875 (-1.25%) | **H-062 (DD Mom)**: $10,125 (+1.25%)
-- **H-063 (Vol Sell)**: **$9,739 (-2.61%)**, PUT ITM by $2,364 | **H-076 (Efficiency)**: $10,014 (+0.14%)
+- **H-063 (Vol Sell)**: **$9,637 (-3.63%)**, PUT ITM by $3,035 | **H-076 (Efficiency)**: $10,014 (+0.14%)
 - **H-085 (Turnover)**: $10,000 (0.00%, day 1)
 - **Paper trade age**: H-009/H-011/H-012: 11 days. H-019/H-021/H-024: 9 days. H-031/H-032/H-039: 8 days. H-044/H-046/H-049/H-052/H-053: 7 days. H-059/H-062: 5 days. H-063: 2 days. H-076/H-085: 1 day.
-- **H-063 CRITICAL**: BTC $66,636, put strike $69,000 — **PUT ITM by $2,364**. Equity $9,739 (-2.61%), stop at $9,000 (**$739 buffer**). Delta hedge 0.084 BTC (increased from 0.063). 7 days to expiry (Apr 3). NEW low $9,709 at BTC $66,432 (Mar 27 12:31). Hedge absorbing damage: BTC -$4,628 from entry but equity only -$261. Gamma hedging costs accelerating as put goes deeper ITM.
+- **H-063 CRITICAL**: BTC $65,966, put strike $69,000 — **PUT ITM by $3,035**. Equity $9,637 (-3.63%), stop at $9,000 (**$637 buffer**). Delta hedge 0.095 BTC (increased from 0.084). 7 days to expiry (Apr 3). NEW low $9,601 at BTC $65,804 (Mar 27 14:31). Hedge absorbing damage: BTC -$5,298 from entry but equity only -$363. Gamma hedging costs accelerating.
 - **H-019 vs H-024**: Gap 2.38%. H-019 still winning. Kill H-024 at 2 weeks (Mar 31).
-- **Research**: 100 hypotheses total. H-098 REJECTED (BTC-residual mom, corr 0.698 with H-012). H-099 REJECTED (CVaR/tail risk, corr 0.749 with H-019 — low-vol by another name). H-100 REJECTED (comovement, train/test failure).
+- **Research**: 103 hypotheses total. H-101 REJECTED (kurtosis, 96% IS positive, corr -0.009 w/H-012 but split-half -0.614). H-102 REJECTED (vol stability, 27% positive). H-103 REJECTED (PV correlation, OOS -0.519).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053 rebal. Mar 30: H-076 rebal. Mar 31: Kill H-024. Apr 1: H-085 rebal. Apr 3: H-063 expiry. Apr 6-10: H-056 v3 re-opt.
 - **Open user questions:** None

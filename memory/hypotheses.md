@@ -1443,6 +1443,53 @@
 - Notes: The factor captures something real (independent movers outperform) but it's extremely regime-dependent. The -0.757 split-half correlation and train/test failure (2.2 → -0.07) mean the signal flips direction between periods. The direction instability in WF (folds selecting opposite directions) confirms the factor is not stable enough to trade. Correlation patterns change over time in crypto as narrative/sector rotation shifts which assets co-move.
 - Sessions: [2026-03-27 backtest session 97]
 
+## H-101: Return Kurtosis Factor (14 Assets)
+- Status: REJECTED — regime-dependent, split-half reversal
+- Idea: Rank assets by rolling excess kurtosis. Long lowest kurtosis (thin tails), short highest kurtosis (fat tails). Hypothesis: low-kurtosis assets deliver better risk-adjusted returns.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling excess kurtosis of daily returns (20-60d window). Negate to long thin-tailed, short fat-tailed. Dollar-neutral.
+- Result:
+  - **Param scan (48 combos)**: **96% positive** (46/48). Mean Sharpe 0.514. Best LB30_R5_N5 Sharpe 1.288, +45.5% ann, 27.4% DD.
+  - **Train/test (70/30)**: IS 1.406 → OOS **0.119** (near-zero alpha OOS)
+  - **Split-half**: Correlation **-0.614** (extreme reversal!). H1 mean 0.006, H2 mean 1.637. Factor only works in 2025+.
+  - **WF fixed (4 folds)**: 3/4 positive, mean 0.762 (includes strong H2 period)
+  - **WF selected (4 folds)**: **1/4 positive**, mean 0.106 (severe param overfit)
+  - **Correlation with H-012**: **-0.009** (zero — genuinely novel signal)
+- Notes: Extremely interesting from a diversification standpoint (zero H-012 correlation) but the signal is regime-dependent. Only works in H2 (late 2025-2026), essentially zero alpha in H1 (2024-mid 2025). The -0.614 split-half correlation means what works in one period reverses in the next. Strategy file: `strategies/h101_kurtosis/backtest.py`.
+- Sessions: [2026-03-27 backtest session 98]
+
+## H-102: Volume Stability Factor (14 Assets)
+- Status: REJECTED — poor parameter robustness, OOS failure
+- Idea: Rank assets by coefficient of variation (CV) of daily dollar volume. Long most stable volume (low CV = institutional interest), short most bursty (high CV = retail hype).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling CV = std/mean of dollar volume over lookback window. Negate to long stable, short bursty. Dollar-neutral.
+- Result:
+  - **Param scan (48 combos)**: Only **27% positive** (13/48). Mean Sharpe **-0.259**. Best only 0.337.
+  - **Train/test**: IS 0.019 → OOS **-0.639** (complete OOS failure)
+  - **Split-half**: Correlation **-0.031** (zero persistence). H1 mean -1.094, H2 mean 0.917. Extreme asymmetry.
+  - **WF selected (4 folds)**: 3/4 positive, mean 1.492 (but IS data selects long lookback=60 which captures size, not stability)
+  - **Corr with H-012**: -0.270. **Corr with H-031 (size)**: 0.073.
+- Notes: Factor fundamentally doesn't work. Volume stability in crypto is mostly a proxy for size/maturity, and the pure CV measure is too noisy. The WF param selection results are misleading — the folds select LB=60 consistently which captures long-term volume patterns (basically size). Strategy file: `strategies/h102_vol_stability/backtest.py`.
+- Sessions: [2026-03-27 backtest session 98]
+
+## H-103: Price-Volume Correlation Factor (14 Assets)
+- Status: REJECTED — IS overfitting, OOS failure
+- Idea: Rank assets by rolling correlation between daily returns and daily volume changes. Long highest corr (conviction buying = price up + volume up), short lowest corr (weak moves).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling Pearson correlation between returns and volume changes (20-60d window). Conviction direction: long high corr, short low. Also tested contrarian direction.
+- Result:
+  - **Param scan (48 combos)**: **75% positive** (36/48). Mean Sharpe 0.297. Best 1.025.
+  - **Direction test**: Conviction (75% positive, mean 0.297) beats Contrarian (40% positive, mean -0.057).
+  - **Train/test**: IS 1.410 → OOS **-0.519** (severe OOS failure — classic overfit)
+  - **Split-half**: Correlation 0.408 (moderate). H1 0.209, H2 0.243. Consistent but low.
+  - **WF selected (4 folds)**: **2/4 positive**, mean **-0.110** (negative OOS)
+  - **Corr with H-012**: 0.428 (moderate — partially captures momentum via conviction). **Corr with H-021**: 0.155.
+- Notes: The conviction direction has some IS alpha but it doesn't persist OOS. Correlation 0.428 with H-012 suggests it partially captures momentum (strong conviction moves are trending moves). Not genuinely independent. Strategy file: `strategies/h103_pv_correlation/backtest.py`.
+- Sessions: [2026-03-27 backtest session 98]
+
 ## Killed
 (none)
 
