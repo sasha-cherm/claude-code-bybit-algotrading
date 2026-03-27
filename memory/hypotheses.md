@@ -1391,6 +1391,22 @@
 - Notes: Information diffusion in crypto is too fast for daily-frequency exploitation. The lead-lag structure is noisy and unstable across periods. Best params have 50% DD — unacceptable. The negative correlation with momentum (-0.127) is interesting but the signal itself doesn't hold. Previously tested H-057 (BTC/ETH→Alts lead-lag) also failed — confirming daily lead-lag is not viable in crypto.
 - Sessions: [2026-03-27 review+research session 96]
 
+## H-098: BTC-Residual Momentum (14 Assets, Daily)
+- Status: REJECTED — strong IS but severe half2 collapse, high H-012 correlation
+- Idea: Cross-sectional momentum after removing BTC beta — rank by alpha_i = cumret_i - beta_i * cumret_btc. Should isolate "pure outperformers" vs the market.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling OLS beta to BTC over lookback window. Residual cumulative return = total return minus beta*BTC return. Rank. Long top N, short bottom N. Rebalance every R days.
+- Result:
+  - **Param scan (90 combos)**: 100% positive, mean Sharpe 1.138, median 1.131, best LB120_R14_N3 (Sharpe 1.765, +115% ann, 24% DD)
+  - **WF fixed best params (4 folds)**: 3/4 positive, mean OOS Sharpe 0.644 — fold 3 negative (-0.309)
+  - **WF with param selection (3 folds)**: 1/3 positive, mean OOS Sharpe -0.239 — severe overfitting in IS param selection
+  - **Split-half**: Half 1 mean 1.844, Half 2 mean 0.035, cross-half Sharpe corr -0.493 — strategy nearly dead in second half
+  - **Fee sensitivity (5 bps)**: 100% positive, mean 1.145, negligible degradation
+  - **Correlation with H-012**: 0.698 — high; mostly captures same momentum signal
+- Notes: Factor is essentially a beta-hedged version of H-012 momentum. The signal collapses in half 2 (2025-03-19 onwards), suggesting the alpha vs BTC was concentrated in the 2024 bull period when some alts ran independently. In 2025+, the whole market moved together and the residual signal lost content. High correlation with H-012 means no diversification benefit. The param selection WF (mean -0.239) confirms the IS performance is not stable OOS.
+- Sessions: [2026-03-27 backtest]
+
 ## Killed
 (none)
 

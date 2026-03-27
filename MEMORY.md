@@ -103,3 +103,11 @@ _Older sessions (bootstrap through 86) archived to `memory/session_archive.md`._
 - Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 96)
+
+### Session 2026-03-27 backtest (session 97 — H-098)
+- Goal: Backtest — H-098 BTC-Residual Momentum (cross-sectional alpha after removing BTC beta)
+- Focus: H-098 full 90-combo param scan + walk-forward + split-half + H-012 correlation + fee sensitivity
+- Done: **H-098 REJECTED**. Signal: residual return = cumret_i - beta_i * cumret_btc. 100% params positive IS (mean Sharpe 1.138), best LB120_R14_N3 (1.765). But: split-half half1=1.844 vs half2=0.035 — factor collapses in 2025+. WF fixed 3/4 (mean 0.644), WF selected 1/3 (mean -0.239 — severe param overfit). **Correlation with H-012: 0.698** — captures same momentum signal. Factor adds no diversification and degrades OOS. Strategy file: `strategies/h098_residual_mom/backtest.py`. Bug fixed: pandas alignment issue in rolling beta computation (needed numpy arrays to avoid DataFrame outer-product on DatetimeIndex columns).
+- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry. Continue researching new factors.
+- Questions added: none
+- Self-modifications: none (session 97)
