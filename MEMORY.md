@@ -88,6 +88,14 @@ _Older sessions (bootstrap through 89) archived to `memory/session_archive.md`._
 - Questions added: none
 - Self-modifications: none (session 97)
 
+### Session 2026-03-28 backtest (session 99)
+- Goal: Backtest — H-105 Close Location Value (CLV) Momentum Quality Factor
+- Focus: Full 36-param scan, IS/OOS, walk-forward, split-half, fee sensitivity, correlations
+- Done: H-105 REJECTED. 78% params positive (pass), OOS Sharpe 2.005 (pass), WF mean 0.762 (pass), corr H-012 0.343 (pass), but **split-half correlation -0.187** (fail — regime-dependent). WF fold 4 (Oct-Dec 2025) = -1.549 reveals factor reverses in drawdown regimes. Best params LB20_R7_N5. CLV signal partially correlated with H-012 momentum (0.343). Results saved to strategies/h105_close_location/results.json.
+- Next: Continue backtest research — H-106+
+- Questions added: none
+- Self-modifications: none (session 99)
+
 ### Session 2026-03-27 review+research (session 98)
 - Goal: Review + Research — MTM update (BTC selloff to $65,966), H-063 critical monitoring, 3 new factor backtests
 - Focus: Full MTM update (19 runners), H-063 vol selling stress, H-101/H-102/H-103 backtests

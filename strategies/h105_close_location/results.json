@@ -1,0 +1,40 @@
+{
+  "hypothesis": "H-105",
+  "title": "Close Location Value (CLV) Momentum Quality Factor",
+  "verdict": "REJECTED",
+  "rejection_reasons": [
+    "Split-half corr -0.1871 < 0 (regime-dependent)"
+  ],
+  "metrics": {
+    "pct_positive_params": 0.7778,
+    "n_positive_params": 28,
+    "n_total_params": 36,
+    "best_params": {
+      "clv_lookback": 20,
+      "rebal_freq": 7,
+      "n_long_short": 5
+    },
+    "full_scan_mean_sharpe": 0.3854,
+    "full_scan_median_sharpe": 0.5691,
+    "is_sharpe": 1.1483,
+    "oos_sharpe": 2.0055,
+    "oos_annual_ret": 0.9726,
+    "oos_max_dd": 0.1899,
+    "wf_mean_sharpe": 0.7624,
+    "wf_pos_folds": 3,
+    "wf_n_folds": 4,
+    "wf_fold_sharpes": [
+      0.6846,
+      2.1585,
+      1.7553,
+      -1.5487
+    ],
+    "split_half_corr": -0.1871,
+    "split_half_h1_sharpe": 2.5555,
+    "split_half_h2_sharpe": 1.3847,
+    "sharpe_1x_fees": 1.3556,
+    "sharpe_5x_fees": 1.1263,
+    "corr_h012_momentum": 0.343,
+    "corr_h019_vol": 0.1745
+  }
+}

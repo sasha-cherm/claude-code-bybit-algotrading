@@ -1490,6 +1490,23 @@
 - Notes: The conviction direction has some IS alpha but it doesn't persist OOS. Correlation 0.428 with H-012 suggests it partially captures momentum (strong conviction moves are trending moves). Not genuinely independent. Strategy file: `strategies/h103_pv_correlation/backtest.py`.
 - Sessions: [2026-03-27 backtest session 98]
 
+## H-105: Close Location Value (CLV) Momentum Quality Factor (14 Assets)
+- Status: REJECTED — regime-dependent (split-half correlation negative)
+- Idea: CLV = (close - low) / (high - low) measures where close falls within daily range. Assets consistently closing near highs have strong buying pressure. Cross-sectional: long highest avg-CLV, short lowest.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Compute daily CLV, roll over N days, rank cross-sectionally. Long top-N, short bottom-N. Equal-weight. Dollar-neutral. Tested 36 combos: CLV lookback [5,10,20,30], rebal [3,5,7]d, N [3,4,5].
+- Result:
+  - **Param scan (36 combos)**: **78% positive** (28/36). Mean Sharpe 0.385, Median 0.569. Best LB20_R5_N5 Sharpe 1.428, +71.1% ann, 36.5% DD. Strong cluster around LB=20.
+  - **IS/OOS (60/40)**: IS Sharpe 1.148 → OOS Sharpe **2.005**, OOS Ann 97.3%, OOS DD 19.0%. Unusually strong OOS (suspect regime).
+  - **Walk-forward (4 folds)**: 3/4 positive, mean 0.762. Fold Sharpes: [0.685, 2.159, 1.755, **-1.549**]. Fold 4 (Oct-Dec 2025) severely negative.
+  - **Split-half OOS**: H1 (Jun-Oct 2025) Sharpe 2.556 vs H2 (Nov 2025-Mar 2026) Sharpe 1.385 with best params. Cross-param correlation **-0.187** — regime-dependent, strategy works differently in different halves.
+  - **Fee sensitivity**: Sharpe 1.356 at 1x fees → 1.126 at 5x fees. Robust to fees.
+  - **Corr H-012 (60d momentum)**: **0.343** (moderate — CLV captures some momentum premium)
+  - **Corr H-019 (20d vol)**: 0.175 (low)
+- Notes: Interesting factor with clear directional logic. Short lookback (LB=5) completely fails (worst Sharpe -2.07) — likely noise. LB=20 is the sweet spot. The OOS number (2.0) looks great but is inflated by a very strong H1 2025 regime. WF fold 4 (Oct-Dec 2025) severely negative (-1.549) and split-half correlation is negative — the factor changes sign between regimes. The signal likely captures "momentum quality" in trending markets and reverses when momentum reverses (Oct-Dec 2025 was a drawdown period). Corr 0.343 with H-012 means it is partially redundant. Strategy file: `strategies/h105_close_location/backtest.py`.
+- Sessions: [2026-03-28 backtest session 99]
+
 ## Killed
 (none)
 
