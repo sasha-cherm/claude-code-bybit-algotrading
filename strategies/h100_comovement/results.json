@@ -1,0 +1,181 @@
+{
+  "hypothesis": "H-100",
+  "title": "Average Pairwise Correlation (Comovement Factor)",
+  "assets": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "SOL/USDT",
+    "SUI/USDT",
+    "XRP/USDT",
+    "DOGE/USDT",
+    "AVAX/USDT",
+    "LINK/USDT",
+    "ADA/USDT",
+    "DOT/USDT",
+    "NEAR/USDT",
+    "OP/USDT",
+    "ARB/USDT",
+    "ATOM/USDT"
+  ],
+  "n_days": 746,
+  "period_start": "2024-03-11",
+  "period_end": "2026-03-26",
+  "fee_bps_rt": 5,
+  "param_scan": {
+    "total_combos": 150,
+    "positive_sharpe": 93,
+    "positive_pct": 0.62,
+    "mean_sharpe": 0.179,
+    "median_sharpe": 0.174,
+    "dir_A_mean_sharpe": 0.673,
+    "dir_B_mean_sharpe": -0.316
+  },
+  "best_params": {
+    "tag": "CW60_R3_N3_low_corr_long",
+    "corr_window": 60,
+    "rebal": 3,
+    "n_pos": 3,
+    "direction": "low_corr_long",
+    "sharpe": 1.556,
+    "annual_ret": 0.7831,
+    "max_dd": 0.2899,
+    "win_rate": 0.5034
+  },
+  "walk_forward_fixed": [
+    {
+      "fold": 1,
+      "start": "2024-03-11",
+      "end": "2024-09-12",
+      "n_days": 186,
+      "sharpe": 0.491,
+      "annual_ret": 0.1113,
+      "max_dd": 0.2056,
+      "win_rate": 0.3189
+    },
+    {
+      "fold": 2,
+      "start": "2024-09-13",
+      "end": "2025-03-17",
+      "n_days": 186,
+      "sharpe": 2.086,
+      "annual_ret": 1.576,
+      "max_dd": 0.2292,
+      "win_rate": 0.3622
+    },
+    {
+      "fold": 3,
+      "start": "2025-03-18",
+      "end": "2025-09-19",
+      "n_days": 186,
+      "sharpe": 0.386,
+      "annual_ret": 0.0704,
+      "max_dd": 0.2107,
+      "win_rate": 0.3676
+    },
+    {
+      "fold": 4,
+      "start": "2025-09-20",
+      "end": "2026-03-26",
+      "n_days": 188,
+      "sharpe": -0.74,
+      "annual_ret": -0.2311,
+      "max_dd": 0.2899,
+      "win_rate": 0.369
+    }
+  ],
+  "walk_forward_selected": [
+    {
+      "fold": 1,
+      "start": "2025-11-12",
+      "end": "2026-03-26",
+      "n_days": 135,
+      "train_best_params": "CW30_R3_N5_high_corr_long",
+      "train_sharpe": 2.242,
+      "oos_sharpe": 2.144,
+      "oos_annual_ret": 0.77,
+      "oos_max_dd": 0.0894
+    },
+    {
+      "fold": 2,
+      "start": "2025-06-30",
+      "end": "2025-11-11",
+      "n_days": 135,
+      "train_best_params": "CW30_R7_N3_low_corr_long",
+      "train_sharpe": 3.042,
+      "oos_sharpe": -2.384,
+      "oos_annual_ret": -0.5487,
+      "oos_max_dd": 0.2781
+    },
+    {
+      "fold": 3,
+      "start": "2025-02-15",
+      "end": "2025-06-29",
+      "n_days": 135,
+      "train_best_params": "CW60_R5_N3_low_corr_long",
+      "train_sharpe": 3.725,
+      "oos_sharpe": 0.849,
+      "oos_annual_ret": 0.1609,
+      "oos_max_dd": 0.0759
+    }
+  ],
+  "split_half": {
+    "sharpe_correlation": -0.757,
+    "both_positive_pct": 0.033,
+    "half1_mean_sharpe": 0.201,
+    "half2_mean_sharpe": 0.12
+  },
+  "train_test": {
+    "train_best_params": "CW60_R3_N3_low_corr_long",
+    "train_sharpe": 2.2,
+    "test_sharpe": -0.071,
+    "test_annual_ret": -0.0636,
+    "test_max_dd": 0.2899,
+    "test_win_rate": 0.4081,
+    "test_n_days": 224
+  },
+  "correlations": {
+    "h012_return_corr": 0.371,
+    "h031_return_corr": -0.015,
+    "h012_sharpe": 1.431,
+    "h031_sharpe": 0.777,
+    "h100_sharpe": 1.556
+  },
+  "fee_sensitivity": [
+    {
+      "rt_bps": 0,
+      "sharpe": 1.571,
+      "annual_ret": 0.7941,
+      "max_dd": 0.2893
+    },
+    {
+      "rt_bps": 5,
+      "sharpe": 1.556,
+      "annual_ret": 0.7831,
+      "max_dd": 0.2899
+    },
+    {
+      "rt_bps": 10,
+      "sharpe": 1.542,
+      "annual_ret": 0.7722,
+      "max_dd": 0.2906
+    },
+    {
+      "rt_bps": 20,
+      "sharpe": 1.513,
+      "annual_ret": 0.7505,
+      "max_dd": 0.2919
+    },
+    {
+      "rt_bps": 30,
+      "sharpe": 1.484,
+      "annual_ret": 0.7291,
+      "max_dd": 0.2932
+    },
+    {
+      "rt_bps": 50,
+      "sharpe": 1.426,
+      "annual_ret": 0.687,
+      "max_dd": 0.2957
+    }
+  ]
+}

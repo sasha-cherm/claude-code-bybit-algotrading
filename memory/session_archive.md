@@ -691,3 +691,9 @@
 - Focus: MTM update, IV surface exploratory analysis, H-063 vol selling backtest + deployment
 - Done: 17/17 runners OK. Demo $100,592 (+0.59%). Internal $160,681 (+0.43%). BTC $71,673. 9/17 positive. NEW H-063 short strangle deployed. Backtest: Sharpe 1.54, +52.5% ann, -18.4% DD, WF 6/6, 60/60 params. Corr -0.10 vs H-009.
 - Self-modifications: Added H-063 runner to cron orchestrator (session 86)
+
+### Session 2026-03-25 review+research (session 87)
+- Goal: Review + Research — system health check + expanded universe analysis + portfolio overlap analysis
+- Focus: MTM update, H-072 expanded universe momentum test, H-056 position overlap analysis
+- Done: 17/17 runners OK. Demo $100,457 (+0.46%). Internal $170,614 (+0.36%). BTC $71,331. 7/17 positive. H-072 REJECTED (expanded 25-asset universe). Position overlap: H-012≡H-062, H-021≡H-046.
+- Self-modifications: none (session 87)

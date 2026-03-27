@@ -1,0 +1,88 @@
+{
+  "hypothesis": "H-099",
+  "title": "Tail Risk Factor (CVaR)",
+  "period": "2024-03-11 to 2026-03-26",
+  "n_days": 746,
+  "n_assets": 14,
+  "n_combos": 300,
+  "pct_positive_sharpe": 0.5,
+  "mean_sharpe": 0.1923,
+  "best_sharpe": 2.352,
+  "best_params": "LB30_R14_N3_P10_cont",
+  "best_direction": "contrarian",
+  "direction_breakdown": {
+    "risk_premium": {
+      "pct_positive": 0.0,
+      "mean_sharpe": -1.4547,
+      "best_sharpe": -0.947
+    },
+    "contrarian": {
+      "pct_positive": 1.0,
+      "mean_sharpe": 1.8392,
+      "best_sharpe": 2.352
+    }
+  },
+  "walk_forward_fixed": {
+    "n_folds": 4,
+    "positive_folds": 4,
+    "mean_oos_sharpe": 2.183,
+    "mean_oos_annual_ret": 1.1351
+  },
+  "walk_forward_param_selection": {
+    "n_folds": 4,
+    "positive_folds": 4,
+    "mean_oos_sharpe": 2.736
+  },
+  "split_half": {
+    "spearman_corr": 0.761,
+    "both_positive_pct": 0.5,
+    "half1_mean_sharpe": 0.193,
+    "half2_mean_sharpe": 0.175
+  },
+  "h012_correlation": 0.438,
+  "fee_sensitivity": [
+    {
+      "fee_bps": 0.0,
+      "sharpe": 2.373,
+      "annual_ret": 1.7954,
+      "max_dd": 0.2802
+    },
+    {
+      "fee_bps": 2.9999999999999996,
+      "sharpe": 2.362,
+      "annual_ret": 1.7811,
+      "max_dd": 0.2803
+    },
+    {
+      "fee_bps": 5.0,
+      "sharpe": 2.355,
+      "annual_ret": 1.7716,
+      "max_dd": 0.2804
+    },
+    {
+      "fee_bps": 5.999999999999999,
+      "sharpe": 2.352,
+      "annual_ret": 1.7669,
+      "max_dd": 0.2805
+    },
+    {
+      "fee_bps": 10.0,
+      "sharpe": 2.338,
+      "annual_ret": 1.748,
+      "max_dd": 0.2807
+    },
+    {
+      "fee_bps": 15.0,
+      "sharpe": 2.32,
+      "annual_ret": 1.7245,
+      "max_dd": 0.2809
+    },
+    {
+      "fee_bps": 20.0,
+      "sharpe": 2.302,
+      "annual_ret": 1.7013,
+      "max_dd": 0.2811
+    }
+  ],
+  "verdict": "WEAK SIGNAL \u2014 possible but not robust enough alone"
+}

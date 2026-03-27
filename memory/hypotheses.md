@@ -1407,6 +1407,42 @@
 - Notes: Factor is essentially a beta-hedged version of H-012 momentum. The signal collapses in half 2 (2025-03-19 onwards), suggesting the alpha vs BTC was concentrated in the 2024 bull period when some alts ran independently. In 2025+, the whole market moved together and the residual signal lost content. High correlation with H-012 means no diversification benefit. The param selection WF (mean -0.239) confirms the IS performance is not stable OOS.
 - Sessions: [2026-03-27 backtest]
 
+## H-099: Tail Risk Factor / CVaR (14 Assets, Contrarian)
+- Status: REJECTED — strong standalone but 0.749 corr with H-019 (low-vol by another name)
+- Idea: Rank assets by Conditional Value at Risk (average of worst 10% of returns). Long low tail risk (least negative CVaR), short high tail risk. Tests both risk-premium and contrarian directions.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Compute CVaR = mean of bottom P% of daily returns over lookback window. Rank. Contrarian: long high CVaR (low tail risk), short low CVaR (high tail risk).
+- Result:
+  - **Param scan (300 combos)**: 50% overall positive. **Contrarian direction: 100% positive** (150/150), mean Sharpe 1.839. Risk-premium: 0% positive (all negative).
+  - **Best params**: LB30_R14_N3_P10_contrarian, Sharpe 2.352, +177% ann, 28% DD
+  - **WF fixed (4 folds)**: **4/4 positive**, mean OOS Sharpe 2.183 — very strong
+  - **WF param selection (4 folds)**: **4/4 positive**, mean OOS Sharpe 2.736 — exceptional
+  - **Split-half**: Spearman 0.761 (very stable), both-positive 50%, H1 0.193 / H2 0.175 — consistent
+  - **Correlation with H-012**: 0.438 (moderate)
+  - **Correlation with H-019 (low-vol)**: **0.749** (very high — same signal)
+  - **Fee sensitivity**: Robust — Sharpe 2.30 even at 20bps
+- Notes: Strongest OOS results of any factor tested recently (WF 4/4 fixed AND param selection). The concept "buy safe assets, sell dangerous ones" is fundamentally the low-volatility anomaly — CVaR and realized vol are highly correlated cross-sectionally. Since H-019 already captures this signal, deploying H-099 would be redundant. Could replace H-019 if performance diverges in paper trading, but not worth a new deployment.
+- Sessions: [2026-03-27 backtest session 97]
+
+## H-100: Average Pairwise Correlation / Comovement Factor (14 Assets)
+- Status: REJECTED — OOS failure, extreme split-half instability
+- Idea: For each asset, compute average correlation with all other 13 assets over rolling window. Test long low-comovement (independent movers) vs long high-comovement (crowd leaders).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling correlation matrix over window. Average each asset's pairwise correlations. Rank. Direction A: long low-corr, short high-corr. Direction B: vice versa.
+- Result:
+  - **Param scan (150 combos)**: 62% positive (93/150). Low-corr-long mean Sharpe 0.673 (clearly better). High-corr-long mean -0.316.
+  - **Best params**: CW60_R3_N3_low_corr_long, Sharpe 1.556, +78% ann, 29% DD
+  - **WF fixed (4 folds)**: 3/4 positive but last fold **-0.740** (recent period fails)
+  - **WF param selection (3 folds)**: Mixed — 2.144, -2.384, 0.849. Direction instability (fold 1 selects high_corr_long, opposite of others)
+  - **Split-half**: Spearman **-0.757** (extremely unstable — what works H1 fails H2), both-positive **3.3%**
+  - **Train/test**: Train Sharpe 2.2 → Test Sharpe **-0.071** (complete OOS failure)
+  - **Correlation with H-012**: 0.371, with H-031: -0.015
+  - **Fee sensitivity**: Robust (minimal degradation)
+- Notes: The factor captures something real (independent movers outperform) but it's extremely regime-dependent. The -0.757 split-half correlation and train/test failure (2.2 → -0.07) mean the signal flips direction between periods. The direction instability in WF (folds selecting opposite directions) confirms the factor is not stable enough to trade. Correlation patterns change over time in crypto as narrative/sector rotation shifts which assets co-move.
+- Sessions: [2026-03-27 backtest session 97]
+
 ## Killed
 (none)
 
