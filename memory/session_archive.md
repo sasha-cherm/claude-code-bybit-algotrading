@@ -747,3 +747,11 @@
 - Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: h044_oi_divergence/runner.py OI staleness fix (session 94)
+
+### Session 2026-03-27 review+research (session 95)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC continued decline), H-063 vol selling stress, H-092/H-093/H-094 backtests
+- Done: 19/19 runners OK. Demo: $100,796 (+0.80%). BTC $68,519. H-063 PUT ITM by $481 — equity $9,970 (-0.30%). Research: H-092 REJECTED, H-093 CONDITIONAL, H-094 REJECTED.
+- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053.
+- Questions added: none
+- Self-modifications: none (session 95)

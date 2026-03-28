@@ -1773,6 +1773,36 @@
 - Notes: Decent WF (4/6 positive, mean 0.712) and positive split-half (0.366) make this the best of the three. But 91.7% IS positive is not as strong as 100%, and corr 0.388 with H-012 means partial momentum redundancy. Best params favor short lookback (10d) and long rebal (14d), suggesting it captures short-term deviation from fair value. Max DD 39.8% is high. Could be useful in a portfolio context but not compelling enough for immediate paper trading. Strategy file: `strategies/h121_vwap_dev/backtest.py`.
 - Sessions: [2026-03-28 backtest session 104]
 
+## H-122: Candle Conviction Factor (14 Assets)
+- Status: REJECTED
+- Idea: Cross-sectional ranking by average candle body ratio |close-open|/(high-low). Long high conviction (clean moves), short low conviction (wicky candles).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: Rolling mean body ratio over 10-60d lookback. Rank cross-sectionally, long top N, short bottom N.
+- Result: IS **0% positive** (all 60 params negative!). Mean Sharpe -1.189. WF **1/6** positive. Split-half 0.046. Corr H-012 -0.152.
+- Notes: Signal works in REVERSE — low conviction candles lead to outperformance, high conviction candles mean-revert. Crypto "clean moves" are exhaustion signals. Data: 746 days, 14 assets.
+- Sessions: [2026-03-28 session 105]
+
+## H-123: Volume-Price Elasticity Factor (14 Assets)
+- Status: REJECTED
+- Idea: Regression slope of |return| on log(volume) measures price-volume responsiveness. Cross-sectional: long high elasticity, short low.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: Rolling OLS of |log_return| on log(volume) over 15-60d. Take beta as elasticity, rank cross-sectionally.
+- Result: IS 23.3% positive (14/60). Best Sharpe 0.385 (W15_R10_N4). WF **1/6** positive (mean OOS -1.354). Split-half 0.137. Corr H-012 0.052.
+- Notes: Very noisy signal, strong training performance collapses OOS. Volume-price relationship is too unstable for cross-sectional factor. Data: 746 days, 14 assets, 60 param combos.
+- Sessions: [2026-03-28 session 105]
+
+## H-124: Close Location Value Factor (14 Assets, Revisited)
+- Status: REJECTED
+- Idea: CLV = (close-low)/(high-low). Average over lookback, rank cross-sectionally. Tested both momentum (long high CLV) and contrarian (long low CLV) directions.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: Rolling mean CLV. Momentum: long top N (closes near high), short bottom N. Contrarian: reverse.
+- Result: Overall IS 46.5% positive (67/144). **Momentum: 84.7% positive** (61/72). Contrarian: 8.3% positive (6/72). Split-half 0.621. Corr H-012 **0.448** (moderate overlap).
+- Notes: CLV momentum is real but overlaps with price momentum (H-012). Closes near high → continued rise is just another way to capture momentum. Confirms H-105 finding (split-half now 0.621 vs -0.19, but added momentum overlap wasn't tested before). Data: 746 days, 14 assets, 144 param combos (72 per direction).
+- Sessions: [2026-03-28 session 105]
+
 ## Killed
 (none)
 
