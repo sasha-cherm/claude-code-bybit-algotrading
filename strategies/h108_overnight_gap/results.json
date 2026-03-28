@@ -1,0 +1,39 @@
+{
+  "hypothesis": "H-108",
+  "title": "Overnight Gap Factor",
+  "verdict": "REJECTED",
+  "rejection_reasons": [
+    "split-half corr non-positive (-0.487)",
+    "corr with H-019 > 0.5 (-0.515)"
+  ],
+  "best_params": "L10_R3_N4",
+  "pos_pct": 1.0,
+  "mean_sharpe": 2.367,
+  "best_full_sharpe": 2.464,
+  "is_sharpe": 2.876,
+  "oos_sharpe": 1.698,
+  "oos_annual_ret": 0.8673,
+  "oos_max_dd": 0.2274,
+  "oos_n_days": 299,
+  "oos_half1_sharpe": 1.933,
+  "oos_half2_sharpe": 2.701,
+  "split_half_corr": -0.487,
+  "wf_mean_oos_sharpe": 2.272,
+  "wf_pos_folds": "4/4",
+  "fee_sensitivity": {
+    "1x": {
+      "fee_bps": 6.0,
+      "sharpe": 2.464,
+      "annual_ret": 1.7635,
+      "max_dd": 0.3503
+    },
+    "5x": {
+      "fee_bps": 30.0,
+      "sharpe": 2.461,
+      "annual_ret": 1.7603,
+      "max_dd": 0.3503
+    }
+  },
+  "corr_h012": 0.421,
+  "corr_h019": -0.515
+}

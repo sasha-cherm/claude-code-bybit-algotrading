@@ -1542,6 +1542,53 @@
 - Notes: Contrarian direction (short high-skew, long low-skew) has very strong full-period performance but completely fails OOS validation. The strategy appears to capture a regime-specific effect — likely worked extremely well in late 2024/early 2025 but the relationship breaks down in 2025-2026. Split-half correlation of 0.014 is the smoking gun: the param ranking in H1 and H2 are essentially uncorrelated, meaning there is no persistent structure. Volume skewness is not a stable cross-sectional factor. The contrarian intuition (volume spikes = exhaustion) has merit but is too regime-dependent to be reliably exploitable. Strategy file: `strategies/h106_vol_skew/backtest.py`.
 - Sessions: [2026-03-28 backtest session 99]
 
+## H-107: Range Compression Factor (14 Assets)
+- Status: REJECTED — only 1% params positive, mean Sharpe -0.844
+- Idea: Rank assets by ATR ratio (short ATR / long ATR). Low ratio = compressed range (coiling for breakout). Cross-sectional: long compressed, short expanded.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: ATR_short / ATR_long ratio. Short windows [5,7,10], long windows [20,30,40,60], rebal [3,5,7], N [3,4]. 72 combos.
+- Result:
+  - **Param scan**: 1/72 positive (1.4%). Mean Sharpe **-0.844**. Best S10_L30_R7_N3 Sharpe 0.094.
+  - **OOS**: Sharpe -0.230, Ann -16.6%, DD 38.0%.
+  - **Walk-forward**: 2/4 positive, mean OOS -0.506.
+  - **Split-half**: corr 0.243. H1 mean -1.885, H2 mean 0.648.
+  - **Corr H-012**: -0.377. **Corr H-019**: 0.044.
+- Notes: Comprehensive failure. Compressed ranges do NOT predict cross-sectional outperformance. The reverse direction (long expanded) would have mean Sharpe ~+0.8 but with terrible split-half consistency, suggesting this is noise. Range dynamics don't generate a stable cross-sectional signal in crypto.
+- Sessions: [2026-03-28 backtest session 100]
+
+## H-108: Overnight Gap Factor (14 Assets)
+- Status: REJECTED — split-half corr -0.487, |corr H-019| = 0.515
+- Idea: Rank assets by average overnight gap (Open_t / Close_{t-1} - 1). Positive gaps = overnight demand. Cross-sectional: long positive gaps, short negative gaps.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling mean of daily gap over [5,10,20,30]d. Rebal [3,5,7]. N [3,4]. 24 combos.
+- Result:
+  - **Param scan**: **100% positive** (24/24). Mean Sharpe **2.367**. Best L10_R3_N4 Sharpe 2.464.
+  - **OOS (IS-selected)**: Sharpe **1.698**, Ann +86.7%, DD 22.7%. Very strong.
+  - **Walk-forward**: **4/4 positive**, mean OOS **2.272**. Excellent.
+  - **Split-half**: corr **-0.487** (FAIL). H1 mean 1.933, H2 mean 2.701 — both positive but param ranking inverts.
+  - **Fee sensitivity**: Nearly zero impact (Sharpe 2.464 → 2.461 at 5x fees).
+  - **Corr H-012**: 0.421. **Corr H-019**: **-0.515** (FAIL, >0.5).
+- Notes: Extremely strong metrics — 100% positive, WF 4/4, OOS 1.698 — but REJECTED on two criteria: (1) split-half param correlation -0.487 means the best params in one half are worst in the other (regime-dependent), (2) corr -0.515 with H-019 means it captures the inverse of the low-vol signal (anti-low-vol factor). The signal is real but parameter-unstable and partially redundant. Consider revisiting if a fixed-param version (no selection) performs well.
+- Sessions: [2026-03-28 backtest session 100]
+
+## H-109: Short-Term Reversal Factor (14 Assets)
+- Status: REJECTED — split-half corr -0.443, OOS Sharpe -0.199
+- Idea: Rank assets by very short-term (1-5 day) return. Go LONG biggest losers, SHORT biggest winners. Tests whether short-term reversal exists in crypto at very short horizons.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Simple return over [1,2,3,5]d. Reversal direction (long losers). Rebal [1,2,3,5]d. N [3,4,5]. 48 combos.
+- Result:
+  - **Param scan**: **75% positive** (36/48). Mean Sharpe 0.353. Best L5_R3_N4 Sharpe 1.171.
+  - **OOS (IS-selected)**: Sharpe **-0.199**, Ann -11.2%, DD 21.0%. IS params don't transfer.
+  - **Walk-forward**: 3/4 positive, mean OOS 0.617 — decent but IS-selected fails.
+  - **Split-half**: corr **-0.443** (FAIL). H1 mean 0.245, H2 mean 0.247 — both positive but param ranking inverts.
+  - **Fee sensitivity**: Sharpe 0.961 → 0.341 at 5x fees (high turnover).
+  - **Corr H-012**: **-0.086** (near zero, slightly negative = genuine reversal signal). **Corr H-019**: 0.003 (independent).
+- Notes: Short-term reversal EXISTS weakly in crypto (75% positive, WF 3/4, slightly negative corr with momentum). This is a genuine reversal effect, not disguised momentum. But it's parameter-unstable (split-half -0.443) — the optimal lookback/rebalance combo shifts between regimes. Also fee-sensitive due to high turnover. The signal is too fragile to deploy. If a no-selection fixed-param approach (e.g., always L3_R3_N4) showed consistent performance, might be worth revisiting.
+- Sessions: [2026-03-28 backtest session 100]
+
 ## Killed
 (none)
 

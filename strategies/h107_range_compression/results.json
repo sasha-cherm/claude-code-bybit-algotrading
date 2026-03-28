@@ -1,0 +1,43 @@
+{
+  "hypothesis": "H-107",
+  "title": "Range Compression Factor",
+  "factor": "ATR_short / ATR_long",
+  "verdict": "REJECTED",
+  "rejection_reasons": [
+    "< 60% params positive (1%)",
+    "WF mean OOS Sharpe < 0.5 (-0.506)",
+    "OOS Sharpe < 0.3 (-0.230)"
+  ],
+  "n_combos": 72,
+  "pos_pct": 0.014,
+  "mean_sharpe": -0.844,
+  "best_full_sharpe": 0.094,
+  "best_full_params": "S10_L30_R7_N3",
+  "train_best_params": "S10_L30_R7_N3",
+  "train_sharpe": -0.149,
+  "oos_sharpe": -0.23,
+  "oos_annual_ret": -0.1659,
+  "oos_max_dd": 0.3798,
+  "oos_n_days": 299,
+  "oos_half1_sharpe": -1.885,
+  "oos_half2_sharpe": 0.648,
+  "split_half_corr": 0.243,
+  "split_half_both_pos_pct": 0.0,
+  "wf_mean_oos_sharpe": -0.506,
+  "wf_positive_folds": 2,
+  "wf_total_folds": 4,
+  "fee_sensitivity": {
+    "1x (0.06%)": {
+      "sharpe": 0.094,
+      "annual_ret": -0.0625,
+      "max_dd": 0.6604
+    },
+    "5x (0.30%)": {
+      "sharpe": -0.23,
+      "annual_ret": -0.1927,
+      "max_dd": 0.683
+    }
+  },
+  "corr_h012": -0.377,
+  "corr_h019": 0.044
+}

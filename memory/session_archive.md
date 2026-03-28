@@ -721,3 +721,9 @@
 - Focus: Full MTM update (18 runners), H-063 put proximity warning, H-079/H-080/H-081/H-082 backtests
 - Done: 18/18 runners OK. Demo $102,522 (+2.52%). BTC $69,957. 11/18 positive. H-063 put approaching. H-079 REJECTED (autocorrelation). H-080 REJECTED (VWAP=momentum, corr 0.647). H-081 REJECTED (Hurst, 25% positive). H-082 CONDITIONAL (risk-adj carry, WF 4/6, corr -0.11).
 - Self-modifications: none (session 91)
+
+### Session 2026-03-26 review+research (session 91)
+- Goal: Review + Research — MTM update, H-063 monitoring, new factor research
+- Focus: Full MTM update (18 runners), H-063 put proximity warning, 4 new factor backtests
+- Done: 18/18 runners OK. Demo: $102,522 (+2.52%). BTC $69,957. 11/18 positive. H-063 WARNING: BTC approaching 69000P strike. Research: H-079/H-080/H-081 REJECTED, H-082 CONDITIONAL.
+- Next: Mar 27: rebalances. Monitor H-063.
