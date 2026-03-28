@@ -96,3 +96,11 @@ _Older sessions (bootstrap through 91) archived to `memory/session_archive.md`._
 - Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 100)
+
+### Session 2026-03-28 backtest (session 101)
+- Goal: Backtest — H-111 Directional Volume Imbalance Factor
+- Focus: Cross-sectional up-volume ratio factor (accumulation vs distribution)
+- Done: **H-111 REJECTED**. Full backtest: 14 assets, 746 days (2024-03-11 to 2026-03-26). 48 param combos, **92% positive IS** (44/48), best Sharpe 1.457 (L40_R7_N3, Ann +64.8%, DD 23.4%). Strong IS metrics but collapses OOS: **WF 2/5 folds positive, mean OOS -0.613** (IS 2.257 → OOS -0.613). **Split-half corr 0.009** (near zero) — factor only worked in 2025 (H2 mean 1.100) not 2024 (H1 mean 0.106). Both up-day definitions (close>open, close>prev_close) identical. Correlations OK: 0.455 vs H-012, -0.019 vs H-021. Fee robust (Sharpe 1.147 at 50bps). Regime-concentrated signal, not a stable factor.
+- Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 101)

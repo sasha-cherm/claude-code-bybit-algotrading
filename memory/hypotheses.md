@@ -1589,6 +1589,21 @@
 - Notes: Short-term reversal EXISTS weakly in crypto (75% positive, WF 3/4, slightly negative corr with momentum). This is a genuine reversal effect, not disguised momentum. But it's parameter-unstable (split-half -0.443) — the optimal lookback/rebalance combo shifts between regimes. Also fee-sensitive due to high turnover. The signal is too fragile to deploy. If a no-selection fixed-param approach (e.g., always L3_R3_N4) showed consistent performance, might be worth revisiting.
 - Sessions: [2026-03-28 backtest session 100]
 
+## H-111: Directional Volume Imbalance Factor
+- Status: REJECTED — split-half corr 0.009, OOS Sharpe -0.613
+- Idea: Cross-sectional factor: rolling up-volume ratio (vol on up-days / total vol). Long accumulators, short distributors.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Up-day = close > open (or close > prev_close — both identical in this dataset). Rolling up-vol ratio over [10,20,30,40]d. Rebal [3,5,7,10]d. N [3,4,5]. 48 combos.
+- Result:
+  - **Param scan**: **92% positive** (44/48). Mean Sharpe **0.489**. Best L40_R7_N3 Sharpe **1.457**, Ann +64.8%, DD 23.4%.
+  - **Walk-forward OOS** (6-fold rolling 60/40): **2/5 positive**, mean OOS Sharpe **-0.613** (FAIL). IS 2.257 → OOS -0.613 — severe IS→OOS degradation.
+  - **Split-half**: corr **0.009** (FAIL, near zero). H1 mean 0.106, H2 mean 1.100 — factor essentially non-existent in first half (2024), strong in second (2025). Pure regime concentration.
+  - **Fee sensitivity**: Very robust (Sharpe 1.535 → 1.147 at 50 bps). Fee is not the issue.
+  - **Corr H-012**: 0.455 (OK, independent). **Corr H-021**: -0.019 (OK, independent).
+- Notes: Strong IS metrics (92% positive, best Sharpe 1.457) but collapses on both OOS tests. The factor only worked in 2025 bull/accumulation regime — essentially H1 Sharpe 0.106 vs H2 1.100. The up-volume ratio captures accumulation/distribution signal that existed during the 2025 crypto rally but was absent in the more volatile 2024 period. Not stable enough to deploy. Both up-day definitions (close>open vs close>prev_close) yielded identical results — they're effectively the same signal in this dataset.
+- Sessions: [2026-03-28 backtest session 101]
+
 ## Killed
 (none)
 
