@@ -1,0 +1,16 @@
+{
+  "hypothesis": "H-114",
+  "name": "Gain/Loss Ratio Factor",
+  "n_params": 48,
+  "pct_positive": 89.58333333333334,
+  "mean_sharpe": 0.4519166666666667,
+  "best_params": "L60_R10_N3",
+  "best_sharpe": 1.071,
+  "best_annual_ret": 0.4324,
+  "best_max_dd": 0.3134,
+  "wf_folds_positive": 3,
+  "wf_folds_total": 5,
+  "wf_mean_oos_sharpe": 0.6360000000000001,
+  "split_half_corr": 0.29030113737252544,
+  "corr_h012": 0.4908618734010181
+}

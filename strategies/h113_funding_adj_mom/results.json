@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-113",
+  "name": "Funding-Adjusted Momentum",
+  "n_params": 48,
+  "pct_positive": 100.0,
+  "mean_sharpe": 0.8983541666666666,
+  "best_params": "L90_R7_N4",
+  "best_sharpe": 1.502,
+  "best_annual_ret": 0.688,
+  "best_max_dd": 0.2014,
+  "wf_folds_positive": 2,
+  "wf_folds_total": 5,
+  "wf_mean_oos_sharpe": 0.10940000000000012,
+  "split_half_corr": 0.15575546123691422,
+  "corr_h012": 0.9951093734907646,
+  "corr_h053": -0.060282933122088815
+}

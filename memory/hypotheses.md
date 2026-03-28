@@ -1636,6 +1636,52 @@
 - Notes: Conceptually appealing (downside beta is theoretically superior risk measure) but in practice it is a noisier version of regular beta (H-024, corr 0.662). BTC has ~50% down days, so downside beta windows overlap heavily with full beta. The signal degrades in WF because: (a) short-term windows have too few down-days for stable estimation, (b) the cross-sectional ranking is regime-dependent. Not distinct enough from H-024 to justify.
 - Sessions: [2026-03-28 backtest session 101]
 
+## H-113: Funding-Adjusted Momentum (14 Assets)
+- Status: REJECTED — corr 0.995 with H-012 (identical to raw momentum), split-half 0.156, WF 2/5 positive
+- Idea: Rank by N-day price return minus cumulative N-day funding cost. Penalises momentum driven by crowded trades with high funding costs.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Signal = pct_change(lookback) - rolling_sum(daily_funding, lookback). Long top-N (best carry-adjusted mom), short bottom-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **100% positive** (48/48). Mean Sharpe **0.898**, Best L90_R7_N4 Sharpe **1.502**, Ann 68.8%, DD 20.1%.
+  - **Walk-forward OOS**: **2/5 positive**, mean OOS Sharpe **0.109** (FAIL).
+  - **Split-half**: corr **0.156** (FAIL). H1 mean 1.346, H2 mean 0.281 — massive decay.
+  - **Corr H-012 (momentum)**: **0.995** — IDENTICAL. Funding adjustment is negligible.
+  - **Corr H-053 (funding XS)**: -0.060 (independent from funding, but identical to momentum).
+  - **Checks passed**: 1/5. REJECTED.
+- Notes: Funding rates are tiny relative to price returns (bps vs %). The carry adjustment barely changes the ranking. In traditional finance, carry matters because rates are comparable to returns. In crypto, funding is noise. Waste of complexity.
+- Sessions: [2026-03-28 backtest session 102]
+
+## H-114: Gain/Loss Ratio Factor (14 Assets)
+- Status: REJECTED — split-half -0.535 in H2, regime-dependent signal
+- Idea: Rank by avg(positive returns) / avg(|negative returns|) over N days. Assets with asymmetric upside go long.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: G/L ratio = mean(gains) / mean(|losses|) over rolling lookback. Long top-N (high G/L), short bottom-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **89.6% positive** (43/48). Mean Sharpe **0.452**, Best L60_R10_N3 Sharpe **1.071**, Ann 43.2%, DD 31.3%.
+  - **Walk-forward OOS**: **3/5 positive**, mean OOS Sharpe **0.636** (borderline OK).
+  - **Split-half**: corr **0.290** (FAIL). H1 mean 0.904, H2 mean **-0.535** — signal reverses in second half.
+  - **Corr H-012 (momentum)**: **0.491** (moderate — partially independent but captures similar directional information).
+  - **Checks passed**: 2/5. REJECTED.
+- Notes: G/L ratio is capturing a noisy version of momentum through a different lens (asymmetric returns tend to come from trending assets). The regime-dependence (signal reverses H2) means it's unreliable for production. Different from skewness (H-110) but shares the same failure mode: the cross-sectional ranking of G/L ratios is unstable across time.
+- Sessions: [2026-03-28 backtest session 102]
+
+## H-115: Autocorrelation Factor (14 Assets)
+- Status: REJECTED — WF 0/5 positive (OOS -0.591), split-half 0.015, only 62.5% IS positive
+- Idea: Rank by lag-1 autocorrelation of daily returns. Long trending assets (positive AC), short mean-reverting (negative AC).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling lag-1 autocorrelation of daily returns over lookback window. Long top-N (highest AC, trending), short bottom-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **62.5% positive** (30/48). Mean Sharpe **0.123** (very weak), Best L30_R14_N4 Sharpe **0.813**, Ann 26.2%, DD 25.1%.
+  - **Walk-forward OOS**: **0/5 positive** (FAIL), mean OOS Sharpe **-0.591**. Every fold negative.
+  - **Split-half**: corr **0.015** (FAIL — random). H1 mean 0.160, H2 mean 0.357 — both weak.
+  - **Corr H-012 (momentum)**: **0.244** (low — genuinely different signal, but a useless one).
+  - **Checks passed**: 0/5. REJECTED.
+- Notes: Lag-1 autocorrelation in crypto daily returns is essentially noise. Crypto markets are efficient enough at the daily level that serial correlation doesn't provide cross-sectional predictive power. The concept is theoretically appealing ("trendability") but fails in practice because autocorrelation estimates from 20-60 days of daily data are extremely noisy (each estimate uses <60 data points for a correlation coefficient).
+- Sessions: [2026-03-28 backtest session 102]
+
 ## Killed
 (none)
 

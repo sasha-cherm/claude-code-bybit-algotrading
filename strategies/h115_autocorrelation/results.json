@@ -1,0 +1,16 @@
+{
+  "hypothesis": "H-115",
+  "name": "Autocorrelation Factor",
+  "n_params": 48,
+  "pct_positive": 62.5,
+  "mean_sharpe": 0.12304166666666667,
+  "best_params": "L30_R14_N4",
+  "best_sharpe": 0.813,
+  "best_annual_ret": 0.262,
+  "best_max_dd": 0.2509,
+  "wf_folds_positive": 0,
+  "wf_folds_total": 5,
+  "wf_mean_oos_sharpe": -0.5912000000000001,
+  "split_half_corr": 0.01516027454773413,
+  "corr_h012": 0.24441123071334642
+}
