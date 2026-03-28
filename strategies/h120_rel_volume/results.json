@@ -1,0 +1,107 @@
+{
+  "hypothesis": "H-120",
+  "name": "Relative Volume Spike Factor",
+  "description": "LONG high volume ratio (expanding), SHORT low volume ratio (contracting)",
+  "factor": "volume_ratio = rolling_mean(volume, short_window) / rolling_mean(volume, long_window)",
+  "n_assets": 14,
+  "n_days": 746,
+  "period": "2024-03-11 to 2026-03-26",
+  "n_params": 108,
+  "pct_positive_sharpe": 100.0,
+  "pct_sharpe_above_1": 66.7,
+  "pct_sharpe_above_1_5": 14.8,
+  "mean_sharpe": 1.171,
+  "median_sharpe": 1.147,
+  "best_params": "S5_L30_R10_N5",
+  "best_sharpe": 2.029,
+  "best_annual_ret": 0.8407,
+  "best_max_dd": 0.2277,
+  "best_win_rate": 0.5047,
+  "top5": [
+    {
+      "tag": "S5_L30_R10_N5",
+      "sharpe": 2.029,
+      "annual_ret": 0.8407,
+      "max_dd": 0.2277,
+      "win_rate": 0.5047
+    },
+    {
+      "tag": "S5_L30_R10_N4",
+      "sharpe": 1.96,
+      "annual_ret": 0.9019,
+      "max_dd": 0.2529,
+      "win_rate": 0.506
+    },
+    {
+      "tag": "S3_L20_R7_N3",
+      "sharpe": 1.919,
+      "annual_ret": 0.9855,
+      "max_dd": 0.238,
+      "win_rate": 0.5477
+    },
+    {
+      "tag": "S5_L30_R10_N3",
+      "sharpe": 1.742,
+      "annual_ret": 0.8653,
+      "max_dd": 0.2847,
+      "win_rate": 0.4846
+    },
+    {
+      "tag": "S5_L60_R10_N4",
+      "sharpe": 1.678,
+      "annual_ret": 0.688,
+      "max_dd": 0.2605,
+      "win_rate": 0.4819
+    }
+  ],
+  "wf_folds_positive": 0,
+  "wf_folds_total": 2,
+  "wf_mean_oos_sharpe": -2.916,
+  "wf_details": [
+    {
+      "fold": 5,
+      "train_sharpe": 2.662,
+      "test_sharpe": -4.036,
+      "params": "S7_L30_R7_N3",
+      "test_ret": -0.6893,
+      "test_dd": 0.2879,
+      "test_days": 90
+    },
+    {
+      "fold": 4,
+      "train_sharpe": 2.687,
+      "test_sharpe": -1.796,
+      "params": "S7_L30_R7_N4",
+      "test_ret": -0.4866,
+      "test_dd": 0.2408,
+      "test_days": 90
+    }
+  ],
+  "split_half_corr": -0.307,
+  "split_half_h1_mean": 1.826,
+  "split_half_h2_mean": 0.491,
+  "corr_h012": 0.101,
+  "param_sensitivity": {
+    "by_short_window": {
+      "3": 1.097,
+      "5": 1.37,
+      "7": 1.203,
+      "10": 1.015
+    },
+    "by_long_window": {
+      "20": 1.21,
+      "30": 1.214,
+      "60": 1.089
+    },
+    "by_rebal": {
+      "5": 1.051,
+      "7": 1.179,
+      "10": 1.284
+    },
+    "by_n": {
+      "3": 1.123,
+      "4": 1.182,
+      "5": 1.208
+    }
+  }
+}

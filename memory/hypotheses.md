@@ -1728,6 +1728,51 @@
 - Notes: OBV-price correlation is a genuinely novel signal with near-zero H-012 correlation (0.066). 100% IS positive and the raw signal clearly exists. But the parameter instability (split-half -0.509) kills it — you can't pick stable params. The OBV-price relationship likely shifts with regime: in trending markets, all assets show high OBV-price corr (long everything works), in choppy markets the relationship breaks. This is more of a regime indicator than a cross-sectional factor. Strategy file: `strategies/h118_obv_trend/backtest.py`.
 - Sessions: [2026-03-28 backtest session 103]
 
+## H-119: Amihud Illiquidity Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by Amihud illiquidity ratio (|return| / dollar_volume). LONG low illiquidity (most liquid), SHORT high illiquidity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of |daily_return| / dollar_volume over lookback window. Cross-sectional ranking. Liquidity premium in crypto.
+- Data: 14 assets, ~746 daily bars (2yr). 48 param combos (lookback [10,20,30,60] x rebal [5,7,10,14] x N [3,4,5]).
+- Result:
+  - **IS**: 100% positive (48/48), mean Sharpe **2.099**, best L20_R14_N4 Sharpe 2.375, +175.5% ann, 25.1% DD
+  - **Walk-forward**: Only **2/2** folds evaluated (data limitation), both positive, mean OOS **1.368**
+  - **Split-half**: corr **-0.622** — parameter ranking inverts between halves
+  - **Correlation with H-012**: 0.431 — moderate overlap with momentum
+- Notes: Extremely strong IS results with 100% positive and mean Sharpe >2. But split-half -0.622 is a dealbreaker — the best params in half 1 are the worst in half 2, making forward param selection unreliable. Only 2 WF folds (insufficient). Corr 0.431 with momentum means partial redundancy. The Amihud ratio likely captures size/liquidity effect (similar to H-031) through a different lens. Strategy file: `strategies/h119_amihud/backtest.py`.
+- Sessions: [2026-03-28 backtest session 104]
+
+## H-120: Relative Volume Spike Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by volume expansion ratio (short_avg_volume / long_avg_volume). LONG high ratio (volume expanding), SHORT low ratio (contracting). Pure volume signal without price direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: volume_ratio = rolling_mean(volume, short_window) / rolling_mean(volume, long_window). Cross-sectional ranking. Different from H-021 (vol momentum) which includes price direction.
+- Data: 14 assets, 746 daily bars (2yr). 108 param combos.
+- Result:
+  - **IS**: 100% positive (108/108), mean Sharpe **1.171**, best S5_L30_R10_N5 Sharpe 2.029
+  - **Walk-forward**: **0/2** positive, mean OOS **-2.916** — catastrophic OOS failure
+  - **Split-half**: corr **-0.307** — parameter instability
+  - **Correlation with H-012**: 0.101 — nearly independent (good)
+- Notes: Classic overfitting case. 100% IS positive but WF OOS is catastrophically negative (-2.916). The volume expansion signal is too noisy cross-sectionally — volume spikes are often idiosyncratic (news, listings, etc.) and don't predict cross-sectional returns. Low H-012 correlation is the only positive. Strategy file: `strategies/h120_rel_volume/backtest.py`.
+- Sessions: [2026-03-28 backtest session 104]
+
+## H-121: Distance from VWAP Factor (14 Assets)
+- Status: CONDITIONAL
+- Idea: Rank assets by deviation from rolling VWAP. LONG assets above VWAP (strong demand), SHORT below VWAP (weak demand).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: vwap_deviation = (close - rolling_vwap) / rolling_vwap. Cross-sectional ranking. Captures momentum through volume-weighted fair value lens.
+- Data: 14 assets, ~746 daily bars (2yr). 48 param combos (VWAP lookback [10,20,30,60] x rebal [5,7,10,14] x N [3,4,5]).
+- Result:
+  - **IS**: 91.7% positive (44/48), mean Sharpe **0.846**, best L10_R14_N3 Sharpe 1.766
+  - **Walk-forward**: **4/6** positive, mean OOS **0.712** — decent
+  - **Split-half**: corr **0.366** — moderate stability (positive)
+  - **Correlation with H-012**: 0.388 — moderate overlap with momentum
+- Notes: Decent WF (4/6 positive, mean 0.712) and positive split-half (0.366) make this the best of the three. But 91.7% IS positive is not as strong as 100%, and corr 0.388 with H-012 means partial momentum redundancy. Best params favor short lookback (10d) and long rebal (14d), suggesting it captures short-term deviation from fair value. Max DD 39.8% is high. Could be useful in a portfolio context but not compelling enough for immediate paper trading. Strategy file: `strategies/h121_vwap_dev/backtest.py`.
+- Sessions: [2026-03-28 backtest session 104]
+
 ## Killed
 (none)
 
