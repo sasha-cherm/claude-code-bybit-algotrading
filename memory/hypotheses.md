@@ -1604,6 +1604,22 @@
 - Notes: Strong IS metrics (92% positive, best Sharpe 1.457) but collapses on both OOS tests. The factor only worked in 2025 bull/accumulation regime — essentially H1 Sharpe 0.106 vs H2 1.100. The up-volume ratio captures accumulation/distribution signal that existed during the 2025 crypto rally but was absent in the more volatile 2024 period. Not stable enough to deploy. Both up-day definitions (close>open vs close>prev_close) yielded identical results — they're effectively the same signal in this dataset.
 - Sessions: [2026-03-28 backtest session 101]
 
+## H-112: Downside Beta Factor (14 Assets)
+- Status: REJECTED — split-half corr -0.455, WF OOS mean 0.418, redundant with H-024 (corr 0.662)
+- Idea: Asymmetric beta using only BTC down days. Long low downside-beta (defensive assets that don't crash with BTC), short high downside-beta (fragile).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling downside beta = cov(asset_ret, btc_ret | btc_ret<0) / var(btc_ret | btc_ret<0) over lookback. Rank cross-sectionally. Long bottom-N, short top-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **100% positive** (48/48). Mean Sharpe **1.127**, Median **1.106**. Best L90_R14_N3 Sharpe **1.950**, Ann 114%, DD 32.6%.
+  - **Walk-forward OOS** (6-fold rolling 60/40): **4/6 positive**, mean OOS Sharpe **0.418** (borderline FAIL). Unstable: fold 1 -2.539, fold 3 +2.453. High IS→OOS variance.
+  - **Split-half**: corr **-0.455** (FAIL). Both halves positive (H1 mean 1.360, H2 mean 1.233) but ranking across params is reversed — the params that work in H1 fail in H2.
+  - **Fee sensitivity**: Very robust — Sharpe 1.974 (0 fee) to 1.852 (5x fee). Low turnover (47 rebals over 2yr at best params).
+  - **Corr H-019 (low-vol)**: **0.459** (borderline, just under 0.5 — nearly redundant). **Corr H-024 (regular beta)**: **0.662** — REDUNDANT. Downside beta is just noisier regular beta.
+  - **Checks passed**: 4/7. REJECTED.
+- Notes: Conceptually appealing (downside beta is theoretically superior risk measure) but in practice it is a noisier version of regular beta (H-024, corr 0.662). BTC has ~50% down days, so downside beta windows overlap heavily with full beta. The signal degrades in WF because: (a) short-term windows have too few down-days for stable estimation, (b) the cross-sectional ranking is regime-dependent. Not distinct enough from H-024 to justify.
+- Sessions: [2026-03-28 backtest session 101]
+
 ## Killed
 (none)
 

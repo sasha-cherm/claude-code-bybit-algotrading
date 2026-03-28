@@ -9,7 +9,7 @@
 - **H-063 IMPROVING**: Vol selling strangle — BTC $66,345, put strike $69,000 — PUT ITM by $2,655. Equity $9,716 (-2.84%, up from -3.40%). **$716 to stop**. 6.3 days to expiry.
 - **H-021 REBALANCED**: LONG ARB/BTC/DOT/OP, SHORT AVAX/ETH/NEAR/XRP.
 - **H-019 vs H-024**: +1.04% vs -0.60% — gap 1.64% (narrowed from 2.38%). Kill H-024 at Mar 31.
-- **Research**: 109 total hypotheses. H-107 REJECTED (range compression, 1% positive). H-108 REJECTED (overnight gap, 100% pos but split-half -0.487). H-109 REJECTED (short-term reversal, 75% pos but regime-dependent).
+- **Research**: 112 total hypotheses. H-112 REJECTED (downside beta, 100% IS positive but corr 0.662 with H-024 regular beta — redundant, WF OOS 0.418, split-half -0.455).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
@@ -81,13 +81,13 @@ _Older sessions (bootstrap through 91) archived to `memory/session_archive.md`._
 - Questions added: none
 - Self-modifications: none (session 98)
 
-### Session 2026-03-28 review+research (session 99)
-- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC $66,027), H-063 vol selling, H-104/H-105/H-106 backtests
-- Done: 19/19 runners OK. **Demo**: $100,681 (+0.68%). BTC $66,027. **10/19 positive**, 3 flat, 6 negative. **H-063 improved**: $9,660 (-3.40%, up from -3.63%), $660 to stop. **H-104 REJECTED** (RSI MR, only 3% positive — crypto is momentum-driven, not mean-reverting). **H-105 REJECTED** (CLV, 78% positive, OOS 2.0, WF 0.76 — strong BUT split-half -0.19, regime-dependent). **H-106 REJECTED** (vol skew, 97% IS positive but OOS -0.12 — classic overfitting).
-- Next: Mar 28 00:30: H-021 rebal. Mar 29: H-031/H-046/H-049/H-052/H-053/H-059. Mar 31: Kill H-024. Apr 3: H-063 expiry.
+### Session 2026-03-28 backtest (session 102)
+- Goal: Backtest — H-112 Downside Beta Factor
+- Focus: Cross-sectional asymmetric beta (only BTC down days) — long defensive, short fragile
+- Done: **H-112 REJECTED** (4/7 checks). 746 days, 48 params. **IS 100% positive**, mean Sharpe 1.127, best L90_R14_N3 Sharpe 1.950 (Ann 114%, DD 32.6%). **WF 4/6 positive**, mean OOS **0.418** (FAIL, target ≥0.5) — range -2.539 to +2.453, unstable. **Split-half corr -0.455** (FAIL) — both halves positive (H1 1.360, H2 1.233) but param rankings reversed across halves. Fee robust (1.950→1.852 at 5x). **Corr H-019: 0.459** (just OK). **Corr H-024: 0.662 — REDUNDANT**. Downside beta is just noisy regular beta — BTC has ~50% down days so sampling is near-identical to full beta.
+- Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 3: H-063 expiry.
 - Questions added: none
-- Self-modifications: none (session 99)
+- Self-modifications: none (session 102)
 
 ### Session 2026-03-28 review+research (session 100)
 - Goal: Review + Research — MTM update, H-021 rebalance verification, H-063 monitoring, 3 new factor backtests
