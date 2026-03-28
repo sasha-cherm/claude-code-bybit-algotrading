@@ -1,0 +1,16 @@
+{
+  "hypothesis": "H-117",
+  "name": "Information Ratio Factor",
+  "n_params": 48,
+  "pct_positive": 91.66666666666666,
+  "mean_sharpe": 0.6290833333333333,
+  "best_params": "L20_R5_N3",
+  "best_sharpe": 1.59,
+  "best_annual_ret": 0.8713,
+  "best_max_dd": 0.2395,
+  "wf_folds_positive": 5,
+  "wf_folds_total": 5,
+  "wf_mean_oos_sharpe": 1.3224,
+  "split_half_corr": 0.15980492128780685,
+  "corr_h012": 0.4907839061915052
+}

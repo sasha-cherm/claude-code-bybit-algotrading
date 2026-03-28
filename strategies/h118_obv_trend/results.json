@@ -1,0 +1,16 @@
+{
+  "hypothesis": "H-118",
+  "name": "Volume-Price Confirmation (OBV Trend) Factor",
+  "n_params": 48,
+  "pct_positive": 100.0,
+  "mean_sharpe": 0.9128958333333332,
+  "best_params": "L20_R5_N4",
+  "best_sharpe": 1.539,
+  "best_annual_ret": 0.5576,
+  "best_max_dd": 0.3051,
+  "wf_folds_positive": 3,
+  "wf_folds_total": 5,
+  "wf_mean_oos_sharpe": 0.7162,
+  "split_half_corr": -0.5094919364952757,
+  "corr_h012": 0.06572327743016104
+}

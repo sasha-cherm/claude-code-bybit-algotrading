@@ -1,0 +1,16 @@
+{
+  "hypothesis": "H-116",
+  "name": "Hurst Exponent Factor",
+  "n_params": 48,
+  "pct_positive": 95.83333333333334,
+  "mean_sharpe": 0.7354166666666666,
+  "best_params": "L80_R10_N4",
+  "best_sharpe": 1.863,
+  "best_annual_ret": 0.8427,
+  "best_max_dd": 0.2299,
+  "wf_folds_positive": 4,
+  "wf_folds_total": 5,
+  "wf_mean_oos_sharpe": 1.7182,
+  "split_half_corr": 0.33240400763583283,
+  "corr_h012": 0.23799078297337445
+}

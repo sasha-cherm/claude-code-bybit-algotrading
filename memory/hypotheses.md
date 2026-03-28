@@ -1682,6 +1682,52 @@
 - Notes: Lag-1 autocorrelation in crypto daily returns is essentially noise. Crypto markets are efficient enough at the daily level that serial correlation doesn't provide cross-sectional predictive power. The concept is theoretically appealing ("trendability") but fails in practice because autocorrelation estimates from 20-60 days of daily data are extremely noisy (each estimate uses <60 data points for a correlation coefficient).
 - Sessions: [2026-03-28 backtest session 102]
 
+## H-116: Hurst Exponent Factor (14 Assets)
+- Status: CONDITIONAL — 95.8% IS positive, WF 4/5 mean OOS 1.718, split-half 0.332, corr 0.238 with H-012
+- Idea: Rank by rolling Hurst exponent (R/S method). Long trending assets (H > 0.5), short mean-reverting (H < 0.5). Captures intrinsic trending tendency independent of return magnitude.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Estimate Hurst exponent via rescaled range (R/S) method over rolling lookback. Long top-N (highest Hurst, strongest trending propensity), short bottom-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **95.8% positive** (46/48). Mean Sharpe **0.735**, Best L80_R10_N4 Sharpe **1.863**, Ann 84.3%, DD 23.0%.
+  - **Walk-forward OOS**: **4/5 positive**, mean OOS Sharpe **1.718** (excellent). Fold 2 barely negative (-0.043), rest strong (1.257, 2.918, 1.630, 2.829).
+  - **Split-half**: corr **0.332** (moderate). H1 mean 0.858, H2 mean 0.546 — some degradation but both halves solidly positive.
+  - **Corr H-012 (momentum)**: **0.238** — low overlap, genuinely different signal.
+  - **Top params**: All favor 80d lookback (longer windows give more stable Hurst estimates). R10 rebalance, N3-N4.
+  - **Checks passed**: 4/5.
+- Notes: Hurst exponent measures multi-scale persistence — conceptually richer than lag-1 autocorrelation (H-115, rejected). The R/S method uses multiple block sizes to estimate trending propensity. Low H-012 correlation (0.238) confirms this captures trend *quality* not trend *direction*. Split-half 0.332 is moderate — not failing but not excellent. H2 degradation (0.858→0.546) suggests some signal decay but still meaningful. Top params strongly favor 80d lookback (shorter lookbacks give noisier Hurst estimates). 746 days of data = ~9 Hurst windows at 80d. Strategy file: `strategies/h116_hurst/backtest.py`.
+- Sessions: [2026-03-28 backtest session 103]
+
+## H-117: Information Ratio Factor (14 Assets)
+- Status: REJECTED — split-half H2 mean 0.029 (collapses in recent data), corr 0.491 with H-012
+- Idea: Rank by rolling information ratio (mean return / std return). Long best risk-adjusted performers, short worst. Composite of momentum + low-vol.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling mean(daily return) / std(daily return) over lookback. Long top-N (highest IR), short bottom-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **91.7% positive** (44/48). Mean Sharpe **0.629**, Best L20_R5_N3 Sharpe **1.590**, Ann 87.1%, DD 24.0%.
+  - **Walk-forward OOS**: **5/5 positive**, mean OOS Sharpe **1.322**. Folds: 3.030, 0.633, 1.095, 1.362, 0.492.
+  - **Split-half**: corr **0.160** (FAIL). H1 mean **0.986**, H2 mean **0.029** — signal collapses in second half.
+  - **Corr H-012 (momentum)**: **0.491** — moderate overlap (captures similar directional signal through vol-adjusted lens).
+  - **Checks passed**: 2/5. REJECTED.
+- Notes: Information ratio = return/vol is a composite signal. The WF 5/5 looks excellent but is misleading — the signal is front-loaded to the first half of data (H1 mean 0.986 vs H2 mean 0.029). The composite doesn't add value beyond raw momentum (corr 0.49) and in fact degrades faster. In crypto where vol is high everywhere, normalizing by vol just adds noise. Strategy file: `strategies/h117_info_ratio/backtest.py`.
+- Sessions: [2026-03-28 backtest session 103]
+
+## H-118: Volume-Price Confirmation (OBV Trend) Factor (14 Assets)
+- Status: REJECTED — split-half corr -0.509 (signal inverts), WF 3/5 positive
+- Idea: Rank by rolling correlation between OBV (on-balance volume) and price. High corr = volume confirms price trend (long), low corr = divergence (short).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Compute OBV (cumulative signed volume), then rolling correlation(OBV, price) over lookback window. Long top-N (highest vol-price confirmation), short bottom-N. Equal-weight, market-neutral.
+- Result:
+  - **Param scan**: **100% positive** (48/48). Mean Sharpe **0.913**, Best L20_R5_N4 Sharpe **1.539**, Ann 55.8%, DD 30.5%.
+  - **Walk-forward OOS**: **3/5 positive**, mean OOS Sharpe **0.716**. Very inconsistent: folds 2.444, 0.157, -0.549, -1.396, 2.925.
+  - **Split-half**: corr **-0.509** (FAIL). H1 mean 0.424, H2 mean 1.472 — signal exists in both halves but params that work in one INVERT in the other.
+  - **Corr H-012 (momentum)**: **0.066** — near zero, excellent diversification potential.
+  - **Checks passed**: 2/5. REJECTED.
+- Notes: OBV-price correlation is a genuinely novel signal with near-zero H-012 correlation (0.066). 100% IS positive and the raw signal clearly exists. But the parameter instability (split-half -0.509) kills it — you can't pick stable params. The OBV-price relationship likely shifts with regime: in trending markets, all assets show high OBV-price corr (long everything works), in choppy markets the relationship breaks. This is more of a regime indicator than a cross-sectional factor. Strategy file: `strategies/h118_obv_trend/backtest.py`.
+- Sessions: [2026-03-28 backtest session 103]
+
 ## Killed
 (none)
 

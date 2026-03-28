@@ -10,24 +10,24 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Positions (as of 2026-03-28 05:02 UTC):
-Demo eq: $101,796 (+1.80%). All drifts <10%. BTC $66,224 (-3.3% 24h).
+### Current Demo Positions (as of 2026-03-28 13:03 UTC):
+Demo eq: $101,586 (+1.59%). All drifts <10%. BTC $66,417.
 | Symbol | Side | Size | uPnL |
 |--------|------|------|------|
-| ADAUSDT | SHORT | 44,510 | +$645 |
-| ARBUSDT | SHORT | 374,181 | +$2,548 |
-| ATOMUSDT | SHORT | 13,479 | +$1,493 |
-| AVAXUSDT | SHORT | 3,246 | +$1,327 |
-| BTCUSDT | LONG | 0.688 | -$2,734 |
-| DOGEUSDT | LONG | 132,979 | -$41 |
-| DOTUSDT | LONG | 17,485 | -$119 |
-| ETHUSDT | LONG | 15.05 | -$2,341 |
+| ADAUSDT | SHORT | 44,510 | +$592 |
+| ARBUSDT | SHORT | 374,181 | +$2,268 |
+| ATOMUSDT | SHORT | 13,479 | +$1,462 |
+| AVAXUSDT | SHORT | 3,246 | +$1,256 |
+| BTCUSDT | LONG | 0.688 | -$2,666 |
+| DOGEUSDT | LONG | 132,979 | +$106 |
+| DOTUSDT | LONG | 17,485 | -$75 |
+| ETHUSDT | LONG | 15.05 | -$2,213 |
 | LINKUSDT | SHORT | 87.6 | +$4 |
-| NEARUSDT | SHORT | 27,789 | +$3,709 |
-| OPUSDT | SHORT | 67,410 | +$551 |
-| SOLUSDT | LONG | 333.6 | -$2,802 |
-| XRPUSDT | LONG | 537 | -$58 |
-Note: Short side dominating. NEAR short biggest winner (+$3,709). BTC/SOL longs biggest losers. No rebalance trades this run (all drifts <10%).
+| NEARUSDT | SHORT | 27,789 | +$3,806 |
+| OPUSDT | SHORT | 67,410 | +$482 |
+| SOLUSDT | LONG | 333.6 | -$2,721 |
+| XRPUSDT | LONG | 537 | -$53 |
+Note: Short side still dominating. NEAR short biggest winner (+$3,806). BTC/SOL/ETH longs biggest losers. No rebalance trades this run (all drifts <10%).
 
 ---
 
@@ -231,24 +231,24 @@ Note: Short side dominating. NEAR short biggest winner (+$3,709). BTC/SOL longs 
 - **Next rebal**: Apr 1 bar
 - **Backtest**: 100% params positive (48/48), best Sharpe 2.08, mean 1.48. WF (selected) 3/4 positive. Corr 0.21 with H-012.
 
-## Portfolio Summary (live mark-to-market 2026-03-28 session 102, 09:03 UTC)
-- **Bybit Demo**: $101,338 (+1.34%, down from +1.80%) — 13 perp positions. All drifts <10%. BTC $66,401 (-2.2% 24h). Short side still dominating but BTC recovering from lows.
-- **Total internal MTM (19 strats, BTC ~$66,401)**: ~$191,068 (+0.56%). BTC $66,401 (+0.3% from session 101).
+## Portfolio Summary (live mark-to-market 2026-03-28 session 103, 13:03 UTC)
+- **Bybit Demo**: $101,586 (+1.59%, up from +1.34%) — 13 perp positions. All drifts <10%. BTC $66,417. Short side still dominating.
+- **Total internal MTM (19 strats, BTC ~$66,417)**: ~$191,089 (+0.57%). BTC $66,417 (+0.02% from session 102).
 - **Positive (8)**: H-031 (+4.67%), H-039 (+4.35%), H-049 (+3.00%), H-062 (+2.15%), H-012 (+2.04%), H-053 (+1.78%), H-019 (+1.04%), H-052 (+0.69%)
 - **Near flat (3)**: H-076 (+0.07%), H-032 (-0.03%), H-009 (-0.09%)
-- **Negative (8)**: H-046 (-0.15%), H-085 (-0.36%), H-024 (-0.60%), H-044 (-0.71%), H-059 (-1.01%), H-011 (-1.32%), H-021 (-2.09%), **H-063 (-2.76%)**
-- **H-009**: $9,991 (-0.09%, SHORT) | **H-011**: $9,868 (-1.32%, IN, 24 entries, R27 avg 1.453e-05) | **H-012**: $10,204 (+2.04%) | **H-019**: $10,104 (+1.04%) | **H-021**: $9,791 (-2.09%)
-- **H-024 (comparison)**: $9,940 (-0.60%) — H-019 +1.04% vs H-024 -0.60%. **Gap 1.64%** (narrowed from 1.83%).
+- **Negative (8)**: H-046 (-0.15%), H-085 (-0.36%), H-024 (-0.60%), H-044 (-0.71%), H-059 (-1.01%), H-011 (-1.32%), H-021 (-2.09%), **H-063 (-2.58%)**
+- **H-009**: $9,991 (-0.09%, SHORT) | **H-011**: $9,868 (-1.32%, IN, 37 settlements) | **H-012**: $10,204 (+2.04%) | **H-019**: $10,104 (+1.04%) | **H-021**: $9,791 (-2.09%)
+- **H-024 (comparison)**: $9,940 (-0.60%) — H-019 +1.04% vs H-024 -0.60%. **Gap 1.64%** (stable).
 - **H-031**: $10,467 (+4.67%) | **H-032**: $9,997 (-0.03%) | **H-039 (DOW)**: $10,435 (+4.35%, FLAT)
 - **H-044 (OI)**: $9,929 (-0.71%) | **H-046 (Accel)**: $9,985 (-0.15%) | **H-049 (LSR)**: $10,300 (+3.00%)
 - **H-052 (Premium)**: $10,069 (+0.69%) | **H-053 (Funding XS)**: $10,178 (+1.78%)
 - **H-059 (Vol Term)**: $9,899 (-1.01%) | **H-062 (DD Mom)**: $10,215 (+2.15%)
-- **H-063 (Vol Sell)**: **$9,724 (-2.76%)**, PUT ITM by $2,659 | **H-076 (Efficiency)**: $10,007 (+0.07%)
+- **H-063 (Vol Sell)**: **$9,742 (-2.58%)**, PUT ITM by $2,583 | **H-076 (Efficiency)**: $10,007 (+0.07%)
 - **H-085 (Turnover)**: $9,964 (-0.36%)
 - **Paper trade age**: H-009/H-011/H-012: 12 days. H-019/H-021/H-024: 10 days. H-031/H-032/H-039: 9 days. H-044/H-046/H-049/H-052/H-053: 8 days. H-059/H-062: 6 days. H-063: 3 days. H-076/H-085: 2 days.
-- **H-063 status**: BTC $66,341, put strike $69,000 — PUT ITM by $2,659. Equity $9,724 (-2.76%, improved from -3.01%), stop at $9,000 (**$724 buffer**). 5.8 days to expiry (Apr 3). Low $9,601 at BTC $65,804 (Mar 27 14:31). Delta hedge 0.092 BTC. Improving as BTC recovers.
-- **H-019 vs H-024**: Gap 1.64% (narrowed from 1.83%). H-019 still leading. Kill H-024 at Mar 31.
-- **Research**: 115 hypotheses total. H-113 REJECTED (funding-adj mom, corr 0.995 with H-012 — identical). H-114 REJECTED (G/L ratio, split-half H2 -0.535, regime-dependent). H-115 REJECTED (autocorrelation, WF 0/5, OOS -0.591).
+- **H-063 status**: BTC $66,417, put strike $69,000 — PUT ITM by $2,583. Equity $9,742 (-2.58%, improved from -2.76%), stop at $9,000 (**$742 buffer**). 5.5 days to expiry (Apr 3). Low $9,601 at BTC $65,804 (Mar 27 14:31). Delta hedge 0.092 BTC. Gradually improving.
+- **H-019 vs H-024**: Gap 1.64% (stable from last session). H-019 still leading. Kill H-024 at Mar 31.
+- **Research**: 118 hypotheses total. H-116 CONDITIONAL (Hurst exponent, WF 4/5 mean 1.72, corr 0.238 with H-012). H-117 REJECTED (info ratio, H2 collapse). H-118 REJECTED (OBV trend, split-half -0.509).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None

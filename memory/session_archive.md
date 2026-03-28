@@ -733,3 +733,9 @@
 - Focus: Full MTM update (18 runners), H-063 put proximity warning, 4 new factor backtests
 - Done: 18/18 runners OK. Demo: $102,522 (+2.52%). BTC $69,957. 11/18 positive. H-063 WARNING: BTC approaching 69000P strike. Research: H-079/H-080/H-081 REJECTED, H-082 CONDITIONAL.
 - Next: Mar 27: rebalances. Monitor H-063.
+
+### Session 2026-03-26 review+research (session 93)
+- Goal: Review + Research — full MTM update, H-063 put ITM monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC selloff), H-063 vol selling under stress, H-086/H-087/H-088 backtests
+- Done: 19/19 runners OK. Demo: $101,913 (+1.91%). BTC $68,865. H-063 PUT ITM by $135. Research: H-086/H-087/H-088 REJECTED. System fix: Orchestrator MTM bug, lib/metrics.py DAILY constant.
+- Next: Mar 27 rebalances. Monitor H-063.
