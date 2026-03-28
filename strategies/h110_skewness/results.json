@@ -1,0 +1,108 @@
+{
+  "hypothesis": "H-110",
+  "name": "Return Skewness Factor",
+  "verdict": "REJECTED",
+  "date_run": "2026-03-28",
+  "data_period": {
+    "start": "2024-03-11",
+    "end": "2026-03-26",
+    "days": 746,
+    "years": 2.04,
+    "assets": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "SOL/USDT",
+      "SUI/USDT",
+      "XRP/USDT",
+      "DOGE/USDT",
+      "AVAX/USDT",
+      "LINK/USDT",
+      "ADA/USDT",
+      "DOT/USDT",
+      "NEAR/USDT",
+      "OP/USDT",
+      "ARB/USDT",
+      "ATOM/USDT"
+    ]
+  },
+  "in_sample": {
+    "n_combos": 48,
+    "positive_pct": 0.25,
+    "mean_sharpe": -0.3695,
+    "median_sharpe": -0.1846,
+    "best_sharpe": 0.3185,
+    "best_params": "S30_R5_N3",
+    "best_annual_ret": 0.0451,
+    "best_max_dd": 0.58
+  },
+  "walk_forward": {
+    "folds": 5,
+    "positive_folds": 3,
+    "mean_oos_sharpe": -0.515,
+    "mean_oos_ann_ret": -0.1027,
+    "fold_sharpes": [
+      1.3367,
+      0.5469,
+      0.2183,
+      -1.5856,
+      -3.0894
+    ]
+  },
+  "split_half": {
+    "sharpe_correlation": -0.031,
+    "both_positive_pct": 0.042,
+    "half1_mean_sharpe": -1.115,
+    "half2_mean_sharpe": 0.763
+  },
+  "factor_correlation": {
+    "corr_h012": -0.3411,
+    "aligned_days": 745
+  },
+  "fee_sensitivity": {
+    "0x": {
+      "sharpe": 0.423,
+      "annual_ret": 0.0941
+    },
+    "0.5x": {
+      "sharpe": 0.3707,
+      "annual_ret": 0.0693
+    },
+    "1x": {
+      "sharpe": 0.3185,
+      "annual_ret": 0.0451
+    },
+    "2x": {
+      "sharpe": 0.2141,
+      "annual_ret": -0.0017
+    },
+    "3x": {
+      "sharpe": 0.1098,
+      "annual_ret": -0.0464
+    },
+    "5x": {
+      "sharpe": -0.0979,
+      "annual_ret": -0.13
+    }
+  },
+  "taker_fee_run": {
+    "fee_rate": 0.001,
+    "sharpe": 0.3185,
+    "annual_ret": 0.0451,
+    "max_dd": 0.58
+  },
+  "best_param_full_run": {
+    "params": "S30_R5_N3",
+    "sharpe": 0.3185,
+    "annual_ret": 0.0451,
+    "max_dd": 0.58,
+    "win_rate": 0.4779,
+    "n_trades": 528,
+    "n_rebalances": 143
+  },
+  "rejection_reasons": [
+    "Param robustness 25% < 80%",
+    "Split-half corr -0.031 < 0",
+    "WF mean OOS Sharpe -0.515 < 0.3",
+    "Taker-fee Sharpe 0.319 < 0.5"
+  ]
+}

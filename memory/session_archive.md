@@ -1,4 +1,10 @@
-# Session Archive (Sessions bootstrap through 86)
+# Session Archive (Sessions bootstrap through 92)
+
+### Session 2026-03-26 review+research (session 92)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests, H-085 deployment
+- Focus: Full MTM update (19 runners), H-063 put proximity warning, H-083/H-084/H-085 backtests
+- Done: 19/19 runners OK. **Demo**: $101,601 (+1.60%). BTC $69,464. H-085 CONFIRMED+DEPLOYED (turnover velocity, 100% params positive, best Sharpe 2.08). H-083 CONDITIONAL (idio vol, regime-dependent). H-084 REJECTED (BTC correlation).
+- Self-modifications: Added H-085 runner + cron orchestrator entry
 ### Session 2026-03-15 (bootstrap)
 - Goal: System — project initialization
 - Focus: Create project structure, CLAUDE.md, scaffolding

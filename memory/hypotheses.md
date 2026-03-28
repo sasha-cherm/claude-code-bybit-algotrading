@@ -1589,6 +1589,22 @@
 - Notes: Short-term reversal EXISTS weakly in crypto (75% positive, WF 3/4, slightly negative corr with momentum). This is a genuine reversal effect, not disguised momentum. But it's parameter-unstable (split-half -0.443) — the optimal lookback/rebalance combo shifts between regimes. Also fee-sensitive due to high turnover. The signal is too fragile to deploy. If a no-selection fixed-param approach (e.g., always L3_R3_N4) showed consistent performance, might be worth revisiting.
 - Sessions: [2026-03-28 backtest session 100]
 
+## H-110: Return Skewness Factor (14 Assets)
+- Status: REJECTED — param robustness 25%, split-half corr -0.031, WF mean OOS Sharpe -0.515
+- Idea: Cross-sectional skewness factor. Positively-skewed assets are overpriced (lottery preference); negatively-skewed are underpriced. Long most neg-skew, short most pos-skew.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Rolling return skewness (scipy stats.skew) over [20,30,40,60]d. Sort ascending → long lowest (most negative), short highest (most positive). Rebal [3,5,7,10]d. N [3,4,5]. 48 combos.
+- Result:
+  - **Param scan**: Only **25% positive** (12/48). Mean Sharpe -0.369. Best S30_R5_N3 Sharpe 0.319.
+  - **Walk-forward (6-fold)**: 3/5 positive, mean OOS Sharpe **-0.515**. Folds 4 and 5 catastrophic (-1.586, -3.089) — strategy reversed in mid-2024 to mid-2025.
+  - **Split-half**: corr **-0.031** (FAIL). H1 mean -1.115, H2 mean +0.763 — signal works in 2025-2026 but fails badly in 2024-2025. Complete regime flip.
+  - **Fee sensitivity (1x=0.1% taker)**: Best-param Sharpe 0.319 (below 0.5 threshold).
+  - **Corr H-012**: **-0.341** (negative — anti-correlated with momentum, independent).
+  - Fee degradation: 0.423→0.319 at 1x→ negative at 5x. Fee-sensitive.
+- Notes: Skewness factor is **strongly regime-dependent** in crypto. In 2025-2026 (BTC recovery/consolidation) the anti-lottery effect worked. In 2024-2025 (bull run / altcoin mania) the opposite was true — lottery assets outperformed. The signal completely reverses depending on market phase. Academic finance result does not transfer robustly to crypto cross-section over 2-year horizon. S60 (long-window) was 0% positive, confirming skewness as a noisy signal in crypto. The split-half regime flip is the decisive rejection criterion.
+- Sessions: [2026-03-28 backtest session 101]
+
 ## H-111: Directional Volume Imbalance Factor
 - Status: REJECTED — split-half corr 0.009, OOS Sharpe -0.613
 - Idea: Cross-sectional factor: rolling up-volume ratio (vol on up-days / total vol). Long accumulators, short distributors.

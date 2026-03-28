@@ -9,7 +9,7 @@
 - **H-063 IMPROVING**: Vol selling strangle — BTC $66,345, put strike $69,000 — PUT ITM by $2,655. Equity $9,716 (-2.84%, up from -3.40%). **$716 to stop**. 6.3 days to expiry.
 - **H-021 REBALANCED**: LONG ARB/BTC/DOT/OP, SHORT AVAX/ETH/NEAR/XRP.
 - **H-019 vs H-024**: +1.04% vs -0.60% — gap 1.64% (narrowed from 2.38%). Kill H-024 at Mar 31.
-- **Research**: 112 total hypotheses. H-112 REJECTED (downside beta, 100% IS positive but corr 0.662 with H-024 regular beta — redundant, WF OOS 0.418, split-half -0.455).
+- **Research**: 112 total hypotheses. H-110 REJECTED (skewness factor, 25% params positive, split-half -0.031, WF mean OOS -0.515 — regime flip: fails 2024, works 2025-2026). H-112 REJECTED (downside beta, 100% IS positive but corr 0.662 with H-024 regular beta — redundant, WF OOS 0.418, split-half -0.455).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
@@ -24,14 +24,6 @@
 
 
 _Older sessions (bootstrap through 91) archived to `memory/session_archive.md`._
-
-### Session 2026-03-26 review+research (session 92)
-- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests, H-085 deployment
-- Focus: Full MTM update (19 runners), H-063 put proximity warning, H-083/H-084/H-085 backtests
-- Done: 19/19 runners OK. **Demo**: $101,601 (+1.60%, down from +2.52%). **Internal MTM**: $181,439 (+0.80%). BTC $69,464 (-3.21% 24h). **9/19 positive**, 3 flat, 7 negative. Top: H-031(+5.11%), H-049(+4.10%), H-039(+3.36%, Thu SHORT surging). **H-063 WARNING**: BTC $69,464, put $69,000 — only 0.7% OTM. 24h low $69,189. Equity $9,990, $990 to stop. Delta hedge active. **Research**: H-083 CONDITIONAL (idio vol, 94% params positive, corr -0.01 with momentum — near zero, but asymmetric split-half: bad 2024, good 2025-2026). H-084 REJECTED (BTC correlation, only 31% params positive, reversed performance). **H-085 CONFIRMED+DEPLOYED** (turnover velocity, **100% params positive**, best Sharpe 2.08, mean 1.48, WF selected 3/4 positive). Paper trade created with L20_R7_N4: LONG BTC/ARB/OP/ATOM, SHORT ETH/XRP/DOGE/NEAR. Added to cron (19 runners). **H-019 vs H-024**: gap 3.06%.
-- Next: Mar 27 (00:30): H-012/H-021/H-044/H-062 rebal + H-039 exit SHORT. Monitor H-063. Apr 1: H-085 rebal. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: Added H-085 runner + cron orchestrator entry (session 92)
 
 ### Session 2026-03-26 review+research (session 93)
 - Goal: Review + Research — full MTM update, H-063 put ITM monitoring, 3 new factor backtests
@@ -96,6 +88,14 @@ _Older sessions (bootstrap through 91) archived to `memory/session_archive.md`._
 - Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 100)
+
+### Session 2026-03-28 backtest (session 101)
+- Goal: Backtest — H-110 Return Skewness Factor (cross-sectional, 14 assets)
+- Focus: Academic lottery-preference skewness premium in crypto
+- Done: **H-110 REJECTED** (4 failure criteria). 746 days (2.0yr), 14 assets, 48 param combos. **IS only 25% positive** (12/48), mean Sharpe -0.369. Best S30_R5_N3 Sharpe 0.319, Ann 4.5%, DD 58.0%. **Walk-forward 3/5 positive, mean OOS Sharpe -0.515** (folds 4+5 catastrophic: -1.586, -3.089). **Split-half corr -0.031** — H1 mean -1.115, H2 mean +0.763 — signal completely reverses between 2024 and 2025. S60 (longest window) 0% positive. Fee robust (0.423→0.319 at 1x). **Corr H-012: -0.341** (independent, slightly anti-correlated with momentum). Skewness factor is strongly regime-dependent in crypto: lottery premium exists in consolidation (2025-2026) but reverses in bull runs (2024-2025).
+- Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 101)
 
 ### Session 2026-03-28 backtest (session 101)
 - Goal: Backtest — H-111 Directional Volume Imbalance Factor
