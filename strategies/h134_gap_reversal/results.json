@@ -1,0 +1,500 @@
+{
+  "hypothesis": "H-134",
+  "title": "Overnight Gap Reversal Factor",
+  "run_date": "2026-03-29",
+  "data_range": {
+    "start": "2024-03-11",
+    "end": "2026-03-29",
+    "days": 749,
+    "assets": 14
+  },
+  "verdict": "REJECTED",
+  "rejection_reasons": [
+    "< 60% params positive (25%)",
+    "OOS Sharpe < 0.3 (-0.682)"
+  ],
+  "best_params_full": "L3_R3_N4",
+  "parameter_grid": {
+    "total_combos": 36,
+    "pos_pct": 0.25,
+    "mean_sharpe": -0.196,
+    "median_sharpe": -0.214,
+    "best_sharpe": 0.688,
+    "worst_sharpe": -0.876
+  },
+  "train_test_60_40": {
+    "best_params": "L1_R5_N4",
+    "is_sharpe": 1.059,
+    "oos_sharpe": -0.682,
+    "oos_annual_ret": -0.2694,
+    "oos_max_dd": 0.3803,
+    "oos_n_days": 300,
+    "oos_half1_sharpe": 0.136,
+    "oos_half2_sharpe": -1.926
+  },
+  "walk_forward": {
+    "n_folds": 4,
+    "n_positive_folds": 2,
+    "mean_oos_sharpe": 0.889,
+    "folds": [
+      {
+        "fold": 1,
+        "test_start": "2025-12-30",
+        "test_end": "2026-03-29",
+        "train_params": "L5_R5_N5",
+        "train_sharpe": 0.499,
+        "oos_sharpe": 0.635,
+        "oos_ann_ret": 0.1369
+      },
+      {
+        "fold": 2,
+        "test_start": "2025-10-01",
+        "test_end": "2025-12-29",
+        "train_params": "L10_R1_N5",
+        "train_sharpe": 1.333,
+        "oos_sharpe": -0.084,
+        "oos_ann_ret": -0.0694
+      },
+      {
+        "fold": 3,
+        "test_start": "2025-07-03",
+        "test_end": "2025-09-30",
+        "train_params": "L1_R3_N3",
+        "train_sharpe": 1.127,
+        "oos_sharpe": 3.749,
+        "oos_ann_ret": 2.7693
+      },
+      {
+        "fold": 4,
+        "test_start": "2025-04-04",
+        "test_end": "2025-07-02",
+        "train_params": "L1_R3_N4",
+        "train_sharpe": 1.471,
+        "oos_sharpe": -0.742,
+        "oos_ann_ret": -0.3237
+      }
+    ]
+  },
+  "split_half": {
+    "sharpe_correlation": 0.134,
+    "both_positive_pct": 0.028,
+    "half1_mean_sharpe": 0.252,
+    "half2_mean_sharpe": -0.819
+  },
+  "fee_sensitivity": {
+    "1x": {
+      "fee_bps": 6.0,
+      "sharpe": 0.311,
+      "annual_ret": 0.0433,
+      "max_dd": 0.483
+    },
+    "5x": {
+      "fee_bps": 30.0,
+      "sharpe": -0.279,
+      "annual_ret": -0.187,
+      "max_dd": 0.6193
+    }
+  },
+  "correlations": {
+    "h012_momentum": -0.08,
+    "h019_volatility": -0.021
+  },
+  "all_param_results": [
+    {
+      "tag": "L1_R1_N3",
+      "lookback": 1,
+      "rebal": 1,
+      "n": 3,
+      "sharpe": -0.876,
+      "annual_ret": -0.4429,
+      "max_dd": 0.7279,
+      "win_rate": 0.4826,
+      "n_trades": 5829
+    },
+    {
+      "tag": "L1_R1_N4",
+      "lookback": 1,
+      "rebal": 1,
+      "n": 4,
+      "sharpe": -0.711,
+      "annual_ret": -0.3513,
+      "max_dd": 0.6318,
+      "win_rate": 0.4706,
+      "n_trades": 6707
+    },
+    {
+      "tag": "L1_R1_N5",
+      "lookback": 1,
+      "rebal": 1,
+      "n": 5,
+      "sharpe": -0.556,
+      "annual_ret": -0.2618,
+      "max_dd": 0.5424,
+      "win_rate": 0.4786,
+      "n_trades": 6822
+    },
+    {
+      "tag": "L1_R3_N3",
+      "lookback": 1,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": -0.409,
+      "annual_ret": -0.2714,
+      "max_dd": 0.5715,
+      "win_rate": 0.488,
+      "n_trades": 1967
+    },
+    {
+      "tag": "L1_R3_N4",
+      "lookback": 1,
+      "rebal": 3,
+      "n": 4,
+      "sharpe": -0.407,
+      "annual_ret": -0.2287,
+      "max_dd": 0.5268,
+      "win_rate": 0.4693,
+      "n_trades": 2254
+    },
+    {
+      "tag": "L1_R3_N5",
+      "lookback": 1,
+      "rebal": 3,
+      "n": 5,
+      "sharpe": -0.525,
+      "annual_ret": -0.2292,
+      "max_dd": 0.465,
+      "win_rate": 0.4679,
+      "n_trades": 2318
+    },
+    {
+      "tag": "L1_R5_N3",
+      "lookback": 1,
+      "rebal": 5,
+      "n": 3,
+      "sharpe": -0.538,
+      "annual_ret": -0.3135,
+      "max_dd": 0.6011,
+      "win_rate": 0.5094,
+      "n_trades": 1149
+    },
+    {
+      "tag": "L1_R5_N4",
+      "lookback": 1,
+      "rebal": 5,
+      "n": 4,
+      "sharpe": 0.311,
+      "annual_ret": 0.0433,
+      "max_dd": 0.483,
+      "win_rate": 0.5053,
+      "n_trades": 1334
+    },
+    {
+      "tag": "L1_R5_N5",
+      "lookback": 1,
+      "rebal": 5,
+      "n": 5,
+      "sharpe": 0.19,
+      "annual_ret": 0.0011,
+      "max_dd": 0.3356,
+      "win_rate": 0.5094,
+      "n_trades": 1388
+    },
+    {
+      "tag": "L3_R1_N3",
+      "lookback": 3,
+      "rebal": 1,
+      "n": 3,
+      "sharpe": -0.345,
+      "annual_ret": -0.2335,
+      "max_dd": 0.6273,
+      "win_rate": 0.4733,
+      "n_trades": 3836
+    },
+    {
+      "tag": "L3_R1_N4",
+      "lookback": 3,
+      "rebal": 1,
+      "n": 4,
+      "sharpe": -0.339,
+      "annual_ret": -0.1969,
+      "max_dd": 0.5506,
+      "win_rate": 0.4746,
+      "n_trades": 4408
+    },
+    {
+      "tag": "L3_R1_N5",
+      "lookback": 3,
+      "rebal": 1,
+      "n": 5,
+      "sharpe": -0.176,
+      "annual_ret": -0.1212,
+      "max_dd": 0.4571,
+      "win_rate": 0.4866,
+      "n_trades": 4556
+    },
+    {
+      "tag": "L3_R3_N3",
+      "lookback": 3,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": 0.676,
+      "annual_ret": 0.2165,
+      "max_dd": 0.4515,
+      "win_rate": 0.508,
+      "n_trades": 1996
+    },
+    {
+      "tag": "L3_R3_N4",
+      "lookback": 3,
+      "rebal": 3,
+      "n": 4,
+      "sharpe": 0.688,
+      "annual_ret": 0.2117,
+      "max_dd": 0.4172,
+      "win_rate": 0.512,
+      "n_trades": 2273
+    },
+    {
+      "tag": "L3_R3_N5",
+      "lookback": 3,
+      "rebal": 3,
+      "n": 5,
+      "sharpe": 0.637,
+      "annual_ret": 0.1782,
+      "max_dd": 0.4773,
+      "win_rate": 0.5134,
+      "n_trades": 2313
+    },
+    {
+      "tag": "L3_R5_N3",
+      "lookback": 3,
+      "rebal": 5,
+      "n": 3,
+      "sharpe": -0.036,
+      "annual_ret": -0.1103,
+      "max_dd": 0.5341,
+      "win_rate": 0.4987,
+      "n_trades": 1185
+    },
+    {
+      "tag": "L3_R5_N4",
+      "lookback": 3,
+      "rebal": 5,
+      "n": 4,
+      "sharpe": -0.097,
+      "annual_ret": -0.1077,
+      "max_dd": 0.4857,
+      "win_rate": 0.5067,
+      "n_trades": 1329
+    },
+    {
+      "tag": "L3_R5_N5",
+      "lookback": 3,
+      "rebal": 5,
+      "n": 5,
+      "sharpe": 0.031,
+      "annual_ret": -0.0498,
+      "max_dd": 0.4205,
+      "win_rate": 0.5134,
+      "n_trades": 1387
+    },
+    {
+      "tag": "L5_R1_N3",
+      "lookback": 5,
+      "rebal": 1,
+      "n": 3,
+      "sharpe": -0.346,
+      "annual_ret": -0.2167,
+      "max_dd": 0.5201,
+      "win_rate": 0.4853,
+      "n_trades": 3106
+    },
+    {
+      "tag": "L5_R1_N4",
+      "lookback": 5,
+      "rebal": 1,
+      "n": 4,
+      "sharpe": -0.178,
+      "annual_ret": -0.1285,
+      "max_dd": 0.4062,
+      "win_rate": 0.4733,
+      "n_trades": 3618
+    },
+    {
+      "tag": "L5_R1_N5",
+      "lookback": 5,
+      "rebal": 1,
+      "n": 5,
+      "sharpe": -0.085,
+      "annual_ret": -0.0811,
+      "max_dd": 0.3536,
+      "win_rate": 0.4893,
+      "n_trades": 3753
+    },
+    {
+      "tag": "L5_R3_N3",
+      "lookback": 5,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": 0.343,
+      "annual_ret": 0.0576,
+      "max_dd": 0.3504,
+      "win_rate": 0.488,
+      "n_trades": 1689
+    },
+    {
+      "tag": "L5_R3_N4",
+      "lookback": 5,
+      "rebal": 3,
+      "n": 4,
+      "sharpe": 0.208,
+      "annual_ret": 0.0081,
+      "max_dd": 0.3965,
+      "win_rate": 0.4733,
+      "n_trades": 1896
+    },
+    {
+      "tag": "L5_R3_N5",
+      "lookback": 5,
+      "rebal": 3,
+      "n": 5,
+      "sharpe": 0.088,
+      "annual_ret": -0.0266,
+      "max_dd": 0.368,
+      "win_rate": 0.4679,
+      "n_trades": 1935
+    },
+    {
+      "tag": "L5_R5_N3",
+      "lookback": 5,
+      "rebal": 5,
+      "n": 3,
+      "sharpe": -0.339,
+      "annual_ret": -0.2171,
+      "max_dd": 0.5945,
+      "win_rate": 0.4773,
+      "n_trades": 1177
+    },
+    {
+      "tag": "L5_R5_N4",
+      "lookback": 5,
+      "rebal": 5,
+      "n": 4,
+      "sharpe": -0.465,
+      "annual_ret": -0.2224,
+      "max_dd": 0.5573,
+      "win_rate": 0.4773,
+      "n_trades": 1359
+    },
+    {
+      "tag": "L5_R5_N5",
+      "lookback": 5,
+      "rebal": 5,
+      "n": 5,
+      "sharpe": -0.25,
+      "annual_ret": -0.1361,
+      "max_dd": 0.5004,
+      "win_rate": 0.4813,
+      "n_trades": 1386
+    },
+    {
+      "tag": "L10_R1_N3",
+      "lookback": 10,
+      "rebal": 1,
+      "n": 3,
+      "sharpe": -0.042,
+      "annual_ret": -0.1279,
+      "max_dd": 0.5374,
+      "win_rate": 0.492,
+      "n_trades": 2288
+    },
+    {
+      "tag": "L10_R1_N4",
+      "lookback": 10,
+      "rebal": 1,
+      "n": 4,
+      "sharpe": -0.149,
+      "annual_ret": -0.1392,
+      "max_dd": 0.4449,
+      "win_rate": 0.4893,
+      "n_trades": 2707
+    },
+    {
+      "tag": "L10_R1_N5",
+      "lookback": 10,
+      "rebal": 1,
+      "n": 5,
+      "sharpe": -0.085,
+      "annual_ret": -0.0949,
+      "max_dd": 0.3989,
+      "win_rate": 0.4987,
+      "n_trades": 2908
+    },
+    {
+      "tag": "L10_R3_N3",
+      "lookback": 10,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": -0.518,
+      "annual_ret": -0.3014,
+      "max_dd": 0.6094,
+      "win_rate": 0.4866,
+      "n_trades": 1213
+    },
+    {
+      "tag": "L10_R3_N4",
+      "lookback": 10,
+      "rebal": 3,
+      "n": 4,
+      "sharpe": -0.357,
+      "annual_ret": -0.2069,
+      "max_dd": 0.4638,
+      "win_rate": 0.484,
+      "n_trades": 1404
+    },
+    {
+      "tag": "L10_R3_N5",
+      "lookback": 10,
+      "rebal": 3,
+      "n": 5,
+      "sharpe": -0.104,
+      "annual_ret": -0.0992,
+      "max_dd": 0.355,
+      "win_rate": 0.488,
+      "n_trades": 1499
+    },
+    {
+      "tag": "L10_R5_N3",
+      "lookback": 10,
+      "rebal": 5,
+      "n": 3,
+      "sharpe": -0.842,
+      "annual_ret": -0.3946,
+      "max_dd": 0.6604,
+      "win_rate": 0.4799,
+      "n_trades": 888
+    },
+    {
+      "tag": "L10_R5_N4",
+      "lookback": 10,
+      "rebal": 5,
+      "n": 4,
+      "sharpe": -0.822,
+      "annual_ret": -0.329,
+      "max_dd": 0.5756,
+      "win_rate": 0.4733,
+      "n_trades": 1014
+    },
+    {
+      "tag": "L10_R5_N5",
+      "lookback": 10,
+      "rebal": 5,
+      "n": 5,
+      "sharpe": -0.614,
+      "annual_ret": -0.2541,
+      "max_dd": 0.5114,
+      "win_rate": 0.4679,
+      "n_trades": 1018
+    }
+  ]
+}

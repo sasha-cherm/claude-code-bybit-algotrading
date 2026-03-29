@@ -1893,6 +1893,36 @@
 - Notes: Interesting WF result (5/6 positive) but split-half both negative — contradictory. The best IS params (LB30 R7 N3) have strong IS Sharpe but OOS decays severely (IS/OOS 0.23). Signal is too discretized (integer net-up-days) to provide robust cross-sectional ranking. The contrarian LB7 had strong WF OOS (5/6, mean 1.144) but IS only 0.954. No direction consistently dominates. Data: 749 days, 14 assets, 48 combos.
 - Sessions: [2026-03-29 session 108]
 
+## H-134: Overnight Gap Reversal Factor
+- Status: REJECTED
+- Idea: Rank assets by overnight gap (open vs prior close). Long assets that gapped down (expected reversal up), short those that gapped up.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily rebalance)
+- Logic: gap = (open - prev_close) / prev_close, averaged over lookback [1,3,5,10]. Long bottom N (gapped down), short top N.
+- Result: IS **100%** positive (36/36), mean Sharpe **2.51**. Best L10_R1_N5 Sharpe **2.71**, +194% ann, 24.6% DD. WF **4/4** positive, mean OOS **2.66**. BUT split-half correlation **-0.808** — parameter rankings completely invert. Rebalance period has no effect (R1=R3=R5 identical — daily rebal regardless). Corr H-012 **0.457**, H-019 **0.519**.
+- Notes: Suspiciously high returns and Sharpe. Rebalance parameter has zero impact suggesting implementation is daily-only. The -0.808 split-half means what works in first half is worst in second half — classic regime-dependent signal. Despite strong WF, parameter instability makes this unreliable. Data: 749 days, 14 assets, 36 combos.
+- Sessions: [2026-03-29 session 109]
+
+## H-135: Mean Reversion Speed Factor
+- Status: REJECTED
+- Idea: Rank assets by rolling lag-1 return autocorrelation. Long trending (high autocorr), short mean-reverting (low autocorr).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling autocorrelation(lag=1) over window [10,20,30,40,60]. Long top N (positive autocorr = trending), short bottom N.
+- Result: IS only **40%** positive, mean Sharpe **-0.211**, median **-0.087**. Best L60_R3_N5 Sharpe **0.97**. WF **0/6** positive (all OOS zero). Split-half corr **-0.087**. Corr H-012 **0.168**.
+- Notes: Autocorrelation-based regime detection does not work as cross-sectional factor in crypto. Most params give negative returns, especially short lookbacks (L10 all negative). The concept that "trending vs mean-reverting" regime can be captured by simple autocorrelation fails here — crypto returns are too noisy at daily frequency. Data: 749 days, 14 assets, 45 combos.
+- Sessions: [2026-03-29 session 109]
+
+## H-136: Relative Strength Persistence Factor
+- Status: REJECTED
+- Idea: Measure fraction of days an asset outperforms the cross-sectional average over rolling window ("win rate vs peers").
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute rolling fraction of days with return > cross-sectional average. Long top N (most consistently outperforming), short bottom N.
+- Result: IS **100%** positive (45/45), mean Sharpe **1.15**. Best L30_R7_N3 Sharpe **1.89**, +45.1% ann, 10.4% DD. OOS degrades: train 1.89 → test **0.46**. Split-half H1 **1.89**, H2 **0.41** — signal decays dramatically. WF **5/6** positive, mean OOS **0.56**. Corr H-012 **0.458**.
+- Notes: Good IS performance but OOS degrades too much (split-half ratio 0.22). Signal is essentially a smoothed version of momentum (corr 0.458 with H-012) — the "persistence" metric just captures recent trend with extra noise reduction. The 0.56 mean WF OOS is borderline but not novel enough to justify deployment given overlap with existing momentum strategies. Data: 748 days, 14 assets, 45 combos.
+- Sessions: [2026-03-29 session 109]
+
 ## Killed
 (none)
 
