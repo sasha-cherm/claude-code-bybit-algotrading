@@ -1,0 +1,287 @@
+{
+  "hypothesis": "H-130",
+  "name": "Funding Rate Momentum Factor",
+  "verdict": "REJECTED",
+  "reason": "IS positive only 29%; only 2 positive WF folds; split-half stability -1.005",
+  "data_range": "2024-03-17 to 2026-03-16",
+  "n_assets": 14,
+  "n_days": 730,
+  "param_robustness": {
+    "total_combinations": 108,
+    "pct_positive_sharpe": 28.7,
+    "mean_sharpe": -0.35,
+    "median_sharpe": -0.382,
+    "std_sharpe": 0.637,
+    "max_sharpe": 1.198,
+    "min_sharpe": -1.75
+  },
+  "best_params": {
+    "direction": "contrarian",
+    "short_window": 5,
+    "long_window": 21,
+    "rebalance_days": 7,
+    "n_long_short": 3,
+    "sharpe": 1.198,
+    "annual_return": 0.2664,
+    "max_drawdown": 0.2626,
+    "total_return": 0.5944,
+    "win_rate": 0.5196
+  },
+  "walk_forward": {
+    "n_folds": 6,
+    "folds": [
+      {
+        "fold": 0,
+        "start": "2024-09-23",
+        "end": "2024-12-21",
+        "sharpe": 4.076,
+        "days": 89,
+        "total_ret": 0.335
+      },
+      {
+        "fold": 1,
+        "start": "2024-12-22",
+        "end": "2025-03-21",
+        "sharpe": -0.548,
+        "days": 89,
+        "total_ret": -0.0269
+      },
+      {
+        "fold": 2,
+        "start": "2025-03-22",
+        "end": "2025-06-19",
+        "sharpe": -0.045,
+        "days": 89,
+        "total_ret": -0.0021
+      },
+      {
+        "fold": 3,
+        "start": "2025-06-20",
+        "end": "2025-09-17",
+        "sharpe": 0.373,
+        "days": 89,
+        "total_ret": 0.0138
+      },
+      {
+        "fold": 4,
+        "start": "2025-09-18",
+        "end": "2025-12-16",
+        "sharpe": -0.513,
+        "days": 89,
+        "total_ret": -0.0179
+      },
+      {
+        "fold": 5,
+        "start": "2025-12-17",
+        "end": "2026-03-16",
+        "sharpe": -2.049,
+        "days": 89,
+        "total_ret": -0.1023
+      }
+    ],
+    "mean_oos_sharpe": 0.216,
+    "positive_folds": 2,
+    "pct_positive_folds": 33.3
+  },
+  "split_half": {
+    "first_half": {
+      "sharpe": 1.227,
+      "annual_ret": 0.3084,
+      "max_dd": 0.2088,
+      "days": 359,
+      "start": "2024-03-26",
+      "end": "2025-03-20"
+    },
+    "second_half": {
+      "sharpe": -1.005,
+      "annual_ret": -0.1733,
+      "max_dd": 0.2515,
+      "days": 360,
+      "start": "2025-03-21",
+      "end": "2026-03-16"
+    }
+  },
+  "split_half_stability": -1.005,
+  "wf_split_half": {
+    "h1_mean": 1.161,
+    "h2_mean": -0.73
+  },
+  "correlation_with_h053": 0.201,
+  "correlation_with_h012": -0.104,
+  "direction_breakdown": {
+    "contrarian": {
+      "pct_positive": 51.9,
+      "mean_sharpe": 0.04,
+      "median_sharpe": 0.014
+    },
+    "momentum": {
+      "pct_positive": 5.6,
+      "mean_sharpe": -0.74,
+      "median_sharpe": -0.643
+    }
+  },
+  "top_10_params": [
+    {
+      "short_w": 5,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 3,
+      "direction": "contrarian",
+      "sharpe": 1.198,
+      "annual_ret": 0.2664,
+      "total_ret": 0.5944,
+      "max_dd": 0.2626,
+      "win_rate": 0.5196,
+      "days": 721
+    },
+    {
+      "short_w": 5,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 4,
+      "direction": "contrarian",
+      "sharpe": 1.078,
+      "annual_ret": 0.2154,
+      "total_ret": 0.4701,
+      "max_dd": 0.2187,
+      "win_rate": 0.549,
+      "days": 721
+    },
+    {
+      "short_w": 3,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 4,
+      "direction": "contrarian",
+      "sharpe": 0.914,
+      "annual_ret": 0.1736,
+      "total_ret": 0.3719,
+      "max_dd": 0.223,
+      "win_rate": 0.5196,
+      "days": 721
+    },
+    {
+      "short_w": 5,
+      "long_w": 14,
+      "rebal": 7,
+      "n": 3,
+      "direction": "momentum",
+      "sharpe": 0.782,
+      "annual_ret": 0.1566,
+      "total_ret": 0.3346,
+      "max_dd": 0.3141,
+      "win_rate": 0.5243,
+      "days": 724
+    },
+    {
+      "short_w": 5,
+      "long_w": 30,
+      "rebal": 3,
+      "n": 3,
+      "direction": "contrarian",
+      "sharpe": 0.74,
+      "annual_ret": 0.1409,
+      "total_ret": 0.2951,
+      "max_dd": 0.1652,
+      "win_rate": 0.542,
+      "days": 716
+    },
+    {
+      "short_w": 3,
+      "long_w": 14,
+      "rebal": 5,
+      "n": 4,
+      "direction": "contrarian",
+      "sharpe": 0.633,
+      "annual_ret": 0.1052,
+      "total_ret": 0.2195,
+      "max_dd": 0.1838,
+      "win_rate": 0.5069,
+      "days": 724
+    },
+    {
+      "short_w": 3,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 3,
+      "direction": "contrarian",
+      "sharpe": 0.614,
+      "annual_ret": 0.1172,
+      "total_ret": 0.2448,
+      "max_dd": 0.272,
+      "win_rate": 0.5098,
+      "days": 721
+    },
+    {
+      "short_w": 5,
+      "long_w": 30,
+      "rebal": 3,
+      "n": 4,
+      "direction": "contrarian",
+      "sharpe": 0.606,
+      "annual_ret": 0.1002,
+      "total_ret": 0.206,
+      "max_dd": 0.1511,
+      "win_rate": 0.5336,
+      "days": 716
+    },
+    {
+      "short_w": 5,
+      "long_w": 14,
+      "rebal": 7,
+      "n": 4,
+      "direction": "momentum",
+      "sharpe": 0.603,
+      "annual_ret": 0.0964,
+      "total_ret": 0.2003,
+      "max_dd": 0.2919,
+      "win_rate": 0.5534,
+      "days": 724
+    },
+    {
+      "short_w": 7,
+      "long_w": 21,
+      "rebal": 7,
+      "n": 3,
+      "direction": "contrarian",
+      "sharpe": 0.591,
+      "annual_ret": 0.1072,
+      "total_ret": 0.2229,
+      "max_dd": 0.2707,
+      "win_rate": 0.4804,
+      "days": 721
+    }
+  ],
+  "criteria": {
+    "is_pct_positive": {
+      "value": 28.7,
+      "threshold": 80,
+      "pass": false
+    },
+    "wf_positive_folds": {
+      "value": 2,
+      "threshold": 4,
+      "pass": false
+    },
+    "wf_mean_oos": {
+      "value": 0.216,
+      "threshold": 0,
+      "pass": "True"
+    },
+    "split_half_stability": {
+      "value": -1.005,
+      "threshold": 0,
+      "pass": false
+    },
+    "corr_h053": {
+      "value": 0.201,
+      "threshold": 0.6,
+      "pass": true
+    },
+    "corr_h012": {
+      "value": -0.104,
+      "threshold": 0.6,
+      "pass": true
+    }
+  }
+}

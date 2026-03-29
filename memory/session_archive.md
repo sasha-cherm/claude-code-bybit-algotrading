@@ -763,3 +763,11 @@
 - Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053.
 - Questions added: none
 - Self-modifications: none (session 96)
+
+### Session 2026-03-27 review+research (session 97)
+- Goal: Review + Research — MTM update (BTC crash to $66,636), H-063 critical monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC -4.1% 24h), H-063 vol selling stress test, H-098/H-099/H-100 backtests
+- Done: 19/19 runners OK. Demo: $100,764 (+0.76%). BTC $66,636. H-063 CRITICAL equity $9,739 (-2.61%), $739 to stop. Research: H-098/H-099/H-100 all REJECTED.
+- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053.
+- Questions added: none
+- Self-modifications: none (session 97)

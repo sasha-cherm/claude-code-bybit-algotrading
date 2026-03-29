@@ -1833,6 +1833,36 @@
 - Notes: Very strong IS for div_long direction, but WF completely fails (only 2/6 positive). Direction instability: WF picks conv_long in 2 folds. This is regime-dependent overfitting — the vol-weighted signal captures momentum-like behavior (corr 0.372) but without stability across time. Data: 746 days, 14 assets, 96 param combos.
 - Sessions: [2026-03-29 session 106]
 
+## H-128: Dollar Volume Velocity Factor (Rate of Change in DV)
+- Status: REJECTED
+- Idea: Rank 14 crypto assets by rate of change in dollar volume (price*volume). Assets with accelerating DV flow → long. Captures momentum in market participation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: dv_velocity = short_mean(close*vol) / long_mean(close*vol) - 1. Cross-sectional rank, long top N, short bottom N.
+- Result: IS 48.6% overall positive (**long_accel 97.2%**, long_decel 0%). Best S5_L30_R10_N4 long_accel Sharpe **1.908**, +110% ann, 23.3% DD. WF **3/6** positive, mean OOS **-1.161**. Split-half **-0.243**. Corr H-012 **0.21**, H-031 N/A.
+- Notes: Strong IS for long_accel direction but fails OOS validation badly. WF fold 0 selected decel direction (-7.05 OOS), fold 1 NaN. Classic overfitting: strong in-sample, collapses out-of-sample. Data: 746 days, 14 assets, 144 param combos.
+- Sessions: [2026-03-29 session 107]
+
+## H-129: Intraday Volatility Ratio Factor (Parkinson/CC Vol Ratio)
+- Status: REJECTED
+- Idea: Ratio of Parkinson (high-low range) vol to close-close vol captures information content of price bars. High ratio = noise, low ratio = clean trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: parkinson_vol / cc_vol over lookback window. Cross-sectional rank. Test both long_low_ratio and long_high_ratio.
+- Result: IS **50%** positive (need ≥80%). Best L20_R7_N3_LH Sharpe **1.424**, +75.6% ann, 28.7% DD. OOS Sharpe **-0.289**. WF **4/6** positive but mean OOS **0.057** (noise). Split-half **-0.817** (signal inverts). Corr H-076 **0.091**, H-012 **0.31**.
+- Notes: Signal direction is fundamentally unstable — inverts between time periods. Not redundant with H-076 (different math, same intuition) but neither works reliably. Both directions roughly equally likely to be positive. Data: 746 days, 14 assets, 60 param combos.
+- Sessions: [2026-03-29 session 107]
+
+## H-130: Funding Rate Momentum Factor (Rate of Change in Funding)
+- Status: REJECTED
+- Idea: Rate of change in funding rates as cross-sectional signal. Rising funding = increasing bullish sentiment → contrarian short. Captures momentum of sentiment, not level (unlike H-053).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: funding_momentum = short_avg(funding) - long_avg(funding). Cross-sectional rank. Contrarian: short rising, long falling.
+- Result: IS **28.7%** positive. Contrarian 51.9%, momentum 5.6%. Best S5_L21_R7_N3 contrarian Sharpe **1.198**, +26.6% ann, 26.3% DD. WF **2/6** positive, mean OOS **0.216**. Split-half **-1.005** — signal completely inverts (H1 +1.23, H2 -1.01). Corr H-053 **0.201**, H-012 **-0.104**.
+- Notes: Funding momentum was a strong signal early (fold 0: Sharpe 4.08) but has fully decayed in recent data. The funding rate regime has changed — rates have become more volatile and mean-reverting, breaking the momentum signal. Not redundant with H-053 (corr 0.20). Data: 730 days, 14 assets, 108 param combos.
+- Sessions: [2026-03-29 session 107]
+
 ## Killed
 (none)
 
