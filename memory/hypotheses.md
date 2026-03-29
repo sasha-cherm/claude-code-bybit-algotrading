@@ -1803,6 +1803,36 @@
 - Notes: CLV momentum is real but overlaps with price momentum (H-012). Closes near high → continued rise is just another way to capture momentum. Confirms H-105 finding (split-half now 0.621 vs -0.19, but added momentum overlap wasn't tested before). Data: 746 days, 14 assets, 144 param combos (72 per direction).
 - Sessions: [2026-03-28 session 105]
 
+## H-125: Wick Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Wick ratio = 1 - |close-open|/(high-low). Measures candle indecision vs conviction. Rank cross-sectionally, tested both conviction_long and indecision_long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling mean wick ratio over lookback. conviction_long: long low-wick (decisive), short high-wick. indecision_long: reverse.
+- Result: IS **50.0%** positive (36/72). Indecision_long 77.8% positive (28/36). Best L=5,R=5,N=5 indecision_long Sharpe 1.039. **OOS Sharpe -1.551** (fails). Split-half **0.898** (good). WF **4/6** positive mean 0.588. Corr H-012 **0.051** (novel).
+- Notes: The indecision_long direction is counterintuitive — coins with more wicks outperform. WF is decent but OOS on best params fails badly. Direction unstable (fold 5 picks conviction_long). Only 50% IS positive is barely random. Data: 746 days, 14 assets, 72 param combos.
+- Sessions: [2026-03-29 session 106]
+
+## H-126: Return Consistency Factor (14 Assets)
+- Status: REJECTED
+- Idea: Fraction of positive return days over lookback period. Rank cross-sectionally. consistent_long: long most-consistent winners.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling fraction of positive-return days. consistent_long: long high consistency, short low. inconsistent_long: reverse.
+- Result: IS **50.0%** positive (36/72). consistent_long 61.1% (22/36). Best L=30,R=7,N=3 consistent_long Sharpe 1.189. **OOS Sharpe -1.662** (fails). Split-half 0.754. WF **3/6** positive mean **-0.247** (negative). Corr H-012 0.235 (moderate overlap).
+- Notes: Just a noisier version of momentum. Positive return days over 30-day lookback correlates 0.235 with 60-day momentum. WF direction instability (3 folds pick consistent, 2 pick inconsistent, 1 consistent). No edge. Data: 746 days, 14 assets, 72 param combos.
+- Sessions: [2026-03-29 session 106]
+
+## H-127: Volume-Price Divergence Factor (14 Assets)
+- Status: REJECTED
+- Idea: Divergence between volume-weighted returns and equal-weighted returns. When vol-weighted > equal-weighted, large-volume moves are positive ("smart money buying").
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: div = rolling_mean(vw_ret - ew_ret, L). Cross-sectionally z-scored. div_long: long high divergence, short low.
+- Result: IS 50% overall but **div_long 95.8%** positive (46/48), conv_long 4.2%. Best L=20,R=7,N=4 div_long Sharpe **2.354**, +45.2%, 10.0% DD (strong IS). OOS Sharpe **0.682** (positive but degraded). Split-half 0.704. WF **2/6** positive mean **-0.007** (fails). Corr H-012 **0.372** (moderate overlap).
+- Notes: Very strong IS for div_long direction, but WF completely fails (only 2/6 positive). Direction instability: WF picks conv_long in 2 folds. This is regime-dependent overfitting — the vol-weighted signal captures momentum-like behavior (corr 0.372) but without stability across time. Data: 746 days, 14 assets, 96 param combos.
+- Sessions: [2026-03-29 session 106]
+
 ## Killed
 (none)
 

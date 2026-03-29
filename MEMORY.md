@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,742 (+0.74%). BTC $66,926.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $101,453 (+1.45%). BTC $66,516.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
-- **H-011 status**: DROPPED from demo. Internal paper trade IN, 38 settlements. Capital $9,867 (-1.33%). Net funding $15.87 vs $149.24 fees.
-- **Internal paper trades:** 19 runners active. Session 105. BTC $66,926.
-- **Top performers**: H-031 (+4.67%), H-039 (+4.35%), H-049 (+3.00%), H-062 (+2.15%), H-012 (+2.04%). **9/19 positive**, 3 flat, 7 negative.
-- **H-063 status**: Vol selling strangle — BTC $66,926, put strike $69,000 — PUT ITM by $2,074. MTM $9,832 (-1.68%), intrinsic $9,967 (-0.33%). **$832 MTM to stop**. 5.4d to expiry. Premium $364 > intrinsic $291.
-- **H-019 vs H-024**: +1.04% vs -0.60% — gap 1.64% (narrowed from 2.16%). Kill H-024 at Mar 31.
-- **Research**: 124 total hypotheses. H-122 REJECTED (candle conviction, 0% IS positive). H-123 REJECTED (vol-price elasticity, WF 1/6). H-124 REJECTED (CLV, momentum dir 85% but overlaps H-012).
+- **H-011 status**: DROPPED from demo. Internal paper trade IN, R27=1.06e-05. Capital $9,866 (-1.34%).
+- **Internal paper trades:** 19 runners active. Session 106. BTC $66,516.
+- **Top performers**: H-031 (+6.06%), H-039 (+4.35%), H-012 (+3.42%), H-062 (+3.05%), H-049 (+2.87%). **7/19 positive**, 3 flat, 9 negative.
+- **H-063 status**: Vol selling strangle — BTC $66,516, put strike $69,000 — PUT ITM by $2,484. MTM $9,763 (-2.37%). **$763 MTM to stop**. 5.3d to expiry. Premium $364 barely covers intrinsic $348.
+- **H-019 vs H-024**: +1.53% vs -0.51% — gap 2.04%. Kill H-024 at Mar 31.
+- **Research**: 127 total hypotheses. H-125 REJECTED (wick ratio, 50% IS, OOS -1.55). H-126 REJECTED (return consistency, WF 3/6). H-127 REJECTED (vol-price divergence, WF 2/6).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 29 (after 00:30 UTC): H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- **Next action:** Mar 30 (00:30 UTC): H-031/H-049/H-052/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
 
 ## Memory Files
@@ -22,15 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 95) archived to `memory/session_archive.md`._
-
-### Session 2026-03-27 review+research (session 96)
-- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC continued selloff to $67,843), H-063 vol selling new low, H-095/H-096/H-097 backtests
-- Done: 19/19 runners OK. **Demo**: $100,181 (+0.18%, down from +0.80%). BTC $67,843 (-1.0% from session 95, -4.9% from H-063 entry). **10/19 positive**, 2 flat, 7 negative. Top: H-031(+4.68%), H-039(+4.35%), H-049(+3.54%). **H-063 NEW LOW**: equity $9,899 (-1.01%), put ITM by $1,157. $899 to stop. Delta hedge 0.063 BTC absorbing ($3,475 BTC drop → $101 equity loss). **H-011**: 34 settlements, IN, R27 avg 1.43e-05. **Research**: H-095 REJECTED (semivariance ratio, 97.8% IS positive but WF selected 1/4, split-half asymmetric 1.60/-0.26, regime-dependent). H-096 REJECTED (dispersion, only 28.9% positive, mean Sharpe -0.19, inverse of H-076 but formulation fails). H-097 REJECTED (lead-lag momentum, 37.0% positive, WF selected 1/4, daily lead-lag too fast in crypto).
-- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: none (session 96)
+_Older sessions (bootstrap through 96) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-27 review+research (session 97)
 - Goal: Review + Research — MTM update (BTC crash to $66,636), H-063 critical monitoring, 3 new factor backtests
@@ -103,3 +95,11 @@ _Older sessions (bootstrap through 95) archived to `memory/session_archive.md`._
 - Next: Mar 29 (auto): 6 rebalances. Mar 30: H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 105)
+
+### Session 2026-03-29 review+research (session 106)
+- Goal: Review + Research — MTM update, rebalance verification, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,516, continued slide), H-063 vol selling, H-125/H-126/H-127 backtests
+- Done: 19/19 runners OK. **Demo**: $101,453 (+1.45%). BTC $66,516 (-0.61% from session 105). **7/19 positive**, 3 flat, 9 negative. Top: H-031(+6.06%), H-039(+4.35%), H-012(+3.42%). H-046/H-059 rebalanced on Mar 28 bar; H-031/H-049/H-052/H-053 due Mar 29 bar (00:30 UTC Mar 30). **H-063**: MTM $9,763 (-2.37%), $763 buffer to stop, 5.3d to expiry. Premium $364 barely covers intrinsic $348. **H-011**: IN, R27=1.06e-05. **Research**: **H-125 REJECTED** (wick ratio — 50% IS positive, OOS **-1.551**, WF 4/6 mean 0.588 but direction unstable, corr 0.051 H-012). **H-126 REJECTED** (return consistency — 50% IS positive, OOS **-1.662**, WF **3/6** mean **-0.247**, corr 0.235 H-012). **H-127 REJECTED** (vol-price divergence — div_long 95.8% IS positive Sharpe 2.35 BUT WF **2/6** mean **-0.007**, direction instability, corr 0.372 H-012).
+- Next: Mar 30: H-031/H-049/H-052/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 106)

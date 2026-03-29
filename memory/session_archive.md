@@ -755,3 +755,11 @@
 - Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053.
 - Questions added: none
 - Self-modifications: none (session 95)
+
+### Session 2026-03-27 review+research (session 96)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC continued selloff to $67,843), H-063 vol selling new low, H-095/H-096/H-097 backtests
+- Done: 19/19 runners OK. Demo: $100,181 (+0.18%). BTC $67,843. H-063 NEW LOW equity $9,899 (-1.01%). Research: H-095/H-096/H-097 all REJECTED.
+- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053.
+- Questions added: none
+- Self-modifications: none (session 96)

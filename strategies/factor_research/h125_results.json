@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H-125",
+  "name": "Wick Ratio Factor",
+  "is_positive_pct": 50.0,
+  "best_params": {
+    "lookback": 5,
+    "rebal": 5,
+    "n_pos": 5,
+    "direction": "indecision_long"
+  },
+  "best_sharpe": 1.0387081411624524,
+  "oos_sharpe": -1.5505013225379045,
+  "split_half_h1": 1.0387081411624524,
+  "split_half_h2": 1.15668652046023,
+  "split_half_ratio": 0.8980031519250042,
+  "wf_positive": "4/6",
+  "wf_mean_oos": 0.5877658404408189
+}

@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-126",
+  "name": "Return Consistency Factor",
+  "is_positive_pct": 50.0,
+  "best_params": {
+    "lookback": 30,
+    "rebal": 7,
+    "n_pos": 3,
+    "direction": "consistent_long"
+  },
+  "best_sharpe": 1.1892654414634931,
+  "oos_sharpe": -1.6617723400664177,
+  "split_half_h1": 1.1892654414634931,
+  "split_half_h2": 1.5779229422250072,
+  "split_half_ratio": 0.7536904430748225,
+  "wf_positive": "3/6",
+  "wf_mean_oos": -0.24664483260862638,
+  "corr_h012": 0.23492572189327035
+}

@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-127",
+  "name": "Volume-Price Divergence Factor",
+  "is_positive_pct": 50.0,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 7,
+    "n_pos": 4,
+    "direction": "div_long"
+  },
+  "best_sharpe": 2.3539043399284543,
+  "oos_sharpe": 0.682235295012697,
+  "split_half_h1": 2.3539043399284543,
+  "split_half_h2": 1.6568982012692923,
+  "split_half_ratio": 0.703893600586867,
+  "wf_positive": "2/6",
+  "wf_mean_oos": -0.007022398099211384,
+  "corr_h012": 0.37216117216117217
+}
