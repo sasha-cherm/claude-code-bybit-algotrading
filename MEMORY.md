@@ -8,7 +8,7 @@
 - **Top performers**: H-031 (+6.09%), H-039 (+4.35%), H-012 (+3.23%), H-049 (+2.93%), H-062 (+2.88%). **8/19 positive**, 2 flat, 9 negative.
 - **H-063 status**: Vol selling strangle — BTC $66,713, put strike $69,000 — PUT ITM by $2,289. MTM $9,814 (-1.86%, improved from -2.37%). **$814 MTM to stop**. 5.1d to expiry. $686 time value decaying in our favor.
 - **H-019 vs H-024**: +1.42% vs -0.60% — gap 2.03%. Kill H-024 at Mar 31.
-- **Research**: 130 total hypotheses. H-128 REJECTED (DV velocity, 48.6% IS, WF 3/6). H-129 REJECTED (intraday vol ratio, 50% IS). H-130 REJECTED (funding momentum, 28.7% IS).
+- **Research**: 133 total hypotheses. H-131 REJECTED (close-to-range, 44% IS, split-half -0.015). H-132 REJECTED (return dispersion, 33% IS, WF 0/6). H-133 REJECTED (consecutive direction, 29% IS, split-half both negative).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 30 (00:30 UTC): H-031/H-049/H-052/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
@@ -23,14 +23,6 @@
 
 
 _Older sessions (bootstrap through 97) archived to `memory/session_archive.md`._
-
-### Session 2026-03-27 review+research (session 98)
-- Goal: Review + Research — MTM update (BTC selloff to $65,966), H-063 critical monitoring, 3 new factor backtests
-- Focus: Full MTM update (19 runners), H-063 vol selling stress, H-101/H-102/H-103 backtests
-- Done: 19/19 runners OK. **Demo**: $100,834 (+0.83%). BTC $65,966 (-4.3% 24h). **10/19 positive**, 3 flat, 6 negative. Top: H-031(+4.68%), H-039(+4.35%), H-049(+3.54%). **H-063 WORSE**: equity $9,637 (-3.63%), put ITM by $3,035, **$637 to stop**. New low $9,601 at BTC $65,804. Delta hedge 0.095 BTC absorbing damage (BTC -$5,298 from entry, equity -$363). **Research**: H-101 REJECTED (kurtosis, split-half -0.614). H-102 REJECTED (vol stability, 27% positive). H-103 REJECTED (PV correlation, OOS -0.519).
-- Next: Mar 28: H-021/H-059 rebal. Mar 29: H-031/H-049/H-052/H-053. Mar 31: Kill H-024. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: none (session 98)
 
 ### Session 2026-03-28 review+research (session 99)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -95,6 +87,14 @@ _Older sessions (bootstrap through 97) archived to `memory/session_archive.md`._
 - Next: Mar 30: H-031/H-049/H-052/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 106)
+
+### Session 2026-03-29 backtest (session 108)
+- Goal: Backtest — H-131/H-132/H-133 new factor backtests
+- Focus: Close-to-Range, Return Dispersion Timing, Consecutive Direction factors
+- Done: **H-131 REJECTED** (close-to-range — 44% IS positive; momentum dir 79% positive but split-half **-0.015**, regime-dependent). **H-132 REJECTED** (return dispersion timing — 33% IS positive, only MW=20 cluster works 83%, best params WF 0/6, split-half **-0.147**). **H-133 REJECTED** (consecutive direction — 29% IS positive, best WF 5/6 but OOS Sharpe 0.245 (IS/OOS ratio 0.23), split-half both halves negative). All three REJECTED. Research total: 133 hypotheses.
+- Next: Continue research — new factor ideas needed. Running out of simple price-action factors; may need to explore macro, on-chain, or options-derived signals.
+- Questions added: none
+- Self-modifications: none (session 108)
 
 ### Session 2026-03-29 review+research (session 107)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests

@@ -1863,6 +1863,36 @@
 - Notes: Funding momentum was a strong signal early (fold 0: Sharpe 4.08) but has fully decayed in recent data. The funding rate regime has changed — rates have become more volatile and mean-reverting, breaking the momentum signal. Not redundant with H-053 (corr 0.20). Data: 730 days, 14 assets, 108 param combos.
 - Sessions: [2026-03-29 session 107]
 
+## H-131: Close-to-Range Position Factor
+- Status: REJECTED
+- Idea: Signal = (close - N-day low) / (N-day high - N-day low). Where is close within multi-day range? Near high = bullish (momentum), near low = bearish.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling high/low range, position of close in range. Momentum: long assets near highs. Contrarian: long assets near lows.
+- Result: IS **44%** positive overall. Momentum direction **79%** positive (mean Sharpe 0.281). Best: momentum LB20 R7 N4 Sharpe **0.759**, +15.6% ann, 18.2% DD. WF **4/6** positive, mean OOS **0.901**. Split-half **-0.015** (H1 -0.015, H2 +0.997) — second half only. Corr H-012 **0.263**, H-031 **-0.279**.
+- Notes: Strong momentum direction in second half of data only — split-half instability kills it. WF OK (4/6) but IS fails (whole grid 44%, need 80%). Momentum direction is essentially re-capturing the same momentum signal as H-012 (price near highs = strong momentum). Data: 749 days, 14 assets, 48 combos.
+- Sessions: [2026-03-29 session 108]
+
+## H-132: Return Dispersion Timing Factor
+- Status: REJECTED
+- Idea: Use cross-sectional dispersion of returns to switch between momentum (high dispersion) and reversal (low dispersion) regimes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 5-10 days)
+- Logic: Compute std of N-day returns across assets. If dispersion > rolling median → HIGH regime (use momentum ranks). If below → LOW regime (use reversal = inverse ranks). Composite = momentum_rank * regime_sign.
+- Result: IS **33%** positive. MW=20 best at **83%** positive (mean 0.250). Best overall: MW40 DW10 R7 N3 Sharpe **0.841**, +20.7% ann, 19.2% DD. WF **0/6** positive folds (best params insufficient data). Split-half **-0.147** (H1 +0.102, H2 -0.147). Corr H-012 **0.146**, H-031 **0.209**.
+- Notes: Very parameter-sensitive — only MW=20 works (83% IS positive); longer windows all negative. The regime-conditioning adds complexity without improving OOS. Best params failed walk-forward (too short history with MW=40). Low-dispersion reversal is likely spurious on 2yr window. Data: 749 days, 14 assets, 54 combos.
+- Sessions: [2026-03-29 session 108]
+
+## H-133: Consecutive Direction Factor
+- Status: REJECTED
+- Idea: Count net up-days (sign of daily return, rolling sum) as cross-sectional signal. Assets with more consecutive up days = stronger trend propensity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: net_up = rolling sum of sign(daily_ret). Momentum: long highest net-up (most up days). Contrarian: long lowest (most down days).
+- Result: IS **29%** positive overall. Momentum direction **42%** positive. Best: momentum LB30 R7 N3 Sharpe **1.069**, +22.7% ann, 17.5% DD. WF **5/6** positive folds, mean OOS **0.245**. Split-half **-0.240** (H1 -0.006, H2 -0.240) — both halves negative. Corr H-012 **0.335**, H-031 **-0.017**.
+- Notes: Interesting WF result (5/6 positive) but split-half both negative — contradictory. The best IS params (LB30 R7 N3) have strong IS Sharpe but OOS decays severely (IS/OOS 0.23). Signal is too discretized (integer net-up-days) to provide robust cross-sectional ranking. The contrarian LB7 had strong WF OOS (5/6, mean 1.144) but IS only 0.954. No direction consistently dominates. Data: 749 days, 14 assets, 48 combos.
+- Sessions: [2026-03-29 session 108]
+
 ## Killed
 (none)
 

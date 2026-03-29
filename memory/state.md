@@ -249,7 +249,7 @@ Note: Short side profits continue growing. NEAR short biggest winner (+$3,623). 
 - **H-063 status**: BTC $66,713, put strike $69,000 — PUT ITM by $2,289. Runner equity $9,814 (-1.86%, improved from -2.37%). Stop at $9,000 (**$814 buffer**). 5.1 days to expiry (Apr 3). Delta hedge 0.091 BTC. Premium $364 > intrinsic $321. Put has $686 time value remaining (~$96 theta decay over 5d if BTC flat). BTC funding rates turning negative — bearish but H-063 improving via time decay.
 - **H-019 vs H-024**: Gap 2.03% (stable). Kill H-024 at Mar 31.
 - **Rebal status**: H-031/H-049/H-052/H-053 due on Mar 29 bar (processed 00:30 UTC Mar 30). H-076 due Mar 30 bar (00:30 UTC Mar 31).
-- **Research**: 130 hypotheses total. H-128 REJECTED (DV velocity, 48.6% IS, WF 3/6). H-129 REJECTED (intraday vol ratio, 50% IS, split-half -0.82). H-130 REJECTED (funding momentum, 28.7% IS, split-half -1.01).
+- **Research**: 133 hypotheses total. H-131 REJECTED (close-to-range, 44% IS, split-half -0.015). H-132 REJECTED (return dispersion timing, 33% IS, WF 0/6). H-133 REJECTED (consecutive direction, 29% IS, split-half both negative).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 30 (00:30 UTC): H-031/H-049/H-052/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
