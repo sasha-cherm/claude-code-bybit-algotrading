@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,872 (+0.87%). BTC $67,847.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $101,297 (+1.30%). BTC $67,285.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,866 (-1.34%). 43 settlements. Funding neg.
-- **Internal paper trades:** 19 runners active. Session 114. BTC $67,847.
-- **Top performers**: H-031 (+5.16%), H-039 (+4.35%), H-012 (+2.51%), H-053 (+1.59%), H-019 (+1.56%). **13/19 positive**, 5 negative, 1 flat.
-- **H-063 status**: Vol selling strangle — BTC $67,926, put strike $69,000 — PUT ITM by $1,074. MTM $10,073 (+0.73%!). **$1,073 buffer to stop**. 3.8d to expiry. Time decay winning.
-- **H-019 vs H-024**: +1.56% vs +0.17% — gap 1.39% (narrowed from 1.67%). Kill H-024 at Mar 31.
-- **Research**: 145 total hypotheses. H-143 REJECTED (reversal). H-144 CONFIRMED (idiovol, 4/4). H-145 REJECTED (DV stability, 3/4 — erratic_long direction may warrant H-146).
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,865 (-1.35%). Funding neg.
+- **Internal paper trades:** 19 runners active. Session 112. BTC $67,285.
+- **Top performers**: H-031 (+6.25%), H-039 (+4.35%), H-012 (+3.64%), H-062 (+3.48%), H-053 (+1.59%). **8/19 positive**, 2 flat, 9 negative.
+- **H-063 status**: Vol selling strangle — BTC $67,196, put strike $69,000 — PUT ITM by $1,804. MTM $9,967 (-0.34%). **$967 buffer to stop**. 3.6d to expiry.
+- **H-019 vs H-024**: +0.85% vs -0.47% — gap 1.32%. Kill H-024 at Mar 31.
+- **Research**: 145 total hypotheses. H-143 REJECTED (reversal). H-144 CONFIRMED (idiovol, 4/4 but H-019 corr 0.72). H-145 REJECTED (DV stability).
 - **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
@@ -80,26 +80,10 @@ _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`.
 - Questions added: none
 - Self-modifications: none (session 111)
 
-### Session 2026-03-30 backtest (session 112)
-- Goal: Backtest — H-143 Short-Term Reversal Factor (cross-sectional, 1-10d lookback)
-- Focus: H-143 — 14 assets, 144 param combos (reversal + momentum directions), expanding WF, split-half, H-012 correlation
-- Done: **H-143 REJECTED**. IS 22% positive (need ≥80%). WF 3/6 folds positive (folds 4-6: Sharpe -1.99/-0.57/-4.04). Split-half rank corr -0.077 (negative — no stability). H-012 corr -0.047 (decorrelated, only passing criterion). Best IS: REV_L3_R3_N4 Sharpe 1.349, Ann 62.6%, DD 23.8% — but it's a regime artifact; breaks badly 2025 H2. Fee sensitivity poor (breaks at 2x fees). Short-term reversal anomaly doesn't robustly transfer from equities to crypto. Results: `strategies/h143_reversal/results.json`.
-- Next: Continue research pipeline — H-144+. Consider testing alternative mean-reversion signals (e.g., RSI-based, Bollinger deviation, vs price-to-moving-average).
+### Session 2026-03-30 review+research (session 112)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $67,285 -0.83%), H-063 vol selling pullback, H-143/H-144/H-145 backtests
+- Done: 19/19 runners OK. **Demo**: $101,297 (+1.30%, up from +0.87%). BTC $67,285. **8/19 positive**, 2 flat, 9 negative (BTC drop hurt). Top: H-031(+6.25%), H-039(+4.35%), H-012(+3.64%), H-062(+3.48%). **H-063 pulled back**: $9,967 (-0.34%, was +0.73%), PUT ITM by $1,804, $967 buffer to stop, 3.6d to expiry. **H-019 vs H-024**: gap 1.32% (narrowed). **Research**: **H-143 REJECTED** (short-term reversal — 22% IS positive, WF 3/6 OOS -0.724, split-half -0.077. Reversal anomaly doesn't transfer to crypto). **H-144 CONFIRMED** (idiosyncratic vol — 92% IS positive, WF **6/6** OOS 1.99, H-012 corr 0.010. BUT H-019 corr **0.72** — near-substitute for total vol, regime-dependent). **H-145 REJECTED** (DV stability — stable_long 29% IS. Erratic_long 89% positive but H1/H2 regime split).
+- Next: Mar 30 bar: H-021/H-031/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 112)
-
-### Session 2026-03-30 backtest (session 113)
-- Goal: Backtest — H-144 Idiosyncratic Volatility Factor (BTC-residual, 14 assets)
-- Focus: H-144 — rolling OLS residual vol, 60 param combos, 6-fold expanding WF, split-half, H-012/H-019 correlations
-- Done: **H-144 CONFIRMED (4/4 criteria)**. IS **92%** positive (55/60). Best L20_R14_N4: Sharpe **1.15**, Ann **+45%**, DD 52%. WF **6/6 folds positive**, combined Sharpe **1.99**, Ann **+68%**, DD 12.6%. Split-half corr **+0.015** (barely positive). H-012 corr **0.010** (near zero — excellent diversifier). H-019 corr **0.72** (highly correlated with total vol). Concern: first half mean Sharpe -0.84 vs second half +1.66 — regime-dependent. High H-019 overlap means likely redundant with H-024 (beta). Results: `strategies/h144_idiovol/results.json`.
-- Next: Analyze whether H-144 adds portfolio value beyond H-019/H-024. Research H-145+.
-- Questions added: none
-- Self-modifications: none (session 113)
-
-### Session 2026-03-30 backtest (session 114)
-- Goal: Backtest — H-145 Dollar-Volume Stability Factor (cross-sectional CV of daily dollar volume)
-- Focus: H-145 — 150 param combos (2 directions × 75), expanding WF 6 folds, split-half, H-012/H-031 correlations
-- Done: **H-145 REJECTED (3/4 criteria)**. The stable_long direction (original hypothesis) only **29%** IS positive (fails ≥80% threshold). However, the erratic_long direction is the actual winner: **89%** IS positive, mean Sharpe 0.481, best L20_R7_N4 Sharpe **1.549**, +66.3% ann, 33.4% DD. Walk-forward for best stable_long params (L10_R5_N3): **6/6 folds positive**, mean OOS Sharpe 1.571. Split-half corr +0.176 (passes). H-012 corr **-0.038** (excellent). H-031 corr -0.190. Key insight: in crypto, HIGH volume variability assets outperform, opposite of institutional-presence hypothesis. Signal flips regime between H1 (mean -1.08) and H2 (mean +0.85). Results: `strategies/h145_dv_stability/results.json`.
-- Next: Consider H-146 to formally test erratic_long direction (high-CV = high volume variability = outperformance). Continue research pipeline.
-- Questions added: none
-- Self-modifications: none (session 114)
