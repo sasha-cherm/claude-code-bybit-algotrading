@@ -1,16 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $101,297 (+1.30%). BTC $67,285.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,814 (+0.81%). BTC $66,644.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,865 (-1.35%). Funding neg.
-- **Internal paper trades:** 19 runners active. Session 112. BTC $67,285.
-- **Top performers**: H-031 (+6.25%), H-039 (+4.35%), H-012 (+3.64%), H-062 (+3.48%), H-053 (+1.59%). **8/19 positive**, 2 flat, 9 negative.
-- **H-063 status**: Vol selling strangle — BTC $67,196, put strike $69,000 — PUT ITM by $1,804. MTM $9,967 (-0.34%). **$967 buffer to stop**. 3.6d to expiry.
-- **H-019 vs H-024**: +0.85% vs -0.47% — gap 1.32%. Kill H-024 at Mar 31.
-- **Research**: 145 total hypotheses. H-143 REJECTED (reversal). H-144 CONFIRMED (idiovol, 4/4 but H-019 corr 0.72). H-145 REJECTED (DV stability).
-- **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- **Internal paper trades:** 18 runners active (H-024 killed). Session 114. BTC $66,644.
+- **Top performers**: H-019 (+7.44%), H-031 (+4.52%), H-039 (+4.35%), H-012 (+2.42%), H-044 (+1.79%). **9/18 positive**, 1 flat, 8 negative.
+- **H-063 status**: Vol selling strangle — BTC $66,806, put strike $69,000 — PUT ITM by $2,194. MTM $9,973 (-0.27%). **$973 buffer to stop**. 3.4d to expiry.
+- **H-024 KILLED**: H-019 won comparison +7.44% vs -0.20% (7.64% gap over 13 days).
+- **H-052 alert**: Dropped to -3.74% (was +0.94%). Premium contrarian struggling in BTC decline.
+- **Research**: 148 total hypotheses. H-146/H-147/H-148 all REJECTED.
+- **System fixes**: Position-count guard added to ALL 13 multi-asset runners. Double-write log bug fixed. H-031 rebal state fixed.
+- **AUTOMATED:** Paper trades hourly via cron (18 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - **Open user questions:** None
 
 ## Memory Files
@@ -87,3 +89,19 @@ _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`.
 - Next: Mar 30 bar: H-021/H-031/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 112)
+
+### Session 2026-03-30 backtest (session 113)
+- Goal: Backtest — H-144 idiosyncratic vol factor full validation
+- Focus: Confirming H-144 with 4/4 criteria (IS 92%, WF 6/6 OOS 1.99, split-half stable, low corr H-012 0.01)
+- Done: H-144 CONFIRMED. But H-019 corr 0.72 — near-substitute for total vol. Not deploying as paper trade due to redundancy.
+- Next: Session 114 review + research
+- Questions added: none
+- Self-modifications: none (session 113)
+
+### Session 2026-03-31 review+research+system (session 114)
+- Goal: Review + Research + System — MTM update, kill H-024, system hardening, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,644 -0.95%), H-024 kill, position-count guards, H-146/H-147/H-148 backtests
+- Done: 18/19 runners OK (H-024 killed). **Demo**: $100,814 (+0.81%). BTC $66,644. **9/18 positive**, 1 flat, 8 negative. **H-019 surged to +7.44%** (low-vol shorts profiting from BTC decline). **H-024 KILLED**: H-019 won decisively +7.44% vs -0.20% (7.64% gap). **H-052 alert**: dropped to -3.74% (was +0.94%). **H-063**: $9,973 (-0.27%), $973 buffer, 3.4d to expiry — manageable. **H-053 positions empty** since session 110 repair — will re-enter on Mar 30 bar. **H-031 rebal state fixed** (positions unchanged but date tracking was wrong). **System**: Position-count guard added to ALL 13 multi-asset runners (prevents corrupted rebalances). Double-write log bug fixed in orchestrator. **Research**: **H-146 REJECTED** (lead-lag spillover — 0/18 positive, crypto has no daily lead-lag). **H-147 REJECTED** (volume skewness — 83% IS, WF 4/6, IS/OOS 1.03, but noisy+0.33 corr momentum+33% DD). **H-148 REJECTED** (DD speed — 58% = noise).
+- Next: Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: position-count guard in 13 runners, orchestrator log fix, H-031 state fix (session 114)

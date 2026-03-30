@@ -322,6 +322,14 @@ def run():
                     "direction": "LONG" if weight > 0 else "SHORT",
                 }
 
+            # Guard: abort rebalance if too few positions created
+            n_min_positions = CONFIG["n_long"] + CONFIG["n_short"]
+            if len(new_positions) < n_min_positions:
+                print(f"  WARNING: Only {len(new_positions)}/{n_min_positions} positions created, aborting rebalance")
+                new_positions = old_positions
+                total_fees = 0
+                trades_this_rebal = 0
+
             capital -= total_fees
             state["capital"] = round(capital, 2)
             state["positions"] = new_positions

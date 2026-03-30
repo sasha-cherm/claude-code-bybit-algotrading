@@ -231,28 +231,30 @@ Note: Demo rebalanced — positions flipped on some assets (ADA now LONG, OP now
 - **Next rebal**: Apr 1 bar
 - **Backtest**: 100% params positive (48/48), best Sharpe 2.08, mean 1.48. WF (selected) 3/4 positive. Corr 0.21 with H-012.
 
-## Portfolio Summary (live mark-to-market 2026-03-30 session 112, 17:05 UTC)
-- **Bybit Demo**: $101,297 (+1.30%) — 13 perp positions. BTC $67,285.
-- **Total internal MTM (19 strats, BTC ~$67,285)**: ~$190,222 (+0.12%). BTC $67,285 (-0.83% from session 111).
-- **Positive (8)**: H-031 (+6.25%), H-039 (+4.35%), H-012 (+3.64%), H-062 (+3.48%), H-053 (+1.59%), H-052 (+0.94%), H-019 (+0.85%), H-049 (+0.24%)
-- **Negative (9)**: H-063 (-0.34%), H-059 (-0.38%), H-076 (-0.41%), H-024 (-0.47%), H-046 (-1.16%), H-011 (-1.35%), H-044 (-1.36%), H-085 (-1.63%), H-021 (-2.88%)
-- **Flat (2)**: H-009 (0%), H-032 (-0.03%)
-- **H-009**: $10,000 (+0.00%, SHORT) | **H-011**: $9,865 (-1.35%, IN) | **H-012**: $10,364 (+3.64%) | **H-019**: $10,085 (+0.85%) | **H-021**: $9,712 (-2.88%)
-- **H-024 (comparison)**: $9,953 (-0.47%) — H-019 +0.85% vs H-024 -0.47%. **Gap 1.32%** (narrowed from 1.39%).
-- **H-031**: $10,625 (+6.25%) | **H-032**: $9,997 (-0.03%) | **H-039 (DOW)**: $10,435 (+4.35%, FLAT)
-- **H-044 (OI)**: $9,864 (-1.36%) | **H-046 (Accel)**: $9,884 (-1.16%) | **H-049 (LSR)**: $10,024 (+0.24%)
-- **H-052 (Premium)**: $10,094 (+0.94%) | **H-053 (Funding XS)**: $10,159 (+1.59%, FLAT)
-- **H-059 (Vol Term)**: $9,962 (-0.38%) | **H-062 (DD Mom)**: $10,348 (+3.48%)
-- **H-063 (Vol Sell)**: **$9,967 (-0.34% MTM)**, PUT ITM by $1,804. $967 buffer to stop. 3.6d to expiry.
-- **H-076 (Efficiency)**: $9,959 (-0.41%) | **H-085 (Turnover)**: $9,837 (-1.63%)
-- **Paper trade age**: H-009/H-011/H-012: 14 days. H-019/H-021/H-024: 12 days. H-031/H-032/H-039: 11 days. H-044/H-046/H-049/H-052/H-053: 10 days. H-059/H-062: 8 days. H-063: 5 days. H-076/H-085: 4 days.
-- **H-063 status**: BTC $67,196, put strike $69,000 — PUT ITM by $1,804 (was $1,074). Runner equity $9,967 (-0.34%, down from +0.73%). Stop at $9,000 (**$967 buffer**). 3.6 days to expiry (Apr 3 08:00). Premium $364, liability $348. BTC drop tightened the position.
-- **H-011 status**: IN, capital $9,865 (-1.35%). Still losing to fees.
-- **H-019 vs H-024**: Gap 1.32% (narrowed from 1.39%). Kill H-024 at Mar 31.
-- **Rebal status**: Due at Mar 30 bar (00:30 UTC Mar 31): H-021, H-031, H-053, H-076.
-- **Research**: 145 hypotheses total. H-143 REJECTED (reversal). H-144 CONFIRMED (idiovol, 4/4 but H-019 corr 0.72). H-145 REJECTED (DV stability).
-- **AUTOMATED:** Paper trades hourly via cron (19 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+## Portfolio Summary (live mark-to-market 2026-03-31 session 114, 21:10 UTC)
+- **Bybit Demo**: $100,814 (+0.81%) — 13 perp positions. BTC $66,644.
+- **Total internal MTM (18 strats, BTC ~$66,644)**: ~$191,325 (+0.60%). BTC $66,644 (-0.95% from session 112).
+- **Positive (9)**: H-019 (+7.44%), H-031 (+4.52%), H-039 (+4.35%), H-012 (+2.42%), H-044 (+1.79%), H-053 (+1.59%), H-062 (+1.29%), H-049 (+0.24%), H-009 (0.00%)
+- **Negative (8)**: H-076 (-0.20%), H-085 (-0.20%), H-059 (-0.38%), H-046 (-0.54%), H-063 (-1.23%), H-011 (-1.35%), H-021 (-2.53%), H-052 (-3.74%)
+- **Flat (1)**: H-032 (-0.03%)
+- **H-009**: $10,000 (0.00%, SHORT) | **H-011**: $9,865 (-1.35%, IN) | **H-012**: $10,242 (+2.42%) | **H-019**: $10,744 (+7.44%) | **H-021**: $9,747 (-2.53%)
+- **H-024**: KILLED session 114. H-019 won: +7.44% vs -0.20% (7.64% gap over 13 days).
+- **H-031**: $10,452 (+4.52%) | **H-032**: $9,997 (-0.03%) | **H-039 (DOW)**: $10,435 (+4.35%, FLAT)
+- **H-044 (OI)**: $10,179 (+1.79%) | **H-046 (Accel)**: $9,946 (-0.54%) | **H-049 (LSR)**: $10,024 (+0.24%)
+- **H-052 (Premium)**: $9,626 (-3.74%) | **H-053 (Funding XS)**: $10,159 (+1.59%, FLAT — positions empty, capital preserved)
+- **H-059 (Vol Term)**: $9,962 (-0.38%) | **H-062 (DD Mom)**: $10,129 (+1.29%)
+- **H-063 (Vol Sell)**: **$9,973 (-0.27% MTM)**, PUT ITM by $2,194. $973 buffer to stop. 3.4d to expiry.
+- **H-076 (Efficiency)**: $9,980 (-0.20%) | **H-085 (Turnover)**: $9,980 (-0.20%)
+- **Paper trade age**: H-009/H-011/H-012: 15 days. H-019/H-021: 13 days. H-031/H-032/H-039: 12 days. H-044/H-046/H-049/H-052/H-053: 11 days. H-059/H-062: 9 days. H-063: 6 days. H-076/H-085: 5 days.
+- **H-063 status**: BTC $66,806, put strike $69,000 — PUT ITM by $2,194. Equity $9,973 (-0.27%). Stop at $9,000 (**$973 buffer**). 3.4 days to expiry (Apr 3 08:00). Premium $364, hedge PnL -$56, liability $308. Position manageable — theta decay helps.
+- **H-011 status**: IN, capital $9,865 (-1.35%). 44 settlements. Still losing to fees.
+- **H-052 status**: Dropped sharply from +0.94% to -3.74%. Premium contrarian signal taking a hit as BTC declines.
+- **H-053 status**: Positions EMPTY since session 110 repair. Capital $10,159 preserved. Will re-enter on Mar 30 bar (00:30 UTC Mar 31).
+- **Rebal status**: Mar 30 bar (00:30 UTC Mar 31): H-021, H-031 (fixed state), H-053 (re-entry), H-076. Mar 31 bar: H-012, H-062. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- **Research**: 148 hypotheses total. H-146 REJECTED (lead-lag spillover, 0%). H-147 REJECTED (vol skewness, signal but noisy). H-148 REJECTED (DD speed, 58% = noise).
+- **AUTOMATED:** Paper trades hourly via cron (18 runners, H-024 killed). Claude sessions every 4h. IV collector running.
+- **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- **System fixes**: Position-count guard added to ALL 13 multi-asset runners. Double-write log bug fixed. H-031 rebal state fixed.
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

@@ -29,7 +29,8 @@ RUNNERS = [
     ("H-012", ROOT / "paper_trades" / "h012_xsmom" / "runner.py"),
     ("H-019", ROOT / "paper_trades" / "h019_lowvol" / "runner.py"),
     ("H-021", ROOT / "paper_trades" / "h021_volmom" / "runner.py"),
-    ("H-024", ROOT / "paper_trades" / "h024_beta" / "runner.py"),
+    # H-024 KILLED session 114 (2026-03-31): H-019 won comparison +7.44% vs -0.20%
+    # ("H-024", ROOT / "paper_trades" / "h024_beta" / "runner.py"),
     ("H-031", ROOT / "paper_trades" / "h031_size" / "runner.py"),
     ("H-032", ROOT / "paper_trades" / "h032_pairs" / "runner.py"),
     ("H-039", ROOT / "paper_trades" / "h039_dow_seasonality" / "runner.py"),
@@ -51,10 +52,14 @@ LOG_FILE = ROOT / "logs" / "paper_trades.log"
 def log(msg: str):
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     line = f"[{timestamp}] {msg}"
-    print(line)
+    # Write to log file only (cron redirects stdout to same file, so print would double-write)
     LOG_FILE.parent.mkdir(exist_ok=True)
     with open(LOG_FILE, "a") as f:
         f.write(line + "\n")
+    # Print only when running interactively (not from cron)
+    import sys
+    if sys.stdout.isatty():
+        print(line)
 
 
 def run_single(name: str, runner_path: Path) -> dict:

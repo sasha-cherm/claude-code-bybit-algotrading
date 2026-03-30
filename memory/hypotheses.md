@@ -677,7 +677,7 @@
 - Sessions: [2026-03-18 research session 28]
 
 ## H-024: Low-Beta Anomaly (Cross-Sectional, 14 Assets)
-- Status: LIVE (paper trade since 2026-03-18) — **comparing against H-019**
+- Status: KILLED (2026-03-31, session 114) — H-019 won comparison +7.44% vs -0.20% (7.64% gap over 13 days)
 - Idea: Long low-beta assets (less sensitive to BTC), short high-beta assets. Rolling 60-day beta vs BTC as market proxy.
 - Instrument: futures (14 perps)
 - Timeframe: 1D (rebalance every 21 days)
@@ -2019,8 +2019,53 @@
 - Notes: The stable_long direction (the original hypothesis) fails IS criterion badly — only 29% of params show edge. The erratic_long direction (opposite) is the actual winner at 89% positive IS with Sharpe 1.549, suggesting that in crypto, HIGH volume variability assets outperform, not low-variability ones. The WF 6/6 for stable_long is impressive but the severe H1/H2 regime split (H1 mean -1.08, H2 mean +0.85) indicates the signal flipped direction mid-period. The erratic_long direction merits its own hypothesis (H-146) with a focused backtest to confirm robustness.
 - Sessions: [2026-03-30 session 112]
 
+## H-146: Lagged Cross-Asset Return Spillover Factor
+- Status: REJECTED
+- Idea: Some assets lead others. Use cross-asset lagged return correlations to predict which assets will outperform/underperform. Long predicted winners, short predicted losers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: For each asset, compute correlation of its return with the lagged equal-weighted market return (excluding self) over a lookback window. Use this "response beta" * yesterday's market return to predict today's relative performance. Parameter grid: LB∈[20,40,60], RF∈[3,5,10], N∈[3,4].
+- Result:
+  - **IS**: **0%** positive (0/18) — complete failure. Mean Sharpe **-0.842**. All params negative.
+  - Best: LB=20, RF=10, N=3: Sharpe -0.066. Worst: LB=40, RF=3, N=4: Sharpe -1.753.
+  - Data: 999 days, 14 assets.
+- Notes: Lead-lag effects at daily frequency in crypto are non-existent. All assets move together (high same-day correlation) with no usable lag structure. H-027 (lead-lag at 1h) was also rejected (1% positive). Lead-lag is not an exploitable signal in crypto at any timeframe.
+- Sessions: [2026-03-31 session 114]
+
+## H-147: Volume Profile Skewness (Up-Day vs Down-Day Volume Ratio)
+- Status: REJECTED
+- Idea: Compute ratio of average volume on up-days vs down-days. High ratio = buying pressure (accumulation). Long accumulated assets, short distributed.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: For each asset, compute avg(volume on up-days) / avg(volume on down-days) over lookback. Rank cross-sectionally. Long top-N (highest up/down volume ratio), short bottom-N. Parameter grid: LB∈[10,20,30,60], RF∈[3,5,10], N∈[3,4].
+- Result:
+  - **IS**: **83%** positive (20/24). Mean Sharpe 0.295. Best: LB=20, RF=5, N=3: Sharpe 0.964, +40.3% ann, 33.1% DD.
+  - **Walk-forward (best params)**: **4/6** positive, mean OOS Sharpe **0.604**. But fold 2 extreme (-4.253). High variance.
+  - **Split-half**: H1 Sharpe 1.612, H2 0.956 (consistent).
+  - **IS/OOS**: IS 1.013 → OOS 1.047 (ratio 1.03 — no overfitting).
+  - **Correlations**: H-012 (momentum) **0.330**, H-019 (low-vol) **-0.227**.
+  - Data: 1000 days, 14 assets, 24 combos.
+- Notes: Signal is real (IS/OOS ratio 1.03 is excellent) but noisy (WF fold 2 outlier at -4.25, high drawdown 33%). Moderate correlation with momentum (0.33) suggests it partially captures momentum through volume asymmetry. The consistent split-half and IS/OOS stability are notable. REJECTED due to noise, moderate momentum overlap, and high DD — doesn't add enough to portfolio.
+- Sessions: [2026-03-31 session 114]
+
+## H-148: Relative Drawdown Speed Factor
+- Status: REJECTED
+- Idea: Measure how quickly assets draw down vs recover. "Resilient" assets (fast recovery, slow drawdown) go long. "Fragile" assets go short. Behavioral factor.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: For each asset over lookback window, compute ratio of recovery speed (avg daily DD improvement on recovery days) to drawdown speed (avg daily DD worsening on drawdown days). Higher ratio = more resilient. Long top-N, short bottom-N. Parameter grid: LB∈[20,40,60,90], RF∈[3,5,10], N∈[3,4].
+- Result:
+  - **IS**: **58%** positive (14/24) — near random (50%). Mean Sharpe **0.082**.
+  - Best: LB=90, RF=5, N=4: Sharpe 1.028. Worst: LB=40, RF=5, N=3: Sharpe -0.959.
+  - Massive drawdowns across all params (40-79%).
+  - Data: 1000 days, 14 assets, 24 combos.
+- Notes: Resilience/fragility as measured by drawdown speed ratio has no cross-sectional signal. The 58% positive rate is essentially noise. Only LB=90 shows marginal edge (all 4 LB=90 combos are positive), suggesting a weak relationship between long-term resilience and future returns, but too weak and unstable to trade.
+- Sessions: [2026-03-31 session 114]
+
 ## Killed
-(none)
+
+### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
+- Reason: Comparison vs H-019 (low-vol) over 13 days: H-019 +7.44% vs H-024 -0.20% (7.64% gap). H-019 decisively won.
 
 ---
 

@@ -15,11 +15,11 @@
     "premium_collected": 364.1405091231581,
     "iv": 0.4894,
     "btc_at_entry": 71263.7,
-    "total_fees": 26.52038275150387,
-    "hedge_pnl": -18.380584343656178,
-    "last_btc_price": 67249.0
+    "total_fees": 27.463161517158532,
+    "hedge_pnl": -55.779222256579516,
+    "last_btc_price": 66806.1
   },
-  "hedge_position": 0.09037933943655392,
+  "hedge_position": 0.09988498157192731,
   "total_trades": 0,
   "total_pnl": 0,
   "equity_history": [
@@ -994,8 +994,62 @@
       "equity": 9976.2,
       "btc_price": 67249.0,
       "in_trade": true
+    },
+    {
+      "time": "2026-03-30T17:33:16.549845+00:00",
+      "equity": 9889.54,
+      "btc_price": 66780.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T18:37:44.714277+00:00",
+      "equity": 9890.66,
+      "btc_price": 66780.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T19:37:44.999040+00:00",
+      "equity": 9802.35,
+      "btc_price": 66341.1,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T20:34:45.292593+00:00",
+      "equity": 9845.69,
+      "btc_price": 66541.4,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T21:05:09.560799+00:00",
+      "equity": 9850.73,
+      "btc_price": 66563.3,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T21:07:35.577616+00:00",
+      "equity": 9852.35,
+      "btc_price": 66570.9,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T21:09:50.563694+00:00",
+      "equity": 9875.28,
+      "btc_price": 66682.1,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T21:12:06.336541+00:00",
+      "equity": 9877.45,
+      "btc_price": 66692.6,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-30T21:31:53.117783+00:00",
+      "equity": 9900.71,
+      "btc_price": 66806.1,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-03-30T17:05:58.502256+00:00",
-  "equity": 9976.2
+  "last_check": "2026-03-30T21:31:53.117783+00:00",
+  "equity": 9900.71
 }

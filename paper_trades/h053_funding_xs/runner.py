@@ -286,31 +286,36 @@ def run():
                     "direction": "LONG" if weight > 0 else "SHORT",
                 }
 
-            capital -= total_fees
-            state["capital"] = round(capital, 2)
-            state["positions"] = new_positions
-            state["last_rebal_date"] = latest_date
-            state["days_since_rebal"] = 0
-            state["rebal_count"] += 1
-            state["total_trades"] += trades_this_rebal
-            state["total_fees"] += total_fees
+            # Guard: don't commit rebalance if too few positions created
+            n_needed = CONFIG["n_long"] + CONFIG["n_short"]
+            if len(new_positions) < n_needed:
+                print(f"  WARNING: Only {len(new_positions)}/{n_needed} positions created, aborting rebalance")
+            else:
+                capital -= total_fees
+                state["capital"] = round(capital, 2)
+                state["positions"] = new_positions
+                state["last_rebal_date"] = latest_date
+                state["days_since_rebal"] = 0
+                state["rebal_count"] += 1
+                state["total_trades"] += trades_this_rebal
+                state["total_fees"] += total_fees
 
-            longs = [s for s, p in new_positions.items() if p["weight"] > 0]
-            shorts = [s for s, p in new_positions.items() if p["weight"] < 0]
+                longs = [s for s, p in new_positions.items() if p["weight"] > 0]
+                shorts = [s for s, p in new_positions.items() if p["weight"] < 0]
 
-            log.append({
-                "type": "rebalance",
-                "time": datetime.now(timezone.utc).isoformat(),
-                "date": latest_date,
-                "longs": longs,
-                "shorts": shorts,
-                "trades": trades_this_rebal,
-                "fees": round(total_fees, 2),
-                "capital": round(capital, 2),
-            })
+                log.append({
+                    "type": "rebalance",
+                    "time": datetime.now(timezone.utc).isoformat(),
+                    "date": latest_date,
+                    "longs": longs,
+                    "shorts": shorts,
+                    "trades": trades_this_rebal,
+                    "fees": round(total_fees, 2),
+                    "capital": round(capital, 2),
+                })
 
-            print(f"  LONG:  {', '.join(s.replace('/USDT','') for s in longs)}")
-            print(f"  SHORT: {', '.join(s.replace('/USDT','') for s in shorts)}")
+                print(f"  LONG:  {', '.join(s.replace('/USDT','') for s in longs)}")
+                print(f"  SHORT: {', '.join(s.replace('/USDT','') for s in shorts)}")
             print(f"  Trades: {trades_this_rebal}, Fees: ${total_fees:.2f}")
     else:
         print(f"No rebalance today (day {days_since}/{CONFIG['rebal_freq']})")

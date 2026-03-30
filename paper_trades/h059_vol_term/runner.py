@@ -245,27 +245,32 @@ def run():
                         "direction": "LONG" if w > 0 else "SHORT",
                     }
 
-            state["positions"] = new_pos
-            state["last_rebal_date"] = latest_date
-            state["rebal_count"] += 1
-            state["days_since_rebal"] = 0
+            # Guard: abort rebalance if too few positions created
+            n_min_positions = CONFIG["n_long"] + CONFIG["n_short"]
+            if len(new_pos) < n_min_positions:
+                print(f"  WARNING: Only {len(new_pos)}/{n_min_positions} positions created, aborting rebalance")
+            else:
+                state["positions"] = new_pos
+                state["last_rebal_date"] = latest_date
+                state["rebal_count"] += 1
+                state["days_since_rebal"] = 0
 
-            longs = [s.split("/")[0] for s, p in new_pos.items() if p["weight"] > 0]
-            shorts = [s.split("/")[0] for s, p in new_pos.items() if p["weight"] < 0]
-            print(f"  LONG (vol expanding): {', '.join(longs)}")
-            print(f"  SHORT (vol contracting): {', '.join(shorts)}")
-            print(f"  Trades: {n_trades}, Fees: ${total_fee:.2f}")
+                longs = [s.split("/")[0] for s, p in new_pos.items() if p["weight"] > 0]
+                shorts = [s.split("/")[0] for s, p in new_pos.items() if p["weight"] < 0]
+                print(f"  LONG (vol expanding): {', '.join(longs)}")
+                print(f"  SHORT (vol contracting): {', '.join(shorts)}")
+                print(f"  Trades: {n_trades}, Fees: ${total_fee:.2f}")
 
-            log.append({
-                "time": datetime.now(timezone.utc).isoformat(),
-                "event": "rebalance",
-                "date": latest_date,
-                "longs": longs,
-                "shorts": shorts,
-                "trades": n_trades,
-                "fees": total_fee,
-                "capital": state["capital"],
-            })
+                log.append({
+                    "time": datetime.now(timezone.utc).isoformat(),
+                    "event": "rebalance",
+                    "date": latest_date,
+                    "longs": longs,
+                    "shorts": shorts,
+                    "trades": n_trades,
+                    "fees": total_fee,
+                    "capital": state["capital"],
+                })
 
     # ── Mark-to-market ────────────────────────────────────────────
     equity = state["capital"]
