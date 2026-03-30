@@ -18,5 +18,24 @@
     "trades": 8,
     "fees": 20.0,
     "capital": 9980.0
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-03-30T06:10:01.009291+00:00",
+    "date": "2026-03-29",
+    "longs": [
+      "DOT/USDT"
+    ],
+    "shorts": [],
+    "trades": 0,
+    "fees": 0.0,
+    "capital": 9549.23
+  },
+  {
+    "type": "repair",
+    "time": "2026-03-30T09:10:00+00:00",
+    "reason": "Broken rebalance on Mar 29 due to API partial failure (2/14 assets loaded). Capital restored from 549 to 0159. Positions cleared for fresh rebalance.",
+    "capital_before": 9549.23,
+    "capital_after": 10158.89
   }
 ]

@@ -205,10 +205,22 @@ def run():
 
     print(f"LSR data: {len(lsr)} days, {len(lsr.columns)} assets")
 
+    # Guard: skip rebalance if too few LSR assets loaded (API partial failure)
+    if len(lsr.columns) < 7:
+        print(f"WARNING: Only {len(lsr.columns)} of 14 assets loaded (LSR), skipping rebalance (need >=7)")
+        save_state(state)
+        return state
+
     # Fetch price data
     print("Fetching price data...")
     closes = load_daily_prices()
-    print(f"Prices: {len(closes)} daily bars")
+    print(f"Prices: {len(closes.columns)} assets, {len(closes)} daily bars")
+
+    # Guard: skip rebalance if too few price assets loaded (API partial failure)
+    if len(closes.columns) < 7:
+        print(f"WARNING: Only {len(closes.columns)} of 14 assets loaded (prices), skipping rebalance (need >=7)")
+        save_state(state)
+        return state
 
     latest_date = str(closes.index[-1].date())
     slippage = CONFIG["slippage_bps"] / 10_000

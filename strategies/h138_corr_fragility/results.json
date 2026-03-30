@@ -1,0 +1,29 @@
+{
+  "hypothesis": "H-138",
+  "title": "Correlation Fragility Factor",
+  "period": "2024-03-11 to 2026-03-29",
+  "n_days": 749,
+  "n_assets": 14,
+  "n_combos": 384,
+  "pct_positive_sharpe": 0.526,
+  "mean_sharpe": 0.0896,
+  "best_sharpe": 1.56,
+  "best_params": "CLB30_FW30_R7_N3_frag",
+  "best_direction": "fragility",
+  "walk_forward": {
+    "n_folds": 4,
+    "positive_folds": 3,
+    "mean_oos_sharpe": 1.022,
+    "total_test_days": 360,
+    "total_test_trades": 119
+  },
+  "split_half": {
+    "spearman_corr": 0.022,
+    "both_positive_pct": 0.25,
+    "half1_mean_sharpe": 0.118,
+    "half2_mean_sharpe": 0.061,
+    "n_param_combos_tested": 108
+  },
+  "h012_correlation": 0.375,
+  "verdict": "REJECTED"
+}

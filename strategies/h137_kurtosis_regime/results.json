@@ -1,0 +1,28 @@
+{
+  "hypothesis": "H-137",
+  "title": "Kurtosis Regime Change Factor",
+  "period": "2024-03-11 to 2026-03-29",
+  "n_days": 749,
+  "n_assets": 14,
+  "n_combos": 360,
+  "pct_positive_sharpe": 0.5139,
+  "mean_sharpe": 0.0627,
+  "best_sharpe": 2.24,
+  "best_params": "LB60_DW5_R7_N5_cont",
+  "best_direction": "contrarian",
+  "walk_forward": {
+    "n_folds": 4,
+    "positive_folds": 1,
+    "mean_oos_sharpe": -1.136,
+    "total_test_days": 360,
+    "total_test_trades": 162
+  },
+  "split_half": {
+    "spearman_corr": 0.389,
+    "both_positive_pct": 0.361,
+    "half1_mean_sharpe": 0.092,
+    "half2_mean_sharpe": 0.02
+  },
+  "h012_correlation": 0.06,
+  "verdict": "REJECTED"
+}

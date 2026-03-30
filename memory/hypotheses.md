@@ -1923,6 +1923,36 @@
 - Notes: Good IS performance but OOS degrades too much (split-half ratio 0.22). Signal is essentially a smoothed version of momentum (corr 0.458 with H-012) — the "persistence" metric just captures recent trend with extra noise reduction. The 0.56 mean WF OOS is borderline but not novel enough to justify deployment given overlap with existing momentum strategies. Data: 748 days, 14 assets, 45 combos.
 - Sessions: [2026-03-29 session 109]
 
+## H-137: Kurtosis Regime Change Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by change in excess kurtosis between current and lagged windows. Long assets with calming distributions (falling kurtosis = entering trend), short rising kurtosis.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-14 days)
+- Logic: Compute rolling excess kurtosis over lookback window and a delta window. Rank by kurtosis change. Long/short top/bottom N.
+- Result: IS 51% positive (below 60% threshold). Mean Sharpe 0.063. Best Sharpe 2.240. Contrarian direction 94% positive (mean 0.867). WF **1/4** positive, mean OOS **-1.136**. Split-half Spearman 0.389. Corr H-012 0.060. Data: 749 days, 360 param combos, 162 OOS trades.
+- Notes: Classic overfitting — strong IS signal collapses OOS. Contrarian direction (short falling kurtosis) is the profitable one, suggesting high-kurtosis = trend, not mean-reversion. Genuinely uncorrelated with momentum but signal not robust.
+- Sessions: [2026-03-30 session 110]
+
+## H-138: Correlation Fragility Factor (14 Assets)
+- Status: REJECTED (borderline — closest to passing)
+- Idea: Measure instability of each asset's cross-correlations. Fragility = rolling std of mean absolute pairwise correlation. Long fragile-correlation assets (regime transition = opportunity), short stable.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-14 days)
+- Logic: Compute rolling correlation of each asset with all others, then measure rolling std of that correlation. Rank by fragility. Long top N, short bottom N.
+- Result: IS 53% positive (below 60%). Fragility direction alone: **90% positive**, mean Sharpe **0.652**. WF **3/4** positive, mean OOS **1.022**, +30.3% ann. Split-half Spearman **0.022** (weak). Corr H-012 **0.375**. Data: 749 days, 384 param combos, 119 OOS trades.
+- Notes: Best WF OOS of the batch. If evaluated on fragility direction alone, it passes IS filter (90%) and has strong OOS. But split-half stability is very weak (0.022). Moderate H-012 correlation (0.375). Could revisit with longer data history.
+- Sessions: [2026-03-30 session 110]
+
+## H-139: Volume-Clock Dislocation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Measure where volume clusters within a lookback window (volume centroid). Assets with accelerating volume (centroid shifted recent) may be experiencing institutional attention.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-14 days)
+- Logic: Compute weighted centroid of volume within lookback window. Rank by centroid position. Long accelerating-volume, short decelerating.
+- Result: IS 52% positive. Acceleration direction 98% positive (mean 0.882). WF **1/4** positive, mean OOS **-0.198**. Split-half Spearman **-0.363** (signal inverts). Corr H-012 **-0.074**. Data: 749 days, 240 param combos, 175 OOS trades.
+- Notes: Genuinely uncorrelated with momentum (-0.074). Strong IS acceleration signal but parameter landscape is unstable (negative split-half). Signal structure changes between time periods.
+- Sessions: [2026-03-30 session 110]
+
 ## Killed
 (none)
 

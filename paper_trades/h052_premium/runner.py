@@ -227,6 +227,12 @@ def run():
 
     print(f"Loaded {len(closes.columns)} assets, {len(closes)} daily bars")
 
+    # Guard: skip rebalance if too few assets loaded (API partial failure)
+    if len(closes.columns) < 7:
+        print(f"WARNING: Only {len(closes.columns)} of 14 assets loaded, skipping rebalance (need >=7)")
+        save_state(state)
+        return state
+
     print("Fetching premium index data...")
     premium = load_premium_data()
     print(f"Premium data: {len(premium)} days, {len(premium.columns)} assets")
