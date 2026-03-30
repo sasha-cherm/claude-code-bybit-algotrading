@@ -1983,6 +1983,42 @@
 - Notes: Complete failure. Range compression as a cross-sectional factor actively loses money. The "coiled spring" breakout intuition doesn't translate to cross-sectional alpha in crypto. Low H-012 correlation (near zero) confirms it's a genuinely different signal — just a bad one.
 - Sessions: [2026-03-30 session 111]
 
+## H-143: Short-Term Reversal Factor (Cross-Sectional)
+- Status: REJECTED
+- Idea: At short horizons (1-5 days), crypto assets may exhibit cross-sectional mean-reversion. Long worst performers of past L days, short best performers. Classic "short-term reversal" anomaly from equities.
+- Instrument: futures (14 perps: BTC/ETH/SOL/XRP/DOGE/ADA/AVAX/DOT/LINK/ATOM/NEAR/OP/ARB/SUI)
+- Timeframe: 1D (rebalance 1-5 days)
+- Logic: Compute L-day return. Reversal: rank descending by negative return (long losers, short winners). Momentum comparison also run. Equal-weight top/bottom N.
+- Result: **IS 22% positive** (mean Sharpe -0.46, best L3_R3_N4 Sharpe 1.35 @ 62.6% ann, 23.8% DD). **WF 3/6 folds positive**, mean OOS Sharpe **-0.724** (badly negative). **Split-half rank corr -0.077** (negative — no stability). H-012 corr **-0.047** (decorrelated). Data: 749 days (2024-03-11 to 2026-03-29), 72 reversal + 72 momentum combos.
+- Notes: Failed all criteria except H-012 correlation. Only 22% of reversal params positive IS (need ≥80%). WF strongly negative (folds 4-6 all deeply negative: -1.99, -0.57, -4.04 Sharpe). Split-half corr negative — signal is not stable across time periods. Fee sensitivity poor: profitable only at 1x fees, breaks at 2x. Best IS param (L3_R3_N4 Sharpe 1.35) is cherry-picked — the regime breaks badly in 2025 H2. The short-term reversal anomaly that works in equities does not robustly transfer to crypto in this 2yr window. Momentum direction also failed WF with 3/6 folds positive. Supersedes H-077 (narrower grid, similar conclusion).
+- Sessions: [2026-03-30 session 112]
+
+## H-144: Idiosyncratic Volatility Factor (BTC-Residual, 14 Assets)
+- Status: CONFIRMED
+- Idea: Rank assets by residual volatility after removing BTC systematic exposure. Long low idio-vol (institutional quality), short high idio-vol (speculative). Distinct from H-019 (total vol) by controlling for BTC beta.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-14 days)
+- Logic: Rolling OLS of each asset vs BTC returns → compute std(residuals) → cross-sectional rank. Long bottom-N (lowest idio-vol), short top-N (highest idio-vol). Dollar-neutral.
+- Result: IS **92%** positive (55/60 params, mean 0.46, median 0.54). Best L20_R14_N4: Sharpe **1.15**, Ann **+45%**, DD **52%**. WF **6/6 folds positive**, combined Sharpe **1.99**, combined Ann **+68%**, DD **12.6%**. Split-half corr **+0.015** (passes). H-012 corr **0.010** (near zero — excellent diversifier). H-019 corr **0.72** (highly correlated with total vol factor). Data: 14 assets, 749 days (2024-03-11 to 2026-03-29). Criteria: 4/4 PASS.
+- Notes: Strong signal — all 6 WF folds positive. Key concern: r=0.72 with H-019 means it overlaps with total-vol factor substantially. First half underperforms (mean Sharpe -0.84 for first half vs +1.66 second half) — possible regime shift in 2025 when idio-vol differentiation became more relevant. Best params: short lookback L20 and infrequent rebal R14. Should not be deployed alongside H-019 without portfolio-level analysis — they are nearly substitutes. Candidate to replace H-019 if it shows better OOS in paper trading.
+- Sessions: [2026-03-30 backtest]
+
+## H-145: Dollar-Volume Stability Factor (Cross-Sectional)
+- Status: REJECTED
+- Idea: Rank crypto assets by coefficient of variation (CV = std/mean) of daily dollar volume over a rolling window. Low CV = stable institutional volume. Long low-CV (stable), short high-CV (erratic) — "stable_long" direction.
+- Instrument: futures (14 perps: BTC/ETH/SOL/XRP/DOGE/ADA/AVAX/DOT/LINK/ATOM/NEAR/OP/ARB/SUI)
+- Timeframe: 1D (rebalance 3-14 days)
+- Logic: Compute daily dollar volume = close * volume. Rolling CV over lookback L. Long bottom-N (lowest CV = stable), short top-N (highest CV = erratic). Parameter grid: L∈[10,20,30,40,60], R∈[3,5,7,10,14], N∈[3,4,5]. Both directions tested.
+- Result:
+  - **stable_long IS**: Only **29%** positive (22/75) — FAILS ≥80% criterion. Mean Sharpe -0.238. Best: L10_R5_N3 Sharpe 0.931, +34.1% ann, 55.5% DD.
+  - **erratic_long IS**: **89%** positive (67/75). Mean Sharpe 0.481. Best: L20_R7_N4 Sharpe 1.549, +66.3% ann, 33.4% DD.
+  - **Walk-forward (stable_long best params)**: **6/6** folds positive. Mean OOS Sharpe **1.571**, Mean OOS Ann +67.9%.
+  - **Split-half (stable_long)**: Sharpe rank correlation **0.176** (positive, passes). H1 mean -1.082, H2 mean +0.847 — severe regime split.
+  - **Correlations**: H-012 **-0.038** (excellent), H-031 **-0.190** (excellent).
+  - Data: 749 days (2024-03-11 to 2026-03-29), 150 total combos. Criteria: 3/4 pass (FAILS IS 80%).
+- Notes: The stable_long direction (the original hypothesis) fails IS criterion badly — only 29% of params show edge. The erratic_long direction (opposite) is the actual winner at 89% positive IS with Sharpe 1.549, suggesting that in crypto, HIGH volume variability assets outperform, not low-variability ones. The WF 6/6 for stable_long is impressive but the severe H1/H2 regime split (H1 mean -1.08, H2 mean +0.85) indicates the signal flipped direction mid-period. The erratic_long direction merits its own hypothesis (H-146) with a focused backtest to confirm robustness.
+- Sessions: [2026-03-30 session 112]
+
 ## Killed
 (none)
 

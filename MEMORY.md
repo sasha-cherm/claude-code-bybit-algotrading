@@ -22,15 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 101) archived to `memory/session_archive.md`._
-
-### Session 2026-03-28 review+research (session 102)
-- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC $66,401 recovering), H-063 vol selling, H-113/H-114/H-115 backtests
-- Done: 19/19 runners OK. **Demo**: $101,338 (+1.34%, down from +1.80%). BTC $66,401 (-2.2% 24h). **8/19 positive**, 3 flat, 8 negative. Top: H-031(+4.67%), H-039(+4.35%), H-049(+3.00%), H-062(+2.15%), H-012(+2.04%). **H-063 improving**: $9,724 (-2.76%, up from -3.01%), $724 to stop, 5.8d to expiry. **H-019 vs H-024**: gap 1.64% (narrowed from 1.83%). **H-113 REJECTED** (funding-adj momentum, 100% IS positive but corr **0.995** with H-012 — funding adjustment is negligible in crypto). **H-114 REJECTED** (G/L ratio, 90% IS positive but split-half H2 **-0.535** — regime-dependent). **H-115 REJECTED** (autocorrelation, only 63% IS positive, WF **0/5** OOS -0.591 — no signal).
-- Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: none (session 102)
+_Older sessions (bootstrap through 102) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -103,3 +95,19 @@ _Older sessions (bootstrap through 101) archived to `memory/session_archive.md`.
 - Next: Mar 30 bar: H-021/H-031/H-053/H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 111)
+
+### Session 2026-03-30 backtest (session 112)
+- Goal: Backtest — H-143 Short-Term Reversal Factor (cross-sectional, 1-10d lookback)
+- Focus: H-143 — 14 assets, 144 param combos (reversal + momentum directions), expanding WF, split-half, H-012 correlation
+- Done: **H-143 REJECTED**. IS 22% positive (need ≥80%). WF 3/6 folds positive (folds 4-6: Sharpe -1.99/-0.57/-4.04). Split-half rank corr -0.077 (negative — no stability). H-012 corr -0.047 (decorrelated, only passing criterion). Best IS: REV_L3_R3_N4 Sharpe 1.349, Ann 62.6%, DD 23.8% — but it's a regime artifact; breaks badly 2025 H2. Fee sensitivity poor (breaks at 2x fees). Short-term reversal anomaly doesn't robustly transfer from equities to crypto. Results: `strategies/h143_reversal/results.json`.
+- Next: Continue research pipeline — H-144+. Consider testing alternative mean-reversion signals (e.g., RSI-based, Bollinger deviation, vs price-to-moving-average).
+- Questions added: none
+- Self-modifications: none (session 112)
+
+### Session 2026-03-30 backtest (session 113)
+- Goal: Backtest — H-144 Idiosyncratic Volatility Factor (BTC-residual, 14 assets)
+- Focus: H-144 — rolling OLS residual vol, 60 param combos, 6-fold expanding WF, split-half, H-012/H-019 correlations
+- Done: **H-144 CONFIRMED (4/4 criteria)**. IS **92%** positive (55/60). Best L20_R14_N4: Sharpe **1.15**, Ann **+45%**, DD 52%. WF **6/6 folds positive**, combined Sharpe **1.99**, Ann **+68%**, DD 12.6%. Split-half corr **+0.015** (barely positive). H-012 corr **0.010** (near zero — excellent diversifier). H-019 corr **0.72** (highly correlated with total vol). Concern: first half mean Sharpe -0.84 vs second half +1.66 — regime-dependent. High H-019 overlap means likely redundant with H-024 (beta). Results: `strategies/h144_idiovol/results.json`.
+- Next: Analyze whether H-144 adds portfolio value beyond H-019/H-024. Research H-145+.
+- Questions added: none
+- Self-modifications: none (session 113)
