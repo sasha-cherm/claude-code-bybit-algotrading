@@ -1,3 +1,13 @@
+# Session Archive (Sessions bootstrap through 104)
+
+### Session 2026-03-28 review+research (session 103)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: H-116/H-117/H-118 backtests. H-116 CONDITIONAL (Hurst exponent). H-117 REJECTED (info ratio). H-118 REJECTED (OBV trend).
+
+### Session 2026-03-28 review+research (session 104)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: H-119/H-120/H-121 backtests. H-119 REJECTED (Amihud). H-120 REJECTED (relative volume spike). H-121 CONDITIONAL (VWAP deviation).
+
 # Session Archive (Sessions bootstrap through 92)
 
 ### Session 2026-03-26 review+research (session 92)
@@ -809,3 +819,10 @@
 - Next: Mar 29: H-031/H-046/H-049/H-052/H-053/H-059 rebal. Mar 30: H-076. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 102)
+
+### Session 2026-03-28 review+research (session 103)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,417 stable), H-063 vol selling recovery, H-116/H-117/H-118 backtests
+- Done: 19/19 runners OK. Demo: $101,586 (+1.59%). BTC $66,417. 8/19 positive. H-063 $9,742 (-2.58%). H-116 CONDITIONAL (Hurst exponent, WF 4/5, corr 0.238). H-117 REJECTED (info ratio, corr 0.491 with H-012). H-118 REJECTED (OBV trend, split-half -0.509).
+- Questions added: none
+- Self-modifications: none (session 103)
