@@ -1,0 +1,174 @@
+{
+  "hypothesis": "H-141",
+  "name": "Overnight Gap Reversion Factor",
+  "status": "REJECTED",
+  "universe": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "SUI",
+    "XRP",
+    "DOGE",
+    "AVAX",
+    "LINK",
+    "ADA",
+    "DOT",
+    "NEAR",
+    "OP",
+    "ARB",
+    "ATOM"
+  ],
+  "n_assets": 14,
+  "n_days": 749,
+  "date_range": "2024-03-11 to 2026-03-29",
+  "n_params": 48,
+  "test_1_is_positive_pct": 25.0,
+  "test_1_pass": false,
+  "test_2_wf_oos_positive_folds": 2,
+  "test_2_wf_total_folds": 6,
+  "test_2_wf_mean_oos_sharpe": 0.23,
+  "test_2_pass": false,
+  "test_3_split_half_h1": 0.15,
+  "test_3_split_half_h2": -0.433,
+  "test_3_pass": false,
+  "test_4_h012_corr": -0.143,
+  "test_4_pass": true,
+  "best_params": {
+    "lookback": 10,
+    "atr_period": 20,
+    "rebal": 3,
+    "n_positions": 4
+  },
+  "best_sharpe": 0.313,
+  "best_annual_return": 0.0475,
+  "best_max_dd": 0.5643,
+  "mean_sharpe_all_params": -0.233,
+  "median_sharpe_all_params": -0.204,
+  "turnover_avg_changes_per_rebal": 3.14,
+  "param_scan": [
+    {
+      "lookback": 10,
+      "atr_period": 20,
+      "rebal": 3,
+      "n": 4,
+      "sharpe": 0.313,
+      "annual_return": 0.0475,
+      "max_dd": 0.5643
+    },
+    {
+      "lookback": 20,
+      "atr_period": 14,
+      "rebal": 5,
+      "n": 4,
+      "sharpe": 0.28,
+      "annual_return": 0.0344,
+      "max_dd": 0.4773
+    },
+    {
+      "lookback": 20,
+      "atr_period": 20,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": 0.23,
+      "annual_return": 0.0032,
+      "max_dd": 0.5948
+    },
+    {
+      "lookback": 10,
+      "atr_period": 14,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": 0.194,
+      "annual_return": -0.0113,
+      "max_dd": 0.5808
+    },
+    {
+      "lookback": 10,
+      "atr_period": 14,
+      "rebal": 3,
+      "n": 4,
+      "sharpe": 0.187,
+      "annual_return": -0.0038,
+      "max_dd": 0.5403
+    },
+    {
+      "lookback": 20,
+      "atr_period": 20,
+      "rebal": 5,
+      "n": 3,
+      "sharpe": 0.184,
+      "annual_return": -0.0192,
+      "max_dd": 0.5994
+    },
+    {
+      "lookback": 5,
+      "atr_period": 14,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": 0.151,
+      "annual_return": -0.0244,
+      "max_dd": 0.5026
+    },
+    {
+      "lookback": 5,
+      "atr_period": 14,
+      "rebal": 7,
+      "n": 3,
+      "sharpe": 0.14,
+      "annual_return": -0.0379,
+      "max_dd": 0.4947
+    },
+    {
+      "lookback": 10,
+      "atr_period": 14,
+      "rebal": 7,
+      "n": 4,
+      "sharpe": 0.057,
+      "annual_return": -0.0473,
+      "max_dd": 0.4647
+    },
+    {
+      "lookback": 5,
+      "atr_period": 20,
+      "rebal": 3,
+      "n": 3,
+      "sharpe": 0.054,
+      "annual_return": -0.0687,
+      "max_dd": 0.5286
+    }
+  ],
+  "walk_forward": {
+    "folds": [
+      {
+        "fold": 1,
+        "is_sharpe": 3.233,
+        "oos_sharpe": -1.157
+      },
+      {
+        "fold": 2,
+        "is_sharpe": -0.492,
+        "oos_sharpe": -3.192
+      },
+      {
+        "fold": 3,
+        "is_sharpe": -2.455,
+        "oos_sharpe": 6.514
+      },
+      {
+        "fold": 4,
+        "is_sharpe": 3.471,
+        "oos_sharpe": 3.219
+      },
+      {
+        "fold": 5,
+        "is_sharpe": 4.551,
+        "oos_sharpe": -2.153
+      },
+      {
+        "fold": 6,
+        "is_sharpe": -0.798,
+        "oos_sharpe": -1.849
+      }
+    ]
+  }
+}

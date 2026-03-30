@@ -1953,6 +1953,36 @@
 - Notes: Genuinely uncorrelated with momentum (-0.074). Strong IS acceleration signal but parameter landscape is unstable (negative split-half). Signal structure changes between time periods.
 - Sessions: [2026-03-30 session 110]
 
+## H-140: Realized Skewness Factor (Contrarian, 14 Assets)
+- Status: REJECTED
+- Idea: Assets with high positive realized skewness attract lottery-seeking traders and underperform. Short high-skew, long low-skew (contrarian).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute realized skewness of daily returns over lookback window. Rank. Long bottom N (lowest skew), short top N (highest skew).
+- Result: IS **11%** positive (far below 80%). Best Sharpe 0.31, mean -0.48. WF **2/6** positive, mean OOS 0.313. Split-half: H1 **-1.273**, H2 0.865 (unstable). Corr H-012 **-0.34** (good). Data: 749 days, 36 param combos.
+- Notes: Realized skewness as a cross-sectional factor simply doesn't work in crypto. First half is strongly negative. Only redeeming quality is negative correlation with H-012.
+- Sessions: [2026-03-30 session 111]
+
+## H-141: Overnight Gap Reversion Factor (14 Assets)
+- Status: REJECTED
+- Idea: Assets that gap between previous close and current open tend to revert. Long assets with negative gaps, short assets with positive gaps.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling average signed gap ratio = (open_t - close_{t-1}) / ATR. Rank. Long bottom N (biggest neg gaps), short top N (biggest pos gaps).
+- Result: IS **100%** positive (best Sharpe 1.92, mean 1.81). WF **6/6** positive, mean OOS **1.872**. Split-half: H1=2.16, H2=1.60 (both strong). Corr H-012 **0.44** (FAILS >0.40 threshold). Data: 749 days, 48 param combos.
+- Notes: Outstanding IS/OOS performance, BUT: (1) H-012 corr 0.44 marginally fails threshold, (2) in 24/7 crypto, daily bars have open==prev_close so "gap" is zero — signal may be degenerate/capturing momentum, explaining the correlation. All params have identical max_dd (0.39) regardless of rebal period, confirming signal degeneracy.
+- Sessions: [2026-03-30 session 111]
+
+## H-142: Intraday Range Compression Factor (14 Assets)
+- Status: REJECTED
+- Idea: Assets whose intraday range (H-L)/C is compressing relative to history are "coiling" for a breakout. Long compressed, short expanded.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute ratio of short-term avg range / long-term avg range. Rank. Long bottom N (most compressed), short top N (most expanded).
+- Result: IS **0%** positive (mean Sharpe -0.81, best -0.02). WF **3/6** positive, mean OOS **-0.235**. Split-half: only 1.4% of params positive in both halves. Corr H-012 **-0.04** (excellent). Data: 749 days, 72 param combos.
+- Notes: Complete failure. Range compression as a cross-sectional factor actively loses money. The "coiled spring" breakout intuition doesn't translate to cross-sectional alpha in crypto. Low H-012 correlation (near zero) confirms it's a genuinely different signal — just a bad one.
+- Sessions: [2026-03-30 session 111]
+
 ## Killed
 (none)
 

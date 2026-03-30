@@ -1,0 +1,178 @@
+{
+  "hypothesis": "H-140",
+  "title": "Realized Skewness Factor (Contrarian)",
+  "verdict": "REJECTED",
+  "tests_passed": "1/4",
+  "date_run": "2026-03-30",
+  "data_period": {
+    "start": "2024-03-11",
+    "end": "2026-03-29",
+    "days": 749,
+    "years": 2.05,
+    "assets": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "SOL/USDT",
+      "SUI/USDT",
+      "XRP/USDT",
+      "DOGE/USDT",
+      "AVAX/USDT",
+      "LINK/USDT",
+      "ADA/USDT",
+      "DOT/USDT",
+      "NEAR/USDT",
+      "OP/USDT",
+      "ARB/USDT",
+      "ATOM/USDT"
+    ],
+    "n_assets": 14
+  },
+  "in_sample": {
+    "n_combos": 36,
+    "positive_pct": 0.1111,
+    "mean_sharpe": -0.4771,
+    "median_sharpe": -0.2591,
+    "best_sharpe": 0.31,
+    "best_params": "LB30_R5_N3",
+    "best_annual_ret": 0.0413,
+    "best_max_dd": 0.5831,
+    "best_win_rate": 0.4799
+  },
+  "walk_forward": {
+    "n_folds": 6,
+    "positive_folds": 2,
+    "mean_oos_sharpe": 0.313,
+    "mean_oos_ann_ret": 0.0775,
+    "mean_oos_max_dd": 0.1368,
+    "total_oos_days": 540,
+    "fold_details": [
+      {
+        "fold": 1,
+        "oos_start": "2025-12-30",
+        "oos_end": "2026-03-29",
+        "is_days": 120,
+        "oos_days": 90,
+        "is_best_params": "LB20_R3_N4",
+        "is_sharpe": 2.341,
+        "oos_sharpe": -0.7126,
+        "oos_ann_ret": -0.2653,
+        "oos_max_dd": 0.2216,
+        "oos_win_rate": 0.3483,
+        "oos_trades": 93
+      },
+      {
+        "fold": 2,
+        "oos_start": "2025-10-01",
+        "oos_end": "2025-12-29",
+        "is_days": 120,
+        "oos_days": 90,
+        "is_best_params": "LB30_R7_N5",
+        "is_sharpe": 2.616,
+        "oos_sharpe": 3.8314,
+        "oos_ann_ret": 1.1487,
+        "oos_max_dd": 0.04,
+        "oos_win_rate": 0.3708,
+        "oos_trades": 52
+      },
+      {
+        "fold": 3,
+        "oos_start": "2025-07-03",
+        "oos_end": "2025-09-30",
+        "is_days": 120,
+        "oos_days": 90,
+        "is_best_params": "LB40_R5_N5",
+        "is_sharpe": 1.609,
+        "oos_sharpe": -0.7127,
+        "oos_ann_ret": -0.1215,
+        "oos_max_dd": 0.0796,
+        "oos_win_rate": 0.2697,
+        "oos_trades": 36
+      },
+      {
+        "fold": 4,
+        "oos_start": "2025-04-04",
+        "oos_end": "2025-07-02",
+        "is_days": 120,
+        "oos_days": 90,
+        "is_best_params": "LB40_R3_N3",
+        "is_sharpe": 2.746,
+        "oos_sharpe": 1.0859,
+        "oos_ann_ret": 0.3155,
+        "oos_max_dd": 0.0587,
+        "oos_win_rate": 0.2697,
+        "oos_trades": 40
+      },
+      {
+        "fold": 5,
+        "oos_start": "2025-01-04",
+        "oos_end": "2025-04-03",
+        "is_days": 120,
+        "oos_days": 90,
+        "is_best_params": "LB20_R3_N5",
+        "is_sharpe": -0.461,
+        "oos_sharpe": -1.1745,
+        "oos_ann_ret": -0.3623,
+        "oos_max_dd": 0.1926,
+        "oos_win_rate": 0.4157,
+        "oos_trades": 82
+      },
+      {
+        "fold": 6,
+        "oos_start": "2024-10-06",
+        "oos_end": "2025-01-03",
+        "is_days": 120,
+        "oos_days": 90,
+        "is_best_params": "LB20_R5_N5",
+        "is_sharpe": -0.256,
+        "oos_sharpe": -0.4366,
+        "oos_ann_ret": -0.2498,
+        "oos_max_dd": 0.2281,
+        "oos_win_rate": 0.3258,
+        "oos_trades": 81
+      }
+    ]
+  },
+  "split_half": {
+    "pearson_corr": 0.082,
+    "spearman_corr": 0.251,
+    "both_positive_count": 1,
+    "both_positive_pct": 0.028,
+    "half1_mean_sharpe": -1.273,
+    "half2_mean_sharpe": 0.865
+  },
+  "h012_correlation": {
+    "corr_h012": -0.3405,
+    "aligned_days": 748,
+    "h012_sharpe": 1.3899,
+    "h012_annual_ret": 0.6677
+  },
+  "validation_tests": {
+    "test1_param_robustness": {
+      "pass": false,
+      "positive_pct": 0.1111,
+      "threshold": 0.8
+    },
+    "test2_walk_forward": {
+      "pass": false,
+      "positive_folds": 2,
+      "mean_oos_sharpe": 0.313,
+      "threshold_folds": 4,
+      "threshold_sharpe": 0.5
+    },
+    "test3_split_half": {
+      "pass": false,
+      "half1_mean_sharpe": -1.273,
+      "half2_mean_sharpe": 0.865
+    },
+    "test4_h012_corr": {
+      "pass": true,
+      "correlation": -0.3405,
+      "threshold": 0.4
+    }
+  },
+  "rejection_reasons": [
+    "Param robustness 11% < 80%",
+    "WF: 2/6 positive folds, mean OOS Sharpe 0.313",
+    "Split-half: H1=-1.273, H2=0.865"
+  ]
+}

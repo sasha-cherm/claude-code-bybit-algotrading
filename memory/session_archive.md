@@ -794,3 +794,10 @@
 - Done: 19/19 runners OK. Demo: $101,390 (+1.39%). BTC $66,372. 9/19 positive. H-063 $9,716 (-2.84%). H-107/H-108/H-109 all REJECTED.
 - Next: Mar 29 rebalances. Mar 31: Kill H-024.
 - Self-modifications: none (session 100)
+
+### Session 2026-03-28 review+research (session 101)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,224), H-063 vol selling, H-110/H-111/H-112 backtests
+- Done: 19/19 runners OK. Demo: $101,796 (+1.80%). 8/19 positive. H-063 $9,699 (-3.01%). H-110/H-111/H-112 all REJECTED.
+- Next: Mar 29 rebalances. Mar 31: Kill H-024.
+- Self-modifications: none (session 101)

@@ -1,0 +1,119 @@
+{
+  "hypothesis": "H-142",
+  "title": "Intraday Range Compression Factor",
+  "period": "2024-03-11 to 2026-03-29",
+  "n_days": 749,
+  "n_assets": 14,
+  "n_combos": 72,
+  "test1_is_robustness": {
+    "pct_positive_sharpe": 0.0,
+    "mean_sharpe": -0.8141,
+    "best_sharpe": -0.024,
+    "best_params": "SW5_LW60_R7_N3",
+    "best_annual_ret": -0.1083,
+    "best_max_dd": 0.5915,
+    "pass": false
+  },
+  "test2_walk_forward": {
+    "n_folds": 6,
+    "positive_folds": 3,
+    "mean_oos_sharpe": -0.235,
+    "mean_oos_annual_ret": 0.0691,
+    "total_test_days": 540,
+    "fold_details": [
+      {
+        "fold": 1,
+        "start": "2025-12-30",
+        "end": "2026-03-29",
+        "n_days": 90,
+        "is_sharpe": 0.528,
+        "is_params": "SW5_LW60_R5_N4",
+        "sharpe": -0.398,
+        "annual_ret": -0.0609,
+        "max_dd": 0.0564,
+        "win_rate": 0.1685,
+        "n_trades": 53
+      },
+      {
+        "fold": 2,
+        "start": "2025-10-01",
+        "end": "2025-12-29",
+        "n_days": 90,
+        "is_sharpe": 1.356,
+        "is_params": "SW7_LW20_R5_N3",
+        "sharpe": -4.172,
+        "annual_ret": -0.7258,
+        "max_dd": 0.3236,
+        "win_rate": 0.2697,
+        "n_trades": 76
+      },
+      {
+        "fold": 3,
+        "start": "2025-07-03",
+        "end": "2025-09-30",
+        "n_days": 90,
+        "is_sharpe": 2.088,
+        "is_params": "SW5_LW60_R3_N4",
+        "sharpe": -0.301,
+        "annual_ret": -0.0609,
+        "max_dd": 0.115,
+        "win_rate": 0.2247,
+        "n_trades": 61
+      },
+      {
+        "fold": 4,
+        "start": "2025-04-04",
+        "end": "2025-07-02",
+        "n_days": 90,
+        "is_sharpe": 3.045,
+        "is_params": "SW7_LW20_R5_N3",
+        "sharpe": 0.007,
+        "annual_ret": -0.0497,
+        "max_dd": 0.1209,
+        "win_rate": 0.3596,
+        "n_trades": 89
+      },
+      {
+        "fold": 5,
+        "start": "2025-01-04",
+        "end": "2025-04-03",
+        "n_days": 90,
+        "is_sharpe": -1.168,
+        "is_params": "SW10_LW20_R7_N3",
+        "sharpe": 1.908,
+        "annual_ret": 0.7578,
+        "max_dd": 0.1094,
+        "win_rate": 0.427,
+        "n_trades": 79
+      },
+      {
+        "fold": 6,
+        "start": "2024-10-06",
+        "end": "2025-01-03",
+        "n_days": 90,
+        "is_sharpe": 3.805,
+        "is_params": "SW5_LW60_R3_N3",
+        "sharpe": 1.547,
+        "annual_ret": 0.5543,
+        "max_dd": 0.1568,
+        "win_rate": 0.191,
+        "n_trades": 40
+      }
+    ],
+    "pass": false
+  },
+  "test3_split_half": {
+    "spearman_corr": 0.055,
+    "both_positive_pct": 0.014,
+    "half1_mean_sharpe": -1.362,
+    "half2_mean_sharpe": -0.59,
+    "half1_pct_positive": 0.014,
+    "half2_pct_positive": 0.167,
+    "pass": false
+  },
+  "test4_h012_correlation": {
+    "correlation": -0.041,
+    "pass": true
+  },
+  "verdict": "REJECTED"
+}
