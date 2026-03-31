@@ -2159,6 +2159,39 @@
 - Notes: Most promising of the three — 91.7% IS, excellent negative correlation with momentum (-0.216), and H2 still positive (0.212). But WF only 3/6 (need 4/6) and folds 5&6 are negative, suggesting signal is dying in recent data. The correlation centrality captures something real — peripheral assets outperform central ones — but the effect is weakening as crypto markets mature and correlations become more homogeneous. Close to CONDITIONAL but recent negative folds disqualify. 2/4 criteria met.
 - Sessions: [2026-03-31 session 116]
 
+## H-155: Amihud Illiquidity Factor (Cross-Sectional)
+- Status: REJECTED
+- Idea: Rank assets by Amihud illiquidity (mean |return| / dollar_volume). Classic equity factor — illiquidity premium.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute rolling Amihud illiquidity. Best direction: liquid_long (long most liquid, short illiquid).
+- Data: 14 assets, ~1063 daily bars (~2.9yr). 48 param configs (4 windows × 4 rebal × 3 N).
+- Result: IS 48/48 positive (100%), mean Sharpe 0.823. WF **6/6** positive, mean OOS 1.250. BUT split-half H1=-0.123, H2=1.603 (regime-dependent). **Corr 0.799 with H-031** (size factor) — near-duplicate signal. H-019 corr 0.477.
+- Notes: Amihud illiquidity in crypto ≈ inverse of dollar volume ≈ size factor. Strong OOS but essentially redundant with H-031 which already captures this. Split-half failure confirms recent-regime dependence.
+- Sessions: [2026-03-31 session 117]
+
+## H-156: Funding Rate Volatility Factor (Cross-Sectional)
+- Status: REJECTED
+- Idea: Rank assets by rolling std of daily mean funding rates. Stable funding → predictable carry. Volatile funding → speculative churn.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute rolling std of funding rates. Best direction: stable_long (long stable-funding, short volatile-funding).
+- Data: 14 assets, ~1064 daily bars, ~3190 funding records per asset. 48 param configs.
+- Result: IS 43/48 positive (89.6%), mean Sharpe 0.658. WF 4/6 positive, mean OOS 0.476. Split-half **H1=1.712, H2=-0.075** — signal died in recent half. Excellent corr: H-012 0.013, H-053 -0.013 (genuinely novel signal source).
+- Notes: Signal worked beautifully in H1 (Jul 2023 – Nov 2024) but died in H2. Regime-dependent. If the signal revives, this could be valuable (unique, zero corr with everything). Worth revisiting in 6 months.
+- Sessions: [2026-03-31 session 117]
+
+## H-157: Intraday Range Ratio Factor (Cross-Sectional)
+- Status: REJECTED
+- Idea: Rank assets by ratio of intraday range (high-low) to net movement (|close-open|). High ratio = noisy/reversal-prone. Low ratio = clean directional moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute rolling mean of (high-low) / |close-open|. Best direction: noisy_long (long noisy, short clean). Also tested clean_long (0/48 positive).
+- Data: 14 assets, ~1063 daily bars. 48 param configs.
+- Result: noisy_long IS 44/48 positive (91.7%), mean Sharpe 0.269. WF **3/6** positive, mean OOS **-0.289**. Split-half H1=-0.086, H2=-0.109 — both halves negative. Excellent corr: H-012 -0.006, H-076 -0.028 (genuinely uncorrelated).
+- Notes: IS signal exists but completely fails OOS. Both split halves negative confirms signal is noise/overfitting. Low correlation is irrelevant if there's no actual signal.
+- Sessions: [2026-03-31 session 117]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
