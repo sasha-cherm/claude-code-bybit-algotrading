@@ -2110,6 +2110,55 @@
 - Notes: Novel factor (low corr with all references) passes IS at 68.1% and correlation criterion, but fails WF and split-half. Strong H1/H2 regime asymmetry. Raw interaction (OI_pct × funding) is even worse at 30.6% IS positive. 2/4 criteria passed.
 - Sessions: [2026-03-31 session 115]
 
+## H-152: Return Entropy Factor (14 Assets)
+- Status: REJECTED
+- Idea: Shannon entropy of daily return distribution over rolling window. Low entropy = concentrated/patterned (trending), high entropy = uniformly distributed (random). Long low-entropy, short high-entropy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: Bin daily returns into 10 equal-width bins over rolling window. Compute Shannon entropy = -sum(p*log2(p)). Rank cross-sectionally. Low entropy → long (more predictable), high entropy → short (random). Grid: window∈[14,20,30,60], rebal∈[3,5,7,10], N∈[3,4,5] = 48 combos.
+- Result:
+  - **IS**: 54.2% positive (26/48). Mean Sharpe **0.026** — noise level.
+  - **Walk-forward**: **3/6** positive, mean OOS **0.408** — decent OOS but weak IS.
+  - **Split-half**: H1=1.420, H2=**-0.408** — collapses in recent data.
+  - **Correlation with H-012**: -0.019 (uncorrelated — nice but signal is too weak).
+  - Reverse direction (high_entropy_long) tested: worse.
+  - Data: 1000 daily bars, 14 assets.
+- Notes: Only 54% IS positive is noise level — the factor barely distinguishes assets cross-sectionally. The entropy of daily returns over 14-60 days is too similar across crypto assets (all similarly volatile). H1 captures a period where some assets had more concentrated returns, but this doesn't persist. 1/4 criteria met.
+- Sessions: [2026-03-31 session 116]
+
+## H-153: Volume Surprise Factor (14 Assets)
+- Status: REJECTED
+- Idea: Ratio of short-term average volume to long-term EMA volume. High surprise = unusual volume spike (information). Low surprise = quiet period.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: volume_surprise = rolling_mean(vol, short_win) / ema(vol, long_win). Rank cross-sectionally. Surprise_long: long high surprise (activity = information), short low surprise. Grid: short∈[3,5,7], long∈[20,30,60], rebal∈[3,5,7,10], N∈[3,4,5] = 108 combos.
+- Result:
+  - **IS**: **100%** positive (108/108). Mean Sharpe **1.159** — very strong.
+  - **Walk-forward**: **2/6** positive, mean OOS **-0.809** — terrible OOS.
+  - **Split-half**: H1=2.481, H2=**-0.788** — classic overfitting, signal inverts.
+  - **Correlation with H-012**: -0.035 (uncorrelated).
+  - Reverse direction (quiet_long) tested: worse.
+  - Data: 1000 daily bars, 14 assets.
+- Notes: Classic overfitting pattern — 100% IS positive but complete OOS failure. Volume surprise worked strongly in H1 (2023-2024) but inverted in H2 (2025-2026). Likely the relationship between volume spikes and forward returns changed as market structure evolved. Different from H-021 (volume momentum = level change) and H-085 (turnover velocity = ratio). 1/4 criteria met.
+- Sessions: [2026-03-31 session 116]
+
+## H-154: Cross-Asset Correlation Centrality Factor (14 Assets)
+- Status: REJECTED
+- Idea: Average pairwise correlation of each asset with all others over rolling window. Low centrality (peripheral) assets may earn diversification premium.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 5-14 days)
+- Logic: For each asset, compute avg(corr(asset_i, asset_j)) for all j≠i over rolling window. Rank cross-sectionally. Peripheral_long: long low-centrality, short high-centrality. Grid: window∈[20,30,60,90], rebal∈[5,7,10,14], N∈[3,4,5] = 48 combos.
+- Result:
+  - **IS**: 91.7% positive (44/48). Mean Sharpe **0.434**.
+  - **Walk-forward**: **3/6** positive, mean OOS **0.431**. Folds 5,6 negative (-0.105, -0.395).
+  - **Split-half**: H1=1.468, H2=**0.212** — H2 positive but weak, significant degradation.
+  - **Correlation with H-012**: **-0.216** (negative! excellent diversifier).
+  - **Correlation with H-019**: **0.146** (low).
+  - Central_long direction tested: worse.
+  - Data: 1000 daily bars, 14 assets.
+- Notes: Most promising of the three — 91.7% IS, excellent negative correlation with momentum (-0.216), and H2 still positive (0.212). But WF only 3/6 (need 4/6) and folds 5&6 are negative, suggesting signal is dying in recent data. The correlation centrality captures something real — peripheral assets outperform central ones — but the effect is weakening as crypto markets mature and correlations become more homogeneous. Close to CONDITIONAL but recent negative folds disqualify. 2/4 criteria met.
+- Sessions: [2026-03-31 session 116]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
