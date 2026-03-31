@@ -2215,7 +2215,7 @@
 - Sessions: [2026-03-31 session 118]
 
 ## H-160: Trend-Quality Factor (Efficiency × Inverse Volatility, 14 Assets)
-- Status: CONFIRMED
+- Status: LIVE (paper trade since 2026-03-31)
 - Idea: Multiplicative interaction of price efficiency ratio (trend smoothness) and inverse realized volatility, with directional momentum sign. Captures "quality of trend" — smooth, low-vol directional moves.
 - Instrument: futures (14 perps)
 - Timeframe: 1D (daily)
@@ -2227,8 +2227,41 @@
   - Split-half: H1=1.174, H2=**1.764** (both positive, H2 stronger = no decay)
   - Correlation: H-012 **0.355**, H-019 -0.140, H-031 0.071, H-076 **0.117** — all below 0.40
   - **ALL 4/4 criteria pass**
-- Notes: Genuinely novel factor that combines trend quality with volatility preference. Only 0.117 corr with H-076 (pure efficiency) despite sharing efficiency ratio component — the inverse vol interaction creates a distinct signal. Strong candidate for paper trade.
-- Sessions: [2026-03-31 session 118]
+- Notes: Genuinely novel factor that combines trend quality with volatility preference. Only 0.117 corr with H-076 (pure efficiency) despite sharing efficiency ratio component — the inverse vol interaction creates a distinct signal. Deployed as paper trade session 119.
+- Sessions: [2026-03-31 session 118, 2026-03-31 session 119 — deployed]
+
+## H-161: Variance Ratio Factor (Lo-MacKinlay VR, 14 Assets)
+- Status: REJECTED
+- Idea: Cross-sectional ranking by Lo-MacKinlay variance ratio VR(k) = Var(k-day returns) / (k × Var(1-day returns)). VR > 1 = trending (long), VR < 1 = mean-reverting (short). Different from Hurst exponent (H-116) in computation method.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute rolling VR at horizon k (5d, 10d) over lookback (40-80d). Rank cross-sectionally. Long top-N (trending), short bottom-N (mean-reverting).
+- Data: 14 assets, 1064 daily bars. 36 param configs (3 LB × 2 K × 3 R × 2 N).
+- Result: IS **19/36 positive (52.8%)** = noise. Mean Sharpe -0.056. Best LB60_K10_R7_N3 Sharpe 0.661 (+35.3% ann, -46.9% DD).
+- Notes: Variance ratio has no cross-sectional signal in crypto. 52.8% positive is essentially random. The trending/mean-reverting distinction doesn't differentiate future returns across assets. K=10 slightly better than K=5 but still insufficient.
+- Sessions: [2026-03-31 session 119]
+
+## H-162: MAX Effect (Maximum Daily Return Factor, 14 Assets)
+- Status: REJECTED
+- Idea: Based on Bali, Cakici, Whitelaw (2011) — assets with highest maximum single-day return in past lookback underperform (overpriced lottery tickets). Short high-MAX, long low-MAX.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute max(daily_return) over lookback window. Short high-MAX (lottery), long low-MAX (steady). Also tested reverse direction.
+- Data: 14 assets, 1064 daily bars. 48 param configs (4 LB × 3 R × 2 N × 2 directions).
+- Result: short_max **8/24 positive (33.3%)**. long_max **16/24 positive (66.7%)**. Neither direction passes 80%. Best short_max Sharpe 0.247. Best long_max Sharpe 0.626 (+33.0% ann, -55.2% DD).
+- Notes: MAX effect doesn't exist in crypto. The lottery premium documented in equities (retail investors overpaying for high-MAX stocks) doesn't transfer — possibly because crypto itself is a "lottery" asset class, or because the cross-section of 14 assets is too narrow. long_max direction shows momentum-like signal but too weak and noisy.
+- Sessions: [2026-03-31 session 119]
+
+## H-163: Momentum Concentration Factor (14 Assets)
+- Status: REJECTED
+- Idea: Measure what fraction of total absolute returns came from the single best day (concentration = max(|ret|) / sum(|ret|)). High = fragile momentum (one big day). Low = broad-based persistent trend. Long low-concentration, short high-concentration.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Rolling concentration metric over lookback. Rank cross-sectionally. Long low-concentration (robust trends), short high-concentration (fragile).
+- Data: 14 assets, 1064 daily bars. 48 param configs (4 LB × 3 R × 2 N × 2 directions).
+- Result: low_conc_long **19/24 positive (79.2%)** — close but below 80% threshold. Mean Sharpe 0.254. Best LB40_R5_N4 Sharpe 0.826 (+34.4% ann, -56.5% DD). high_conc_long only 20.8% positive.
+- Notes: The low-concentration direction came very close (79.2% vs 80% threshold) but fails param robustness. High drawdown (-56.5%) and marginal hit rate suggest this is a fragile signal. The concept is sound but the 14-asset universe may be too small to reliably differentiate momentum quality by concentration alone.
+- Sessions: [2026-03-31 session 119]
 
 ## Killed
 
