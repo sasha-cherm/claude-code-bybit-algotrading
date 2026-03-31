@@ -1,0 +1,109 @@
+{
+  "hypothesis": "H-151",
+  "verdict": "REJECTED",
+  "best_params": {
+    "regime_window": 60,
+    "momentum_lookback": 21,
+    "rebalance_period": 5,
+    "n_positions": 3
+  },
+  "is": {
+    "conditional_mean_sharpe": 0.7066,
+    "static_mean_sharpe": 0.6959,
+    "sharpe_improvement": 0.0107,
+    "pct_positive_params": 86.46,
+    "conditional_mean_annual_ret": 0.298,
+    "conditional_mean_max_dd": 0.3933,
+    "best_sharpe": 1.8165,
+    "best_ann_ret": 1.2497,
+    "best_max_dd": 0.2985
+  },
+  "walk_forward": {
+    "folds": [
+      {
+        "sharpe": 2.5616,
+        "annual_ret": 4.1957,
+        "max_dd": 0.2619,
+        "n_days": 89,
+        "fold": 1,
+        "start": "2024-10-06",
+        "end": "2025-01-03"
+      },
+      {
+        "sharpe": 2.6492,
+        "annual_ret": 2.273,
+        "max_dd": 0.1048,
+        "n_days": 89,
+        "fold": 2,
+        "start": "2025-01-04",
+        "end": "2025-04-03"
+      },
+      {
+        "sharpe": 0.2254,
+        "annual_ret": -0.0654,
+        "max_dd": 0.167,
+        "n_days": 89,
+        "fold": 3,
+        "start": "2025-04-04",
+        "end": "2025-07-02"
+      },
+      {
+        "sharpe": 3.5318,
+        "annual_ret": 2.3241,
+        "max_dd": 0.1026,
+        "n_days": 89,
+        "fold": 4,
+        "start": "2025-07-03",
+        "end": "2025-09-30"
+      },
+      {
+        "sharpe": 1.8709,
+        "annual_ret": 1.282,
+        "max_dd": 0.152,
+        "n_days": 89,
+        "fold": 5,
+        "start": "2025-10-01",
+        "end": "2025-12-29"
+      },
+      {
+        "sharpe": -1.6263,
+        "annual_ret": -0.4495,
+        "max_dd": 0.2985,
+        "n_days": 89,
+        "fold": 6,
+        "start": "2025-12-30",
+        "end": "2026-03-29"
+      }
+    ],
+    "n_positive_folds": 5,
+    "mean_oos_sharpe": 1.5354
+  },
+  "split_half": {
+    "first_half": {
+      "sharpe": 2.5766,
+      "annual_ret": 2.9937,
+      "max_dd": 0.2619,
+      "n_days": 312
+    },
+    "second_half": {
+      "sharpe": -0.3344,
+      "annual_ret": -0.2133,
+      "max_dd": 0.3672,
+      "n_days": 313
+    },
+    "pass": false
+  },
+  "correlations": {
+    "cond_vs_static": 0.2245,
+    "cond_vs_lowvol": -0.268,
+    "static_vs_lowvol": -0.0009
+  },
+  "criteria": {
+    "c1_is_stability": true,
+    "c2a_wf_folds": true,
+    "c2b_wf_sharpe": true,
+    "c3_split_half": false,
+    "c4_outperforms_static": false,
+    "c5_low_correlation": true
+  }
+}

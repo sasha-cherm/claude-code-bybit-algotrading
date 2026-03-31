@@ -113,3 +113,11 @@ _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`.
 - Next: Continue research (H-150+). Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 115)
+
+### Session 2026-03-31 backtest (session 116)
+- Goal: Backtest — H-151 Conditional Momentum (BTC Regime Switch)
+- Focus: BTC SMA regime (up/downtrend) switching between momentum and contrarian cross-sectional positions on 14 altcoins. 96 param combos + static momentum baseline.
+- Done: **H-151 REJECTED** (3/5 criteria). IS 86.5% positive, WF **5/6** positive folds mean OOS Sharpe **1.535** — surprisingly strong OOS. But split-half H2 **-0.334** (regime change in 2H 2025). **Key finding**: regime switch adds only +0.011 Sharpe over static momentum IS (need +0.30). WF shows it helps when static momentum fails (folds 2,3,5 static goes negative but conditional stays positive), but IS sweep doesn't confirm it adds value on average. Correlation with static momentum: 0.225 (low — strategy IS different, just not reliably better). Uptrend leg Sharpe 2.37 >> Downtrend leg 1.13 — momentum works much better than contrarian in regime context.
+- Next: Continue research. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 116)

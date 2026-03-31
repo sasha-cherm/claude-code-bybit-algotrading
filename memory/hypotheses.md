@@ -2077,6 +2077,24 @@
 - Notes: Classic regime-dependent factor. Worked exceptionally well in H1 (bull run 2023-mid 2024) but completely failed in H2. The IS 100% positive rate is misleading — driven entirely by the first regime. Walk-forward shows the effect vanished after ~Dec 2023. Correlated with momentum (0.45), which explains the regime-dependency. Factor essentially captures a variant of trend/momentum signal. Similar to H-147 (up/down volume ratio, REJECTED) but even more regime-sensitive. The pure % volume concentration adds no signal beyond what momentum already captures.
 - Sessions: [2026-03-31]
 
+## H-151: Conditional Momentum (BTC Regime Switch)
+- Status: REJECTED
+- Idea: Use BTC SMA regime (uptrend/downtrend) to switch between momentum and contrarian cross-sectional strategies on 14 altcoins.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute N-day return for each asset. In BTC UPTREND (close > SMA), long top-M, short bottom-M (momentum). In BTC DOWNTREND, long bottom-M, short top-M (contrarian/reversal). Parameter grid: regime_window∈[20,30,50,60], momentum_lookback∈[14,21,30,60], rebalance_period∈[3,5,7], n_positions∈[3,4] (96 combos).
+- Result:
+  - **IS**: **86.5%** positive (83/96). Mean Sharpe **0.707**. Best params: rw=60, ml=21, rp=5, N=3: Sharpe 1.817, +125% ann, 29.9% DD.
+  - **Static momentum baseline IS**: 93.8% positive, mean Sharpe 0.696.
+  - **Improvement from regime switch**: +0.011 Sharpe (need >=+0.30) — FAIL.
+  - **Walk-forward OOS (6 folds × 90 days)**: 5/6 positive, mean OOS Sharpe **1.535**. One bad fold (fold 6: -1.626). Conditional clearly better than static in OOS (folds 2,3,5 all negative for static but conditional positive).
+  - **Split-half**: H1 Sharpe 2.577 (great), H2 Sharpe **-0.334** (fails).
+  - **Correlations**: cond vs static = **0.225** (low, PASS), cond vs H-019 low-vol = -0.268.
+  - **Regime breakdown**: 46% uptrend days, 54% downtrend days. Sharpe in uptrend 2.37, in downtrend 1.13.
+  - Data: 749 daily bars, 14 assets.
+- Notes: The regime switch does help OOS (WF looks strong), but the IS improvement is negligible (+0.01 Sharpe). The split-half failure reveals temporal instability — the strategy worked in H1 but broke down in H2. The conditional idea is directionally interesting (WF folds 2/3/5 show static momentum failing while conditional succeeds), but the second half of 2025/early 2026 is where the strategy falls apart. The mean Sharpe is inflated by regime coincidence in IS. The fundamental limitation: with only ~2 years of data, there are too few full BTC regime cycles to validate the hypothesis robustly. The C5 correlation check passed (0.225) — the strategy is meaningfully different from H-012, but that difference worked against it in the second half.
+- Sessions: [2026-03-31 backtest]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
