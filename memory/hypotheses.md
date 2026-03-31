@@ -2263,6 +2263,39 @@
 - Notes: The low-concentration direction came very close (79.2% vs 80% threshold) but fails param robustness. High drawdown (-56.5%) and marginal hit rate suggest this is a fragile signal. The concept is sound but the 14-asset universe may be too small to reliably differentiate momentum quality by concentration alone.
 - Sessions: [2026-03-31 session 119]
 
+## H-164: Co-Momentum Factor (Peer-Weighted Momentum, 14 Assets)
+- Status: REJECTED
+- Idea: For each asset, compute co-momentum = mean(corr(i,j) × momentum(j)) over all peers j. High co-momentum = trend confirmed by correlated peers. Long high co-momentum, short low.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Rolling cross-asset correlation matrix × peer momentum signals. Captures "consensus momentum" vs "isolated momentum."
+- Data: 14 assets, 1064 daily bars. 54 param configs (3 corr_lb × 3 mom_lb × 3 R × 2 N).
+- Result: IS **8/54 positive (14.8%)** = noise. Mean Sharpe -0.476. Best CL30_ML20_R7_N3 Sharpe 0.217 (+11.7% ann, -55.6% DD).
+- Notes: Peer-weighted momentum has zero cross-sectional signal in crypto. With 14 highly correlated assets (all correlated to BTC), co-momentum just captures the market factor — every asset's peers are trending the same way. The cross-sectional variation in co-momentum is too small to differentiate.
+- Sessions: [2026-04-01 session 120]
+
+## H-165: Funding-Premium Interaction Factor (14 Assets)
+- Status: REJECTED
+- Idea: Multiply z-scored funding rate × z-scored premium index. Joint extreme = maximum crowding → go contrarian. Short high interaction (bullish crowding), long low.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: For each asset, compute rolling z-score of funding rate and premium index. Signal = z_funding × z_premium. Go contrarian: short when both signals are extremely positive, long when both extremely negative.
+- Data: 14 assets, ~700 daily bars (funding + premium overlap). 96 param configs (4 fund_lb × 4 prem_lb × 3 R × 2 N).
+- Result: IS **24/96 positive (25.0%)** = noise. Mean Sharpe -0.369. Best FL20_PL20_R3_N3 Sharpe 1.154 (+47.7% ann, -31.8% DD).
+- Notes: The funding-premium interaction doesn't produce a robust cross-sectional signal. The two positioning indicators (funding rate and premium index) don't meaningfully combine — their product z-score is too noisy to rank assets reliably. Individual signals (H-052, H-053) work better alone than multiplied.
+- Sessions: [2026-04-01 session 120]
+
+## H-166: Return Persistence Factor (14 Assets)
+- Status: REJECTED
+- Idea: Fraction of recent days where daily return matches sign of lookback momentum × momentum direction. High = smooth, persistent trend. Long smooth uptrends, short smooth downtrends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute persistence = (days with same sign as momentum / total days) × sign(momentum) over lookback. Rank cross-sectionally. Long top-N, short bottom-N.
+- Data: 14 assets, 1064 daily bars. 30 param configs (5 LB × 3 R × 2 N).
+- Result: IS **27/30 positive (90.0%)**, mean Sharpe 0.610, best LB10_R3_N3 Sharpe 1.894 (+89.4% ann, -28.7% DD). WF **6/6** positive, mean OOS **2.263**. Split-half H1=0.562, H2=0.395 (both positive, corr 0.199). H-012 corr **0.249**. BUT **H-160 corr 0.503** (above 0.40 threshold). H-076 corr 0.344.
+- Notes: Excellent standalone metrics — passes 3/4 criteria convincingly. The 10-day return persistence signal captures "smooth short-term momentum," which is conceptually and empirically very close to H-160 (trend-quality = efficiency × inverse vol × momentum sign). The 0.503 correlation with H-160 confirms redundancy. Not worth deploying separately. If H-160 ever gets killed, H-166 would be the natural replacement.
+- Sessions: [2026-04-01 session 120]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
