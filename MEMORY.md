@@ -9,7 +9,7 @@
 - **H-063 status**: Vol selling strangle — BTC $66,806, put strike $69,000 — PUT ITM by $2,194. MTM $9,973 (-0.27%). **$973 buffer to stop**. 3.4d to expiry.
 - **H-024 KILLED**: H-019 won comparison +7.44% vs -0.20% (7.64% gap over 13 days).
 - **H-052 alert**: Dropped to -3.74% (was +0.94%). Premium contrarian struggling in BTC decline.
-- **Research**: 148 total hypotheses. H-146/H-147/H-148 all REJECTED.
+- **Research**: 149 total hypotheses. H-146/H-147/H-148/H-149 all REJECTED.
 - **System fixes**: Position-count guard added to ALL 13 multi-asset runners. Double-write log bug fixed. H-031 rebal state fixed.
 - **AUTOMATED:** Paper trades hourly via cron (18 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
@@ -105,3 +105,11 @@ _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`.
 - Next: Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: position-count guard in 13 runners, orchestrator log fix, H-031 state fix (session 114)
+
+### Session 2026-03-31 backtest (session 115)
+- Goal: Backtest — H-149 Volume Concentration Factor (up-day volume %)
+- Focus: Cross-sectional factor: % of volume on close>open days over rolling window. Long highest buying pressure, short lowest.
+- Done: **H-149 REJECTED** (1/4 criteria). IS 100% positive (48/48, mean Sharpe 1.479) — but pure overfitting to early bull regime. WF **1/6** positive folds, mean OOS **-0.144** (only fold 1 = 2023 bull run). Split-half H1=3.124, H2=-1.346 (regime collapse). Corr with momentum 0.446 (above 0.40 threshold). Factor captures buying pressure but it IS momentum in disguise — completely regime-dependent and non-additive.
+- Next: Continue research (H-150+). Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 115)

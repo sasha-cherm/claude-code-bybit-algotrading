@@ -1,0 +1,63 @@
+{
+  "hypothesis": "H-149",
+  "name": "Volume Concentration Factor",
+  "verdict": "REJECTED",
+  "criteria_passed": 1,
+  "is_stats": {
+    "n_params": 48,
+    "pct_positive_sharpe": 100.0,
+    "mean_sharpe": 1.4792,
+    "best_sharpe": 2.5058,
+    "best_annual_ret": 0.5099,
+    "best_max_dd": -0.1108,
+    "best_params": {
+      "window": 10,
+      "rebal": 3,
+      "n_pos": 4
+    }
+  },
+  "walk_forward": {
+    "fold_sharpes": [
+      3.1715,
+      -1.082,
+      -1.853,
+      -0.7864,
+      -0.1464,
+      -0.1697
+    ],
+    "mean_oos_sharpe": -0.1443,
+    "n_positive_folds": 1
+  },
+  "split_half": {
+    "h1_sharpe": 3.1244,
+    "h2_sharpe": -1.3462
+  },
+  "momentum_correlation": 0.4457,
+  "criteria": {
+    "c1_is_pct_positive": true,
+    "c2_wf_oos": false,
+    "c3_split_half": false,
+    "c4_low_corr": false
+  },
+  "date_range": {
+    "start": "2023-07-06",
+    "end": "2026-03-31",
+    "n_days": 1000
+  },
+  "assets": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "XRP",
+    "DOGE",
+    "AVAX",
+    "LINK",
+    "ADA",
+    "DOT",
+    "NEAR",
+    "OP",
+    "ARB",
+    "ATOM",
+    "SUI"
+  ]
+}

@@ -2062,6 +2062,21 @@
 - Notes: Resilience/fragility as measured by drawdown speed ratio has no cross-sectional signal. The 58% positive rate is essentially noise. Only LB=90 shows marginal edge (all 4 LB=90 combos are positive), suggesting a weak relationship between long-term resilience and future returns, but too weak and unstable to trade.
 - Sessions: [2026-03-31 session 114]
 
+## H-149: Volume Concentration Factor (Up-Day Volume %)
+- Status: REJECTED
+- Idea: Rolling % of volume occurring on up days (close > open). High % = buying pressure. Long top-N (most buying pressure), short bottom-N.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-10 days)
+- Logic: Factor = sum(vol on up days) / sum(all vol) over rolling window. Rank cross-sectionally. Long top-N, short bottom-N. Equal weight, 50% per leg. Parameter grid: W∈[10,14,20,30], RF∈[3,5,7,10], N∈[3,4,5] (48 combos).
+- Result:
+  - **IS**: **100%** positive (48/48). Mean Sharpe **1.479**. Best: W=10, RF=3, N=4: Sharpe **2.506**, +51.0% ann, 11.1% DD.
+  - **Walk-forward (6 folds, best params W=10,RF=3,N=4)**: **1/6** positive. Fold 1 Sharpe 3.172, Folds 2-6: -1.082, -1.853, -0.786, -0.146, -0.170. Mean OOS **-0.144**.
+  - **Split-half**: H1 Sharpe **3.124**, H2 Sharpe **-1.346** (strong regime change mid-period).
+  - **Correlation with momentum (H-012 proxy)**: **0.446** (above 0.40 threshold).
+  - Data: 1000 days (2023-07-06 → 2026-03-31), 14 assets.
+- Notes: Classic regime-dependent factor. Worked exceptionally well in H1 (bull run 2023-mid 2024) but completely failed in H2. The IS 100% positive rate is misleading — driven entirely by the first regime. Walk-forward shows the effect vanished after ~Dec 2023. Correlated with momentum (0.45), which explains the regime-dependency. Factor essentially captures a variant of trend/momentum signal. Similar to H-147 (up/down volume ratio, REJECTED) but even more regime-sensitive. The pure % volume concentration adds no signal beyond what momentum already captures.
+- Sessions: [2026-03-31]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
