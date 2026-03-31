@@ -15,11 +15,11 @@
     "premium_collected": 364.1405091231581,
     "iv": 0.4894,
     "btc_at_entry": 71263.7,
-    "total_fees": 29.708677116843614,
-    "hedge_pnl": -44.673461851798784,
-    "last_btc_price": 66847.5
+    "total_fees": 30.499126439714413,
+    "hedge_pnl": -46.183108473762196,
+    "last_btc_price": 66798.9
   },
-  "hedge_position": 0.1029284261110054,
+  "hedge_position": 0.10520869888721804,
   "total_trades": 0,
   "total_pnl": 0,
   "equity_history": [
@@ -1150,8 +1150,62 @@
       "equity": 9926.15,
       "btc_price": 66847.5,
       "in_trade": true
+    },
+    {
+      "time": "2026-03-31T09:31:38.034831+00:00",
+      "equity": 9827.33,
+      "btc_price": 66376.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T10:34:09.557063+00:00",
+      "equity": 9813.06,
+      "btc_price": 66308.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T11:34:44.342640+00:00",
+      "equity": 9897.12,
+      "btc_price": 66684.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T12:35:45.801921+00:00",
+      "equity": 9916.94,
+      "btc_price": 66772.5,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T13:07:52.095812+00:00",
+      "equity": 9897.3,
+      "btc_price": 66677.5,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T13:08:44.659110+00:00",
+      "equity": 9899.17,
+      "btc_price": 66686.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T13:11:29.737604+00:00",
+      "equity": 9917.56,
+      "btc_price": 66772.4,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T13:13:01.354384+00:00",
+      "equity": 9923.19,
+      "btc_price": 66799.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-03-31T13:14:23.782141+00:00",
+      "equity": 9923.19,
+      "btc_price": 66798.9,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-03-31T09:06:26.032798+00:00",
-  "equity": 9926.15
+  "last_check": "2026-03-31T13:14:23.782141+00:00",
+  "equity": 9923.19
 }

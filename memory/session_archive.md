@@ -857,3 +857,11 @@
 - Next: Mar 30: rebalances. Mar 31: Kill H-024. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 107)
+
+### Session 2026-03-29 review+research (session 108)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,718 flat), H-063 vol selling stable, H-131/H-132/H-133 backtests
+- Done: 19/19 runners OK. Demo: $102,245 (+2.25%). BTC $66,718. H-131/H-132/H-133 all REJECTED.
+- Next: Mar 30: rebalances. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 108)

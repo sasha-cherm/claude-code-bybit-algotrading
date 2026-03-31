@@ -2192,6 +2192,44 @@
 - Notes: IS signal exists but completely fails OOS. Both split halves negative confirms signal is noise/overfitting. Low correlation is irrelevant if there's no actual signal.
 - Sessions: [2026-03-31 session 117]
 
+## H-158: Dual Momentum Factor (TS + XS Filter, 14 Assets)
+- Status: REJECTED
+- Idea: Combine time-series (absolute return sign) and cross-sectional momentum filters. Signal = return × |return| (squared return preserving sign). Only long when return > 0 AND in top-N, short when return < 0 AND in bottom-N.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Compute lookback-period return, multiply by absolute value to create sign-preserving squared signal. Rank cross-sectionally. Long top-N, short bottom-N.
+- Data: 14 assets, 749 daily bars. 45 param configs (5 lookbacks × 3 N × 3 rebal).
+- Result: IS 43/45 positive (96%), mean Sharpe 0.445, best 1.116. WF 4/6 positive, mean OOS 0.249. Split-half H1=1.374 H2=0.337 (both positive). BUT **corr 1.000 with H-012** — mathematically identical signal. Squaring returns preserves cross-sectional ranking.
+- Notes: The TS filter adds nothing in cross-sectional context — ranking by return × |return| gives identical ranking to ranking by return. Redundant with H-012.
+- Sessions: [2026-03-31 session 118]
+
+## H-159: Volume-Adjusted Return Factor (14 Assets)
+- Status: REJECTED
+- Idea: Weight momentum by inverse square-root of realized volatility. Penalizes noisy momentum, rewards smooth trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: Signal = return(mom_lookback) / sqrt(vol(vol_lookback)). Rank cross-sectionally, long top-N, short bottom-N.
+- Data: 14 assets, 749 daily bars. 81 param configs (3 mom_lb × 3 vol_lb × 3 N × 3 rebal).
+- Result: IS 79/81 positive (98%), mean Sharpe 0.478, best 1.166. WF **6/6** positive, mean OOS 0.546. Split-half H1=1.493 H2=0.674 (both positive). BUT **corr 0.948 with H-012** — near-duplicate. Dividing by sqrt(vol) barely changes the ranking.
+- Notes: Despite excellent stats (WF 6/6), this is essentially H-012 momentum with cosmetic vol adjustment. Not worth deploying as separate strategy.
+- Sessions: [2026-03-31 session 118]
+
+## H-160: Trend-Quality Factor (Efficiency × Inverse Volatility, 14 Assets)
+- Status: CONFIRMED
+- Idea: Multiplicative interaction of price efficiency ratio (trend smoothness) and inverse realized volatility, with directional momentum sign. Captures "quality of trend" — smooth, low-vol directional moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily)
+- Logic: efficiency = |net_return(eff_lb)| / sum(|daily_rets|, eff_lb). signal = efficiency × (1/vol(vol_lb)) × sign(momentum). Rank XS, long top-N (smooth low-vol uptrends), short bottom-N.
+- Data: 14 assets, 749 daily bars. 108 param configs (4 eff_lb × 3 vol_lb × 3 N × 3 rebal).
+- Result:
+  - IS: 94/108 positive (87%), mean Sharpe 0.493, best 1.175 (eff_lb=20, vol_lb=20, N=3, R=3)
+  - WF: **4/6** positive, mean OOS **0.303** (train→test: 3.87→0.11, 2.50→-0.56, 1.40→1.17, 1.26→1.13, 2.32→-0.31, 2.28→0.28)
+  - Split-half: H1=1.174, H2=**1.764** (both positive, H2 stronger = no decay)
+  - Correlation: H-012 **0.355**, H-019 -0.140, H-031 0.071, H-076 **0.117** — all below 0.40
+  - **ALL 4/4 criteria pass**
+- Notes: Genuinely novel factor that combines trend quality with volatility preference. Only 0.117 corr with H-076 (pure efficiency) despite sharing efficiency ratio component — the inverse vol interaction creates a distinct signal. Strong candidate for paper trade.
+- Sessions: [2026-03-31 session 118]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
