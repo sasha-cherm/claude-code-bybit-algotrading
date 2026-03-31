@@ -37,5 +37,25 @@
     "reason": "Broken rebalance on Mar 29 due to API partial failure (2/14 assets loaded). Capital restored from 549 to 0159. Positions cleared for fresh rebalance.",
     "capital_before": 9549.23,
     "capital_after": 10158.89
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-03-31T00:36:50.621085+00:00",
+    "date": "2026-03-30",
+    "longs": [
+      "DOT/USDT",
+      "ATOM/USDT",
+      "SOL/USDT",
+      "BTC/USDT"
+    ],
+    "shorts": [
+      "OP/USDT",
+      "NEAR/USDT",
+      "ARB/USDT",
+      "ADA/USDT"
+    ],
+    "trades": 8,
+    "fees": 20.32,
+    "capital": 10138.57
   }
 ]

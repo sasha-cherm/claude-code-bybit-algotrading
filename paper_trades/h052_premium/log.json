@@ -38,5 +38,25 @@
     "trades": 10,
     "fees": 25.01,
     "capital": 10089.57
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-03-31T00:36:50.178050+00:00",
+    "date": "2026-03-30",
+    "longs": [
+      "ATOM/USDT",
+      "ADA/USDT",
+      "AVAX/USDT",
+      "ARB/USDT"
+    ],
+    "shorts": [
+      "BTC/USDT",
+      "DOT/USDT",
+      "XRP/USDT",
+      "DOGE/USDT"
+    ],
+    "trades": 16,
+    "fees": 38.83,
+    "capital": 10063.35
   }
 ]

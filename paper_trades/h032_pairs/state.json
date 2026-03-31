@@ -3,11 +3,11 @@
   "capital": 10000.0,
   "pair_positions": {
     "DOT/ATOM": {
-      "position": 0,
-      "entry_date": null,
-      "entry_z": null,
+      "position": 1,
+      "entry_date": "2026-03-30",
+      "entry_z": -1.576,
       "entry_equity": 1250.0,
-      "cumulative_pnl": 0.0
+      "cumulative_pnl": -3.0000000000000004
     },
     "DOGE/LINK": {
       "position": 0,
@@ -125,10 +125,16 @@
       "equity": 9997.0,
       "active_pairs": 1,
       "trades_today": 0
+    },
+    {
+      "date": "2026-03-30",
+      "equity": 9994.0,
+      "active_pairs": 2,
+      "trades_today": 1
     }
   ],
-  "last_daily_date": "2026-03-29",
-  "total_trades": 1,
-  "total_fees": 3.0000000000000004,
+  "last_daily_date": "2026-03-30",
+  "total_trades": 2,
+  "total_fees": 6.000000000000001,
   "trades_log": []
 }

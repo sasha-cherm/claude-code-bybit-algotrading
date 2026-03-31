@@ -1,18 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,814 (+0.81%). BTC $66,644.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $100,211 (+0.21%). BTC $67,127. ATOM flipped SHORT→LONG.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,865 (-1.35%). Funding neg.
-- **Internal paper trades:** 18 runners active (H-024 killed). Session 114. BTC $66,644.
-- **Top performers**: H-019 (+7.44%), H-031 (+4.52%), H-039 (+4.35%), H-012 (+2.42%), H-044 (+1.79%). **9/18 positive**, 1 flat, 8 negative.
-- **H-063 status**: Vol selling strangle — BTC $66,806, put strike $69,000 — PUT ITM by $2,194. MTM $9,973 (-0.27%). **$973 buffer to stop**. 3.4d to expiry.
-- **H-024 KILLED**: H-019 won comparison +7.44% vs -0.20% (7.64% gap over 13 days).
-- **H-052 alert**: Dropped to -3.74% (was +0.94%). Premium contrarian struggling in BTC decline.
-- **Research**: 151 total hypotheses. H-146–H-151 all REJECTED.
-- **System fixes**: Position-count guard added to ALL 13 multi-asset runners. Double-write log bug fixed. H-031 rebal state fixed.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,863 (-1.37%). R27 declining, latest rate very negative.
+- **Internal paper trades:** 18 runners active. Session 115. BTC $67,127.
+- **Top performers**: H-031 (+5.34%), H-039 (+4.35%), H-012 (+2.74%), H-019 (+2.26%), H-062 (+1.72%). **12/18 positive**, 6 negative.
+- **H-063 status**: Vol selling strangle — BTC $67,127, put strike $69,000 — PUT ITM by $1,873. MTM $9,968 (-0.32%). **$968 buffer to stop**. 3.3d to expiry.
+- **H-019 alert**: Dropped from +7.44% to +2.26% as BTC rallied. High-vol shorts recovered. No rebal.
+- **H-052 recovered**: From -3.74% to +0.54% after Mar 30 rebalance. New positions.
+- **Research**: 151 total hypotheses. H-149/H-150/H-151 all REJECTED.
+- **System fix**: ATOMUSDT max order qty added to demo runner. Split-order executed.
 - **AUTOMATED:** Paper trades hourly via cron (18 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- **Next action:** Mar 31 bar (00:30 UTC Apr 1): H-012/H-046/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry + H-031 rebal.
 - **Open user questions:** None
 
 ## Memory Files
@@ -24,7 +24,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 104) archived to `memory/session_archive.md`._
+_Older sessions (bootstrap through 105) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-29 review+research (session 106)
 - Goal: Review + Research — MTM update, rebalance verification, H-063 monitoring, 3 new factor backtests
@@ -98,26 +98,10 @@ _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`.
 - Questions added: none
 - Self-modifications: position-count guard in 13 runners, orchestrator log fix, H-031 state fix (session 114)
 
-### Session 2026-03-31 backtest (session 115)
-- Goal: Backtest — H-149 Volume Concentration Factor (up-day volume %)
-- Focus: Cross-sectional factor: % of volume on close>open days over rolling window. Long highest buying pressure, short lowest.
-- Done: **H-149 REJECTED** (1/4 criteria). IS 100% positive (48/48, mean Sharpe 1.479) — but pure overfitting to early bull regime. WF **1/6** positive folds, mean OOS **-0.144** (only fold 1 = 2023 bull run). Split-half H1=3.124, H2=-1.346 (regime collapse). Corr with momentum 0.446 (above 0.40 threshold). Factor captures buying pressure but it IS momentum in disguise — completely regime-dependent and non-additive.
-- Next: Continue research (H-150+). Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+### Session 2026-03-31 review+research+system (session 115)
+- Goal: Review + Research + System — MTM update, rebalance verification, demo fix, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $67,127, +0.72%), demo ATOM fix, H-149/H-150/H-151 backtests
+- Done: 18/18 runners OK. **Demo**: $100,211 (+0.21%). BTC $67,127. **12/18 positive** (best ratio yet), 6 negative. Top: H-031(+5.34%), H-039(+4.35%), H-012(+2.74%). **H-019 dropped** from +7.44% to +2.26% as BTC rally hurt high-vol shorts. **H-052 recovered** from -3.74% to +0.54% after Mar 30 rebalance. **Demo fix**: ATOMUSDT max order qty (22k) added to runner; order split into 2 chunks, executed. **H-063**: $9,968 (-0.32%), $968 buffer to stop, 3.3d to expiry. **Mar 30 bar rebalances verified**: H-021, H-053 (re-entered), H-076 all rebalanced. **Research**: **H-149 REJECTED** (vol concentration — 100% IS but bull-market artifact, WF 1/6, corr 0.45 with momentum). **H-150 REJECTED** (OI-funding interaction — novel low-corr signal but H1/H2 regime split, WF 3/6). **H-151 REJECTED** (conditional momentum — strong WF 5/6 mean 1.54, but only +0.01 over static, split-half fails).
+- Next: Mar 31 bar: H-012/H-046/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076.
 - Questions added: none
-- Self-modifications: none (session 115)
-
-### Session 2026-03-31 backtest (session 116)
-- Goal: Backtest — H-151 Conditional Momentum (BTC Regime Switch)
-- Focus: BTC SMA regime (up/downtrend) switching between momentum and contrarian cross-sectional positions on 14 altcoins. 96 param combos + static momentum baseline.
-- Done: **H-151 REJECTED** (3/5 criteria). IS 86.5% positive, WF **5/6** positive folds mean OOS Sharpe **1.535** — surprisingly strong OOS. But split-half H2 **-0.334** (regime change in 2H 2025). **Key finding**: regime switch adds only +0.011 Sharpe over static momentum IS (need +0.30). WF shows it helps when static momentum fails (folds 2,3,5 static goes negative but conditional stays positive), but IS sweep doesn't confirm it adds value on average. Correlation with static momentum: 0.225 (low — strategy IS different, just not reliably better). Uptrend leg Sharpe 2.37 >> Downtrend leg 1.13 — momentum works much better than contrarian in regime context.
-- Next: Continue research. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: none (session 116)
-
-### Session 2026-03-31 backtest (session 117)
-- Goal: Backtest — H-150 OI-Funding Interaction Factor
-- Focus: Cross-sectional factor combining OI change and funding rate. signal = sign(OI_pct_change_N) × rolling_M_avg_funding. Contrarian: long lowest signal, short highest.
-- Done: **H-150 REJECTED** (2/4 criteria). IS 68.1% positive (sign variant) — PASS. WF **3/6** folds, mean OOS Sharpe **-1.066** — FAIL. Split-half H1=+1.729, H2=**-2.433** — FAIL. Correlation: H-012=0.082, H-044=0.056, H-053=0.176 — all PASS. Classic H1/H2 regime split (bull 2024 worked, 2025 reversed). Raw interaction variant even worse (30.6% IS positive). Best IS Sharpe 1.206 (OI_win=10, f_win=3, rebal=5, N=3). Factor is genuinely uncorrelated but not temporally stable.
-- Next: Continue research. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: none (session 117)
+- Self-modifications: ATOMUSDT max order qty added to demo runner (session 115)

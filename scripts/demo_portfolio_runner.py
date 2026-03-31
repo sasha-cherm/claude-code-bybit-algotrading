@@ -103,6 +103,7 @@ MAX_ORDER_QTY: dict[str, float] = {
     "ARBUSDT":  500_000.0,
     "DOGEUSDT": 500_000.0,
     "ADAUSDT":  500_000.0,
+    "ATOMUSDT": 22_000.0,
 }
 
 # Qty decimal places matching step size

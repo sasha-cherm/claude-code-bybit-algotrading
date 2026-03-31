@@ -7,5 +7,14 @@
     "direction": "short_spread",
     "z": 1.002,
     "hedge_ratio": 1.0074
+  },
+  {
+    "type": "open",
+    "time": "2026-03-31T00:33:25.030253+00:00",
+    "date": "2026-03-30",
+    "pair": "DOT/ATOM",
+    "direction": "long_spread",
+    "z": -1.576,
+    "hedge_ratio": 1.3299
   }
 ]
