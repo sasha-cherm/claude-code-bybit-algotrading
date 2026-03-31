@@ -2095,6 +2095,21 @@
 - Notes: The regime switch does help OOS (WF looks strong), but the IS improvement is negligible (+0.01 Sharpe). The split-half failure reveals temporal instability — the strategy worked in H1 but broke down in H2. The conditional idea is directionally interesting (WF folds 2/3/5 show static momentum failing while conditional succeeds), but the second half of 2025/early 2026 is where the strategy falls apart. The mean Sharpe is inflated by regime coincidence in IS. The fundamental limitation: with only ~2 years of data, there are too few full BTC regime cycles to validate the hypothesis robustly. The C5 correlation check passed (0.225) — the strategy is meaningfully different from H-012, but that difference worked against it in the second half.
 - Sessions: [2026-03-31 backtest]
 
+## H-150: OI-Funding Interaction Factor
+- Status: REJECTED
+- Idea: Combine OI change and funding rate into a cross-sectional interaction signal. Rising OI + positive funding = frothy longs → SHORT (contrarian). Rising OI + negative funding → LONG (squeeze potential). Signal = sign(OI_change) * rolling_avg_funding.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 5-10 days)
+- Logic: signal = sign(OI_pct_change_N) × rolling_M_avg_funding. Rank cross-sectionally. Long bottom-N, short top-N. Sign-based variant selected (68.1% IS positive vs 30.6% raw). OI_win∈[5,10,14,20], f_win∈[3,5,7], rebal∈[5,7,10], N∈[3,4] = 72 combos per variant.
+- Result:
+  - **IS (sign)**: **68.1%** positive (49/72). Best: OI_win=10, f_win=3, rebal=5, N=3: Sharpe **1.206**, +50.4% ann, 39.7% DD.
+  - **Walk-forward (6 folds × 90d)**: **3/6** positive. Folds: -2.624, +1.120, -5.992, +3.136, +0.313, -2.345. Mean OOS Sharpe **-1.066**. FAIL (need ≥4/6 and mean > 0.5).
+  - **Split-half**: H1 Sharpe **+1.729**, H2 Sharpe **-2.433**. FAIL (need both positive).
+  - **Correlation**: H-012 **+0.082**, H-044 **+0.056**, H-053 **+0.176** — all well below 0.40. PASS.
+  - Data: 14 assets, 2024-03-17 → 2026-03-16 (730 days).
+- Notes: Novel factor (low corr with all references) passes IS at 68.1% and correlation criterion, but fails WF and split-half. Strong H1/H2 regime asymmetry. Raw interaction (OI_pct × funding) is even worse at 30.6% IS positive. 2/4 criteria passed.
+- Sessions: [2026-03-31 session 115]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

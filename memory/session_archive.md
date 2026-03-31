@@ -826,3 +826,10 @@
 - Done: 19/19 runners OK. Demo: $101,586 (+1.59%). BTC $66,417. 8/19 positive. H-063 $9,742 (-2.58%). H-116 CONDITIONAL (Hurst exponent, WF 4/5, corr 0.238). H-117 REJECTED (info ratio, corr 0.491 with H-012). H-118 REJECTED (OBV trend, split-half -0.509).
 - Questions added: none
 - Self-modifications: none (session 103)
+
+### Session 2026-03-28 review+research (session 105)
+- Goal: Review + Rebalance + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,926 stable), H-063 vol selling analysis, H-122/H-123/H-124 backtests
+- Done: 19/19 runners OK. Demo: $100,742 (+0.74%). BTC $66,926. 9/19 positive. H-063: $9,832 (-1.68%), $832 buffer, 5.4d to expiry. H-122 REJECTED (candle conviction — 0% IS positive). H-123 REJECTED (vol-price elasticity — 23% IS, WF 1/6). H-124 REJECTED (CLV — 84.7% momentum direction, corr 0.448 H-012 — just momentum).
+- Questions added: none
+- Self-modifications: none (session 105)

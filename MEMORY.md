@@ -9,7 +9,7 @@
 - **H-063 status**: Vol selling strangle — BTC $66,806, put strike $69,000 — PUT ITM by $2,194. MTM $9,973 (-0.27%). **$973 buffer to stop**. 3.4d to expiry.
 - **H-024 KILLED**: H-019 won comparison +7.44% vs -0.20% (7.64% gap over 13 days).
 - **H-052 alert**: Dropped to -3.74% (was +0.94%). Premium contrarian struggling in BTC decline.
-- **Research**: 149 total hypotheses. H-146/H-147/H-148/H-149 all REJECTED.
+- **Research**: 151 total hypotheses. H-146–H-151 all REJECTED.
 - **System fixes**: Position-count guard added to ALL 13 multi-asset runners. Double-write log bug fixed. H-031 rebal state fixed.
 - **AUTOMATED:** Paper trades hourly via cron (18 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
@@ -25,14 +25,6 @@
 
 
 _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`._
-
-### Session 2026-03-28 review+research (session 105)
-- Goal: Review + Rebalance + Research — MTM update, H-063 monitoring, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC $66,926 stable), H-063 vol selling analysis, H-122/H-123/H-124 backtests
-- Done: 19/19 runners OK. **Demo**: $100,742 (+0.74%). BTC $66,926. **9/19 positive**, 3 flat, 7 negative. Top: H-031(+4.67%), H-039(+4.35%), H-049(+3.00%). H-009 improved dramatically (-2.10%→-0.09%, SHORT profiting). H-076 turned positive (+0.07%). **H-063**: MTM $9,832 (-1.68%), intrinsic $9,967 (-0.33%). Premium $364 > intrinsic put cost $291. $832 MTM buffer to stop. 5.4d to expiry. **H-019 vs H-024**: gap 1.64% (narrowed from 2.16%). **Research**: **H-122 REJECTED** (candle conviction — **0% IS positive**, all 60 params negative. Signal inverts: clean moves = exhaustion in crypto). **H-123 REJECTED** (vol-price elasticity — 23% IS positive, WF **1/6**, noisy). **H-124 REJECTED** (CLV — overall 46.5% IS positive, BUT momentum direction **84.7%** positive. Overlaps H-012 at corr 0.448 — just another way to capture momentum). Rebalances for H-031/H-046/H-049/H-052/H-053/H-059 due after 00:30 UTC Mar 29 via cron.
-- Next: Mar 29 (auto): 6 rebalances. Mar 30: H-076 rebal. Mar 31: Kill H-024, H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: none (session 105)
 
 ### Session 2026-03-29 review+research (session 106)
 - Goal: Review + Research — MTM update, rebalance verification, H-063 monitoring, 3 new factor backtests
@@ -121,3 +113,11 @@ _Older sessions (bootstrap through 104) archived to `memory/session_archive.md`.
 - Next: Continue research. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
 - Questions added: none
 - Self-modifications: none (session 116)
+
+### Session 2026-03-31 backtest (session 117)
+- Goal: Backtest — H-150 OI-Funding Interaction Factor
+- Focus: Cross-sectional factor combining OI change and funding rate. signal = sign(OI_pct_change_N) × rolling_M_avg_funding. Contrarian: long lowest signal, short highest.
+- Done: **H-150 REJECTED** (2/4 criteria). IS 68.1% positive (sign variant) — PASS. WF **3/6** folds, mean OOS Sharpe **-1.066** — FAIL. Split-half H1=+1.729, H2=**-2.433** — FAIL. Correlation: H-012=0.082, H-044=0.056, H-053=0.176 — all PASS. Classic H1/H2 regime split (bull 2024 worked, 2025 reversed). Raw interaction variant even worse (30.6% IS positive). Best IS Sharpe 1.206 (OI_win=10, f_win=3, rebal=5, N=3). Factor is genuinely uncorrelated but not temporally stable.
+- Next: Continue research. Apr 1: H-085 rebal. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
+- Questions added: none
+- Self-modifications: none (session 117)

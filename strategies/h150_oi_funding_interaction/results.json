@@ -1,0 +1,63 @@
+{
+  "hypothesis": "H-150",
+  "name": "OI-Funding Interaction Factor",
+  "verdict": "REJECTED",
+  "criteria_passed": 2,
+  "criteria": {
+    "c1_is_pos_frac": {
+      "pass": true,
+      "value": 0.6806
+    },
+    "c2_wf_oos": {
+      "pass": false,
+      "pos_folds": 3,
+      "total_folds": 6,
+      "mean_oos_sharpe": -1.0656
+    },
+    "c3_split_half": {
+      "pass": false,
+      "sharpe_h1": 1.7291,
+      "sharpe_h2": -2.4326
+    },
+    "c4_correlation": {
+      "pass": true,
+      "corr_h012": 0.0821,
+      "corr_h044": 0.0557,
+      "corr_h053": 0.1759
+    }
+  },
+  "best_params": {
+    "variant": "sign",
+    "oi_win": 10,
+    "f_win": 3,
+    "rebal": 5,
+    "n_pos": 3
+  },
+  "full_backtest": {
+    "annual_return": 0.5035,
+    "total_return": 1.2606,
+    "sharpe": 1.2059,
+    "max_drawdown": 0.3965,
+    "n_days": 730,
+    "start": "2024-03-17",
+    "end": "2026-03-16"
+  },
+  "n_assets": 14,
+  "assets": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "XRP",
+    "DOGE",
+    "ADA",
+    "AVAX",
+    "DOT",
+    "LINK",
+    "ATOM",
+    "NEAR",
+    "OP",
+    "ARB",
+    "SUI"
+  ],
+  "is_combos_tested": 144
+}
