@@ -15,11 +15,11 @@
     "premium_collected": 364.1405091231581,
     "iv": 0.4894,
     "btc_at_entry": 71263.7,
-    "total_fees": 35.65306108529856,
-    "hedge_pnl": 105.76857190954331,
-    "last_btc_price": 68180.7
+    "total_fees": 37.313482413211865,
+    "hedge_pnl": 140.28901435114415,
+    "last_btc_price": 68564.9
   },
-  "hedge_position": 0.08189918707595513,
+  "hedge_position": 0.0733417954172381,
   "total_trades": 0,
   "total_pnl": 0,
   "equity_history": [
@@ -1384,8 +1384,68 @@
       "equity": 10221.46,
       "btc_price": 68180.7,
       "in_trade": true
+    },
+    {
+      "time": "2026-04-01T05:31:45.521924+00:00",
+      "equity": 10284.87,
+      "btc_price": 68578.5,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T06:35:59.113593+00:00",
+      "equity": 10338.81,
+      "btc_price": 68958.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T07:35:40.931609+00:00",
+      "equity": 10328.42,
+      "btc_price": 68860.5,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T08:38:05.198469+00:00",
+      "equity": 10318.17,
+      "btc_price": 68768.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T09:06:14.293984+00:00",
+      "equity": 10309.71,
+      "btc_price": 68700.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T09:09:49.568940+00:00",
+      "equity": 10277.25,
+      "btc_price": 68472.5,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T09:12:01.828578+00:00",
+      "equity": 10272.4,
+      "btc_price": 68440.4,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T09:14:02.535454+00:00",
+      "equity": 10278.47,
+      "btc_price": 68480.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T09:16:20.310689+00:00",
+      "equity": 10275.85,
+      "btc_price": 68462.4,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-01T09:32:44.874095+00:00",
+      "equity": 10291.67,
+      "btc_price": 68564.9,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-04-01T05:06:46.452928+00:00",
-  "equity": 10221.46
+  "last_check": "2026-04-01T09:32:44.874095+00:00",
+  "equity": 10291.67
 }

@@ -895,3 +895,11 @@
 - Focus: Paper trade monitoring (BTC $67,285 -0.83%), H-063 vol selling pullback, H-143/H-144/H-145 backtests
 - Done: 19/19 runners OK. Demo: $101,297 (+1.30%). H-063 pulled back to -0.34%. H-143 REJECTED, H-144 CONFIRMED (idiosyncratic vol), H-145 REJECTED.
 - Next: Mar 30 bar rebalances. Kill H-024 Mar 31.
+
+### Session 2026-03-30 backtest (session 113)
+- Goal: Backtest — H-144 idiosyncratic vol factor full validation
+- Focus: Confirming H-144 with 4/4 criteria (IS 92%, WF 6/6 OOS 1.99, split-half stable, low corr H-012 0.01)
+- Done: H-144 CONFIRMED. But H-019 corr 0.72 — near-substitute for total vol. Not deploying as paper trade due to redundancy.
+- Next: Session 114 review + research
+- Questions added: none
+- Self-modifications: none (session 113)

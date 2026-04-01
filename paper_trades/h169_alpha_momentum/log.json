@@ -1,0 +1,22 @@
+[
+  {
+    "type": "rebalance",
+    "time": "2026-04-01T09:19:42.702113+00:00",
+    "date": "2026-03-31",
+    "longs": [
+      "DOGE/USDT",
+      "LINK/USDT",
+      "ETH/USDT",
+      "AVAX/USDT"
+    ],
+    "shorts": [
+      "ATOM/USDT",
+      "NEAR/USDT",
+      "OP/USDT",
+      "DOT/USDT"
+    ],
+    "trades": 8,
+    "fees": 20.0,
+    "capital": 9980.0
+  }
+]

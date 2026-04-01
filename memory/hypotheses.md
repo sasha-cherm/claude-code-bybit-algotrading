@@ -2375,6 +2375,39 @@
 - Notes: Hurst exponent has no consistent XS signal in crypto at any lookback from 20-80 days. Mirrors H-116 (prior Hurst backtest, different sub-period splits) and H-168 (autocorrelation — also no XS signal). All three serial-dependence measures fail, confirming that persistence structure is not a viable cross-sectional factor in crypto. The few positive combos cluster at LB=80, suggesting very long-horizon Hurst may contain a weak signal, but not robust enough. Matches H-116 conclusion.
 - Sessions: [2026-04-01 (this session, h172_hurst/backtest.py)]
 
+## H-173: Garman-Klass Volatility Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Compare Garman-Klass OHLC-based volatility to close-to-close volatility. High ratio = intraday noise dominates. Long low-ratio (clean trends), short high-ratio (noisy). Captures vol *structure*, not level.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: GK_var = mean(0.5*ln(H/L)^2 - (2ln2-1)*ln(C/O)^2). Ratio = GK_vol / CC_vol. Rank cross-sectionally. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1065 daily bars (2023-05-03 to 2026-04-01).
+- Result: IS low_ratio_long **16/30 positive (53.3%)**, mean Sharpe 0.099. **FAIL** IS < 80%. Best LB10_R5_N4 Sharpe 0.922. WF 3/6, mean 0.922. Split-half H1=1.150, H2=-0.285. Correlations: H-012 -0.006, H-076 0.126, H-160 0.077.
+- Notes: GK-to-CC ratio does not produce a reliable cross-sectional signal. The intraday vol structure is too similar across crypto assets to discriminate. Different from H-019 (vol level) but lacks stable edge.
+- Sessions: [2026-04-01 session 123]
+
+## H-174: Downside Beta Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Compute beta using only BTC-down days (asymmetric risk). Long defensive assets (low downside beta), short fragile (high downside beta). Different from H-024 (full beta) because it isolates loss-day sensitivity.
+- Instrument: futures (13 perps, excl BTC)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each non-BTC asset, compute OLS beta using only days where BTC return < 0. Rank cross-sectionally. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1065 daily bars.
+- Result: IS high_dbeta_long **18/30 positive (60.0%)**, mean Sharpe 0.034. **FAIL** IS < 80%. Best LB20_R5_N3 Sharpe 0.675 (+33.5% ann, -58.0% DD). WF 4/6, mean 0.165. Split-half H1=1.007, H2=-0.404.
+- Notes: Downside-specific beta does not produce a stable XS signal. Surprising that high_dbeta_long slightly outperforms, suggesting high-beta assets that drop most in BTC downturns also rally most on recoveries. But signal too weak and inconsistent. Corr H-012 -0.039, H-076 0.073, H-160 -0.123 — novel but not useful.
+- Sessions: [2026-04-01 session 123]
+
+## H-175: Net Money Flow Factor (14 Assets)
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-01)
+- Idea: Net flow = (close - open) / open × volume, summed over lookback, normalized by avg dollar volume. Captures directional buying/selling pressure. Long inflow assets, short outflow.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: For each asset, compute rolling sum of net_flow = ((close - open)/open) × volume over lookback window. Normalize by mean(close × volume). Rank cross-sectionally. Long top-N (strongest inflow), short bottom-N (strongest outflow). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 1065 daily bars (2023-05-03 to 2026-04-01).
+- Result: IS inflow_long **30/30 positive (100.0%)**, mean Sharpe **1.005**, best LB30_R7_N4 Sharpe **1.402** (+59.7% ann, -35.1% DD). WF **4/6** positive, mean OOS **1.051** (fold Sharpes: 5.017, 0.079, -0.196, -0.717, 1.178, 0.944). Split-half H1=**1.618**, H2=**0.226** (both positive). H-012 corr **0.145**, H-076 corr **-0.062**, H-160 corr **0.299**. Max corr with existing: 0.299.
+- Notes: Exceptional 100% IS positive rate (third factor to achieve this alongside H-012 and H-169). Passes all 4/4 criteria. Net money flow is conceptually different from momentum (price only), volume momentum (volume level only), and OBV (H-118, which accumulates all up-days). This uses open-close range × volume — more granular directional flow. Deployed as paper trade #21.
+- Sessions: [2026-04-01 session 123]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
