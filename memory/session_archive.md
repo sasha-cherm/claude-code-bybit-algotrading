@@ -889,3 +889,9 @@
 - Next: Mar 30 bar rebalances. Mar 31: Kill H-024.
 - Questions added: none
 - Self-modifications: none (session 111)
+
+### Session 2026-03-30 review+research (session 112)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $67,285 -0.83%), H-063 vol selling pullback, H-143/H-144/H-145 backtests
+- Done: 19/19 runners OK. Demo: $101,297 (+1.30%). H-063 pulled back to -0.34%. H-143 REJECTED, H-144 CONFIRMED (idiosyncratic vol), H-145 REJECTED.
+- Next: Mar 30 bar rebalances. Kill H-024 Mar 31.

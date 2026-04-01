@@ -1,0 +1,20 @@
+{
+  "hypothesis": "H-172",
+  "name": "Hurst Exponent Factor (R/S)",
+  "verdict": "REJECTED",
+  "reason": "IS positive rate 43.3% < 80%",
+  "param_scan": {
+    "trending_long": {
+      "n_pos": 13,
+      "n_tot": 30,
+      "pct": 43.3,
+      "mean_sharpe": -0.126
+    },
+    "meanrev_long": {
+      "n_pos": 10,
+      "n_tot": 30,
+      "pct": 33.3,
+      "mean_sharpe": -0.213
+    }
+  }
+}

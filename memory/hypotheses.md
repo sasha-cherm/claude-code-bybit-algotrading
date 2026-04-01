@@ -2329,6 +2329,52 @@
 - Notes: Strongest new factor — 100% IS positive rate is exceptional. Beta-adjusted momentum is theoretically grounded (alpha capture). The 0.342 correlation with H-012 is borderline but passing (<0.40). Caveat: WF folds 3&4 deeply negative suggests regime-dependent behavior (BTC flat periods may confuse the signal). H-167 mutual corr 0.371 — deploying both would add some redundancy. Not deploying yet given 19 active runners.
 - Sessions: [2026-04-01 session 121]
 
+## H-170: Return Kurtosis Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling excess kurtosis of daily returns as cross-sectional factor. High kurtosis = fat tails = dangerous/unpredictable. Long low-kurtosis (predictable), short high-kurtosis (risky).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute scipy.stats.kurtosis(returns[-LB:]) for each asset daily. Rank cross-sectionally. low_kurt_long: long bottom-N (thinnest tails), short top-N (fattest tails). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], direction∈[low_kurt_long, high_kurt_long] = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result:
+  - IS: low_kurt_long **28/30 positive (93.3%)**, mean Sharpe 0.629, best LB30_R7_N4 Sharpe **1.319** (+48.8% ann, -26.3% DD). high_kurt_long only 2/30 (6.7%). **PASS IS**
+  - WF: **2/6** positive, mean OOS **-0.463** (fold sharpes: -2.78, 7.00, -2.64, -4.21, -2.59, 2.43). **FAIL**
+  - Split-half: H1=0.156, H2=1.487 — massive asymmetry, factor concentrated in recent period
+  - Correlations: H-012 **-0.091**, H-076 **-0.133**, H-160 **-0.137**, H-167 **-0.208**, H-169 **-0.043** — all negative, genuinely novel
+  - Score: **1/4** criteria (IS pass, WF fail, split-half unstable)
+- Notes: IS looks excellent (93.3%) and correlations are ideal (all negative vs existing factors — true diversifier). However, WF exposes severe recency bias — factor appears concentrated in Q4-2025/Q1-2026 (H2=1.487 vs H1=0.156). The kurtosis signal may be capturing a temporary regime where low-tail-risk assets outperformed. Not stable enough for deployment. Novel concept worth revisiting if crypto enters sustained low-vol regime.
+- Sessions: [2026-04-01 session 122]
+
+## H-171: Funding Rate Momentum Factor (Retest)
+- Status: REJECTED
+- Idea: CHANGE in funding rates as cross-sectional signal. Rising funding = growing bullish crowding → contrarian short. Captures acceleration of positioning sentiment, not level (H-053).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: funding_momentum = mean(funding[-SW:]) - mean(funding[-LW:]). Positive = funding rising (crowding increasing). Contrarian: long bottom-N (falling funding), short top-N (rising funding). Grid: SW∈[3,5,10], LW∈[10,20,30], R∈[3,5,7], N∈[3,4], direction∈[contrarian,momentum] — 96 combos. SW < LW constraint.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01), 730-day funding panel. Retest of H-130 with newer data.
+- Result:
+  - IS: **38/96 positive (39.6%)**, mean Sharpe -0.350. **FAIL** (need ≥80%)
+  - Direction split: contrarian **33/48 (68.8%)** mean 0.145; momentum **5/48 (10.4%)** — clear directional asymmetry
+  - Best: SW10_LW30_R5_N4_contrarian Sharpe **1.275**, +22.7% ann, -20.6% DD
+  - WF: **5/6** positive, mean OOS **1.625** (fold sharpes: 1.45, 1.55, -0.75, 0.90, 1.46, 5.14) — **PASS**
+  - Split-half (all params): H1=-0.300, H2=-0.427 — **FAIL**
+  - Split-half (best contrarian params only): H1=1.833, H2=0.533 — both positive
+  - Correlations: H-012 **-0.121**, H-053 **0.405** (slightly above 0.40 threshold), H-076 **-0.077**, H-160 **-0.122**
+  - Score: **1/3** criteria
+- Notes: Reconfirms H-130 rejection. IS failure is driven entirely by the momentum direction (10% positive) which is simply the wrong direction. Contrarian-only would be 68.8% positive — still below 80% threshold. The strong WF (5/6, mean 1.625) is encouraging but the split-half shows no regime consistency across the full parameter space. The 0.405 correlation with H-053 (funding level) confirms the two strategies are related — choosing contrarian vs long_low in H-053 is equivalent. Funding momentum adds no independent alpha beyond funding level.
+- Sessions: [2026-04-01 session 122 (this session)]
+
+## H-172: Hurst Exponent Factor (R/S Method, 14 Assets)
+- Status: REJECTED
+- Idea: Rolling Hurst exponent via rescaled range (R/S) method. H > 0.5 = trending, H < 0.5 = mean-reverting. Long trending assets, short mean-reverting (or vice versa).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute rolling R/S Hurst exponent over lookback using multiple sub-period sizes. Rank cross-sectionally. trending_long: long high-H, short low-H. meanrev_long: opposite. Grid: LB∈[20,30,40,60,80], R∈[3,5,7], N∈[3,4], direction∈[trending_long, meanrev_long] = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: trending_long **13/30 positive (43.3%)**, mean Sharpe -0.126. meanrev_long **10/30 positive (33.3%)**, mean Sharpe -0.213. Neither direction has signal.
+- Notes: Hurst exponent has no cross-sectional signal in crypto. The R/S method produces noisy estimates at short lookbacks, and with only 14 highly correlated assets, the cross-sectional dispersion in Hurst values is too small to discriminate. Different from autocorrelation (H-168) and variance ratio (H-161) — all three persistence measures fail in crypto, confirming that serial dependence structure is not a viable XS factor.
+- Sessions: [2026-04-01 session 122]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

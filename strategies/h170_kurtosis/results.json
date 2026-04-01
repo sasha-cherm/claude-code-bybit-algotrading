@@ -1,0 +1,68 @@
+{
+  "hypothesis": "H-170",
+  "name": "Return Kurtosis Factor",
+  "run_date": "2026-04-01",
+  "n_assets": 14,
+  "n_days": 752,
+  "date_range": "2024-03-11 to 2026-04-01",
+  "param_grid": {
+    "lookbacks": [10, 20, 30, 40, 60],
+    "rebals": [3, 5, 7],
+    "ns": [3, 4],
+    "directions": ["low_kurt_long", "high_kurt_long"],
+    "total_combos": 60
+  },
+  "is_scan": {
+    "low_kurt_long": {
+      "n_positive": 28,
+      "n_total": 30,
+      "positive_pct": 93.3,
+      "mean_sharpe": 0.629,
+      "median_sharpe": 0.625,
+      "best_params": "LB30_R7_N4",
+      "best_sharpe": 1.319,
+      "best_annual_pct": 48.8,
+      "best_max_dd_pct": -26.3
+    },
+    "high_kurt_long": {
+      "n_positive": 2,
+      "n_total": 30,
+      "positive_pct": 6.7,
+      "mean_sharpe": -0.629,
+      "median_sharpe": -0.625,
+      "best_params": "LB60_R3_N4",
+      "best_sharpe": 0.149,
+      "best_annual_pct": 5.5,
+      "best_max_dd_pct": -51.5
+    }
+  },
+  "best_direction": "low_kurt_long",
+  "best_params": "LB30_R7_N4",
+  "best_sharpe": 1.319,
+  "best_annual_pct": 48.8,
+  "best_max_dd_pct": -26.3,
+  "is_positive_rate_pct": 93.3,
+  "walk_forward": {
+    "n_folds": 6,
+    "oos_days": 90,
+    "fold_sharpes": [-2.778, 7.004, -2.638, -4.208, -2.589, 2.433],
+    "n_positive": 2,
+    "mean_oos_sharpe": -0.463,
+    "verdict": "FAIL — only 2/6 positive OOS folds"
+  },
+  "split_half": {
+    "h1_mean_sharpe": 0.156,
+    "h2_mean_sharpe": 1.487,
+    "note": "Large asymmetry — factor works well in H2 (2025+) but not H1"
+  },
+  "correlations": {
+    "H012_momentum": -0.091,
+    "H076_efficiency": -0.133,
+    "H160_trend_quality": -0.137,
+    "H167_vol_price": -0.208,
+    "H169_alpha_btc": -0.043
+  },
+  "verdict": "REJECTED",
+  "rejection_reason": "Walk-forward fails: 2/6 OOS positive folds, mean OOS Sharpe -0.46. Strong split-half instability (H1=0.16 vs H2=1.49) suggests regime dependence, not a stable factor.",
+  "notes": "IS looks excellent (93% positive, best Sharpe 1.32). Low-kurtosis-long direction is clearly the right sign (high-kurtosis-long has only 6.7% positive). However, WF exposes severe recency bias — factor appears concentrated in Q4-2025/Q1-2026. Low correlation to all existing factors (<0.21 absolute), confirming factor novelty but insufficient stability."
+}
