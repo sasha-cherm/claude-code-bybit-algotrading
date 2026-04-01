@@ -1,0 +1,106 @@
+{
+  "hypothesis": "H-182",
+  "name": "High-Low Range Factor",
+  "status": "CONFIRMED",
+  "reason": "All 4 stages passed",
+  "best_direction": "narrow_long",
+  "direction_stats": {
+    "narrow_long": {
+      "pct_positive": 90.0,
+      "mean_sharpe": 0.503,
+      "n_combos": 30
+    },
+    "wide_long": {
+      "pct_positive": 3.3,
+      "mean_sharpe": -0.623,
+      "n_combos": 30
+    }
+  },
+  "is_positive_rate": 90.0,
+  "is_mean_sharpe": 0.503,
+  "is_median_sharpe": 0.578,
+  "best_params": {
+    "lookback": 30,
+    "rebal": 5,
+    "n": 3,
+    "direction": "narrow_long"
+  },
+  "best_sharpe": 0.912,
+  "best_annual_return": 47.2,
+  "best_max_dd": -62.1,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB40_R3_N3",
+      "is_sharpe": 0.558,
+      "oos_sharpe": 5.5565,
+      "oos_start": "2026-01-02",
+      "oos_end": "2026-04-01"
+    },
+    {
+      "fold": 2,
+      "is_params": "LB40_R3_N4",
+      "is_sharpe": 0.243,
+      "oos_sharpe": 2.2009,
+      "oos_start": "2025-10-04",
+      "oos_end": "2026-01-01"
+    },
+    {
+      "fold": 3,
+      "is_params": "LB40_R3_N4",
+      "is_sharpe": 0.329,
+      "oos_sharpe": 1.1666,
+      "oos_start": "2025-07-06",
+      "oos_end": "2025-10-03"
+    },
+    {
+      "fold": 4,
+      "is_params": "LB40_R3_N4",
+      "is_sharpe": 0.586,
+      "oos_sharpe": 1.5731,
+      "oos_start": "2025-04-07",
+      "oos_end": "2025-07-05"
+    },
+    {
+      "fold": 5,
+      "is_params": "LB30_R7_N3",
+      "is_sharpe": -0.449,
+      "oos_sharpe": 2.8107,
+      "oos_start": "2025-01-07",
+      "oos_end": "2025-04-06"
+    },
+    {
+      "fold": 6,
+      "is_params": "LB10_R7_N3",
+      "is_sharpe": 0.019,
+      "oos_sharpe": -4.2736,
+      "oos_start": "2024-10-09",
+      "oos_end": "2025-01-06"
+    }
+  ],
+  "wf_positive_folds": 5,
+  "wf_total_folds": 6,
+  "wf_mean_oos_sharpe": 1.506,
+  "split_half": {
+    "h1_best_sharpe": 0.416,
+    "h2_best_sharpe": 2.397,
+    "h1_mean_sharpe": -0.263,
+    "h2_mean_sharpe": 1.557
+  },
+  "correlations": {
+    "H-012_momentum": 0.2,
+    "H-076_efficiency": -0.154,
+    "H-160_trend_quality": 0.101
+  },
+  "max_abs_correlation": 0.2,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 60,
+  "valid_combos": 60,
+  "validation": {
+    "is_pass": true,
+    "wf_pass": true,
+    "sh_pass": true,
+    "corr_pass": true
+  }
+}

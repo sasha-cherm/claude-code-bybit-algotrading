@@ -2474,6 +2474,39 @@
 - Notes: Counterintuitive result: erratic volume assets outperform stable ones. This may reflect that high-CV assets are those experiencing volume surges (attention events) which drive returns. However, the signal is not robust (66.7% vs 80% threshold). Volume stability alone doesn't discriminate reliably in the cross-section. The institutional/retail quality hypothesis doesn't hold in crypto — all assets have similar volume patterns driven by BTC correlation.
 - Sessions: [2026-04-01 session 125]
 
+## H-182: High-Low Range Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Use normalized intraday range (High - Low) / Close as a cross-sectional signal. Assets with narrow ranges are in quiet accumulation; wide ranges indicate panic/volatility. Different from H-019 (close-close vol) because it uses intraday extremes.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: For each asset, compute rolling mean of (high - low) / close over lookback window. Rank cross-sectionally. narrow_long: long lowest range (bottom-N), short highest range (top-N). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS narrow_long **27/30 positive (90.0%)**, mean Sharpe **0.503**, best LB30_R5_N3 Sharpe **0.912** (+47.2% ann, -62.1% DD). WF **5/6** positive, mean OOS **1.506** (fold Sharpes: 5.557, 2.201, 1.167, 1.573, 2.811, -4.274). Split-half H1=**0.416**, H2=**2.397** (both positive). H-012 corr **0.200**, H-076 corr **-0.154**, H-160 corr **0.101**. Max corr 0.200.
+- Notes: Genuinely novel signal — captures "quiet accumulation" vs "panic volatility" via intraday range. Very low correlation with all existing factors (max 0.200). 90% IS robust. WF very strong (5/6, mean 1.506). Only concern: best IS combo has -62.1% DD, but WF stabilizes. Different from close-close volatility (H-019) and price efficiency (H-076). Ready for paper trade deployment.
+- Sessions: [2026-04-01 session 126]
+
+## H-183: Gap Factor — Overnight Sentiment (14 Assets)
+- Status: CONFIRMED
+- Idea: Compute overnight gap = (open - prev_close) / prev_close. Rolling average gap captures persistent overnight sentiment. Contrarian direction (neg_gap_long) outperforms — assets gapping down overnight tend to bounce.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: For each asset, compute daily gap = (open_t - close_{t-1}) / close_{t-1}. Rolling mean over lookback. Rank cross-sectionally. neg_gap_long: long assets with most negative overnight gaps, short those with positive gaps. Grid: LB∈[5,10,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS neg_gap_long **30/30 positive (100.0%)**, mean Sharpe **1.276**, best LB10_R5_N4 Sharpe **1.778** (+85.3% ann, -38.0% DD). WF **5/6** positive, mean OOS **1.771** (fold Sharpes: 4.794, 1.333, 1.454, 1.639, 1.497, -0.089). Split-half H1=**1.826**, H2=**2.040** (both strong). H-012 corr **0.468**, H-076 corr **-0.050**, H-160 corr **0.190**. Max corr 0.468.
+- Notes: Fourth factor to achieve 100% IS positive (alongside H-012, H-169, H-175). Exceptional WF performance (mean OOS 1.771, best of any factor tested). Contrarian interpretation: overnight optimism (positive gaps) is crowded; gaps down reflect genuine selling pressure that reverses intraday. Borderline H-012 correlation (0.468) — passes threshold but partially captures momentum. The overnight decomposition adds genuine alpha beyond plain momentum. Ready for paper trade deployment.
+- Sessions: [2026-04-01 session 126]
+
+## H-184: Volume-Weighted Return Momentum (14 Assets)
+- Status: REJECTED
+- Idea: Weight daily returns by relative volume (vol_t / avg_vol_20d) to emphasize "high conviction" moves. Cumulative volume-weighted return over lookback as momentum signal.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: For each asset, compute daily return × (volume / rolling_mean(volume, 20)). Rolling sum over lookback. Rank cross-sectionally. vwmom_long: long top-N, short bottom-N. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS vwmom_long **25/30 positive (83.3%)**, mean Sharpe 0.644, best LB10_R5_N4 Sharpe **1.860** (+73.9% ann, -29.2% DD). WF **3/6** positive (3.925, 1.892, 2.022, -3.270, -3.417, -2.823), mean OOS -0.279. **FAIL WF.** Split-half H1=2.197/H2=1.689 (best) but H2 mean=-0.090. Corr H-012 0.284, H-076 0.026, H-160 0.157.
+- Notes: Volume-weighted momentum concept has merit (IS passes at 83.3%, near standard momentum). Recent 3 folds very strong (1.9-3.9 Sharpe) but older folds deeply negative — classic recency bias. The signal emerged recently (post-2025) and didn't exist before. Volume weighting doesn't add enough temporal stability over plain momentum. Corr 0.284 with H-012 confirms partial overlap. Interesting that it works at short lookbacks (LB10) but fails at longer ones (LB40) — volume-confirmation is short-lived.
+- Sessions: [2026-04-01 session 126]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

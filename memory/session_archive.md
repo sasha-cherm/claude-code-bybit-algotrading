@@ -918,3 +918,11 @@
 - Done: 18/18 runners OK. Demo: $100,211 (+0.21%). 12/18 positive. H-149/H-150/H-151 all REJECTED. Demo ATOM fix.
 - Next: Mar 31 bar rebalances. Apr 1: H-085.
 - Self-modifications: ATOMUSDT max order qty added to demo runner
+
+### Session 2026-03-31 review+research (session 116)
+- Goal: Review + Research — MTM update, H-063 monitoring, demo update, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $67,477, +0.52%), H-063 approaching expiry, H-152/H-153/H-154 backtests
+- Done: 18/18 runners OK. Demo: $100,035 (+0.04%). 13/18 positive. H-063 crossed into profit! H-152 REJECTED (return entropy). H-153 REJECTED (volume surprise). H-154 REJECTED (corr centrality).
+- Next: Mar 31 bar: H-012/H-046/H-062. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry + H-031.
+- Questions added: none
+- Self-modifications: none (session 116)
