@@ -1,0 +1,21 @@
+{
+  "hypothesis": "H-176",
+  "name": "Momentum-Reversal Timing Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 33.3% < 80% threshold",
+  "is_positive_rate": 33.3,
+  "is_mean_sharpe": -0.12,
+  "best_params": {
+    "llb": 60,
+    "slb": 3,
+    "rebal": 3,
+    "n": 4
+  },
+  "best_sharpe": 0.859,
+  "best_annual_return": 37.2,
+  "best_max_dd": -35.8,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 54,
+  "valid_combos": 54
+}

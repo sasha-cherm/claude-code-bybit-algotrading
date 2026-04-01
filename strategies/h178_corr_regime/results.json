@@ -1,0 +1,36 @@
+{
+  "hypothesis": "H-178",
+  "name": "Correlation Regime Change Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 46.3% (decorr_long) < 80% threshold",
+  "best_direction": "decorr_long",
+  "direction_stats": {
+    "decorr_long": {
+      "pct_positive": 46.3,
+      "mean_sharpe": -0.078,
+      "n_combos": 54
+    },
+    "herd_long": {
+      "pct_positive": 22.2,
+      "mean_sharpe": -0.421,
+      "n_combos": 54
+    }
+  },
+  "is_positive_rate": 46.3,
+  "is_mean_sharpe": -0.078,
+  "best_params": {
+    "sw": 20,
+    "lw": 90,
+    "rebal": 5,
+    "n": 3,
+    "direction": "decorr_long"
+  },
+  "best_sharpe": 0.808,
+  "best_annual_return": 36.4,
+  "best_max_dd": -48.5,
+  "n_assets": 14,
+  "n_trade_assets": 13,
+  "n_days": 752,
+  "total_combos": 108,
+  "valid_combos": 108
+}

@@ -1,0 +1,40 @@
+{
+  "hypothesis": "H-177",
+  "name": "Volume Trend (Slope) Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 70.0% (better dir: rising_long) < 80% threshold",
+  "is_positive_rate_better_dir": 70.0,
+  "is_mean_sharpe_better_dir": 0.281,
+  "is_positive_rate_all": 36.7,
+  "is_mean_sharpe_all": -0.279,
+  "better_direction": "rising_long",
+  "direction_stats": {
+    "rising_long": {
+      "n_positive": 21,
+      "n_total": 30,
+      "pct_positive": 70.0,
+      "mean_sharpe": 0.281,
+      "median_sharpe": 0.176
+    },
+    "declining_long": {
+      "n_positive": 1,
+      "n_total": 30,
+      "pct_positive": 3.3,
+      "mean_sharpe": -0.84,
+      "median_sharpe": -0.82
+    }
+  },
+  "best_params": {
+    "lb": 40,
+    "rebal": 3,
+    "n": 4,
+    "direction": "rising_long"
+  },
+  "best_sharpe": 1.239,
+  "best_annual_return": 44.5,
+  "best_max_dd": -35.6,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 60,
+  "valid_combos": 60
+}

@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 104)
+# Session Archive (Sessions bootstrap through 114)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -903,3 +903,11 @@
 - Next: Session 114 review + research
 - Questions added: none
 - Self-modifications: none (session 113)
+
+### Session 2026-03-31 review+research+system (session 114)
+- Goal: Review + Research + System — MTM update, kill H-024, system hardening, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,644 -0.95%), H-024 kill, position-count guards, H-146/H-147/H-148 backtests
+- Done: 18/19 runners OK (H-024 killed). Demo: $100,814 (+0.81%). 9/18 positive. H-019 surged to +7.44%. H-024 KILLED (H-019 won 7.64% gap). H-052 dropped to -3.74%. H-063: $9,973 (-0.27%). Position-count guard added to ALL 13 multi-asset runners. H-146 REJECTED (lead-lag spillover). H-147 REJECTED (volume skewness). H-148 REJECTED (DD speed).
+- Next: Rebalances, research
+- Questions added: none
+- Self-modifications: position-count guard in 13 runners, orchestrator log fix, H-031 state fix (session 114)

@@ -2408,6 +2408,39 @@
 - Notes: Exceptional 100% IS positive rate (third factor to achieve this alongside H-012 and H-169). Passes all 4/4 criteria. Net money flow is conceptually different from momentum (price only), volume momentum (volume level only), and OBV (H-118, which accumulates all up-days). This uses open-close range × volume — more granular directional flow. Deployed as paper trade #21.
 - Sessions: [2026-04-01 session 123]
 
+## H-176: Momentum-Reversal Timing Factor (14 Assets)
+- Status: REJECTED
+- Idea: Combine long-term momentum rank with short-term reversal. "Buy the dip" in uptrending assets, "short the dead cat bounce" in downtrending assets. Score = long_term_mom_rank - short_term_ret_rank.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute long-term return (LLB lookback) and short-term return (SLB lookback). Score = percentile_rank(LT_ret) - percentile_rank(ST_ret). Long top-N (strong trend + dip), short bottom-N (weak trend + bounce). Grid: LLB∈[30,40,60], SLB∈[3,5,7], R∈[3,5,7], N∈[3,4] = 54 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS **18/54 positive (33.3%)**, mean Sharpe -0.120. **FAIL** IS < 80%. Best: LLB60_SLB3_R3_N4 Sharpe 0.859 (+37.2% ann, -35.8% DD). Signal only works in narrow parameter corner (LLB=60, SLB=3, R=3) — highly fragile.
+- Notes: The dip-buying/dead-cat concept doesn't produce robust cross-sectional signal in crypto. The best combo looks decent individually but 67% of parameter space is negative. The signal is too sensitive to exact lookback choices — classic overfitting signature. Short-term reversals in crypto are too noisy to combine reliably with momentum.
+- Sessions: [2026-04-01 session 124]
+
+## H-177: Volume Trend (Slope) Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by OLS slope of log(volume) over rolling window. Rising volume = accumulation/growing interest. Long rising-volume assets, short declining-volume.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute OLS slope of log(volume) vs time index, normalized by std for cross-sectional comparability. Rank. rising_long: long top-N, short bottom-N. Also test declining_long. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS rising_long **21/30 positive (70.0%)**, mean Sharpe 0.281. declining_long 1/30 (3.3%). **FAIL** IS < 80%. Best: LB40_R3_N4_rising_long Sharpe 1.239 (+44.5% ann, -35.6% DD). Direction is clear (rising > declining) but not robust across parameter space.
+- Notes: Close to threshold (70% vs 80%) — most promising rejected factor in recent sessions. Signal works at medium lookbacks (30-40d) but fails at short lookbacks (10-20d) and with infrequent rebalancing. Volume trends in crypto are legitimate (accumulation thesis) but the signal is too noisy at the daily frequency. Possibly viable at weekly frequency but not tested.
+- Sessions: [2026-04-01 session 124]
+
+## H-178: Correlation Regime Change Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Track how each asset's rolling correlation with BTC changes over time. Short herding assets (increasing corr), long decorrelating assets (decreasing corr). Based on crowding/herding theory.
+- Instrument: futures (13 USDT perps, excl BTC)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each non-BTC asset, compute rolling corr with BTC over short window (SW) and long window (LW). Corr_change = short_corr - long_corr. Positive = herding, negative = decorrelating. Rank. decorr_long: long bottom-N, short top-N. herd_long: opposite. Grid: SW∈[10,20,30], LW∈[40,60,90], R∈[3,5,7], N∈[3,4], dir∈2 = 108 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS decorr_long **25/54 positive (46.3%)**, mean Sharpe -0.078. herd_long 12/54 (22.2%), mean -0.421. **FAIL** IS < 80%. Best: SW20_LW90_R5_N3 Sharpe 0.808 (+36.4% ann, -48.5% DD). Highly parameter-sensitive — SW=20 combos dominate top, SW=10 dominate bottom.
+- Notes: Correlation regime changes don't produce reliable XS signals in crypto. The herding/decorrelation dynamic may exist but is too noisy to trade profitably. Neither direction shows systematic edge. Best individual combo has high DD (48.5%) suggesting fragile signal. Crypto assets move in and out of BTC correlation too rapidly for this to be a stable factor.
+- Sessions: [2026-04-01 session 124]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

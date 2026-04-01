@@ -10,24 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Positions (as of 2026-03-30 13:05 UTC):
-Demo eq: $100,872 (+0.87%). All drifts <10%. BTC $67,847.
-| Symbol | Side | Size | uPnL |
-|--------|------|------|------|
-| ADAUSDT | LONG | 24,361 | +$115 |
-| ARBUSDT | SHORT | 327,297 | +$953 |
-| ATOMUSDT | SHORT | 21,041 | +$1,185 |
-| AVAXUSDT | SHORT | 2,550 | +$415 |
-| BTCUSDT | LONG | 0.4 | -$1,037 |
-| DOGEUSDT | LONG | 194,217 | +$349 |
-| DOTUSDT | LONG | 8,285 | -$71 |
-| ETHUSDT | LONG | 11.8 | -$838 |
-| LINKUSDT | SHORT | 87.6 | -$27 |
-| NEARUSDT | SHORT | 23,954 | +$2,270 |
-| OPUSDT | LONG | 97,231 | +$117 |
-| SOLUSDT | LONG | 215.7 | -$1,373 |
-| XRPUSDT | LONG | 4,994 | -$46 |
-Note: Demo rebalanced — positions flipped on some assets (ADA now LONG, OP now LONG). NEAR short still biggest winner (+$2,270). Total uPnL: +$2,010.
+### Current Demo Status (as of 2026-04-01 13:05 UTC):
+Demo eq: $98,201 (-1.80%). BTC $68,306. 13 open positions. Down from -0.82% last session — BTC drop from $68,720 to $68,306 hurt long-biased portfolio.
 
 ---
 
@@ -82,16 +66,10 @@ Note: Demo rebalanced — positions flipped on some assets (ADA now LONG, OP now
 - **Params**: VS5_VL20_R3_N4 (5d/20d volume ratio, 3-day rebalance, top/bottom 4)
 - **Next rebal**: Mar 30 bar
 
-### H-024: Low-Beta Anomaly (14 Assets) — comparison
-- **Status**: LIVE paper trade (started 2026-03-18) — **comparing against H-019**
-- **Position**: 6 positions (3 long, 3 short)
-  - LONG (low beta): ATOM, OP, BTC
-  - SHORT (high beta): XRP, NEAR, SUI
-- **Mark equity**: $9,866 (-1.34%) — slight recovery.
-- **Runner**: `paper_trades/h024_beta/runner.py`
-- **Params**: W60_R21_N3 (60d rolling beta vs BTC, 21d rebalance, top/bottom 3)
-- **Next rebal**: 2026-04-08 (13 days)
-- **Note**: H-019 +1.92% vs H-024 -1.34% — **H-019 clearly winning** (3.26% gap).
+### H-024: Low-Beta Anomaly (14 Assets) — KILLED
+- **Status**: KILLED (session 114, 2026-03-31). H-019 won comparison decisively (+7.44% vs -0.20%).
+- **Final equity**: $10,079 (+0.79%) — positions still held but runner removed from orchestrator.
+- **Runner**: Removed from orchestrator (session 114/124). Comment cleaned up session 124.
 
 ### H-031: Size Factor (Dollar Volume Proxy, Long Large) — independent
 - **Status**: LIVE paper trade (started 2026-03-19) — independent

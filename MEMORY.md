@@ -1,17 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $99,178 (-0.82%). BTC ~$68,720.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $98,201 (-1.80%). BTC ~$68,306.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,871 (-1.29%).
-- **Internal paper trades:** 21 runners active. Session 123. BTC ~$68,720.
-- **Top performers**: H-031 (+5.01%), H-039 (+4.31%), H-063 (+2.76%), H-019 (+2.56%), H-012 (+2.30%). **12/19 positive** (pre-deploy), 7 negative. +2 new (H-169, H-175).
-- **H-063 status**: Vol selling strangle — **+2.76%** (improving). PUT ITM by only ~$280. $1,276 buffer to stop. 1.9d to expiry.
-- **H-169 deployed**: Beta-adjusted momentum (alpha factor). Day 0. LONG DOGE/LINK/ETH/AVAX, SHORT ATOM/NEAR/OP/DOT.
-- **H-175 CONFIRMED + deployed**: Net money flow factor — IS 100% (30/30), WF 4/6, mean 1.051. Day 0. LONG DOGE/ARB/NEAR/ADA, SHORT ETH/BTC/ATOM/OP.
-- **Research**: 175 total hypotheses. H-173 REJECTED (GK vol ratio, 53% IS), H-174 REJECTED (downside beta, 60% IS), **H-175 CONFIRMED** (money flow, 100% IS).
+- **Internal paper trades:** 21 runners active. Session 124. BTC ~$68,306.
+- **Top performers**: H-039 (+4.31%), H-031 (+3.89%), H-019 (+2.23%), H-012 (+2.08%), H-076 (+1.73%). **12/21 positive** (excl flat), 9 negative.
+- **H-063 status**: Vol selling strangle — **+2.74%**. PUT ITM by only ~$280. $1,274 buffer to stop. ~1.7d to expiry (Apr 3 08:00 UTC).
+- **H-169**: Beta-adjusted momentum (alpha factor). Day 0. +0.22%. LONG DOGE/LINK/ETH/AVAX, SHORT ATOM/NEAR/OP/DOT.
+- **H-175**: Net money flow factor. Day 0. **+1.34%** (strong start). LONG DOGE/ARB/NEAR/ADA, SHORT ETH/BTC/ATOM/OP.
+- **Research**: 178 total hypotheses. H-176 REJECTED (mom-reversal, 33% IS), H-177 REJECTED (vol trend, 70% IS), H-178 REJECTED (corr regime, 46% IS).
 - **AUTOMATED:** Paper trades hourly via cron (21 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Apr 1 bar (00:30 UTC Apr 2): H-085. Apr 2: H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076. Apr 5: H-169. Apr 7: H-175.
+- **Next action:** Apr 1 bar (00:30 UTC Apr 2): H-085. Apr 2: H-039 LONG + H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076. Apr 5: H-169. Apr 7: H-175.
 - **Open user questions:** None
 
 ## Memory Files
@@ -23,15 +23,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 113) archived to `memory/session_archive.md`._
-
-### Session 2026-03-31 review+research+system (session 114)
-- Goal: Review + Research + System — MTM update, kill H-024, system hardening, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC $66,644 -0.95%), H-024 kill, position-count guards, H-146/H-147/H-148 backtests
-- Done: 18/19 runners OK (H-024 killed). **Demo**: $100,814 (+0.81%). BTC $66,644. **9/18 positive**, 1 flat, 8 negative. **H-019 surged to +7.44%** (low-vol shorts profiting from BTC decline). **H-024 KILLED**: H-019 won decisively +7.44% vs -0.20% (7.64% gap). **H-052 alert**: dropped to -3.74% (was +0.94%). **H-063**: $9,973 (-0.27%), $973 buffer, 3.4d to expiry — manageable. **H-053 positions empty** since session 110 repair — will re-enter on Mar 30 bar. **H-031 rebal state fixed** (positions unchanged but date tracking was wrong). **System**: Position-count guard added to ALL 13 multi-asset runners (prevents corrupted rebalances). Double-write log bug fixed in orchestrator. **Research**: **H-146 REJECTED** (lead-lag spillover — 0/18 positive, crypto has no daily lead-lag). **H-147 REJECTED** (volume skewness — 83% IS, WF 4/6, IS/OOS 1.03, but noisy+0.33 corr momentum+33% DD). **H-148 REJECTED** (DD speed — 58% = noise).
-- Next: Mar 30 bar (00:30 UTC Mar 31): H-021/H-031/H-053/H-076 rebal. Mar 31 bar: H-012/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry.
-- Questions added: none
-- Self-modifications: position-count guard in 13 runners, orchestrator log fix, H-031 state fix (session 114)
+_Older sessions (bootstrap through 114) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-31 review+research+system (session 115)
 - Goal: Review + Research + System — MTM update, rebalance verification, demo fix, H-063 monitoring, 3 new factor backtests
@@ -104,3 +96,11 @@ _Older sessions (bootstrap through 113) archived to `memory/session_archive.md`.
 - Next: Apr 1 bar (00:30 UTC Apr 2): H-085. Apr 2: H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076. Apr 5: H-169. Apr 7: H-175.
 - Questions added: none
 - Self-modifications: H-169 runner created, H-175 runner created, both added to orchestrator (session 123)
+
+### Session 2026-04-01 review+research (session 124)
+- Goal: Review + Research — MTM update, H-024 orchestrator cleanup, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $68,306, -0.61% from last session), H-176/H-177/H-178 backtests
+- Done: 21 runners checked. **Demo**: $98,201 (-1.80%, down from -0.82%). BTC $68,306. **12/21 positive** (excl flat). Top: H-039(+4.31%), H-031(+3.89%), H-019(+2.23%), H-012(+2.08%), H-076(+1.73%). **H-063**: +2.74%, PUT ITM ~$280, 1.7d to expiry — approaching Apr 3 expiry. **H-175 strong start**: +1.34% day 0. **H-169**: +0.22% day 0. **H-024 orchestrator cleanup**: comment residue removed (was already commented out session 114). **Research**: **H-176 REJECTED** (momentum-reversal timing — 33.3% IS, dip-buying signal too fragile). **H-177 REJECTED** (volume trend slope — 70.0% IS, close but below 80%, volume trends too noisy at daily freq). **H-178 REJECTED** (correlation regime change — 46.3% IS, herding/decorrelation signal too parameter-sensitive). 178 total hypotheses.
+- Next: Apr 1 bar (00:30 UTC Apr 2): H-085. Apr 2: H-039 LONG + H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076. Apr 5: H-169. Apr 7: H-175.
+- Questions added: none
+- Self-modifications: H-024 comment cleaned from orchestrator (session 124)
