@@ -2366,14 +2366,14 @@
 
 ## H-172: Hurst Exponent Factor (R/S Method, 14 Assets)
 - Status: REJECTED
-- Idea: Rolling Hurst exponent via rescaled range (R/S) method. H > 0.5 = trending, H < 0.5 = mean-reverting. Long trending assets, short mean-reverting (or vice versa).
+- Idea: Rank 14 assets by rolling Hurst exponent (R/S rescaled-range method). H > 0.5 = trending (long), H < 0.5 = mean-reverting (short). Or reverse direction.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance 3-7 days)
-- Logic: For each asset, compute rolling R/S Hurst exponent over lookback using multiple sub-period sizes. Rank cross-sectionally. trending_long: long high-H, short low-H. meanrev_long: opposite. Grid: LB∈[20,30,40,60,80], R∈[3,5,7], N∈[3,4], direction∈[trending_long, meanrev_long] = 60 combos.
-- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
-- Result: trending_long **13/30 positive (43.3%)**, mean Sharpe -0.126. meanrev_long **10/30 positive (33.3%)**, mean Sharpe -0.213. Neither direction has signal.
-- Notes: Hurst exponent has no cross-sectional signal in crypto. The R/S method produces noisy estimates at short lookbacks, and with only 14 highly correlated assets, the cross-sectional dispersion in Hurst values is too small to discriminate. Different from autocorrelation (H-168) and variance ratio (H-161) — all three persistence measures fail in crypto, confirming that serial dependence structure is not a viable XS factor.
-- Sessions: [2026-04-01 session 122]
+- Logic: For each asset, compute Hurst exponent via R/S on rolling log-returns using sub-period sizes [n//8, n//4, n//2, n]; OLS slope of log(R/S) on log(n) = H. Rank cross-sectionally. trending_long: long top-N (high H), short bottom-N. meanrev_long: opposite. Grid: LB∈[20,30,40,60,80], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1065 daily bars (2023-05-03 to 2026-04-01). Best: LB80_R5_N4_trending_long Sharpe 1.407 (+57.5% ann, -30.3% DD).
+- Result: IS **trending_long 13/30 positive (43.3%)**, mean Sharpe -0.126. **meanrev_long 10/30 positive (33.3%)**, mean Sharpe -0.213. Both directions fail 80% IS threshold — deep validation not run.
+- Notes: Hurst exponent has no consistent XS signal in crypto at any lookback from 20-80 days. Mirrors H-116 (prior Hurst backtest, different sub-period splits) and H-168 (autocorrelation — also no XS signal). All three serial-dependence measures fail, confirming that persistence structure is not a viable cross-sectional factor in crypto. The few positive combos cluster at LB=80, suggesting very long-horizon Hurst may contain a weak signal, but not robust enough. Matches H-116 conclusion.
+- Sessions: [2026-04-01 (this session, h172_hurst/backtest.py)]
 
 ## Killed
 
