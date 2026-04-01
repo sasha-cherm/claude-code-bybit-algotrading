@@ -881,3 +881,11 @@
 - Next: Mar 30 bar rebalances. Mar 31: Kill H-024.
 - Questions added: none
 - Self-modifications: min-asset guard in 14 runners, H-053 state repaired (session 110)
+
+### Session 2026-03-30 review+research (session 111)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $67,847 +0.54%), H-063 vol selling profitable, H-140/H-141/H-142 backtests
+- Done: 19/19 runners OK. Demo: $100,872 (+0.87%). H-063 profitable: $10,073 (+0.73%). Research: H-140/H-141/H-142 all REJECTED.
+- Next: Mar 30 bar rebalances. Mar 31: Kill H-024.
+- Questions added: none
+- Self-modifications: none (session 111)

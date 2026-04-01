@@ -2296,6 +2296,39 @@
 - Notes: Excellent standalone metrics — passes 3/4 criteria convincingly. The 10-day return persistence signal captures "smooth short-term momentum," which is conceptually and empirically very close to H-160 (trend-quality = efficiency × inverse vol × momentum sign). The 0.503 correlation with H-160 confirms redundancy. Not worth deploying separately. If H-160 ever gets killed, H-166 would be the natural replacement.
 - Sessions: [2026-04-01 session 120]
 
+## H-167: Volume-Price Confirmation Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Rolling correlation between daily returns and volume changes. High correlation = volume confirms price trend. Low/negative = volume diverges from price. Long confirmed, short diverging.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling Pearson correlation between daily price returns and daily volume changes over lookback window. Rank cross-sectionally. Long top-N (volume-confirmed), short bottom-N (volume-diverging). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 1065 daily bars (2023-05-03 to 2026-04-01).
+- Result: IS **27/30 positive (90.0%)**, mean Sharpe 0.444, best LB10_R7_N4 Sharpe 1.227 (+46.3% ann, -34.6% DD). WF **5/6** positive, mean OOS **1.145**. Split-half H1=0.781, H2=0.088 (both positive but H2 marginal). H-012 corr **0.251**, H-076 corr 0.092, H-160 corr 0.121. Max corr with existing: 0.251.
+- Notes: Passes all 4/4 criteria. Novel signal — volume-price confirmation is conceptually different from volume momentum (H-021) or volume surprise (H-153). Caveat: H2 split-half is only 0.088, suggesting signal weakened in recent period. Short lookback (10d) optimal may capture noise. Not deploying yet given 19 active runners.
+- Sessions: [2026-04-01 session 121]
+
+## H-168: Return Autocorrelation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling first-order autocorrelation of daily returns. High positive autocorrelation = trending asset. Negative = mean-reverting. Long trending, short mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute Pearson correlation between r(t) and r(t-1) over rolling window. Rank cross-sectionally. Long high-autocorrelation, short low. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 1065 daily bars.
+- Result: IS **6/24 positive (25.0%)** — noise level. Best LB20_R7_N3 Sharpe 0.299 (+14.6% ann, -52.3% DD). Massive drawdowns across all params.
+- Notes: Autocorrelation has no cross-sectional signal in crypto. Daily returns are too noisy for first-order autocorrelation to discriminate between assets. Different from H-115/H-135 (autocorrelation tested previously) — confirms that autocorrelation is not a viable XS factor in crypto at any lookback.
+- Sessions: [2026-04-01 session 121]
+
+## H-169: Beta-Adjusted Momentum (Alpha Factor, 14 Assets)
+- Status: CONFIRMED
+- Idea: Rank altcoins by alpha vs BTC (return minus beta × BTC return). Captures genuine outperformance, not just high-beta rides. Long positive alpha, short negative alpha.
+- Instrument: futures (13 perps, excluding BTC)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each non-BTC asset, compute rolling OLS beta vs BTC, then alpha = cumulative(return - beta × BTC_return) over lookback. Rank cross-sectionally. Long top-N alpha, short bottom-N. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets (13 ranked), 1065 daily bars.
+- Result: IS **30/30 positive (100%)**, mean Sharpe **1.118**, best LB10_R5_N4 Sharpe **1.550** (+67.9% ann, -35.2% DD). WF **4/6** positive, mean OOS **1.648** (folds 3&4 negative: -1.798, -1.540). Split-half H1=1.335, H2=0.422 (both positive). H-012 corr **0.342**, H-076 corr 0.161, H-160 corr 0.133, H-167 corr 0.371. Max corr with existing: 0.342.
+- Notes: Strongest new factor — 100% IS positive rate is exceptional. Beta-adjusted momentum is theoretically grounded (alpha capture). The 0.342 correlation with H-012 is borderline but passing (<0.40). Caveat: WF folds 3&4 deeply negative suggests regime-dependent behavior (BTC flat periods may confuse the signal). H-167 mutual corr 0.371 — deploying both would add some redundancy. Not deploying yet given 19 active runners.
+- Sessions: [2026-04-01 session 121]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

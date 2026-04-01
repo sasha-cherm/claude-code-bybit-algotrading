@@ -46,5 +46,16 @@
     "fee": 3.88,
     "net_pnl": 367.52,
     "capital_after": 10435.19
+  },
+  {
+    "type": "open",
+    "time": "2026-04-01T00:32:12.877652+00:00",
+    "signal_date": "2026-03-31",
+    "direction": "LONG",
+    "entry_price": 68281.5,
+    "size_btc": 0.15282605,
+    "notional": 10435.19,
+    "fee": 4.17,
+    "capital_after": 10431.02
   }
 ]
