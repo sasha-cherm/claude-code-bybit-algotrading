@@ -1,0 +1,98 @@
+{
+  "hypothesis": "H-180",
+  "name": "Multi-Timeframe Momentum Agreement Factor",
+  "status": "REJECTED",
+  "reason": "WF 1/4 < 4/6; max |corr| 0.690 >= 0.40",
+  "best_direction": "agreement_long",
+  "direction_stats": {
+    "agreement_long": {
+      "pct_positive": 100.0,
+      "mean_sharpe": 0.635,
+      "n_combos": 12
+    },
+    "contrarian_long": {
+      "pct_positive": 0.0,
+      "mean_sharpe": -1.016,
+      "n_combos": 12
+    }
+  },
+  "is_positive_rate": 100.0,
+  "is_mean_sharpe": 0.635,
+  "is_median_sharpe": 0.694,
+  "best_params": {
+    "rebal": 7,
+    "n": 4,
+    "direction": "agreement_long",
+    "tiebreak": "sum_return"
+  },
+  "best_sharpe": 1.045,
+  "best_annual_return": 45.9,
+  "best_max_dd": -28.6,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "R5_N4_avg_return",
+      "is_sharpe": 1.136,
+      "oos_sharpe": 4.4083,
+      "oos_start": "2025-12-03",
+      "oos_end": "2026-04-01"
+    },
+    {
+      "fold": 2,
+      "is_params": "R5_N4_avg_return",
+      "is_sharpe": 0.969,
+      "oos_sharpe": -3.2766,
+      "oos_start": "2025-08-05",
+      "oos_end": "2025-12-02"
+    },
+    {
+      "fold": 3,
+      "is_params": "R5_N4_avg_return",
+      "is_sharpe": 1.919,
+      "oos_sharpe": -0.6407,
+      "oos_start": "2025-04-07",
+      "oos_end": "2025-08-04"
+    },
+    {
+      "fold": 4,
+      "is_params": "R5_N4_avg_return",
+      "is_sharpe": 1.575,
+      "oos_sharpe": -0.3458,
+      "oos_start": "2024-12-08",
+      "oos_end": "2025-04-06"
+    }
+  ],
+  "wf_positive_folds": 1,
+  "wf_total_folds": 4,
+  "wf_mean_oos_sharpe": 0.036,
+  "split_half": {
+    "h1_best_sharpe": 2.069,
+    "h2_best_sharpe": 0.842,
+    "h1_mean_sharpe": 1.255,
+    "h2_mean_sharpe": 0.568
+  },
+  "correlations": {
+    "H-012_momentum": 0.69,
+    "H-076_efficiency": 0.076,
+    "H-160_trend_quality": 0.214,
+    "H-169_alpha_momentum": 0.56
+  },
+  "max_abs_correlation": 0.69,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 24,
+  "valid_combos": 24,
+  "lookback_windows": [
+    5,
+    10,
+    20,
+    40,
+    60
+  ],
+  "validation": {
+    "is_pass": true,
+    "wf_pass": false,
+    "sh_pass": true,
+    "corr_pass": false
+  }
+}

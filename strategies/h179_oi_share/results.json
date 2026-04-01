@@ -1,0 +1,35 @@
+{
+  "hypothesis": "H-179",
+  "name": "OI Share Change Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 63.3% (shrinking_long) < 80% threshold",
+  "best_direction": "shrinking_long",
+  "direction_stats": {
+    "growing_long": {
+      "pct_positive": 6.7,
+      "mean_sharpe": -0.702,
+      "n_combos": 30
+    },
+    "shrinking_long": {
+      "pct_positive": 63.3,
+      "mean_sharpe": 0.236,
+      "n_combos": 30
+    }
+  },
+  "is_positive_rate": 63.3,
+  "is_mean_sharpe": 0.236,
+  "best_params": {
+    "lookback": 60,
+    "rebal": 7,
+    "n": 4,
+    "direction": "shrinking_long"
+  },
+  "best_sharpe": 1.966,
+  "best_annual_return": 74.9,
+  "best_max_dd": -23.7,
+  "n_assets": 14,
+  "n_oi_assets": 14,
+  "n_days": 752,
+  "total_combos": 60,
+  "valid_combos": 60
+}

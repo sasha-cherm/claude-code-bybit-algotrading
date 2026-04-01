@@ -911,3 +911,10 @@
 - Next: Rebalances, research
 - Questions added: none
 - Self-modifications: position-count guard in 13 runners, orchestrator log fix, H-031 state fix (session 114)
+
+### Session 2026-03-31 review+research+system (session 115)
+- Goal: Review + Research + System — MTM update, rebalance verification, demo fix, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $67,127, +0.72%), demo ATOM fix, H-149/H-150/H-151 backtests
+- Done: 18/18 runners OK. Demo: $100,211 (+0.21%). 12/18 positive. H-149/H-150/H-151 all REJECTED. Demo ATOM fix.
+- Next: Mar 31 bar rebalances. Apr 1: H-085.
+- Self-modifications: ATOMUSDT max order qty added to demo runner

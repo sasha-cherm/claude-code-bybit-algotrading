@@ -1,0 +1,34 @@
+{
+  "hypothesis": "H-181",
+  "name": "Volume Stability Factor (Volume CV)",
+  "status": "REJECTED",
+  "reason": "IS positive rate 66.7% (erratic_long) < 80% threshold",
+  "best_direction": "erratic_long",
+  "direction_stats": {
+    "stable_long": {
+      "pct_positive": 3.3,
+      "mean_sharpe": -0.589,
+      "n_combos": 30
+    },
+    "erratic_long": {
+      "pct_positive": 66.7,
+      "mean_sharpe": 0.202,
+      "n_combos": 30
+    }
+  },
+  "is_positive_rate": 66.7,
+  "is_mean_sharpe": 0.202,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 7,
+    "n": 3,
+    "direction": "erratic_long"
+  },
+  "best_sharpe": 1.048,
+  "best_annual_return": 43.6,
+  "best_max_dd": -35.4,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 60,
+  "valid_combos": 60
+}

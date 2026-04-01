@@ -2441,6 +2441,39 @@
 - Notes: Correlation regime changes don't produce reliable XS signals in crypto. The herding/decorrelation dynamic may exist but is too noisy to trade profitably. Neither direction shows systematic edge. Best individual combo has high DD (48.5%) suggesting fragile signal. Crypto assets move in and out of BTC correlation too rapidly for this to be a stable factor.
 - Sessions: [2026-04-01 session 124]
 
+## H-179: OI Share Change Factor (14 Assets)
+- Status: REJECTED
+- Idea: Track each asset's share of total universe OI over time. Long assets whose OI share is growing (attracting speculative attention), short those with declining share. Measures RELATIVE OI allocation, not absolute OI change (H-044).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute OI_share = asset_OI / sum(all_OI). Compute share_change = OI_share(today) - OI_share(today - lookback). Rank cross-sectionally. Grid: LB∈[5,10,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS shrinking_long **19/30 positive (63.3%)**, mean Sharpe 0.236. growing_long 2/30 (6.7%), mean -0.702. **FAIL** IS < 80%. Best LB60_R7_N4 Sharpe 1.966 (+74.9% ann, -23.7% DD). Direction is clear (shrinking > growing) but not robust.
+- Notes: Counterintuitively, assets losing OI share outperform those gaining share. This suggests crowding — assets attracting new OI become overexposed and underperform. The contrarian signal has promise (best combo Sharpe 1.97) but is too parameter-sensitive (only 63.3% positive). OI share changes may be too noisy at the daily frequency to be a reliable cross-sectional signal.
+- Sessions: [2026-04-01 session 125]
+
+## H-180: Multi-Timeframe Momentum Agreement Factor (14 Assets)
+- Status: REJECTED
+- Idea: Count how many lookback windows (5d, 10d, 20d, 40d, 60d) agree on positive returns. Assets with full multi-TF agreement go long, those with full downtrend agreement go short. Uses BINARY agreement, not return magnitude.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute returns over [5,10,20,40,60] day lookbacks. Count positives → agreement_score ∈ {0..5}. Rank cross-sectionally. Tiebreak by avg_return or sum_return. Grid: R∈[3,5,7], N∈[3,4], dir∈2, tiebreak∈2 = 24 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS agreement_long **12/12 positive (100%)**, mean Sharpe 0.635. Best R7_N4 Sharpe 1.045 (+45.9% ann, -28.6% DD). **PASS IS.** WF **1/4** positive, mean OOS 0.036. **FAIL WF.** Split-half H1=2.069, H2=0.842 (PASS). Corr H-012 **0.690**, H-169 **0.560**. **FAIL Correlation.**
+- Notes: Despite excellent IS (100% positive), the factor is just a momentum proxy in disguise. 0.69 correlation with H-012 (momentum) proves the binary agreement approach doesn't differentiate enough. WF fails badly (only most recent fold positive). Tiebreak method made zero difference — binary agreement dominates with only 14 assets. Not novel enough.
+- Sessions: [2026-04-01 session 125]
+
+## H-181: Volume Stability Factor (Volume CV, 14 Assets)
+- Status: REJECTED
+- Idea: Measure volume consistency via coefficient of variation (CV = std/mean) of daily volume. Low CV = stable institutional volume. High CV = erratic retail/news-driven volume. Captures volume QUALITY, not level or direction.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute rolling CV = std(volume) / mean(volume) over lookback window. Rank cross-sectionally. stable_long: long low-CV, short high-CV. erratic_long: opposite. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS erratic_long **20/30 positive (66.7%)**, mean Sharpe 0.202. stable_long 1/30 (3.3%), mean -0.589. **FAIL** IS < 80%. Best LB20_R7_N3 Sharpe 1.048 (+43.6% ann, -35.4% DD).
+- Notes: Counterintuitive result: erratic volume assets outperform stable ones. This may reflect that high-CV assets are those experiencing volume surges (attention events) which drive returns. However, the signal is not robust (66.7% vs 80% threshold). Volume stability alone doesn't discriminate reliably in the cross-section. The institutional/retail quality hypothesis doesn't hold in crypto — all assets have similar volume patterns driven by BTC correlation.
+- Sessions: [2026-04-01 session 125]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
