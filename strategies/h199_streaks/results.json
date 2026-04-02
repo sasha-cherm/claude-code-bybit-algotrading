@@ -1,0 +1,37 @@
+{
+  "hypothesis": "H-199",
+  "name": "Consecutive Return Streaks Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 50.0% (contrarian_long) < 80% threshold",
+  "best_direction": "contrarian_long",
+  "direction_stats": {
+    "streak_long": {
+      "pct_positive": 29.2,
+      "mean_sharpe": -0.389,
+      "n_combos": 24
+    },
+    "contrarian_long": {
+      "pct_positive": 50.0,
+      "mean_sharpe": -0.148,
+      "n_combos": 24
+    }
+  },
+  "is_positive_rate": 50.0,
+  "is_mean_sharpe": -0.148,
+  "best_params": {
+    "smoothing_window": 1,
+    "rebal": 7,
+    "n": 4,
+    "direction": "contrarian_long"
+  },
+  "best_sharpe": 0.904,
+  "best_annual_return": 37.1,
+  "best_max_dd": -34.1,
+  "correlations": {
+    "H-012_momentum": 0.271
+  },
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 48,
+  "valid_combos": 48
+}

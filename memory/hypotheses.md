@@ -2639,6 +2639,39 @@
 - Notes: Double failure: WF 2/4 (below 4/6) AND correlation 0.763 with H-021 (volume momentum). The second derivative of dollar volume is just a noisier version of the first derivative. Three-window structure doesn't extract a meaningfully different signal. Confirms that volume acceleration ≈ volume momentum in crypto.
 - Sessions: [2026-04-02 session 130]
 
+## H-197: Amihud Illiquidity Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Amihud (2002) illiquidity measure = mean(|return| / dollar_volume) over lookback. Long the most liquid assets (low Amihud), short the most illiquid. "Flight to liquidity" factor in crypto.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute Amihud ratio per asset, rank XS. low_amihud_long: long most liquid N, short most illiquid N. Grid: LB∈[10,20,30,60], R∈[5,7,10,14], N∈[3,4,5], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS low_amihud_long **100% positive (30/30)**, mean Sharpe **1.537**, best LB10_R3_N4 Sharpe **1.895** (+89.8% ann, -29.7% DD). high_amihud_long 0% (0/30). **WF 5/6** positive (3.02, 0.47, 1.39, 2.86, 1.22, -0.65), mean OOS **1.387**. Split-half H1=1.911/H2=2.290 (both strong, H2 even better). Corr H-012 **0.488**, H-076 0.000, H-160 0.235. Max corr 0.488.
+- Notes: Exceptionally robust — 100% IS positive is rare. Captures liquidity premium: liquid assets (large-cap BTC/ETH/etc) outperform illiquid ones. Borderline momentum correlation (0.488) makes economic sense — liquid = trending. But distinct signal (efficiency corr = 0.000). Ready for paper trade deployment.
+- Sessions: [2026-04-02 session 131]
+
+## H-198: Price-MA Distance Factor (Mean Reversion, 14 Assets)
+- Status: REJECTED
+- Idea: Distance of price from its moving average (close/SMA - 1) as XS signal. Mean reversion: long oversold (below MA), short overbought (above MA). Or momentum: long above MA.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Factor = close / SMA(window) - 1. Rank XS. Grid: MA∈[5,10,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS below_ma_long (mean reversion) **3/30 positive (10%)**. above_ma_long (momentum) **20/30 positive (66.7%)**. Best: MA60_R7_N3 Sharpe 1.041 (+57.6% ann, -34.8% DD). **FAIL IS** (66.7% < 80%).
+- Notes: Mean reversion is decisively wrong in crypto — buying below MA fails 90% of the time. Momentum direction works with long windows but not robust (short MA windows lose money). Likely redundant with H-012 momentum. Third mean-reversion variant to fail in crypto.
+- Sessions: [2026-04-02 session 131]
+
+## H-199: Consecutive Return Streaks Factor (14 Assets)
+- Status: REJECTED
+- Idea: Count consecutive positive/negative daily returns per asset. Cross-sectional: long assets with streaks (momentum continuation) or against streaks (mean reversion).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Signed streak count (+N for N up days, -N for N down days). Optional smoothing W∈[1,3,5,10]. Rank XS. Grid: W∈[1,3,5,10], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS streak_long 7/24 positive (29.2%). contrarian_long 12/24 positive (50.0%). Best: W1_R7_N4 (contrarian) Sharpe 0.904 (+37.1% ann, -34.1% DD). **FAIL IS** (50% < 80%). Corr H-012 0.271 (low).
+- Notes: Only raw streaks (W=1) produce any positive results — smoothing destroys signal. Even best direction is coin-flip robustness (50%). Too noisy and parameter-sensitive. Streak counting doesn't capture durable XS signal in crypto.
+- Sessions: [2026-04-02 session 131]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
