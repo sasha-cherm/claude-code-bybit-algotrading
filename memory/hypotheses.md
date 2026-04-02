@@ -2574,7 +2574,7 @@
 - Sessions: [2026-04-02 session 128]
 
 ## H-191: Volume-Price Elasticity Factor (14 Assets)
-- Status: CONFIRMED
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-02)
 - Idea: Elasticity = |return| / normalized_volume. Measures how much price moves per unit of dollar volume. Low elasticity = institutional absorption / deep liquidity. High elasticity = thin/retail orderbooks.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance every 5-7 days)
@@ -2596,7 +2596,7 @@
 - Sessions: [2026-04-02 session 129]
 
 ## H-193: OI-Price Momentum Divergence Factor (14 Assets)
-- Status: CONFIRMED
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-02)
 - Idea: Compare OI momentum rank vs price momentum rank cross-sectionally. When price outpaces OI (divergence low) = healthy trend with de-leveraging. When OI outpaces price (divergence high) = crowded positioning without price follow-through.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance every 5-7 days)
@@ -2605,6 +2605,39 @@
 - Result: IS low_div_long **26/30 positive (86.7%)**, mean Sharpe **0.694**, best LB20_R7_N3 Sharpe **1.774** (+75.6% ann, -28.9% DD). WF **4/5** positive, mean OOS **1.470** (folds: -0.415, 0.631, 1.066, 2.674, 3.393, N/A). Split-half H1=**2.196**, H2=**2.001** (both strong). Corr H-012 **0.380**, H-076 **0.056**, H-160 **0.262**. Max corr 0.380.
 - Notes: Captures positioning quality — when OI and price momentum agree, the trend is healthy. When they diverge (OI building without price follow-through), positioning is crowded and vulnerable. Different from H-044 (OI-price divergence uses level changes, this uses momentum rank divergence). Uses OI data which adds a genuine new data source dimension. Ready for paper trade deployment.
 - Sessions: [2026-04-02 session 129]
+
+## H-194: Realized Vol Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Ratio of short-term realized volatility to long-term realized volatility as XS signal. Low ratio = vol compression (potential breakout). High ratio = vol expansion (mean reversion expected).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute vol_ratio = std(ret[-short:]) / std(ret[-long:]). Rank XS. Grid: SW∈[5,10,20], LW∈[30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 108 combos.
+- Data: 14 assets, 1065 daily bars (2023-05-04 to 2026-04-02).
+- Result: IS high_ratio_long **51/54 positive (94%)**, mean Sharpe 0.548, best SW5_LW60_R7_N4 Sharpe **1.379** (+62.9% ann, -30.2% DD). **PASS IS.** WF **0/6** positive, mean OOS **-1.168** (folds: -3.24, -0.65, -1.74, -0.12, -0.21, -1.04). **FAIL WF.** Corr H-012 -0.043, H-076 -0.005, H-160 0.014. Max corr 0.043.
+- Notes: IS looked promising but WF is a complete disaster — 0/6 folds positive. Classic in-sample overfitting to regime-specific patterns that reverse OOS. Interesting finding: high_ratio_long won (opposite of original hypothesis — vol expansion assets outperform, not compressed ones). But this just exploits transient momentum in volatile assets, not robust. Very low correlation means genuine novelty, but orthogonal-and-unprofitable is not useful.
+- Sessions: [2026-04-02 session 130]
+
+## H-195: Funding Rate Reversal Factor (14 Assets)
+- Status: REJECTED
+- Idea: Short-term change in average funding rate as contrarian signal. Funding rate spike = crowd just piled in long → fade. Funding rate drop = crowd exiting → buy the dip. Different from H-053 (level) and H-171 (raw momentum) by using delta of averages.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute funding_change = mean(funding[-W*3:]) - mean(funding[-2W*3:-W*3]). Rank XS. drop_long: long bottom-N (biggest funding drop), short top-N (biggest spike). Grid: W∈[3,5,10,20], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, funding rate data (8-hourly settlements).
+- Result: IS drop_long **9/24 positive (38%)**, mean Sharpe **-0.531**. rise_long 2/24 (8%). **FAIL IS** (38% < 80%). Best drop_long W20_R3_N4 Sharpe 0.489 (+9.4% ann, -18.8% DD). Corr H-012 0.018, H-053 -0.009.
+- Notes: Third funding momentum variant to fail (after H-130, H-171). Short-term changes in funding rate simply do not predict XS returns. Both directions deeply negative mean Sharpe. Novel (corr ~0 with H-053) but powerless. Funding rates in crypto are too noisy at short frequencies for momentum/reversal signals.
+- Sessions: [2026-04-02 session 130]
+
+## H-196: Dollar Volume Acceleration Factor (14 Assets)
+- Status: REJECTED
+- Idea: Second derivative of dollar volume — acceleration of volume growth. Assets with accelerating volume = accumulation/institutional interest building. Decelerating = fading interest.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute vol_accel = (short_avg/med_avg) - (med_avg/long_avg) using 3 rolling windows. Rank XS. accel_long: long top-N, short bottom-N. Grid: SW∈[5,10], MW∈[20,30], LW∈[40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 96 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS accel_long **41/48 positive (85.4%)**, mean Sharpe 0.603, best S5_M30_L40_R5_N3 Sharpe **1.645** (+69.4% ann, -33.2% DD). **PASS IS.** WF **2/4** positive (1.97, -0.34, 3.30, -1.20), mean OOS 0.934. **FAIL WF.** Split-half H1=2.235/H2=2.630 (both strong). Corr H-012 0.091, H-021 **0.763**, H-076 0.107. Max corr **0.763**.
+- Notes: Double failure: WF 2/4 (below 4/6) AND correlation 0.763 with H-021 (volume momentum). The second derivative of dollar volume is just a noisier version of the first derivative. Three-window structure doesn't extract a meaningfully different signal. Confirms that volume acceleration ≈ volume momentum in crypto.
+- Sessions: [2026-04-02 session 130]
 
 ## Killed
 

@@ -1,0 +1,108 @@
+{
+  "hypothesis": "H-196",
+  "name": "Dollar Volume Acceleration Factor",
+  "status": "REJECTED",
+  "reason": "WF 2/4 < 4/6; max |corr| 0.763 >= 0.50",
+  "best_direction": "accel_long",
+  "direction_stats": {
+    "accel_long": {
+      "pct_positive": 85.4,
+      "mean_sharpe": 0.603,
+      "n_combos": 48
+    },
+    "decel_long": {
+      "pct_positive": 0.0,
+      "mean_sharpe": -1.125,
+      "n_combos": 48
+    }
+  },
+  "is_positive_rate": 85.4,
+  "is_mean_sharpe": 0.603,
+  "is_median_sharpe": 0.63,
+  "best_params": {
+    "short_w": 5,
+    "med_w": 30,
+    "long_w": 40,
+    "rebal": 5,
+    "n": 3,
+    "direction": "accel_long"
+  },
+  "best_sharpe": 1.645,
+  "best_annual_return": 69.4,
+  "best_max_dd": -33.2,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "S5_M30_L40_R5_N3",
+      "is_sharpe": 1.842,
+      "oos_sharpe": 1.9738,
+      "oos_start": "2026-01-02",
+      "oos_end": "2026-04-01"
+    },
+    {
+      "fold": 2,
+      "is_params": "S5_M30_L40_R7_N3",
+      "is_sharpe": 1.627,
+      "oos_sharpe": -0.3397,
+      "oos_start": "2025-10-04",
+      "oos_end": "2026-01-01"
+    },
+    {
+      "fold": 3,
+      "is_params": "S5_M30_L40_R5_N3",
+      "is_sharpe": 1.653,
+      "oos_sharpe": 3.3016,
+      "oos_start": "2025-07-06",
+      "oos_end": "2025-10-03"
+    },
+    {
+      "fold": 4,
+      "is_params": "S5_M30_L40_R5_N3",
+      "is_sharpe": 1.872,
+      "oos_sharpe": -1.1982,
+      "oos_start": "2025-04-07",
+      "oos_end": "2025-07-05"
+    },
+    {
+      "fold": 5,
+      "is_params": "S5_M30_L60_R3_N4",
+      "is_sharpe": 2.485,
+      "oos_sharpe": null,
+      "oos_start": "2025-01-07",
+      "oos_end": "2025-04-06"
+    },
+    {
+      "fold": 6,
+      "is_params": "S5_M20_L60_R7_N3",
+      "is_sharpe": 0.818,
+      "oos_sharpe": null,
+      "oos_start": "2024-10-09",
+      "oos_end": "2025-01-06"
+    }
+  ],
+  "wf_positive_folds": 2,
+  "wf_total_folds": 4,
+  "wf_mean_oos_sharpe": 0.934,
+  "split_half": {
+    "h1_best_sharpe": 2.235,
+    "h2_best_sharpe": 2.63,
+    "h1_mean_sharpe": 0.497,
+    "h2_mean_sharpe": 1.188
+  },
+  "correlations": {
+    "H-012_momentum": 0.091,
+    "H-021_vol_momentum": 0.763,
+    "H-076_efficiency": 0.107
+  },
+  "max_abs_correlation": 0.763,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 96,
+  "valid_combos": 96,
+  "validation": {
+    "is_pass": true,
+    "wf_pass": false,
+    "sh_pass": true,
+    "corr_pass": false
+  }
+}

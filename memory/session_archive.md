@@ -950,3 +950,12 @@
 - Next: Mar 31 bar (00:30 UTC Apr 1): H-012/H-046/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG + H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076.
 - Questions added: none
 - Self-modifications: H-160 runner created, added to orchestrator (session 119)
+
+
+### Session 2026-03-31 review+research (session 120)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC ~$68,179, +0.6%), demo recovering, H-164/H-165/H-166 backtests
+- Done: 19/19 runners OK. **Demo**: $99,124 (-0.88%, improved from -1.98%). BTC $68,179. **13/19 positive**, 6 negative. Top: H-031(+5.34%), H-039(+4.35%), H-012(+2.74%), H-019(+2.26%), H-063(+1.81%). **H-063 improving**: $10,181 (+1.81%, was +1.10%), PUT ITM by only $952 (shrinking), $1,181 buffer to stop, 2.5d to expiry — on track for profitable first trade. **Research**: **H-164 REJECTED** (co-momentum — 14.8% IS positive, peer-weighted momentum has no signal in crypto). **H-165 REJECTED** (funding-premium interaction — 25.0% IS positive, joint crowding signal too noisy). **H-166 REJECTED** (return persistence — 90% IS, WF **6/6** mean 2.263, excellent standalone BUT **corr 0.503 with H-160** — redundant with trend-quality factor).
+- Next: Mar 31 bar (00:30 UTC Apr 1): H-012/H-046/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG + H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076.
+- Questions added: none
+- Self-modifications: none (session 120)

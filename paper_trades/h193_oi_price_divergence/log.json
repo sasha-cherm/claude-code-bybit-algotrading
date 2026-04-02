@@ -1,0 +1,20 @@
+[
+  {
+    "type": "rebalance",
+    "time": "2026-04-02T13:15:17.014564+00:00",
+    "date": "2026-04-01",
+    "longs": [
+      "XRP/USDT",
+      "OP/USDT",
+      "ARB/USDT"
+    ],
+    "shorts": [
+      "AVAX/USDT",
+      "ADA/USDT",
+      "LINK/USDT"
+    ],
+    "trades": 6,
+    "fees": 20.0,
+    "capital": 9980.0
+  }
+]
