@@ -1,18 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $98,434 (-1.57%). BTC ~$66,350.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $98,434 (-1.57%). BTC ~$68,119.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,872 (-1.28%).
-- **Internal paper trades:** 23 runners active. Session 128. BTC ~$66,350 (down 2.7% from last session).
-- **Top performers**: H-031 (+4.69%), H-039 (+3.98%), H-012 (+2.62%), H-019 (+2.58%), H-169 (+1.70%). **12/23 positive**, 11 negative.
-- **H-063 status**: Vol selling strangle — **-1.31%** (dropped from +2.25%). BTC crashed to $66,349, PUT deep ITM by $2,651. $869 buffer above $9,000 stop. 1.1d to expiry (Apr 3 08:00 UTC). First trade likely a loss.
-- **H-169/H-175**: Day 3, strengthening. H-169 +1.70%, H-175 +1.16%.
-- **H-009 recovering**: SHORT gaining as BTC drops. -1.14% (from -2.10%).
-- **H-032 first trades**: 3 active pairs (DOT/ATOM, SOL/DOGE, AVAX/DOT). Small losses.
-- **Research**: 190 total hypotheses. **H-189 CONFIRMED** (funding dispersion, corr 0.033 — essentially uncorrelated!). H-188/H-190 REJECTED.
-- **AUTOMATED:** Paper trades hourly via cron (23 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Apr 3: H-063 expiry settlement + H-031 rebal. Consider deploying H-189 paper trade. Continue research.
+- **Internal paper trades:** 24 runners active. Session 129. BTC ~$68,119 (no new bar since Apr 1).
+- **Top performers**: H-031 (+4.69%), H-039 (+3.98%), H-012 (+2.62%), H-019 (+2.58%), H-169 (+1.70%). **12/24 positive**, 12 negative.
+- **H-063 status**: Vol selling strangle — **-1.28%**. PUT deep ITM, 1.0d to expiry (Apr 3 08:00 UTC). $872 buffer above stop. Likely first trade loss.
+- **H-189 DEPLOYED**: Funding dispersion factor. LONG BTC/ETH/LINK, SHORT ATOM/DOT/OP. Paper trade #24.
+- **Research**: 193 total hypotheses. **H-191 CONFIRMED** (vol-price elasticity, WF 4/5 mean 1.728). **H-193 CONFIRMED** (OI-price divergence, WF 4/5 mean 1.470). H-192 REJECTED.
+- **AUTOMATED:** Paper trades hourly via cron (24 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Apr 3: H-063 expiry settlement + H-031 rebal. Deploy H-191/H-193 paper trades. Continue research.
 - **Open user questions:** None
 
 ## Memory Files
@@ -24,15 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 118) archived to `memory/session_archive.md`._
-
-### Session 2026-03-31 review+research+deploy (session 119)
-- Goal: Review + Research + Paper Trade — MTM update, H-160 deployment, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC ~$67,805, +1.7%), H-063 flipped positive, H-160 deployment, H-161/H-162/H-163 backtests
-- Done: 18/18 runners OK (pre-deployment). **13/18 positive** (new best ratio, was 12). BTC rallied +1.7%. **H-063 flipped positive**: $10,110 (+1.10%, was -0.77%) — BTC rally + theta decay winning, 2.6d to expiry. **H-160 deployed** as paper trade #19: LONG ETH/DOGE/SOL, SHORT BTC/OP/ATOM. Added to cron orchestrator. **Research**: **H-161 REJECTED** (variance ratio — 52.8% IS positive = noise, VR has no XS signal in crypto). **H-162 REJECTED** (MAX effect — short_max 33.3%, long_max 66.7%, lottery premium doesn't transfer to crypto). **H-163 REJECTED** (momentum concentration — low_conc_long 79.2%, close but fails 80% threshold).
-- Next: Mar 31 bar (00:30 UTC Apr 1): H-012/H-046/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG + H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076.
-- Questions added: none
-- Self-modifications: H-160 runner created, added to orchestrator (session 119)
+_Older sessions (bootstrap through 119) archived to `memory/session_archive.md`._
 
 ### Session 2026-03-31 review+research (session 120)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -105,3 +95,11 @@ _Older sessions (bootstrap through 118) archived to `memory/session_archive.md`.
 - Next: Apr 3: H-063 expiry settlement + H-031 rebal. Consider deploying H-189 paper trade. Continue research.
 - Questions added: none
 - Self-modifications: none (session 128)
+
+### Session 2026-04-02 review+research+deploy (session 129)
+- Goal: Review + Research + Deploy — MTM update, H-189 deployment, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC ~$68,119, no new bar), H-189 deployment, H-191/H-192/H-193 backtests
+- Done: 24 runners checked (23 pre-deploy). No new daily bar = MTM unchanged from session 128. **H-189 deployed** as paper trade #24: LONG BTC/ETH/LINK, SHORT ATOM/DOT/OP. Added to orchestrator (24 total). **Research**: **H-191 CONFIRMED** (volume-price elasticity — IS 80%, WF **4/5** mean **1.728**, split-half H1=1.650/H2=2.404, corr 0.353 H-012. Novel microstructure signal). **H-192 REJECTED** (intraday dispersion — IS 86.7% but WF **2/6** mean -1.328. Overfit short lookback). **H-193 CONFIRMED** (OI-price momentum divergence — IS 86.7%, WF **4/5** mean **1.470**, split-half H1=2.196/H2=2.001, corr 0.380 H-012. Captures positioning quality). 193 total hypotheses.
+- Next: Apr 3: H-063 expiry + H-031 rebal. Deploy H-191/H-193 paper trades. Continue research.
+- Questions added: none
+- Self-modifications: H-189 runner created, added to orchestrator (session 129)

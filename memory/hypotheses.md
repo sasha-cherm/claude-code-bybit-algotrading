@@ -2552,7 +2552,7 @@
 - Sessions: [2026-04-02 session 128]
 
 ## H-189: Funding Rate Dispersion Factor (14 Assets)
-- Status: CONFIRMED
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-02)
 - Idea: Rolling standard deviation of 8-hourly funding rates as XS signal. Low dispersion = stable/consensus positioning. High dispersion = volatile/uncertain positioning. Long low-dispersion (stable consensus carries information), short high-dispersion.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance 3-7 days)
@@ -2572,6 +2572,39 @@
 - Result: IS high_pos_long **26/30 positive (86.7%)**, mean Sharpe 0.501, best LB30_R7_N3 Sharpe **1.609** (+75.9% ann, -25.9% DD). **PASS IS.** WF **2/3** positive (3 folds N/A due to LB60 warmup consuming OOS window), mean OOS 1.364. **FAIL WF** (2/3 < 4/6 threshold). Split-half H1=3.510, H2=1.190 (both positive). Corr H-012 0.231, H-076 -0.090, H-160 -0.006.
 - Notes: Strong IS metrics and low correlations, but WF validation failed because the optimizer selected long lookback params (LB60) whose warmup period consumed the 90-day OOS windows, leaving only 3 evaluable folds. The 2 positive folds had strong Sharpes (2.60, 2.46) suggesting the signal may be real but can't be validated with current data length. Worth retesting when more data available.
 - Sessions: [2026-04-02 session 128]
+
+## H-191: Volume-Price Elasticity Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Elasticity = |return| / normalized_volume. Measures how much price moves per unit of dollar volume. Low elasticity = institutional absorption / deep liquidity. High elasticity = thin/retail orderbooks.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 5-7 days)
+- Logic: For each asset, compute daily elasticity = |close_ret| / (volume * close / avg_dollar_vol). Rolling mean over lookback. Rank XS. low_elast_long: long bottom-N (deep liquidity), short top-N (fragile). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS low_elast_long **24/30 positive (80.0%)**, mean Sharpe **0.696**, best LB60_R7_N4 Sharpe **1.552** (+68.3% ann, -39.1% DD). WF **4/5** positive, mean OOS **1.728** (folds: 5.201, 1.695, N/A, 3.140, 2.202, -3.597). Split-half H1=**1.650**, H2=**2.404** (both strong). Corr H-012 **0.353**, H-076 **0.000**, H-160 **0.154**. Max corr 0.353.
+- Notes: Novel microstructure signal. Assets with low price impact per volume unit (institutional depth) outperform fragile/thin assets. WF very strong with one negative fold (oldest data). Zero correlation with H-076 is notable — captures different aspect of market quality. Ready for paper trade deployment.
+- Sessions: [2026-04-02 session 129]
+
+## H-192: Intraday Return Dispersion Factor (14 Assets)
+- Status: REJECTED
+- Idea: Uses hourly data to compute std dev of hourly returns within each day, then averages ratio of intraday vol to daily vol over lookback. Captures microstructure noise level.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: For each asset, compute daily intraday_disp = std(hourly_returns). Rolling mean over lookback. Rank XS. high_disp_long: long noisiest, short quietest. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_disp_long **26/30 positive (86.7%)**, mean Sharpe 0.431, best LB30_R7_N4 Sharpe **1.041** (+44.2% ann, -34.2% DD). **PASS IS.** WF **2/6** positive (0.166, -2.611, -4.846, -2.369, 2.460, -0.769), mean OOS **-1.328**. **FAIL WF.** Split-half H1=1.897, H2=2.349 (both positive). Corr H-012 0.100, H-076 0.032, H-160 -0.159. Max corr 0.159.
+- Notes: WF is a catastrophe — consistently selected short lookback (LB10_R3_N3) in-sample which overfit badly OOS. The microstructure noise signal is interesting but extremely parameter-sensitive and unstable across time. Low correlations are a silver lining but not enough to overcome WF failure.
+- Sessions: [2026-04-02 session 129]
+
+## H-193: OI-Price Momentum Divergence Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Compare OI momentum rank vs price momentum rank cross-sectionally. When price outpaces OI (divergence low) = healthy trend with de-leveraging. When OI outpaces price (divergence high) = crowded positioning without price follow-through.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 5-7 days)
+- Logic: For each asset, compute OI_momentum = OI_pct_change(LB) and price_momentum = price_pct_change(LB). Rank each XS. Divergence = abs(OI_rank - price_rank). low_div_long: long lowest divergence (aligned momentum), short highest (misaligned). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars + OI data (2024-03-11 to 2026-04-01).
+- Result: IS low_div_long **26/30 positive (86.7%)**, mean Sharpe **0.694**, best LB20_R7_N3 Sharpe **1.774** (+75.6% ann, -28.9% DD). WF **4/5** positive, mean OOS **1.470** (folds: -0.415, 0.631, 1.066, 2.674, 3.393, N/A). Split-half H1=**2.196**, H2=**2.001** (both strong). Corr H-012 **0.380**, H-076 **0.056**, H-160 **0.262**. Max corr 0.380.
+- Notes: Captures positioning quality — when OI and price momentum agree, the trend is healthy. When they diverge (OI building without price follow-through), positioning is crowded and vulnerable. Different from H-044 (OI-price divergence uses level changes, this uses momentum rank divergence). Uses OI data which adds a genuine new data source dimension. Ready for paper trade deployment.
+- Sessions: [2026-04-02 session 129]
 
 ## Killed
 
