@@ -1,0 +1,108 @@
+{
+  "hypothesis": "H-189",
+  "name": "Funding Rate Dispersion Factor",
+  "status": "CONFIRMED",
+  "reason": "All 4 stages passed",
+  "best_direction": "low_disp_long",
+  "direction_stats": {
+    "high_disp_long": {
+      "pct_positive": 4.2,
+      "mean_sharpe": -0.902,
+      "n_combos": 24
+    },
+    "low_disp_long": {
+      "pct_positive": 91.7,
+      "mean_sharpe": 0.583,
+      "n_combos": 24
+    }
+  },
+  "is_positive_rate": 91.7,
+  "is_mean_sharpe": 0.583,
+  "is_median_sharpe": 0.576,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 7,
+    "n": 3,
+    "direction": "low_disp_long"
+  },
+  "best_sharpe": 1.489,
+  "best_annual_return": 63.9,
+  "best_max_dd": -34.1,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB20_R7_N3",
+      "is_sharpe": 1.728,
+      "oos_sharpe": -1.9501,
+      "oos_start": "2026-01-02",
+      "oos_end": "2026-04-01"
+    },
+    {
+      "fold": 2,
+      "is_params": "LB20_R7_N3",
+      "is_sharpe": 1.993,
+      "oos_sharpe": 1.2873,
+      "oos_start": "2025-10-04",
+      "oos_end": "2026-01-01"
+    },
+    {
+      "fold": 3,
+      "is_params": "LB20_R7_N3",
+      "is_sharpe": 2.025,
+      "oos_sharpe": 2.2793,
+      "oos_start": "2025-07-06",
+      "oos_end": "2025-10-03"
+    },
+    {
+      "fold": 4,
+      "is_params": "LB20_R7_N3",
+      "is_sharpe": 2.067,
+      "oos_sharpe": 2.1901,
+      "oos_start": "2025-04-07",
+      "oos_end": "2025-07-05"
+    },
+    {
+      "fold": 5,
+      "is_params": "LB20_R7_N3",
+      "is_sharpe": 3.319,
+      "oos_sharpe": -2.5036,
+      "oos_start": "2025-01-07",
+      "oos_end": "2025-04-06"
+    },
+    {
+      "fold": 6,
+      "is_params": "LB20_R7_N3",
+      "is_sharpe": 2.488,
+      "oos_sharpe": 4.7806,
+      "oos_start": "2024-10-09",
+      "oos_end": "2025-01-06"
+    }
+  ],
+  "wf_positive_folds": 4,
+  "wf_total_folds": 6,
+  "wf_mean_oos_sharpe": 1.014,
+  "split_half": {
+    "h1_best_sharpe": 2.124,
+    "h2_best_sharpe": 1.568,
+    "h1_mean_sharpe": 0.573,
+    "h2_mean_sharpe": 0.544
+  },
+  "correlations": {
+    "H-012_momentum": -0.033,
+    "H-076_efficiency": -0.015,
+    "H-160_trend_quality": 0.029
+  },
+  "max_abs_correlation": 0.033,
+  "n_assets": 14,
+  "n_days": 752,
+  "n_funding_assets": 14,
+  "n_funding_rows": 2190,
+  "total_combos": 48,
+  "valid_combos": 48,
+  "validation": {
+    "is_pass": true,
+    "wf_pass": true,
+    "sh_pass": true,
+    "corr_pass": true
+  }
+}

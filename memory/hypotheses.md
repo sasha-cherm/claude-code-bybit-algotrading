@@ -2540,6 +2540,39 @@
 - Notes: IS excellent (93.3%) and correlation with H-012 at 0.373 (below 0.50 = passing). However, WF exposes deep instability — two folds deeply negative (-5.32, -3.47). The risk-adjustment helps IS metrics but doesn't stabilize OOS performance. The Sharpe ratio is still fundamentally driven by returns (corr 0.373 with momentum). H2 mean sharpe negative suggests signal weakened in recent data. Not reliable enough.
 - Sessions: [2026-04-02 session 127]
 
+## H-188: Return-Volume Asymmetry Factor (14 Assets)
+- Status: REJECTED
+- Idea: Ratio of average volume on UP days to average volume on DOWN days over a rolling window. High ratio = bullish conviction (volume confirms up moves). Different from H-021 (total volume change) and H-167 (continuous vol-price correlation).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute avg_vol(up_days) / avg_vol(down_days) over lookback. Rank XS. up_vol_long: long high ratio (bullish conviction), short low ratio. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS up_vol_long **25/30 positive (83.3%)**, mean Sharpe 0.249, best LB40_R7_N3 Sharpe **0.830** (+37.7% ann, -40.3% DD). **PASS IS.** WF **0/3** positive (3 folds N/A), mean OOS -1.616. **FAIL WF.** Split-half H1=1.106, H2=0.748 (both positive). Corr H-012 0.482 (borderline).
+- Notes: IS passes but WF is a complete failure — 0/3 valid folds positive. Signal looks good historically but doesn't carry forward at all, classic overfitting pattern. The volume asymmetry between up/down days is too noisy to be a reliable XS discriminator. Short lookback combos (LB=10) performed terribly even in-sample.
+- Sessions: [2026-04-02 session 128]
+
+## H-189: Funding Rate Dispersion Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Rolling standard deviation of 8-hourly funding rates as XS signal. Low dispersion = stable/consensus positioning. High dispersion = volatile/uncertain positioning. Long low-dispersion (stable consensus carries information), short high-dispersion.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute rolling std dev of funding rates over LB×3 periods (3 settlements/day). Rank XS. low_disp_long: long bottom-N (most stable), short top-N (most volatile). Grid: LB∈[5,10,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 752 daily bars + 2190 funding rate rows.
+- Result: IS low_disp_long **22/24 positive (91.7%)**, mean Sharpe **0.583**, best LB20_R7_N3 Sharpe **1.489** (+63.9% ann, -34.1% DD). WF **4/6** positive, mean OOS **1.014** (folds: -1.95, 1.29, 2.28, 2.19, -2.50, 4.78). Split-half H1=2.124/H2=1.568 (both strong, mean 0.573/0.544). Corr H-012 **-0.033**, H-076 **-0.015**, H-160 **0.029**. Max corr **0.033**.
+- Notes: Passes all 4/4 criteria convincingly. **Essentially zero correlation with all reference factors** — genuinely novel signal. Stable funding = informed consensus that carries directional edge. Volatile funding = confused/whipsawing positioning that underperforms. Two negative WF folds (Q1 2025, Q1 2026) may correspond to market regime shifts. Caveat: should check correlation with H-053 (funding level) before deploying. Best params LB20_R7_N3 stable across IS optimization.
+- Sessions: [2026-04-02 session 128]
+
+## H-190: Relative Range Position Factor (14 Assets)
+- Status: REJECTED
+- Idea: Position of current close within N-day high-low range: (close - low_N) / (high_N - low_N). Near 1 = near range top (breakout). Near 0 = near bottom (breakdown/oversold). Different from H-012 (raw returns), H-062 (distance from peak only), H-182 (range WIDTH).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute range_pos from rolling close min/max. Rank XS. high_pos_long: long near-top, short near-bottom. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_pos_long **26/30 positive (86.7%)**, mean Sharpe 0.501, best LB30_R7_N3 Sharpe **1.609** (+75.9% ann, -25.9% DD). **PASS IS.** WF **2/3** positive (3 folds N/A due to LB60 warmup consuming OOS window), mean OOS 1.364. **FAIL WF** (2/3 < 4/6 threshold). Split-half H1=3.510, H2=1.190 (both positive). Corr H-012 0.231, H-076 -0.090, H-160 -0.006.
+- Notes: Strong IS metrics and low correlations, but WF validation failed because the optimizer selected long lookback params (LB60) whose warmup period consumed the 90-day OOS windows, leaving only 3 evaluable folds. The 2 positive folds had strong Sharpes (2.60, 2.46) suggesting the signal may be real but can't be validated with current data length. Worth retesting when more data available.
+- Sessions: [2026-04-02 session 128]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
