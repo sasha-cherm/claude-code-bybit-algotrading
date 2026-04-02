@@ -31,11 +31,11 @@
       "cumulative_pnl": 0.0
     },
     "SOL/DOGE": {
-      "position": 0,
-      "entry_date": null,
-      "entry_z": null,
+      "position": 1,
+      "entry_date": "2026-04-01",
+      "entry_z": -2.137,
       "entry_equity": 1250.0,
-      "cumulative_pnl": 0.0
+      "cumulative_pnl": -3.0000000000000004
     },
     "AVAX/DOT": {
       "position": -1,
@@ -137,10 +137,16 @@
       "equity": 9994.0,
       "active_pairs": 2,
       "trades_today": 0
+    },
+    {
+      "date": "2026-04-01",
+      "equity": 9991.0,
+      "active_pairs": 3,
+      "trades_today": 1
     }
   ],
-  "last_daily_date": "2026-03-31",
-  "total_trades": 2,
-  "total_fees": 6.000000000000001,
+  "last_daily_date": "2026-04-01",
+  "total_trades": 3,
+  "total_fees": 9.000000000000002,
   "trades_log": []
 }

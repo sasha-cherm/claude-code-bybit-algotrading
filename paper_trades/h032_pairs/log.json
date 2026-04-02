@@ -16,5 +16,14 @@
     "direction": "long_spread",
     "z": -1.576,
     "hedge_ratio": 1.3299
+  },
+  {
+    "type": "open",
+    "time": "2026-04-02T00:34:09.275789+00:00",
+    "date": "2026-04-01",
+    "pair": "SOL/DOGE",
+    "direction": "long_spread",
+    "z": -2.137,
+    "hedge_ratio": 1.0459
   }
 ]

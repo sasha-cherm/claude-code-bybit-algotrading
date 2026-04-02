@@ -2475,7 +2475,7 @@
 - Sessions: [2026-04-01 session 125]
 
 ## H-182: High-Low Range Factor (14 Assets)
-- Status: CONFIRMED
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-02)
 - Idea: Use normalized intraday range (High - Low) / Close as a cross-sectional signal. Assets with narrow ranges are in quiet accumulation; wide ranges indicate panic/volatility. Different from H-019 (close-close vol) because it uses intraday extremes.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance every 3-7 days)
@@ -2486,7 +2486,7 @@
 - Sessions: [2026-04-01 session 126]
 
 ## H-183: Gap Factor — Overnight Sentiment (14 Assets)
-- Status: CONFIRMED
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-02)
 - Idea: Compute overnight gap = (open - prev_close) / prev_close. Rolling average gap captures persistent overnight sentiment. Contrarian direction (neg_gap_long) outperforms — assets gapping down overnight tend to bounce.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance every 3-7 days)
@@ -2506,6 +2506,39 @@
 - Result: IS vwmom_long **25/30 positive (83.3%)**, mean Sharpe 0.644, best LB10_R5_N4 Sharpe **1.860** (+73.9% ann, -29.2% DD). WF **3/6** positive (3.925, 1.892, 2.022, -3.270, -3.417, -2.823), mean OOS -0.279. **FAIL WF.** Split-half H1=2.197/H2=1.689 (best) but H2 mean=-0.090. Corr H-012 0.284, H-076 0.026, H-160 0.157.
 - Notes: Volume-weighted momentum concept has merit (IS passes at 83.3%, near standard momentum). Recent 3 folds very strong (1.9-3.9 Sharpe) but older folds deeply negative — classic recency bias. The signal emerged recently (post-2025) and didn't exist before. Volume weighting doesn't add enough temporal stability over plain momentum. Corr 0.284 with H-012 confirms partial overlap. Interesting that it works at short lookbacks (LB10) but fails at longer ones (LB40) — volume-confirmation is short-lived.
 - Sessions: [2026-04-01 session 126]
+
+## H-185: Return Skewness Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling skewness of daily returns as cross-sectional signal. Positive skew = "lottery" (explosive upside but usually grind down). Negative skew = "steady" (gradual gains). Test whether skewness preference transfers from equities to crypto.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute scipy.stats.skew(returns[-LB:]) for each asset. Rank cross-sectionally. pos_skew_long: long highest skew, short lowest. neg_skew_long: opposite. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS pos_skew_long **20/30 positive (66.7%)**, mean Sharpe 0.239. neg_skew_long only 6/30 (20.0%). **FAIL** IS < 80%. Best LB10_R5_N4 Sharpe 1.054 (+40.4% ann, -36.5% DD).
+- Notes: Opposite of equity "lottery effect" — in crypto, positive-skew assets outperform (not underperform). This makes sense: crypto is momentum-driven, and positive-skew assets are those having breakout moves. But the signal is too weak and parameter-sensitive (66.7%) to be reliable. Skewness is not a viable XS factor in crypto.
+- Sessions: [2026-04-02 session 127]
+
+## H-186: Close Location Value (CLV) Factor (14 Assets)
+- Status: REJECTED
+- Idea: CLV = (2×close - high - low) / (high - low) measures where close sits within day's range. +1 = close at high (buyers won), -1 = close at low (sellers won). Rolling mean CLV captures persistent buying/selling pressure. Different from H-175 (money flow, uses open-close×volume) and H-183 (gap, overnight only).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute CLV per day, rolling mean over lookback. Rank cross-sectionally. high_clv_long: long top-N (persistent buying pressure), short bottom-N. Grid: LB∈[5,10,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_clv_long **17/30 positive (56.7%)**, mean Sharpe 0.121. low_clv_long 8/30 (26.7%). **FAIL** IS < 80%. Best LB20_R5_N4 Sharpe 1.315 (+50.1% ann, -20.3% DD).
+- Notes: Intraday close position has very weak discriminatory power in crypto. Where the close sits within the HL range doesn't predict future cross-sectional returns. Likely because crypto is 24/7 — there's no "closing auction" effect that creates CLV patterns like in equities. The signal is near noise level (56.7%).
+- Sessions: [2026-04-02 session 127]
+
+## H-187: Rolling Sharpe Ratio as Cross-Sectional Factor (14 Assets)
+- Status: REJECTED
+- Idea: Use rolling Sharpe ratio (mean_ret/std_ret over lookback) as XS signal. Captures risk-adjusted momentum — combines return and vol into a single ratio. Different from H-012 (return only) and H-019 (vol only).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: For each asset, compute rolling Sharpe = mean(ret[-LB:]) / std(ret[-LB:]). Rank cross-sectionally. high_sharpe_long: long top-N, short bottom-N. Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_sharpe_long **28/30 positive (93.3%)**, mean Sharpe 0.632, best LB10_R7_N4 Sharpe **1.627** (+66.8% ann, -33.0% DD). **PASS IS.** WF **3/5** positive (3.928, -5.320, 1.185, 3.965, -3.471), mean OOS 0.057. **FAIL WF.** Split-half H1=2.333, H2=1.292 (both positive, but H2 mean -0.097). Corr H-012 **0.373**, H-076 0.197, H-160 0.168.
+- Notes: IS excellent (93.3%) and correlation with H-012 at 0.373 (below 0.50 = passing). However, WF exposes deep instability — two folds deeply negative (-5.32, -3.47). The risk-adjustment helps IS metrics but doesn't stabilize OOS performance. The Sharpe ratio is still fundamentally driven by returns (corr 0.373 with momentum). H2 mean sharpe negative suggests signal weakened in recent data. Not reliable enough.
+- Sessions: [2026-04-02 session 127]
 
 ## Killed
 

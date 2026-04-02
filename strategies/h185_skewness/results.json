@@ -1,0 +1,41 @@
+{
+  "hypothesis": "H-185",
+  "name": "Return Skewness Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 66.7% (pos_skew_long) < 80% threshold",
+  "best_direction": "pos_skew_long",
+  "direction_stats": {
+    "neg_skew_long": {
+      "pct_positive": 20.0,
+      "mean_sharpe": -0.578,
+      "n_combos": 30
+    },
+    "pos_skew_long": {
+      "pct_positive": 66.7,
+      "mean_sharpe": 0.239,
+      "n_combos": 30
+    }
+  },
+  "is_positive_rate": 66.7,
+  "is_mean_sharpe": 0.239,
+  "is_median_sharpe": 0.291,
+  "best_params": {
+    "lookback": 10,
+    "rebal": 5,
+    "n": 4,
+    "direction": "pos_skew_long"
+  },
+  "best_sharpe": 1.054,
+  "best_annual_return": 40.4,
+  "best_max_dd": -36.5,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 60,
+  "valid_combos": 60,
+  "validation": {
+    "is_pass": false,
+    "wf_pass": null,
+    "sh_pass": null,
+    "corr_pass": null
+  }
+}

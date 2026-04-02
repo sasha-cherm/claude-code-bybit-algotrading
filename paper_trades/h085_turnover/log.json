@@ -18,5 +18,25 @@
     "trades": 8,
     "fees": 20.0,
     "capital": 9980.0
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-02T00:37:19.405073+00:00",
+    "date": "2026-04-01",
+    "longs": [
+      "SUI/USDT",
+      "BTC/USDT",
+      "NEAR/USDT",
+      "SOL/USDT"
+    ],
+    "shorts": [
+      "XRP/USDT",
+      "DOGE/USDT",
+      "DOT/USDT",
+      "LINK/USDT"
+    ],
+    "trades": 10,
+    "fees": 24.45,
+    "capital": 9957.15
   }
 ]

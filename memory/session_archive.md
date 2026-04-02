@@ -926,3 +926,12 @@
 - Next: Mar 31 bar: H-012/H-046/H-062. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry + H-031.
 - Questions added: none
 - Self-modifications: none (session 116)
+
+
+### Session 2026-03-31 review+research (session 117)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $66,761, -1.06%), H-063 vol selling back negative, H-155/H-156/H-157 backtests
+- Done: 18/18 runners OK. **Demo**: $99,936 (-0.06%). BTC $66,761. **12/18 positive**, 6 negative. Top: H-031(+5.34%), H-039(+4.35%), H-012(+2.74%). **H-063 back negative**: $9,909 (-0.91%), PUT ITM by $2,239, $909 buffer to stop, 3.0d to expiry — BTC drop hurt, needs stability. **Research**: **H-155 REJECTED** (Amihud illiquidity — liquid_long IS 100%, WF 6/6 mean 1.25, BUT **corr 0.799 with H-031** = same signal, split-half H1=-0.123). **H-156 REJECTED** (funding rate vol — stable_long IS 89.6%, WF 4/6 mean 0.476, BUT split-half **H1=1.712/H2=-0.075** = signal died. Excellent corr 0.013/−0.013 — novel but decayed). **H-157 REJECTED** (range ratio — noisy_long IS 91.7% but WF **3/6** mean **-0.289**, split-half both halves negative).
+- Next: Mar 31 bar (00:30 UTC Apr 1): H-012/H-046/H-062 rebal. Apr 1: H-085. Apr 2: H-039 LONG. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076.
+- Questions added: none
+- Self-modifications: none (session 117)

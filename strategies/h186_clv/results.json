@@ -1,0 +1,48 @@
+{
+  "hypothesis": "H-186",
+  "name": "Close Location Value (CLV) Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 56.7% (high_clv_long) < 80% threshold",
+  "best_direction": "high_clv_long",
+  "direction_stats": {
+    "high_clv_long": {
+      "pct_positive": 56.7,
+      "mean_sharpe": 0.121,
+      "n_combos": 30
+    },
+    "low_clv_long": {
+      "pct_positive": 26.7,
+      "mean_sharpe": -0.493,
+      "n_combos": 30
+    }
+  },
+  "is_positive_rate": 56.7,
+  "is_mean_sharpe": 0.121,
+  "is_median_sharpe": 0.138,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 5,
+    "n": 4,
+    "direction": "high_clv_long"
+  },
+  "best_sharpe": 1.315,
+  "best_annual_return": 50.1,
+  "best_max_dd": -20.3,
+  "wf_folds": [],
+  "wf_positive_folds": null,
+  "wf_total_folds": null,
+  "wf_mean_oos_sharpe": null,
+  "split_half": null,
+  "correlations": null,
+  "max_abs_correlation": null,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 60,
+  "valid_combos": 60,
+  "validation": {
+    "is_pass": false,
+    "wf_pass": null,
+    "sh_pass": null,
+    "corr_pass": null
+  }
+}
