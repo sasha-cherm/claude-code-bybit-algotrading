@@ -2640,15 +2640,15 @@
 - Sessions: [2026-04-02 session 130]
 
 ## H-197: Amihud Illiquidity Factor (14 Assets)
-- Status: CONFIRMED
+- Status: LIVE (paper trade since 2026-04-02)
 - Idea: Amihud (2002) illiquidity measure = mean(|return| / dollar_volume) over lookback. Long the most liquid assets (low Amihud), short the most illiquid. "Flight to liquidity" factor in crypto.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance 3-7 days)
 - Logic: Compute Amihud ratio per asset, rank XS. low_amihud_long: long most liquid N, short most illiquid N. Grid: LB∈[10,20,30,60], R∈[5,7,10,14], N∈[3,4,5], dir∈2 = 60 combos.
 - Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
 - Result: IS low_amihud_long **100% positive (30/30)**, mean Sharpe **1.537**, best LB10_R3_N4 Sharpe **1.895** (+89.8% ann, -29.7% DD). high_amihud_long 0% (0/30). **WF 5/6** positive (3.02, 0.47, 1.39, 2.86, 1.22, -0.65), mean OOS **1.387**. Split-half H1=1.911/H2=2.290 (both strong, H2 even better). Corr H-012 **0.488**, H-076 0.000, H-160 0.235. Max corr 0.488.
-- Notes: Exceptionally robust — 100% IS positive is rare. Captures liquidity premium: liquid assets (large-cap BTC/ETH/etc) outperform illiquid ones. Borderline momentum correlation (0.488) makes economic sense — liquid = trending. But distinct signal (efficiency corr = 0.000). Ready for paper trade deployment.
-- Sessions: [2026-04-02 session 131]
+- Notes: Exceptionally robust — 100% IS positive is rare. Captures liquidity premium: liquid assets (large-cap BTC/ETH/etc) outperform illiquid ones. Borderline momentum correlation (0.488) makes economic sense — liquid = trending. But distinct signal (efficiency corr = 0.000). Paper trade deployed session 132: LONG BTC/ETH/SOL/XRP, SHORT LINK/OP/ARB/ATOM.
+- Sessions: [2026-04-02 session 131, 2026-04-03 session 132 deploy]
 
 ## H-198: Price-MA Distance Factor (Mean Reversion, 14 Assets)
 - Status: REJECTED
@@ -2671,6 +2671,39 @@
 - Result: IS streak_long 7/24 positive (29.2%). contrarian_long 12/24 positive (50.0%). Best: W1_R7_N4 (contrarian) Sharpe 0.904 (+37.1% ann, -34.1% DD). **FAIL IS** (50% < 80%). Corr H-012 0.271 (low).
 - Notes: Only raw streaks (W=1) produce any positive results — smoothing destroys signal. Even best direction is coin-flip robustness (50%). Too noisy and parameter-sensitive. Streak counting doesn't capture durable XS signal in crypto.
 - Sessions: [2026-04-02 session 131]
+
+## H-200: Return Autocorrelation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling lag-1 autocorrelation of daily returns as XS signal. Long trending assets (high positive autocorrelation), short mean-reverting/choppy assets (low/negative autocorrelation).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling autocorrelation(lag=1) of daily returns. Rank XS. Grid: LB∈[10,20,30,60], R∈[3,5,7], N∈[3,4,5], dir∈2 = 72 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_autocorr_long **10/36 positive (27.8%)**, mean Sharpe -0.572. low_autocorr_long 8/36 (22.2%), mean Sharpe -0.348. Best: L60_R3_N5 Sharpe 0.822 (+28.7% ann, -25.8% DD). **FAIL IS** (27.8% < 80%). Corr H-012 0.209 (low).
+- Notes: Only works at LB=60 (effectively slow momentum proxy). Short lookbacks (10, 20) produce deeply negative results (Sharpe as low as -2.4). Too parameter-sensitive. Autocorrelation is an unreliable XS discriminator in crypto.
+- Sessions: [2026-04-03 session 132]
+
+## H-201: Volume Imbalance Factor (Buy/Sell Pressure Proxy, 14 Assets)
+- Status: REJECTED
+- Idea: Approximate buy/sell pressure using fraction of hourly up-bars' volume to total daily volume. Long assets with highest buying pressure, short assets with lowest.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Buying pressure = sum(vol on close>open hours) / total daily vol. Rolling average. Rank XS. Grid: LB∈[5,10,20,30], R∈[3,5,7], N∈[3,4,5], dir∈2 = 72 combos.
+- Data: 14 assets, 1066 daily bars (2023-05-03 to 2026-04-02).
+- Result: IS high_buy_long **16/36 positive (44.4%)**, mean Sharpe -0.145. low_buy_long 0/36 (0%). Best: LB10_R5_N3 Sharpe 0.578 (+26.8% ann, -41.7% DD). **FAIL IS** (44.4% < 80%).
+- Notes: Buying pressure metric clusters tightly (0.42-0.50) across assets — weak cross-sectional differentiation. Reverse direction (contrarian) produces zero positive combos. Short lookbacks noisy, transaction costs eat returns. Volume bar direction doesn't carry durable XS signal.
+- Sessions: [2026-04-03 session 132]
+
+## H-202: Intraday Volatility Clustering Factor (HHI, 14 Assets)
+- Status: REJECTED
+- Idea: Herfindahl index of hourly squared returns within each day. High HHI = concentrated volatility (institutional). Low HHI = diffuse (retail). Long concentrated, short diffuse.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: HHI = sum(share_i^2) where share_i = hourly_sq_ret / daily_sum_sq_ret. Rolling avg. Rank XS. Grid: LB∈[5,10,20,30], R∈[3,5,7], N∈[3,4,5], dir∈2 = 72 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_hhi_long **100% positive (36/36)**, mean Sharpe 0.935. low_hhi_long 0% (0/36). Best: LB5_R7_N5 Sharpe 2.149 (+68.6% ann, -16.9% DD). **PASS IS.** WF **5/6** positive (4.09, 2.15, 0.53, 0.44, -1.23, 1.56), mean OOS 1.256. **PASS WF.** Split-half H1=3.529 / **H2=-0.187. FAIL split-half.** Corr H-012 0.004 (essentially zero).
+- Notes: Exceptional IS (100%) and WF (5/6, mean 1.256), essentially zero momentum correlation. But split-half reveals temporal instability: H1 Sharpe 3.53, H2 Sharpe -0.19. The factor worked brilliantly early but decayed. May reflect changing market microstructure. Could revisit if recent WF performance sustains.
+- Sessions: [2026-04-03 session 132]
 
 ## Killed
 

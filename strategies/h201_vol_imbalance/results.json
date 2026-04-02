@@ -1,0 +1,34 @@
+{
+  "hypothesis": "H-201",
+  "name": "Volume Imbalance Factor (Buy/Sell Pressure Proxy)",
+  "status": "REJECTED",
+  "reason": "IS positive rate 44.4% (high_buy_long) < 80% threshold",
+  "best_direction": "high_buy_long",
+  "direction_stats": {
+    "high_buy_long": {
+      "pct_positive": 44.4,
+      "mean_sharpe": -0.145,
+      "n_combos": 36
+    },
+    "low_buy_long": {
+      "pct_positive": 0.0,
+      "mean_sharpe": -0.643,
+      "n_combos": 36
+    }
+  },
+  "is_positive_rate": 44.4,
+  "is_mean_sharpe": -0.145,
+  "best_params": {
+    "lookback": 10,
+    "rebal": 5,
+    "n": 3,
+    "direction": "high_buy_long"
+  },
+  "best_sharpe": 0.578,
+  "best_annual_return": 26.8,
+  "best_max_dd": -41.7,
+  "n_assets": 14,
+  "n_days": 1066,
+  "total_combos": 72,
+  "valid_combos": 72
+}

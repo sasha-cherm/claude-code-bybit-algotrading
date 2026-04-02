@@ -50,6 +50,7 @@ RUNNERS = [
     ("H-189", ROOT / "paper_trades" / "h189_funding_dispersion" / "runner.py"),
     ("H-191", ROOT / "paper_trades" / "h191_vol_price_elasticity" / "runner.py"),
     ("H-193", ROOT / "paper_trades" / "h193_oi_price_divergence" / "runner.py"),
+    ("H-197", ROOT / "paper_trades" / "h197_amihud" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

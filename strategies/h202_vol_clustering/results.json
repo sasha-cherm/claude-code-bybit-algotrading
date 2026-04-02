@@ -1,0 +1,107 @@
+{
+  "hypothesis": "H-202",
+  "name": "Intraday Volatility Clustering Factor (HHI)",
+  "status": "REJECTED",
+  "reason": "Split-half Sharpes: H1=3.529, H2=-0.187",
+  "best_direction": "high_hhi_long",
+  "direction_stats": {
+    "high_hhi_long": {
+      "pct_positive": 100.0,
+      "mean_sharpe": 0.935,
+      "n_combos": 36
+    },
+    "low_hhi_long": {
+      "pct_positive": 0.0,
+      "mean_sharpe": -1.518,
+      "n_combos": 36
+    }
+  },
+  "is_positive_rate": 100.0,
+  "is_mean_sharpe": 0.935,
+  "is_median_sharpe": 0.946,
+  "best_params": {
+    "lookback": 5,
+    "rebal": 7,
+    "n": 5,
+    "direction": "high_hhi_long"
+  },
+  "best_sharpe": 2.149,
+  "best_annual_return": 68.6,
+  "best_max_dd": -16.9,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB5_R7_N5",
+      "is_sharpe": 2.302,
+      "oos_sharpe": 4.0893,
+      "oos_start": "2026-01-02",
+      "oos_end": "2026-04-01"
+    },
+    {
+      "fold": 2,
+      "is_params": "LB5_R7_N5",
+      "is_sharpe": 2.528,
+      "oos_sharpe": 2.1485,
+      "oos_start": "2025-10-04",
+      "oos_end": "2026-01-01"
+    },
+    {
+      "fold": 3,
+      "is_params": "LB5_R7_N5",
+      "is_sharpe": 2.818,
+      "oos_sharpe": 0.5321,
+      "oos_start": "2025-07-06",
+      "oos_end": "2025-10-03"
+    },
+    {
+      "fold": 4,
+      "is_params": "LB5_R7_N5",
+      "is_sharpe": 3.29,
+      "oos_sharpe": 0.4362,
+      "oos_start": "2025-04-07",
+      "oos_end": "2025-07-05"
+    },
+    {
+      "fold": 5,
+      "is_params": "LB5_R7_N5",
+      "is_sharpe": 3.777,
+      "oos_sharpe": -1.2286,
+      "oos_start": "2025-01-07",
+      "oos_end": "2025-04-06"
+    },
+    {
+      "fold": 6,
+      "is_params": "LB5_R7_N5",
+      "is_sharpe": 3.104,
+      "oos_sharpe": 1.5591,
+      "oos_start": "2024-10-09",
+      "oos_end": "2025-01-06"
+    }
+  ],
+  "wf_positive_folds": 5,
+  "wf_total_folds": 6,
+  "wf_mean_oos_sharpe": 1.256,
+  "split_half": {
+    "h1": {
+      "sharpe": 3.5293,
+      "annual": 127.6,
+      "dd": -12.61,
+      "days": 364
+    },
+    "h2": {
+      "sharpe": -0.1869,
+      "annual": -4.91,
+      "dd": -22.87,
+      "days": 364
+    }
+  },
+  "correlation_h012": 0.004,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 72,
+  "valid_combos": 72,
+  "validation": {
+    "is_pass": true,
+    "sh_pass": false
+  }
+}

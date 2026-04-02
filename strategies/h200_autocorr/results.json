@@ -1,0 +1,37 @@
+{
+  "hypothesis": "H-200",
+  "name": "Return Autocorrelation Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 27.8% (high_autocorr_long) < 80% threshold",
+  "best_direction": "high_autocorr_long",
+  "direction_stats": {
+    "high_autocorr_long": {
+      "pct_positive": 27.8,
+      "mean_sharpe": -0.572,
+      "n_combos": 36
+    },
+    "low_autocorr_long": {
+      "pct_positive": 22.2,
+      "mean_sharpe": -0.348,
+      "n_combos": 36
+    }
+  },
+  "is_positive_rate": 27.8,
+  "is_mean_sharpe": -0.572,
+  "best_params": {
+    "lookback": 60,
+    "rebal": 3,
+    "n": 5,
+    "direction": "high_autocorr_long"
+  },
+  "best_sharpe": 0.822,
+  "best_annual_return": 28.7,
+  "best_max_dd": -25.8,
+  "correlations": {
+    "H-012_momentum": 0.209
+  },
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 72,
+  "valid_combos": 72
+}
