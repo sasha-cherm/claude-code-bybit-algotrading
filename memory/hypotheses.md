@@ -2793,6 +2793,17 @@
 - Notes: BTC coupling is essentially constant across most altcoins (all highly correlated with BTC). The cross-sectional spread in R² is too small to generate a tradeable signal. Related to but distinct from beta (H-024, magnitude not R²) — both fail.
 - Sessions: [2026-04-03 session 135]
 
+## H-213: Intrabar Momentum Consistency (CLV Persistence)
+- Status: REJECTED
+- Idea: Rolling mean of Close Location Value (CLV = (2*close - high - low)/(high-low)) as a cross-sectional persistence signal. Assets persistently closing near their daily high (high mean CLV) have sustained buying pressure and outperform.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute daily CLV per asset, take rolling mean over lookback. Rank XS: long top N (high mean CLV), short bottom N. Dollar-neutral equal weight. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS 20/30 combos positive (66.7%) — **FAIL IS < 80%**. Mean Sharpe 0.345, median 0.344. Best single: LB15_R7_N3 Sharpe 1.444 (+65.8% ann, -34.0% DD). Short-LB combos (LB5/10) mostly negative (7/12 negative), dragging overall pass rate below threshold. Smoothing helps but only at medium lookbacks (15-20d). Related: H-186 (raw CLV, 56.7% IS, REJECTED) — this approach improves on raw CLV but still insufficient.
+- Notes: The signal polarizes sharply with lookback: short windows (5-10d) flip negative while longer windows (15-30d) are consistently positive (all 12 LB15-20 combos positive). The all-or-nothing IS criterion masks a real medium-lookback effect. Could be revisited with LB∈[15,20,30] only (12/12 positive in that sub-grid), but that would be curve-fitting the parameter selection.
+- Sessions: [2026-04-03 session 136]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

@@ -7,7 +7,7 @@
 - **Internal paper trades:** 27 runners active. Session 135. BTC last bar $66,903 (Apr 2), spot ~$66,931.
 - **H-063 SETTLED**: First vol selling trade **profitable** — +$77.64 (+0.78%). Now FLAT, waiting next entry.
 - **Top performers**: H-039 (+5.79%), H-031 (+4.12%), H-012 (+2.22%), H-053 (+1.39%), H-046 (+1.26%). **10/27 positive**, 16 negative, 1 flat.
-- **Research**: 211 total hypotheses. H-209/H-210/H-211 all REJECTED. No new confirms.
+- **Research**: 213 total hypotheses. H-209/H-210/H-211/H-212/H-213 all REJECTED. No new confirms.
 - **AUTOMATED:** Paper trades hourly via cron (27 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Apr 4: H-039(exit SHORT), multiple rebalances. Continue research.
 - **Open user questions:** None
@@ -86,3 +86,11 @@ _Older sessions (bootstrap through 126) archived to `memory/session_archive.md`.
 - Next: Apr 4: H-039(exit SHORT), H-049/H-052/H-076/H-012/H-021/H-197 rebalances. Continue research.
 - Questions added: none
 - Self-modifications: Archived sessions 125-126 (session 135)
+
+### Session 2026-04-03 research (session 136)
+- Goal: Research — H-213 CLV Persistence backtest
+- Focus: H-213 Intrabar Momentum Consistency (rolling mean CLV cross-sectional factor)
+- Done: Implemented and ran H-213. **REJECTED at IS**: 20/30 combos positive (66.7% < 80%). Mean Sharpe 0.345. Best single: LB15_R7_N3 Sharpe 1.444 (+65.8% ann, -34.0% DD). Short lookbacks (LB5/10) flip negative — 7/12 negative. Medium lookbacks (LB15/20) all 12/12 positive but insufficient to pull overall rate above 80%. Distinct from H-186 (raw CLV, 56.7% IS) — smoothing improves but doesn't resolve selectivity problem.
+- Next: Continue research. Consider narrowing CLV to medium lookbacks only as a modified hypothesis.
+- Questions added: none
+- Self-modifications: none (session 136)
