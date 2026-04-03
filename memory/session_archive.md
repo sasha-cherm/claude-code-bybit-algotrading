@@ -995,3 +995,7 @@
 ### Session 2026-04-01 review+research (session 126)
 - Goal: Review + Research — MTM update, H-063 pre-expiry, 3 new backtests
 - Done: 21 runners. Demo $98,471 (-1.53%). BTC $68,340. H-182 CONFIRMED (Range), H-183 CONFIRMED (Gap). H-184 REJECTED. 184 hypotheses.
+
+### Session 2026-04-02 review+research+deploy (session 127)
+- Goal: Review + Research + Deploy — MTM update, H-182/H-183 deployment, 3 new factor backtests
+- Done: 23 runners (21->23). Demo $98,182 (-1.82%). BTC $68,170. 13/21 positive. H-182/H-183 deployed. H-185/H-186/H-187 REJECTED. 187 hypotheses.

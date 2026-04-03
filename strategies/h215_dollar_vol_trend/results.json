@@ -1,0 +1,66 @@
+{
+  "hypothesis": "H-215",
+  "name": "Dollar Volume Trend",
+  "status": "CONFIRMED",
+  "reason": "all stages passed",
+  "is_positive_rate": 94.4,
+  "is_mean_sharpe": 0.705,
+  "best_params": {
+    "lookback": 15,
+    "rebal": 3,
+    "n": 4
+  },
+  "best_sharpe": 1.668,
+  "best_annual": 65.2,
+  "best_dd": -21.8,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB15_R3_N4",
+      "is_sharpe": 1.745,
+      "oos_sharpe": 2.4209
+    },
+    {
+      "fold": 2,
+      "is_params": "LB40_R5_N4",
+      "is_sharpe": 1.773,
+      "oos_sharpe": -1.2851
+    },
+    {
+      "fold": 3,
+      "is_params": "LB40_R5_N4",
+      "is_sharpe": 1.995,
+      "oos_sharpe": 1.056
+    },
+    {
+      "fold": 4,
+      "is_params": "LB40_R5_N4",
+      "is_sharpe": 2.342,
+      "oos_sharpe": 0.0571
+    },
+    {
+      "fold": 5,
+      "is_params": "LB40_R5_N4",
+      "is_sharpe": 3.334,
+      "oos_sharpe": -2.3273
+    },
+    {
+      "fold": 6,
+      "is_params": "LB10_R7_N4",
+      "is_sharpe": 2.159,
+      "oos_sharpe": 0.1738
+    }
+  ],
+  "wf_positive": 4,
+  "wf_total": 6,
+  "wf_mean": 0.016,
+  "split_half": {
+    "h1_best": 2.388,
+    "h2_best": 1.565,
+    "h1_mean": 1.241,
+    "h2_mean": 0.081
+  },
+  "corr_h012": 0.148,
+  "n_assets": 14,
+  "n_days": 730
+}

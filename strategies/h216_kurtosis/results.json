@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-216",
+  "name": "Kurtosis Factor",
+  "status": "REJECTED",
+  "reason": "IS 40.0% < 80%",
+  "is_positive_rate": 40.0,
+  "is_mean_sharpe": -0.167,
+  "best_params": {
+    "lookback": 30,
+    "rebal": 5,
+    "n": 4,
+    "direction": "low_kurt_long"
+  },
+  "best_sharpe": 1.088,
+  "n_assets": 14,
+  "n_days": 730
+}

@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-217",
+  "name": "Volume/OI Ratio",
+  "status": "REJECTED",
+  "reason": "IS 48.3% < 80%",
+  "is_positive_rate": 48.3,
+  "is_mean_sharpe": -0.118,
+  "best_params": {
+    "lookback": 5,
+    "rebal": 5,
+    "n": 4,
+    "direction": "high_voi_long"
+  },
+  "best_sharpe": 1.607,
+  "n_assets": 14,
+  "n_days": 730,
+  "oi_rows": 1000,
+  "oi_assets": 14
+}

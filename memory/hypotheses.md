@@ -2826,6 +2826,39 @@
 - Notes: Strong standalone signal that IS passes beautifully, but fundamentally captures the same low-vol anomaly as H-019 through a different lens. In this 14-coin universe, CVaR and simple volatility co-move heavily (r=0.65). A larger universe might reduce overlap but we don't have it. Redundant with existing H-019.
 - Sessions: [2026-04-03 session 136]
 
+## H-215: Dollar Volume Trend Factor (14 Assets)
+- Status: CONFIRMED → LIVE (paper trade deployed 2026-04-03)
+- Idea: Rank assets by OLS slope of log(dollar_volume) over a lookback window. Steepest increasing trend (growing interest) → long, steepest decreasing (fading) → short. Captures flow-of-funds direction, distinct from H-021 (volume ratio) and H-031 (size level).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance every 3 days)
+- Logic: Compute daily dollar_volume = close * volume. Fit OLS slope to log(DV) over lookback window. Rank XS. Long top-N, short bottom-N. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4] = 36 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **94.4%** positive (34/36), mean Sharpe 0.705. Best: LB15_R3_N4 Sharpe **1.668** (+65.2% ann, -21.8% DD). WF **4/6** positive, mean OOS **0.016** (marginal but positive). Split-half H1=**2.388**, H2=**1.565** (strong both halves). Corr H-012 **0.148** (very low — genuinely novel signal).
+- Notes: Very strong IS and split-half. WF mean barely positive (0.016) — recent fold volatility means some parameter instability. But corr 0.148 with momentum is excellent novelty. Deployed as paper trade #28, LB15_R3_N4 params.
+- Sessions: [2026-04-03 session 137]
+
+## H-216: Kurtosis Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by excess kurtosis of daily returns. Long low-kurtosis (thin tails, more Gaussian), short high-kurtosis (fat tails, crash-prone). Shape-of-distribution factor distinct from vol level.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling Fisher excess kurtosis. Rank XS. Grid: LB∈[15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **40.0%** < 80% threshold. Low-kurtosis-long: 76.7% positive (23/30), mean 0.313. High-kurtosis-long: 3.3% positive (1/30), mean -0.647. Best: LB30_R5_N4_low_kurt_long Sharpe 1.088.
+- Notes: Low-kurtosis-long direction shows signal (76.7%) but fails IS threshold. In 14-asset crypto universe, kurtosis doesn't vary enough XS to create reliable ranking — all crypto is fat-tailed. Signal too weak and unstable.
+- Sessions: [2026-04-03 session 137]
+
+## H-217: Volume/OI Ratio — Speculative Activity Factor (14 Assets)
+- Status: REJECTED
+- Idea: Volume/OI ratio measures speculative churning vs sticky positioning. High V/OI = speculative daytrading. Low V/OI = longer-term holders.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling avg(volume/OI). Rank XS. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars + 1000 OI rows, all 14 assets.
+- Result: IS **48.3%** < 80% threshold. Low-VOI-long: 0% (0/30) — completely wrong direction. High-VOI-long: **96.7%** (29/30), mean 0.780, best LB5_R5_N4 Sharpe 1.607. Clear one-directional signal but fails combined IS gate.
+- Notes: Strong signal in high-V/OI-long direction (96.7%, best Sharpe 1.607). In crypto, high speculative activity = momentum confirmation, not noise. Interesting finding but combined IS fails protocol threshold. Could revisit as direction-fixed factor.
+- Sessions: [2026-04-03 session 137]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
