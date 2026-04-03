@@ -987,3 +987,11 @@
 - Focus: Paper trade monitoring (BTC $68,306, -0.61% from last session), H-176/H-177/H-178 backtests
 - Done: 21 runners checked. Demo $98,201 (-1.80%). H-176/H-177/H-178 REJECTED. 178 total hypotheses.
 - Next: Apr 1 bar: H-085. Apr 2: H-039/H-160. Apr 3: H-063 expiry.
+
+### Session 2026-04-01 review+research (session 125)
+- Goal: Review + Research — MTM update, demo check, H-063 monitoring, 3 new factor backtests
+- Done: 21 runners. Demo $99,896 (-0.10%). BTC $69,164. 14/21 positive. H-063 both OTM. H-179/H-180/H-181 REJECTED. 181 hypotheses.
+
+### Session 2026-04-01 review+research (session 126)
+- Goal: Review + Research — MTM update, H-063 pre-expiry, 3 new backtests
+- Done: 21 runners. Demo $98,471 (-1.53%). BTC $68,340. H-182 CONFIRMED (Range), H-183 CONFIRMED (Gap). H-184 REJECTED. 184 hypotheses.

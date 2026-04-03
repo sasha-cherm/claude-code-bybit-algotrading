@@ -2760,6 +2760,39 @@
 - Notes: Short-term reversal does not robustly work across this asset universe and parameter space. The single standout combo (LB3_R3_N4_REV) is likely data-mined. Both this test and H-109 confirm crypto short-term reversal is not a stable cross-sectional anomaly with this universe/timeframe.
 - Sessions: [2026-04-03 session 134]
 
+## H-209: Price-Volume Correlation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by rolling correlation between daily returns and daily volume changes. High correlation = price-volume coupling; low = decoupled dynamics.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling Pearson correlation of log-returns vs log-volume-changes over lookback. Rank XS. Grid: LB∈[10,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS 58.3% in dominant direction (pos_corr_long), mean Sharpe 0.178. Best single: LB10_R7_N4 Sharpe 0.916 (+29.5% ann, -37.1% DD). LB=10 and LB=60 show some signal (5-6/6 positive), LB=20-30 weak (1-2/6). **FAIL IS < 80%.** Direction inconsistency across lookbacks — short lookback and very long lookback give opposite results from mid-range.
+- Notes: Price-volume coupling is not a robust XS factor. The signal at LB=10 (recent coupling) and LB=60 (long-term coupling) work but mid-range lookbacks fail, suggesting no true underlying effect.
+- Sessions: [2026-04-03 session 135]
+
+## H-210: RSI Dispersion Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by standard deviation of daily RSI(14) over a lookback window. Low RSI dispersion = consistent trend; high = choppy/oscillating.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling std of RSI(14) values over lookback. Rank XS. Grid: LB∈[10,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS 83.3% in dominant direction (high_disp_long, 20/24 combos positive), mean Sharpe 0.387. Best: LB60_R3_N3 Sharpe 1.281 (+64.0% ann, -41.1% DD). **WF 3/6 FAILS** (need ≥4). Fold sharpes: [-0.16, 1.82, -0.13, 0.16, -0.62, 3.35]. Recent folds negative = signal deteriorating. Counterintuitively, high RSI dispersion (choppy assets) outperform — likely a volatility proxy at LB=60.
+- Notes: IS passes marginally (83.3%) but OOS stability fails. The high_disp direction is counterintuitive and likely captures size/vol effects rather than genuine RSI consistency signal. Third factor related to trend consistency to fail (after H-160 CONDITIONAL, H-076 confirmed with different construction).
+- Sessions: [2026-04-03 session 135]
+
+## H-211: Market Coupling / R² Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Rank non-BTC assets by rolling R² of their returns vs BTC returns. High R² = tightly coupled to BTC (market co-mover); low R² = independent mover.
+- Instrument: futures (13 USDT perps, BTC excluded from ranking)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling R² (correlation²) of asset vs BTC returns. Rank XS. Grid: LB∈[20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 36 combos.
+- Data: 14 assets (13 ranked), 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS 50.0% in dominant direction (low_r2_long), mean Sharpe 0.003 — essentially zero. Best single: LB30_R7_N4_high_r2 Sharpe 0.415 (+9.0% ann, -57.6% DD). **FAIL IS << 80%.** Neither direction produces meaningful cross-sectional differentiation. R² with BTC has no predictive power.
+- Notes: BTC coupling is essentially constant across most altcoins (all highly correlated with BTC). The cross-sectional spread in R² is too small to generate a tradeable signal. Related to but distinct from beta (H-024, magnitude not R²) — both fail.
+- Sessions: [2026-04-03 session 135]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

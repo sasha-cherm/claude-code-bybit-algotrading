@@ -1,0 +1,128 @@
+{
+  "hypothesis": "H-211",
+  "title": "Market Coupling / R-squared Factor",
+  "in_sample": {
+    "hit_rate": 0.5,
+    "mean_sharpe": 0.0,
+    "n_combos": 36,
+    "best": {
+      "lookback": 30,
+      "rebal_period": 7,
+      "n_top": 4,
+      "direction": "high_r2_long",
+      "sharpe": 0.4151,
+      "annual_return": 0.0895,
+      "max_drawdown": -0.5757,
+      "n_days": 699
+    },
+    "dom_direction": "low_r2_long",
+    "mean_low_r2": 0.0025,
+    "mean_high_r2": -0.0025,
+    "top10": [
+      {
+        "lookback": 30,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "high_r2_long",
+        "sharpe": 0.4151,
+        "annual_return": 0.0895,
+        "max_drawdown": -0.5757,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "high_r2_long",
+        "sharpe": 0.3895,
+        "annual_return": 0.0782,
+        "max_drawdown": -0.6465,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "high_r2_long",
+        "sharpe": 0.2618,
+        "annual_return": 0.019,
+        "max_drawdown": -0.7018,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 5,
+        "n_top": 3,
+        "direction": "low_r2_long",
+        "sharpe": 0.2604,
+        "annual_return": 0.0173,
+        "max_drawdown": -0.6299,
+        "n_days": 699
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "low_r2_long",
+        "sharpe": 0.2255,
+        "annual_return": 0.0029,
+        "max_drawdown": -0.6111,
+        "n_days": 669
+      },
+      {
+        "lookback": 20,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "low_r2_long",
+        "sharpe": 0.2071,
+        "annual_return": -0.0075,
+        "max_drawdown": -0.5601,
+        "n_days": 709
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 5,
+        "n_top": 3,
+        "direction": "low_r2_long",
+        "sharpe": 0.1915,
+        "annual_return": -0.0099,
+        "max_drawdown": -0.5636,
+        "n_days": 669
+      },
+      {
+        "lookback": 20,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "low_r2_long",
+        "sharpe": 0.1867,
+        "annual_return": -0.0037,
+        "max_drawdown": -0.5363,
+        "n_days": 709
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 7,
+        "n_top": 3,
+        "direction": "high_r2_long",
+        "sharpe": 0.1726,
+        "annual_return": -0.0191,
+        "max_drawdown": -0.6811,
+        "n_days": 699
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "low_r2_long",
+        "sharpe": 0.1609,
+        "annual_return": -0.0121,
+        "max_drawdown": -0.5049,
+        "n_days": 669
+      }
+    ]
+  },
+  "walk_forward": null,
+  "split_half": null,
+  "verdict": "REJECTED",
+  "runtime_seconds": 5.7
+}

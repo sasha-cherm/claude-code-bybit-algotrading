@@ -1,0 +1,128 @@
+{
+  "hypothesis": "H-209",
+  "title": "Price-Volume Correlation Factor",
+  "in_sample": {
+    "hit_rate": 0.5,
+    "mean_sharpe": 0.0,
+    "n_combos": 48,
+    "best": {
+      "lookback": 10,
+      "rebal_period": 7,
+      "n_top": 4,
+      "direction": "pos_corr_long",
+      "sharpe": 0.9155,
+      "annual_return": 0.2953,
+      "max_drawdown": -0.3707,
+      "n_days": 712
+    },
+    "dom_direction": "pos_corr_long",
+    "mean_pos_corr": 0.1781,
+    "mean_neg_corr": -0.1781,
+    "top10": [
+      {
+        "lookback": 10,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "pos_corr_long",
+        "sharpe": 0.9155,
+        "annual_return": 0.2953,
+        "max_drawdown": -0.3707,
+        "n_days": 712
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "pos_corr_long",
+        "sharpe": 0.8365,
+        "annual_return": 0.2578,
+        "max_drawdown": -0.2419,
+        "n_days": 669
+      },
+      {
+        "lookback": 10,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "pos_corr_long",
+        "sharpe": 0.6898,
+        "annual_return": 0.1928,
+        "max_drawdown": -0.2684,
+        "n_days": 714
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "neg_corr_long",
+        "sharpe": 0.6439,
+        "annual_return": 0.1744,
+        "max_drawdown": -0.3429,
+        "n_days": 699
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 5,
+        "n_top": 3,
+        "direction": "pos_corr_long",
+        "sharpe": 0.6082,
+        "annual_return": 0.182,
+        "max_drawdown": -0.2673,
+        "n_days": 669
+      },
+      {
+        "lookback": 10,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "pos_corr_long",
+        "sharpe": 0.5849,
+        "annual_return": 0.1539,
+        "max_drawdown": -0.3802,
+        "n_days": 716
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "pos_corr_long",
+        "sharpe": 0.5437,
+        "annual_return": 0.1519,
+        "max_drawdown": -0.3054,
+        "n_days": 669
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "pos_corr_long",
+        "sharpe": 0.5207,
+        "annual_return": 0.1304,
+        "max_drawdown": -0.2375,
+        "n_days": 669
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "pos_corr_long",
+        "sharpe": 0.506,
+        "annual_return": 0.1235,
+        "max_drawdown": -0.2684,
+        "n_days": 669
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "neg_corr_long",
+        "sharpe": 0.3829,
+        "annual_return": 0.076,
+        "max_drawdown": -0.366,
+        "n_days": 699
+      }
+    ]
+  },
+  "walk_forward": null,
+  "split_half": null,
+  "verdict": "REJECTED",
+  "runtime_seconds": 7.8
+}

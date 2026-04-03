@@ -1,0 +1,128 @@
+{
+  "hypothesis": "H-210",
+  "title": "RSI Dispersion Factor",
+  "in_sample": {
+    "hit_rate": 0.5,
+    "mean_sharpe": 0.0,
+    "n_combos": 48,
+    "best": {
+      "lookback": 60,
+      "rebal_period": 3,
+      "n_top": 3,
+      "direction": "high_disp_long",
+      "sharpe": 1.2814,
+      "annual_return": 0.6404,
+      "max_drawdown": -0.4109,
+      "n_days": 669
+    },
+    "dom_direction": "high_disp_long",
+    "mean_low_disp": -0.3873,
+    "mean_high_disp": 0.3873,
+    "top10": [
+      {
+        "lookback": 60,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "high_disp_long",
+        "sharpe": 1.2814,
+        "annual_return": 0.6404,
+        "max_drawdown": -0.4109,
+        "n_days": 669
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 7,
+        "n_top": 3,
+        "direction": "high_disp_long",
+        "sharpe": 1.1964,
+        "annual_return": 0.575,
+        "max_drawdown": -0.3327,
+        "n_days": 669
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 5,
+        "n_top": 3,
+        "direction": "high_disp_long",
+        "sharpe": 1.0169,
+        "annual_return": 0.4417,
+        "max_drawdown": -0.4041,
+        "n_days": 669
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "high_disp_long",
+        "sharpe": 0.9281,
+        "annual_return": 0.3298,
+        "max_drawdown": -0.3234,
+        "n_days": 669
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "high_disp_long",
+        "sharpe": 0.7823,
+        "annual_return": 0.2525,
+        "max_drawdown": -0.3745,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 7,
+        "n_top": 3,
+        "direction": "high_disp_long",
+        "sharpe": 0.698,
+        "annual_return": 0.2411,
+        "max_drawdown": -0.4711,
+        "n_days": 699
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "high_disp_long",
+        "sharpe": 0.505,
+        "annual_return": 0.129,
+        "max_drawdown": -0.3126,
+        "n_days": 669
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "high_disp_long",
+        "sharpe": 0.4433,
+        "annual_return": 0.1017,
+        "max_drawdown": -0.3143,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "high_disp_long",
+        "sharpe": 0.4413,
+        "annual_return": 0.103,
+        "max_drawdown": -0.457,
+        "n_days": 699
+      },
+      {
+        "lookback": 60,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "high_disp_long",
+        "sharpe": 0.4111,
+        "annual_return": 0.0894,
+        "max_drawdown": -0.3922,
+        "n_days": 669
+      }
+    ]
+  },
+  "walk_forward": null,
+  "split_half": null,
+  "verdict": "REJECTED",
+  "runtime_seconds": 7.3
+}
