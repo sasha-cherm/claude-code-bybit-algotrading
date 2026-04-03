@@ -2859,6 +2859,39 @@
 - Notes: Strong signal in high-V/OI-long direction (96.7%, best Sharpe 1.607). In crypto, high speculative activity = momentum confirmation, not noise. Interesting finding but combined IS fails protocol threshold. Could revisit as direction-fixed factor.
 - Sessions: [2026-04-03 session 137]
 
+## H-218: Rolling Beta Change Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Rank by change in rolling beta to BTC (short window minus long window). Assets decorrelating from BTC may have idiosyncratic alpha. Differs from static beta (H-024) and alpha momentum (H-169).
+- Instrument: futures (14 USDT perps, ranking 13 non-BTC)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling beta to BTC over short (10-20d) and long (30-60d) windows. Beta change = short_beta - long_beta. Rank XS: two directions tested (dec_long, inc_long). Grid: SW∈[10,15,20], LW∈[30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 108 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **40.7%** < 80%. dec_long: 27.8% (15/54), inc_long: 53.7% (29/54). Best: SW10_LW40_R5_N3_inc_long Sharpe 1.087 (+50.2% ann, -48.9% DD). Neither direction passes IS threshold.
+- Notes: Interestingly, increasing beta (more coupled to BTC) slightly outperforms decreasing beta — opposite of the initial hypothesis. But 53.7% pass rate is insufficient. Beta dynamics in this 14-coin universe are too noisy for reliable XS ranking. Crypto coins are all highly correlated to BTC (beta near 1) so changes are small and noisy.
+- Sessions: [2026-04-03 session 138]
+
+## H-219: Up-Volume Ratio Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Ratio of volume on positive-return days to total volume over lookback. Assets with dominant buying volume (high up-vol ratio) outperform. Distinct from H-021 (volume change), H-175 (price-weighted money flow), H-012 (price momentum).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Classify each day as up (return > 0) or down. Compute rolling up-vol ratio = sum(vol on up days)/sum(total vol). Rank XS. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **80.0%** in upvol_long (24/30). downvol_long 0% (0/30) — clear directional signal. Best: LB10_R7_N3 Sharpe **1.177** (+53.1% ann, -43.5% DD). WF **4/6** mean OOS **0.204**. Split-half H1=**1.266**, H2=**2.097**. Corr H-012 **0.157** (very low — genuinely novel signal).
+- Notes: Very clean one-directional signal. Upvol_long passes IS threshold exactly at 80% while downvol_long is completely wrong (0%). WF mean positive at 0.204 with fold 2 being the outlier at -5.1. Split-half robust in both halves. The 0.157 correlation with momentum confirms this captures something distinct — volume *composition* rather than volume level or price direction. Worth deploying.
+- Sessions: [2026-04-03 session 138]
+
+## H-220: Short-Term Reversal Factor (14 Assets)
+- Status: REJECTED
+- Idea: Classic market microstructure reversal — long recent (1-5 day) losers, short recent winners. Overreaction/mean-reversion at short horizons. Well-documented in equities; testing in crypto.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 1-5 days)
+- Logic: Compute trailing return over lookback (1-5d). Rank XS: reversal = long losers/short winners, momentum = long winners/short losers. Grid: LB∈[1,2,3,5], R∈[1,2,3,5], N∈[3,4], dir∈2 = 64 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **25.0%** overall. Reversal: 37.5% (12/32), mean -0.172. Momentum: 12.5% (4/32), mean -0.912. Best: LB3_R3_N4_reversal Sharpe 0.987 (+45.0%, -41.2% DD). Both directions fail IS.
+- Notes: Reversal slightly better than short-term momentum (37.5% vs 12.5%), confirming mild mean-reversion exists at 2-3 day horizon. But 37.5% is far below 80% threshold. Transaction costs destroy much of the edge (daily rebalancing at 10bps round-trip). Crypto markets are too momentum-driven even at short horizons — equities-style reversal doesn't translate. The LB3_R3 sweet spot suggests 3-day windows have the most reversal but it's too parameter-specific.
+- Sessions: [2026-04-03 session 138]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

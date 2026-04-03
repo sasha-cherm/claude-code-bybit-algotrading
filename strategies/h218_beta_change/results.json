@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-218",
+  "name": "Rolling Beta Change",
+  "status": "REJECTED",
+  "reason": "IS 40.7% / dom dir 53.7% < 80%",
+  "is_positive_rate": 40.7,
+  "is_mean_sharpe": -0.235,
+  "best_dir": "inc_long",
+  "best_dir_pct": 53.7,
+  "best_sharpe": 1.087,
+  "n_assets": 14,
+  "n_days": 730
+}

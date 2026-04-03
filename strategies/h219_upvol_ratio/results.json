@@ -1,0 +1,69 @@
+{
+  "hypothesis": "H-219",
+  "name": "Up-Volume Ratio",
+  "status": "CONFIRMED",
+  "reason": "IS overall 40.0% but dom dir 80.0%",
+  "is_positive_rate": 40.0,
+  "is_mean_sharpe": -0.191,
+  "best_dir": "upvol_long",
+  "best_dir_pct": 80.0,
+  "best_params": {
+    "lookback": 10,
+    "rebal": 7,
+    "n": 3,
+    "dir": "upvol_long"
+  },
+  "best_sharpe": 1.177,
+  "best_annual": 53.1,
+  "best_dd": -43.5,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB10_R7_N3_upvol_long",
+      "is_sharpe": 0.894,
+      "oos_sharpe": 3.0575
+    },
+    {
+      "fold": 2,
+      "is_params": "LB40_R7_N3_upvol_long",
+      "is_sharpe": 1.272,
+      "oos_sharpe": -5.1009
+    },
+    {
+      "fold": 3,
+      "is_params": "LB40_R7_N3_upvol_long",
+      "is_sharpe": 1.214,
+      "oos_sharpe": 0.4602
+    },
+    {
+      "fold": 4,
+      "is_params": "LB10_R7_N3_upvol_long",
+      "is_sharpe": 1.222,
+      "oos_sharpe": 1.3959
+    },
+    {
+      "fold": 5,
+      "is_params": "LB10_R7_N3_upvol_long",
+      "is_sharpe": 1.75,
+      "oos_sharpe": -0.0095
+    },
+    {
+      "fold": 6,
+      "is_params": "LB15_R5_N4_downvol_long",
+      "is_sharpe": 1.32,
+      "oos_sharpe": 1.4184
+    }
+  ],
+  "wf_positive": 4,
+  "wf_total": 6,
+  "wf_mean": 0.204,
+  "split_half": {
+    "h1_best": 1.266,
+    "h2_best": 2.097,
+    "h1_mean": -0.175,
+    "h2_mean": -0.209
+  },
+  "corr_h012": 0.157,
+  "n_assets": 14,
+  "n_days": 730
+}

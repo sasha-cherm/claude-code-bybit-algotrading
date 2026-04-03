@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-220",
+  "name": "Short-Term Reversal",
+  "status": "REJECTED",
+  "reason": "IS 25.0% / dom dir 37.5% < 80%",
+  "is_positive_rate": 25.0,
+  "is_mean_sharpe": -0.542,
+  "best_dir": "reversal",
+  "best_dir_pct": 37.5,
+  "best_sharpe": 0.987,
+  "n_assets": 14,
+  "n_days": 730
+}
