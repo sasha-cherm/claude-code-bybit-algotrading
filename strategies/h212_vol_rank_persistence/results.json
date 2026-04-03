@@ -1,0 +1,27 @@
+{
+  "hypothesis": "H-212",
+  "name": "Relative Volume Rank Persistence",
+  "status": "REJECTED",
+  "reason": "IS positive rate 43.3% < 80% threshold",
+  "is_positive_rate": 43.3,
+  "is_mean_sharpe": -0.169,
+  "is_median_sharpe": -0.111,
+  "best_params": {
+    "lookback": 15,
+    "rebal": 7,
+    "n": 4
+  },
+  "best_sharpe": 0.878,
+  "best_annual_return": 28.3,
+  "best_max_dd": -25.9,
+  "n_assets": 14,
+  "n_days": 730,
+  "total_combos": 30,
+  "valid_combos": 30,
+  "validation": {
+    "is_pass": false,
+    "wf_pass": null,
+    "sh_pass": null,
+    "corr_pass": null
+  }
+}

@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $97,730 (-2.27%). BTC spot ~$66,931.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity $97,833 (-2.17%). BTC spot ~$66,673.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x). No H-011, H-009, H-046.
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,866 (-1.34%).
-- **Internal paper trades:** 27 runners active. Session 135. BTC last bar $66,903 (Apr 2), spot ~$66,931.
-- **H-063 SETTLED**: First vol selling trade **profitable** — +$77.64 (+0.78%). Now FLAT, waiting next entry.
-- **Top performers**: H-039 (+5.79%), H-031 (+4.12%), H-012 (+2.22%), H-053 (+1.39%), H-046 (+1.26%). **10/27 positive**, 16 negative, 1 flat.
-- **Research**: 213 total hypotheses. H-209/H-210/H-211/H-212/H-213 all REJECTED. No new confirms.
+- **Internal paper trades:** 27 runners active. Session 136. BTC last bar $66,903 (Apr 2), spot ~$66,673.
+- **H-063 FLAT**: First vol selling trade profitable (+0.78%). Waiting next entry.
+- **Top performers**: H-039 (+5.79%), H-031 (+4.74%), H-012 (+3.50%), H-019 (+2.34%), H-062 (+1.56%). **12/27 positive**, 14 negative, 1 flat.
+- **Research**: 214 total hypotheses. H-212/H-213/H-214 all REJECTED. No new confirms.
 - **AUTOMATED:** Paper trades hourly via cron (27 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Apr 4: H-039(exit SHORT), multiple rebalances. Continue research.
+- **Next action:** Apr 4: H-039(exit SHORT), H-049/H-052/H-076/H-012/H-021/H-197 rebalances. Continue research.
 - **Open user questions:** None
 
 ## Memory Files
@@ -87,10 +87,12 @@ _Older sessions (bootstrap through 126) archived to `memory/session_archive.md`.
 - Questions added: none
 - Self-modifications: Archived sessions 125-126 (session 135)
 
-### Session 2026-04-03 research (session 136)
-- Goal: Research — H-213 CLV Persistence backtest
-- Focus: H-213 Intrabar Momentum Consistency (rolling mean CLV cross-sectional factor)
-- Done: Implemented and ran H-213. **REJECTED at IS**: 20/30 combos positive (66.7% < 80%). Mean Sharpe 0.345. Best single: LB15_R7_N3 Sharpe 1.444 (+65.8% ann, -34.0% DD). Short lookbacks (LB5/10) flip negative — 7/12 negative. Medium lookbacks (LB15/20) all 12/12 positive but insufficient to pull overall rate above 80%. Distinct from H-186 (raw CLV, 56.7% IS) — smoothing improves but doesn't resolve selectivity problem.
-- Next: Continue research. Consider narrowing CLV to medium lookbacks only as a modified hypothesis.
+### Session 2026-04-03 review+research (session 136)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (BTC $66,673), H-212/H-213/H-214 backtests
+- Done: 27 runners checked. **Demo**: $97,833 (-2.17%). BTC $66,673. **12/27 positive** (improved from 10). Top: H-039(+5.79%), H-031(+4.74%), H-012(+3.50%), H-019(+2.34%), H-062(+1.56%). **Improving**: H-012 surged +3.50% (was +2.22%), H-062 +1.56% (was +0.88%), H-182 +1.00% (was -0.20%), H-193 turned positive +0.42%. **Worsening**: H-189 -1.47% (was -0.20%). **Research**: **H-212 REJECTED** (volume rank persistence — IS 43.3%, signal too parameter-sensitive). **H-213 REJECTED** (CLV persistence — IS 66.7%, short lookbacks noise). **H-214 REJECTED** (CVaR tail risk — IS 100% pass but corr 0.649 with H-019, too redundant with low-vol). 214 total hypotheses.
+- Next: Apr 4: H-039(exit SHORT), H-049/H-052/H-076/H-012/H-021/H-197 rebalances. Continue research.
+- Questions added: none
+- Self-modifications: none (session 136)
 - Questions added: none
 - Self-modifications: none (session 136)

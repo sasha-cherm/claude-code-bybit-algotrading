@@ -1,0 +1,92 @@
+{
+  "hypothesis": "H-214",
+  "name": "Downside Tail Risk Factor (CVaR/Expected Shortfall)",
+  "status": "REJECTED",
+  "reason": "WF 3/4 positive, mean OOS 1.620; max |corr| 0.649 >= 0.50",
+  "cvar_pct": 5,
+  "best_direction": "low_tail_long",
+  "direction_stats": {
+    "low_tail_long": {
+      "pct_positive": 100.0,
+      "mean_sharpe": 1.028,
+      "n_combos": 24
+    },
+    "high_tail_long": {
+      "pct_positive": 0.0,
+      "mean_sharpe": -1.19,
+      "n_combos": 24
+    }
+  },
+  "is_positive_rate": 100.0,
+  "is_mean_sharpe": 1.028,
+  "is_median_sharpe": 1.037,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 7,
+    "n": 4,
+    "direction": "low_tail_long"
+  },
+  "best_sharpe": 1.611,
+  "best_annual_return": 69.5,
+  "best_max_dd": -25.8,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB20_R7_N4",
+      "is_sharpe": 1.484,
+      "oos_sharpe": 5.0197,
+      "oos_start": "2026-01-04",
+      "oos_end": "2026-04-03"
+    },
+    {
+      "fold": 2,
+      "is_params": "LB20_R7_N4",
+      "is_sharpe": 1.462,
+      "oos_sharpe": 1.0821,
+      "oos_start": "2025-10-06",
+      "oos_end": "2026-01-03"
+    },
+    {
+      "fold": 3,
+      "is_params": "LB20_R7_N4",
+      "is_sharpe": 1.933,
+      "oos_sharpe": -0.4944,
+      "oos_start": "2025-07-08",
+      "oos_end": "2025-10-05"
+    },
+    {
+      "fold": 4,
+      "is_params": "LB20_R7_N4",
+      "is_sharpe": 2.544,
+      "oos_sharpe": 0.8741,
+      "oos_start": "2025-04-09",
+      "oos_end": "2025-07-07"
+    }
+  ],
+  "wf_positive_folds": 3,
+  "wf_total_folds": 4,
+  "wf_mean_oos_sharpe": 1.62,
+  "split_half": {
+    "h1_best_sharpe": 2.474,
+    "h2_best_sharpe": 2.543,
+    "h1_mean_sharpe": 0.884,
+    "h2_mean_sharpe": 1.981
+  },
+  "correlations": {
+    "H-012_momentum": 0.354,
+    "H-019_low_vol": 0.649
+  },
+  "max_abs_correlation": 0.649,
+  "n_assets": 14,
+  "n_days": 730,
+  "date_start": "2024-04-04",
+  "date_end": "2026-04-03",
+  "total_combos": 48,
+  "valid_combos": 48,
+  "validation": {
+    "is_pass": true,
+    "wf_pass": false,
+    "sh_pass": true,
+    "corr_pass": false
+  }
+}

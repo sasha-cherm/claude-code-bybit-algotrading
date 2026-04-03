@@ -2793,6 +2793,17 @@
 - Notes: BTC coupling is essentially constant across most altcoins (all highly correlated with BTC). The cross-sectional spread in R² is too small to generate a tradeable signal. Related to but distinct from beta (H-024, magnitude not R²) — both fail.
 - Sessions: [2026-04-03 session 135]
 
+## H-212: Relative Volume Rank Persistence (14 Assets)
+- Status: REJECTED
+- Idea: Assets whose daily dollar-volume rank (relative to the 14-asset cross-section) is persistent over time (high lag-1 autocorrelation of rank series) outperform those with erratic volume rankings. Persistent volume ranking suggests stable institutional interest.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Each day, rank assets by dollar volume. Compute lag-1 autocorrelation of volume rank over lookback window. Long top N (most persistent), short bottom N. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS 13/30 positive (43.3%) — **FAIL IS << 80%**. Mean Sharpe -0.169. Best single: LB15_R7_N4 Sharpe 0.878 (+28.3% ann, -25.9% DD). LB=10 strongly negative (Sharpe -0.9 to -1.3). Signal is highly parameter-sensitive — performance swings from -1.28 to +0.88 depending on lookback.
+- Notes: The rank autocorrelation at short windows captures transient rank shuffling (noise) rather than structural persistence. Only LB=15 shows consistent positive signal but it's a single cherry-picked point, not robust.
+- Sessions: [2026-04-03 session 136]
+
 ## H-213: Intrabar Momentum Consistency (CLV Persistence)
 - Status: REJECTED
 - Idea: Rolling mean of Close Location Value (CLV = (2*close - high - low)/(high-low)) as a cross-sectional persistence signal. Assets persistently closing near their daily high (high mean CLV) have sustained buying pressure and outperform.
@@ -2802,6 +2813,17 @@
 - Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
 - Result: IS 20/30 combos positive (66.7%) — **FAIL IS < 80%**. Mean Sharpe 0.345, median 0.344. Best single: LB15_R7_N3 Sharpe 1.444 (+65.8% ann, -34.0% DD). Short-LB combos (LB5/10) mostly negative (7/12 negative), dragging overall pass rate below threshold. Smoothing helps but only at medium lookbacks (15-20d). Related: H-186 (raw CLV, 56.7% IS, REJECTED) — this approach improves on raw CLV but still insufficient.
 - Notes: The signal polarizes sharply with lookback: short windows (5-10d) flip negative while longer windows (15-30d) are consistently positive (all 12 LB15-20 combos positive). The all-or-nothing IS criterion masks a real medium-lookback effect. Could be revisited with LB∈[15,20,30] only (12/12 positive in that sub-grid), but that would be curve-fitting the parameter selection.
+- Sessions: [2026-04-03 session 136]
+
+## H-214: Downside Tail Risk Factor / CVaR (14 Assets)
+- Status: REJECTED
+- Idea: Assets with lower downside tail risk (5% CVaR / Expected Shortfall) outperform those with extreme left-tail risk. Crypto analogue of low-vol anomaly focused on tail behavior — investors overcompensate for tail risk.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling 5% CVaR (mean of returns below 5th percentile). Rank XS: long top N (lowest tail risk = least negative CVaR), short bottom N. Grid: LB∈[20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **100%** positive in low_tail_long direction (24/24), mean Sharpe 1.028. Best: LB20_R7_N4 Sharpe 1.611 (+69.5% ann, -25.8% DD). Split-half consistent (H1 2.474, H2 2.543). **BUT**: WF only 3/4 folds positive (data-length limits to 4 folds, not 6). **AND**: Corr with H-019 (low-vol) = **0.649** — too redundant. Corr with H-012 = 0.354.
+- Notes: Strong standalone signal that IS passes beautifully, but fundamentally captures the same low-vol anomaly as H-019 through a different lens. In this 14-coin universe, CVaR and simple volatility co-move heavily (r=0.65). A larger universe might reduce overlap but we don't have it. Redundant with existing H-019.
 - Sessions: [2026-04-03 session 136]
 
 ## Killed
