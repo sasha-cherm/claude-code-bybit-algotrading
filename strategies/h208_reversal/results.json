@@ -1,0 +1,126 @@
+{
+  "hypothesis": "H-208",
+  "title": "Short-Term Reversal Factor",
+  "verdict": "REJECTED",
+  "reason": "IS hit rate below 80%",
+  "n_combos": 64,
+  "is_hit_rate": 0.2656,
+  "is_mean_sharpe": -0.4696,
+  "is_best_key": "LB3_R3_N4_REV",
+  "is_best_sharpe": 1.5049,
+  "reversal_mean_sharpe": -0.0744,
+  "reversal_pos_pct": 0.4375,
+  "momentum_mean_sharpe": -0.8647,
+  "momentum_pos_pct": 0.0938,
+  "data_start": "2024-04-04",
+  "data_end": "2026-04-03",
+  "n_bars": 730,
+  "n_assets": 14,
+  "top15_combos": [
+    {
+      "key": "LB3_R3_N4_REV",
+      "sharpe": 1.5049,
+      "ann_ret": 0.7404,
+      "max_dd": -0.2335,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB3_R3_N3_REV",
+      "sharpe": 1.2867,
+      "ann_ret": 0.689,
+      "max_dd": -0.4253,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB2_R3_N3_REV",
+      "sharpe": 0.9642,
+      "ann_ret": 0.4436,
+      "max_dd": -0.4813,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB2_R5_N3_REV",
+      "sharpe": 0.9038,
+      "ann_ret": 0.3858,
+      "max_dd": -0.459,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB2_R3_N4_REV",
+      "sharpe": 0.8347,
+      "ann_ret": 0.3203,
+      "max_dd": -0.4056,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB1_R5_N4_REV",
+      "sharpe": 0.7135,
+      "ann_ret": 0.2449,
+      "max_dd": -0.3086,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB2_R5_N4_REV",
+      "sharpe": 0.614,
+      "ann_ret": 0.1854,
+      "max_dd": -0.4825,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB3_R5_N3_REV",
+      "sharpe": 0.5169,
+      "ann_ret": 0.1415,
+      "max_dd": -0.5261,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB5_R5_N4_MOM",
+      "sharpe": 0.5003,
+      "ann_ret": 0.1321,
+      "max_dd": -0.5115,
+      "direction": "momentum"
+    },
+    {
+      "key": "LB3_R5_N4_REV",
+      "sharpe": 0.4533,
+      "ann_ret": 0.1087,
+      "max_dd": -0.4675,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB1_R5_N3_REV",
+      "sharpe": 0.4004,
+      "ann_ret": 0.0742,
+      "max_dd": -0.4012,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB5_R5_N3_MOM",
+      "sharpe": 0.342,
+      "ann_ret": 0.0428,
+      "max_dd": -0.6504,
+      "direction": "momentum"
+    },
+    {
+      "key": "LB5_R1_N4_REV",
+      "sharpe": 0.1843,
+      "ann_ret": -0.014,
+      "max_dd": -0.3374,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB2_R2_N3_REV",
+      "sharpe": 0.115,
+      "ann_ret": -0.0693,
+      "max_dd": -0.5089,
+      "direction": "reversal"
+    },
+    {
+      "key": "LB5_R1_N3_REV",
+      "sharpe": 0.0781,
+      "ann_ret": -0.0787,
+      "max_dd": -0.4843,
+      "direction": "reversal"
+    }
+  ]
+}

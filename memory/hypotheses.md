@@ -2738,6 +2738,17 @@
 - Notes: Genuinely strong factor (passed IS, WF, and split-half). But high correlation with H-012 momentum (0.583) reveals it's largely a momentum proxy: assets going up naturally have more volume on up-days. Could serve as momentum confirmation signal but not standalone.
 - Sessions: [2026-04-03 session 133]
 
+## H-208: Short-Term Reversal Factor (14 Assets)
+- Status: REJECTED
+- Idea: Classic equity anomaly — rank assets by 1-5 day returns, long biggest losers, short biggest winners (contrarian). Also tests momentum direction.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D
+- Logic: Grid: LB∈[1,2,3,5], R∈[1,2,3,5], N∈[3,4], dir∈[reversal,momentum] = 64 combos. 5bps fee per trade (one-way).
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS hit rate **26.6%** (17/64 combos positive). Mean Sharpe -0.470. Reversal mean -0.074 (44% positive), momentum mean -0.865 (9% positive). Best single combo: LB3_R3_N4_REV Sharpe 1.505 (+74% ann, -23.4% DD) — but highly cherry-picked. **FAIL IS < 80%.** Signal is extremely parameter-sensitive; only the LB=2-3, R=3-5, N=3-4 reversal window shows any life. Prior H-109 also rejected with similar findings (IS 75%, OOS -0.199).
+- Notes: Short-term reversal does not robustly work across this asset universe and parameter space. The single standout combo (LB3_R3_N4_REV) is likely data-mined. Both this test and H-109 confirm crypto short-term reversal is not a stable cross-sectional anomaly with this universe/timeframe.
+- Sessions: [2026-04-03 session 134]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

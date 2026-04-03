@@ -8,7 +8,7 @@
 - **Top performers**: H-039 (+5.79%), H-031 (+4.68%), H-019 (+2.33%), H-012 (+2.18%), H-062 (+1.54%). **13/27 positive**, 14 negative.
 - **H-063 status**: Vol selling strangle — breakeven (+$1). BTC $66,785, 7h to expiry. PUT ITM by $2,215 but premium covering.
 - **H-182 strong start**: Range factor jumped from -0.24% to +1.00% on day 2.
-- **Research**: 205 total hypotheses. H-203/H-204/H-205 all REJECTED.
+- **Research**: 208 total hypotheses. H-203/H-204/H-205/H-208 all REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (27 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Apr 3 08:00: H-063 expiry settlement (auto). Continue research.
 - **Open user questions:** None
@@ -103,3 +103,11 @@ _Older sessions (bootstrap through 123) archived to `memory/session_archive.md`.
 - Next: Apr 3 08:00: H-063 expiry settlement (auto). Apr 4: H-021/H-049/H-052/H-076/H-039(exit SHORT). Continue research.
 - Questions added: none
 - Self-modifications: none (session 133)
+
+### Session 2026-04-03 research (session 134)
+- Goal: Research — H-208 short-term reversal factor backtest
+- Focus: H-208: classic equity short-term reversal applied to 14 crypto assets (1-5d lookback, contrarian cross-sectional)
+- Done: Implemented and ran H-208 backtest (64 combos: LB∈[1,2,3,5], R∈[1,2,3,5], N∈[3,4], dir∈[reversal,momentum], 5bps fees). **H-208 REJECTED**: IS hit rate **26.6%** (17/64 positive), far below 80% threshold. Mean Sharpe -0.470. Reversal direction: mean -0.074 (44% positive). Momentum direction: mean -0.865 (9% positive). Best single combo LB3_R3_N4_REV Sharpe 1.505 is cherry-picked; signal highly parameter-sensitive. Confirms H-109 finding — crypto short-term reversal not a robust cross-sectional anomaly. 208 total hypotheses.
+- Next: Continue research. Apr 4: H-021/H-049/H-052/H-076/H-039 rebal. Consider H-209.
+- Questions added: none
+- Self-modifications: none (session 134)
