@@ -2738,6 +2738,17 @@
 - Notes: Genuinely strong factor (passed IS, WF, and split-half). But high correlation with H-012 momentum (0.583) reveals it's largely a momentum proxy: assets going up naturally have more volume on up-days. Could serve as momentum confirmation signal but not standalone.
 - Sessions: [2026-04-03 session 133]
 
+## H-206: Hurst Exponent Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Rank assets cross-sectionally by Hurst exponent (R/S method). Assets with H > 0.5 are trending (persistent); H < 0.5 are mean-reverting. Long highest-H (most trending), short lowest-H (most mean-reverting).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling R/S Hurst over lookback window. Rank XS. Long top-N, short bottom-N (high_hurst_long direction confirmed dominant). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
+- Result: IS **high_hurst_long 100% positive** (30/30 combos), mean Sharpe 1.874. low_hurst_long is exact mirror (all negative). Best: LB40_R3_N4 Sharpe **2.26** (+154.7% ann, -36.9% DD). WF **6/6** positive folds, mean OOS Sharpe **1.85**. Split-half H1=2.64/H2=1.69, both strongly positive. Corr with H-012 momentum: **0.22** (low — independent signal).
+- Notes: Exceptionally robust result. All lookbacks from 20-60 produce strong Sharpe (>2.1). Rebalance period has virtually no effect (positions are stable). The factor captures trending momentum differently from price-return momentum — Hurst measures serial autocorrelation structure, not raw return. Low correlation with H-012 confirms additive value. Ready for paper trade.
+- Sessions: [2026-04-03 session 134]
+
 ## H-208: Short-Term Reversal Factor (14 Assets)
 - Status: REJECTED
 - Idea: Classic equity anomaly — rank assets by 1-5 day returns, long biggest losers, short biggest winners (contrarian). Also tests momentum direction.

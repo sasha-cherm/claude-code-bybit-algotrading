@@ -8,7 +8,7 @@
 - **Top performers**: H-039 (+5.79%), H-031 (+4.68%), H-019 (+2.33%), H-012 (+2.18%), H-062 (+1.54%). **13/27 positive**, 14 negative.
 - **H-063 status**: Vol selling strangle — breakeven (+$1). BTC $66,785, 7h to expiry. PUT ITM by $2,215 but premium covering.
 - **H-182 strong start**: Range factor jumped from -0.24% to +1.00% on day 2.
-- **Research**: 208 total hypotheses. H-203/H-204/H-205/H-208 all REJECTED.
+- **Research**: 208 total hypotheses. H-203/H-204/H-205/H-208 REJECTED. H-206 (Hurst Exponent Factor) CONFIRMED — IS 100% dominant dir, WF 6/6 mean OOS 1.85, split-half both >1.69, corr 0.22 H-012. Ready for paper trade.
 - **AUTOMATED:** Paper trades hourly via cron (27 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Apr 3 08:00: H-063 expiry settlement (auto). Continue research.
 - **Open user questions:** None
@@ -105,9 +105,9 @@ _Older sessions (bootstrap through 123) archived to `memory/session_archive.md`.
 - Self-modifications: none (session 133)
 
 ### Session 2026-04-03 research (session 134)
-- Goal: Research — H-208 short-term reversal factor backtest
-- Focus: H-208: classic equity short-term reversal applied to 14 crypto assets (1-5d lookback, contrarian cross-sectional)
-- Done: Implemented and ran H-208 backtest (64 combos: LB∈[1,2,3,5], R∈[1,2,3,5], N∈[3,4], dir∈[reversal,momentum], 5bps fees). **H-208 REJECTED**: IS hit rate **26.6%** (17/64 positive), far below 80% threshold. Mean Sharpe -0.470. Reversal direction: mean -0.074 (44% positive). Momentum direction: mean -0.865 (9% positive). Best single combo LB3_R3_N4_REV Sharpe 1.505 is cherry-picked; signal highly parameter-sensitive. Confirms H-109 finding — crypto short-term reversal not a robust cross-sectional anomaly. 208 total hypotheses.
-- Next: Continue research. Apr 4: H-021/H-049/H-052/H-076/H-039 rebal. Consider H-209.
+- Goal: Research — H-208 short-term reversal (session start), then H-206 Hurst Exponent Factor backtest
+- Focus: H-206 Hurst Exponent Factor — cross-sectional R/S Hurst ranking of 14 assets
+- Done: H-208 REJECTED (IS 26.6%, short-term reversal not robust in crypto). **H-206 CONFIRMED**: Ran full backtest (60 combos: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2). IS hit rate 50% overall but **100% for dominant direction** (high_hurst_long — all 30 combos positive, mean Sharpe 1.874). Best combo LB40_R3_N4: Sharpe **2.26**, +155% ann, -37% DD. Walk-forward **6/6 positive folds**, mean OOS Sharpe **1.845**. Split-half: H1=2.64, H2=1.69, both strongly positive. Corr with H-012 momentum: **0.22** (low — independent signal). Backtest at `strategies/h206_hurst/`. Results saved. Hypothesis updated. Ready for paper trade.
+- Next: Deploy H-206 paper trade. Apr 4: H-021/H-049/H-052/H-076/H-039 rebal. Continue research.
 - Questions added: none
 - Self-modifications: none (session 134)

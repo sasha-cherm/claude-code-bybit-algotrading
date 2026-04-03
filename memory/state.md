@@ -328,7 +328,7 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **H-032 first trades**: 3 active pairs — DOT/ATOM, SOL/DOGE, AVAX/DOT. Small losses.
 - **Demo**: $98,604 (-1.40%). BTC spot $66,903.
 - **Rebal status**: Apr 3 08:00: H-063 expiry settlement. Apr 4: H-021/H-049/H-052/H-076/H-039(exit SHORT). Apr 5: H-169. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193/H-197.
-- **Research**: 205 hypotheses total. H-203/H-204/H-205 all REJECTED. No new confirms.
+- **Research**: 206 hypotheses total. H-203/H-204/H-205 REJECTED. H-206 (Hurst Exponent Factor) CONFIRMED — IS 100% dominant dir, WF 6/6 mean OOS 1.85, split-half both >1.69, corr 0.22 H-012. Best params: LB40_R3_N4_high_hurst_long, Sharpe 2.26, +155% ann, -37% DD. Ready for paper trade.
 - **AUTOMATED:** Paper trades hourly via cron (27 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Apr 3 08:00: H-063 expiry settlement (auto). Continue research.
 - **Open user questions:** None

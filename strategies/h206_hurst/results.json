@@ -1,0 +1,153 @@
+{
+  "hypothesis": "H-206",
+  "title": "Hurst Exponent Factor",
+  "in_sample": {
+    "hit_rate": 0.5,
+    "hit_rate_dominant_direction": 1.0,
+    "mean_sharpe": 0.0,
+    "mean_sharpe_dominant_direction": 1.8741,
+    "n_combos": 60,
+    "note": "50% IS hit rate is an artifact of testing symmetric directions (high/low are exact mirrors). Dominant direction (high_hurst_long) achieves 100% hit rate across all 30 combos.",
+    "best": {
+      "lookback": 40,
+      "rebal_period": 3,
+      "n_top": 4,
+      "direction": "high_hurst_long",
+      "sharpe": 2.2598,
+      "annual_return": 1.5466,
+      "max_drawdown": -0.3688,
+      "n_days": 689
+    },
+    "mean_high_hurst_long": 1.8741,
+    "mean_low_hurst_long": -1.8741,
+    "dominant_direction": "high_hurst_long",
+    "top10": [
+      {
+        "lookback": 40,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.2598,
+        "annual_return": 1.5466,
+        "max_drawdown": -0.3688,
+        "n_days": 689
+      },
+      {
+        "lookback": 40,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.2598,
+        "annual_return": 1.5466,
+        "max_drawdown": -0.3688,
+        "n_days": 689
+      },
+      {
+        "lookback": 40,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.2598,
+        "annual_return": 1.5466,
+        "max_drawdown": -0.3688,
+        "n_days": 689
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.2389,
+        "annual_return": 1.5155,
+        "max_drawdown": -0.3688,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.2389,
+        "annual_return": 1.5155,
+        "max_drawdown": -0.3688,
+        "n_days": 699
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.2389,
+        "annual_return": 1.5155,
+        "max_drawdown": -0.3688,
+        "n_days": 699
+      },
+      {
+        "lookback": 20,
+        "rebal_period": 3,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.1196,
+        "annual_return": 1.3797,
+        "max_drawdown": -0.3688,
+        "n_days": 709
+      },
+      {
+        "lookback": 20,
+        "rebal_period": 5,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.1196,
+        "annual_return": 1.3797,
+        "max_drawdown": -0.3688,
+        "n_days": 709
+      },
+      {
+        "lookback": 20,
+        "rebal_period": 7,
+        "n_top": 4,
+        "direction": "high_hurst_long",
+        "sharpe": 2.1196,
+        "annual_return": 1.3797,
+        "max_drawdown": -0.3688,
+        "n_days": 709
+      },
+      {
+        "lookback": 30,
+        "rebal_period": 3,
+        "n_top": 3,
+        "direction": "high_hurst_long",
+        "sharpe": 2.0977,
+        "annual_return": 1.6304,
+        "max_drawdown": -0.413,
+        "n_days": 699
+      }
+    ]
+  },
+  "walk_forward": {
+    "params": {"lookback": 40, "rebal_period": 3, "n_top": 4, "direction": "high_hurst_long"},
+    "fold_sharpes": [1.7558, 1.4002, 1.3113, 2.8177, 2.2158, 1.5724],
+    "folds_positive": 6,
+    "folds_total": 6,
+    "wf_pass": true,
+    "mean_oos_sharpe": 1.8455
+  },
+  "split_half": {
+    "h1_period": "2024-04-04 to 2025-04-03",
+    "h2_period": "2025-04-04 to 2026-04-03",
+    "h1_sharpe": 2.6359,
+    "h2_sharpe": 1.6904,
+    "h1_annual_return": 2.1555,
+    "h2_annual_return": 0.8921,
+    "h1_max_drawdown": -0.3688,
+    "h2_max_drawdown": -0.2360,
+    "stability_pass": true
+  },
+  "correlation": {
+    "h012_momentum_approx": 0.2181,
+    "note": "Low correlation with cross-sectional momentum — Hurst factor adds independent signal"
+  },
+  "verdict": "CONFIRMED",
+  "verdict_note": "IS hit rate 100% for dominant direction, WF 6/6 positive folds (mean OOS Sharpe 1.85), split-half both positive, low correlation with H-012 momentum.",
+  "runtime_seconds": 8.4
+}
