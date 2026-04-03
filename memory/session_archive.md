@@ -975,3 +975,9 @@
 - Next: Apr 1 bar (00:30 UTC Apr 2): H-085 rebal. Apr 2: H-039 LONG + H-160. Apr 3: H-063 expiry + H-031. Apr 4: H-021/H-049/H-052/H-076.
 - Questions added: none
 - Self-modifications: none (session 122)
+
+### Session 2026-04-01 review+research+deploy (session 123)
+- Goal: Review + Research + Deploy — MTM update, H-169 deploy, H-175 confirm+deploy, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $68,720, +0.74%), H-063 improving, H-169/H-175 deployment, H-173/H-174/H-175 backtests
+- Done: 19/19 runners OK (pre-deploy). Demo: $99,178 (-0.82%). BTC $68,720. 12/19 positive, 7 negative. H-063 improving: $10,276 (+2.76%). H-169 deployed as paper trade #20. H-175 CONFIRMED and deployed as #21. H-173 REJECTED (GK vol ratio). H-174 REJECTED (downside beta).
+- Next: Apr 1 bar: H-085. Apr 2: H-160. Apr 3: H-063 expiry + H-031.

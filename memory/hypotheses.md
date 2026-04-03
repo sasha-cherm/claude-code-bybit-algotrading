@@ -2705,6 +2705,39 @@
 - Notes: Exceptional IS (100%) and WF (5/6, mean 1.256), essentially zero momentum correlation. But split-half reveals temporal instability: H1 Sharpe 3.53, H2 Sharpe -0.19. The factor worked brilliantly early but decayed. May reflect changing market microstructure. Could revisit if recent WF performance sustains.
 - Sessions: [2026-04-03 session 132]
 
+## H-203: Kurtosis / Excess Tail Risk Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by rolling kurtosis of daily returns. Long low-kurtosis (thin tails, well-behaved), short high-kurtosis (fat tails, crash-prone).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute rolling kurtosis over lookback window. Rank XS. Grid: LB∈[10,20,30,60], R∈[3,5,7], N∈[3,4,5], dir∈2 = 72 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS low_kurt_long **25/36 positive (69.4%)**, mean Sharpe 0.241. high_kurt_long 1/36 (2.8%), mean -0.615. Best: LB20_R7_N5 Sharpe 0.976 (+34.1% ann, -26.3% DD). **FAIL IS** (69.4% < 80%).
+- Notes: Clear directional signal (low kurtosis outperforms) but too noisy at short lookbacks (LB10 consistently bad). Top combos cluster at LB20/LB30. Tail risk concept has merit but needs longer, more stable estimation windows than the crypto daily frequency allows.
+- Sessions: [2026-04-03 session 133]
+
+## H-204: Idiosyncratic Volatility Factor (14 Assets)
+- Status: REJECTED
+- Idea: After regressing each asset's returns on BTC (market factor), compute residual volatility. Long low-idio-vol (stable alpha generators), short high-idio-vol (noisy). Classic "idiosyncratic volatility puzzle" from equities.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling OLS of asset returns on BTC returns. Idio-vol = std(residuals). Rank XS. Grid: LB∈[10,20,30,60], R∈[3,5,7], N∈[3,4,5], dir∈2 = 72 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS low_ivol_long **22/36 positive (61.1%)**, mean Sharpe 0.065. high_ivol_long 9/36 (25%), mean -0.296. Best: LB30_R7_N5 Sharpe 0.838 (+30.8% ann, -50.6% DD). **FAIL IS** (61.1% < 80%).
+- Notes: Low-idio-vol outperformance exists in crypto but is highly lookback-dependent. Short windows (LB10/20) strongly negative, only LB30+ works. Consistent with equities literature where effect is regime-sensitive. Different from total vol (H-019) but not robust enough for XS factor.
+- Sessions: [2026-04-03 session 133]
+
+## H-205: Up/Down Volume Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Ratio of volume on up-days to volume on down-days over rolling window. High ratio = bullish conviction. Long high ratio, short low ratio.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: up_vol = sum(vol on days with ret>0), down_vol = sum(vol on days with ret<=0). Ratio = up_vol/down_vol. Rank XS. Grid: LB∈[10,20,30,60], R∈[3,5,7], N∈[3,4,5], dir∈2 = 72 combos.
+- Data: 14 assets, 752 daily bars (2024-03-11 to 2026-04-01).
+- Result: IS high_ratio_long **30/36 positive (83.3%)**, mean Sharpe 0.378. low_ratio_long 1/36 (2.8%), mean -0.740. Best: LB30_R7_N3 Sharpe 1.276 (+57.1% ann, -33.3% DD). **PASS IS.** WF **5/6** positive, mean OOS 0.403. **PASS WF.** Split-half H1=1.701/H2=1.786. **PASS split-half.** Corr H-012 **0.583** > 0.50. **FAIL correlation** — too redundant with momentum.
+- Notes: Genuinely strong factor (passed IS, WF, and split-half). But high correlation with H-012 momentum (0.583) reveals it's largely a momentum proxy: assets going up naturally have more volume on up-days. Could serve as momentum confirmation signal but not standalone.
+- Sessions: [2026-04-03 session 133]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

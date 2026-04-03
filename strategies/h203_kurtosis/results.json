@@ -1,0 +1,34 @@
+{
+  "hypothesis": "H-203",
+  "name": "Kurtosis / Excess Tail Risk Factor",
+  "status": "REJECTED",
+  "reason": "IS positive rate 69.4% (low_kurt_long) < 80% threshold",
+  "best_direction": "low_kurt_long",
+  "direction_stats": {
+    "low_kurt_long": {
+      "pct_positive": 69.4,
+      "mean_sharpe": 0.241,
+      "n_combos": 36
+    },
+    "high_kurt_long": {
+      "pct_positive": 2.8,
+      "mean_sharpe": -0.615,
+      "n_combos": 36
+    }
+  },
+  "is_positive_rate": 69.4,
+  "is_mean_sharpe": 0.241,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 7,
+    "n": 5,
+    "direction": "low_kurt_long"
+  },
+  "best_sharpe": 0.976,
+  "best_annual_return": 34.1,
+  "best_max_dd": -26.3,
+  "n_assets": 14,
+  "n_days": 752,
+  "total_combos": 72,
+  "valid_combos": 72
+}
