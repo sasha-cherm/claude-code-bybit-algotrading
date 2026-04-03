@@ -306,31 +306,31 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 4 bar
 - **Backtest**: IS 100% (30/30), mean Sharpe 1.537, best 1.895. WF 5/6 mean 1.387. Corr 0.488 H-012, 0.000 H-076.
 
-## Portfolio Summary (live mark-to-market 2026-04-03 session 133, 01:07 UTC)
-- **Bybit Demo**: $98,604 (-1.40%) — 13 perp positions. BTC spot ~$66,903. Last bar $68,119 (Apr 1).
-- **Total internal MTM (27 strats)**: ~$281k combined. 27 runners active.
+## Portfolio Summary (live mark-to-market 2026-04-03 session 134, 05:08 UTC)
+- **Bybit Demo**: $97,996 (-2.00%) — 13 perp positions. BTC spot ~$66,523 (dropping). Last daily bar: Apr 2, close $66,903.
+- **Total internal MTM (27 strats)**: ~$271k combined. 27 runners active.
 - **Positive (13/27)**: H-039 (+5.79%), H-031 (+4.68%), H-019 (+2.33%), H-012 (+2.18%), H-062 (+1.54%), H-076 (+1.11%), H-182 (+1.00%), H-175 (+0.56%), H-053 (+0.46%), H-046 (+0.45%), H-193 (+0.34%), H-169 (+0.28%), H-052 (+0.26%)
-- **Negative (14/27)**: H-063 (+0.01%), H-032 (-0.09%), H-197 (-0.17%), H-049 (-0.20%), H-191 (-0.24%), H-183 (-0.44%), H-009 (-0.48%), H-044 (-0.51%), H-085 (-0.55%), H-059 (-1.15%), H-011 (-1.33%), H-189 (-1.49%), H-160 (-1.88%), H-021 (-3.67%)
-- **H-009**: $9,952 (-0.48%, SHORT) | **H-011**: $9,867 (-1.33%, IN) | **H-012**: $10,218 (+2.18%) | **H-019**: $10,233 (+2.33%) | **H-021**: $9,633 (-3.67%)
+- **Negative (14/27)**: H-063 (-0.52%), H-032 (-0.09%), H-197 (-0.17%), H-049 (-0.20%), H-191 (-0.24%), H-183 (-0.44%), H-009 (-0.48%), H-044 (-0.51%), H-085 (-0.55%), H-059 (-1.15%), H-011 (-1.33%), H-189 (-1.49%), H-160 (-1.88%), H-021 (-3.67%)
+- **H-009**: $9,952 (-0.48%, SHORT) | **H-011**: $9,867 (-1.33%, IN) | **H-012**: $10,218 (+2.18%) | **H-019**: $10,233 (+2.33%) | **H-021**: $9,633 (-3.67%, REBALANCED Apr 2)
 - **H-024**: KILLED session 114. H-019 won decisively.
 - **H-031**: $10,468 (+4.68%) | **H-032**: $9,991 (-0.09%, 3 active pairs) | **H-039 (DOW)**: $10,579 (+5.79%, SHORT Thu — BTC drop paying off)
 - **H-044 (OI)**: $9,949 (-0.51%) | **H-046 (Accel)**: $10,045 (+0.45%) | **H-049 (LSR)**: $9,980 (-0.20%)
 - **H-052 (Premium)**: $10,026 (+0.26%) | **H-053 (Funding XS)**: $10,046 (+0.46%)
 - **H-059 (Vol Term)**: $9,885 (-1.15%) | **H-062 (DD Mom)**: $10,154 (+1.54%)
-- **H-063 (Vol Sell)**: **$10,001 (+0.01%)** — PUT ITM by ~$2,215 but premium covering. 7h to expiry (Apr 3 08:00). Breakeven, could go either way.
+- **H-063 (Vol Sell)**: **$9,948 (-0.52%)** — PUT deep ITM (~$2,400), equity $9,948. 3h to expiry (Apr 3 08:00 UTC). First trade will be a small loss. Cron handles settlement.
 - **H-076 (Efficiency)**: $10,111 (+1.11%) | **H-085 (Turnover)**: $9,945 (-0.55%)
-- **H-160 (Trend Quality)**: $9,812 (-1.88%). | **H-169 (Alpha Mom)**: $10,028 (+0.28%) — dropped from +1.82%. | **H-175 (Money Flow)**: $10,056 (+0.56%) — day 3.
-- **H-182 (Range)**: $10,100 (+1.00%) — **strong day 2, jumped from -0.24%**. | **H-183 (Gap)**: $9,956 (-0.44%) — day 2.
-- **H-189 (Funding Disp)**: $9,851 (-1.49%) — day 2, sharp drop. | **H-191 (Elasticity)**: $9,978 (-0.22%) — day 2. | **H-193 (OI Div)**: $10,042 (+0.34%) — day 2, turned positive.
-- **H-197 (Amihud)**: $9,992 (-0.08%) — day 1, improving.
-- **Paper trade age**: H-009/H-011/H-012: 18 days. H-019/H-021: 16 days. H-031/H-032/H-039: 15 days. H-044/H-046/H-049/H-052/H-053: 14 days. H-059/H-062: 12 days. H-063/H-076/H-085: 9 days. H-160: 4 days. H-169/H-175: 3 days. H-182/H-183: 2 days. H-189/H-191/H-193: 2 days. H-197: 1 day.
-- **H-063 status**: BTC spot $66,785, put $69,000 — PUT ITM by ~$2,215. Equity $10,001, 7h to expiry. Net PnL ~$1 — essentially breakeven. Cron will handle settlement.
-- **H-032 first trades**: 3 active pairs — DOT/ATOM, SOL/DOGE, AVAX/DOT. Small losses.
-- **Demo**: $98,604 (-1.40%). BTC spot $66,903.
-- **Rebal status**: Apr 3 08:00: H-063 expiry settlement. Apr 4: H-021/H-049/H-052/H-076/H-039(exit SHORT). Apr 5: H-169. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193/H-197.
-- **Research**: 206 hypotheses total. H-203/H-204/H-205 REJECTED. H-206 (Hurst Exponent Factor) CONFIRMED — IS 100% dominant dir, WF 6/6 mean OOS 1.85, split-half both >1.69, corr 0.22 H-012. Best params: LB40_R3_N4_high_hurst_long, Sharpe 2.26, +155% ann, -37% DD. Ready for paper trade.
+- **H-160 (Trend Quality)**: $9,812 (-1.88%, REBALANCED Apr 2 to L ETH/LINK/AVAX, S SUI/DOT/ATOM). | **H-169 (Alpha Mom)**: $10,028 (+0.28%). | **H-175 (Money Flow)**: $10,056 (+0.56%) — day 3.
+- **H-182 (Range)**: $10,100 (+1.00%) — strong day 2. | **H-183 (Gap)**: $9,956 (-0.44%) — day 2.
+- **H-189 (Funding Disp)**: $9,851 (-1.49%) — day 2. | **H-191 (Elasticity)**: $9,976 (-0.24%) — day 2. | **H-193 (OI Div)**: $10,034 (+0.34%) — day 2.
+- **H-197 (Amihud)**: $9,983 (-0.17%) — day 2.
+- **Paper trade age**: H-009/H-011/H-012: 18 days. H-019/H-021: 16 days. H-031/H-032/H-039: 15 days. H-044/H-046/H-049/H-052/H-053: 14 days. H-059/H-062: 12 days. H-063/H-076/H-085: 9 days. H-160: 4 days. H-169/H-175: 3 days. H-182/H-183/H-189/H-191/H-193: 2 days. H-197: 2 days.
+- **H-021 rebalanced** Apr 2: LONG SUI/NEAR/OP/SOL, SHORT XRP/ETH/ATOM/DOT (was LONG ARB/BTC/DOT/OP, SHORT AVAX/ETH/NEAR/XRP).
+- **H-160 rebalanced** Apr 2: LONG ETH/LINK/AVAX, SHORT SUI/DOT/ATOM (was LONG ETH/DOGE/SOL, SHORT BTC/OP/ATOM).
+- **Demo**: $97,996 (-2.00%). BTC spot ~$66,523.
+- **Rebal status**: Apr 3 08:00: H-063 expiry settlement. Apr 4: H-039(exit SHORT), H-049/H-052/H-076/H-012. Apr 5: H-169/H-160. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193/H-197.
+- **Research**: 208 hypotheses total. H-206/H-207/H-208 all REJECTED. H-116 resolved to REJECTED. No new confirms.
 - **AUTOMATED:** Paper trades hourly via cron (27 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Apr 3 08:00: H-063 expiry settlement (auto). Continue research.
+- **Next action:** Apr 3 08:00: H-063 expiry settlement (auto). Continue research. Consider killing underperformers (H-021 at -3.67%, H-160 at -1.88%).
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

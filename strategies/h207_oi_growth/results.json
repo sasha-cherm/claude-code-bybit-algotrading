@@ -1,0 +1,46 @@
+{
+  "hypothesis": "H-207",
+  "title": "OI Growth Rate Factor",
+  "verdict": "REJECTED",
+  "data_period": {
+    "start": "2024-04-04",
+    "end": "2026-04-03",
+    "n_days": 730,
+    "assets": [
+      "ADA",
+      "ARB",
+      "ATOM",
+      "AVAX",
+      "BTC",
+      "DOGE",
+      "DOT",
+      "ETH",
+      "LINK",
+      "NEAR",
+      "OP",
+      "SOL",
+      "SUI",
+      "XRP"
+    ]
+  },
+  "is_summary": {
+    "total_combos": 48,
+    "positive_sharpe": 24,
+    "hit_rate_pct": 50.0,
+    "mean_sharpe": 0.0,
+    "dominant_dir": "high_growth_long"
+  },
+  "best_params": {
+    "lookback": 5,
+    "rebal": 5,
+    "n": 3,
+    "direction": "high_growth_long",
+    "sharpe": 0.9720057385828397,
+    "annual_return": 0.36566268791974044,
+    "max_drawdown": -0.49255247220615483,
+    "n_days": 720
+  },
+  "walkforward_folds": [],
+  "split_half": {},
+  "corr_h012": null
+}

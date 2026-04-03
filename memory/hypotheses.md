@@ -1683,7 +1683,7 @@
 - Sessions: [2026-03-28 backtest session 102]
 
 ## H-116: Hurst Exponent Factor (14 Assets)
-- Status: CONDITIONAL — 95.8% IS positive, WF 4/5 mean OOS 1.718, split-half 0.332, corr 0.238 with H-012
+- Status: REJECTED (resolved session 134) — was CONDITIONAL but H-172 and H-206 bug analysis showed signal is implementation-dependent and split-half unstable at LB=60
 - Idea: Rank by rolling Hurst exponent (R/S method). Long trending assets (H > 0.5), short mean-reverting (H < 0.5). Captures intrinsic trending tendency independent of return magnitude.
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D
@@ -2739,14 +2739,14 @@
 - Sessions: [2026-04-03 session 133]
 
 ## H-206: Hurst Exponent Factor (14 Assets)
-- Status: CONFIRMED
+- Status: REJECTED
 - Idea: Rank assets cross-sectionally by Hurst exponent (R/S method). Assets with H > 0.5 are trending (persistent); H < 0.5 are mean-reverting. Long highest-H (most trending), short lowest-H (most mean-reverting).
 - Instrument: futures (14 USDT perps)
 - Timeframe: 1D (rebalance 3-7 days)
-- Logic: Rolling R/S Hurst over lookback window. Rank XS. Long top-N, short bottom-N (high_hurst_long direction confirmed dominant). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Logic: Rolling R/S Hurst over lookback window. Rank XS. Long top-N, short bottom-N (high_hurst_long). Grid: LB∈[10,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
 - Data: 14 assets, 730 daily bars (2024-04-04 to 2026-04-03).
-- Result: IS **high_hurst_long 100% positive** (30/30 combos), mean Sharpe 1.874. low_hurst_long is exact mirror (all negative). Best: LB40_R3_N4 Sharpe **2.26** (+154.7% ann, -36.9% DD). WF **6/6** positive folds, mean OOS Sharpe **1.85**. Split-half H1=2.64/H2=1.69, both strongly positive. Corr with H-012 momentum: **0.22** (low — independent signal).
-- Notes: Exceptionally robust result. All lookbacks from 20-60 produce strong Sharpe (>2.1). Rebalance period has virtually no effect (positions are stable). The factor captures trending momentum differently from price-return momentum — Hurst measures serial autocorrelation structure, not raw return. Low correlation with H-012 confirms additive value. Ready for paper trade.
+- Result: **IMPLEMENTATION BUG**: R/S method requires ≥3 sub-period sizes, but for LB≤40, max_k=LB//2≤20, log-spaced sizes only [10,15] → all Hurst values default to 0.5. This makes LB≤40 combos a disguised **size factor** (fixed alphabetical positions: LONG BTC/ETH/SOL/SUI, SHORT NEAR/OP/ARB/ATOM). The apparent WF 6/6 and Sharpe 2.26 were artifacts. **At LB=60 where real Hurst is computed**: 6/6 combos positive (IS Sharpe 0.79-1.25), WF **5/6** positive but mean OOS only **0.587**. **Split-half FAILS**: H1=2.569, H2=**-0.324**. Corr H-012: 0.157 (good). Fold 4 = -4.87 (catastrophic).
+- Notes: Fourth test of Hurst/persistence XS factor (after H-116, H-168, H-172). At LB=60, there's a weak trending-long signal (all combos positive IS), but it fails split-half stability (recent period negative). The R/S computation is very sensitive to implementation details. Also confirms H-116's "CONDITIONAL" status should be resolved as REJECTED — signal too unstable.
 - Sessions: [2026-04-03 session 134]
 
 ## H-208: Short-Term Reversal Factor (14 Assets)

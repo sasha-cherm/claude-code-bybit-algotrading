@@ -1,41 +1,41 @@
 {
   "started": "2026-03-31T17:07:35.782659+00:00",
-  "capital": 9980.0,
+  "capital": 9815.73,
   "positions": {
     "ETH/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2026.995318,
-      "size": 1.64447017,
+      "entry_price": 2055.130944,
+      "size": 1.59633689,
       "direction": "LONG"
     },
-    "DOGE/USDT": {
+    "LINK/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 0.090838,
-      "size": 36695.29618997,
+      "entry_price": 8.632726,
+      "size": 380.02842411,
       "direction": "LONG"
     },
-    "SOL/USDT": {
+    "AVAX/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 82.576512,
-      "size": 40.36660368,
+      "entry_price": 8.755751,
+      "size": 374.68875125,
       "direction": "LONG"
     },
-    "BTC/USDT": {
+    "SUI/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 66782.54082,
-      "size": -0.04991325,
+      "entry_price": 0.860028,
+      "size": -3814.62171709,
       "direction": "SHORT"
     },
-    "OP/USDT": {
+    "DOT/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 0.105879,
-      "size": -31482.53194863,
+      "entry_price": 1.235753,
+      "size": -2654.80388434,
       "direction": "SHORT"
     },
     "ATOM/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.666667,
-      "size": -2000.00008,
+      "entry_price": 1.665667,
+      "size": -1969.59039678,
       "direction": "SHORT"
     }
   },
@@ -57,12 +57,18 @@
       "equity": 9948.67,
       "positions": 6,
       "rebalanced": false
+    },
+    {
+      "date": "2026-04-02",
+      "equity": 9811.79,
+      "positions": 6,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-04-01",
-  "last_rebal_date": "2026-03-30",
-  "days_since_rebal": 2,
-  "rebal_count": 1,
-  "total_trades": 6,
-  "total_fees": 19.999999999999996
+  "last_daily_date": "2026-04-02",
+  "last_rebal_date": "2026-04-02",
+  "days_since_rebal": 0,
+  "rebal_count": 2,
+  "total_trades": 14,
+  "total_fees": 46.316053004486044
 }

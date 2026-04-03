@@ -143,9 +143,15 @@
       "equity": 9991.0,
       "active_pairs": 3,
       "trades_today": 1
+    },
+    {
+      "date": "2026-04-02",
+      "equity": 9991.0,
+      "active_pairs": 3,
+      "trades_today": 0
     }
   ],
-  "last_daily_date": "2026-04-01",
+  "last_daily_date": "2026-04-02",
   "total_trades": 3,
   "total_fees": 9.000000000000002,
   "trades_log": []

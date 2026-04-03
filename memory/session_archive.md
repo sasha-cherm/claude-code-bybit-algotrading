@@ -981,3 +981,9 @@
 - Focus: Paper trade monitoring (BTC $68,720, +0.74%), H-063 improving, H-169/H-175 deployment, H-173/H-174/H-175 backtests
 - Done: 19/19 runners OK (pre-deploy). Demo: $99,178 (-0.82%). BTC $68,720. 12/19 positive, 7 negative. H-063 improving: $10,276 (+2.76%). H-169 deployed as paper trade #20. H-175 CONFIRMED and deployed as #21. H-173 REJECTED (GK vol ratio). H-174 REJECTED (downside beta).
 - Next: Apr 1 bar: H-085. Apr 2: H-160. Apr 3: H-063 expiry + H-031.
+
+### Session 2026-04-01 review+research (session 124)
+- Goal: Review + Research — MTM update, H-024 orchestrator cleanup, 3 new factor backtests
+- Focus: Paper trade monitoring (BTC $68,306, -0.61% from last session), H-176/H-177/H-178 backtests
+- Done: 21 runners checked. Demo $98,201 (-1.80%). H-176/H-177/H-178 REJECTED. 178 total hypotheses.
+- Next: Apr 1 bar: H-085. Apr 2: H-039/H-160. Apr 3: H-063 expiry.
