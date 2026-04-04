@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,905 (-1.10%). BTC spot ~$67,299 (Apr 4 live).
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,094 (-0.91%). BTC spot ~$67,278.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,871 (-1.29%).
-- **Internal paper trades:** 30 runners active. Session 143. **14/30 positive**.
-- **H-063 IN TRADE 2**: MTM +1.04%, ~5d remaining. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%).
-- **Research**: 235 total hypotheses. H-233/H-234/H-235 all REJECTED.
+- **Internal paper trades:** 30 runners active. Session 144. **14/30 positive**.
+- **H-063 IN TRADE 2**: MTM +1.12%, ~4d remaining. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-031(+3.89%), H-012(+3.87%), H-076(+3.21%), H-175(+1.91%).
+- **Research**: 238 total hypotheses. H-236/H-237 REJECTED, H-238 CONFIRMED (not deployed).
 - **AUTOMATED:** Paper trades hourly via cron (30 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
+- **Next action:** Continue research. Monitor H-189 (-2.94%) and H-160/H-191.
 - **Open user questions:** None
 
 ## Memory Files
@@ -21,12 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 133) archived to `memory/session_archive.md`._
-
-### Session 2026-04-03 review+research (session 134)
-- Goal: Review + Research — MTM update, H-063 pre-expiry, 3 new factor backtests
-- Done: 27 runners. **Demo**: $97,996 (-2.00%). BTC dropping. H-063 at -0.52%, 3h to expiry. H-021 rebalanced Apr 2. **Research**: H-206 REJECTED (Hurst — split-half fails). H-207 REJECTED (OI growth). H-208 REJECTED (reversal). H-116 resolved REJECTED. 208 total hypotheses.
-- Self-modifications: H-116 resolved (session 134)
+_Older sessions (bootstrap through 134) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-03 review+research (session 135)
 - Goal: Review + Research — MTM update, H-063 settlement confirmation, 3 new factor backtests
@@ -96,3 +91,11 @@ _Older sessions (bootstrap through 133) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - Questions added: none
 - Self-modifications: Archived session 133. (session 143)
+
+### Session 2026-04-04 review+research (session 144)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (BTC ~$67,278, no new daily bar), H-236/H-237/H-238 backtests
+- Done: 30 runners checked. **Demo**: $99,094 (-0.91%, improving). **14/30 positive**. Top: H-039(+5.79%), H-031(+3.89%), H-012(+3.87%), H-076(+3.21%), H-175(+1.91%). H-012 surged to +3.87% (was +3.21%). H-044 nearly flat at -0.08%. **Research**: **H-236 REJECTED** (co-skewness — IS 35.4%, no directional dominance, all crypto crashes together). **H-237 REJECTED** (volume concentration HHI — IS 38.5%, dom 52.1%, some strong individual params but not robust). **H-238 CONFIRMED** (downside beta — IS **100%** low_long, WF **4/6** mean 2.612, Sharpe 1.766, but corr **0.738** with regular beta, **0.512** with H-019 — not deployed due to redundancy). 238 total hypotheses.
+- Next: Continue research. Monitor H-189 (-2.94%) and H-160/H-191.
+- Questions added: none
+- Self-modifications: Archived session 134. (session 144)

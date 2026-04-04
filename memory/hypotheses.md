@@ -3057,6 +3057,39 @@
 - Notes: Contrarian direction (low_long) at 77.8% is the closest near-miss. The signal captures crowd de-leveraging dynamics, but funding rates in crypto are noisy and the short-term vs long-term delta doesn't consistently predict returns cross-sectionally. Funding level (H-053) works better than funding change.
 - Sessions: [2026-04-04 session 143]
 
+## H-236: Return Co-Skewness Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by co-skewness with the equal-weight market portfolio. Assets with negative co-skewness (crash with market) should command higher returns as tail-risk compensation. From Harvey-Siddique (2000).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: CoSkew = E[r_i * r_m^2] / (std(r_i) * std(r_m)^2). Rolling over lookback. Rank XS. Grid: LB∈[20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 729 daily returns.
+- Result: IS overall **35.4%** (17/48 positive). Mean Sharpe **-0.160**. Best LB60_R5_N4_high_long Sharpe 0.759 (+15.1% ann, -13.0% DD). No directional dominance: low_long 8/24, high_long 9/24.
+- Notes: Co-skewness has no cross-sectional predictive power in crypto. All crypto assets have similar co-skewness profiles (highly correlated crash behavior), so cross-sectional dispersion is minimal. The academic tail-risk premium doesn't materialize in this universe where everything crashes together.
+- Sessions: [2026-04-04 session 144]
+
+## H-237: Volume Concentration (Herfindahl) Factor (14 Assets)
+- Status: REJECTED
+- Idea: Compute Herfindahl index of volume distribution over sub-periods within a rolling window. High HHI = volume concentrated in few periods (institutional/event-driven). Low HHI = evenly distributed (retail). Cross-sectional ranking.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Split lookback into N buckets, compute volume share in each, HHI = sum(share^2). Rank XS. Grid: LB∈[10,15,20,30], B∈[3,5], R∈[3,5,7], N∈[3,4], dir∈2 = 96 combos.
+- Data: 14 assets, 729 daily bars.
+- Result: IS overall **38.5%** (37/96 positive). Mean Sharpe **-0.168**. Best LB20_B5_R3_N4_high_long Sharpe **1.794** (+34.2% ann, -12.0% DD). Dominant: high_long 25/48 (52.1%), mean 0.145.
+- Notes: Some strong individual results (Sharpe 1.79) but not robust across parameter space. Only 52.1% of high_long combos positive. The top results cluster at LB20-30 with 3-5 buckets, suggesting a real but fragile signal. Volume concentration in crypto may capture event-driven flows but the effect is too noisy for reliable cross-sectional ranking.
+- Sessions: [2026-04-04 session 144]
+
+## H-238: Downside Beta Factor (14 Assets)
+- Status: CONFIRMED (not deployed — redundant with H-019/H-024)
+- Idea: Measure each asset's beta only on market down-days. Long low downside beta (defensive), short high downside beta (crash-prone). Refinement of killed H-024.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: beta_down = cov(r_i, r_m | r_m < 0) / var(r_m | r_m < 0). Rolling over lookback. Rank XS. Grid: LB∈[20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 729 daily returns.
+- Result: IS dom dir **100%** (24/24 low_long positive), overall 50%. Best LB60_R3_N3_low_long Sharpe **1.766** (+42.7% ann, -16.4% DD). **WF 4/6** positive, mean OOS **2.612**. Split-half H1=2.460/H2=1.125. Corr 0.413 H-012, **0.512 H-019**, **0.738 H-024** (regular beta).
+- Notes: Strong standalone signal — 100% IS in low_long, WF 4/6, excellent Sharpe. But 0.738 correlation with regular beta (H-024 killed) and 0.512 with H-019 (low-vol in portfolio). Essentially a refined low-beta/low-vol anomaly. Not deploying to paper trade: 30 runners already active, H-019 captures most of this signal. If H-019 underperforms in future, H-238 could be a replacement.
+- Sessions: [2026-04-04 session 144]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

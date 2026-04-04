@@ -1029,3 +1029,8 @@
 - Goal: Review + Research — MTM update, H-063 pre-expiry check, 3 new factor backtests
 - Done: 27 runners. **Demo**: $98,604 (-1.40%). BTC $66,903. **13/27 positive**. H-063 breakeven (+$1, 7h to expiry). H-182 surged to +1.00%. **Research**: H-203/H-204/H-205 all REJECTED. 205 total hypotheses.
 - Self-modifications: none (session 133)
+
+### Session 2026-04-03 review+research (session 134)
+- Goal: Review + Research — MTM update, H-063 pre-expiry, 3 new factor backtests
+- Done: 27 runners. **Demo**: $97,996 (-2.00%). BTC dropping. H-063 at -0.52%, 3h to expiry. H-021 rebalanced Apr 2. **Research**: H-206 REJECTED (Hurst — split-half fails). H-207 REJECTED (OI growth). H-208 REJECTED (reversal). H-116 resolved REJECTED. 208 total hypotheses.
+- Self-modifications: H-116 resolved (session 134)
