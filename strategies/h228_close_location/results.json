@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-228",
+  "name": "CLV Persistence Factor",
+  "status": "REJECTED",
+  "reason": "IS 40.0% / dom dir 70.0% < 80%",
+  "is_positive_rate": 40.0,
+  "is_mean_sharpe": -0.202,
+  "best_dir": "high_clv_long",
+  "best_dir_pct": 70.0,
+  "best_sharpe": 1.45,
+  "n_assets": 14,
+  "n_days": 730
+}

@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 130)
+# Session Archive (Sessions bootstrap through 132)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1019,3 +1019,8 @@
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
 - Done: 26 runners. Demo $98,428 (-1.57%). 13/26 positive. H-063 recovered to +1.20%. H-197 CONFIRMED (Amihud illiquidity). H-198/H-199 REJECTED. 199 total.
 - Self-modifications: Archived sessions 121-122
+
+### Session 2026-04-03 review+deploy+research (session 132)
+- Goal: Review + Deploy + Research — MTM update, H-197 deploy, 3 new factor backtests
+- Done: 27 runners (26→27 post-deploy). Demo $98,564 (-1.41%). 13/27 positive. H-063 +0.24%, 11h to expiry. H-197 deployed #27. H-200/H-201/H-202 all REJECTED. 202 total.
+- Self-modifications: H-197 runner created (session 132)

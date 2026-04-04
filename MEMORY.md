@@ -1,16 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,827 (-1.17%). BTC bar $66,965 (Apr 3).
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,650 (-1.35%). BTC bar $66,965 (Apr 3).
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,869 (-1.31%).
-- **Internal paper trades:** 30 runners active. Session 140. **14/30 positive**.
-- **H-063 FLAT**: First trade +0.78%. Waiting next entry. **H-039 FLAT**: +5.79%, next LONG Wed Apr 8.
-- **Top performers**: H-039(+5.79%), H-031(+3.89%), H-012(+3.87%), H-076(+3.21%), H-175(+1.91%). H-012 surged +3.21%→+3.87%.
-- **H-223 DEPLOYED**: Paper trade #30 (momentum breadth). LONG ETH/DOGE/LINK, SHORT OP/ATOM/NEAR.
-- **Research**: 226 total hypotheses. H-224/H-225/H-226 all REJECTED.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,871 (-1.29%).
+- **Internal paper trades:** 30 runners active. Session 141. **14/30 positive**.
+- **H-063 FLAT**: First trade +0.78%. Waiting next entry. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%).
+- **Research**: 229 total hypotheses. H-227/H-228/H-229 all REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (30 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-189 (-2.94%) and H-160 (-2.19%).
+- **Next action:** Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -22,13 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 131) archived to `memory/session_archive.md`._
-
-### Session 2026-04-03 review+deploy+research (session 132)
-- Goal: Review + Deploy + Research — MTM update, H-197 deploy, 3 new factor backtests
-- Focus: Paper trade monitoring (BTC spot ~$66,954, last bar $68,119), H-063 pre-expiry, H-197 deployment, H-200/H-201/H-202 backtests
-- Done: 27 runners checked (26->27 post-deploy). **Demo**: $98,564 (-1.41%). BTC spot $66,954. **13/27 positive**, 14 negative. Top: H-031(+4.72%), H-039(+3.98%), H-019(+2.63%), H-012(+1.88%), H-169(+1.82%). **H-063 still profitable**: +0.24%, BTC $66,875, PUT ITM by ~$2,068 but premium covering. 11h to expiry — on track for profitable close. **H-197 deployed** as paper trade #27. **Research**: **H-200 REJECTED** (return autocorrelation). **H-201 REJECTED** (volume imbalance). **H-202 REJECTED** (intraday vol HHI — split-half fails). 202 total hypotheses.
-- Self-modifications: H-197 runner created (session 132)
+_Older sessions (bootstrap through 132) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-03 review+research (session 133)
 - Goal: Review + Research — MTM update, H-063 pre-expiry check, 3 new factor backtests
@@ -84,3 +77,11 @@ _Older sessions (bootstrap through 131) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-189 (-2.94%) and H-160 (-2.19%).
 - Questions added: none
 - Self-modifications: H-223 runner created, added to orchestrator. Archived session 131. (session 140)
+
+### Session 2026-04-04 review+research (session 141)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, still Apr 3), H-227/H-228/H-229 backtests
+- Done: 30 runners checked. **Demo**: $98,650 (-1.35%). BTC $66,965. **14/30 positive**. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). H-009 recovering -0.51% (SHORT gaining). H-189 worst at -3.03%. **Research**: **H-227 REJECTED** (RS vs BTC — IS dom dir 91.7% but WF 1/3 and corr **0.923** with H-012, essentially momentum). **H-228 REJECTED** (CLV persistence — IS 40%, dom dir 70% < 80%). **H-229 REJECTED** (volume autocorrelation — IS 41.7%, dom dir 52.8%, no XS predictive power). 229 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
+- Questions added: none
+- Self-modifications: Archived session 132. (session 141)

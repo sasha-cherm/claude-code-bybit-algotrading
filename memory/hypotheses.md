@@ -2958,6 +2958,39 @@
 - Notes: EMV fails IS threshold — 76.7% is close but not enough. The signal is weakly directional (high EMV assets do slightly better) but the effect is too noisy in crypto's 24/7 markets. In equities, EMV works because of opening/closing auction microstructure — crypto lacks this. Additionally, the drawdowns are severe (50%+) even for the best params.
 - Sessions: [2026-04-04 session 140]
 
+## H-227: Relative Strength vs BTC Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Rank altcoins by rolling return relative to BTC over a lookback window. Long outperformers, short underperformers. Captures "alpha" vs the dominant crypto asset.
+- Instrument: futures (13 non-BTC USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: RS = alt_return(LB) - BTC_return(LB). Rank XS. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall 47.2%, dom dir high_rs_long **91.7%**. Best LB60_R5_N3 Sharpe 1.038 (+57.6% ann, -31.1% DD). **WF 1/3** (only 3 folds produced results, only 1 positive). Corr with H-012: **0.923** — nearly identical to momentum.
+- Notes: Relative strength vs BTC is essentially momentum in disguise. The 0.923 correlation with H-012 confirms that ranking by altcoin returns relative to BTC produces nearly the same portfolio as ranking by absolute returns. This makes sense: BTC's return is the same for all alts, so subtracting it preserves the relative ranking. The WF also failed badly (1/3). Not a useful independent signal.
+- Sessions: [2026-04-04 session 141]
+
+## H-228: Close Location Value (CLV) Persistence Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling average CLV = (close - low) / (high - low) over lookback window. Assets consistently closing near highs have sustained buying pressure. Smoothed version of earlier H-124 CLV attempt.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: CLV = (close - low) / (high - low). Rolling mean over lookback. Rank XS. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall 40.0%, dom dir high_clv_long **70.0%** < 80%. Best LB15_R7_N3 Sharpe 1.450 (+68.3% ann, -31.7% DD).
+- Notes: CLV fails IS threshold at both levels (40% overall, 70% dominant direction). The signal has some promise in the best param combos but is too parameter-sensitive. 30% of high_clv_long combos are negative. In crypto's continuous 24/7 market, close location may be less meaningful than in equities with opening/closing sessions. Second attempt (after H-124) — signal consistently fails.
+- Sessions: [2026-04-04 session 141]
+
+## H-229: Volume Autocorrelation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling first-order autocorrelation of daily volume over a lookback window. High volume autocorrelation = persistent/institutional flows. Cross-sectional ranking.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: AC1 = corr(vol[t-1:t-LB], vol[t:t-LB+1]) over rolling window. Rank XS. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall 41.7%, dom dir high_autocorr_long **52.8%** < 80%. Best LB15_R5_N3_low_autocorr Sharpe 0.887 (+39.7% ann, -34.1% DD).
+- Notes: Volume autocorrelation has essentially no cross-sectional predictive power. Neither direction dominates (52.8% vs 30.6%). All crypto assets likely have similar volume autocorrelation structures (driven by 24h cycles), so cross-sectional dispersion is minimal. The weak signal that exists is noisy and not robust. Dead end for this universe.
+- Sessions: [2026-04-04 session 141]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

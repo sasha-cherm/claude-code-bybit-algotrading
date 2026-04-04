@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-229",
+  "name": "Volume Autocorrelation Factor",
+  "status": "REJECTED",
+  "reason": "IS 41.7% / dom dir 52.8% < 80%",
+  "is_positive_rate": 41.7,
+  "is_mean_sharpe": -0.204,
+  "best_dir": "high_autocorr_long",
+  "best_dir_pct": 52.8,
+  "best_sharpe": 0.887,
+  "n_assets": 14,
+  "n_days": 730
+}

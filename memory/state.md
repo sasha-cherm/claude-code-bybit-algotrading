@@ -338,22 +338,21 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 8 bar
 - **Backtest**: IS 83.3%, WF 5/6 mean 1.120. Corr 0.365 H-012. Split-half H1=1.416/H2=0.994.
 
-## Portfolio Summary (live mark-to-market 2026-04-04 session 140, 05:09 UTC)
-- **Bybit Demo**: ~$98,827 (-1.17%) — 14 perp positions. Last daily bar: Apr 3, close $66,965.
-- **Total internal MTM (30 strats)**: 30 runners active (+H-223 deployed this session).
-- **Positive (14/30)**: H-039(+5.79%), H-031(+3.89%), H-012(+3.87%), H-076(+3.21%), H-175(+1.91%), H-052(+1.89%), H-019(+1.61%), H-062(+1.51%), H-063(+0.97%), H-085(+0.90%), H-049(+0.52%), H-046(+0.30%), H-215(+0.24%), H-193(+0.18%)
-- **Near flat/new (3/30)**: H-032(-0.09%), H-223(-0.24%), H-219(-0.24%)
-- **Negative (13/30)**: H-044(-0.08%), H-024(-0.20%), H-009(-0.51%), H-169(-1.06%), H-011(-1.31%), H-197(-1.37%), H-182(-1.38%), H-021(-1.40%), H-059(-1.51%), H-053(-1.69%), H-183(-2.19%), H-160(-2.19%), H-191(-2.37%), H-189(-2.94%)
+## Portfolio Summary (live mark-to-market 2026-04-04 session 141, 09:21 UTC)
+- **Bybit Demo**: ~$98,650 (-1.35%) — 14 perp positions. Last daily bar: Apr 3, close $66,965.
+- **Total internal MTM (30 strats)**: 30 runners active. No new daily bar — marks from live runner recalc.
+- **Positive (14/30)**: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%), H-052(+1.72%), H-019(+1.63%), H-062(+1.34%), H-063(+1.02%), H-085(+0.79%), H-193(+0.37%), H-215(+0.35%), H-049(+0.33%), H-046(+0.27%)
+- **Near flat/new (3/30)**: H-032(-0.09%), H-219(-0.24%), H-223(-0.24%)
+- **Negative (13/30)**: H-044(-0.24%), H-009(-0.51%), H-024(-0.20%), H-169(-1.11%), H-011(-1.29%), H-197(-1.30%), H-021(-1.45%), H-182(-1.44%), H-059(-1.51%), H-053(-1.71%), H-183(-2.13%), H-160(-2.25%), H-191(-2.35%), H-189(-3.03%)
 - **H-063 FLAT**: Trade 1 settled +0.78%. Waiting for next entry (cron handles).
-- **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 8 (00:30 UTC Apr 9).
-- **H-011**: $9,869 (-1.31%), still IN. Slow net funding collection.
-- **H-012 surged**: +3.87% (was +3.21%). | **H-052 improved**: +1.89% (was +1.72%).
-- **H-189 worst**: -2.94% (improving from -3.03%). H-160/H-191 still ~-2.2%. Monitor.
-- **H-223 deployed**: LONG ETH/DOGE/LINK, SHORT OP/ATOM/NEAR. Paper trade #30 added to orchestrator.
+- **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
+- **H-011**: $9,871 (-1.29%), still IN. 58 settlements.
+- **H-009 recovering**: -0.51% (SHORT gaining as BTC drops).
+- **H-189 worst**: -3.03%. H-160(-2.25%), H-191(-2.35%) still lagging. Monitor.
 - **Rebal status**: Apr 5 bar: H-169/H-215. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193/H-223. Apr 10: H-219.
-- **Research**: 226 hypotheses total. H-224/H-225/H-226 all REJECTED.
+- **Research**: 229 hypotheses total. H-227/H-228/H-229 all REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (30 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-189 (-2.94%) and H-160 (-2.19%).
+- **Next action:** Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
