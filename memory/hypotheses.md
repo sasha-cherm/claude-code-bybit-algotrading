@@ -2991,6 +2991,39 @@
 - Notes: Volume autocorrelation has essentially no cross-sectional predictive power. Neither direction dominates (52.8% vs 30.6%). All crypto assets likely have similar volume autocorrelation structures (driven by 24h cycles), so cross-sectional dispersion is minimal. The weak signal that exists is noisy and not robust. Dead end for this universe.
 - Sessions: [2026-04-04 session 141]
 
+## H-230: Return Autocorrelation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling first-order autocorrelation of daily returns over a lookback window. High autocorrelation = trending behavior. Cross-sectional ranking: long trending, short mean-reverting.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: AC1 = corr(ret[t-1:t-LB], ret[t:t-LB+1]) over rolling window. Rank XS. Grid: LB∈[10,15,20,30], R∈[3,5,7], N∈[3,4] = 24 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall **16.7%** (4/24 positive). Mean Sharpe **-0.889**. Best LB20_R7_N3 Sharpe 0.097 (+2.3% ann). Dominant direction: high_autocorr_long only 4/24 positive. Strongly negative at short lookbacks (LB10 worst: Sharpe -2.3).
+- Notes: Return autocorrelation has essentially no cross-sectional predictive power. Crypto returns are noisy and daily autocorrelation is near zero for all assets, so cross-sectional dispersion is minimal. Short lookbacks amplify noise. Dead end.
+- Sessions: [2026-04-04 session 142]
+
+## H-231: Close Location in Range Factor (14 Assets)
+- Status: REJECTED
+- Idea: Average (Close - Low)/(High - Low) over N days. Long assets consistently closing near daily high (accumulation). Short assets closing near daily low (distribution).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: CLR = (C-L)/(H-L) averaged over lookback. Rank XS. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall **73.3%** (22/30 positive). Mean Sharpe 0.301. Best LB15_R7_N4 Sharpe **1.553** (+32.7% ann, -20.5% DD). Dominant direction: high_clr_long Sharpe 1.55 vs low_clr_long -1.99. BUT short lookbacks (5-10d) all negative — signal is parameter-sensitive, fails <80%.
+- Notes: Close to passing but too parameter-sensitive. Short-lookback CLR (5-10d) is pure noise. Only moderate-to-long lookbacks (15-30d) work, which already overlap with momentum signals. The signal captures buying pressure but is not robust enough across the parameter space.
+- Sessions: [2026-04-04 session 142]
+
+## H-232: Parkinson Range Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Compare Parkinson (range-based) volatility to close-to-close volatility. Low ratio = efficient clean trends. High ratio = noisy intraday reversals. Long efficient, short noisy.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Ratio = sqrt(ParkVar / CCVar) over lookback. Rank XS. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4] = 30 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall **0.0%** (0/30 positive). Mean Sharpe **-0.647**. Best LB10_R7_N3 Sharpe -0.223. Neither direction works (low_ratio_long -0.223, high_ratio_long -0.402).
+- Notes: Complete failure. In 24/7 crypto markets, all assets have similarly high Parkinson-to-CC ratios due to continuous trading. Cross-sectional dispersion in this ratio is minimal and has no predictive power for future returns. The microstructure efficiency concept doesn't differentiate assets in this universe.
+- Sessions: [2026-04-04 session 142]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

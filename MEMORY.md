@@ -5,9 +5,9 @@
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,871 (-1.29%).
 - **Internal paper trades:** 30 runners active. Session 141. **14/30 positive**.
-- **H-063 FLAT**: First trade +0.78%. Waiting next entry. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
+- **H-063 IN TRADE 2**: MTM +1.06%, 5.8d remaining. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
 - **Top performers**: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%).
-- **Research**: 229 total hypotheses. H-227/H-228/H-229 all REJECTED.
+- **Research**: 232 total hypotheses. H-230/H-231/H-232 all REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (30 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - **Open user questions:** None
@@ -85,3 +85,11 @@ _Older sessions (bootstrap through 132) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - Questions added: none
 - Self-modifications: Archived session 132. (session 141)
+
+### Session 2026-04-04 review+research (session 142)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$67,099), H-230/H-231/H-232 backtests
+- Done: 30 runners checked. **Demo**: $98,745 (-1.26%, improving). BTC ~$67,099. **14/30 positive**. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). **H-063 entered trade 2** — strangle active, MTM +1.06%, 5.8d remaining. **Research**: **H-230 REJECTED** (return autocorrelation — IS **16.7%**, mean Sharpe -0.889, no XS predictive power). **H-231 REJECTED** (CLR close location in range — IS 73.3%, best Sharpe 1.55 but short lookbacks all negative, parameter-sensitive). **H-232 REJECTED** (Parkinson range ratio — IS **0%**, mean Sharpe -0.647, all crypto assets have similarly high intraday noise). 232 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
+- Questions added: none
+- Self-modifications: none (session 142)
