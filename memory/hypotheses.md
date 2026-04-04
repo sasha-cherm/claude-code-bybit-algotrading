@@ -3024,6 +3024,39 @@
 - Notes: Complete failure. In 24/7 crypto markets, all assets have similarly high Parkinson-to-CC ratios due to continuous trading. Cross-sectional dispersion in this ratio is minimal and has no predictive power for future returns. The microstructure efficiency concept doesn't differentiate assets in this universe.
 - Sessions: [2026-04-04 session 142]
 
+## H-233: Relative Volume (Abnormal Volume) Factor (14 Assets)
+- Status: REJECTED
+- Idea: Ratio of short-term average volume (N days) to long-term average volume (M days). High relative volume = interest surge, information event. Cross-sectional ranking: long high relative volume, short low relative volume.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: RelVol = SMA(vol, SW) / SMA(vol, LW). Rank XS. Grid: SW∈[3,5,7,10], LW∈[20,30,40], R∈[3,5,7], N∈[3,4], directions = 144 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall **0.0%** (0/144 positive). Mean Sharpe **-1.502**. Best SW10_LW40_R7_N3_high_long Sharpe -0.495 (-11.8% ann, -39.9% DD). Neither direction works: high_long 0/72, low_long 0/72.
+- Notes: Complete failure. Relative volume has zero cross-sectional predictive power in crypto. All assets show similar volume dynamics (correlated with BTC-driven market-wide activity), so the cross-sectional dispersion carries no alpha.
+- Sessions: [2026-04-04 session 143]
+
+## H-234: Consecutive Return Direction / Win Rate Factor (14 Assets)
+- Status: REJECTED
+- Idea: Count of positive daily returns over N-day rolling window (win rate). Long assets with high win rate (consistent upward momentum), short assets with low win rate. Also tested contrarian.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: WinRate = count(ret > 0) / lookback over rolling window. Rank XS. Grid: LB∈[5,7,10,15,20], R∈[3,5,7], N∈[3,4], directions = 60 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall **15.0%** (9/60 positive). Mean Sharpe **-0.547**. Best LB7_R3_N4_low_long Sharpe 1.233 (+22.2% ann, -14.4% DD). high_long 0/30, low_long 9/30 (30%).
+- Notes: Fails IS. Conceptually similar to H-223 (momentum breadth) which already passed at LB20. Short lookbacks (5-7d) show some contrarian edge but not robust. The daily win-rate signal doesn't capture enough cross-sectional dispersion to be tradeable. H-223's specific parameter choice (LB20_R5_N3) works but the broader parameter space doesn't — confirming H-223 was at the edge of viability.
+- Sessions: [2026-04-04 session 143]
+
+## H-235: Funding Rate Change / Delta Factor (14 Assets)
+- Status: REJECTED
+- Idea: Change in average funding rate (short-window avg minus long-window avg). Long assets where funding is decreasing (crowd de-leveraging = contrarian buy), short assets where funding is increasing (crowd getting more leveraged).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 5-7 days)
+- Logic: FundDelta = SMA(funding, SW) - SMA(funding, LW). Rank XS. Contrarian: low_long. Grid: SW∈[3,5,7], LW∈[14,21,30], R∈[5,7], N∈[3,4], directions = 72 combos.
+- Data: 14 assets, 730 daily bars. Funding rate data from Bybit API.
+- Result: IS overall **38.9%** (28/72 positive). Mean Sharpe **-0.248**. Best SW3_LW30_R7_N4_low_long Sharpe 1.016 (+16.6% ann, -14.4% DD). high_long 0/36, **low_long 28/36 (77.8%)** — close to 80% but not passing.
+- Notes: Contrarian direction (low_long) at 77.8% is the closest near-miss. The signal captures crowd de-leveraging dynamics, but funding rates in crypto are noisy and the short-term vs long-term delta doesn't consistently predict returns cross-sectionally. Funding level (H-053) works better than funding change.
+- Sessions: [2026-04-04 session 143]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
