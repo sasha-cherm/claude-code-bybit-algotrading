@@ -316,22 +316,34 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 5 bar
 - **Backtest**: IS 94.4% (34/36), mean Sharpe 0.705, best 1.668. WF 4/6 mean 0.016. Split-half H1=2.388/H2=1.565. Corr 0.148 H-012.
 
-## Portfolio Summary (live mark-to-market 2026-04-03 session 138, 21:10 UTC)
-- **Bybit Demo**: ~$98,736 (-1.26%) — 13 perp positions. Last daily bar: Apr 2, close $66,903. Apr 3 bar still open ($66,849 intraday).
-- **Total internal MTM (28 strats)**: ~$281k combined. 28 runners active.
-- **Positive (13/28)**: H-039(+5.79%), H-031(+4.74%), H-012(+3.50%), H-019(+2.34%), H-062(+1.56%), H-076(+1.12%), H-182(+1.00%), H-063(+0.78%), H-175(+0.57%), H-053(+0.44%), H-193(+0.42%), H-046(+0.36%), H-169(+0.25%)
-- **Flat (4/28)**: H-052(+0.17%), H-197(-0.08%), H-032(-0.09%), H-049(-0.20%)
-- **Negative (11/28)**: H-191(-0.22%), H-215(-0.24%), H-183(-0.43%), H-009(-0.48%), H-044(-0.48%), H-085(-0.56%), H-059(-1.15%), H-011(-1.33%), H-189(-1.47%), H-160(-1.90%), H-021(-3.71%)
+### H-219: Up-Volume Ratio Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-04) — novel volume composition signal
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG (high up-vol ratio): ETH, LINK, DOGE
+  - SHORT (low up-vol ratio): DOT, NEAR, ATOM
+- **Mark equity**: $9,976 (-0.24%) — day 0, fees only.
+- **Runner**: `paper_trades/h219_upvol_ratio/runner.py`
+- **Params**: LB10_R7_N3 (10-day up-vol ratio, 7-day rebalance, top/bottom 3, upvol_long)
+- **Next rebal**: Apr 10 bar
+- **Backtest**: IS 80.0%, WF 4/6 mean 0.204. Corr 0.157 H-012. Split-half H1=1.266/H2=2.097.
+
+## Portfolio Summary (live mark-to-market 2026-04-04 session 139, 01:15 UTC)
+- **Bybit Demo**: ~$98,931 (-1.07%, improved from -1.26%) — 14 perp positions. Last daily bar: Apr 3, close $66,965.
+- **Total internal MTM (29 strats)**: 29 runners active (+H-219 deployed this session).
+- **Positive (14/29)**: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%), H-052(+1.72%), H-019(+1.63%), H-062(+1.34%), H-085(+0.79%), H-063(+0.78%), H-193(+0.37%), H-215(+0.35%), H-049(+0.33%), H-046(+0.27%)
+- **Near flat (2/29)**: H-032(-0.09%), H-219(-0.24%)
+- **Negative (13/29)**: H-044(-0.24%), H-009(-0.51%), H-169(-1.11%), H-197(-1.30%), H-011(-1.31%), H-182(-1.44%), H-021(-1.45%), H-059(-1.51%), H-053(-1.71%), H-183(-2.13%), H-160(-2.25%), H-191(-2.35%), H-189(-3.03%)
 - **H-063 FLAT**: Trade 1 settled +0.78%. Waiting for next entry (cron handles).
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 8 (00:30 UTC Apr 9).
-- **H-011**: $9,867 (-1.33%), 56 settlements, still IN. Slow net funding collection.
-- **H-021**: $9,629 (-3.71%) — worst performer, rebalanced. | **H-160**: $9,810 (-1.90%). | **H-189**: $9,853 (-1.47%).
-- **Improved from session 137**: 13/28 positive (was 10/28). H-169(+0.25%), H-175(+0.57%), H-182(+1.00%), H-193(+0.42%) turned positive.
-- **H-049**: Just rebalanced — new positions LONG ADA/AVAX, SHORT ARB. Equity $9,980 (-0.20%).
-- **Rebal status**: Apr 4 (at 00:00 UTC bar close): H-049/H-052/H-076/H-012/H-021/H-197/H-046/H-031/H-160. Apr 5: H-169/H-215. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193.
-- **Research**: 220 hypotheses total. **H-219 CONFIRMED** (up-volume ratio). H-218/H-220 REJECTED.
-- **AUTOMATED:** Paper trades hourly via cron (28 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Deploy H-219 paper trade. Continue research. Monitor H-021 (-3.71%) and H-160 (-1.90%) — consider killing if no recovery by week 3.
+- **H-011**: $9,869 (-1.31%), still IN. Slow net funding collection.
+- **H-021 RECOVERED**: -1.45% (was -3.71%). | **H-076 surged**: +3.20% (was +1.12%). | **H-085 turned positive**: +0.79%.
+- **Deteriorated**: H-169 -1.11% (was +0.25%), H-182 -1.44% (was +1.00%), H-053 -1.71% (was +0.44%).
+- **H-189 worst**: -3.03%. H-160 -2.25%. Monitor for potential kill.
+- **H-219 deployed**: LONG ETH/LINK/DOGE, SHORT DOT/NEAR/ATOM. Paper trade #29 added to orchestrator.
+- **Rebal status**: Apr 5 bar: H-169/H-215. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193. Apr 10: H-219.
+- **Research**: 223 hypotheses total. **H-223 CONFIRMED** (momentum breadth/win rate). H-221/H-222 REJECTED.
+- **AUTOMATED:** Paper trades hourly via cron (29 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Deploy H-223 paper trade. Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

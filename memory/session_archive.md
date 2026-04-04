@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 122)
+# Session Archive (Sessions bootstrap through 130)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1006,3 +1006,11 @@
 - Done: 23 runners. Demo $98,434 (-1.57%). H-063 crashed -1.31%. H-188 REJECTED, H-189 CONFIRMED, H-190 REJECTED. 190 total.
 - Next: H-063 expiry + H-031 rebal. Deploy H-189.
 - Self-modifications: none (session 128)
+
+### Session 2026-04-02 review+research+deploy (session 129)
+- Goal: Review + Research + Deploy — MTM update, H-189 deployment, 3 new factor backtests
+- Done: H-189 deployed as #24. H-191 CONFIRMED (vol-price elasticity). H-192 REJECTED. H-193 CONFIRMED (OI-price divergence). 193 total.
+
+### Session 2026-04-02 review+research+deploy (session 130)
+- Goal: Review + Research + Deploy — MTM update, H-191/H-193 deployment, 3 new factor backtests
+- Done: Demo $98,577 (-1.42%). H-191 deployed #25, H-193 deployed #26. H-194 REJECTED (realized vol ratio). H-195 REJECTED (funding reversal). H-196 REJECTED (dollar vol accel, redundant H-021). 196 total.

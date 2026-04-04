@@ -2892,6 +2892,39 @@
 - Notes: Reversal slightly better than short-term momentum (37.5% vs 12.5%), confirming mild mean-reversion exists at 2-3 day horizon. But 37.5% is far below 80% threshold. Transaction costs destroy much of the edge (daily rebalancing at 10bps round-trip). Crypto markets are too momentum-driven even at short horizons — equities-style reversal doesn't translate. The LB3_R3 sweet spot suggests 3-day windows have the most reversal but it's too parameter-specific.
 - Sessions: [2026-04-03 session 138]
 
+## H-221: Return Skewness Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by trailing return skewness. Positive skew (occasional big up moves) should signal different risk profiles. Well-documented factor in equities.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute scipy.stats.skew of daily returns over lookback window. Rank XS. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 1068 daily bars (2023-05-03 to 2026-04-04).
+- Result: IS **61.1%** in high_long direction (positive skew long) < 80%. low_long 22.2%. Best: LB10_R5_N3_high_long Sharpe 1.665 (+107.4%, -27.7% DD). Overall 41.7%.
+- Notes: Positive skew → long shows some signal (61.1%) but too parameter-sensitive. Short lookbacks work better (LB10 best) suggesting skew is a fast-decaying signal. Low_long (negative skew long) completely fails — confirms positive skew is the right direction but the effect isn't robust enough in crypto. The best single param set looks great (Sharpe 1.67) but it's a cherry-pick.
+- Sessions: [2026-04-04 session 139]
+
+## H-222: Volume Volatility Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by coefficient of variation (CV) of daily volume. High CV means erratic trading interest (fragile), low CV means stable volume (robust). Could capture stability premium.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: CV = std(volume) / mean(volume) over lookback. Rank XS. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1068 daily bars (2023-05-03 to 2026-04-04).
+- Result: IS **60.0%** in high_long (high CV long) < 80%. low_long 23.3%. Best: LB30_R7_N4_high_long Sharpe 0.476 (+21.9%, -43.0% DD). Overall 41.7%.
+- Notes: High volume volatility → long marginally works (60%) suggesting erratic-volume coins have momentum-like behavior, but effect is not robust. The absolute best Sharpe is only 0.476 — even cherry-picked results are weak. Volume CV doesn't discriminate well across a 14-coin universe; most cryptos have similarly erratic volume patterns.
+- Sessions: [2026-04-04 session 139]
+
+## H-223: Momentum Breadth / Win Rate Factor (14 Assets)
+- Status: CONFIRMED
+- Idea: Rank assets by fraction of positive-return days over lookback window (win rate). High win rate (consistent upward drift) → long. Low win rate (consistent downward drift) → short. Different from momentum (total return) — captures *consistency* of direction.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 5 days)
+- Logic: Win_rate = count(daily_return > 0) / lookback. Rank XS: high win rate → long, low → short. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 1068 daily bars (2023-05-03 to 2026-04-04).
+- Result: IS **83.3%** high_long (30/36). low_long 19.4% (decisively wrong). Best: LB20_R5_N3_high_long Sharpe **1.218** (+79.7% ann, -44.1% DD). WF **5/6** mean OOS **1.120**. Split-half H1=**1.416**, H2=**0.994**. Corr H-012 **0.365** (moderate — some overlap with momentum but distinct signal).
+- Notes: Win rate captures *consistency* of positive returns, distinct from total return magnitude (momentum). An asset can have high momentum from one big jump but low win rate, or steady small gains with high win rate. The 0.365 correlation with H-012 is expected (both capture bullish tendencies) but low enough to add value. WF is strong at 5/6 with mean 1.120 — only fold 4 negative (-0.359). Split-half robust in both halves. Direction is unambiguous: high_long 83.3% vs low_long 19.4%.
+- Sessions: [2026-04-04 session 139]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
