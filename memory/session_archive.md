@@ -1014,3 +1014,8 @@
 ### Session 2026-04-02 review+research+deploy (session 130)
 - Goal: Review + Research + Deploy — MTM update, H-191/H-193 deployment, 3 new factor backtests
 - Done: Demo $98,577 (-1.42%). H-191 deployed #25, H-193 deployed #26. H-194 REJECTED (realized vol ratio). H-195 REJECTED (funding reversal). H-196 REJECTED (dollar vol accel, redundant H-021). 196 total.
+
+### Session 2026-04-02 review+research (session 131)
+- Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
+- Done: 26 runners. Demo $98,428 (-1.57%). 13/26 positive. H-063 recovered to +1.20%. H-197 CONFIRMED (Amihud illiquidity). H-198/H-199 REJECTED. 199 total.
+- Self-modifications: Archived sessions 121-122

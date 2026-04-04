@@ -1,0 +1,67 @@
+{
+  "hypothesis": "H-224",
+  "name": "ADX Trend Strength",
+  "status": "REJECTED",
+  "reason": "IS overall 47.9% but dom dir 95.8%; WF 3/5",
+  "is_positive_rate": 47.9,
+  "is_mean_sharpe": -0.138,
+  "best_dir": "high_adx_long",
+  "best_dir_pct": 95.8,
+  "best_params": {
+    "adx_period": 7,
+    "rebal": 7,
+    "n": 4,
+    "dir": "high_adx_long"
+  },
+  "best_sharpe": 1.324,
+  "best_annual": 49.3,
+  "best_dd": -20.7,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "ADX7_R3_N3_high_adx_long",
+      "is_sharpe": 1.474,
+      "oos_sharpe": -4.3454
+    },
+    {
+      "fold": 2,
+      "is_params": "ADX7_R3_N3_high_adx_long",
+      "is_sharpe": 1.536,
+      "oos_sharpe": 3.3516
+    },
+    {
+      "fold": 3,
+      "is_params": "ADX7_R3_N3_high_adx_long",
+      "is_sharpe": 1.472,
+      "oos_sharpe": 1.9827
+    },
+    {
+      "fold": 4,
+      "is_params": "ADX7_R3_N3_high_adx_long",
+      "is_sharpe": 1.928,
+      "oos_sharpe": -0.7414
+    },
+    {
+      "fold": 5,
+      "is_params": "ADX7_R3_N3_high_adx_long",
+      "is_sharpe": 2.185,
+      "oos_sharpe": 0.1142
+    },
+    {
+      "fold": 6,
+      "is_params": "ADX20_R3_N4_low_adx_long",
+      "is_sharpe": 1.882,
+      "oos_sharpe": null
+    }
+  ],
+  "wf_positive": 3,
+  "wf_total": 5,
+  "wf_mean": 0.072,
+  "split_half": {
+    "h1_best": 2.045,
+    "h2_best": 2.074
+  },
+  "corr_h012": 0.19,
+  "n_assets": 14,
+  "n_days": 730
+}

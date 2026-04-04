@@ -1,0 +1,54 @@
+{
+  "started": "2026-04-04T05:07:39.532970+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "ETH/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 2054.21076,
+      "size": 1.62268322,
+      "direction": "LONG"
+    },
+    "DOGE/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 0.091588,
+      "size": 36394.74500353,
+      "direction": "LONG"
+    },
+    "LINK/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 8.660732,
+      "size": 384.87894676,
+      "direction": "LONG"
+    },
+    "OP/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 0.110078,
+      "size": -30281.56342743,
+      "direction": "SHORT"
+    },
+    "ATOM/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 1.687662,
+      "size": -1975.11856242,
+      "direction": "SHORT"
+    },
+    "NEAR/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 1.207758,
+      "size": -2759.93388523,
+      "direction": "SHORT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-04-03",
+      "equity": 9976.01
+    }
+  ],
+  "last_daily_date": "2026-04-03",
+  "last_rebal_date": "2026-04-03",
+  "days_since_rebal": 0,
+  "rebal_count": 1,
+  "total_trades": 6,
+  "total_fees": 19.999999999999996
+}

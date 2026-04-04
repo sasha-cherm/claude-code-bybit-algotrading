@@ -1,0 +1,67 @@
+{
+  "hypothesis": "H-225",
+  "name": "Volume-Price Trend (VPT)",
+  "status": "REJECTED",
+  "reason": "IS overall 50.0% but dom dir 100.0%; corr 0.654",
+  "is_positive_rate": 50.0,
+  "is_mean_sharpe": -0.173,
+  "best_dir": "high_vpt_long",
+  "best_dir_pct": 100.0,
+  "best_params": {
+    "lookback": 20,
+    "rebal": 7,
+    "n": 3,
+    "dir": "high_vpt_long"
+  },
+  "best_sharpe": 1.384,
+  "best_annual": 70.2,
+  "best_dd": -28.6,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB20_R7_N3_high_vpt_long",
+      "is_sharpe": 1.432,
+      "oos_sharpe": 3.1381
+    },
+    {
+      "fold": 2,
+      "is_params": "LB20_R7_N3_high_vpt_long",
+      "is_sharpe": 1.671,
+      "oos_sharpe": -2.9657
+    },
+    {
+      "fold": 3,
+      "is_params": "LB30_R5_N3_high_vpt_long",
+      "is_sharpe": 1.854,
+      "oos_sharpe": 2.1131
+    },
+    {
+      "fold": 4,
+      "is_params": "LB30_R5_N3_high_vpt_long",
+      "is_sharpe": 2.291,
+      "oos_sharpe": -0.1158
+    },
+    {
+      "fold": 5,
+      "is_params": "LB30_R5_N3_high_vpt_long",
+      "is_sharpe": 2.45,
+      "oos_sharpe": 1.6283
+    },
+    {
+      "fold": 6,
+      "is_params": "LB30_R5_N3_high_vpt_long",
+      "is_sharpe": 2.679,
+      "oos_sharpe": 0.2403
+    }
+  ],
+  "wf_positive": 4,
+  "wf_total": 6,
+  "wf_mean": 0.673,
+  "split_half": {
+    "h1_best": 2.224,
+    "h2_best": 1.296
+  },
+  "corr_h012": 0.654,
+  "n_assets": 14,
+  "n_days": 730
+}

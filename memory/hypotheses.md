@@ -2925,6 +2925,39 @@
 - Notes: Win rate captures *consistency* of positive returns, distinct from total return magnitude (momentum). An asset can have high momentum from one big jump but low win rate, or steady small gains with high win rate. The 0.365 correlation with H-012 is expected (both capture bullish tendencies) but low enough to add value. WF is strong at 5/6 with mean 1.120 — only fold 4 negative (-0.359). Split-half robust in both halves. Direction is unambiguous: high_long 83.3% vs low_long 19.4%.
 - Sessions: [2026-04-04 session 139]
 
+## H-224: ADX / Trend Strength Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by Average Directional Index (ADX), which measures trend strength regardless of direction. High ADX = strong trend -> long (trend followers win). Low ADX = choppy -> short.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute Wilder's ADX per asset over rolling window. Rank XS: high_adx_long vs low_adx_long. Grid: ADX_period∈[7,14,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS dom dir **95.8%** high_adx_long (23/24). IS overall 47.9%. Best ADX7_R7_N4 Sharpe 1.324 (+49.3% ann, -20.7% DD). WF **3/5** (fails ≥4). Split-half H1=2.045, H2=2.074. Corr H-012 0.190.
+- Notes: Strong directional signal (95.8% high_adx_long) — trending assets DO continue trending in crypto. However WF inconsistent at 3/5 — fold 1 has -4.35 OOS, fold 4 has -0.74. Signal has right intuition but doesn't generalize OOS consistently. ADX computation is noisy in 24/7 crypto markets (no session-based structure). Interesting that low_adx_long is 0% positive — decisively wrong direction.
+- Sessions: [2026-04-04 session 140]
+
+## H-225: Volume-Price Trend (VPT) Factor (14 Assets)
+- Status: REJECTED
+- Idea: VPT = cumulative(volume * pct_change). Rank by rolling VPT slope (linear regression). High VPT slope = sustained buying pressure -> long. Different from OBV (binary up/down volume) and money flow (OHLC-weighted).
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Compute VPT, then rolling linear regression slope over lookback. Normalize by mean volume. Rank XS. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS dom dir **100.0%** high_vpt_long (30/30). IS overall 50.0%. Best LB20_R7_N3 Sharpe 1.384 (+70.2% ann, -28.6% DD). WF **4/6** mean 0.673. Split-half H1=2.224, H2=1.296. Corr H-012 **0.654** (too high, FAIL).
+- Notes: VPT slope is essentially volume-weighted momentum — the correlation with H-012 (0.654) confirms it's not a novel signal. It captures the same "winners keep winning" effect, just weighted by volume intensity. Despite passing IS (100%!), WF (4/6), and split-half, the high correlation means it adds no diversification value. Would be redundant in any portfolio already containing H-012.
+- Sessions: [2026-04-04 session 140]
+
+## H-226: Ease of Movement (EMV) Factor (14 Assets)
+- Status: REJECTED
+- Idea: EMV = midpoint_displacement / (volume / HL_range). Measures how easily price moves — high EMV = trending smoothly with little volume resistance. Cross-sectional ranking.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: EMV = (mid - prev_mid) * HL_range / volume. Rolling mean over lookback. Rank XS. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall 43.3%, dom dir high_emv_long **76.7%** < 80%. Best LB30_R5_N3 Sharpe 1.010 (+43.4% ann, -50.2% DD).
+- Notes: EMV fails IS threshold — 76.7% is close but not enough. The signal is weakly directional (high EMV assets do slightly better) but the effect is too noisy in crypto's 24/7 markets. In equities, EMV works because of opening/closing auction microstructure — crypto lacks this. Additionally, the drawdowns are severe (50%+) even for the best params.
+- Sessions: [2026-04-04 session 140]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

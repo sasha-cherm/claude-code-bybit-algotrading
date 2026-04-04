@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-226",
+  "name": "Ease of Movement (EMV)",
+  "status": "REJECTED",
+  "reason": "IS 43.3% / dom dir 76.7% < 80%",
+  "is_positive_rate": 43.3,
+  "is_mean_sharpe": -0.174,
+  "best_dir": "high_emv_long",
+  "best_dir_pct": 76.7,
+  "best_sharpe": 1.01,
+  "n_assets": 14,
+  "n_days": 730
+}
