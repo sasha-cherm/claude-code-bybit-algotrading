@@ -1067,3 +1067,9 @@
 - Focus: Paper trade MTM (BTC Apr 3 bar $66,965), H-219 deployment, 3 new factor backtests
 - Done: 29 runners checked (28→29 post-deploy). Demo: $98,931 (-1.07%, improving). 14/29 positive. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). H-219 deployed. H-221 REJECTED, H-222 REJECTED, H-223 CONFIRMED. 223 total hypotheses.
 - Next: Deploy H-223 paper trade. Continue research.
+
+### Session 2026-04-04 review+deploy+research (session 140)
+- Goal: Review + Deploy + Research — MTM update, H-223 deployment, H-224/H-225/H-226 backtests
+- Focus: Paper trade MTM (no new daily bar, still Apr 3), H-223 deployment, 3 new factor backtests
+- Done: 30 runners checked (29→30 post-deploy). Demo: $98,827 (-1.17%). 14/30 positive. H-223 deployed. H-224 REJECTED, H-225 REJECTED, H-226 REJECTED. 226 total hypotheses.
+- Next: Continue research. Monitor H-189 (-2.94%) and H-160 (-2.19%).

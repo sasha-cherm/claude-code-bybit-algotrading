@@ -3288,6 +3288,39 @@
 - Notes: Volume-weighted returns have strong IS signal (93.3%) but don't generalize OOS — WF shows inconsistency with 3 of 6 folds negative. The volume-weighting essentially amplifies momentum on high-volume days, which is regime-dependent. Short lookbacks (10-14d) work better IS but are more parameter-sensitive OOS. Conceptually similar to momentum (H-012) with volume emphasis — the 0.463 correlation confirms overlap.
 - Sessions: [2026-04-05 session 149]
 
+## H-257: Intraday Return Dominance Factor (14 Assets)
+- Status: REJECTED — redundant with momentum in 24/7 market
+- Idea: Decompose daily returns into intraday (open-to-close) and overnight (close-to-open) components. Rank by ratio of cumulative intraday returns to total returns. High ratio = institutional flow drives asset.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: intraday_ret = close/open - 1 for each day. total_ret = close/prev_close - 1. Score = sum(intraday_ret) / abs(sum(total_ret)) over lookback. Grid: LB∈[10,15,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1069 daily bars.
+- Result: IS dom dir high_long **100%** (30/30 positive), mean Sharpe 1.816. Best LB10_R7_N4 Sharpe **2.682** (+234.2% ann, -29.7% DD). **WF 6/6** mean OOS **2.780** (best WF in entire hypothesis set!). Split-half H1=3.687/H2=1.820. Corr H-012 **0.538**.
+- Notes: Despite extraordinary WF performance (6/6, mean 2.780 — best ever), this factor is **REJECTED** because in 24/7 crypto markets open[i] ≈ close[i-1], making overnight returns ≈ 0. The intraday return exactly equals the total return, so the factor reduces to short-term momentum (10-day). The 0.538 correlation with H-012 confirms this redundancy. The strong performance comes from the short lookback (LB10) and wider rebal (R7), which is just a different parameterization of momentum, not a novel signal.
+- Sessions: [2026-04-06 session 150]
+
+## H-258: Recovery Speed Factor (14 Assets)
+- Status: REJECTED — IS fails 80% threshold
+- Idea: Measure average speed of price recovery after local dips over lookback window. Fast recovery = strong support/demand. Rank XS: long fast-recovery, short slow-recovery.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Find dip points (drawdown < -1%), measure days to recover 50% of dip, weighted by dip depth. Score = mean(depth/recovery_days). Grid: LB∈[15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1069 daily bars.
+- Result: IS best dir high_long **50.0%** (15/30 positive), overall **38.3%** (23/60). Best LB15_R5_N4_high_long Sharpe 1.016 (+52.5% ann, -56.1% DD).
+- Notes: Recovery speed has no robust cross-sectional predictive power in crypto. Only 50% IS positive — barely better than random. Crypto assets tend to crash and recover together, so XS differentiation is weak. The best individual combo (Sharpe 1.016) has extreme 56% drawdown, indicating unreliability.
+- Sessions: [2026-04-06 session 150]
+
+## H-259: Extreme Move Frequency Factor (14 Assets)
+- Status: LIVE (paper trade since 2026-04-06)
+- Idea: Rank assets by fraction of daily returns exceeding 2 rolling standard deviations. High extreme frequency = breakout potential. Long active/volatile breakout assets, short quiet/ranging.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: For each asset, compute fraction of |return| > 2σ_rolling over lookback window. σ computed from 2x lookback for stability. Rank XS: long high extreme freq, short low. Grid: LB∈[10,15,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1069 daily bars.
+- Result: IS dom dir high_long **100%** (30/30 positive), overall 58.3%. Mean Sharpe 1.331. Best LB20_R7_N4 Sharpe **2.648** (+197.3% ann, -17.7% DD). **WF 5/6** mean OOS **1.320**. Split-half H1=2.315/H2=2.990. Corr H-012 **0.272** (low).
+- Notes: Counterintuitive direction — high extreme move frequency predicts outperformance, not underperformance. In crypto, assets making outsized moves are in breakout/momentum phase, capturing "momentum burst" potential. Very low H-012 correlation (0.272) confirms this is distinct from simple momentum. Excellent split-half stability (both halves Sharpe > 2). Deployed as paper trade #35: LONG OP/ATOM/ARB/DOT, SHORT ADA/LINK/AVAX/NEAR.
+- Sessions: [2026-04-06 session 150]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
