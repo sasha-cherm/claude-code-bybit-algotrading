@@ -1056,3 +1056,8 @@
 - Next: Apr 4: H-049/H-052/H-076/H-012/H-021/H-197 rebalances. Continue research.
 - Questions added: none
 - Self-modifications: H-215 runner created, added to orchestrator (session 137)
+
+### Session 2026-04-03 review+research (session 138)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Done: 28 runners. Demo $98,736 (-1.26%). 13/28 positive. H-219 CONFIRMED (up-volume ratio IS 80%, WF 4/6). H-218/H-220 REJECTED. 220 total.
+- Self-modifications: none (session 138)

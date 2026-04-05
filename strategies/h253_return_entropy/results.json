@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-253",
+  "name": "Return Entropy Factor",
+  "status": "REJECTED",
+  "reason": "IS 36.5% / dom dir 47.9% < 80%",
+  "is_positive_rate": 36.5,
+  "is_mean_sharpe": -0.177,
+  "best_dir": "high_entropy_long",
+  "best_dir_pct": 47.9,
+  "best_sharpe": 0.524,
+  "n_assets": 14,
+  "n_days": 731
+}

@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-252",
+  "name": "Tail Ratio Factor",
+  "status": "REJECTED",
+  "reason": "IS 37.5% / dom dir 75.0% < 80%",
+  "is_positive_rate": 37.5,
+  "is_mean_sharpe": -0.174,
+  "best_dir": "high_tail_long",
+  "best_dir_pct": 75.0,
+  "best_sharpe": 1.294,
+  "n_assets": 14,
+  "n_days": 731
+}

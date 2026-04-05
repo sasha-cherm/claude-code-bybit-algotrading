@@ -7,7 +7,7 @@
 - **Internal paper trades:** 33 runners active. Session 147. **10/33 positive**.
 - **H-063 IN TRADE 2**: MTM +1.31% ($190 premium, expires Apr 10). **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
 - **Top performers**: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%).
-- **Research**: 250 total hypotheses. H-250 CONFIRMED+deployed. H-245/H-246/H-247/H-248/H-249 REJECTED.
+- **Research**: 253 total hypotheses. H-251/H-252/H-253 REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (33 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
 - **Open user questions:** None
@@ -22,11 +22,6 @@
 
 
 _Older sessions (bootstrap through 137) archived to `memory/session_archive.md`._
-
-### Session 2026-04-03 review+research (session 138)
-- Goal: Review + Research — MTM update, 3 new factor backtests
-- Done: 28 runners. Demo $98,736 (-1.26%). 13/28 positive. H-219 CONFIRMED (up-volume ratio IS 80%, WF 4/6). H-218/H-220 REJECTED. 220 total.
-- Self-modifications: none (session 138)
 
 ### Session 2026-04-04 review+deploy+research (session 139)
 - Goal: Review + Deploy + Research — MTM update, H-219 deployment, H-221/H-222/H-223 backtests
@@ -99,3 +94,11 @@ _Older sessions (bootstrap through 137) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
 - Questions added: none
 - Self-modifications: H-250 runner created, added to orchestrator. Archived session 137. (session 147)
+
+### Session 2026-04-05 review+research (session 148)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$66,834), H-251/H-252/H-253 backtests
+- Done: 33 runners checked. **Demo**: $100,509 (+0.51%). BTC $66,834. **10/33 positive**. Top: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%). H-063 trade 2 at +1.36% (expires Apr 10). **Research**: **H-251 REJECTED** (Hurst exponent — IS 37.5%, best dir 50%, crypto assets have similar persistence, no XS spread). **H-252 REJECTED** (tail ratio — IS 37.5%, best dir high_tail_long 75% borderline but < 80%). **H-253 REJECTED** (return entropy — IS 36.5%, best dir 47.9%, all crypto uniformly high entropy). 253 total hypotheses.
+- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
+- Questions added: none
+- Self-modifications: Archived session 138. (session 148)

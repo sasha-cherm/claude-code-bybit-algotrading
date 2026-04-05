@@ -3222,6 +3222,39 @@
 - Notes: Novel institutional flow proxy. BTC/ETH/SOL have highest US share (~39-41%); smaller alts have lower (~37-38%). US session captures institutional trading activity. Near-zero momentum correlation (0.032) makes it an excellent diversifier. Negative correlation with efficiency (-0.227) is interesting — institutional-driven assets may be efficient in different ways.
 - Sessions: [2026-04-05 session 147]
 
+## H-251: Hurst Exponent Factor (14 Assets)
+- Status: REJECTED — weak IS, no dominant direction
+- Idea: Estimate Hurst exponent (R/S method) for each asset over rolling window. Long trending (H>0.5), short mean-reverting (H<0.5) assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling Hurst via simplified R/S analysis. Rank XS by Hurst value.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **37.5%** (18/48), best dir high_h_long **50.0%** < 80%. Mean Sharpe -0.217. Best LB90_R7_N3 Sharpe 1.487 (+67.6%, -34.5% DD), but overall signal too noisy.
+- Notes: Hurst captures fractal scaling/persistence but crypto assets have similar persistence characteristics — the XS spread is too narrow. Different from momentum (direction) and efficiency (path linearity), but Hurst doesn't generate robust XS rankings in crypto. LB=90 works best (more data for R/S estimation) but still only 50% positive.
+- Sessions: [2026-04-05 session 148]
+
+## H-252: Tail Ratio Factor (14 Assets)
+- Status: REJECTED — IS dom dir 75% < 80%, borderline
+- Idea: Ratio of 95th to 5th percentile absolute returns over rolling window. Captures extreme return asymmetry.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: tail_ratio = |P95 return| / |P5 return|. Long high_tail (positive extreme asymmetry), short low_tail.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **37.5%** (18/48), best dir high_tail_long **75.0%** < 80%. Mean Sharpe -0.174. Best LB60_R3_N3 Sharpe 1.294 (+57.4%, -26.1% DD).
+- Notes: Borderline signal — 75% in dominant direction is close to threshold. Different from skewness (full distribution) because it focuses only on extreme percentiles. High_tail_long works because assets with bigger upside tails tend to continue. But 25% of params fail, indicating parameter sensitivity. Longer lookbacks (60d) better than shorter ones.
+- Sessions: [2026-04-05 session 148]
+
+## H-253: Return Entropy Factor (14 Assets)
+- Status: REJECTED — weak IS, no directional edge
+- Idea: Shannon entropy of discretized daily return distribution. Low entropy = concentrated/predictable returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Discretize N-day returns into K bins, compute normalized Shannon entropy. Rank XS: long low-entropy (predictable), short high-entropy (random).
+- Data: 14 assets, 731 daily bars.
+- Result: IS **36.5%** (35/96), best dir high_entropy_long **47.9%** < 80%. Mean Sharpe -0.177. Best LB40_B8_R7_N4 Sharpe 0.524 (+19.6%, -44.7% DD).
+- Notes: Entropy fails as a XS factor — all crypto assets have similarly high return entropy due to 24/7 trading and correlation with BTC. The XS dispersion in entropy values is too narrow. Even the best parameter set has mediocre Sharpe (0.524) with high drawdown (-44.7%). Neither direction dominates. Entropy captures a real property of returns but it doesn't differentiate meaningfully across crypto assets.
+- Sessions: [2026-04-05 session 148]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

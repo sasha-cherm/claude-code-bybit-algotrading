@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-251",
+  "name": "Hurst Exponent Factor",
+  "status": "REJECTED",
+  "reason": "IS 37.5% / dom dir 50.0% < 80%",
+  "is_positive_rate": 37.5,
+  "is_mean_sharpe": -0.217,
+  "best_dir": "high_h_long",
+  "best_dir_pct": 50.0,
+  "best_sharpe": 1.487,
+  "n_assets": 14,
+  "n_days": 731
+}

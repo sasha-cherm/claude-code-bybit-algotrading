@@ -371,17 +371,17 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 11 bar
 - **Backtest**: IS 96.7% (29/30), best Sharpe 1.057. WF 5/5 mean 1.197. Corr 0.032 H-012, 0.378 H-031, -0.227 H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-05 session 147, 09:25 UTC)
-- **Bybit Demo**: ~$100,490 (+0.49%). BTC spot ~$66,870. Last daily bar: Apr 4, close $67,301.
-- **Total internal MTM (33 strats)**: 33 runners active (32→33 post-deploy). No new daily bar since Apr 4.
-- **Positive (10/33)**: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%), H-053(+1.39%), H-063(+1.31%), H-062(+0.88%), H-049(+0.56%), H-046(+0.34%)
+## Portfolio Summary (mark-to-market 2026-04-05 session 148, 16:05 UTC)
+- **Bybit Demo**: ~$100,509 (+0.51%). BTC spot ~$66,834. Last daily bar: Apr 4, close $67,301.
+- **Total internal MTM (33 strats)**: 33 runners active. No new daily bar since Apr 4.
+- **Positive (10/33)**: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%), H-053(+1.39%), H-063(+1.36%), H-062(+0.88%), H-049(+0.56%), H-046(+0.34%)
 - **Near flat (2/33)**: H-032(0.00%), weekend_iron_condor(0.00%)
 - **Negative (21/33)**: H-250(-0.24%), H-244(-0.24%), H-242(-0.24%), H-223(-0.20%), H-219(-0.20%), H-215(-0.20%), H-193(-0.20%), H-191(-0.20%), H-189(-0.20%), H-183(-0.20%), H-182(-0.20%), H-175(-0.20%), H-169(-0.20%), H-019(-0.20%), H-085(-0.43%), H-059(-0.50%), H-044(-0.66%), H-011(-1.30%), H-197(-1.66%), H-160(-1.84%), H-009(-2.10%), H-021(-3.63%)
-- **H-063 IN TRADE 2**: Strangle active ($190 premium, 69000C+65000P, expires Apr 10). MTM +1.31%.
+- **H-063 IN TRADE 2**: Strangle active ($190 premium, 69000C+65000P, expires Apr 10). MTM +1.36%.
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
 - **H-011**: $9,870 (-1.30%), still IN.
 - **H-021 worst**: -3.63%. H-009(-2.10%), H-160(-1.84%) also lagging. Monitor.
-- **Research**: 250 hypotheses total. H-250 CONFIRMED+deployed. H-245/H-246/H-247/H-248/H-249 REJECTED.
+- **Research**: 253 hypotheses total. H-251/H-252/H-253 REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (33 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
 - **Open user questions:** None
