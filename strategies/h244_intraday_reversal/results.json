@@ -1,0 +1,69 @@
+{
+  "hypothesis": "H-244",
+  "name": "Intraday Reversal Propensity",
+  "status": "CONFIRMED",
+  "reason": "all stages passed",
+  "is_positive_rate": 50.0,
+  "is_mean_sharpe": -0.236,
+  "best_dir": "neg_autocorr_long",
+  "best_dir_pct": 100.0,
+  "best_params": {
+    "lookback_days": 14,
+    "rebal": 5,
+    "n": 4,
+    "dir": "neg_autocorr_long"
+  },
+  "best_sharpe": 2.074,
+  "best_annual": 72.6,
+  "best_dd": -18.4,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB14d_R5_N4_neg_autocorr_long",
+      "is_sharpe": 1.845,
+      "oos_sharpe": 0.8337
+    },
+    {
+      "fold": 2,
+      "is_params": "LB14d_R5_N4_neg_autocorr_long",
+      "is_sharpe": 2.2,
+      "oos_sharpe": -2.1445
+    },
+    {
+      "fold": 3,
+      "is_params": "LB14d_R5_N4_neg_autocorr_long",
+      "is_sharpe": 2.134,
+      "oos_sharpe": 0.3125
+    },
+    {
+      "fold": 4,
+      "is_params": "LB14d_R7_N4_neg_autocorr_long",
+      "is_sharpe": 3.006,
+      "oos_sharpe": -0.6385
+    },
+    {
+      "fold": 5,
+      "is_params": "LB14d_R7_N3_neg_autocorr_long",
+      "is_sharpe": 2.609,
+      "oos_sharpe": 1.27
+    },
+    {
+      "fold": 6,
+      "is_params": "LB14d_R7_N4_neg_autocorr_long",
+      "is_sharpe": 5.282,
+      "oos_sharpe": 1.9764
+    }
+  ],
+  "wf_positive": 4,
+  "wf_total": 6,
+  "wf_mean": 0.268,
+  "split_half": {
+    "h1_best": 2.988,
+    "h2_best": 2.09,
+    "h1_mean": -0.203,
+    "h2_mean": -0.276
+  },
+  "corr_h012": 0.05,
+  "n_assets": 14,
+  "n_days": 731
+}

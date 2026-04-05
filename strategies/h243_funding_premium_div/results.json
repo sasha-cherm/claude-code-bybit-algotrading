@@ -1,0 +1,69 @@
+{
+  "hypothesis": "H-243",
+  "name": "Funding-Premium Divergence",
+  "status": "REJECTED",
+  "reason": "WF 3/6",
+  "is_positive_rate": 43.8,
+  "is_mean_sharpe": -0.228,
+  "best_dir": "fund_high_prem_low_long",
+  "best_dir_pct": 87.5,
+  "best_params": {
+    "lookback": 5,
+    "rebal": 3,
+    "n": 4,
+    "dir": "fund_high_prem_low_long"
+  },
+  "best_sharpe": 1.554,
+  "best_annual": 52.4,
+  "best_dd": -26.7,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB5_R3_N4_fund_high_prem_low_long",
+      "is_sharpe": 2.054,
+      "oos_sharpe": -0.469
+    },
+    {
+      "fold": 2,
+      "is_params": "LB5_R3_N4_fund_high_prem_low_long",
+      "is_sharpe": 1.729,
+      "oos_sharpe": 3.6234
+    },
+    {
+      "fold": 3,
+      "is_params": "LB20_R3_N3_fund_high_prem_low_long",
+      "is_sharpe": 1.724,
+      "oos_sharpe": -1.7584
+    },
+    {
+      "fold": 4,
+      "is_params": "LB20_R3_N3_fund_high_prem_low_long",
+      "is_sharpe": 1.614,
+      "oos_sharpe": 2.696
+    },
+    {
+      "fold": 5,
+      "is_params": "LB20_R3_N3_fund_high_prem_low_long",
+      "is_sharpe": 2.053,
+      "oos_sharpe": 2.4494
+    },
+    {
+      "fold": 6,
+      "is_params": "LB10_R5_N4_fund_low_prem_high_long",
+      "is_sharpe": 1.627,
+      "oos_sharpe": -1.0822
+    }
+  ],
+  "wf_positive": 3,
+  "wf_total": 6,
+  "wf_mean": 0.91,
+  "split_half": {
+    "h1_best": 1.644,
+    "h2_best": 2.153,
+    "h1_mean": -0.194,
+    "h2_mean": -0.325
+  },
+  "corr_h012": 0.076,
+  "n_assets": 14,
+  "n_days": 731
+}

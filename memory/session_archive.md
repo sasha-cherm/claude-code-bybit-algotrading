@@ -1041,3 +1041,10 @@
 - Done: 27 runners checked. Demo: $97,730 (-2.27%). BTC $66,931. 10/27 positive, 16 negative, 1 flat. H-063 SETTLED PROFITABLY: Trade 1 net +$77.64 (+0.78%). H-209/H-210/H-211 REJECTED.
 - Next: Apr 4: H-039(exit SHORT), rebalances. Continue research.
 - Self-modifications: Archived sessions 125-126 (session 135)
+
+### Session 2026-04-03 review+research (session 136)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (BTC $66,673), H-212/H-213/H-214 backtests
+- Done: 27 runners. Demo: $97,833 (-2.17%). 12/27 positive. H-212/H-213/H-214 REJECTED.
+- Next: Apr 4: H-039(exit SHORT), rebalances. Continue research.
+- Self-modifications: none (session 136)

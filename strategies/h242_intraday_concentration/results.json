@@ -1,0 +1,69 @@
+{
+  "hypothesis": "H-242",
+  "name": "Intraday Momentum Concentration",
+  "status": "CONFIRMED",
+  "reason": "all stages passed",
+  "is_positive_rate": 50.0,
+  "is_mean_sharpe": -0.186,
+  "best_dir": "high_conc_long",
+  "best_dir_pct": 100.0,
+  "best_params": {
+    "lookback": 10,
+    "rebal": 5,
+    "n": 4,
+    "dir": "high_conc_long"
+  },
+  "best_sharpe": 2.014,
+  "best_annual": 73.2,
+  "best_dd": -28.6,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB10_R5_N4_high_conc_long",
+      "is_sharpe": 1.977,
+      "oos_sharpe": 4.0246
+    },
+    {
+      "fold": 2,
+      "is_params": "LB10_R5_N4_high_conc_long",
+      "is_sharpe": 2.048,
+      "oos_sharpe": 0.9941
+    },
+    {
+      "fold": 3,
+      "is_params": "LB10_R5_N4_high_conc_long",
+      "is_sharpe": 2.305,
+      "oos_sharpe": 1.7191
+    },
+    {
+      "fold": 4,
+      "is_params": "LB10_R5_N4_high_conc_long",
+      "is_sharpe": 2.017,
+      "oos_sharpe": 0.8424
+    },
+    {
+      "fold": 5,
+      "is_params": "LB10_R5_N4_high_conc_long",
+      "is_sharpe": 1.502,
+      "oos_sharpe": 0.7587
+    },
+    {
+      "fold": 6,
+      "is_params": "LB10_R3_N4_high_conc_long",
+      "is_sharpe": 0.843,
+      "oos_sharpe": 2.474
+    }
+  ],
+  "wf_positive": 6,
+  "wf_total": 6,
+  "wf_mean": 1.802,
+  "split_half": {
+    "h1_best": 2.112,
+    "h2_best": 2.298,
+    "h1_mean": -0.161,
+    "h2_mean": -0.22
+  },
+  "corr_h012": 0.14,
+  "n_assets": 14,
+  "n_days": 731
+}

@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,214 (-0.79%). BTC spot ~$67,163.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,214 (-0.79%). BTC spot ~$67,082.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,872 (-1.28%).
-- **Internal paper trades:** 30 runners active. Session 145. **12/30 positive**.
-- **H-063 IN TRADE 2**: MTM +0.78%, ~3d remaining. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
+- **Internal paper trades:** 32 runners active. Session 146. **12/32 positive**.
+- **H-063 IN TRADE 2**: MTM +0.78%, ~2d remaining. **H-039 FLAT**: +5.79%, next LONG Wed Apr 9.
 - **Top performers**: H-039(+5.79%), H-012(+4.90%), H-076(+4.09%), H-031(+3.43%), H-062(+3.21%).
-- **Research**: 241 total hypotheses. H-239/H-240/H-241 REJECTED.
-- **AUTOMATED:** Paper trades hourly via cron (30 runners). Claude sessions every 4h. IV collector running.
+- **Research**: 244 total hypotheses. H-242/H-244 CONFIRMED+deployed. H-243 REJECTED.
+- **AUTOMATED:** Paper trades hourly via cron (32 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-189 (-3.60%) and H-183/H-191.
 - **Open user questions:** None
 
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 135) archived to `memory/session_archive.md`._
-
-### Session 2026-04-03 review+research (session 136)
-- Goal: Review + Research — MTM update, 3 new factor backtests
-- Focus: Paper trade MTM (BTC $66,673), H-212/H-213/H-214 backtests
-- Done: 27 runners checked. **Demo**: $97,833 (-2.17%). BTC $66,673. **12/27 positive** (improved from 10). Top: H-039(+5.79%), H-031(+4.74%), H-012(+3.50%), H-019(+2.34%), H-062(+1.56%). **Improving**: H-012 surged +3.50% (was +2.22%), H-062 +1.56% (was +0.88%), H-182 +1.00% (was -0.20%), H-193 turned positive +0.42%. **Worsening**: H-189 -1.47% (was -0.20%). **Research**: **H-212 REJECTED** (volume rank persistence — IS 43.3%, signal too parameter-sensitive). **H-213 REJECTED** (CLV persistence — IS 66.7%, short lookbacks noise). **H-214 REJECTED** (CVaR tail risk — IS 100% pass but corr 0.649 with H-019, too redundant with low-vol). 214 total hypotheses.
-- Next: Apr 4: H-039(exit SHORT), H-049/H-052/H-076/H-012/H-021/H-197 rebalances. Continue research.
-- Questions added: none
-- Self-modifications: none (session 136)
+_Older sessions (bootstrap through 136) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-03 review+research+deploy (session 137)
 - Goal: Review + Research + Deploy — MTM update, H-215 deployment, 3 new factor backtests
@@ -99,3 +91,11 @@ _Older sessions (bootstrap through 135) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-189 (-3.60%) and H-183 (-3.54%).
 - Questions added: none
 - Self-modifications: Archived session 135. Updated daily data through Apr 4. (session 145)
+
+### Session 2026-04-05 review+deploy+research (session 146)
+- Goal: Review + Deploy + Research — MTM check, H-242/H-244 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new bar, BTC $67,082), H-242/H-243/H-244 backtests
+- Done: 32 runners (30→32 post-deploy). No new daily bar since Apr 4. **Research**: **H-242 CONFIRMED** (intraday momentum concentration — IS **100%** high_conc_long, WF **6/6** mean **1.802** outstanding, corr 0.14 H-012, 0.24 H-031. Novel microstructure signal using hourly data). **H-243 REJECTED** (funding-premium divergence — IS 87.5% dom dir but WF **3/6**, doesn't generalize). **H-244 CONFIRMED** (intraday reversal propensity — IS **100%** neg_autocorr_long, WF **4/6** mean 0.268, corr 0.05 H-012, 0.01 H-242. Novel intraday microstructure). Both deployed as paper trades. 244 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.60%) and H-183/H-191.
+- Questions added: none
+- Self-modifications: H-242/H-244 runners created, added to orchestrator. Archived session 136. (session 146)

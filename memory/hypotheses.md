@@ -3123,6 +3123,39 @@
 - Notes: Interesting signal with 90.3% IS and very low H-012 correlation (0.144), but WF catastrophically fails (1/6). The IS-selected params don't generalize OOS at all — classic overfitting. The coherence metric essentially captures momentum when both horizons agree, explaining the IS performance, but the optimal horizons shift across time periods.
 - Sessions: [2026-04-05 session 145]
 
+### H-242: Intraday Momentum Concentration Factor — CONFIRMED
+- Status: LIVE (paper trade since 2026-04-05)
+- Idea: Rank assets by fraction of daily absolute return from the single highest-return hour. High concentration (spike-driven) outperforms low concentration (distributed).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: For each asset/day, compute max(|hourly_ret|) / sum(|hourly_ret|). Rolling avg over lookback. Rank XS. Long high concentration, short low. Grid: LB∈[10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir high_conc_long **100%** (24/24 positive), overall 50.0%. Mean Sharpe (high_conc) 1.100. Best LB10_R5_N4 Sharpe **2.014** (+73.2% ann, -28.6% DD). **WF 6/6** positive, mean OOS **1.802** (outstanding). Split-half H1=2.112/H2=2.298. Corr H-012 **0.14**, H-031 **0.24**, H-076 **0.10**.
+- Notes: Genuinely novel microstructure signal using intraday data. WF 6/6 is the best walk-forward result in the entire hypothesis set. BTC and ETH have highest concentration (likely institutional-driven moves), while small-caps have more distributed returns. Captures something distinct from size/momentum/efficiency.
+- Sessions: [2026-04-05 session 146]
+
+### H-243: Funding-Premium Divergence Factor — REJECTED
+- Status: REJECTED
+- Idea: Compare XS rank of funding rate vs premium index. Disagreement between these two positioning signals creates distinct signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Divergence = funding_XS_rank - premium_XS_rank. Long assets where funding rank >> premium rank (bullish leverage but discounted spot). Grid: LB∈[5,10,15,20], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir fund_high_prem_low_long **87.5%** (21/24 positive). Best LB5_R3_N4 Sharpe 1.554. **WF 3/6** (FAILS). Mean OOS 0.910 but too inconsistent.
+- Notes: Clear directional signal in-sample but OOS walk-forward fails 3/6. When it works it works well (folds 2,4,5 > 2.0 Sharpe) but folds 1,3,6 negative. The optimal params shift too much across time.
+- Sessions: [2026-04-05 session 146]
+
+### H-244: Intraday Reversal Propensity Factor — CONFIRMED
+- Status: LIVE (paper trade since 2026-04-05)
+- Idea: Rank assets by hourly return lag-1 autocorrelation. Assets with negative autocorrelation (mean-reverting intraday) outperform those with positive autocorrelation (trending intraday).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: Compute rolling lag-1 autocorrelation of hourly returns over lookback*24 hours. Rank XS. Long most negative (mean-reverting), short most positive. Grid: LB∈[7,14,21,30]d, R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir neg_autocorr_long **100%** (24/24 positive), overall 50.0%. Mean Sharpe (neg_autocorr) 1.118. Best LB14d_R5_N4 Sharpe **2.074** (+72.6% ann, -18.4% DD). **WF 4/6** positive, mean OOS **0.268**. Split-half H1=2.988/H2=2.090. Corr H-012 **0.05**, H-031 **-0.03**, H-242 **0.01**.
+- Notes: Genuinely novel intraday microstructure signal. XRP, SOL, BTC most mean-reverting; OP, ARB most trending. Mean-reverting assets (where market makers are active) outperform. Essentially zero correlation with everything — excellent diversifier. WF mean is modest (0.268) but 4/6 positive.
+- Sessions: [2026-04-05 session 146]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)
