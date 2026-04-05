@@ -360,5 +360,13 @@
     "rolling_avg": 5.28e-06,
     "pnl": 0.71,
     "capital": 9871.49
+  },
+  {
+    "type": "funding",
+    "time": "2026-04-05 00:00:00+00:00",
+    "rate": 2.88e-06,
+    "rolling_avg": 3.06e-06,
+    "pnl": 0.14,
+    "capital": 9871.63
   }
 ]

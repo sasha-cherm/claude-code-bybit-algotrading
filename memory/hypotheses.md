@@ -3090,6 +3090,39 @@
 - Notes: Strong standalone signal — 100% IS in low_long, WF 4/6, excellent Sharpe. But 0.738 correlation with regular beta (H-024 killed) and 0.512 with H-019 (low-vol in portfolio). Essentially a refined low-beta/low-vol anomaly. Not deploying to paper trade: 30 runners already active, H-019 captures most of this signal. If H-019 underperforms in future, H-238 could be a replacement.
 - Sessions: [2026-04-04 session 144]
 
+## H-239: Price Impact Factor (Return-to-Dollar-Volume, 14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by rolling average of |daily_return| / dollar_volume. Low price impact = deep, resilient market that attracts institutional flow. Amihud-like but dollar-volume-normalized.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: price_impact = rolling_mean(|ret| / (close * volume)). Rank XS. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS dom dir **100%** (36/36 low_impact_long positive), overall 50%. Mean Sharpe 1.439. Best LB40_R7_N4 Sharpe **1.763** (+84.9% ann, -28.6% DD). **WF 5/6** positive, mean OOS **1.878**. Split-half H1=1.776/H2=2.256. Corr H-012 **0.525** (FAILS <0.50).
+- Notes: Excellent signal — 100% IS, WF 5/6 with mean OOS 1.878 (outstanding). But 0.525 correlation with momentum exceeds threshold. The low-impact assets are essentially large-cap momentum winners (BTC, ETH, SOL), so the signal is partially capturing size/momentum. Related to H-197 (Amihud) which is already deployed. Very strong but redundant.
+- Sessions: [2026-04-05 session 145]
+
+## H-240: Beta Instability Factor (14 Assets)
+- Status: REJECTED
+- Idea: Measure rolling std of each asset's beta to BTC. Low instability = stable, resolved relationship. Long stable, short unstable.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: Rolling beta(asset, BTC) over BW window, then rolling std over OW window. Rank XS. Grid: BW∈[10,20,30], OW∈[10,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 144 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS overall **43.1%**, dom dir low_instab_long **70.8%** < 80%. Best BW30_OW10_R3_N4 Sharpe **1.138** (+45.4% ann, -45.2% DD). High drawdowns across all params.
+- Notes: Beta instability doesn't differentiate crypto assets enough for cross-sectional ranking. All alts have unstable BTC betas due to idiosyncratic moves. Drawdowns are very high (45-62%) across top params, making the signal impractical even if IS had passed.
+- Sessions: [2026-04-05 session 145]
+
+## H-241: Multi-Horizon Return Disagreement Factor (14 Assets)
+- Status: REJECTED
+- Idea: Compare short-term (3-7d) vs medium-term (15-40d) return direction. Coherent = both agree (strong trend). Long coherent-positive, short divergent/negative.
+- Instrument: futures (14 USDT perps)
+- Timeframe: 1D (rebalance 3-7 days)
+- Logic: coherence = sign(ret_short) * sign(ret_long) * sqrt(|ret_short| * |ret_long|). Rank XS. Grid: SH∈[3,5,7], LH∈[15,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 144 combos.
+- Data: 14 assets, 730 daily bars.
+- Result: IS dom dir coherent_long **90.3%** (65/72 positive), overall 45.8%. Mean Sharpe 0.670. Best SH7_LH30_R3_N4 Sharpe **1.668** (+77.2% ann, -18.8% DD). **WF 1/6** positive (FAILS), mean OOS **-0.330**. Split-half H1=2.296/H2=1.974. Corr H-012 **0.144**.
+- Notes: Interesting signal with 90.3% IS and very low H-012 correlation (0.144), but WF catastrophically fails (1/6). The IS-selected params don't generalize OOS at all — classic overfitting. The coherence metric essentially captures momentum when both horizons agree, explaining the IS performance, but the optimal horizons shift across time periods.
+- Sessions: [2026-04-05 session 145]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

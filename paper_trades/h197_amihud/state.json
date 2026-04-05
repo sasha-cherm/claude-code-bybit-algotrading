@@ -1,53 +1,53 @@
 {
   "started": "2026-04-02T21:13:49.718509+00:00",
-  "capital": 9980.0,
+  "capital": 9833.61,
   "positions": {
     "BTC/USDT": {
       "weight": 0.25,
-      "entry_price": 68132.6238,
-      "size": 0.03669314,
+      "entry_price": 67314.16014,
+      "size": 0.03652133,
       "direction": "LONG"
     },
     "ETH/USDT": {
       "weight": 0.25,
-      "entry_price": 2140.548024,
-      "size": 1.16792521,
-      "direction": "LONG"
-    },
-    "SOL/USDT": {
-      "weight": 0.25,
-      "entry_price": 81.21624,
-      "size": 30.78202094,
+      "entry_price": 2064.61284,
+      "size": 1.19073305,
       "direction": "LONG"
     },
     "XRP/USDT": {
       "weight": 0.25,
-      "entry_price": 1.34787,
-      "size": 1854.77894032,
+      "entry_price": 1.314763,
+      "size": 1869.84493394,
+      "direction": "LONG"
+    },
+    "SOL/USDT": {
+      "weight": 0.25,
+      "entry_price": 80.856168,
+      "size": 30.40464084,
       "direction": "LONG"
     },
     "LINK/USDT": {
       "weight": -0.25,
-      "entry_price": 8.938212,
-      "size": -279.69799777,
+      "entry_price": 8.693261,
+      "size": -282.79408014,
       "direction": "SHORT"
     },
     "OP/USDT": {
       "weight": -0.25,
-      "entry_price": 0.110078,
-      "size": -22711.17257057,
+      "entry_price": 0.110478,
+      "size": -22252.43915659,
       "direction": "SHORT"
     },
     "ARB/USDT": {
       "weight": -0.25,
-      "entry_price": 0.094421,
-      "size": -26477.12939454,
+      "entry_price": 0.092681,
+      "size": -26525.29155127,
       "direction": "SHORT"
     },
     "ATOM/USDT": {
       "weight": -0.25,
-      "entry_price": 1.674665,
-      "size": -1492.83588061,
+      "entry_price": 1.712657,
+      "size": -1435.43171442,
       "direction": "SHORT"
     }
   },
@@ -69,12 +69,18 @@
       "equity": 9863.09,
       "positions": 8,
       "rebalanced": false
+    },
+    {
+      "date": "2026-04-04",
+      "equity": 9829.67,
+      "positions": 8,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-04-03",
-  "last_rebal_date": "2026-04-01",
-  "days_since_rebal": 2,
-  "rebal_count": 1,
+  "last_daily_date": "2026-04-04",
+  "last_rebal_date": "2026-04-04",
+  "days_since_rebal": 0,
+  "rebal_count": 2,
   "total_trades": 8,
   "total_fees": 20.0
 }

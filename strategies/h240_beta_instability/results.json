@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-240",
+  "name": "Beta Instability Factor",
+  "status": "REJECTED",
+  "reason": "IS 43.1% / dom dir 70.8% < 80%",
+  "is_positive_rate": 43.1,
+  "is_mean_sharpe": -0.147,
+  "best_dir": "low_instab_long",
+  "best_dir_pct": 70.8,
+  "best_sharpe": 1.138,
+  "n_assets": 14,
+  "n_days": 730
+}

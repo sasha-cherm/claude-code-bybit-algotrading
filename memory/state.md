@@ -338,15 +338,15 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 8 bar
 - **Backtest**: IS 83.3%, WF 5/6 mean 1.120. Corr 0.365 H-012. Split-half H1=1.416/H2=0.994.
 
-## Portfolio Summary (mark-to-market 2026-04-04 session 144, 21:10 UTC)
-- **Bybit Demo**: ~$99,094 (-0.91%, improving) — 13 positions. BTC spot ~$67,278. Last daily bar: Apr 3, close $66,616.
-- **Total internal MTM (30 strats)**: 30 runners active. No new complete daily bar since Apr 3.
-- **Positive (14/30)**: H-039(+5.79%), H-031(+3.89%), H-012(+3.87%), H-076(+3.21%), H-175(+1.91%), H-052(+1.89%), H-019(+1.61%), H-062(+1.51%), H-063(+1.12%), H-085(+0.90%), H-049(+0.52%), H-046(+0.30%), H-215(+0.24%), H-193(+0.18%)
-- **Near flat/new (4/30)**: H-044(-0.08%), H-032(-0.09%), H-219(-0.24%), H-223(-0.24%)
-- **Negative (12/30)**: H-009(-0.51%), H-169(-1.06%), H-011(-1.29%), H-197(-1.37%), H-182(-1.38%), H-021(-1.40%), H-059(-1.51%), H-053(-1.69%), H-183(-2.19%), H-160(-2.19%), H-191(-2.37%), H-189(-2.94%)
-- **H-063 IN TRADE 2**: Strangle active, MTM +1.12%. ~4 days remaining.
+## Portfolio Summary (mark-to-market 2026-04-05 session 145, 01:21 UTC)
+- **Bybit Demo**: ~$99,214 (-0.79%, improving) — 14 positions. BTC spot ~$67,163. Last daily bar: Apr 4, close $67,301.
+- **Total internal MTM (30 strats)**: 30 runners active. Apr 4 bar now complete.
+- **Positive (12/30)**: H-039(+5.79%), H-012(+4.90%), H-076(+4.09%), H-031(+3.43%), H-062(+3.21%), H-175(+2.52%), H-052(+2.07%), H-049(+1.86%), H-085(+1.68%), H-044(+0.99%), H-063(+0.78%), H-019(+0.55%)
+- **Near flat (1/30)**: H-032(0.00%)
+- **Negative (17/30)**: H-193(-0.13%), H-059(-0.59%), H-046(-0.71%), H-021(-0.90%), H-011(-1.28%), H-215(-1.34%), H-197(-1.73%), H-223(-1.95%), H-009(-2.10%), H-219(-2.19%), H-053(-2.23%), H-182(-2.30%), H-160(-2.39%), H-169(-2.41%), H-191(-3.14%), H-183(-3.54%), H-189(-3.60%)
+- **H-063 IN TRADE 2**: Strangle active, MTM +0.78%. ~3 days remaining.
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
-- **H-011**: $9,871 (-1.29%), still IN.
+- **H-011**: $9,872 (-1.28%), still IN.
 - **H-009**: -0.51% (SHORT gaining as BTC drops).
 - **H-189 worst**: -2.94% (improving). H-160(-2.19%), H-191(-2.37%) still lagging. Monitor.
 - **Rebal status**: Apr 5 bar: H-169/H-215. Apr 6: H-182/H-183. Apr 7: H-175. Apr 8: H-085/H-189/H-191/H-193/H-223. Apr 10: H-219.

@@ -42,5 +42,27 @@
     "trades": 10,
     "fees": 14.365440000000001,
     "capital": 9961.63456
+  },
+  {
+    "time": "2026-04-05T00:42:23.581982+00:00",
+    "event": "rebalance",
+    "date": "2026-04-04",
+    "longs": [
+      "OP",
+      "ADA",
+      "ETH",
+      "ARB",
+      "AVAX"
+    ],
+    "shorts": [
+      "BTC",
+      "SUI",
+      "DOGE",
+      "XRP",
+      "DOT"
+    ],
+    "trades": 9,
+    "fees": 11.953961472000003,
+    "capital": 9949.680598528
   }
 ]

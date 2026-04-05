@@ -1,0 +1,70 @@
+{
+  "hypothesis": "H-241",
+  "name": "Multi-Horizon Disagreement Factor",
+  "status": "REJECTED",
+  "reason": "IS overall 45.8% but dom dir 90.3%; WF 1/6",
+  "is_positive_rate": 45.8,
+  "is_mean_sharpe": -0.256,
+  "best_dir": "coherent_long",
+  "best_dir_pct": 90.3,
+  "best_params": {
+    "short_horizon": 7,
+    "long_horizon": 30,
+    "rebal": 3,
+    "n": 4,
+    "dir": "coherent_long"
+  },
+  "best_sharpe": 1.668,
+  "best_annual": 77.2,
+  "best_dd": -18.8,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "SH7_LH30_R3_N4_coherent_long",
+      "is_sharpe": 1.891,
+      "oos_sharpe": -1.6375
+    },
+    {
+      "fold": 2,
+      "is_params": "SH7_LH20_R5_N3_coherent_long",
+      "is_sharpe": 2.118,
+      "oos_sharpe": -1.0757
+    },
+    {
+      "fold": 3,
+      "is_params": "SH7_LH40_R5_N3_coherent_long",
+      "is_sharpe": 2.206,
+      "oos_sharpe": -0.0577
+    },
+    {
+      "fold": 4,
+      "is_params": "SH7_LH20_R5_N3_coherent_long",
+      "is_sharpe": 2.263,
+      "oos_sharpe": -0.4111
+    },
+    {
+      "fold": 5,
+      "is_params": "SH5_LH20_R7_N4_coherent_long",
+      "is_sharpe": 3.125,
+      "oos_sharpe": -1.1978
+    },
+    {
+      "fold": 6,
+      "is_params": "SH3_LH20_R7_N3_coherent_long",
+      "is_sharpe": 3.096,
+      "oos_sharpe": 2.4003
+    }
+  ],
+  "wf_positive": 1,
+  "wf_total": 6,
+  "wf_mean": -0.33,
+  "split_half": {
+    "h1_best": 2.296,
+    "h2_best": 1.974,
+    "h1_mean": -0.22,
+    "h2_mean": -0.305
+  },
+  "corr_h012": 0.144,
+  "n_assets": 14,
+  "n_days": 730
+}
