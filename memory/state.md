@@ -371,18 +371,29 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 11 bar
 - **Backtest**: IS 96.7% (29/30), best Sharpe 1.057. WF 5/5 mean 1.197. Corr 0.032 H-012, 0.378 H-031, -0.227 H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-05 session 148, 16:05 UTC)
-- **Bybit Demo**: ~$100,509 (+0.51%). BTC spot ~$66,834. Last daily bar: Apr 4, close $67,301.
-- **Total internal MTM (33 strats)**: 33 runners active. No new daily bar since Apr 4.
-- **Positive (10/33)**: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%), H-053(+1.39%), H-063(+1.36%), H-062(+0.88%), H-049(+0.56%), H-046(+0.34%)
-- **Near flat (2/33)**: H-032(0.00%), weekend_iron_condor(0.00%)
-- **Negative (21/33)**: H-250(-0.24%), H-244(-0.24%), H-242(-0.24%), H-223(-0.20%), H-219(-0.20%), H-215(-0.20%), H-193(-0.20%), H-191(-0.20%), H-189(-0.20%), H-183(-0.20%), H-182(-0.20%), H-175(-0.20%), H-169(-0.20%), H-019(-0.20%), H-085(-0.43%), H-059(-0.50%), H-044(-0.66%), H-011(-1.30%), H-197(-1.66%), H-160(-1.84%), H-009(-2.10%), H-021(-3.63%)
-- **H-063 IN TRADE 2**: Strangle active ($190 premium, 69000C+65000P, expires Apr 10). MTM +1.36%.
+### H-255: Risk-Adjusted Momentum / Rolling Sharpe Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-05) — quality momentum signal
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG (high Sharpe): DOGE, ETH, LINK
+  - SHORT (low Sharpe): ATOM, XRP, DOT
+- **Mark equity**: $9,976 (-0.24%) — day 0, fees only.
+- **Runner**: `paper_trades/h255_sharpe_momentum/runner.py`
+- **Params**: LB14_R7_N3 (14-day rolling Sharpe, 7-day rebalance, top/bottom 3, high_sharpe_long)
+- **Next rebal**: Apr 11 bar
+- **Backtest**: IS 93.3% (28/30), best Sharpe 1.552. WF 5/6 mean 0.964. Corr 0.460 H-012.
+
+## Portfolio Summary (mark-to-market 2026-04-05 session 149, 17:15 UTC)
+- **Bybit Demo**: ~$100,649 (+0.65%). BTC spot ~$67,239. Last daily bar: Apr 4, close $67,301.
+- **Total internal MTM (34 strats)**: 34 runners active (33→34 post-deploy). No new daily bar since Apr 4.
+- **Positive (10/34)**: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%), H-063(+1.39%), H-053(+1.39%), H-062(+0.88%), H-049(+0.56%), H-046(+0.34%)
+- **Near flat (2/34)**: H-032(0.00%), weekend_iron_condor(0.00%)
+- **Negative (22/34)**: H-255(-0.24%), H-250(-0.24%), H-244(-0.24%), H-242(-0.24%), H-223(-0.20%), H-219(-0.20%), H-215(-0.20%), H-193(-0.20%), H-191(-0.20%), H-189(-0.20%), H-183(-0.20%), H-182(-0.20%), H-175(-0.20%), H-169(-0.20%), H-019(-0.20%), H-085(-0.43%), H-059(-0.50%), H-044(-0.66%), H-011(-1.29%), H-197(-1.66%), H-160(-1.84%), H-009(-2.10%), H-021(-3.63%)
+- **H-063 IN TRADE 2**: Strangle active ($190 premium, 69000C+65000P, expires Apr 10). MTM +1.39%.
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
-- **H-011**: $9,870 (-1.30%), still IN.
+- **H-011**: $9,871 (-1.29%), still IN.
 - **H-021 worst**: -3.63%. H-009(-2.10%), H-160(-1.84%) also lagging. Monitor.
-- **Research**: 253 hypotheses total. H-251/H-252/H-253 REJECTED.
-- **AUTOMATED:** Paper trades hourly via cron (33 runners). Claude sessions every 4h. IV collector running.
+- **Research**: 256 hypotheses total. H-254/H-256 REJECTED, H-255 CONFIRMED+deployed.
+- **AUTOMATED:** Paper trades hourly via cron (34 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
 - **Open user questions:** None
 

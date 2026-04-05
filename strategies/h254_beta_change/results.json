@@ -1,0 +1,13 @@
+{
+  "hypothesis": "H-254",
+  "name": "BTC Beta Change Direction Factor",
+  "status": "REJECTED",
+  "reason": "IS 42.6% / dom dir 59.3% < 80%",
+  "is_positive_rate": 42.6,
+  "is_mean_sharpe": -0.231,
+  "best_dir": "incr_beta_long",
+  "best_dir_pct": 59.3,
+  "best_sharpe": 0.782,
+  "n_assets": 14,
+  "n_days": 731
+}

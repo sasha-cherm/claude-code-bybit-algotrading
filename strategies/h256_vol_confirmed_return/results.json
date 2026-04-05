@@ -1,0 +1,70 @@
+{
+  "hypothesis": "H-256",
+  "name": "Volume-Confirmed Return Factor",
+  "status": "REJECTED",
+  "reason": "WF 3/6",
+  "is_positive_rate": 46.7,
+  "is_mean_sharpe": -0.164,
+  "best_dir": "high_vcr_long",
+  "best_dir_pct": 93.3,
+  "best_params": {
+    "lookback": 10,
+    "vol_window": 20,
+    "rebal": 7,
+    "n": 4,
+    "dir": "high_vcr_long"
+  },
+  "best_sharpe": 1.522,
+  "best_annual": 63.7,
+  "best_dd": -39.2,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB14_VW20_R7_N3_high_vcr_long",
+      "is_sharpe": 1.439,
+      "oos_sharpe": 0.7924
+    },
+    {
+      "fold": 2,
+      "is_params": "LB14_VW20_R7_N4_high_vcr_long",
+      "is_sharpe": 1.77,
+      "oos_sharpe": -1.6608
+    },
+    {
+      "fold": 3,
+      "is_params": "LB14_VW20_R7_N4_high_vcr_long",
+      "is_sharpe": 1.704,
+      "oos_sharpe": 2.5452
+    },
+    {
+      "fold": 4,
+      "is_params": "LB10_VW10_R3_N4_high_vcr_long",
+      "is_sharpe": 2.275,
+      "oos_sharpe": -2.359
+    },
+    {
+      "fold": 5,
+      "is_params": "LB10_VW10_R3_N4_high_vcr_long",
+      "is_sharpe": 2.735,
+      "oos_sharpe": -0.9247
+    },
+    {
+      "fold": 6,
+      "is_params": "LB60_VW20_R7_N4_high_vcr_long",
+      "is_sharpe": 3.257,
+      "oos_sharpe": 0.6255
+    }
+  ],
+  "wf_positive": 3,
+  "wf_total": 6,
+  "wf_mean": -0.164,
+  "split_half": {
+    "h1_best": 2.267,
+    "h2_best": 1.071,
+    "h1_mean": -0.143,
+    "h2_mean": -0.198
+  },
+  "corr_h012": 0.463,
+  "n_assets": 14,
+  "n_days": 731
+}

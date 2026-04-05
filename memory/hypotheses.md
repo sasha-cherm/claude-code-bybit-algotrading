@@ -3255,6 +3255,39 @@
 - Notes: Entropy fails as a XS factor — all crypto assets have similarly high return entropy due to 24/7 trading and correlation with BTC. The XS dispersion in entropy values is too narrow. Even the best parameter set has mediocre Sharpe (0.524) with high drawdown (-44.7%). Neither direction dominates. Entropy captures a real property of returns but it doesn't differentiate meaningfully across crypto assets.
 - Sessions: [2026-04-05 session 148]
 
+## H-254: BTC Beta Change Direction Factor (13 Non-BTC Assets)
+- Status: REJECTED — weak IS, no dominant direction
+- Idea: Rank non-BTC assets by the direction of change in their rolling BTC beta. Assets decorrelating from BTC (decreasing beta) may have independent alpha.
+- Instrument: futures (13 perps, non-BTC)
+- Timeframe: 1D
+- Logic: Rolling beta vs BTC over window, then compute beta_now - beta_N_days_ago. Rank XS: long decreasing beta (decorrelating), short increasing beta (becoming more BTC-like). Grid: BW∈[20,40,60], CL∈[5,10,20], R∈[3,5,7], N∈[3,4], dir∈2 = 108 combos.
+- Data: 13 non-BTC assets, 731 daily bars.
+- Result: IS **42.6%** (46/108), best dir incr_beta_long **59.3%** < 80%. Mean Sharpe -0.231. Best BW40_CL20_R7_N4 Sharpe 0.782 (+33.1%, -28.9% DD). Neither direction dominant.
+- Notes: BTC beta change direction doesn't predict XS returns. Crypto assets move in and out of BTC correlation randomly — the direction of beta change is mean-reverting rather than persistent. Different from beta level (H-024, killed) and beta instability/magnitude (H-240, rejected).
+- Sessions: [2026-04-05 session 149]
+
+### H-255: Risk-Adjusted Momentum / Rolling Sharpe Factor — CONFIRMED
+- Status: LIVE (paper trade since 2026-04-05)
+- Idea: Rank 14 crypto assets by rolling Sharpe ratio (return/vol). Long high-Sharpe (quality momentum), short low-Sharpe. Risk-adjusted momentum should be more persistent than raw return.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: For each asset, compute rolling daily Sharpe (mean/std of returns) over lookback window. Rank XS: long high Sharpe (quality momentum), short low Sharpe. Grid: LB∈[14,21,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir high_sharpe_long **93.3%** (28/30 positive), overall 46.7%. Mean Sharpe 0.558. Best LB14_R7_N3 Sharpe **1.552** (+75.2% ann, -26.3% DD). **WF 5/6** positive, mean OOS **0.964**. Split-half H1=1.963/H2=1.447. Corr H-012 **0.460** (below 0.50 threshold but borderline — captures overlapping but distinct signal).
+- Notes: Risk-adjusted momentum is related to raw momentum (H-012, corr 0.46) but the volatility normalization adds a distinct dimension. High-Sharpe assets have better risk-adjusted persistence than high-return assets. Short lookback (14d) works best — recent risk-adjusted quality matters more than long-term. XRP/BTC have highest avg rolling Sharpe; OP/ARB lowest.
+- Sessions: [2026-04-05 session 149]
+
+## H-256: Volume-Confirmed Return Factor (14 Assets)
+- Status: REJECTED — passes IS but fails WF
+- Idea: Weight daily returns by relative volume (vol/avg_vol) to create volume-confirmed returns. High-volume moves are more "real" and persistent.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: vol_weight = volume / rolling_avg(N). Confirmed_return = sum(ret * vol_weight) over lookback. Rank XS: long high VCR, short low VCR. Grid: LB∈[10,14,21,30,60], VW∈[10,20], R∈[3,5,7], N∈[3,4], dir∈2 = 120 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir high_vcr_long **93.3%** (56/60 positive), overall 46.7%. Mean Sharpe 0.615. Best LB10_VW20_R7_N4 Sharpe **1.522** (+63.7% ann, -39.2% DD). **WF 3/6** mean OOS **-0.164** (FAILS). Split-half H1=2.267/H2=1.071. Corr H-012 0.463.
+- Notes: Volume-weighted returns have strong IS signal (93.3%) but don't generalize OOS — WF shows inconsistency with 3 of 6 folds negative. The volume-weighting essentially amplifies momentum on high-volume days, which is regime-dependent. Short lookbacks (10-14d) work better IS but are more parameter-sensitive OOS. Conceptually similar to momentum (H-012) with volume emphasis — the 0.463 correlation confirms overlap.
+- Sessions: [2026-04-05 session 149]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

@@ -1,0 +1,69 @@
+{
+  "hypothesis": "H-255",
+  "name": "Risk-Adjusted Momentum (Rolling Sharpe) Factor",
+  "status": "CONFIRMED",
+  "reason": "all stages passed",
+  "is_positive_rate": 46.7,
+  "is_mean_sharpe": -0.149,
+  "best_dir": "high_sharpe_long",
+  "best_dir_pct": 93.3,
+  "best_params": {
+    "lookback": 14,
+    "rebal": 7,
+    "n": 3,
+    "dir": "high_sharpe_long"
+  },
+  "best_sharpe": 1.552,
+  "best_annual": 75.2,
+  "best_dd": -26.3,
+  "wf_folds": [
+    {
+      "fold": 1,
+      "is_params": "LB14_R7_N3_high_sharpe_long",
+      "is_sharpe": 1.488,
+      "oos_sharpe": 2.2416
+    },
+    {
+      "fold": 2,
+      "is_params": "LB14_R7_N3_high_sharpe_long",
+      "is_sharpe": 1.837,
+      "oos_sharpe": -0.5636
+    },
+    {
+      "fold": 3,
+      "is_params": "LB60_R7_N3_high_sharpe_long",
+      "is_sharpe": 1.659,
+      "oos_sharpe": 0.9425
+    },
+    {
+      "fold": 4,
+      "is_params": "LB60_R7_N3_high_sharpe_long",
+      "is_sharpe": 1.981,
+      "oos_sharpe": 0.7034
+    },
+    {
+      "fold": 5,
+      "is_params": "LB60_R3_N3_high_sharpe_long",
+      "is_sharpe": 2.205,
+      "oos_sharpe": 0.7439
+    },
+    {
+      "fold": 6,
+      "is_params": "LB60_R3_N3_high_sharpe_long",
+      "is_sharpe": 2.978,
+      "oos_sharpe": 1.7174
+    }
+  ],
+  "wf_positive": 5,
+  "wf_total": 6,
+  "wf_mean": 0.964,
+  "split_half": {
+    "h1_best": 1.963,
+    "h2_best": 1.447,
+    "h1_mean": -0.126,
+    "h2_mean": -0.193
+  },
+  "corr_h012": 0.46,
+  "n_assets": 14,
+  "n_days": 731
+}

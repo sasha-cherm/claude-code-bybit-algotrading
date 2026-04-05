@@ -1061,3 +1061,9 @@
 - Goal: Review + Research — MTM update, 3 new factor backtests
 - Done: 28 runners. Demo $98,736 (-1.26%). 13/28 positive. H-219 CONFIRMED (up-volume ratio IS 80%, WF 4/6). H-218/H-220 REJECTED. 220 total.
 - Self-modifications: none (session 138)
+
+### Session 2026-04-04 review+deploy+research (session 139)
+- Goal: Review + Deploy + Research — MTM update, H-219 deployment, H-221/H-222/H-223 backtests
+- Focus: Paper trade MTM (BTC Apr 3 bar $66,965), H-219 deployment, 3 new factor backtests
+- Done: 29 runners checked (28→29 post-deploy). Demo: $98,931 (-1.07%, improving). 14/29 positive. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). H-219 deployed. H-221 REJECTED, H-222 REJECTED, H-223 CONFIRMED. 223 total hypotheses.
+- Next: Deploy H-223 paper trade. Continue research.
