@@ -3156,6 +3156,72 @@
 - Notes: Genuinely novel intraday microstructure signal. XRP, SOL, BTC most mean-reverting; OP, ARB most trending. Mean-reverting assets (where market makers are active) outperform. Essentially zero correlation with everything — excellent diversifier. WF mean is modest (0.268) but 4/6 positive.
 - Sessions: [2026-04-05 session 146]
 
+## H-245: Close-to-VWAP Deviation Factor — REJECTED
+- Status: REJECTED
+- Idea: Using hourly bars, compute daily VWAP. Signal = rolling avg of (close - VWAP) / VWAP. Assets closing above VWAP have net buying pressure. Rank XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: VWAP from hourly typical price * volume. Rolling avg over lookback. Rank XS. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir above_vwap_long **76.7%** (23/30) < 80%. Best LB15_R7_N4 Sharpe 1.391 (+29.9% ann, -14.2% DD). Clear directional signal but not robust across params.
+- Notes: VWAP deviation captures buying/selling pressure but crypto's 24/7 market dilutes the signal. Higher lookbacks weaken it — noise washes out the pressure signal quickly.
+- Sessions: [2026-04-05 session 147]
+
+## H-246: Volume Clock / Hourly Volume HHI Factor — REJECTED
+- Status: REJECTED
+- Idea: Measure Herfindahl index of hourly volume shares within each day. High HHI = concentrated trading, low = distributed. Rank XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: HHI = sum(hourly_vol_share^2). Rolling avg. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir high_hhi_long **53.3%** (16/30), overall 43.3%. Best LB10_R7_N3 Sharpe 0.809. Essentially random.
+- Notes: Volume concentration (HHI) does not differentiate crypto XS returns. All crypto assets show similarly distributed volume patterns with occasional spikes.
+- Sessions: [2026-04-05 session 147]
+
+## H-247: First-Hour Momentum Alignment Factor — REJECTED
+- Status: REJECTED
+- Idea: For each asset/day, compare first hour return direction with full day return. Rolling fraction of aligned days. Long predictable (high alignment) assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: Alignment = 1 if sign(first_hour_ret) == sign(full_day_ret). Rolling avg. Grid: LB∈[10,15,20,30,40], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir high_align_long **63.3%** (19/30) < 80%. Best LB40_R3_N3 Sharpe 1.551. Mean alignment ~55% across assets (only slightly above random).
+- Notes: First-hour-to-day alignment is too noisy as a XS signal. The best param requires 40d lookback which smooths out too much. 24/7 crypto markets have no "opening bell" effect.
+- Sessions: [2026-04-05 session 147]
+
+## H-248: Intraday Trend Strength / Efficiency Factor — REJECTED
+- Status: REJECTED
+- Idea: Using hourly bars, compute |sum(hourly_ret)| / sum(|hourly_ret|) per day — within-day efficiency ratio. Low intraday efficiency = noisy. Rank XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: Efficiency = |net_hourly_ret| / sum(|hourly_ret|). Rolling avg. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir low_eff_long **56.7%** (17/30) < 80%. Best LB5_R7_N3 Sharpe 0.794. Weak, no robust edge.
+- Notes: Intraday efficiency (within-day trend quality) is different from H-076 (multi-day efficiency) but doesn't predict XS returns. All crypto assets have similarly low intraday efficiency (~0.21).
+- Sessions: [2026-04-05 session 147]
+
+## H-249: Intraday Range Expansion Factor — REJECTED
+- Status: REJECTED
+- Idea: Ratio of daily range (H-L) to first-hour range. High expansion = breakout day. Rolling avg. Rank XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: Expansion = day_range / first_hour_range. Rolling avg. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS overall **36.7%**, no dominant direction (both 36.7%). Best LB30_R3_N4 Sharpe 0.768. No signal.
+- Notes: Range expansion ratio is approximately the same across all crypto assets (~6x) with insufficient XS dispersion to generate trading signals.
+- Sessions: [2026-04-05 session 147]
+
+### H-250: US Session Momentum Factor — CONFIRMED
+- Status: LIVE (paper trade since 2026-04-05)
+- Idea: Rank assets by fraction of daily absolute return occurring during US trading hours (13:00-21:00 UTC). High US share = institutional flow. Long institutional, short non-institutional.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1H bars)
+- Logic: US_share = sum(|hourly_ret| during 13-21 UTC) / sum(|hourly_ret| all day). Rolling avg over lookback. Rank XS. Long high US share. Grid: LB∈[5,10,15,20,30], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS dom dir high_us_long **96.7%** (29/30 positive), overall 48.3%. Mean Sharpe 0.678. Best LB20_R7_N3 Sharpe **1.057** (+25.5% ann, -29.4% DD). **WF 5/5** positive (240/90 window), mean OOS **1.197**. WF 3/3 (360/120) mean **2.089**. Split-half H1=0.245/H2=2.557. Corr H-012 **0.032**, H-031 **0.378**, H-076 **-0.227**, H-242 **0.214**.
+- Notes: Novel institutional flow proxy. BTC/ETH/SOL have highest US share (~39-41%); smaller alts have lower (~37-38%). US session captures institutional trading activity. Near-zero momentum correlation (0.032) makes it an excellent diversifier. Negative correlation with efficiency (-0.227) is interesting — institutional-driven assets may be efficient in different ways.
+- Sessions: [2026-04-05 session 147]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

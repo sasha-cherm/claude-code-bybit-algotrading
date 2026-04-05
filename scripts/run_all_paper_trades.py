@@ -56,6 +56,7 @@ RUNNERS = [
     ("H-223", ROOT / "paper_trades" / "h223_momentum_breadth" / "runner.py"),
     ("H-242", ROOT / "paper_trades" / "h242_intraday_concentration" / "runner.py"),
     ("H-244", ROOT / "paper_trades" / "h244_intraday_reversal" / "runner.py"),
+    ("H-250", ROOT / "paper_trades" / "h250_session_momentum" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

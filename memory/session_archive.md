@@ -1048,3 +1048,11 @@
 - Done: 27 runners. Demo: $97,833 (-2.17%). 12/27 positive. H-212/H-213/H-214 REJECTED.
 - Next: Apr 4: H-039(exit SHORT), rebalances. Continue research.
 - Self-modifications: none (session 136)
+
+### Session 2026-04-03 review+research+deploy (session 137)
+- Goal: Review + Research + Deploy — MTM update, H-215 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar since Apr 2), H-215/H-216/H-217 backtests
+- Done: 28 runners checked (27→28 post-deploy). No new daily bar — MTM unchanged from session 136. H-011 $9,867 (-1.33%, 56 settlements). H-039 FLAT +5.79%. **Research**: **H-215 CONFIRMED** (Dollar Volume Trend — IS **94.4%**, WF **4/6** mean 0.016, split-half H1=2.388/H2=1.565, corr **0.148** H-012. Best LB15_R3_N4 Sharpe 1.668. Novel flow-of-funds signal). **H-216 REJECTED** (Kurtosis — IS 40% < 80%, low-kurt-long 76.7% but crypto too uniformly fat-tailed). **H-217 REJECTED** (Volume/OI Ratio — IS 48.3%, high-VOI-long 96.7% but combined fails. Interesting one-directional signal). **H-215 deployed** as paper trade #28: LONG SOL/DOGE/OP/SUI, SHORT DOT/LINK/NEAR/ATOM. 217 total hypotheses.
+- Next: Apr 4: H-049/H-052/H-076/H-012/H-021/H-197 rebalances. Continue research.
+- Questions added: none
+- Self-modifications: H-215 runner created, added to orchestrator (session 137)
