@@ -1111,3 +1111,11 @@
 - Next: Continue research. Monitor H-189 (-3.60%) and H-183 (-3.54%).
 - Questions added: none
 - Self-modifications: Archived session 135. Updated daily data through Apr 4. (session 145)
+
+### Session 2026-04-05 review+deploy+research (session 146)
+- Goal: Review + Deploy + Research — MTM check, H-242/H-244 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new bar, BTC $67,082), H-242/H-243/H-244 backtests
+- Done: 32 runners (30→32 post-deploy). No new daily bar since Apr 4. **Research**: **H-242 CONFIRMED** (intraday momentum concentration — IS **100%** high_conc_long, WF **6/6** mean **1.802** outstanding, corr 0.14 H-012, 0.24 H-031. Novel microstructure signal using hourly data). **H-243 REJECTED** (funding-premium divergence — IS 87.5% dom dir but WF **3/6**, doesn't generalize). **H-244 CONFIRMED** (intraday reversal propensity — IS **100%** neg_autocorr_long, WF **4/6** mean 0.268, corr 0.05 H-012, 0.01 H-242. Novel intraday microstructure). Both deployed as paper trades. 244 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.60%) and H-183/H-191.
+- Questions added: none
+- Self-modifications: H-242/H-244 runners created, added to orchestrator. Archived session 136. (session 146)

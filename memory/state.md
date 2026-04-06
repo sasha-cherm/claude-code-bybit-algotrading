@@ -415,16 +415,27 @@ Demo eq: $97,400 (-2.60%). BTC spot ~$69,348. 11 open positions. Demo declined f
 - **Next rebal**: Apr 7 bar
 - **Backtest**: IS 91.7% (22/24), best Sharpe 1.879. WF 6/6 mean 1.532. Corr 0.400 H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-06 session 155, 17:08 UTC)
-- **Bybit Demo**: ~$98,557 (-1.44%). BTC spot ~$69,750. Last daily bar: Apr 5, close $69,035.
-- **Total internal MTM (37 strats)**: 37 runners active. No new daily bar since Apr 5. MTM stable.
-- **Positive (9/37)**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-053(+1.39%), H-049(+0.56%), H-046(+0.34%)
-- **Near flat (2/37)**: H-032(0.00%), H-059(-0.08%)
-- **Negative (26/37)**: 15 strats at -0.20% (entry fees only, no rebal yet), H-063(-0.33%), H-160(-0.32%), H-085(-0.43%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-011(-1.24%), H-197(-1.66%), H-021(-1.71%), H-009(-2.10%)
-- **H-063 IN TRADE 2**: Strangle active (69000C/65000P, Apr 10 expiry). BTC at $69,750 — call ITM by $750. Eq ~$9,967 (-0.33%). 3.5d remaining. Delta-hedged.
+### H-277: VWAP Deviation Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-06) — volume-weighted momentum variant
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG (above VWAP / demand pressure): BTC, ETH, ARB
+  - SHORT (below VWAP / supply pressure): XRP, SUI, DOT
+- **Mark equity**: $9,976 (-0.24%) — day 0, fees only.
+- **Runner**: `paper_trades/h277_vwap_deviation/runner.py`
+- **Params**: LB20_R7_N3 (20-day VWAP, 7-day rebalance, top/bottom 3, above_vwap_long)
+- **Next rebal**: Apr 12 bar
+- **Backtest**: IS 80.0% (24/30), best Sharpe 1.384. WF 5/6 mean 1.256. Neighboring 87.5%. Corr 0.464 H-012, 0.112 H-076.
+
+## Portfolio Summary (mark-to-market 2026-04-06 session 156, 21:11 UTC)
+- **Bybit Demo**: ~$99,165 (-0.83%, improved from -1.44%). BTC spot ~$69,819. Last daily bar: Apr 5, close $69,035.
+- **Total internal MTM (40 strats)**: 40 runners active. No new daily bar since Apr 5. MTM stable.
+- **Positive (9/40)**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-053(+1.39%), H-049(+0.56%), H-046(+0.34%)
+- **Near flat (2/40)**: H-032(0.00%), H-059(-0.08%)
+- **Negative (29/40)**: 16 strats at -0.20% (entry fees only, no rebal yet), H-160(-0.32%), H-085(-0.43%), H-169(-0.59%), H-044(-0.66%), H-063(-0.71%), H-215(-1.03%), H-011(-1.24%), H-197(-1.66%), H-021(-1.71%), H-009(-2.10%)
+- **H-063**: $9,928 (-0.71%), no current trade (between trades, waiting for next entry).
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
 - **H-011**: $9,876 (-1.24%), still IN.
-- **Research**: 274 hypotheses total. H-272/H-273/H-274 all REJECTED.
+- **Research**: 279 hypotheses total. H-275/H-276/H-278/H-279 REJECTED, H-277 CONFIRMED+deployed.
 - **AUTOMATED:** Paper trades hourly via cron (37 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-053 (-2.06% MTM) and H-063 (call ITM, pressure building).
 - **Open user questions:** None

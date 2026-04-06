@@ -3491,6 +3491,65 @@
 
 ---
 
+## H-275: Close Location Value (CLV) Factor
+- Status: REJECTED
+- Idea: Rank 14 crypto assets by rolling avg CLV = (close - low) / (high - low). High CLV = accumulation (closing near highs). Long high CLV, short low CLV.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Compute CLV per bar, average over lookback. Rank cross-sectionally. Market-neutral long/short.
+- Result: IS **50.0%** overall, best direction high_clv_long **63.3%** (19/30). Below 80% threshold. Best config LB20_R3_N4 Sharpe 1.653 but insufficient robustness.
+- Notes: CLV captures where price closes within daily range (accumulation vs distribution), but insufficient cross-sectional spread in crypto — all assets have similar CLV distributions. Different from H-182 (range width) but equally noisy.
+- Sessions: [2026-04-06 session 156]
+
+## H-276: Return Autocorrelation Factor
+- Status: REJECTED
+- Idea: Rank 14 crypto assets by rolling AR(1) coefficient. Positive autocorrelation = trending, negative = mean-reverting. Long trending, short mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling autocorrelation of daily returns over lookback. Rank and construct L/S portfolio.
+- Result: IS **50.0%** overall, best direction pos_autocorr_long **58.3%** (14/24). Below 80% threshold. Best config LB60_R3_N3 Sharpe 0.912.
+- Notes: Similar problem as H-251 (Hurst exponent) — autocorrelation properties don't vary enough cross-sectionally in crypto assets. Short-range AR(1) not better than long-range Hurst.
+- Sessions: [2026-04-06 session 156]
+
+## H-277: VWAP Deviation Factor
+- Status: LIVE (paper trade since 2026-04-06)
+- Idea: Rank 14 crypto assets by (close - VWAP) / VWAP where VWAP is rolling volume-weighted average price. Above VWAP = demand pressure. Long above, short below.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: Compute rolling VWAP = sum(typical_price * volume) / sum(volume) over lookback. Rank deviation. Long top 3, short bottom 3.
+- Data: 14 assets, 729 daily bars (~2yr). IS: 60 configs. WF: 6 folds x 90d test.
+- Result:
+  - **IS**: 80.0% above_vwap_long (24/30 positive), mean Sharpe 0.394
+  - **Best config**: LB20_R7_N3, Sharpe **1.384**, +33.9% ann, -18.7% DD
+  - **WF**: **5/6** positive, mean Sharpe **1.256**
+  - **Split-half**: H1=1.795, H2=0.867 (both positive, H2 decay but stable)
+  - **Neighboring params**: 21/24 positive (**87.5%** — excellent robustness)
+  - **Correlation**: H-012 **0.464**, H-031 0.279, H-076 **0.112**
+- Notes: Volume-weighted momentum variant. Captures demand/supply pressure through VWAP deviation. Higher correlation with H-012 (0.464) but very low with H-076 efficiency (0.112). Neighboring param robustness (87.5%) stronger than headline IS (80%). Paper trade deployed: LONG BTC/ETH/ARB, SHORT XRP/SUI/DOT.
+- Sessions: [2026-04-06 session 156]
+
+## H-278: Return Kurtosis Factor
+- Status: REJECTED
+- Idea: Rank 14 crypto assets by rolling excess kurtosis of daily returns. Long low-kurtosis (normal tails), short high-kurtosis (fat tails).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling kurtosis over lookback. Low_kurt_long: assets with thinner tails are more predictable/stable.
+- Result: IS low_kurt_long **83.3%** (passes), best Sharpe 0.856 (LB20_R7_N4). But WF: 4/6 positive, mean Sharpe **-0.119**. Folds 4-5 deeply negative (-1.920, -1.882). Signal regime-dependent.
+- Notes: IS passes at 83.3% but WF mean Sharpe is negative — classic overfitting pattern. Kurtosis is inherently unstable in crypto, shifting dramatically across regimes. Near-zero correlation with H-012 (0.033) was a plus but signal doesn't generalize.
+- Sessions: [2026-04-06 session 156]
+
+## H-279: Volume Consistency (CV) Factor
+- Status: REJECTED
+- Idea: Rank 14 crypto assets by coefficient of variation of daily volume. Low CV = steady institutional interest. High CV = episodic/retail. Long consistent, short episodic.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling std(volume) / mean(volume) over lookback. Rank cross-sectionally.
+- Result: IS **50.0%** overall, best direction high_cv_long **75.0%** (18/24). Below 80% threshold. Best config LB20_R7_N4 Sharpe 1.083.
+- Notes: Counterintuitive — high CV (episodic) assets outperform steady-volume assets. Captures attention/narrative-driven flows. But insufficient robustness. Volume CV doesn't provide enough cross-sectional spread.
+- Sessions: [2026-04-06 session 156]
+
+---
+
 <!-- Template:
 ## H-NNN: <title>
 - Status: PENDING
