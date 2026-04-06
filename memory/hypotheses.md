@@ -3394,6 +3394,40 @@
 
 ---
 
+## Rejected
+
+## H-266: Conditional Beta Asymmetry Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Compute beta to BTC separately on BTC-up and BTC-down days. Ratio (up_beta/down_beta) captures asymmetric market participation. Long assets with high upside/downside beta ratio.
+- Instrument: futures (13 non-BTC perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Split lookback into BTC-up/down days, compute conditional betas, rank by ratio or difference.
+- Result: IS **35.4%** positive (34/96). Mean Sharpe -0.135. Best: LB20_ratio_R7_N3 Sharpe 0.570. No dominant direction (high_asym 61.8%). **REJECTED** — conditional betas too noisy in crypto; up/down days don't create stable XS spread.
+- Notes: Similar to H-236 (co-skewness, also rejected). Conditional beta decomposition doesn't produce robust XS signals because crypto assets crash together regardless of their individual beta asymmetry.
+- Sessions: [2026-04-06 session 153]
+
+## H-267: Variance Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Lo-MacKinlay variance ratio VR(q) = Var(q-day returns) / (q * Var(1-day returns)). VR>1 means trending, VR<1 means reverting. Rank cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Compute rolling VR with window W and aggregation period q. Rank by VR.
+- Result: IS **41.7%** positive (45/108). Mean Sharpe -0.131. Best: W90_Q5_R5_N3_high_vr_long Sharpe 1.245. Dominant direction high_vr_long (88.9%) but < 80% IS threshold. **REJECTED** — variance ratio does not produce robust XS spread in crypto. All assets have similar VR properties.
+- Notes: Strong directional signal (88.9% high_vr_long) but not enough combos are positive. VR measures return persistence which is related to Hurst (H-251, also rejected) and autocorrelation (H-200/H-230, also rejected). Crypto assets have universally weak VR signals — insufficient XS dispersion.
+- Sessions: [2026-04-06 session 153]
+
+## H-268: OI Growth Rate Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by rate of change of open interest. Pure OI momentum — does absolute OI growth predict XS returns?
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Compute OI growth = OI(t)/OI(t-lookback) - 1. Rank cross-sectionally.
+- Result: IS **35.0%** positive (21/60). Mean Sharpe -0.260. Best: LB14_R7_N4_low_oi_long Sharpe 1.119. No dominant direction (52.4% low_oi_long). **REJECTED** — OI growth rate alone has no robust XS predictive power.
+- Notes: Pure OI momentum fails despite OI being useful in composite signals (H-044, H-193). OI growth alone is too noisy — it reflects market-wide speculation shifts that affect all assets similarly. The useful OI signals are relative to price (divergence/alignment).
+- Sessions: [2026-04-06 session 153]
+
+---
+
 <!-- Template:
 ## H-NNN: <title>
 - Status: PENDING

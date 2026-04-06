@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-266",
+  "name": "Conditional Beta Asymmetry Factor",
+  "is_positive_pct": 35.4,
+  "is_total": 96,
+  "dom_direction": "high_asym_long",
+  "dom_pct": 61.8,
+  "best": {
+    "label": "LB20_ratio_R7_N3_high_asym_long",
+    "sharpe": 0.5703,
+    "annual": 25.78,
+    "dd": -35.49,
+    "days": 707
+  },
+  "mean_sharpe": -0.135,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

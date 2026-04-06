@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-268",
+  "name": "OI Growth Rate Factor",
+  "is_positive_pct": 35.0,
+  "is_total": 60,
+  "dom_direction": "low_oi_long",
+  "dom_pct": 52.4,
+  "best": {
+    "label": "LB14_R7_N4_low_oi_long",
+    "sharpe": 1.1186,
+    "annual": 44.86,
+    "dd": -36.4,
+    "days": 714
+  },
+  "mean_sharpe": -0.26,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

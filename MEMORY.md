@@ -1,13 +1,13 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,188 (-1.81%). BTC spot ~$69,130.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,176 (-1.82%). BTC spot ~$69,200.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,873 (-1.27%).
-- **Internal paper trades:** 37 runners active. Session 152. **10/37 positive**.
-- **H-063 IN TRADE 2**: MTM +0.48% ($190 premium, expires Apr 10, ~3.8d). **H-039**: +5.79%, next LONG Wed Apr 9.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,877 (-1.23%).
+- **Internal paper trades:** 37 runners active. Session 153. **10/37 positive**.
+- **H-063 IN TRADE 2**: Eq $10,024 (+0.24%, expires Apr 10, ~3.5d). **H-039**: +5.79%, next LONG Wed Apr 9.
 - **Top performers**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
-- **Research**: 265 total hypotheses. H-263/H-264 CONFIRMED+deployed, H-265 REJECTED.
+- **Research**: 268 total hypotheses. H-266/H-267/H-268 all REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (37 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
 - **Open user questions:** None
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 142) archived to `memory/session_archive.md`._
-
-### Session 2026-04-04 review+research (session 143)
-- Goal: Review + Research — MTM update, 3 new factor backtests
-- Focus: Paper trade MTM (BTC ~$67,299 live, bar $66,933), H-233/H-234/H-235 backtests
-- Done: 30 runners checked. **Demo**: $98,905 (-1.10%, improving). **14/30 positive**. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). No new daily bar (still Apr 3). **Research**: **H-233 REJECTED** (relative volume — IS **0%**, 0/144, mean Sharpe -1.502, volume ratio has zero XS predictive power). **H-234 REJECTED** (consecutive return direction — IS 15%, low_long 30%, similar to H-223 but broader param space fails). **H-235 REJECTED** (funding rate change/delta — IS 38.9%, low_long 77.8% close to 80% but not passing, funding level H-053 works better than funding change). 235 total hypotheses.
-- Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
-- Questions added: none
-- Self-modifications: Archived session 133. (session 143)
+_Older sessions (bootstrap through 143) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-04 review+research (session 144)
 - Goal: Review + Research — MTM update, 3 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 142) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
 - Questions added: none
 - Self-modifications: H-263/H-264 runners created, added to orchestrator. Archived session 142. (session 152)
+
+### Session 2026-04-06 review+research (session 153)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,200), H-266/H-267/H-268 backtests
+- Done: 37 runners checked. **Demo**: $98,176 (-1.82%). **10/37 positive**. Top: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%). No new daily bar since Apr 5. H-063 trade 2 eq $10,024 (+0.24%). **Research**: **H-266 REJECTED** (conditional beta asymmetry — IS **35.4%**, mean Sharpe -0.135, up/down beta decomposition too noisy in crypto). **H-267 REJECTED** (variance ratio — IS **41.7%**, strong directional signal 88.9% high_vr_long but insufficient IS robustness, same issue as Hurst/autocorrelation). **H-268 REJECTED** (OI growth rate — IS **35.0%**, pure OI momentum has no XS power, OI only useful relative to price). 268 total hypotheses.
+- Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
+- Questions added: none
+- Self-modifications: Archived session 143. (session 153)

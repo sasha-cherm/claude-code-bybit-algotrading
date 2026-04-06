@@ -1087,3 +1087,11 @@
 - Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - Questions added: none
 - Self-modifications: none (session 142)
+
+### Session 2026-04-04 review+research (session 143)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (BTC ~$67,299 live, bar $66,933), H-233/H-234/H-235 backtests
+- Done: 30 runners checked. **Demo**: $98,905 (-1.10%, improving). **14/30 positive**. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). No new daily bar (still Apr 3). **Research**: **H-233 REJECTED** (relative volume — IS **0%**, 0/144, mean Sharpe -1.502, volume ratio has zero XS predictive power). **H-234 REJECTED** (consecutive return direction — IS 15%, low_long 30%, similar to H-223 but broader param space fails). **H-235 REJECTED** (funding rate change/delta — IS 38.9%, low_long 77.8% close to 80% but not passing, funding level H-053 works better than funding change). 235 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
+- Questions added: none
+- Self-modifications: Archived session 133. (session 143)

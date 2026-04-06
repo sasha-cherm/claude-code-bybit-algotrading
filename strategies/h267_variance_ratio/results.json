@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-267",
+  "name": "Variance Ratio Factor",
+  "is_positive_pct": 41.7,
+  "is_total": 108,
+  "dom_direction": "high_vr_long",
+  "dom_pct": 88.9,
+  "best": {
+    "label": "W90_Q5_R5_N3_high_vr_long",
+    "sharpe": 1.245,
+    "annual": 57.85,
+    "dd": -32.63,
+    "days": 637
+  },
+  "mean_sharpe": -0.131,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}
