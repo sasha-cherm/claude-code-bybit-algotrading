@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-271",
+  "name": "Price Efficiency Ratio Factor",
+  "is_positive_pct": 41.7,
+  "is_total": 60,
+  "dom_direction": "high_eff_long",
+  "dom_pct": 100.0,
+  "best": {
+    "label": "LB15_R5_N3_high_eff_long",
+    "sharpe": 1.0773,
+    "annual": 50.71,
+    "dd": -37.4,
+    "days": 713
+  },
+  "mean_sharpe": -0.225,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

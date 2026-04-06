@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 141)
+# Session Archive (Sessions bootstrap through 144)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1095,3 +1095,11 @@
 - Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
 - Questions added: none
 - Self-modifications: Archived session 133. (session 143)
+
+### Session 2026-04-04 review+research (session 144)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (BTC ~$67,278, no new daily bar), H-236/H-237/H-238 backtests
+- Done: 30 runners checked. **Demo**: $99,094 (-0.91%, improving). **14/30 positive**. Top: H-039(+5.79%), H-031(+3.89%), H-012(+3.87%), H-076(+3.21%), H-175(+1.91%). H-012 surged to +3.87% (was +3.21%). H-044 nearly flat at -0.08%. **Research**: **H-236 REJECTED** (co-skewness — IS 35.4%, no directional dominance, all crypto crashes together). **H-237 REJECTED** (volume concentration HHI — IS 38.5%, dom 52.1%, some strong individual params but not robust). **H-238 CONFIRMED** (downside beta — IS **100%** low_long, WF **4/6** mean 2.612, Sharpe 1.766, but corr **0.738** with regular beta, **0.512** with H-019 — not deployed due to redundancy). 238 total hypotheses.
+- Next: Continue research. Monitor H-189 (-2.94%) and H-160/H-191.
+- Questions added: none
+- Self-modifications: Archived session 134. (session 144)

@@ -3426,6 +3426,36 @@
 - Notes: Pure OI momentum fails despite OI being useful in composite signals (H-044, H-193). OI growth alone is too noisy — it reflects market-wide speculation shifts that affect all assets similarly. The useful OI signals are relative to price (divergence/alignment).
 - Sessions: [2026-04-06 session 153]
 
+## H-269: Momentum Breadth Factor (% Positive Days, 14 Assets)
+- Status: REJECTED
+- Idea: Rank assets by fraction of positive-return days over lookback window. More robust momentum signal than total return — resistant to single-day outlier moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Compute breadth = count(positive return days) / lookback days. Rank XS.
+- Result: IS **31.7%** positive (19/60). Mean Sharpe -0.312. Best: LB15_R5_N3_high_breadth_long Sharpe 1.116 (+52.7% ann, -35.2% DD). Dominant direction high_breadth_long (94.7%). **REJECTED** — breadth doesn't produce robust XS spread.
+- Notes: Strong directional signal (94.7% high_breadth_long) but only 31.7% of parameter combos are positive. The fraction-of-positive-days measure is a weaker version of total momentum — it loses the magnitude information (how big each day's return was) without gaining sufficient robustness. In crypto, a single big up day can dominate performance, so throwing away magnitude actually discards useful information.
+- Sessions: [2026-04-06 session 154]
+
+## H-270: Dollar Volume Acceleration Factor (14 Assets)
+- Status: REJECTED
+- Idea: Second derivative of dollar volume: rate of change of DV momentum. Assets with accelerating volume attract increasing attention and capital.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Compute DV = close * volume, DV_mom = DV_MA(short)/DV_MA(long)-1, DV_accel = DV_mom(t) - DV_mom(t-lag). Rank XS.
+- Result: IS **42.1%** positive (91/216). Mean Sharpe -0.320. Best: S5_L30_AL15_R5_N4_high_accel_long Sharpe **2.052** (+77.7% ann, -26.1% DD). Dominant direction high_accel_long (92.3%). **REJECTED** — strong best combo but most parameter combos negative.
+- Notes: Best single combo has outstanding Sharpe 2.05 but not robust — only 42.1% positive. DV acceleration is inherently noisy (second derivative amplifies noise). The signal works in the best parameterization but doesn't generalize across the parameter grid. Volume momentum (H-021) captures the first derivative more stably.
+- Sessions: [2026-04-06 session 154]
+
+## H-271: Price Efficiency Ratio Factor (14 Assets)
+- Status: REJECTED
+- Idea: Compute |net movement| / gross movement over lookback. Values near 1 = trending (directional), near 0 = choppy (back-and-forth). Long trending assets, short choppy ones.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: For each asset: efficiency = |close(t)/close(t-LB) - 1| / sum(|daily_returns|). Rank XS.
+- Result: IS **41.7%** positive (25/60). Mean Sharpe -0.225. Best: LB15_R5_N3_high_eff_long Sharpe 1.077 (+50.7% ann, -37.4% DD). Dominant direction high_eff_long (**100%**). **REJECTED** — all positive combos are trending-long but overall IS too low.
+- Notes: Perfect directional dominance (100% high_eff_long = trending is good) but insufficient XS predictive power — only 41.7% positive. The efficiency ratio captures something real (trending assets do better) but the cross-sectional spread between trending and choppy assets in crypto is not wide or stable enough to generate consistent returns. Related to H-093 (trend consistency) and H-248 (intraday efficiency), both also rejected. Trend quality measures consistently fail in the 14-asset crypto universe.
+- Sessions: [2026-04-06 session 154]
+
 ---
 
 <!-- Template:

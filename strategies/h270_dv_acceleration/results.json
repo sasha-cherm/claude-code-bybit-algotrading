@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-270",
+  "name": "Dollar Volume Acceleration Factor",
+  "is_positive_pct": 42.1,
+  "is_total": 216,
+  "dom_direction": "high_accel_long",
+  "dom_pct": 92.3,
+  "best": {
+    "label": "S5_L30_AL15_R5_N4_high_accel_long",
+    "sharpe": 2.0519,
+    "annual": 77.74,
+    "dd": -26.08,
+    "days": 684
+  },
+  "mean_sharpe": -0.32,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

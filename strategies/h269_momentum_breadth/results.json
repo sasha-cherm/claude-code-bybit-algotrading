@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-269",
+  "name": "Momentum Breadth Factor (% Positive Days)",
+  "is_positive_pct": 31.7,
+  "is_total": 60,
+  "dom_direction": "high_breadth_long",
+  "dom_pct": 94.7,
+  "best": {
+    "label": "LB15_R5_N3_high_breadth_long",
+    "sharpe": 1.1162,
+    "annual": 52.65,
+    "dd": -35.17,
+    "days": 714
+  },
+  "mean_sharpe": -0.312,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}
