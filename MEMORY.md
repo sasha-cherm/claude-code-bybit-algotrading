@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,400 (-2.60%). BTC spot ~$69,348.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,557 (-1.44%). BTC spot ~$69,750.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,877 (-1.23%).
-- **Internal paper trades:** 37 runners active. Session 154. **16/37 positive** (big improvement from 10/37).
-- **H-063 IN TRADE 2**: Eq $10,010 (+0.10%, expires Apr 10, ~3.5d). BTC above call strike $69k — pressure building. **H-039**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-031(+4.67%), H-012(+4.26%), H-076(+3.63%), H-062(+3.06%).
-- **Key shift**: H-053 crashed +1.39% → -2.06% (drags demo). H-049 surged +0.56% → +2.63%. H-175 flipped +2.18%.
-- **Research**: 271 total hypotheses. H-269/H-270/H-271 all REJECTED.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,876 (-1.24%).
+- **Internal paper trades:** 37 runners active. Session 155. **9/37 positive** (state.json stale — no new bar).
+- **H-063 IN TRADE 2**: Eq ~$9,967 (-0.33%). 69000C/65000P Apr 10 expiry. BTC $69,750 — call ITM. **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
+- **Key shift**: Demo improved -2.60% → -1.44%. BTC $69,348 → $69,750. H-063 call now ITM — pressure building.
+- **Research**: 274 total hypotheses. H-272/H-273/H-274 all REJECTED.
 - **AUTOMATED:** Paper trades hourly via cron (37 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-053 (-2.06%) and H-183 (-1.75%).
+- **Next action:** Continue research. Monitor H-063 (call ITM) and H-053 (-2.06% MTM).
 - **Open user questions:** None
 
 ## Memory Files
@@ -22,15 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 144) archived to `memory/session_archive.md`._
-
-### Session 2026-04-05 review+research (session 145)
-- Goal: Review + Research — MTM update with Apr 4 daily bar, 3 new factor backtests
-- Focus: Paper trade MTM (BTC $67,301 Apr 4 bar), H-239/H-240/H-241 backtests
-- Done: 30 runners checked. **Demo**: $99,214 (-0.79%, improving). **12/30 positive**. Top: H-039(+5.79%), H-012(+4.90%), H-076(+4.09%), H-031(+3.43%), H-062(+3.21%). H-012 surged to +4.90% (was +2.22%). H-053 dropped to -2.23% (was +1.39%). H-189 worst at -3.60%. **Research**: **H-239 REJECTED** (price impact — IS 100% low_impact, WF **5/6** mean 1.878 outstanding, but corr **0.525** with H-012 exceeds threshold). **H-240 REJECTED** (beta instability — IS dom dir 70.8% < 80%, high drawdowns 45-62%). **H-241 REJECTED** (multi-horizon disagreement — IS dom dir 90.3% but WF **1/6**, severe overfitting). 241 total hypotheses.
-- Next: Continue research. Monitor H-189 (-3.60%) and H-183 (-3.54%).
-- Questions added: none
-- Self-modifications: Archived session 135. Updated daily data through Apr 4. (session 145)
+_Older sessions (bootstrap through 145) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-05 review+deploy+research (session 146)
 - Goal: Review + Deploy + Research — MTM check, H-242/H-244 deployment, 3 new factor backtests
@@ -103,3 +95,11 @@ _Older sessions (bootstrap through 144) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-053 (-2.06%) and H-183 (-1.75%).
 - Questions added: none
 - Self-modifications: Archived session 144. (session 154)
+
+### Session 2026-04-06 review+research (session 155)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,750), H-272/H-273/H-274 backtests
+- Done: 37 runners checked. **Demo**: $98,557 (-1.44%, improved from -2.60%). BTC $69,750. No new daily bar since Apr 5. H-063 trade 2: call now ITM ($69,750 > $69,000 strike), eq ~$9,967 (-0.33%), expires Apr 10. **Research**: **H-272 REJECTED** (idiosyncratic vol — IS **35.0%**, low_idiovol_long 85.7% dom, crypto assets all have high idio-vol, insufficient XS spread). **H-273 REJECTED** (funding rate momentum/change — IS **41.7%**, falling_fund_long 100% dom, change signal noisier than level). **H-274 REJECTED** (return-volume correlation — IS **48.6%**, high_corr_long 100% dom, PV relationship unstable in crypto). 274 total hypotheses.
+- Next: Continue research. Monitor H-063 (call ITM, pressure building) and H-053 (-2.06% MTM).
+- Questions added: none
+- Self-modifications: Archived session 145. (session 155)

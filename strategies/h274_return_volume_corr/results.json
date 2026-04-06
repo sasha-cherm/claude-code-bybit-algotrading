@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-274",
+  "name": "Return-Volume Correlation Factor",
+  "is_positive_pct": 48.6,
+  "is_total": 72,
+  "dom_direction": "high_corr_long",
+  "dom_pct": 100.0,
+  "best": {
+    "label": "LB40_R7_N4_high_corr_long",
+    "sharpe": 1.52,
+    "annual": 54.53,
+    "dd": -24.17,
+    "days": 688
+  },
+  "mean_sharpe": -0.183,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

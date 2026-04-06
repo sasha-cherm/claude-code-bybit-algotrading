@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-272",
+  "name": "Idiosyncratic Volatility Factor",
+  "is_positive_pct": 35.0,
+  "is_total": 60,
+  "dom_direction": "low_idiovol_long",
+  "dom_pct": 85.7,
+  "best": {
+    "label": "LB40_R3_N3_low_idiovol_long",
+    "sharpe": 0.5879,
+    "annual": 27.71,
+    "dd": -66.81,
+    "days": 687
+  },
+  "mean_sharpe": -0.102,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-273",
+  "name": "Funding Rate Momentum Factor",
+  "is_positive_pct": 41.7,
+  "is_total": 108,
+  "dom_direction": "falling_fund_long",
+  "dom_pct": 100.0,
+  "best": {
+    "label": "S5_L21_R7_N3_falling_fund_long",
+    "sharpe": 1.3236,
+    "annual": 57.22,
+    "dd": -45.69,
+    "days": 706
+  },
+  "mean_sharpe": -0.305,
+  "walk_forward": null,
+  "split_half": null,
+  "corr_h012": null
+}

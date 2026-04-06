@@ -3456,6 +3456,39 @@
 - Notes: Perfect directional dominance (100% high_eff_long = trending is good) but insufficient XS predictive power — only 41.7% positive. The efficiency ratio captures something real (trending assets do better) but the cross-sectional spread between trending and choppy assets in crypto is not wide or stable enough to generate consistent returns. Related to H-093 (trend consistency) and H-248 (intraday efficiency), both also rejected. Trend quality measures consistently fail in the 14-asset crypto universe.
 - Sessions: [2026-04-06 session 154]
 
+## H-272: Idiosyncratic Volatility Factor (13 Non-BTC Assets)
+- Status: REJECTED
+- Idea: Residual volatility after removing BTC market factor via rolling regression. Low idio-vol = cleaner BTC proxy, high idio-vol = unpredictable idiosyncratic moves. Tests if equity-like idio-vol puzzle holds in crypto.
+- Instrument: futures (13 non-BTC perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Regress each non-BTC asset return on BTC return over rolling window, compute std(residuals). Rank XS. Grid: LB∈[15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 729 daily bars.
+- Result: IS **35.0%** positive (21/60). Mean Sharpe -0.102. Best: LB40_R3_N3_low_idiovol_long Sharpe 0.588 (+27.7% ann, -66.8% DD). Dominant direction low_idiovol_long (**85.7%**). **REJECTED** — idio-vol factor too weak in crypto.
+- Notes: Directional signal is correct (85.7% low_idiovol_long, matching equity anomaly) but insufficient XS spread. Crypto assets all have high idiosyncratic vol relative to BTC, and the cross-sectional dispersion in residual vol is not wide enough to generate persistent returns. Prior attempts (H-083, H-144) also rejected. The idio-vol puzzle doesn't translate from equities to crypto — crypto markets lack the institutional structure that drives the anomaly in stocks.
+- Sessions: [2026-04-06 session 155]
+
+## H-273: Funding Rate Momentum Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rank by change in funding rate (short MA - long MA). Rising funding = increasing crowd positioning → contrarian short. Falling = contrarian long. Captures DIRECTION of crowding, not level.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Compute FR_momentum = FR_MA(short) - FR_MA(long). Rank XS. Grid: SW∈[3,5,7], LW∈[14,21,30] (SW<LW only), R∈[3,5,7], N∈[3,4], dir∈2 = 108 combos.
+- Data: 14 assets, 709 aligned days (funding data shorter than price data).
+- Result: IS **41.7%** positive (45/108). Mean Sharpe -0.305. Best: S5_L21_R7_N3_falling_fund_long Sharpe 1.324 (+57.2% ann, -45.7% DD). Dominant direction falling_fund_long (**100%**). **REJECTED** — funding rate change is too noisy for XS signals.
+- Notes: Strong directional signal (100% falling_fund_long = contrarian works) but only 41.7% IS positive. Funding rate momentum (rate of change) is even noisier than funding level (H-053). Prior attempts (H-089, H-130, H-171) also rejected with different metrics. Funding rate works cross-sectionally only as a LEVEL signal (H-053 confirmed), not as a momentum/change signal — the change amplifies noise without adding information.
+- Sessions: [2026-04-06 session 155]
+
+## H-274: Return-Volume Correlation Factor (14 Assets)
+- Status: REJECTED
+- Idea: Rolling correlation between daily returns and daily log-volume. High positive correlation = volume confirms price moves (informed trading). Low/negative = noise trading. Long high-corr (informed), short low-corr (noisy).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: Compute rolling corr(daily_return, log_volume) over lookback. Rank XS. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 729 daily bars.
+- Result: IS **48.6%** positive (35/72). Mean Sharpe -0.183. Best: LB40_R7_N4_high_corr_long Sharpe 1.520 (+54.5% ann, -24.2% DD). Dominant direction high_corr_long (**100%**). **REJECTED** — return-volume correlation lacks robust XS spread.
+- Notes: Clear directional signal (100% high_corr_long) but only 48.6% IS positive — insufficient for robustness. Prior PV correlation attempt (H-103) also rejected. In crypto, the return-volume relationship is unstable: high volume can accompany both informed buying and panic liquidations. The correlation metric can't distinguish these regimes, making the XS signal unreliable. The best combo has decent Sharpe 1.52 but not robust across parameters.
+- Sessions: [2026-04-06 session 155]
+
 ---
 
 <!-- Template:
