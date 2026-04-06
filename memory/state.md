@@ -393,19 +393,40 @@ Demo eq: $98,869 (-1.13%). BTC spot ~$69,035. 13 open positions. BTC surged +2.6
 - **Next rebal**: Apr 11 bar
 - **Backtest**: IS 100% (30/30), best Sharpe 2.648. WF 5/6 mean 1.320. Corr 0.272 H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-06 session 151, 01:20 UTC)
-- **Bybit Demo**: ~$98,869 (-1.13%). BTC spot ~$69,035. Last daily bar: Apr 5, close $69,035.
-- **Total internal MTM (35 strats)**: 35 runners active (34→35 post-deploy). No new daily bar since Apr 4.
-- **Positive (12/35)**: H-039(+5.79%), H-012(+4.67%), H-076(+3.92%), H-031(+3.49%), H-062(+2.92%), H-175(+2.45%), H-052(+1.97%), H-049(+1.74%), H-085(+1.53%), H-063(+1.36%), H-044(+0.84%), H-019(+0.61%)
-- **Near flat (2/35)**: H-193(-0.04%), H-032(-0.09%)
-- **Negative (21/35)**: H-259(-0.24%), H-255(-0.24%), H-250(-0.24%), H-244(-0.24%), H-242(-0.24%), H-046(-0.50%), H-059(-0.50%), H-009(-0.70%), H-021(-1.00%), H-215(-1.10%), H-011(-1.29%), H-223(-1.70%), H-197(-1.71%), H-219(-1.90%), H-182(-2.21%), H-053(-2.21%), H-169(-2.27%), H-160(-2.41%), H-191(-3.08%), H-183(-3.40%), H-189(-3.56%)
-- **H-063 IN TRADE 2**: Strangle active ($190 premium, 69000C+65000P, expires Apr 10). MTM +1.36%. 4.4d remaining.
+### H-263: Relative Strength vs BTC Factor (13 Non-BTC Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-06) — best WF ever (6/6, mean 4.058)
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG (BTC outperformers): NEAR, OP, AVAX
+  - SHORT (BTC underperformers): DOT, SOL, SUI
+- **Mark equity**: $9,976 (-0.24%) — day 0, fees only.
+- **Runner**: `paper_trades/h263_relative_strength/runner.py`
+- **Params**: LB10_R3_N3 (10-day relative return vs BTC, 3-day rebalance, top/bottom 3, high_long)
+- **Next rebal**: Apr 7 bar
+- **Backtest**: IS 100% (30/30), best Sharpe 4.087. WF 6/6 mean 4.058. Corr 0.338 H-012.
+
+### H-264: Return Skewness Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-06) — crypto-specific skewness signal
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG (high positive skew): DOT, ADA, NEAR
+  - SHORT (low skew): OP, ARB, BTC
+- **Mark equity**: $9,976 (-0.24%) — day 0, fees only.
+- **Runner**: `paper_trades/h264_skewness/runner.py`
+- **Params**: LB60_R3_N3 (60-day return skewness, 3-day rebalance, top/bottom 3, high_long)
+- **Next rebal**: Apr 7 bar
+- **Backtest**: IS 91.7% (22/24), best Sharpe 1.879. WF 6/6 mean 1.532. Corr 0.400 H-012.
+
+## Portfolio Summary (mark-to-market 2026-04-06 session 152, 05:18 UTC)
+- **Bybit Demo**: ~$98,188 (-1.81%). BTC spot ~$69,130. Last daily bar: Apr 5, close $69,035.
+- **Total internal MTM (37 strats)**: 37 runners active (35→37 post-deploy). No new daily bar since Apr 5.
+- **Positive (10/37)**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-053(+1.39%), H-049(+0.56%), H-063(+0.48%), H-046(+0.34%)
+- **Near flat (2/37)**: H-032(0.00%), H-059(-0.08%)
+- **Negative (25/37)**: 15 strats at -0.20% (entry fees only, no rebal yet), H-160(-0.32%), H-085(-0.43%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-011(-1.27%), H-197(-1.66%), H-021(-1.71%), H-009(-2.10%)
+- **H-063 IN TRADE 2**: Strangle active ($190 premium, expires Apr 10). MTM +0.48%. ~3.8d remaining.
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
-- **H-011**: $9,871 (-1.29%), still IN.
-- **Key improvements**: H-012 surged +2.22%→+4.67%, H-021 improved -3.63%→-1.00%. H-175 flipped positive. H-053 dropped +1.39%→-2.21%.
-- **Research**: 259 hypotheses total. H-257/H-258 REJECTED, H-259 CONFIRMED+deployed.
-- **AUTOMATED:** Paper trades hourly via cron (35 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-189 (-3.56%) and H-183 (-3.40%).
+- **H-011**: $9,873 (-1.27%), still IN.
+- **Research**: 265 hypotheses total. H-263/H-264 CONFIRMED+deployed, H-265 REJECTED.
+- **AUTOMATED:** Paper trades hourly via cron (37 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

@@ -1,0 +1,41 @@
+[
+  {
+    "date": "2026-04-05",
+    "action": "rebalance",
+    "capital": 9980.0,
+    "positions": {
+      "ETH/USDT": {
+        "dir": "LONG",
+        "entry": 2110.612038,
+        "w": 0.3333333333333333
+      },
+      "NEAR/USDT": {
+        "dir": "LONG",
+        "entry": 1.247249,
+        "w": 0.3333333333333333
+      },
+      "OP/USDT": {
+        "dir": "LONG",
+        "entry": 0.110322,
+        "w": 0.3333333333333333
+      },
+      "SOL/USDT": {
+        "dir": "SHORT",
+        "entry": 81.88362,
+        "w": -0.3333333333333333
+      },
+      "DOT/USDT": {
+        "dir": "SHORT",
+        "entry": 1.244751,
+        "w": -0.3333333333333333
+      },
+      "SUI/USDT": {
+        "dir": "SHORT",
+        "entry": 0.870426,
+        "w": -0.3333333333333333
+      }
+    },
+    "trades": 6,
+    "fees": 20.0
+  }
+]

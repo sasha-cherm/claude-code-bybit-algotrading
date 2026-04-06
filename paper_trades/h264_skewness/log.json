@@ -1,0 +1,41 @@
+[
+  {
+    "date": "2026-04-05",
+    "action": "rebalance",
+    "capital": 9980.0,
+    "positions": {
+      "DOT/USDT": {
+        "dir": "LONG",
+        "entry": 1.245249,
+        "w": 0.3333333333333333
+      },
+      "NEAR/USDT": {
+        "dir": "LONG",
+        "entry": 1.247249,
+        "w": 0.3333333333333333
+      },
+      "ADA/USDT": {
+        "dir": "LONG",
+        "entry": 0.25085,
+        "w": 0.3333333333333333
+      },
+      "BTC/USDT": {
+        "dir": "SHORT",
+        "entry": 69021.49294,
+        "w": -0.3333333333333333
+      },
+      "ARB/USDT": {
+        "dir": "SHORT",
+        "entry": 0.094251,
+        "w": -0.3333333333333333
+      },
+      "OP/USDT": {
+        "dir": "SHORT",
+        "entry": 0.110278,
+        "w": -0.3333333333333333
+      }
+    },
+    "trades": 6,
+    "fees": 20.0
+  }
+]

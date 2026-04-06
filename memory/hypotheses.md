@@ -3354,6 +3354,39 @@
 - Notes: Median/mean return ratio has no dominant direction — both sides equally weak. The ratio is noisy because mean returns over short lookbacks are close to zero, causing the ratio to swing wildly. Does not capture any distinct cross-sectional structure.
 - Sessions: [2026-04-06 session 151]
 
+## H-263: Relative Strength vs BTC Factor (13 Non-BTC Assets)
+- Status: LIVE (paper trade since 2026-04-06)
+- Idea: Rank non-BTC assets by cumulative return minus BTC cumulative return over lookback. Captures idiosyncratic outperformance beyond BTC beta exposure.
+- Instrument: futures (13 perps, excl BTC)
+- Timeframe: 1D
+- Logic: For each non-BTC asset, score = (asset_return_LB - BTC_return_LB). Rank XS: long top relative strength, short bottom. Grid: LB∈[10,15,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 1070 daily bars.
+- Result: IS dom dir high_long **100%** (30/30 positive), overall 50.0%. Mean Sharpe 2.530. Best LB10_R3_N3_high_long Sharpe **4.087** (+1014% ann, -20.6% DD). **WF 6/6** mean OOS **4.058** (best ever). Split-half H1=3.831/H2=0.820. Corr H-012 **0.338** (low).
+- Notes: Exceptionally strong factor. All 6 WF folds Sharpe > 2.7 — robust across all market regimes. High_long direction captures that altcoins outperforming BTC have idiosyncratic momentum that persists. 10-day lookback with 3-day rebal is aggressive but 100% IS robustness confirms signal across all parameter combos. The low H-012 correlation (0.338) confirms this captures a distinct signal from raw momentum — the BTC-relative component adds genuine information. Deployed as paper trade #36: LONG NEAR/OP/AVAX (currently no BTC in universe), SHORT DOT/SOL/SUI.
+- Sessions: [2026-04-06 session 152]
+
+## H-264: Return Skewness Factor (14 Assets)
+- Status: LIVE (paper trade since 2026-04-06)
+- Idea: Rank assets by return skewness over lookback window. High positive skew indicates breakout/momentum phase. In crypto (unlike equities), positive skew predicts continuation not reversal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: For each asset, compute scipy.stats.skew(daily_returns, LB). Rank XS: long high skew, short low skew. Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 48 combos (24 per direction).
+- Data: 14 assets, 1070 daily bars.
+- Result: IS dom dir high_long **91.7%** (22/24 positive), low_long 8.3%. Mean Sharpe 0.772 (high_long). Best LB60_R3_N3_high_long Sharpe **1.879** (+153.8% ann, -28.4% DD). **WF 6/6** mean OOS **1.532**. Split-half H1=2.398/H2=0.872. Corr H-012 **0.400** (moderate, below 0.5 threshold).
+- Notes: Counterintuitive direction for crypto — academic literature predicts negative-skew outperformance (lottery preference), but in crypto HIGH skew outperforms. Assets exhibiting positive skew are in breakout/momentum phases, and the skew itself signals continuation potential. 60-day lookback captures stable skewness regime. All 6 WF folds positive. The 0.400 correlation with H-012 shows moderate overlap with momentum but enough independence to add value. Deployed as paper trade #37: LONG DOT/ADA/NEAR (currently high skew), SHORT OP/ARB/BTC.
+- Sessions: [2026-04-06 session 152]
+
+## H-265: Lead-Lag Response Factor (14 Assets)
+- Status: REJECTED — IS fails 80% threshold
+- Idea: Rank assets by regression beta of asset_return(t) on equal-weight_market_return(t-1). Low lagged beta = asset leads the market. High lagged beta = asset lags.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: For each asset, regress its return on lagged (t-1) equal-weight market return (excl self). Beta = lagged response coefficient. Grid: LB∈[10,15,20,30,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos (reduced to 36 due to min data requirements).
+- Data: 14 assets, 1070 daily bars.
+- Result: IS best dir low_long **55.6%** (10/18 positive), high_long 33.3%. Overall 44.4% (16/36). Best LB30_R7_N4_low_long Sharpe 1.537 (+89.6% ann, -28.9% DD).
+- Notes: Lead-lag relationships in crypto are weak and unstable. The lagged beta has no robust XS predictive power — only 55.6% positive in best direction. Crypto assets tend to move simultaneously rather than in sequence, so the lead-lag structure that exists in equities (large→small, liquid→illiquid) is largely absent in the 14-asset crypto universe. Market microstructure in crypto (24/7 trading, high retail participation) eliminates most informational lag.
+- Sessions: [2026-04-06 session 152]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,869 (-1.13%). BTC spot ~$69,035.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,188 (-1.81%). BTC spot ~$69,130.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,873 (-1.27%).
-- **Internal paper trades:** 35 runners active. Session 151. **16/35 positive**.
-- **H-063 IN TRADE 2**: MTM +0.65% ($190 premium, expires Apr 10, 4.3d). **H-039**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-031(+4.74%), H-012(+4.08%), H-076(+3.66%), H-062(+2.82%).
-- **Research**: 262 total hypotheses. H-260/H-261/H-262 all REJECTED.
-- **AUTOMATED:** Paper trades hourly via cron (35 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-053 (-2.12%) and H-183 (-1.88%).
+- **Internal paper trades:** 37 runners active. Session 152. **10/37 positive**.
+- **H-063 IN TRADE 2**: MTM +0.48% ($190 premium, expires Apr 10, ~3.8d). **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
+- **Research**: 265 total hypotheses. H-263/H-264 CONFIRMED+deployed, H-265 REJECTED.
+- **AUTOMATED:** Paper trades hourly via cron (37 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 141) archived to `memory/session_archive.md`._
-
-### Session 2026-04-04 review+research (session 142)
-- Goal: Review + Research — MTM update, 3 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$67,099), H-230/H-231/H-232 backtests
-- Done: 30 runners checked. **Demo**: $98,745 (-1.26%, improving). BTC ~$67,099. **14/30 positive**. Top: H-039(+5.79%), H-031(+3.90%), H-012(+3.21%), H-076(+3.20%), H-175(+1.82%). **H-063 entered trade 2** — strangle active, MTM +1.06%, 5.8d remaining. **Research**: **H-230 REJECTED** (return autocorrelation — IS **16.7%**, mean Sharpe -0.889, no XS predictive power). **H-231 REJECTED** (CLR close location in range — IS 73.3%, best Sharpe 1.55 but short lookbacks all negative, parameter-sensitive). **H-232 REJECTED** (Parkinson range ratio — IS **0%**, mean Sharpe -0.647, all crypto assets have similarly high intraday noise). 232 total hypotheses.
-- Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).
-- Questions added: none
-- Self-modifications: none (session 142)
+_Older sessions (bootstrap through 142) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-04 review+research (session 143)
 - Goal: Review + Research — MTM update, 3 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 141) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-053 (-2.12%) and H-183 (-1.88%).
 - Questions added: none
 - Self-modifications: Archived session 141. Updated daily data with final Apr 5 bar. (session 151)
+
+### Session 2026-04-06 review+deploy+research (session 152)
+- Goal: Review + Deploy + Research — MTM update, H-263/H-264 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,130), H-263/H-264/H-265 backtests
+- Done: 37 runners (35→37 post-deploy). **Demo**: $98,188 (-1.81%). **10/37 positive**. Top: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%). No new daily bar since Apr 5. **Research**: **H-263 CONFIRMED** (relative strength vs BTC — IS **100%** high_long, WF **6/6** mean **4.058** best-ever, Sharpe 4.087, corr 0.338 H-012. Captures idiosyncratic altcoin outperformance vs BTC). **H-264 CONFIRMED** (return skewness — IS **91.7%** high_long, WF **6/6** mean **1.532**, Sharpe 1.879, corr 0.400 H-012. Counterintuitive: high skew=breakout phase in crypto). **H-265 REJECTED** (lead-lag response — IS 55.6%, no robust XS signal, crypto lacks equity-like lead-lag structure). Both H-263/H-264 deployed as paper trades #36-37. 265 total hypotheses.
+- Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
+- Questions added: none
+- Self-modifications: H-263/H-264 runners created, added to orchestrator. Archived session 142. (session 152)
