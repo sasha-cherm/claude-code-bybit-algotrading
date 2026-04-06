@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-02 17:27 UTC):
-Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from last session despite BTC spot drop (daily bar still $68,119).
+### Current Demo Status (as of 2026-04-06 01:24 UTC):
+Demo eq: $98,869 (-1.13%). BTC spot ~$69,035. 13 open positions. BTC surged +2.6% on Apr 5 final bar ($69,035 close).
 
 ---
 
@@ -393,8 +393,8 @@ Demo eq: $98,428 (-1.57%). BTC spot ~$66,895. 13 open positions. Stable from las
 - **Next rebal**: Apr 11 bar
 - **Backtest**: IS 100% (30/30), best Sharpe 2.648. WF 5/6 mean 1.320. Corr 0.272 H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-05 session 150, 21:15 UTC)
-- **Bybit Demo**: ~$100,877 (+0.88%). BTC spot ~$67,575. Last daily bar: Apr 4, close $67,301.
+## Portfolio Summary (mark-to-market 2026-04-06 session 151, 01:20 UTC)
+- **Bybit Demo**: ~$98,869 (-1.13%). BTC spot ~$69,035. Last daily bar: Apr 5, close $69,035.
 - **Total internal MTM (35 strats)**: 35 runners active (34→35 post-deploy). No new daily bar since Apr 4.
 - **Positive (12/35)**: H-039(+5.79%), H-012(+4.67%), H-076(+3.92%), H-031(+3.49%), H-062(+2.92%), H-175(+2.45%), H-052(+1.97%), H-049(+1.74%), H-085(+1.53%), H-063(+1.36%), H-044(+0.84%), H-019(+0.61%)
 - **Near flat (2/35)**: H-193(-0.04%), H-032(-0.09%)

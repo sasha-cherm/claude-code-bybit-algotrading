@@ -124,9 +124,16 @@
       "price": 67300.7,
       "position": 0,
       "dow": "Sat"
+    },
+    {
+      "date": "2026-04-05",
+      "equity": 10579.44,
+      "price": 68867.2,
+      "position": 0,
+      "dow": "Sun"
     }
   ],
-  "last_signal_date": "2026-04-04",
+  "last_signal_date": "2026-04-05",
   "trades_count": 4,
   "total_fees": 32.52625492383745
 }

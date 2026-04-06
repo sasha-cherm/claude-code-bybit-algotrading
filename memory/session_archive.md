@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 132)
+# Session Archive (Sessions bootstrap through 141)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1073,3 +1073,9 @@
 - Focus: Paper trade MTM (no new daily bar, still Apr 3), H-223 deployment, 3 new factor backtests
 - Done: 30 runners checked (29→30 post-deploy). Demo: $98,827 (-1.17%). 14/30 positive. H-223 deployed. H-224 REJECTED, H-225 REJECTED, H-226 REJECTED. 226 total hypotheses.
 - Next: Continue research. Monitor H-189 (-2.94%) and H-160 (-2.19%).
+
+### Session 2026-04-04 review+research (session 141)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, still Apr 3), H-227/H-228/H-229 backtests
+- Done: 30 runners checked. Demo: $98,650 (-1.35%). 14/30 positive. H-227 REJECTED, H-228 REJECTED, H-229 REJECTED. 229 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.03%) and H-160 (-2.25%).

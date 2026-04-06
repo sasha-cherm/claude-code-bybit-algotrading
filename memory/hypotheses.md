@@ -3321,6 +3321,39 @@
 - Notes: Counterintuitive direction — high extreme move frequency predicts outperformance, not underperformance. In crypto, assets making outsized moves are in breakout/momentum phase, capturing "momentum burst" potential. Very low H-012 correlation (0.272) confirms this is distinct from simple momentum. Excellent split-half stability (both halves Sharpe > 2). Deployed as paper trade #35: LONG OP/ATOM/ARB/DOT, SHORT ADA/LINK/AVAX/NEAR.
 - Sessions: [2026-04-06 session 150]
 
+## H-260: BTC Correlation Regime Factor (13 Non-BTC Assets)
+- Status: REJECTED — passes IS but severe OOS collapse
+- Idea: Rank non-BTC assets by rolling correlation with BTC. Long high-corr (beta plays riding BTC trend) or low-corr (decoupled alpha).
+- Instrument: futures (13 perps, excl BTC)
+- Timeframe: 1D
+- Logic: rolling_corr(asset, BTC, lookback). Rank XS: test both directions. Grid: LB∈[15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 60 combos.
+- Data: 14 assets, 729 daily bars.
+- Result: IS dom dir high_long **86.7%** (26/30 positive), overall 50.0%. Best LB20_R5_N3_high_long Sharpe 0.829 (+33.4% ann, -60.3% DD). **70/30 split: IS 1.836, OOS -1.376** (FAILS). Split-half H1=3.037, H2=**-2.047** (catastrophic). **WF 2/6** mean 0.313.
+- Notes: High BTC correlation predicts outperformance IS — intuitively, high-beta alts ride BTC trends up. But the signal is regime-dependent: works in trending BTC markets (H1), completely fails in choppy/down (H2). Severe overfitting to one regime. 60% drawdown is also unacceptable.
+- Sessions: [2026-04-06 session 151]
+
+## H-261: Volume Spike Frequency Factor (14 Assets)
+- Status: REJECTED — IS fails 80% threshold
+- Idea: Count days with dollar volume > K× rolling average over lookback. Frequent spikes = attention surges. Rank XS: long high-spike or low-spike.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: spike = (vol > K * rolling_avg(20d)). Score = rolling_mean(spike, lookback). Grid: LB∈[10,15,20,30], K∈[2,3], R∈[3,5,7], N∈[3,4], dir∈2 = 96 combos.
+- Data: 14 assets, 729 daily bars.
+- Result: IS best dir low_long **47.9%** (23/48), overall 37.5%. Best LB10_S2.0_R3_N3_low_long Sharpe 0.816 (+32.7% ann, -49.7% DD).
+- Notes: Volume spike frequency has no robust XS predictive power. Only 37.5% overall positive — barely better than random. Volume spikes don't differentiate future returns cross-sectionally. Related to turnover (H-085) which works better by measuring volume ratios continuously rather than counting discrete spikes.
+- Sessions: [2026-04-06 session 151]
+
+## H-262: Return Consistency Factor (14 Assets)
+- Status: REJECTED — IS fails 80% threshold
+- Idea: Ratio of median daily return to mean daily return over lookback. High consistency (median ≈ mean) = stable normal trend. Low consistency = fat-tailed jump-driven.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: score = median(ret, LB) / mean(ret, LB). Grid: LB∈[10,15,20,30,40,60], R∈[3,5,7], N∈[3,4], dir∈2 = 72 combos.
+- Data: 14 assets, 729 daily bars.
+- Result: IS both directions tied at **61.1%** (22/36 each), overall 61.1%. Best LB30_R7_N3_low_long Sharpe 1.609 (+78.6% ann, -45.5% DD).
+- Notes: Median/mean return ratio has no dominant direction — both sides equally weak. The ratio is noisy because mean returns over short lookbacks are close to zero, causing the ratio to swing wildly. Does not capture any distinct cross-sectional structure.
+- Sessions: [2026-04-06 session 151]
+
 ## Killed
 
 ### H-024: Low-Beta Anomaly — KILLED (2026-03-31, session 114)

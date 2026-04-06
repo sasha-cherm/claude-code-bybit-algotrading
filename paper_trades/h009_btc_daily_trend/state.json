@@ -146,8 +146,15 @@
       "price": 67300.7,
       "position": -1,
       "vol_scale": 0.48
+    },
+    {
+      "date": "2026-04-05",
+      "equity": 9846.11,
+      "price": 68867.2,
+      "position": -1,
+      "vol_scale": 0.5
     }
   ],
-  "last_signal_date": "2026-04-04",
+  "last_signal_date": "2026-04-05",
   "trades_count": 1
 }
