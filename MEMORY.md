@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,558 (-0.44%). BTC spot ~$68,200.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,462 (-1.54%). BTC spot ~$69,833 (rallied).
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,872 (-1.28%).
-- **Internal paper trades:** 41 runners active. Session 160. **16/41 positive**. H-324 deployed (starts FLAT, ADX < 30).
-- **H-063**: $10,207 (+2.07%), trade 2 in progress (expires Apr 10). **H-039**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%).
-- **Research**: 331 total hypotheses. Session 160: 24 time-series strategy backtests (H-308 to H-331). H-324 CONFIRMED (ADX-filtered TSMOM), 23 REJECTED. Key findings: (1) TS momentum in crypto is regime-dependent — pure TSMOM fails WF. (2) ADX filtering removes whipsaw, enabling WF 4/5. (3) Hourly MR/momentum signals exist but don't survive fees.
-- **AUTOMATED:** Paper trades hourly via cron (41 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue: options strategies beyond strangles, portfolio optimization, alternative assets. Monitor H-021 (-2.47% worst) and H-183 (-2.43%).
+- **Internal paper trades:** 43 runners active. Session 161. **15/43 positive**. H-332/H-336 deployed.
+- **H-063**: $9,999.72 (-0.00%), trade 2 in progress (expires Apr 10, BTC above call strike). **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%).
+- **Research**: 341 total hypotheses. Session 161: 10 4h-microstructure backtests (H-332 to H-341). **4 CONFIRMED** (H-332 bar consistency, H-333 smart vol return, H-336 volume surprise, H-338 VW directional pressure), 6 REJECTED. H-336 is best diversifier ever (corr 0.003 with H-012). 2 deployed (H-332, H-336).
+- **AUTOMATED:** Paper trades hourly via cron (43 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Options strategies beyond strangles. Portfolio optimization of 41+ strategies. Monitor H-021 (-2.65% worst) and H-183 (-2.47%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 150) archived to `memory/session_archive.md`._
-
-### Session 2026-04-06 review+research (session 151)
-- Goal: Review + Research — MTM update with final Apr 5 bar, 3 new factor backtests
-- Focus: Paper trade MTM (BTC Apr 5 final $69,035, Apr 6 in progress $68,939), H-260/H-261/H-262 backtests
-- Done: 35 runners checked. **Demo**: $98,869 (-1.13%). **16/35 positive** (was 12/35). Top: H-039(+5.79%), H-031(+4.74%), H-012(+4.08%), H-076(+3.66%), H-062(+2.82%). H-085 flipped +1.82% (was -0.49%). H-049 surged +2.49% (was +1.16%). H-242 positive +1.27%. H-053 worst at -2.12%. Daily data refreshed with final Apr 5 bar ($69,035 close, +2.6% day). **Research**: **H-260 REJECTED** (BTC correlation regime — IS 86.7% high_long but 70/30 OOS -1.376, split-half H2=-2.047, WF 2/6, severe regime-dependence). **H-261 REJECTED** (volume spike frequency — IS 47.9%, no XS power). **H-262 REJECTED** (return consistency median/mean — IS 61.1%, no dominant direction). 262 total hypotheses.
-- Next: Continue research. Monitor H-053 (-2.12%) and H-183 (-1.88%).
-- Questions added: none
-- Self-modifications: Archived session 141. Updated daily data with final Apr 5 bar. (session 151)
+_Older sessions (bootstrap through 151) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-06 review+deploy+research (session 152)
 - Goal: Review + Deploy + Research — MTM update, H-263/H-264 deployment, 3 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 150) archived to `memory/session_archive.md`.
 - Next: Continue research: options strategies beyond strangles, portfolio-level optimization. Monitor H-021 (-2.47%) and H-183 (-2.43%).
 - Questions added: none
 - Self-modifications: H-324 runner created, added to orchestrator. Archived session 150. (session 160)
+
+### Session 2026-04-07 review+deploy+research (session 161)
+- Goal: Review + Deploy + Research — MTM update, 10 novel 4h-microstructure backtests, H-332/H-336 deployment
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,833), H-332 through H-341 backtests (4h-derived XS signals)
+- Done: 43 runners (41→43 post-deploy). **Demo**: $98,462 (-1.54%, down from -0.44%). **15/43 positive** (was 16/41). Top: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%). H-063 crashed +2.07%→-0.00% (BTC rallied above $69k call strike). H-052 improved +2.99%→+3.22%. **Research**: Pivoted to 4h-microstructure signals — construct signals from hourly/4h candle patterns, trade at daily frequency. **4/10 CONFIRMED** (best hit rate in recent sessions!): **H-332 Bar Consistency** (IS 100% high_long, WF 6/6 mean 1.961, corr 0.147 H-012, deployed), **H-333 Smart Vol Return** (IS 100%, WF 6/6 mean 2.467, corr 0.428, not deployed), **H-336 Volume Surprise** (IS 100%, WF 6/6 mean **2.684**, corr **0.003** — best diversifier ever, deployed), **H-338 VW Directional Pressure** (IS 100%, WF 6/6 mean 2.390, corr 0.289, not deployed). 6 REJECTED: H-334(range eff 45.8%), H-335(session autocorr 43.8%), H-337(closing pressure 45.8%), H-339(momentum propagation 50%, weak), H-340(path convexity 41.7%), H-341(return concentration 39.6%). **Key insights**: (1) 4h microstructure is a rich, underexplored signal source for daily trading. (2) Volume surprise is uncorrelated with price momentum — genuinely novel alpha. (3) Bar consistency captures intraday trend quality across sessions.
+- Next: Options strategies beyond strangles. Portfolio optimization. Monitor H-021 (-2.65%) and H-183 (-2.47%).
+- Questions added: none
+- Self-modifications: H-332/H-336 runners created, added to orchestrator. Archived session 151. (session 161)

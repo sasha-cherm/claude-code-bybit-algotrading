@@ -4074,3 +4074,87 @@
 - Timeframe: 1D
 - Result: IS **77.8%** positive (21/27) but mean Sharpe **0.047**. Best: AP14_AM2.5 Sharpe **0.132**. **REJECTED** — survives but doesn't make money.
 - Sessions: [2026-04-07 session 160]
+
+## H-332: Bar Consistency Score (4h Microstructure)
+- Status: LIVE (paper trade since 2026-04-07)
+- Idea: Rank assets by intraday bar consistency — fraction of 4h bars closing in the majority direction, averaged over lookback. Clean intraday momentum across all sessions predicts continuation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 4h, trade daily)
+- Logic: Compute per-day consistency (max(n_green, n_red)/n_total, signed by majority direction). Average over lookback. Long top N (highest consistency), short bottom N.
+- Result: IS **100%** high_long (24/24). Best LB10_R3_N3 Sharpe **2.437**. WF **6/6** mean **1.961** (1.09, 1.90, 2.72, 3.58, 1.23, 1.26). Split-half H1=2.337, H2=2.587. Neighbors 8/8=100%. Corr H-012 **0.147**, H-076 **0.111**. Novel 4h microstructure signal.
+- Notes: IS overall 50% because opposite direction (low_long) always fails — expected for directional factor. Signal exploits broad-based buying across all sessions (Asia+Europe+US).
+- Sessions: [2026-04-07 session 161]
+
+## H-333: Smart Volume Return (4h Microstructure)
+- Status: CONFIRMED (not deployed, corr 0.428 with H-012)
+- Idea: Rank assets by the return of the highest-volume 4h bar, averaged over lookback. Captures directional bias of informed high-volume activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 4h, trade daily)
+- Result: IS **100%** high_long (24/24). Best LB10_R3_N3 Sharpe **2.447**. WF **6/6** mean **2.467**. Split-half H1=2.145, H2=2.924. Corr H-012 **0.428** (borderline). Novel but partially overlaps momentum.
+- Sessions: [2026-04-07 session 161]
+
+## H-334: Intraday Range Efficiency (4h)
+- Status: REJECTED
+- Idea: Daily range / sum(4h ranges) — measures persistence of intraday moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **45.8%** positive. No dominant direction. High_long 37.5%, low_long 54.2%. **REJECTED** — no clear XS signal from intraday range efficiency.
+- Sessions: [2026-04-07 session 161]
+
+## H-335: Session Autocorrelation (4h)
+- Status: REJECTED
+- Idea: Correlation of consecutive session returns (Asia→Europe, Europe→US) over lookback. High autocorrelation = predictable session flow.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **43.8%** positive. High_long 87.5% but too few configs overall. Best Sharpe 1.107. **REJECTED** — signal too weak across parameter space.
+- Sessions: [2026-04-07 session 161]
+
+## H-336: Volume Surprise Factor
+- Status: LIVE (paper trade since 2026-04-07)
+- Idea: Rank assets by volume surprise — recent volume vs rolling average. High surprise = unusual institutional activity, predicts XS continuation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Compute 5-day avg volume / lookback avg volume for each asset. Long top N (highest surprise), short bottom N (quietest).
+- Result: IS **100%** high_long (18/18). Best LB30_R3_N4 Sharpe **2.766**. WF **6/6** mean **2.684** (0.35, 4.99, 3.64, 3.14, 1.76, 2.23). Split-half H1=3.084, H2=2.445. Corr H-012 **0.003**, H-076 **0.038**. **Near-zero correlation with ALL existing strategies — best diversifier found in 337 hypotheses.**
+- Notes: IS overall 50% (opposite direction always fails). Pure volume signal uncorrelated with price momentum — genuinely novel alpha source.
+- Sessions: [2026-04-07 session 161]
+
+## H-337: Intraday Closing Pressure (4h)
+- Status: REJECTED
+- Idea: Average close-location-value across 4h bars over lookback. High CLV = buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **45.8%** positive. High_long 83.3% but overall grid too mixed. **REJECTED** — CLV at 4h level doesn't distinguish assets well enough in XS.
+- Sessions: [2026-04-07 session 161]
+
+## H-338: Volume-Weighted Directional Pressure (4h)
+- Status: CONFIRMED (not deployed, overlaps H-332/H-336 signal family)
+- Idea: Sum of (volume × sign(return)) normalized by total volume over lookback. Captures net buying/selling pressure weighted by activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from hourly, trade daily)
+- Result: IS **100%** high_long (24/24). Best LB10_R3_N4 Sharpe **2.136**. WF **6/6** mean **2.390**. Split-half H1=1.842, H2=2.428. Corr H-012 **0.289**. Not deployed to avoid overlap with H-332/H-336.
+- Sessions: [2026-04-07 session 161]
+
+## H-339: Intraday Momentum Propagation (4h)
+- Status: REJECTED
+- Idea: Correlation between first 4h bar return and rest-of-day return. High propagation = predictable session flow.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **50%** overall. Low_long 75% (below 80% threshold). WF 4/6 positive (marginal). Best Sharpe 1.031. **REJECTED** — signal exists in low_long direction but insufficient robustness.
+- Sessions: [2026-04-07 session 161]
+
+## H-340: 4h Price Path Convexity
+- Status: REJECTED
+- Idea: Measure second-half vs first-half 4h momentum — acceleration vs deceleration.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **41.7%** positive. High_long 83.3% but overall weak. Best Sharpe 1.634. **REJECTED** — intraday acceleration not robust enough as XS signal.
+- Sessions: [2026-04-07 session 161]
+
+## H-341: Return Concentration in High-Volume Hours
+- Status: REJECTED
+- Idea: Fraction of daily return from top-2 volume hours. High concentration = institutional-driven.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **39.6%** positive. High_long 66.7%. Best Sharpe 0.729. **REJECTED** — return concentration has no reliable XS predictive power.
+- Sessions: [2026-04-07 session 161]
