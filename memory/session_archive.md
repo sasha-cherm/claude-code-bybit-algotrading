@@ -1127,3 +1127,9 @@
 - Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
 - Questions added: none
 - Self-modifications: H-250 runner created, added to orchestrator. Archived session 137. (session 147)
+
+### Session 2026-04-05 review+research (session 148)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$66,834), H-251/H-252/H-253 backtests
+- Done: 33 runners checked. Demo: $100,509 (+0.51%). 10/33 positive. Research: H-251/H-252/H-253 all REJECTED. 253 total hypotheses.
+- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.

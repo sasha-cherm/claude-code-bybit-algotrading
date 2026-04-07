@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-292",
+  "name": "Momentum \u00d7 Efficiency Interaction",
+  "total_params": 108,
+  "pct_positive": 93.51851851851852,
+  "best_config": "MOM60_EFF40_R5_N3_add",
+  "best_sharpe": 1.897349712137755,
+  "best_annual_return": 1.1985419155913606,
+  "best_max_dd": 0.2755690972329544,
+  "corr_h012": 0.7489207991811552,
+  "corr_h076": 0.5780851171331177,
+  "mean_sharpe": 0.8317191528972019,
+  "wf_folds_positive": 5,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 2.0523728986442618,
+  "split_half_h1": 2.4618344828823875,
+  "split_half_h2": 0.21242232099441782,
+  "neighbor_pct_positive": 91.66666666666666
+}

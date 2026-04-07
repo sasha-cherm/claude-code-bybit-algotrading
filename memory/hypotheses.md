@@ -3670,6 +3670,96 @@
 
 ---
 
+## H-292: Momentum × Efficiency Interaction Factor
+- Status: REJECTED
+- Idea: Combine cross-sectional momentum (rank) with price efficiency (rank) into a composite signal. Assets with strong + clean momentum should outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3-7 days)
+- Logic: composite = rank(N-day return) × rank(efficiency). Long top composite, short bottom. Grid: MOM_LB∈[20,40,60] × EFF_LB∈[20,40,60] × R∈[3,5,7] × N∈[3,4] × mode∈[add,mult] = 108 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **93.5%** positive (101/108). Best: MOM60_EFF40_R5_N3_mult Sharpe **2.178**, +92.2% ann, -21.0% DD. WF **5/6** mean **2.052**. Split-half 2.462/0.212. Neighbors 91.7%. **BUT** corr H-012 **0.749**, H-076 **0.578** — too correlated with both components.
+- Notes: Excellent IS/WF but the interaction is just a linear combination of known factors. Correlation > 0.50 with both H-012 and H-076 means no novel signal captured. Multi-factor interactions inherit component correlations.
+- Sessions: [2026-04-07 session 158]
+
+## H-293: BTC-Regime Conditional Factor Switching
+- Status: REJECTED
+- Idea: Use BTC volatility regime to switch between momentum (trending) and mean-reversion (range-bound) for altcoins.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: If BTC short-term vol > long-term vol → trending → use momentum. Else → contrarian. Grid: MOM_LB∈[20,40,60] × VS∈[10,20,30] × VL∈[60,90,120] × R∈[3,5,7] × N∈[3,4] = 162 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **20.4%** positive (33/162). Best: MOM60_VS10_VL90_R5_N3 Sharpe 1.048, +42.3% ann, -67.2% DD. WF **4/6** mean 1.691. Split-half 0.346/1.036. Low corr H-012 **-0.042**. **REJECTED** — IS too low, regime switching doesn't generalize across parameters.
+- Notes: Regime switching sounds appealing but the BTC vol regime indicator doesn't robustly classify regimes. Most parameter combos lose money. Recent WF folds are stronger (folds 4-5) suggesting possible emerging signal, but insufficient historical evidence.
+- Sessions: [2026-04-07 session 158]
+
+## H-294: Momentum × Funding Rate Interaction Factor
+- Status: REJECTED
+- Idea: Combine momentum with funding rate contrarian: long high-momentum + low-funding assets (under-crowded momentum), short low-momentum + high-funding (crowded losers).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = rank(mom) × (1 - rank(funding_avg)). Grid: MOM_LB∈[20,40,60] × FUND_W∈[3,5,7,10] × R∈[3,5,7] × N∈[3,4] = 72 combos.
+- Data: 14 assets, 731 daily bars (funding: 730 bars).
+- Result: IS **94.4%** positive (68/72). Best: MOM60_FW5_R5_N4 Sharpe **1.532**, +68.3% ann, -28.1% DD. Split-half 2.337/0.164. Neighbors 97.2%. **BUT** corr H-012 **0.522**, H-053 **0.498** — too correlated with components.
+- Notes: Combining H-012 and H-053 produces a strong signal (94.4% IS, neighbors 97.2%) but it inherits correlations from both. The interaction doesn't capture enough novel information beyond what the two individual factors already provide separately.
+- Sessions: [2026-04-07 session 158]
+
+## H-295: BTC Beta Timing Factor
+- Status: REJECTED
+- Idea: Use BTC return direction to select altcoin beta exposure. When BTC rising, long high-beta alts; when BTC falling, long low-beta alts.
+- Instrument: futures (13 alt perps, BTC excluded from trading)
+- Timeframe: 1D
+- Logic: signal = rolling_beta_to_BTC × sign(BTC_momentum). Grid: beta_LB∈[20,30,60] × btc_mom∈[5,10,20] × R∈[3,5,7] × N∈[3,4] = 54 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **24.1%** positive (13/54). Best: BETA30_BTCM5_R7_N4 Sharpe 0.711, +22.3% ann, -41.1% DD. WF **4/6** mean 1.226. Corr H-012 **0.212** (low, novel). **REJECTED** — IS too low. Timing beta exposure by BTC direction doesn't generalize.
+- Notes: Low correlation with H-012 (0.212) is appealing — genuinely different signal. But only recent WF folds positive (4-5: Sharpe 3.6, 4.9). May be worth revisiting if crypto market structure changes. The idea is sound but data period too short/noisy.
+- Sessions: [2026-04-07 session 158]
+
+## H-296: Funding-Premium Spread Factor
+- Status: REJECTED
+- Idea: Combine funding rate and premium index into a spread: rank(premium) - rank(funding). High premium + low funding = genuine demand → LONG.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = rank(premium_avg) - rank(funding_avg). Grid: FUND_W∈[3,5,7] × PREM_W∈[3,5,7] × R∈[3,5,7] × N∈[3,4] = 54 combos.
+- Data: 14 assets, 731 daily bars. Premium: 734 bars.
+- Result: IS **0.0%** positive (0/54). Best Sharpe **-0.017**. Mean Sharpe -0.930. **REJECTED** — funding-premium spread has no cross-sectional predictive power at all.
+- Notes: The spread between two positioning signals (funding rate level vs futures basis) doesn't generate XS returns. The two signals may capture the same underlying positioning but from different angles, so their spread is noise.
+- Sessions: [2026-04-07 session 158]
+
+## H-297: Multi-Timeframe Momentum Agreement Factor
+- Status: REJECTED
+- Idea: Combine short-term (10-20d) and long-term (40-60d) momentum into a concordance signal. Assets where both timeframes agree should have stronger trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = rank(short_mom) × rank(long_mom) or rank(sum) when signs agree. Grid: S∈[10,14,20] × L∈[40,60] × R∈[3,5,7] × N∈[3,4] × mode∈[product,agreement] = 72 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **98.6%** positive (71/72). Best: S10_L40_R3_N4_product Sharpe **1.775**, +119.3% ann, -31.3% DD. WF **6/6** mean **1.803**. Split-half 2.429/0.042. Neighbors **100%**. **BUT** corr H-012 **0.649** — too correlated with standard momentum.
+- Notes: Outstanding metrics: 98.6% IS, 6/6 WF, 100% neighbors. Best multi-factor result in entire hypothesis set. But it's fundamentally just a better momentum signal (0.649 corr with H-012). Could be a candidate to REPLACE H-012 rather than complement it — but deployment redundant with existing momentum.
+- Sessions: [2026-04-07 session 158]
+
+## H-298: Informed Momentum Factor (High-Volume Filtered Returns)
+- Status: REJECTED
+- Idea: Compute momentum using only high-volume days (above rolling median). Filters out "noise" days, retaining only "informed" trading signals.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: informed_ret = daily_return × (volume > rolling_quantile). signal = rolling_sum(informed_ret). Grid: MOM_LB∈[20,40,60] × VT∈[0.5,0.7] × R∈[3,5,7] × N∈[3,4] = 36 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **94.4%** positive (34/36). Best: MOM20_VT0.7_R5_N3 Sharpe **1.173**, +55.4% ann, -37.9% DD. WF **5/6** mean **1.444**. Split-half 1.044/1.082. **BUT** corr H-012 **0.506** — just above 0.50 threshold.
+- Notes: Volume-filtered momentum doesn't differentiate enough from raw momentum. High-volume days in crypto are ubiquitous enough that filtering has minimal effect on rankings. Correlation 0.506 is borderline but reflects fundamental similarity. Split-half stability (1.044/1.082) is excellent.
+- Sessions: [2026-04-07 session 158]
+
+## H-299: Decorrelation Signal Factor
+- Status: REJECTED
+- Idea: Assets whose correlation with the market is decreasing (decorrelating, "breaking away") are establishing idiosyncratic trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = long_window_corr_with_market - short_window_corr_with_market. High = decorrelating → LONG. Grid: SC∈[5,10,15] × LC∈[30,40,60] × R∈[3,5,7] × N∈[3,4] = 54 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **1.9%** positive in decorrelation direction (1/54). **HOWEVER**, reverse direction (recorrelation_long) **98.1%** positive — but best Sharpe only 0.116. Corr H-012 **-0.012** (near zero, genuinely novel). **REJECTED** — signal magnitude too weak in both directions.
+- Notes: Interesting finding: assets RE-JOINING the herd outperform (98.1% in reverse), while decorrelating assets underperform. This makes sense — crypto is herding/beta-driven, so convergence = momentum confirmation. But the magnitude is too weak (best Sharpe 0.116) to be tradeable. Near-zero H-012 correlation shows this captures something genuinely different, just not strong enough.
+- Sessions: [2026-04-07 session 158]
+
+---
+
 <!-- Template:
 ## H-NNN: <title>
 - Status: PENDING

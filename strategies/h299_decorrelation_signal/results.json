@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-299",
+  "name": "Decorrelation Signal",
+  "total_params": 54,
+  "pct_positive": 1.8518518518518516,
+  "best_config": "SC5_LC60_R3_N3",
+  "best_sharpe": 0.11569117907739325,
+  "best_annual_return": -0.042737761690915366,
+  "best_max_dd": 0.4167135858699091,
+  "corr_h012": -0.0124024763675947,
+  "mean_sharpe": -0.8489587246727532,
+  "split_half_h1": -0.17473165813191394,
+  "split_half_h2": -0.28671526058849317,
+  "wf_folds_positive": 3,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 0.07070309768385795
+}

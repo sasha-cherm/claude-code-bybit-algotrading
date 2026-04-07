@@ -426,19 +426,19 @@ Demo eq: $97,400 (-2.60%). BTC spot ~$69,348. 11 open positions. Demo declined f
 - **Next rebal**: Apr 12 bar
 - **Backtest**: IS 80.0% (24/30), best Sharpe 1.384. WF 5/6 mean 1.256. Neighboring 87.5%. Corr 0.464 H-012, 0.112 H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-07 session 157, 01:15 UTC)
-- **Bybit Demo**: ~$100,050 (+0.05%, recovered from -0.83% to near breakeven!). BTC spot ~$68,763. Last daily bar: Apr 6, close $68,846.
-- **Total internal MTM (38 active strats)**: 40 runners (38 active + 2 special: H-024 killed, H-037 manual). Apr 6 bar processed. **16/38 positive** (was 9/40 — big improvement).
-- **Positive (16/38)**: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%), H-052(+2.99%), H-062(+2.89%), H-085(+1.92%), H-019(+1.71%), H-063(+1.50%), H-175(+1.30%), H-255(+0.71%), H-244(+0.53%), H-263(+0.48%), H-193(+0.37%), H-044(+0.19%)
-- **Near flat (1/38)**: H-032(-0.09%)
-- **Negative (21/38)**: H-169(-0.12%), H-242(-0.19%), H-259(-0.34%), H-277(-0.36%), H-264(-0.46%), H-046(-0.53%), H-223(-0.50%), H-219(-0.62%), H-250(-0.63%), H-059(-0.76%), H-189(-0.97%), H-197(-0.99%), H-160(-1.10%), H-182(-1.14%), H-011(-1.27%), H-009(-1.53%), H-215(-1.73%), H-053(-2.05%), H-191(-2.07%), H-183(-2.43%), H-021(-2.47%)
-- **Key changes from session 156**: H-049 surged +0.56%→+3.46%. H-085 flipped +1.92%. H-175 flipped +1.30%. H-063 flipped +1.50%. H-019 flipped +1.71%. H-244 flipped +0.53%. H-183 crashed to -2.43%. H-191 dropped to -2.07%.
-- **H-063**: $10,150 (+1.50%), between trades (cron will auto-enter next strangle).
+## Portfolio Summary (mark-to-market 2026-04-07 session 158, 12:00 UTC)
+- **Bybit Demo**: ~$99,799 (-0.20%). BTC spot ~$68,935. Last daily bar: Apr 6, close $68,846. Apr 7 bar in progress.
+- **Total internal MTM (38 active strats)**: 40 runners (38 active + 2 special: H-024 killed, H-037 manual). No new daily bar since Apr 6. **16/40 positive** (unchanged from session 157).
+- **Positive (16/40)**: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%), H-052(+3.22%), H-062(+2.63%), H-085(+1.98%), H-019(+1.80%), H-175(+1.43%), H-063(+1.10%), H-244(+0.52%), H-263(+0.48%), H-193(+0.46%), H-255(+0.40%), H-044(+0.04%)
+- **Near flat (2/40)**: H-032(-0.09%), weekend_iron_condor(0.00%)
+- **Negative (22/40)**: H-024(-0.20%), H-259(-0.34%), H-277(-0.36%), H-264(-0.46%), H-169(-0.46%), H-242(-0.51%), H-046(-0.57%), H-223(-0.72%), H-059(-0.76%), H-250(-0.81%), H-219(-0.93%), H-197(-1.09%), H-182(-1.17%), H-189(-1.26%), H-011(-1.28%), H-009(-1.36%), H-160(-1.54%), H-215(-1.85%), H-053(-1.94%), H-191(-2.34%), H-183(-2.46%), H-021(-2.65%)
+- **Key changes from session 157**: Minimal intra-bar changes, no new daily bar. Demo dipped from +0.05% to -0.20%. H-012 slipped +4.46%→+4.15%. H-053 continued decline -2.05%→-1.94%.
+- **H-063**: $10,110 (+1.10%), between trades (cron will auto-enter next strangle).
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
-- **H-011**: $9,873 (-1.27%), still IN.
-- **Research**: 291 hypotheses total. H-280 through H-291 all REJECTED (12 new factors tested).
+- **H-011**: $9,872 (-1.28%), still IN.
+- **Research**: 299 hypotheses total. H-292 through H-299 all REJECTED (8 new multi-factor interaction/novel signal backtests).
 - **AUTOMATED:** Paper trades hourly via cron (40 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-021 (-2.47% worst active) and H-183 (-2.43%).
+- **Next action:** Continue research — try truly novel non-momentum-based signals. Monitor H-021 (-2.65% worst active) and H-183 (-2.46%).
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

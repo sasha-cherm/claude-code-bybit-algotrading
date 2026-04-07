@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-298",
+  "name": "Informed Momentum",
+  "total_params": 36,
+  "pct_positive": 94.44444444444444,
+  "best_config": "MOM20_VT0.7_R5_N3",
+  "best_sharpe": 1.172637332917891,
+  "best_annual_return": 0.5537751372425577,
+  "best_max_dd": 0.3791455842478873,
+  "corr_h012": 0.5064849230875206,
+  "mean_sharpe": 0.5378998226233689,
+  "split_half_h1": 1.0439109566714269,
+  "split_half_h2": 1.082342289317116,
+  "wf_folds_positive": 5,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.4444567357685656
+}

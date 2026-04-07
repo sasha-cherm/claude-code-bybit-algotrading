@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H-297",
+  "name": "Multi-Timeframe Momentum Agreement",
+  "total_params": 72,
+  "pct_positive": 98.61111111111111,
+  "best_config": "S10_L60_R5_N4_agreement",
+  "best_sharpe": 1.89996186949865,
+  "best_annual_return": 0.9643806217952817,
+  "best_max_dd": 0.21665613455232363,
+  "corr_h012": 0.6485444199447424,
+  "mean_sharpe": 0.9086593398882123,
+  "wf_folds_positive": 6,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.8027799313334585,
+  "split_half_h1": 2.4289268278005745,
+  "split_half_h2": 0.04203224695858698,
+  "neighbor_pct_positive": 100.0
+}

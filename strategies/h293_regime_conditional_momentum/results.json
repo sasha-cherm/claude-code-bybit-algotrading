@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H-293",
+  "name": "BTC-Regime Conditional Factor Switching",
+  "total_params": 162,
+  "pct_positive": 20.37037037037037,
+  "best_config": "MOM40_VS10_VL60_R3_N4",
+  "best_sharpe": 0.6561775590948346,
+  "best_annual_return": 0.20664407735918444,
+  "best_max_dd": 0.4551377814448938,
+  "corr_h012": -0.042016186290937424,
+  "mean_sharpe": -0.27339689636225495,
+  "wf_folds_positive": 4,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.691308890496898,
+  "split_half_h1": 0.3457640451073197,
+  "split_half_h2": 1.035852789377372,
+  "neighbor_pct_positive": 30.555555555555557
+}

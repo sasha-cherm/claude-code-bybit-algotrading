@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H-295",
+  "name": "BTC Beta Timing",
+  "total_params": 54,
+  "pct_positive": 24.074074074074073,
+  "best_config": "BETA20_BTCM5_R5_N4",
+  "best_sharpe": 0.8272473336904684,
+  "best_annual_return": 0.28405336108135515,
+  "best_max_dd": 0.41062998485409935,
+  "corr_h012": 0.21190301924143132,
+  "mean_sharpe": -0.43004196978309844,
+  "wf_folds_positive": 4,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.2260576081264227,
+  "split_half_h1": 0.09459080351443888,
+  "split_half_h2": 0.5570645672532448,
+  "neighbor_pct_positive": 45.83333333333333
+}

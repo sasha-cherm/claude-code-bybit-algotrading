@@ -1,16 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$100,050 (+0.05%, near breakeven!). BTC spot ~$68,763.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,799 (-0.20%). BTC spot ~$68,935.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,873 (-1.27%).
-- **Internal paper trades:** 40 runners active. Session 157. **16/38 positive** (Apr 6 bar processed, big improvement from 9/40).
-- **H-063**: $10,150 (+1.50%), between trades. **H-039**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%).
-- **Key shift**: Demo recovered -0.83% → +0.05%. H-049 surged +3.46%, H-085/H-175/H-063/H-019 all flipped positive.
-- **Research**: 291 total hypotheses. H-280 through H-291 all REJECTED (12 new factors, no confirmations).
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,872 (-1.28%).
+- **Internal paper trades:** 40 runners active. Session 158. **16/40 positive** (no new bar since Apr 6).
+- **H-063**: $10,110 (+1.10%), between trades. **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%).
+- **Research**: 299 total hypotheses. H-292 through H-299 all REJECTED (8 multi-factor interaction backtests). Key finding: multi-factor interactions produce great IS/WF but are too correlated (0.50-0.75) with component factors.
 - **AUTOMATED:** Paper trades hourly via cron (40 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-021 (-2.47% worst) and H-183 (-2.43%).
+- **Next action:** Continue research — explore non-momentum-based signals, alternative asset universes, or non-linear constructions. Monitor H-021 (-2.65% worst) and H-183 (-2.46%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -22,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 147) archived to `memory/session_archive.md`._
-
-### Session 2026-04-05 review+research (session 148)
-- Goal: Review + Research — MTM update, 3 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$66,834), H-251/H-252/H-253 backtests
-- Done: 33 runners checked. **Demo**: $100,509 (+0.51%). BTC $66,834. **10/33 positive**. Top: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%). H-063 trade 2 at +1.36% (expires Apr 10). **Research**: **H-251 REJECTED** (Hurst exponent — IS 37.5%, best dir 50%, crypto assets have similar persistence, no XS spread). **H-252 REJECTED** (tail ratio — IS 37.5%, best dir high_tail_long 75% borderline but < 80%). **H-253 REJECTED** (return entropy — IS 36.5%, best dir 47.9%, all crypto uniformly high entropy). 253 total hypotheses.
-- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
-- Questions added: none
-- Self-modifications: Archived session 138. (session 148)
+_Older sessions (bootstrap through 148) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-05 review+deploy+research (session 149)
 - Goal: Review + Deploy + Research — MTM update, H-255 deployment, 3 new factor backtests
@@ -103,3 +94,11 @@ _Older sessions (bootstrap through 147) archived to `memory/session_archive.md`.
 - Next: Continue research. Explore fundamentally different signal types (funding, OI combinations, multi-asset). Monitor H-021 (-2.47%) and H-183 (-2.43%).
 - Questions added: none
 - Self-modifications: Archived session 147. (session 157)
+
+### Session 2026-04-07 review+research (session 158)
+- Goal: Review + Research — MTM update, 8 multi-factor interaction backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$68,935), H-292 through H-299 backtests
+- Done: 40 runners checked. **Demo**: $99,799 (-0.20%, dipped from +0.05%). **16/40 positive**. Top: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%). Worst: H-021(-2.65%), H-183(-2.46%). **Research**: All 8 REJECTED — H-292(mom×efficiency IS 93.5% but corr H-012 0.749), H-293(regime conditional IS 20.4%), H-294(mom×funding IS 94.4% but corr 0.522), H-295(BTC beta timing IS 24.1%), H-296(funding-premium spread IS 0%), H-297(MTF momentum IS 98.6%, WF 6/6, but corr 0.649), H-298(informed momentum IS 94.4% but corr 0.506), H-299(decorrelation IS 1.9%). **Key insight**: Multi-factor interactions of known factors produce great IS/WF (93-99%) but are too correlated (0.50-0.75) with components to add novel value. 299 total hypotheses.
+- Next: Explore non-momentum-based signals, alternative constructions, or frequency domain approaches. Monitor H-021 (-2.65%) and H-183 (-2.46%).
+- Questions added: none
+- Self-modifications: Archived session 148. Fixed metrics bug (PPY passed as risk_free_rate). (session 158)

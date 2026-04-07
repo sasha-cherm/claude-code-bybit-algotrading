@@ -1,0 +1,14 @@
+{
+  "hypothesis": "H-296",
+  "name": "Funding-Premium Spread",
+  "total_params": 54,
+  "pct_positive": 0.0,
+  "best_config": "FW7_PW7_R7_N4",
+  "best_sharpe": -0.01734960060415672,
+  "best_annual_return": -0.07414490506579885,
+  "best_max_dd": 0.44960225753330907,
+  "corr_h012": 0.1362051079369198,
+  "mean_sharpe": -0.9302024670754052,
+  "split_half_h1": 0.5338416575010625,
+  "split_half_h2": 0.6434296236677624
+}
