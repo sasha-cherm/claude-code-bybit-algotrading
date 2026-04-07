@@ -1141,3 +1141,9 @@
 - Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
 - Questions added: none
 - Self-modifications: H-255 runner created, added to orchestrator. Archived session 139. (session 149)
+
+### Session 2026-04-06 review+deploy+research (session 150)
+- Goal: Review + Deploy + Research — MTM update, H-259 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$67,575), H-257/H-258/H-259 backtests
+- Done: 35 runners (34→35 post-deploy). Demo: $100,877 (+0.88%). 12/35 positive. H-259 CONFIRMED, deployed. H-257/H-258 REJECTED. 259 total hypotheses.
+- Next: Continue research. Monitor H-189 (-3.56%) and H-183 (-3.40%).

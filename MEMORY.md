@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,584 (-0.42%). BTC spot ~$68,888.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,558 (-0.44%). BTC spot ~$68,200.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,872 (-1.28%).
-- **Internal paper trades:** 40 runners active. Session 159. **15/40 positive** (no new bar since Apr 6).
-- **H-063**: $10,168 (+1.68%), between trades. **H-039**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%).
-- **Research**: 307 total hypotheses. H-300 through H-307 all REJECTED (8 non-momentum signal backtests). Key finding: after 307 hypotheses, most single-factor XS signals are exhausted. Best anti-momentum diversifier found (H-306, corr -0.447) but IS too low.
-- **AUTOMATED:** Paper trades hourly via cron (40 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Shift focus: portfolio-level optimization of existing strategies, alternative asset universes, time-series strategies, or options beyond strangles. Monitor H-021 (-2.65% worst) and H-183 (-2.46%).
+- **Internal paper trades:** 41 runners active. Session 160. **16/41 positive**. H-324 deployed (starts FLAT, ADX < 30).
+- **H-063**: $10,207 (+2.07%), trade 2 in progress (expires Apr 10). **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%).
+- **Research**: 331 total hypotheses. Session 160: 24 time-series strategy backtests (H-308 to H-331). H-324 CONFIRMED (ADX-filtered TSMOM), 23 REJECTED. Key findings: (1) TS momentum in crypto is regime-dependent — pure TSMOM fails WF. (2) ADX filtering removes whipsaw, enabling WF 4/5. (3) Hourly MR/momentum signals exist but don't survive fees.
+- **AUTOMATED:** Paper trades hourly via cron (41 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Continue: options strategies beyond strangles, portfolio optimization, alternative assets. Monitor H-021 (-2.47% worst) and H-183 (-2.43%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 149) archived to `memory/session_archive.md`._
-
-### Session 2026-04-06 review+deploy+research (session 150)
-- Goal: Review + Deploy + Research — MTM update, H-259 deployment, 3 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$67,575), H-257/H-258/H-259 backtests
-- Done: 35 runners (34→35 post-deploy). **Demo**: $100,877 (+0.88%). **12/35 positive**. Top: H-039(+5.79%), H-012(+4.67%), H-076(+3.92%), H-031(+3.49%), H-062(+2.92%). H-012 surged +2.22%→+4.67%. H-021 improved -3.63%→-1.00%. H-175 flipped positive (+2.45%). Daily data updated through Apr 5 bar ($67,631 close). **Research**: **H-257 REJECTED** (intraday return dominance — IS 100%, WF **6/6** mean 2.780 best-ever, but in 24/7 crypto open≈prev_close so factor reduces to short-term momentum, corr 0.538 H-012). **H-258 REJECTED** (recovery speed — IS only 50%, no XS predictive power). **H-259 CONFIRMED** (extreme move frequency — IS **100%** high_long, WF **5/6** mean **1.320**, corr **0.272** H-012, novel tail-risk signal). H-259 deployed as paper trade #35: LONG OP/ATOM/ARB/DOT, SHORT ADA/LINK/AVAX/NEAR. 259 total hypotheses.
-- Next: Continue research. Monitor H-189 (-3.56%) and H-183 (-3.40%).
-- Questions added: none
-- Self-modifications: H-259 runner created, added to orchestrator. Archived session 140. (session 150)
+_Older sessions (bootstrap through 150) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-06 review+research (session 151)
 - Goal: Review + Research — MTM update with final Apr 5 bar, 3 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 149) archived to `memory/session_archive.md`.
 - Next: Single-factor XS signals largely exhausted after 307 hypotheses. Shift focus to: portfolio optimization, alternative assets, time-series strategies, or options strategies.
 - Questions added: none
 - Self-modifications: Archived session 149. (session 159)
+
+### Session 2026-04-07 review+deploy+research (session 160)
+- Goal: Review + Deploy + Research — MTM update, 24 time-series strategy backtests, H-324 deployment
+- Focus: Paper trade MTM (no new daily bar, BTC ~$68,200), H-308 through H-331 backtests (24 TS strategies)
+- Done: 41 runners (40→41 post-deploy). **Demo**: $99,558 (-0.44%). **16/41 positive**. Top: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%). H-063 improved +2.07%. **Research**: Pivoted to time-series strategies (only 3 TS vs 35+ XS). Tested: pure TSMOM (H-308, 70.8% IS but -50% DD), vol-scaled TSMOM (H-309, WF 3/5), ensemble TSMOM (H-313, 96.7% IS but WF 2/5), EMA crossover (H-310, high DD), Donchian (H-311, 42% IS), TS carry (H-312/H-320, 100% IS but WF marginal), mean reversion (H-314-316, too parameter-sensitive), calendar effects (H-317-318, no signal), vol regime (H-319, 65% IS), BTC vol target (H-321, doesn't beat BH), hourly MR (H-322, Sharpe 2.4 pre-fees but **-0.2 post-fees**), hourly momentum (H-323, 65% IS), **ADX-filtered TSMOM (H-324, CONFIRMED, WF 4/5 mean 0.557)**, BTC-cond alts (H-325, 8% IS), vol breakout (H-326, 31% IS), return persistence (H-327, 50%), market timing (H-328, 23%), BTC lead-lag hourly (H-329, Sharpe 1.66 pre-fees but killed by 0.02% fee), range compression (H-330, 41% IS), ATR trend (H-331, 78% IS but Sharpe 0.05). **Key insights**: (1) TS momentum in crypto is regime-dependent; ADX filter is the key to making it work. (2) Hourly signals exist but don't survive trading costs. (3) H-324 is first multi-asset TS strategy to pass WF. 331 total hypotheses.
+- Next: Continue research: options strategies beyond strangles, portfolio-level optimization. Monitor H-021 (-2.47%) and H-183 (-2.43%).
+- Questions added: none
+- Self-modifications: H-324 runner created, added to orchestrator. Archived session 150. (session 160)

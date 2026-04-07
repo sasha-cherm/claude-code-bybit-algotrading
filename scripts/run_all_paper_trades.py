@@ -62,6 +62,7 @@ RUNNERS = [
     ("H-263", ROOT / "paper_trades" / "h263_relative_strength" / "runner.py"),
     ("H-264", ROOT / "paper_trades" / "h264_skewness" / "runner.py"),
     ("H-277", ROOT / "paper_trades" / "h277_vwap_deviation" / "runner.py"),
+    ("H-324", ROOT / "paper_trades" / "h324_adx_tsmom" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

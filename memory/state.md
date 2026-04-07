@@ -426,19 +426,30 @@ Demo eq: $97,400 (-2.60%). BTC spot ~$69,348. 11 open positions. Demo declined f
 - **Next rebal**: Apr 12 bar
 - **Backtest**: IS 80.0% (24/30), best Sharpe 1.384. WF 5/6 mean 1.256. Neighboring 87.5%. Corr 0.464 H-012, 0.112 H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-07 session 159, 13:10 UTC)
-- **Bybit Demo**: ~$99,584 (-0.42%). BTC spot ~$68,888. Last daily bar: Apr 6, close $68,846. Apr 7 bar in progress (BTC dropped to ~$68,200 intraday then recovered).
-- **Total internal MTM (38 active strats)**: 40 runners (38 active + 2 special: H-024 killed, H-037 manual). No new daily bar since Apr 6. **15/40 positive** (was 16/40 in s158, H-044 slipped to flat).
-- **Positive (15/40)**: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%), H-052(+3.22%), H-062(+2.63%), H-085(+1.98%), H-019(+1.80%), H-063(+1.68%), H-175(+1.43%), H-244(+0.52%), H-263(+0.48%), H-193(+0.46%), H-255(+0.40%)
-- **Near flat (3/40)**: H-044(+0.04%), weekend_iron_condor(0.00%), H-032(-0.09%)
-- **Negative (22/40)**: H-024(-0.20%), H-259(-0.34%), H-277(-0.36%), H-264(-0.46%), H-169(-0.46%), H-242(-0.51%), H-046(-0.57%), H-223(-0.72%), H-059(-0.76%), H-250(-0.81%), H-219(-0.93%), H-197(-1.09%), H-182(-1.17%), H-189(-1.26%), H-011(-1.28%), H-009(-1.36%), H-160(-1.54%), H-215(-1.85%), H-053(-1.94%), H-191(-2.34%), H-183(-2.46%), H-021(-2.65%)
-- **Key changes from session 158**: Demo slipped -0.20% → -0.42%. H-063 improved +1.10% → +1.68%. BTC dipped to $68,200 intraday. No new daily bar to trigger rebalancing.
-- **H-063**: $10,168 (+1.68%), between trades (cron will auto-enter next strangle).
+### H-324: ADX-Filtered Multi-Asset TSMOM (Vol-Scaled) — NEW
+- **Status**: LIVE paper trade (started 2026-04-07) — first multi-asset TS strategy
+- **Position**: FLAT — BTC ADX < 30, waiting for trending market
+- **Mark equity**: $10,000 (0.00%)
+- **Runner**: `paper_trades/h324_adx_tsmom/runner.py`
+- **Params**: LB60_ADX30_R7 (60-day momentum, ADX threshold 30, 7-day rebalance, 15% target vol)
+- **Logic**: Per-asset TS momentum (long if 60d ret > 0, short if < 0), vol-scaled, only active when BTC ADX > 30
+- **Next rebal**: When ADX crosses above 30 on next daily bar
+- **Backtest**: IS 65.6% (full grid), best Sharpe 1.206, +12.7% ann, -8.0% DD, 60% exposure. WF 4/5 (mean 0.557). Split-half 2.107/0.834. Neighbors 77.5% positive. Corr 0.216 H-012, 0.414 H-009, 0.023 H-076.
+
+## Portfolio Summary (mark-to-market 2026-04-07 session 160, 17:15 UTC)
+- **Bybit Demo**: ~$99,558 (-0.44%). BTC spot ~$68,200. Last daily bar: Apr 6, close $68,846. Apr 7 bar in progress.
+- **Total internal MTM (39 active strats)**: 41 runners (39 active + 2 special: H-024 killed, H-037 manual). H-324 deployed (starts FLAT, ADX < 30). **16/41 positive**.
+- **Positive (16/41)**: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%), H-052(+2.99%), H-062(+2.89%), H-063(+2.07%), H-085(+1.92%), H-019(+1.71%), H-175(+1.30%), H-255(+0.71%), H-244(+0.53%), H-263(+0.48%), H-193(+0.37%), H-044(+0.19%)
+- **Near flat (3/41)**: H-324(0.00%), weekend_iron_condor(0.00%), H-032(-0.09%)
+- **Negative (22/41)**: H-169(-0.12%), H-242(-0.19%), H-259(-0.34%), H-277(-0.36%), H-264(-0.46%), H-223(-0.50%), H-046(-0.53%), H-219(-0.62%), H-250(-0.63%), H-059(-0.76%), H-189(-0.97%), H-197(-0.99%), H-160(-1.10%), H-182(-1.14%), H-011(-1.28%), H-009(-1.53%), H-215(-1.73%), H-053(-2.05%), H-191(-2.07%), H-183(-2.43%), H-021(-2.47%)
+- **Key changes from session 159**: H-063 improved +1.68%→+2.07% (trade 2 profitable). H-012 +4.15%→+4.46%. H-255 flipped positive +0.40%→+0.71%. H-044 improved -0.04%→+0.19%. BTC dipped to $68,200.
+- **H-063**: $10,207 (+2.07%), trade 2 in progress (expires Apr 10), premium > liability.
 - **H-039 (DOW)**: $10,579 (+5.79%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
+- **H-324 (NEW)**: $10,000 (0.00%, FLAT). ADX < 30 → waiting for trending market. First TS strategy beyond H-009/H-039/H-063.
 - **H-011**: $9,872 (-1.28%), still IN.
-- **Research**: 307 hypotheses total. H-300 through H-307 all REJECTED (8 new non-momentum signal backtests: reversal, centrality, streak, asymmetric vol, EWM momentum, beta change, vol-price divergence, entropy).
-- **AUTOMATED:** Paper trades hourly via cron (40 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Most single-factor XS signals are exhausted after 307 hypotheses. Consider: (1) portfolio-level optimization of existing confirmed strategies, (2) alternative asset universes (e.g., wider altcoin set), (3) time-series strategies beyond H-009/H-039/H-063, (4) options strategies beyond strangles. Monitor H-021 (-2.65% worst active) and H-183 (-2.46%).
+- **Research**: 331 hypotheses total. H-308 through H-331 (24 time-series strategy backtests). H-324 CONFIRMED (ADX-filtered TSMOM), 23 REJECTED.
+- **AUTOMATED:** Paper trades hourly via cron (41 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Continue TS research (options strategies beyond strangles, alternative assets). Portfolio optimization of existing 39 strategies. Monitor H-021 (-2.47% worst active) and H-183 (-2.43%).
 - **Open user questions:** None
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

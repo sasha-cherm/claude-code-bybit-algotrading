@@ -1,0 +1,11 @@
+[
+  {
+    "type": "flatten",
+    "time": "2026-04-07T17:51:25.528267+00:00",
+    "date": "2026-04-06",
+    "reason": "ADX_below_threshold",
+    "trades": 0,
+    "fees": 0.0,
+    "capital": 10000.0
+  }
+]

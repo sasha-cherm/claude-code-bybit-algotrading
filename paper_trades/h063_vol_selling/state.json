@@ -15,11 +15,11 @@
     "premium_collected": 189.93181896357046,
     "iv": 0.3823,
     "btc_at_entry": 66866.1,
-    "total_fees": 21.655418923966927,
-    "hedge_pnl": 36.01036166411448,
-    "last_btc_price": 68559.8
+    "total_fees": 23.16034932463096,
+    "hedge_pnl": 46.26319843121608,
+    "last_btc_price": 68461.5
   },
-  "hedge_position": -0.05641917385214757,
+  "hedge_position": -0.053562492875598694,
   "total_trades": 1,
   "total_pnl": 77.64421374702252,
   "equity_history": [
@@ -2818,8 +2818,62 @@
       "equity": 10167.56,
       "btc_price": 68559.8,
       "in_trade": true
+    },
+    {
+      "time": "2026-04-07T13:32:16.666554+00:00",
+      "equity": 10179.99,
+      "btc_price": 68450.9,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T14:32:21.179720+00:00",
+      "equity": 10224.76,
+      "btc_price": 68002.3,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T15:37:18.337581+00:00",
+      "equity": 10215.12,
+      "btc_price": 68141.9,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T16:32:23.802473+00:00",
+      "equity": 10203.7,
+      "btc_price": 68283.7,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T17:08:56.937662+00:00",
+      "equity": 10203.91,
+      "btc_price": 68289.9,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T17:09:10.364646+00:00",
+      "equity": 10203.25,
+      "btc_price": 68296.7,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T17:11:27.374584+00:00",
+      "equity": 10206.46,
+      "btc_price": 68263.1,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T17:14:25.561833+00:00",
+      "equity": 10206.8,
+      "btc_price": 68260.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-07T17:32:29.748576+00:00",
+      "equity": 10187.4,
+      "btc_price": 68461.5,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-04-07T13:09:32.942791+00:00",
-  "equity": 10167.56
+  "last_check": "2026-04-07T17:32:29.748576+00:00",
+  "equity": 10187.4
 }

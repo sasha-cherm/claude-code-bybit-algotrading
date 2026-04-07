@@ -3859,3 +3859,218 @@
 - Notes:
 - Sessions: []
 -->
+
+## H-308: Time-Series Momentum (TSMOM) Multi-Asset
+- Status: REJECTED
+- Idea: Classic TSMOM across 14 crypto assets. Each asset independently long/short based on own past N-day return.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = sign(past_return). Grid: LB∈[5,10,14,20,30,60] × R∈[1,3,5,7] = 24 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **70.8%** positive (17/24). Best: LB60_R7 Sharpe **1.074**, +69.2% ann, **-50.3%** DD. Mean Sharpe 0.255. **REJECTED** — excessive drawdowns (34-75%).
+- Notes: TSMOM signal exists in crypto but is heavily regime-dependent. Works in trending markets, gets whipsawed in ranges. Max DD 50%+ is unacceptable.
+- Sessions: [2026-04-07 session 160]
+
+## H-309: Vol-Scaled TSMOM Multi-Asset
+- Status: REJECTED
+- Idea: TSMOM with per-asset inverse-vol sizing (risk parity). Target 15% ann vol per asset, cap 3x leverage.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = sign(past_ret) × min(target_vol/realized_vol, 3). Grid: LB∈[10-60] × VW∈[10,20,30] × R∈[3,5,7] = 60 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **60.0%** positive. Best: LB60_VW10_R7 Sharpe **1.176**, +15.1% ann, **-10.6%** DD. Vol scaling dramatically improves DD. But WF **3/5** (mean OOS -0.216). Split-half PASS (2.48/0.62). Neighbors 63.3%. **REJECTED** — WF fails, regime-dependent.
+- Notes: Vol scaling fixes the DD problem but the strategy still gets whipsawed in ranging markets. Recent folds (2025-2026) show negative OOS Sharpe. Corr 0.312 H-012, 0.519 H-009.
+- Sessions: [2026-04-07 session 160]
+
+## H-310: EMA Crossover Multi-Asset Trend Following
+- Status: REJECTED
+- Idea: EMA(fast) vs EMA(slow) crossover signal applied to all 14 assets independently.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = sign(EMA_fast - EMA_slow). Grid: F∈[5,10,20] × S∈[20,40,60,100] × R∈[1,3,5] = 33 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **84.8%** positive (28/33). Best: F20_S40_R5 Sharpe **0.670**, +42.3% ann, **-56.1%** DD. Mean 0.272. **REJECTED** — high IS% but Sharpes too low and DDs 50-60%.
+- Sessions: [2026-04-07 session 160]
+
+## H-311: Donchian Channel Breakout Multi-Asset
+- Status: REJECTED
+- Idea: Buy on N-day high breakout, sell on N-day low breakout. Applied to all 14 assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **41.7%** positive (5/12). **REJECTED** — coin flip.
+- Sessions: [2026-04-07 session 160]
+
+## H-312: Time-Series Carry (Funding Rate)
+- Status: REJECTED
+- Idea: TS version of carry: each asset independently long when funding < 0 (earn funding), short when > 0. Not XS ranking.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = -sign(avg_funding_rate). Grid: LB∈[3-20] × R∈[1,3,5,7] = 24 combos.
+- Data: 14 assets with funding, 661 daily bars.
+- Result: IS **91.7%** positive (22/24). Best: LB5_R5 Sharpe **0.708**, +43.3% ann, **-65.1%** DD. Mean 0.215. **REJECTED** — 100% IS positive on vol-weighted version (40/40, mean 0.347) but DDs 60%+ and WF 3/5 (mean 0.033).
+- Notes: Corr -0.605 vs BTC (strategy tends to be short BTC since BTC usually has positive funding). This creates built-in negative beta. Corr 0.034 vs H-012 (great). But WF is too unstable.
+- Sessions: [2026-04-07 session 160]
+
+## H-313: Multi-Timeframe TSMOM Ensemble (Vol-Scaled)
+- Status: REJECTED
+- Idea: Ensemble of TSMOM signals from multiple lookbacks (short/medium/long), vol-scaled. Reduces whipsaw.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = mean(sign(ret_5d), sign(ret_20d), sign(ret_60d)) × vol_sizing. Grid: 5 LB combos × 2 VW × 3 R = 30 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **96.7%** positive (29/30)! Best: LBs=(5,20,60)_VW20_R7 Sharpe **0.940**, +9.0% ann, **-5.5%** DD. But WF **2/5** (mean OOS -0.311). Split-half PASS (1.64/0.32). **REJECTED** — outstanding IS robustness but WF fails on recent periods.
+- Notes: The ensemble smooths whipsaw beautifully (96.7% IS, only -5.5% DD) but is still regime-dependent. Corr 0.198 H-012, 0.562 H-009.
+- Sessions: [2026-04-07 session 160]
+
+## H-314: Time-Series Mean Reversion (Z-Score)
+- Status: REJECTED
+- Idea: Per-asset z-score of rolling returns. Buy oversold (z < -thresh), sell overbought (z > +thresh).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: z = rolling_mean(ret) / rolling_std(ret). Grid: LB∈[5,10,14,20] × Z∈[0.5,1.0,1.5,2.0] × H∈[1,3,5] = 48 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **45.8%** positive (22/48). Best: LB5_Z2.0_H3 Sharpe **1.392**, +7.6% ann, -4.8% DD. **REJECTED** — only 45.8% IS, too parameter-sensitive.
+- Sessions: [2026-04-07 session 160]
+
+## H-315: RSI Mean Reversion (TS)
+- Status: REJECTED
+- Idea: Buy when RSI < 30, sell when RSI > 70 across 14 assets independently.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **50.0%** positive (54/108). **REJECTED** — coin flip.
+- Sessions: [2026-04-07 session 160]
+
+## H-316: Bollinger Band Mean Reversion (TS)
+- Status: REJECTED
+- Idea: Buy below lower band, sell above upper band across 14 assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **50.0%** positive (24/48). **REJECTED** — coin flip.
+- Sessions: [2026-04-07 session 160]
+
+## H-317: Turn-of-Month Effect (Multi-Asset)
+- Status: REJECTED
+- Idea: Go long all assets on last/first N days of month (academic TOM effect).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **0.0%** positive (0/9). All negative. **REJECTED** — TOM effect does not exist in 24/7 crypto.
+- Sessions: [2026-04-07 session 160]
+
+## H-318: Options Expiry Day Effect (BTC)
+- Status: REJECTED
+- Idea: Exploit BTC price patterns around weekly options expiry (Fridays).
+- Instrument: futures (BTC)
+- Timeframe: 1D
+- Result: Shorting around expiry: Sharpe 0.573. **REJECTED** — too weak and small sample.
+- Sessions: [2026-04-07 session 160]
+
+## H-319: Vol-Regime Adaptive Strategy (BTC)
+- Status: REJECTED
+- Idea: Switch between trend-following (high vol) and mean-reversion (low vol) based on vol percentile regime.
+- Instrument: futures (BTC)
+- Timeframe: 1D
+- Result: IS **65.4%** positive (53/81). Best: VW14_VP70_MOM30_MR10 Sharpe **1.202**, +54.8% ann, -23.0% DD. **REJECTED** — BTC-only, 65% IS, not robust enough.
+- Sessions: [2026-04-07 session 160]
+
+## H-320: Vol-Weighted TS Carry (Funding)
+- Status: REJECTED
+- Idea: TS funding carry with vol-scaling. Per-asset independent signal + risk parity sizing.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **100%** positive (40/40). Best: LB3_VW10_R7 Sharpe **0.789**, +9.5% ann, -13.0% DD. But WF **3/5** (mean OOS 0.033). Split-half PASS (0.91/0.52). Corr 0.034 H-012, -0.605 BTC. **REJECTED** — 100% IS but WF marginal.
+- Sessions: [2026-04-07 session 160]
+
+## H-321: BTC Volatility Targeting
+- Status: REJECTED
+- Idea: Always long BTC, adjust leverage by inverse realized vol (classic vol-targeting).
+- Instrument: futures (BTC)
+- Timeframe: 1D
+- Result: IS **100%** positive (20/20) but only **20%** beat buy-and-hold. Best: VW7 Sharpe 0.353 vs BH 0.286. **REJECTED** — doesn't materially improve on holding BTC.
+- Sessions: [2026-04-07 session 160]
+
+## H-322: Hourly Mean-Reversion (Multi-Asset)
+- Status: REJECTED
+- Idea: Short-term (2-6h) z-score mean reversion on hourly crypto data across 14 assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1H
+- Data: 14 assets, 25,686 hourly bars (3 years).
+- Result: IS **88.9%** positive (48/54). Best: LB3_Z1.0_H1 Sharpe **2.386**, +45.2% ann. **BUT** at 0.02% taker fee: Sharpe **-0.196**. **REJECTED** — signal exists but doesn't survive trading costs.
+- Notes: Key finding: hourly mean-reversion alpha in crypto is real but captured entirely by fees. At 0.01% (maker): Sharpe 1.10. At 0.02% (taker): negative. Trades ~12.6×/day. WF with fees: 2/5.
+- Sessions: [2026-04-07 session 160]
+
+## H-323: Hourly Momentum (Multi-Asset)
+- Status: REJECTED
+- Idea: Trend-following on hourly data across 14 assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1H
+- Result: IS **65.0%** positive (13/20). Best: LB12h_R8h Sharpe **1.274**, +75.3% ann. **REJECTED** — 65% IS, would also suffer from fees. Not tested with fees as IS already borderline.
+- Sessions: [2026-04-07 session 160]
+
+## H-324: ADX-Filtered Multi-Asset TSMOM (Vol-Scaled)
+- Status: CONFIRMED
+- Idea: Time-series momentum across 14 assets, filtered by BTC ADX > 30 (only trade when market is trending). Vol-scaled per asset.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = sign(60d_return) × min(target_vol/realized_vol, 3x). Filter: BTC ADX(14) > 30. Rebalance every 7d. Flat when ADX below threshold.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **65.6%** positive (42/64, full grid). **Best: LB60_ADX30_R7** Sharpe **1.206**, +12.7% ann, **-8.0%** DD, 60% exposure. WF **4/5** positive (mean OOS **0.557**). Split-half **PASS** (2.107/0.834). Neighbors **77.5%** positive (62/80). Corr 0.216 H-012, 0.414 H-009, 0.023 H-076.
+- Notes: ADX filter is the key innovation — removes whipsaw periods that destroy pure TSMOM. When BTC ADX < 30, strategy goes flat instead of getting chopped up. 60% exposure means capital-efficient when active. First TS strategy to pass WF validation this session (4/5 vs 2-3/5 for all others). Paper trade deployed as #41.
+- Sessions: [2026-04-07 session 160]
+
+## H-325: BTC-Conditioned Altcoin Direction
+- Status: REJECTED
+- Idea: Use BTC trend direction to select high-beta altcoins in same direction.
+- Instrument: futures (13 alts)
+- Timeframe: 1D
+- Result: IS **8.3%** positive (3/36). **REJECTED** — BTC signal doesn't help pick altcoin direction.
+- Sessions: [2026-04-07 session 160]
+
+## H-326: Volatility Breakout (Multi-Asset)
+- Status: REJECTED
+- Idea: Enter when daily range exceeds N-day avg by X std, trade in direction of the breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **31.2%** positive (15/48). **REJECTED** — not robust.
+- Sessions: [2026-04-07 session 160]
+
+## H-327: Return Persistence / Autocorrelation (TS)
+- Status: REJECTED
+- Idea: Trade based on short-term return autocorrelation (momentum vs reversal at 1-5d).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **50.0%** positive (12/24). **REJECTED** — coin flip between momentum and reversal.
+- Sessions: [2026-04-07 session 160]
+
+## H-328: Market Timing (EW Long / Flat)
+- Status: REJECTED
+- Idea: Long equal-weight all assets when momentum positive, flat when negative. Simple risk-on/off.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **23.3%** positive (7/30). **REJECTED** — simple market timing doesn't work in crypto.
+- Sessions: [2026-04-07 session 160]
+
+## H-329: BTC Lead-Lag Hourly (Cross-Asset)
+- Status: REJECTED
+- Idea: Use BTC 1h return to predict next-hour altcoin returns (lead-lag effect).
+- Instrument: futures (13 alts, 1H)
+- Timeframe: 1H
+- Data: 25,686 hourly bars.
+- Result: **Reversal** (contrarian) Sharpe **1.658** pre-fees. At 0.02% fee: Sharpe **-0.737**. Signal changes 52.6% of hours (~12.6 trades/day). **REJECTED** — doesn't survive fees.
+- Notes: Strong hourly reversal pattern: when BTC moves up, altcoins tend to reverse next hour. But trading costs kill it. Even at maker fees (0.01%), only Sharpe 0.46.
+- Sessions: [2026-04-07 session 160]
+
+## H-330: Range Compression Breakout
+- Status: REJECTED
+- Idea: Enter when range contracts below N-percentile (compression), trade in direction of first breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **40.7%** positive (11/27). Best: W14_P30%_H1 Sharpe **1.702** but only 40.7% IS. **REJECTED** — very parameter-sensitive.
+- Sessions: [2026-04-07 session 160]
+
+## H-331: ATR Trailing Stop Trend Following
+- Status: REJECTED
+- Idea: Multi-asset stop-and-reverse trend following using ATR trailing stops, vol-scaled.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **77.8%** positive (21/27) but mean Sharpe **0.047**. Best: AP14_AM2.5 Sharpe **0.132**. **REJECTED** — survives but doesn't make money.
+- Sessions: [2026-04-07 session 160]
