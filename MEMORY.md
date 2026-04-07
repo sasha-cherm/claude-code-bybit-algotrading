@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,165 (-0.83%). BTC spot ~$69,819.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$100,050 (+0.05%, near breakeven!). BTC spot ~$68,763.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,876 (-1.24%).
-- **Internal paper trades:** 40 runners active. Session 156. **9/40 positive** (no new bar since Apr 5).
-- **H-063**: $9,928 (-0.71%), no current trade (between trades). **H-039**: +5.79%, next LONG Wed Apr 9.
-- **Top performers**: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
-- **Key shift**: Demo improved -1.44% → -0.83%. BTC $69,750 → $69,819. H-277 deployed.
-- **Research**: 279 total hypotheses. H-277 CONFIRMED+deployed. H-275/H-276/H-278/H-279 REJECTED.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,873 (-1.27%).
+- **Internal paper trades:** 40 runners active. Session 157. **16/38 positive** (Apr 6 bar processed, big improvement from 9/40).
+- **H-063**: $10,150 (+1.50%), between trades. **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Top performers**: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%).
+- **Key shift**: Demo recovered -0.83% → +0.05%. H-049 surged +3.46%, H-085/H-175/H-063/H-019 all flipped positive.
+- **Research**: 291 total hypotheses. H-280 through H-291 all REJECTED (12 new factors, no confirmations).
 - **AUTOMATED:** Paper trades hourly via cron (40 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research. Monitor H-063 (between trades) and H-009 (-2.10% worst).
+- **Next action:** Continue research. Monitor H-021 (-2.47% worst) and H-183 (-2.43%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -22,15 +22,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 145) archived to `memory/session_archive.md`._
-
-### Session 2026-04-05 review+deploy+research (session 147)
-- Goal: Review + Deploy + Research — MTM update, H-250 deployment, 6 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$66,870), H-245 through H-250 backtests
-- Done: 33 runners (32→33 post-deploy). **Demo**: $100,490 (+0.49%, recovered to positive!). **10/33 positive**. Top: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%). H-053 recovered to +1.39%. H-063 trade 2 at +1.31% (expires Apr 10). **Research**: **H-250 CONFIRMED** (US Session Momentum — IS **96.7%** high_us_long, WF **5/5** mean **1.197**, corr **0.032** H-012, **0.378** H-031, **-0.227** H-076. Novel institutional flow proxy using intraday session decomposition). **H-245 REJECTED** (VWAP deviation — 76.7% < 80%). **H-246 REJECTED** (volume HHI — 53.3%). **H-247 REJECTED** (first-hour alignment — 63.3%). **H-248 REJECTED** (intraday efficiency — 56.7%). **H-249 REJECTED** (range expansion — 36.7%). H-250 deployed as paper trade #33: LONG OP/NEAR/SOL, SHORT XRP/ATOM/ADA. 250 total hypotheses.
-- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
-- Questions added: none
-- Self-modifications: H-250 runner created, added to orchestrator. Archived session 137. (session 147)
+_Older sessions (bootstrap through 147) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-05 review+research (session 148)
 - Goal: Review + Research — MTM update, 3 new factor backtests
@@ -103,3 +95,11 @@ _Older sessions (bootstrap through 145) archived to `memory/session_archive.md`.
 - Next: Continue research. Monitor H-009 (-2.10% worst) and H-021 (-1.71%).
 - Questions added: none
 - Self-modifications: H-277 runner created, added to orchestrator. Archived session 146. (session 156)
+
+### Session 2026-04-07 review+research (session 157)
+- Goal: Review + Research — MTM update with Apr 6 bar, 12 new factor backtests
+- Focus: Paper trade MTM (Apr 6 bar $68,846, BTC now $68,763), H-280 through H-291 backtests
+- Done: 40 runners checked. **Demo**: $100,050 (+0.05%, recovered from -0.83% to near breakeven!). **16/38 positive** (was 9/40). Top: H-039(+5.79%), H-012(+4.46%), H-076(+4.36%), H-031(+3.97%), H-049(+3.46%). Key movers: H-049 surged +0.56%→+3.46%, H-085 flipped +1.92%, H-175 flipped +1.30%, H-063 flipped +1.50%, H-019 flipped +1.71%. H-183 crashed -2.43%. H-021 worst at -2.47%. **Research**: All 12 REJECTED — H-280(wick ratio 40.3%), H-281(vol-weight persistence 45.8%), H-282(close-to-high 43.1%), H-283(dispersion 38.9%), H-284(volume surprise 50%), H-285(direction persistence 36.1%), H-286(return/volume 50%), H-287(gap 0%), H-288(Sharpe change 44.4%), H-289(residual mom FAILED), H-290(DD recovery 38.9%), H-291(ATR ratio 44.4%). 291 total hypotheses.
+- Next: Continue research. Explore fundamentally different signal types (funding, OI combinations, multi-asset). Monitor H-021 (-2.47%) and H-183 (-2.43%).
+- Questions added: none
+- Self-modifications: Archived session 147. (session 157)

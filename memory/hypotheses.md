@@ -3548,6 +3548,126 @@
 - Notes: Counterintuitive — high CV (episodic) assets outperform steady-volume assets. Captures attention/narrative-driven flows. But insufficient robustness. Volume CV doesn't provide enough cross-sectional spread.
 - Sessions: [2026-04-06 session 156]
 
+## H-280: Wick Ratio Factor (Intraday Reversal Intensity)
+- Status: REJECTED
+- Idea: Rank 14 crypto assets by average wick-to-body ratio (high-low / |close-open|). High wick = noisy intraday reversals.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of (high-low) / |close-open| over lookback. Rank cross-sectionally.
+- Result: IS **40.3%** overall. Best direction high_long 80.6%. Below 80% threshold. Best Sharpe 1.765 (LB5_R5_N4).
+- Notes: Strong directional signal in one direction but overall IS robustness too low. Wick ratio captures noise but doesn't differentiate enough cross-sectionally.
+- Sessions: [2026-04-07 session 157]
+
+## H-281: Volume-Weighted Return Persistence Factor
+- Status: REJECTED
+- Idea: Rank by rolling sum of return × normalized volume. Captures whether high-volume days push in same direction persistently.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: ret × (vol/vol_60d_avg), rolling sum over lookback.
+- Result: IS **45.8%** overall. Best direction high_long 75.0%. Below 80% threshold. Best Sharpe 1.508 (LB20_R3_N4).
+- Notes: Volume-weighted persistence doesn't add enough beyond raw momentum.
+- Sessions: [2026-04-07 session 157]
+
+## H-282: Close-to-High Distance Factor (Buying Pressure)
+- Status: REJECTED
+- Idea: Rank by where close falls in daily range (close-low)/(high-low). Near high = bullish.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of (close-low)/(high-low) over lookback.
+- Result: IS **43.1%** overall. Best direction high_long 58.3%. Below 80% threshold. Best Sharpe 1.442 (LB14_R7_N4).
+- Notes: Buying pressure proxy has insufficient cross-sectional spread. All crypto assets close similarly relative to their ranges.
+- Sessions: [2026-04-07 session 157]
+
+## H-283: Return Dispersion Factor (XS Deviation)
+- Status: REJECTED
+- Idea: Rank by average absolute deviation of asset return from cross-sectional mean. High dispersion = independent mover.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of |ret_i - mean(ret_all)| over lookback.
+- Result: IS **38.9%** overall. Best direction high_long 75.0%. Below 80% threshold. Best Sharpe 1.503 (LB5_R5_N3).
+- Notes: Dispersion captures independence from market but doesn't predict direction cross-sectionally.
+- Sessions: [2026-04-07 session 157]
+
+## H-284: Relative Volume Surprise Factor
+- Status: REJECTED
+- Idea: Rank by ratio of short-term to long-term volume. High ratio = volume surge/increased attention.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: vol_5d_avg / vol_LBd_avg, ranked cross-sectionally.
+- Result: IS **50.0%** overall. Best direction low_long **100%** (36/36). Below 80% threshold. Best Sharpe 1.934 (LB20_R5_N3).
+- Notes: Strong directional signal in low_long but overall IS robustness fails. Similar to H-021 (volume momentum) in reverse — low volume surprise outperforms. Redundant concept.
+- Sessions: [2026-04-07 session 157]
+
+## H-285: Return Direction Persistence Factor (Rolling Sign Mean)
+- Status: REJECTED
+- Idea: Rank by rolling mean of daily return sign (+1/-1). Captures consistency of direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of sign(ret) over lookback.
+- Result: IS **36.1%** overall. Best direction high_long 61.1%. Below 80% threshold. Best Sharpe 1.069 (LB10_R5_N4).
+- Notes: Discards magnitude (same as H-269 momentum breadth). Consistently weak signal — magnitude matters for cross-sectional ranking.
+- Sessions: [2026-04-07 session 157]
+
+## H-286: Return-to-Volume Ratio (Dollar-Volume Adjusted Return)
+- Status: REJECTED
+- Idea: Rank by |return| / dollar_volume — Amihud-like price impact measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of |ret| / (close × vol) over lookback.
+- Result: IS **50.0%** overall. Best direction low_long **100%** (36/36). Below 80% threshold. Best Sharpe 1.572 (LB60_R7_N4).
+- Notes: Similar to H-197 (Amihud) but different construction. Low price impact = liquid assets outperform. Consistent direction but not robust across all params.
+- Sessions: [2026-04-07 session 157]
+
+## H-287: Open-to-Previous-Close Gap Factor
+- Status: REJECTED
+- Idea: Rank by average gap between open and previous close. Captures overnight sentiment shift.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of (open - prev_close) / prev_close.
+- Result: IS **0.0%** (0/72 positive). Completely dead signal. Best Sharpe -7.794.
+- Notes: In 24/7 crypto markets, open ≈ previous close (no real "overnight gap"). Gap is just noise from bar boundary timing. Completely non-informative.
+- Sessions: [2026-04-07 session 157]
+
+## H-288: Rolling Sharpe Change (Quality Acceleration)
+- Status: REJECTED
+- Idea: Rank by difference between short-window and long-window rolling Sharpe. Captures improving risk-adjusted quality.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Sharpe(LB) - Sharpe(3×LB), where Sharpe = mean(ret) / std(ret) over window.
+- Result: IS **44.4%** overall. Best direction high_long 52.8%. Below 80% threshold. Best Sharpe 1.835 (LB5_R3_N3).
+- Notes: Similar concept to H-255 (rolling Sharpe level) which passed. The *change* is noisier than the *level*. Second derivative signals amplify noise.
+- Sessions: [2026-04-07 session 157]
+
+## H-289: Residual Momentum (Orthogonalized to Size & Vol)
+- Status: REJECTED
+- Idea: Cross-sectional regression of momentum on size & volatility per day. Extract residual as pure idiosyncratic momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Daily XS regression: mom_i = β₁×size_i + β₂×vol_i + α_i. Factor = residual α.
+- Result: **FAILED** — no valid results. Cross-sectional regression with only 14 assets is too noisy; OLS with 14 observations and 3 parameters lacks degrees of freedom.
+- Notes: Would need 50+ assets for reliable XS regression. With 14 crypto assets, residuals are dominated by estimation error.
+- Sessions: [2026-04-07 session 157]
+
+## H-290: Volume-Adjusted Drawdown Recovery Speed
+- Status: REJECTED
+- Idea: How quickly does an asset recover from drawdowns, weighted by volume? Strong recovery with high volume = buying interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling mean of (positive_ret × in_drawdown) × normalized_vol.
+- Result: IS **38.9%** overall. Best direction high_long 47.2%. Below 80% threshold. Best Sharpe 1.252 (LB60_R3_N4).
+- Notes: Recovery speed concept doesn't differentiate cross-sectionally. All crypto assets have similar drawdown/recovery dynamics due to high correlation.
+- Sessions: [2026-04-07 session 157]
+
+## H-291: ATR Expansion/Contraction Ratio
+- Status: REJECTED
+- Idea: Ratio of short-term ATR to long-term ATR. Expanding = breakout/vol expansion. Contracting = consolidation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: ATR(LB) / ATR(3×LB).
+- Result: IS **44.4%** overall. Best direction high_long **86.1%**. Below 80% threshold. Best Sharpe 1.264 (LB5_R3_N4).
+- Notes: Strong directional signal (expanding ATR = long) but overall robustness fails. Similar to H-059 (vol term structure) which passed by using a different vol decomposition. ATR ratio is too raw.
+- Sessions: [2026-04-07 session 157]
+
 ---
 
 <!-- Template:

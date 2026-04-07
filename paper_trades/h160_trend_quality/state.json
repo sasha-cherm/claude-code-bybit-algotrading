@@ -81,11 +81,17 @@
       "equity": 9963.71,
       "positions": 6,
       "rebalanced": true
+    },
+    {
+      "date": "2026-04-06",
+      "equity": 9845.69,
+      "positions": 6,
+      "rebalanced": false
     }
   ],
-  "last_daily_date": "2026-04-05",
+  "last_daily_date": "2026-04-06",
   "last_rebal_date": "2026-04-05",
-  "days_since_rebal": 0,
+  "days_since_rebal": 1,
   "rebal_count": 3,
   "total_trades": 16,
   "total_fees": 52.967090541775434

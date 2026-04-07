@@ -118,5 +118,25 @@
     "trades": 4,
     "fees": 10.06,
     "capital": 10034.21
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-07T00:32:45.388086+00:00",
+    "date": "2026-04-06",
+    "longs": [
+      "ATOM/USDT",
+      "DOGE/USDT",
+      "BTC/USDT",
+      "ADA/USDT"
+    ],
+    "shorts": [
+      "AVAX/USDT",
+      "SUI/USDT",
+      "DOT/USDT",
+      "NEAR/USDT"
+    ],
+    "trades": 2,
+    "fees": 5.01,
+    "capital": 9947.46
   }
 ]

@@ -1119,3 +1119,11 @@
 - Next: Continue research. Monitor H-189 (-3.60%) and H-183/H-191.
 - Questions added: none
 - Self-modifications: H-242/H-244 runners created, added to orchestrator. Archived session 136. (session 146)
+
+### Session 2026-04-05 review+deploy+research (session 147)
+- Goal: Review + Deploy + Research — MTM update, H-250 deployment, 6 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$66,870), H-245 through H-250 backtests
+- Done: 33 runners (32→33 post-deploy). Demo: $100,490 (+0.49%). H-250 CONFIRMED+deployed. H-245/H-246/H-247/H-248/H-249 REJECTED.
+- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
+- Questions added: none
+- Self-modifications: H-250 runner created, added to orchestrator. Archived session 137. (session 147)
