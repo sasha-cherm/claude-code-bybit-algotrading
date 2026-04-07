@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,799 (-0.20%). BTC spot ~$68,935.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$99,584 (-0.42%). BTC spot ~$68,888.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,872 (-1.28%).
-- **Internal paper trades:** 40 runners active. Session 158. **16/40 positive** (no new bar since Apr 6).
-- **H-063**: $10,110 (+1.10%), between trades. **H-039**: +5.79%, next LONG Wed Apr 9.
+- **Internal paper trades:** 40 runners active. Session 159. **15/40 positive** (no new bar since Apr 6).
+- **H-063**: $10,168 (+1.68%), between trades. **H-039**: +5.79%, next LONG Wed Apr 9.
 - **Top performers**: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%).
-- **Research**: 299 total hypotheses. H-292 through H-299 all REJECTED (8 multi-factor interaction backtests). Key finding: multi-factor interactions produce great IS/WF but are too correlated (0.50-0.75) with component factors.
+- **Research**: 307 total hypotheses. H-300 through H-307 all REJECTED (8 non-momentum signal backtests). Key finding: after 307 hypotheses, most single-factor XS signals are exhausted. Best anti-momentum diversifier found (H-306, corr -0.447) but IS too low.
 - **AUTOMATED:** Paper trades hourly via cron (40 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Continue research — explore non-momentum-based signals, alternative asset universes, or non-linear constructions. Monitor H-021 (-2.65% worst) and H-183 (-2.46%).
+- **Next action:** Shift focus: portfolio-level optimization of existing strategies, alternative asset universes, time-series strategies, or options beyond strangles. Monitor H-021 (-2.65% worst) and H-183 (-2.46%).
 - **Open user questions:** None
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 148) archived to `memory/session_archive.md`._
-
-### Session 2026-04-05 review+deploy+research (session 149)
-- Goal: Review + Deploy + Research — MTM update, H-255 deployment, 3 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$67,239), H-254/H-255/H-256 backtests
-- Done: 34 runners (33→34 post-deploy). **Demo**: $100,649 (+0.65%). **10/34 positive**. Top: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%). No new daily bar since Apr 4. **Research**: **H-254 REJECTED** (BTC beta change direction — IS 42.6%, neither direction dominant, beta change is mean-reverting not persistent). **H-255 CONFIRMED** (risk-adjusted momentum/rolling Sharpe — IS **93.3%** high_sharpe_long, WF **5/6** mean **0.964**, split-half H1=1.963/H2=1.447, corr 0.460 H-012. Quality momentum captures risk-adjusted persistence). **H-256 REJECTED** (volume-confirmed return — IS 93.3% passes but WF **3/6** mean -0.164, doesn't generalize OOS). H-255 deployed as paper trade #34: LONG DOGE/ETH/LINK, SHORT ATOM/XRP/DOT. 256 total hypotheses.
-- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
-- Questions added: none
-- Self-modifications: H-255 runner created, added to orchestrator. Archived session 139. (session 149)
+_Older sessions (bootstrap through 149) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-06 review+deploy+research (session 150)
 - Goal: Review + Deploy + Research — MTM update, H-259 deployment, 3 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 148) archived to `memory/session_archive.md`.
 - Next: Explore non-momentum-based signals, alternative constructions, or frequency domain approaches. Monitor H-021 (-2.65%) and H-183 (-2.46%).
 - Questions added: none
 - Self-modifications: Archived session 148. Fixed metrics bug (PPY passed as risk_free_rate). (session 158)
+
+### Session 2026-04-07 review+research (session 159)
+- Goal: Review + Research — MTM update, 8 non-momentum signal backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$68,888), H-300 through H-307 backtests
+- Done: 40 runners checked. **Demo**: $99,584 (-0.42%, dipped from -0.20%). **15/40 positive** (was 16). Top: H-039(+5.79%), H-012(+4.15%), H-076(+4.14%), H-031(+3.86%), H-049(+3.25%). BTC dipped to $68,200 intraday. **Research**: All 8 REJECTED — H-300(short-term reversal IS 56.2%, WF 5/6 but split-half fail), H-301(corr centrality IS 91.7% but split-half fail), H-302(direction streak IS 0%), H-303(asymmetric vol IS 37.5%, LB20 only), H-304(EWM momentum IS 76.7%, corr H-012 0.631), H-305(beta change IS 44.4%), H-306(vol-price divergence IS 38.9% **but** corr H-012 **-0.447**, WF 5/6, split-half pass — best anti-momentum diversifier found), H-307(return entropy IS 12.5%, reverse 87.5% but too weak). 307 total hypotheses.
+- Next: Single-factor XS signals largely exhausted after 307 hypotheses. Shift focus to: portfolio optimization, alternative assets, time-series strategies, or options strategies.
+- Questions added: none
+- Self-modifications: Archived session 149. (session 159)

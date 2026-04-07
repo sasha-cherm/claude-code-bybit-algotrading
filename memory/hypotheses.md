@@ -3758,6 +3758,94 @@
 - Notes: Interesting finding: assets RE-JOINING the herd outperform (98.1% in reverse), while decorrelating assets underperform. This makes sense — crypto is herding/beta-driven, so convergence = momentum confirmation. But the magnitude is too weak (best Sharpe 0.116) to be tradeable. Near-zero H-012 correlation shows this captures something genuinely different, just not strong enough.
 - Sessions: [2026-04-07 session 158]
 
+## H-300: Short-Term Reversal Factor (1-5 Day Contrarian)
+- Status: REJECTED
+- Idea: Buy recent losers, sell recent winners over 1-5 day horizons. Opposite of momentum — mean-reversion at short time scales.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = -pct_change(lookback). Grid: LB∈[1,2,3,5] × R∈[1,2,3,5] × N∈[3,4] = 32 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **56.2%** positive (18/32). Best: LB2_R3_N4 Sharpe **1.436**, +69.9% ann, -27.7% DD. WF **5/6** mean **1.366**. Split-half 1.597/**-0.800**. Corr H-012 **-0.122** (negative = diversifier). **REJECTED** — IS too low, split-half fails.
+- Notes: Short-term reversal exists in crypto (WF 5/6, mean 1.366 is excellent) but is parameter-sensitive: LB2 works (Sharpe 0.435 mean), LB1 and LB5 don't. Negative correlation with H-012 means this is a genuine anti-momentum signal. H2 failure suggests reversal effect may be weakening over time.
+- Sessions: [2026-04-07 session 159]
+
+## H-301: Correlation Centrality Factor
+- Status: REJECTED
+- Idea: Rank assets by average pairwise rolling correlation (centrality in correlation network). Long peripheral, short central assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = -mean(rolling_corr with all others). Grid: CW∈[20,30,40,60] × R∈[3,5,7] × N∈[3,4] = 24 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **91.7%** positive (22/24). Best: CW60_R7_N3 Sharpe **1.514**, +75.9% ann, -25.4% DD. WF **4/6** mean **0.622**. Split-half 2.796/**-0.420**. Corr H-012 **0.414**. **REJECTED** — split-half fails (H2 negative).
+- Notes: Strong IS robustness (91.7%) with clear signal: peripheral assets outperform central ones. CW60 dominates (mean Sharpe 1.194, 6/6 positive). But the signal degraded in the second half (H2=-0.420), suggesting the peripheral-alpha may have been arbitraged away or correlation structure changed. Modestly correlated with momentum (0.414).
+- Sessions: [2026-04-07 session 159]
+
+## H-302: Consecutive Direction Streak Factor
+- Status: REJECTED
+- Idea: Count consecutive positive/negative daily return streaks as non-linear momentum encoding. Test both continuation (long winning streaks) and reversal (long losing streaks).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = streak_count (capped at max_lb). Grid: ML∈[10,14,20,30] × R∈[3,5,7] × N∈[3,4] × dir∈[continuation,reversal] = 48 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **0.0%** positive (0/48). Best: ML10_R5_N3_reversal Sharpe **-0.452**. Mean Sharpe **-1.192**. Neither direction works. **REJECTED** — zero IS positive.
+- Notes: Pure direction count (ignoring magnitude) has absolutely no cross-sectional predictive power in crypto. Both continuation and reversal are equally useless (mean Sharpe -1.198 vs -1.186). Magnitude matters; direction alone is noise.
+- Sessions: [2026-04-07 session 159]
+
+## H-303: Asymmetric Volatility Factor (Upside/Downside Vol Ratio)
+- Status: REJECTED
+- Idea: Ratio of upside to downside realized volatility. High ratio = bullish vol structure → LONG.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = std(positive_returns) / std(negative_returns). Grid: LB∈[10,20,30,40] × R∈[3,5,7] × N∈[3,4] = 24 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **37.5%** positive (9/24). Best: LB20_R5_N3 Sharpe **1.102**, +45.4% ann, -31.9% DD. WF **5/6** mean **0.970**. Split-half 0.733/1.408 (PASS!). Corr H-012 **0.407**. **REJECTED** — IS too low (only LB20 works, 6/6; all other lookbacks fail).
+- Notes: The up/down vol asymmetry signal is real but extremely lookback-sensitive: LB20 gives 6/6 positive (mean 0.902) while LB10(-0.684), LB30(-0.649), LB40(-0.126) all negative. WF and split-half both pass. This is a genuine signal (crypto assets with bigger up moves than down moves continue to outperform) but too fragile to deploy.
+- Sessions: [2026-04-07 session 159]
+
+## H-304: Exponentially-Weighted Momentum Factor
+- Status: REJECTED
+- Idea: EWM of daily returns (recent days weighted more) instead of simple N-day return momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = ewm(daily_returns, span). Grid: SPAN∈[5,10,20,30,40] × R∈[3,5,7] × N∈[3,4] = 30 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **76.7%** positive (23/30). Best: SPAN30_R7_N4 Sharpe **0.938**, +36.7% ann, -33.6% DD. WF **4/6** mean **0.625**. Split-half 1.767/0.317 (pass). Corr H-012 **0.631**. **REJECTED** — IS borderline 76.7% (below 80%), corr 0.631 too high.
+- Notes: EWM momentum is just momentum with a recency decay — as span increases, correlation with H-012 increases monotonically (SPAN5: 0.230, SPAN40: 0.658). SPAN10 is interesting (corr 0.267, 6/6 positive) but IS doesn't reach 80%. Confirms that any momentum variant ends up correlated with standard momentum.
+- Sessions: [2026-04-07 session 159]
+
+## H-305: Beta Change Factor (Rolling Beta Acceleration)
+- Status: REJECTED
+- Idea: Rank 13 non-BTC assets by change in rolling beta to BTC (short_beta - long_beta). Test both increasing-beta-long and decreasing-beta-long.
+- Instrument: futures (13 alt perps, BTC excluded)
+- Timeframe: 1D
+- Logic: signal = short_beta - long_beta (or negated). Grid: SB∈[10,20] × LB∈[30,40,60] × R∈[3,5,7] × N∈[3,4] × dir∈[increasing,decreasing] = 72 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **44.4%** positive (32/72). Best: SB10_LB30_R7_N4_increasing_long Sharpe **0.974**, +33.8% ann, -45.0% DD. WF **4/6** mean **1.686**. Split-half -0.123/0.810. Corr H-012 **0.174** (low, novel). **REJECTED** — IS too low, split-half H1 negative.
+- Notes: Increasing-beta-long slightly better (47.2%) than decreasing (41.7%) — assets becoming more BTC-correlated tend to outperform. Low H-012 correlation (0.174) means this IS genuinely novel. But beta dynamics in crypto are too noisy (45% DD). WF high (1.686) but concentrated in recent folds (3-5: Sharpe 4.2, 3.6, 2.3). May be worth revisiting.
+- Sessions: [2026-04-07 session 159]
+
+## H-306: Volume-Price Divergence Factor
+- Status: REJECTED
+- Idea: Cross-sectional divergence between volume rank and price rank. Assets where volume is growing more than price are experiencing accumulation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = rank(volume_pct_change) - rank(price_pct_change). Grid: PLB∈[10,20,30] × VLB∈[10,20,30] × R∈[3,5,7] × N∈[3,4] = 54 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **38.9%** positive (21/54). Best: P30_V10_R7_N3 Sharpe **1.383**, +59.7% ann, -36.1% DD. WF **5/6** mean **1.747**. Split-half 0.726/0.610 (PASS!). Corr H-012 **-0.447** (strongly negative, excellent diversifier). **REJECTED** — IS too low.
+- Notes: **Most interesting rejection this session.** Corr -0.447 with H-012 makes this the strongest anti-momentum diversifier found in 307 hypotheses. WF 5/6 (mean 1.747) and split-half both pass. The accumulation signal (volume growing faster than price = buying pressure without price confirmation) is a genuine contrarian signal. But IS robustness is only 38.9% — the signal is too sensitive to lookback mismatches (price 30d + volume 10d works, but most other combos don't). The exhaust direction would be 61.1% positive.
+- Sessions: [2026-04-07 session 159]
+
+## H-307: Return Distribution Entropy Factor
+- Status: REJECTED
+- Idea: Shannon entropy of binned daily return distribution. Long low-entropy (predictable) assets, short high-entropy (random) assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = -entropy(histogram(returns, n_bins)). Grid: LB∈[10,20,30,40] × B∈[3,5,7] × R∈[3,5,7] × N∈[3,4] = 72 combos.
+- Data: 14 assets, 731 daily bars.
+- Result: IS **12.5%** positive low-entropy-long (9/72). **REVERSE**: high-entropy-long **87.5%** positive (63/72). Best: LB10_B3_R7_N3 Sharpe **0.613**, +18.0% ann, -28.9% DD. Corr H-012 **-0.105**. **REJECTED** — IS too low in intended direction, reverse direction too weak.
+- Notes: Counterintuitive finding: high-entropy (random/unpredictable) assets outperform predictable ones 87.5% of the time. This might be because "predictable" in crypto means "stuck in a range" while "unpredictable" means "making large moves in both directions" = higher expected absolute returns. But the magnitude is too weak (mean Sharpe -0.518 even in the intended direction). Near-zero H-012 correlation (-0.105) confirms this is a genuinely novel signal type.
+- Sessions: [2026-04-07 session 159]
+
 ---
 
 <!-- Template:

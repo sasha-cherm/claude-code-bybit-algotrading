@@ -1133,3 +1133,11 @@
 - Focus: Paper trade MTM (no new daily bar, BTC ~$66,834), H-251/H-252/H-253 backtests
 - Done: 33 runners checked. Demo: $100,509 (+0.51%). 10/33 positive. Research: H-251/H-252/H-253 all REJECTED. 253 total hypotheses.
 - Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
+
+### Session 2026-04-05 review+deploy+research (session 149)
+- Goal: Review + Deploy + Research — MTM update, H-255 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$67,239), H-254/H-255/H-256 backtests
+- Done: 34 runners (33→34 post-deploy). **Demo**: $100,649 (+0.65%). **10/34 positive**. Top: H-039(+5.79%), H-076(+4.07%), H-031(+3.93%), H-012(+2.22%), H-052(+1.92%). No new daily bar since Apr 4. **Research**: **H-254 REJECTED** (BTC beta change direction — IS 42.6%, neither direction dominant, beta change is mean-reverting not persistent). **H-255 CONFIRMED** (risk-adjusted momentum/rolling Sharpe — IS **93.3%** high_sharpe_long, WF **5/6** mean **0.964**, split-half H1=1.963/H2=1.447, corr 0.460 H-012. Quality momentum captures risk-adjusted persistence). **H-256 REJECTED** (volume-confirmed return — IS 93.3% passes but WF **3/6** mean -0.164, doesn't generalize OOS). H-255 deployed as paper trade #34: LONG DOGE/ETH/LINK, SHORT ATOM/XRP/DOT. 256 total hypotheses.
+- Next: Continue research. Monitor H-021 (-3.63%) and H-009/H-160.
+- Questions added: none
+- Self-modifications: H-255 runner created, added to orchestrator. Archived session 139. (session 149)

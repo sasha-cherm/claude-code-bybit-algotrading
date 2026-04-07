@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-306",
+  "name": "Volume-Price Divergence",
+  "total_params": 54,
+  "pct_positive": 38.88888888888889,
+  "best_config": "P30_V10_R7_N3",
+  "best_sharpe": 1.382720621419764,
+  "best_annual_return": 0.597288317944848,
+  "best_max_dd": 0.361339223812939,
+  "corr_h012": -0.4466013954457589,
+  "mean_sharpe": -0.24531353607495118,
+  "split_half_h1": 0.7258774617290712,
+  "split_half_h2": 0.6099389161629034,
+  "wf_folds_positive": 5,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.7467312428871284
+}

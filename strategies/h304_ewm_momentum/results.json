@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-304",
+  "name": "EWM Momentum",
+  "total_params": 30,
+  "pct_positive": 76.66666666666667,
+  "best_config": "SPAN30_R7_N4",
+  "best_sharpe": 0.9378309055644827,
+  "best_annual_return": 0.3671294339023996,
+  "best_max_dd": 0.33631738597965455,
+  "corr_h012": 0.6308859805627066,
+  "mean_sharpe": 0.2199958817594903,
+  "split_half_h1": 1.7668300443363603,
+  "split_half_h2": 0.3171623815411496,
+  "wf_folds_positive": 4,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 0.6251178113134125
+}

@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H-302",
+  "name": "Direction Streak",
+  "total_params": 48,
+  "pct_positive": 0.0,
+  "best_config": "ML10_R5_N3_reversal",
+  "best_sharpe": -0.45205075895099134,
+  "best_annual_return": -0.28867354110364296,
+  "best_max_dd": 0.6321954502052469,
+  "corr_h012": -0.27599984393119664,
+  "mean_sharpe": -1.1919777806749627,
+  "split_half_h1": 0.5070143909444705,
+  "split_half_h2": -2.03147016566995,
+  "best_direction": "reversal",
+  "wf_folds_positive": 3,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": -0.8603129561637733
+}

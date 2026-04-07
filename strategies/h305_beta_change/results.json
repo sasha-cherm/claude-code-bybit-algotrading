@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H-305",
+  "name": "Beta Change",
+  "total_params": 72,
+  "pct_positive": 44.44444444444444,
+  "best_config": "SB10_LB30_R7_N4_increasing_long",
+  "best_sharpe": 0.9736898302047942,
+  "best_annual_return": 0.3381160487876327,
+  "best_max_dd": 0.4504942590883462,
+  "corr_h012": 0.1738993598299815,
+  "mean_sharpe": -0.16403738591499822,
+  "split_half_h1": -0.12326501871933931,
+  "split_half_h2": 0.8104981723684486,
+  "best_direction": "increasing_long",
+  "wf_folds_positive": 4,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.6862807819773122
+}

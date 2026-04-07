@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-301",
+  "name": "Correlation Centrality",
+  "total_params": 24,
+  "pct_positive": 91.66666666666666,
+  "best_config": "CW60_R7_N3",
+  "best_sharpe": 1.5138435686341716,
+  "best_annual_return": 0.7588585556862089,
+  "best_max_dd": 0.254075444116261,
+  "corr_h012": 0.4135759579069585,
+  "mean_sharpe": 0.6772272517953883,
+  "split_half_h1": 2.795927513889189,
+  "split_half_h2": -0.42025520534904426,
+  "wf_folds_positive": 4,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 0.6216192930962715
+}

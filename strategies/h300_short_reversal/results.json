@@ -1,0 +1,19 @@
+{
+  "hypothesis": "H-300",
+  "name": "Short-Term Reversal",
+  "total_params": 32,
+  "pct_positive": 56.25,
+  "best_config": "LB2_R3_N4",
+  "best_sharpe": 1.4355800284128417,
+  "best_annual_return": 0.6988417416408026,
+  "best_max_dd": 0.2767942671845383,
+  "corr_h012": -0.12160223364686121,
+  "corr_h076": 0.14556072952996135,
+  "corr_h031": -0.13130098750419872,
+  "mean_sharpe": 0.08369500763019803,
+  "split_half_h1": 1.5970221140060143,
+  "split_half_h2": -0.799623996587036,
+  "wf_folds_positive": 5,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 1.3664648727582376
+}

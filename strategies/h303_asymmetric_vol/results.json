@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-303",
+  "name": "Asymmetric Volatility",
+  "total_params": 24,
+  "pct_positive": 37.5,
+  "best_config": "LB20_R5_N3",
+  "best_sharpe": 1.1015608041649187,
+  "best_annual_return": 0.45372355937103315,
+  "best_max_dd": 0.31863853326207725,
+  "corr_h012": 0.40746417416491715,
+  "mean_sharpe": -0.13956144103776394,
+  "split_half_h1": 0.7329298654316383,
+  "split_half_h2": 1.4076082507269871,
+  "wf_folds_positive": 5,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 0.9702043989232081
+}

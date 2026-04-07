@@ -1,0 +1,17 @@
+{
+  "hypothesis": "H-307",
+  "name": "Return Entropy",
+  "total_params": 72,
+  "pct_positive": 12.5,
+  "best_config": "LB10_B3_R7_N3",
+  "best_sharpe": 0.6129526493189748,
+  "best_annual_return": 0.18037441359382722,
+  "best_max_dd": 0.2892392973817872,
+  "corr_h012": -0.10457234533176785,
+  "mean_sharpe": -0.5180875248694377,
+  "split_half_h1": 0.11600335071900096,
+  "split_half_h2": -0.37352166194037617,
+  "wf_folds_positive": 4,
+  "wf_total_folds": 6,
+  "wf_mean_sharpe": 0.8226336408475626
+}
