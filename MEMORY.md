@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,787 (-2.21%, improved). BTC spot ~$72,508. OP short still dragging.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,301 (-2.70%). BTC spot ~$71,593.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
 - **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,880 (-1.20%).
-- **Internal paper trades:** 51 runners active. Session 165. **11/51 positive** (no new daily bar).
-- **H-063**: $9,365 (-6.35%), trade 2 in progress (expires Apr 10, BTC $72.5k deep above $69k call — major loss expected). **H-039**: +5.75%, LONG entered for Wed.
+- **Internal paper trades:** 54 runners active. Session 166. **11/54 positive**, avg +0.11%.
+- **H-063**: $9,732 (-2.68%), trade 2 in progress (expires Apr 10, BTC above $69k call).
 - **Top performers**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
-- **Options research (session 165)**: Bull put spread (H-366) Sharpe 1.8-4.4, WF 5/5. BTC VRP = +5-15pp (IV overprices RV). Strangle synthetic confirms H-063 edge.
-- **AUTOMATED:** Paper trades hourly via cron (51 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. Monitor H-063 (-6.35%, expires Apr 10). Continue research.
+- **Session 166 research**: 16 new hypotheses (H-368 to H-383). **3 CONFIRMED**: H-368 (Vol Share Drift, WF 6/6 mean 2.034), H-382 (Return Kurtosis, WF 6/6 mean 1.500, corr -0.152 H-012), H-383 (PVT, WF 4/6 mean 1.312). All 3 deployed.
+- **AUTOMATED:** Paper trades hourly via cron (54 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -22,14 +22,6 @@
 
 
 _Older sessions (bootstrap through 155) archived to `memory/session_archive.md`._
-
-### Session 2026-04-06 review+deploy+research (session 156)
-- Goal: Review + Deploy + Research — MTM update, H-277 deployment, 5 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$69,819), H-275/H-276/H-277/H-278/H-279 backtests
-- Done: 40 runners (39→40 post-deploy). **Demo**: $99,165 (-0.83%, improved from -1.44%). **9/40 positive**. Top: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%). No new daily bar since Apr 5. H-063 between trades ($9,928, -0.71%). **Research**: **H-277 CONFIRMED** (VWAP deviation — IS **80%** above_vwap_long, WF **5/6** mean **1.256**, neighboring params **87.5%** positive, split-half H1=1.795/H2=0.867, corr 0.464 H-012, 0.112 H-076. Volume-weighted momentum variant). **H-275 REJECTED** (CLV — 63.3% IS). **H-276 REJECTED** (autocorrelation — 58.3% IS). **H-278 REJECTED** (kurtosis — IS 83.3% but WF mean Sharpe -0.119). **H-279 REJECTED** (volume CV — 75% IS). H-277 deployed as paper trade #40: LONG BTC/ETH/ARB, SHORT XRP/SUI/DOT. 279 total hypotheses.
-- Next: Continue research. Monitor H-009 (-2.10% worst) and H-021 (-1.71%).
-- Questions added: none
-- Self-modifications: H-277 runner created, added to orchestrator. Archived session 146. (session 156)
 
 ### Session 2026-04-07 review+research (session 157)
 - Goal: Review + Research — MTM update with Apr 6 bar, 12 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 155) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor H-063 (-6.35%, expires Apr 10). Continue research.
 - Questions added: none
 - Self-modifications: H-363 runner created, added to orchestrator. Archived session 155. (session 165)
+
+### Session 2026-04-08 review+deploy+research (session 166)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests, 3 new deployments
+- Focus: Paper trade MTM (BTC $71,593), H-368 through H-383 backtests (2 batches of 8)
+- Done: 54 runners (51→54 post-deploy). **Demo**: $97,301 (-2.70%). H-063 improved to -2.68% (BTC retreated from $72.5k to $71.6k). **Research batch 1 (H-368–H-375)**: **H-368 CONFIRMED** (Vol Share Drift — IS **90.7%**, WF **6/6** mean **2.034**, split-half PASS, neighbors 100%, Sharpe 1.628, corr 0.206 H-012). H-369(43% IS), H-370(17%), H-371(80% borderline), H-372(28%), H-373(6%), H-374(2%), H-375(50%) REJECTED. **Research batch 2 (H-376–H-383)**: **H-382 CONFIRMED** (Return Kurtosis — IS **87.5%**, WF **6/6** mean **1.500**, corr **-0.152** H-012). **H-383 CONFIRMED** (PVT — IS **87.5%**, WF **4/6** mean **1.312**, split-half PASS). H-376(67%), H-377(63%), H-378(75%), H-379(17%), H-380(4%), H-381(78% borderline) REJECTED. **383 total hypotheses.**
+- Next: Await Q-005 answer. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
+- Questions added: none
+- Self-modifications: H-368/H-382/H-383 runners created, added to orchestrator. Archived session 156. (session 166)

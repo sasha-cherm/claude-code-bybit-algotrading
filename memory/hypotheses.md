@@ -4383,3 +4383,166 @@
 - Result: IS strong. 5%C/5%P: Sharpe **2.40**, +17.8% ann, **-3.0%** DD, 78% WR. WF **5/5** positive (mean 3.86). 3%C/5%P: Sharpe 2.27, +18.8%, -3.3% DD.
 - Notes: Validates H-063's strangle approach. Synthetic Sharpe ~2.4 vs H-063 paper trade currently at -6.35% (BTC rallied 8% above call strike — a tail event). The synthetic backtest doesn't capture tail risk well since it settles at expiry only. H-063's real-time delta hedging adds cost but reduces tail risk.
 - Sessions: [2026-04-08 session 165]
+
+## H-368: Volume Market Share Drift Factor
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Rank assets by change in their share of total market volume. Increasing volume share = growing institutional interest before price adjusts.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: Compute each asset's dollar volume as fraction of total 14-asset volume. Rolling 30-day mean of share, then 5-day change (drift). Long top 3 (gaining share), short bottom 3 (losing share).
+- Data: 14 assets, 732 daily bars (~2yr). IS: 54 param combos.
+- Result: IS **90.7%** positive (49/54). Best LB30_DW5_R5_N3 Sharpe **1.628**, +85.5% ann, -23.8% DD. WF **6/6** positive (mean **2.034**, folds: 2.370/0.566/3.225/0.962/3.740/1.342). Split-half H1=1.290, H2=0.382 PASS. Neighbors 100% positive. Corr H-012 0.206, H-076 0.115.
+- Notes: Genuinely novel signal — volume share captures institutional reallocation across crypto assets. Low correlation with all existing strategies. Very strong WF performance with all 6 folds positive.
+- Sessions: [2026-04-08 session 166]
+
+## H-369: Cross-Sectional Rank Momentum Factor
+- Status: REJECTED (IS 43.1%)
+- Idea: Rank assets by improvement in their cross-sectional return rank over time. Assets climbing in rank = momentum pickup.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 72 param combos.
+- Result: IS 43.1% positive (31/72). Best Sharpe 1.154, +45.4% ann, -29.6% DD. Corr H-012 -0.103.
+- Notes: Signal too noisy — rank changes don't provide consistent edge. Rank momentum is fundamentally noisier than return momentum.
+- Sessions: [2026-04-08 session 166]
+
+## H-370: Consecutive Direction Intensity Factor
+- Status: REJECTED (IS 16.7%)
+- Idea: Measure streak length × average return per streak day. Captures not just trending but intensity of trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS 16.7% positive (4/24). Best Sharpe 0.308, +4.0% ann, -52.6% DD. Corr H-012 -0.156.
+- Notes: Strong negative result — 83% negative. Signal direction is inverse (high intensity = bad). Even inverted, too noisy to be useful.
+- Sessions: [2026-04-08 session 166]
+
+## H-371: Volume Impulse Factor
+- Status: REJECTED (IS 79.6% — borderline)
+- Idea: First difference of smoothed log(volume). Captures sudden volume shifts. Volume impulse may precede price moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 54 param combos.
+- Result: IS 79.6% positive (43/54) — just under 80% threshold. Best Sharpe 1.509, +74.5% ann, -24.5% DD. Corr H-012 0.022, H-076 0.033 — near-zero correlation.
+- Notes: Very close to passing. Near-zero correlation with all benchmarks makes it interesting. But 79.6% IS is borderline — could be noise. Best config has high Sharpe but may be overfit.
+- Sessions: [2026-04-08 session 166]
+
+## H-372: Return-Range Ratio Trend Factor
+- Status: REJECTED (IS 27.8%)
+- Idea: Slope of |return|/range over lookback. Trending up = becoming more directional.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 36 param combos.
+- Result: IS 27.8% positive (10/36). Best Sharpe 0.562, +15.0% ann, -37.8% DD. Corr H-012 0.094.
+- Notes: Directionality trend is not a reliable cross-sectional signal. The concept is sound but noise dominates.
+- Sessions: [2026-04-08 session 166]
+
+## H-373: Dispersion-Filtered Momentum Factor
+- Status: REJECTED (IS 5.6%)
+- Idea: Only trade momentum when cross-sectional return dispersion is high (above median). High dispersion = factor opportunities.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 54 param combos.
+- Result: IS 5.6% positive (3/54). Best Sharpe 0.115, -6.6% ann, -53.8% DD. Corr H-012 0.019.
+- Notes: Dispersion filtering actually hurts momentum performance. The filter removes too many valid trading days, leaving insufficient signal. XS momentum in crypto doesn't depend on dispersion regimes like in equities.
+- Sessions: [2026-04-08 session 166]
+
+## H-374: Relative Volatility Rank Change Factor
+- Status: REJECTED (IS 1.9%)
+- Idea: Rank assets by how much their volatility rank has changed vs peers. Decreasing relative vol = entering trending phase.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 54 param combos.
+- Result: IS 1.9% positive (1/54). Best Sharpe 0.185, -0.2% ann, -38.5% DD. Corr H-012 -0.011.
+- Notes: Strongest rejection — 98% negative. Vol rank changes don't predict returns. The concept that decreasing relative vol predicts trending is not supported in crypto.
+- Sessions: [2026-04-08 session 166]
+
+## H-375: Volume-Weighted Distance from Mean Factor
+- Status: REJECTED (IS 50%)
+- Idea: Volume-weighted mean absolute deviation of returns. Low = quiet accumulation phase. High = volatile on heavy volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS 50.0% positive (12/24). Best Sharpe 0.530, +14.8% ann, -67.4% DD. Corr H-012 0.027.
+- Notes: Coin-flip results. The concept of quiet accumulation doesn't provide XS edge in crypto. Very high drawdown.
+- Sessions: [2026-04-08 session 166]
+
+## H-376: Dollar Volume Acceleration Factor
+- Status: REJECTED (IS 66.7%)
+- Idea: Second derivative of dollar volume (change in volume growth rate). Accelerating volume precedes price moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 54 param combos.
+- Result: IS 66.7% positive (36/54). Best Sharpe 1.881, +88.3% ann, -38.6% DD. Corr H-012 0.117.
+- Notes: High best Sharpe but inconsistent across params (only 67% positive). Second derivative is too noisy for daily frequency.
+- Sessions: [2026-04-08 session 166]
+
+## H-377: Return-Volume Concordance Factor
+- Status: REJECTED (IS 62.5%)
+- Idea: Rolling correlation between daily returns and volume changes. High correlation = volume confirms price.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS 62.5% positive (15/24). Best Sharpe 0.831, +27.0% ann, -26.1% DD. Corr H-012 0.269.
+- Notes: Moderate result. Volume-return concordance provides some signal but not robust enough. Similar concept to H-167 (return-volume correlation) which was confirmed at different params.
+- Sessions: [2026-04-08 session 166]
+
+## H-378: Relative Close Position (Stochastic-like) Factor
+- Status: REJECTED (IS 75%)
+- Idea: Where today's close sits relative to N-day high-low range: (close - N_low) / (N_high - N_low).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS 75.0% positive (18/24). Best Sharpe 1.716, +100.6% ann, -30.7% DD. Corr H-012 0.163.
+- Notes: Close to passing (75% vs 80% threshold). Stochastic-like positioning captures some momentum but not robust. Similar to H-190 (range position) which was tested before.
+- Sessions: [2026-04-08 session 166]
+
+## H-379: Candle Body Ratio Factor
+- Status: REJECTED (IS 16.7%)
+- Idea: Average |close-open|/(high-low) over lookback. High body ratio = conviction candles.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS 16.7% positive (4/24). Best Sharpe 0.878, +32.7% ann, -44.7% DD. Corr H-012 -0.020.
+- Notes: 83% negative — signal direction is opposite to expected. This is similar to H-343 (momentum decay at 4h) which was CONFIRMED — suggesting body ratio works at 4h but not daily timeframe.
+- Sessions: [2026-04-08 session 166]
+
+## H-380: Volume Profile Skewness Factor
+- Status: REJECTED (IS 4.2%)
+- Idea: Skewness of daily volume distribution over lookback. Captures asymmetry in volume profile.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS 4.2% positive (1/24). Best Sharpe 0.173, -1.3% ann, -69.4% DD. Corr H-012 0.050.
+- Notes: Very strong rejection. Volume distribution shape is not a useful XS signal at daily frequency.
+- Sessions: [2026-04-08 session 166]
+
+## H-381: Momentum Decay Rate Factor
+- Status: REJECTED (IS 77.8% — borderline)
+- Idea: Ratio of short-term momentum to long-term momentum. High ratio = momentum persisting, low = decaying.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 18 param combos.
+- Result: IS 77.8% positive (14/18). Best Sharpe 2.081, +133.3% ann, -23.4% DD. Corr H-012 0.147.
+- Notes: Another borderline case (78% vs 80%). Very high best Sharpe (2.081) and excellent annual return. The concept is related to momentum quality — assets where momentum persists outperform. Could be revisited with a finer parameter grid.
+- Sessions: [2026-04-08 session 166]
+
+## H-382: Return Kurtosis Factor
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Rank assets by rolling excess kurtosis of daily returns. Low kurtosis (thin tails, more predictable) → long. High kurtosis (fat tails, crash-prone) → short.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: Compute rolling 30-day excess kurtosis. Negate signal (low kurtosis = high rank). Long top 4, short bottom 4.
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS **87.5%** positive (21/24). Best LB30_R5_N4 Sharpe **1.124**, +40.1% ann, -27.0% DD. WF **6/6** positive (mean **1.500**, folds: 2.089/0.082/0.201/0.620/5.309/0.698). Split-half H1=0.551, H2=1.850 PASS. Neighbors 100% positive. Corr H-012 **-0.152**.
+- Notes: Negative correlation with momentum (-0.152) is excellent for portfolio diversification. Prior kurtosis attempts (H-101, H-170) were rejected — this version uses negated kurtosis at LB30 which captures the right signal. Low kurtosis = asset has thin-tailed predictable returns = trending/stable behavior.
+- Sessions: [2026-04-08 session 166]
+
+## H-383: Price-Volume Trend Factor
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Normalized OBV-like signal: sum of volume × sign(return) over lookback, divided by total volume. Captures buying vs selling pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: Compute PVT = Σ(vol × sign(ret)) / Σ(vol) over 30-day window. Long top 4 (buying pressure), short bottom 4 (selling pressure).
+- Data: 14 assets, 732 daily bars. IS: 24 param combos.
+- Result: IS **87.5%** positive (21/24). Best LB30_R7_N4 Sharpe **1.347**, +52.7% ann, -31.4% DD. WF **4/6** positive (mean **1.312**, folds: 1.341/1.516/-0.162/3.866/-0.958/2.270). Split-half H1=1.441, H2=2.226 PASS. Neighbors 100% positive. Corr H-012 0.435.
+- Notes: Moderate correlation with H-012 (0.435) — both capture price direction but PVT incorporates volume conviction. Prior OBV attempts (H-118) failed at different params. This normalized version works because cross-sectional comparison requires normalization by total volume.
+- Sessions: [2026-04-08 session 166]

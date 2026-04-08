@@ -1180,3 +1180,12 @@
 - Focus: Paper trade MTM (no new daily bar, BTC ~$69,750), H-272/H-273/H-274 backtests
 - Done: 37 runners checked. Demo: $98,557 (-1.44%). H-272/H-273/H-274 all REJECTED. 274 total hypotheses.
 - Next: Continue research. Monitor H-063 and H-053.
+
+
+### Session 2026-04-06 review+deploy+research (session 156)
+- Goal: Review + Deploy + Research — MTM update, H-277 deployment, 5 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,819), H-275/H-276/H-277/H-278/H-279 backtests
+- Done: 40 runners (39→40 post-deploy). **Demo**: $99,165 (-0.83%, improved from -1.44%). **9/40 positive**. Top: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%). No new daily bar since Apr 5. H-063 between trades ($9,928, -0.71%). **Research**: **H-277 CONFIRMED** (VWAP deviation — IS **80%** above_vwap_long, WF **5/6** mean **1.256**, neighboring params **87.5%** positive, split-half H1=1.795/H2=0.867, corr 0.464 H-012, 0.112 H-076. Volume-weighted momentum variant). **H-275 REJECTED** (CLV — 63.3% IS). **H-276 REJECTED** (autocorrelation — 58.3% IS). **H-278 REJECTED** (kurtosis — IS 83.3% but WF mean Sharpe -0.119). **H-279 REJECTED** (volume CV — 75% IS). H-277 deployed as paper trade #40: LONG BTC/ETH/ARB, SHORT XRP/SUI/DOT. 279 total hypotheses.
+- Next: Continue research. Monitor H-009 (-2.10% worst) and H-021 (-1.71%).
+- Questions added: none
+- Self-modifications: H-277 runner created, added to orchestrator. Archived session 146. (session 156)
