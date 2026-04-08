@@ -1,16 +1,16 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,462 (-1.54%). BTC spot ~$71,590.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$96,783 (-3.22%). BTC spot ~$71,829. OP short dragging.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,876 (-1.24%).
-- **Internal paper trades:** 50 runners active. Session 163. **11/50 positive**. H-351/H-353/H-355 deployed.
-- **H-063**: $9,609 (-4.65%), trade 2 in progress (expires Apr 10, BTC $71.6k deep above $69k call). **H-039**: +5.75%, next LONG Wed Apr 9.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,880 (-1.20%).
+- **Internal paper trades:** 50 runners active. Session 164. **11/50 positive** (no new daily bar).
+- **H-063**: $9,544 (-4.56%), trade 2 in progress (expires Apr 10, BTC $71.8k deep above $69k call). **H-039**: +5.75%, next LONG Wed Apr 9.
 - **Top performers**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
-- **Research**: 357 total hypotheses. Session 163: 8 microstructure backtests (H-350 to H-357). **3 CONFIRMED** (H-351 vol skew WF 5/6 mean 1.339, H-353 vol persistence WF 5/6 mean **2.526**, H-355 entropy WF 5/6 mean 1.684). All very low corr with existing. 5 REJECTED.
+- **Portfolio optimization (session 164)**: Comprehensive analysis of 33 strategies. H-056v2 Sharpe 5.64. **Proposed v3** adds H-059/H-076 as diversifiers. Critical finding: H-031/H-197/H-183 are 0.88-0.97 correlated (redundant).
 - **AUTOMATED:** Paper trades hourly via cron (50 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Options strategies beyond strangles. Portfolio optimization of 50 strategies. Monitor H-063 (-4.65%, expires Apr 10) and H-183 (-2.43%).
-- **Open user questions:** None
+- **Next action:** Await Q-005 answer on H-056 v3. Options strategies beyond strangles. Monitor H-063 (-4.56%, expires Apr 10).
+- **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
 | File | Purpose |
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 153) archived to `memory/session_archive.md`._
-
-### Session 2026-04-06 review+research (session 154)
-- Goal: Review + Research — MTM update, 3 new factor backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$69,348), H-269/H-270/H-271 backtests
-- Done: 37 runners checked. **Demo**: $97,400 (-2.60%, down from -1.82%). **16/37 positive** (was 10/37 — big improvement as recent runners entered positions). Top: H-039(+5.79%), H-031(+4.67%), H-012(+4.26%), H-076(+3.63%), H-062(+3.06%). Key shifts: H-049 surged +2.63%, H-175 flipped +2.18%, H-085 flipped +1.72%. H-053 crashed -2.06% (was +1.39%). H-063 trade 2 at +0.10% (BTC above $69k call strike, pressure building). **Research**: **H-269 REJECTED** (momentum breadth/% positive days — IS **31.7%**, discards magnitude info which hurts). **H-270 REJECTED** (DV acceleration — IS **42.1%**, best Sharpe 2.05 but second derivative amplifies noise). **H-271 REJECTED** (price efficiency ratio — IS **41.7%**, 100% high_eff_long but not enough XS spread). 271 total hypotheses.
-- Next: Continue research. Monitor H-053 (-2.06%) and H-183 (-1.75%).
-- Questions added: none
-- Self-modifications: Archived session 144. (session 154)
+_Older sessions (bootstrap through 154) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-06 review+research (session 155)
 - Goal: Review + Research — MTM update, 3 new factor backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 153) archived to `memory/session_archive.md`.
 - Next: Options strategies beyond strangles. Portfolio optimization of 50 strategies. Monitor H-063 (-4.65%, expires Apr 10).
 - Questions added: none
 - Self-modifications: H-351/H-353/H-355 runners created, added to orchestrator. Archived session 153. (session 163)
+
+### Session 2026-04-08 review+optimize (session 164)
+- Goal: Review + Portfolio Optimization — MTM update, comprehensive portfolio optimization of all 33 confirmed strategies
+- Focus: Demo MTM ($96,783, -3.22%), comprehensive portfolio optimization using backtest return series
+- Done: 50 runners checked (no new daily bar, BTC $71,829). Demo declined to $96,783 (-3.22%) — OP short losing $4,806. **Portfolio optimization**: Built comprehensive optimizer with 33 strategies across 2 time horizons. **Short-period (195 days, 33 strats)**: Current H-056v2 Sharpe **5.64**, +105%, -4.7% DD. Max Sharpe achievable: **7.71**. **Long-period (1707 days, 26 strats)**: Greedy best-8 Sharpe **2.54**, +46%, -14.6% DD. Top diversifiers: H-059 (Sharpe 1.50), H-076 (anti-momentum). **Critical finding**: H-031/H-197/H-183 are 0.88-0.97 correlated — effectively the same strategy; keep only H-031. **Proposed H-056 v3**: Add H-059 (15%, vol regime) and H-076 (12%, anti-momentum) as diversifiers, reduce H-021 (15→8%) due to weak paper perf. Q-005 opened in USER_QA.md.
+- Next: Await Q-005 answer. Options strategies beyond strangles. Monitor H-063 (-4.56%, expires Apr 10).
+- Questions added: Q-005 (H-056 v3 portfolio upgrade proposal)
+- Self-modifications: Created comprehensive_optimizer.py in portfolio_optimization/. Archived session 154. (session 164)

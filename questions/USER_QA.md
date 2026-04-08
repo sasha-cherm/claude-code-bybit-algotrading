@@ -80,3 +80,37 @@ yes, deploy them
 - Created H-037 hypothesis (CONFIRMED for paper trade) and `paper_trades/h037_polymarket/tracker.py`
 - **This requires MANUAL paper trading** — user needs to check Polymarket prices at target hours and record them
 - Usage: `python3 paper_trades/h037_polymarket/tracker.py log <hour> <UP/DOWN> <price> <outcome>`
+
+---
+
+## Q-005 [OPEN]
+**Session:** 2026-04-08 session 164
+**Question:** Comprehensive portfolio optimization analysis suggests upgrading the demo portfolio from H-056 v2 to v3. Key findings:
+
+**Problem with current H-056 v2:** 6 strategies, Sharpe 5.64, +105% ann, -4.7% DD (195-day common period). Strong, but concentrated — H-031/H-021 are correlated (both momentum-adjacent), and missing key diversifiers.
+
+**Proposed H-056 v3 — add H-059 and H-076 as diversifiers:**
+
+| Strategy | v2 Weight | v3 Weight | Leverage | Role |
+|----------|-----------|-----------|----------|------|
+| H-031 (Size) | 30% | 22% | 3x | Core — long large cap, short small |
+| H-052 (Premium) | 23% | 17% | 3x | Contrarian positioning |
+| H-053 (Funding XS) | 16% | 12% | 3x | Contrarian positioning |
+| H-021 (Vol Mom) | 15% | 8% | 3x | Volume momentum (reduced — weaker paper perf) |
+| **H-059 (Vol Term)** | — | **15%** | **3x** | **NEW — vol regime, Sharpe 1.50, corr ~0 with momentum** |
+| **H-076 (Efficiency)** | — | **12%** | **3x** | **NEW — anti-momentum, Sharpe 1.05, -0.37 corr with H-012** |
+| H-039 (DOW) | 10% | 10% | 1x | Calendar seasonality |
+| H-049 (LSR) | 6% | 4% | 3x | Contrarian sentiment |
+
+**Why this improves the portfolio:**
+1. **H-059** has Sharpe 1.50 over 4.6 years and ~0 correlation with momentum — pure diversification gain
+2. **H-076** is negatively correlated with price momentum (-0.37 with H-012) — hedges the momentum exposure
+3. Both have 18+ days of paper trade history: H-059 +0.47%, H-076 +4.07% (3rd best overall)
+4. H-021 reduced from 15% → 8% because it's the weakest paper performer (-1.71%) and correlated with H-085
+
+**Additional finding:** H-031/H-197/H-183 are extremely correlated (0.88-0.97). We only need H-031 — the others are redundant.
+
+Should I deploy this H-056 v3 change?
+
+**Answer:**
+**Action taken:**

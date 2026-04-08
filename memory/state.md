@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-06 13:08 UTC):
-Demo eq: $97,400 (-2.60%). BTC spot ~$69,348. 11 open positions. Demo declined further despite BTC holding above $69k — H-053 crashed (+1.39% → -2.06%), dragging demo allocation.
+### Current Demo Status (as of 2026-04-08 09:18 UTC):
+Demo eq: $96,783 (-3.22%). BTC spot ~$71,829. 11 open positions. Demo declined despite BTC rally — OP short losing $4,806, offsetting BTC/ETH/XRP long gains.
 
 ---
 
@@ -505,20 +505,20 @@ Demo eq: $97,400 (-2.60%). BTC spot ~$69,348. 11 open positions. Demo declined f
 - **Runner**: `paper_trades/h355_entropy/runner.py`
 - **Params**: LB14_R3_N3_low_long. WF 5/6 mean 1.684. Corr **0.079** H-012, **-0.020** H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-08 session 163, 05:30 UTC)
-- **Bybit Demo**: ~$98,462 (-1.54%). BTC spot ~$71,590 (close $71,928 on Apr 7 bar). Last daily bar: Apr 7 (complete — BTC rallied +4.5%).
-- **Total internal MTM (50 runners)**: 50 runners (47 prior + 3 newly deployed: H-351/H-353/H-355). **11/50 positive**.
-- **Positive (11/50)**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.97%), H-332(+0.37%)
+## Portfolio Summary (mark-to-market 2026-04-08 session 164, 09:18 UTC)
+- **Bybit Demo**: ~$96,783 (-3.22%). BTC spot ~$71,829 (close $71,928 on Apr 7 bar). Last daily bar: Apr 7 (complete). Apr 8 bar forming (2174 BTC vol).
+- **Total internal MTM (50 runners)**: 50 runners. **11/50 positive** (unchanged from session 163, no new daily bar).
+- **Positive (11/50)**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.47%), H-332(+0.17%)
 - **Near flat (3/50)**: H-324(0.00%), H-032(0.00%), weekend_iron_condor(0.00%)
-- **Negative (36/50)**: [14 new deploys at -0.24%], H-160(-0.32%), H-277(-0.42%), H-336(-0.42%), H-085(-0.43%), H-046(-0.53%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-182(-1.13%), H-011(-1.24%), H-197(-1.63%), H-021(-1.71%), H-009(-2.10%), H-183(-2.43%), H-063(-4.65%)
-- **Key changes from session 162**: Fixed Apr 7 daily bar data (was partial, 233 BTC vol → complete 15k BTC vol). H-059 improved to +0.97%. H-332 improved to +0.37%. H-063 deteriorated to -4.65%. 3 new runners deployed.
-- **H-063**: $9,609 (-4.65%), trade 2 in progress (expires Apr 10). BTC $71,590 deep above $69,000 call. Hedge PnL -$220.
+- **Negative (36/50)**: [14 new deploys at -0.24%], H-160(-0.32%), H-277(-0.42%), H-336(-0.42%), H-085(-0.43%), H-046(-0.53%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-182(-1.13%), H-011(-1.20%), H-197(-1.63%), H-021(-1.71%), H-009(-2.10%), H-183(-2.43%), H-063(-4.56%)
+- **Demo OP short losing**: $-4,806 on OP short, dragging demo. BTC (+$2,445), ETH (+$1,637), XRP (+$1,365) longs partially offset.
+- **H-063**: $9,544 (-4.56%), trade 2 in progress (expires Apr 10). BTC $71,829 deep above $69,000 call.
 - **H-039 (DOW)**: $10,575 (+5.75%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
 - **H-324**: $10,000 (0.00%, FLAT). ADX < 30. Waiting for trend.
-- **Research**: 357 hypotheses total. Session 163: 8 hourly-microstructure backtests (H-350 to H-357). **3 CONFIRMED** (H-351 vol skew WF 5/6 mean 1.339, H-353 vol persistence WF 5/6 mean **2.526**, H-355 entropy WF 5/6 mean 1.684). All 3 have very low corr with H-012 (0.08-0.20) and negative corr with H-076. H-357 narrowly rejected (split-half fail H2=-0.073). 4 others rejected (IS < 80%).
+- **Portfolio optimization (session 164)**: Comprehensive analysis of 33 strategies (short-period) and 26 strategies (long-period 1707 days). Current H-056v2 Sharpe 5.64. Proposed v3 adds H-059/H-076 as diversifiers. Q-005 opened in USER_QA.md for user approval.
 - **AUTOMATED:** Paper trades hourly via cron (50 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Options strategies beyond strangles. Portfolio optimization of 47 strategies. Monitor H-063 (-3.81%, expires Apr 10) and H-183 (-2.43%).
-- **Open user questions:** None
+- **Next action:** Await Q-005 answer on portfolio v3. Options strategies beyond strangles. Monitor H-063 (-4.56%, expires Apr 10).
+- **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9

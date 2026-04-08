@@ -1167,3 +1167,10 @@
 - Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
 - Questions added: none
 - Self-modifications: Archived session 143. (session 153)
+
+### Session 2026-04-06 review+research (session 154)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,348), H-269/H-270/H-271 backtests
+- Done: 37 runners checked. Demo $97,400 (-2.60%). 16/37 positive. H-269/H-270/H-271 all REJECTED. 271 total hypotheses.
+- Next: Continue research. Monitor H-053 (-2.06%) and H-183 (-1.75%).
+- Self-modifications: Archived session 144. (session 154)

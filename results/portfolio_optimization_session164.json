@@ -1,0 +1,99 @@
+{
+  "analysis_date": "2026-04-08",
+  "session": 164,
+  "short_period": {
+    "days": 195,
+    "range": "2025-09-03 to 2026-03-16",
+    "n_strategies": 33,
+    "current_h056v2": {
+      "sharpe": 5.64,
+      "return_pct": 105.3,
+      "max_dd_pct": -4.7
+    },
+    "equal_weight_all": {
+      "sharpe": 3.6,
+      "return_pct": 56.9,
+      "max_dd_pct": -5.6
+    }
+  },
+  "long_period": {
+    "days": 1707,
+    "range": "2021-08-06 to 2026-04-08",
+    "n_strategies": 26,
+    "greedy_best_8": {
+      "sharpe": 2.54,
+      "return_pct": 46.0,
+      "max_dd_pct": -14.6,
+      "strategies": {
+        "H-277": 9.4,
+        "H-059": 21.5,
+        "H-039": 25.6,
+        "H-031": 13.3,
+        "H-076": 10.0,
+        "H-046": 9.5,
+        "H-242": 8.0,
+        "H-223": 2.7
+      }
+    },
+    "top_individual_sharpe": {
+      "H-277": 1.82,
+      "H-059": 1.5,
+      "H-046": 1.29,
+      "H-183": 1.27,
+      "H-039": 1.09,
+      "H-076": 1.05,
+      "H-169": 1.05,
+      "H-255": 1.01
+    }
+  },
+  "critical_correlation_clusters": {
+    "size_liquidity": {
+      "H-031/H-197": 0.88,
+      "H-031/H-183": 0.59
+    },
+    "volume": {
+      "H-021/H-085": 0.6,
+      "H-021/H-336": 0.68
+    },
+    "relative_btc": {
+      "H-169/H-263": 0.65
+    },
+    "momentum_quality": {
+      "H-255/H-277": 0.66
+    }
+  },
+  "proposed_v3": {
+    "H-031": {
+      "weight": 22,
+      "leverage": 3
+    },
+    "H-052": {
+      "weight": 17,
+      "leverage": 3
+    },
+    "H-059": {
+      "weight": 15,
+      "leverage": 3
+    },
+    "H-053": {
+      "weight": 12,
+      "leverage": 3
+    },
+    "H-076": {
+      "weight": 12,
+      "leverage": 3
+    },
+    "H-039": {
+      "weight": 10,
+      "leverage": 1
+    },
+    "H-021": {
+      "weight": 8,
+      "leverage": 3
+    },
+    "H-049": {
+      "weight": 4,
+      "leverage": 3
+    }
+  }
+}
