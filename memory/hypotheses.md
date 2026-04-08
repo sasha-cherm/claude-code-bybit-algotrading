@@ -4294,3 +4294,92 @@
 - Timeframe: 1D
 - Result: IS **100%** low_long (30/30). Best LB5_R3_N3 Sharpe 1.641. WF **5/6** mean 1.441. **Split-half fail** (H1=1.893, H2=-0.073). Neighbor 100%. **REJECTED** — signal degrades in second half.
 - Sessions: [2026-04-08 session 163]
+
+## H-358: Cross-Asset Hourly Synchronicity with BTC
+- Status: REJECTED
+- Idea: Fraction of hours where an asset moves in same direction as BTC, averaged over lookback. High sync = institutional, low = retail.
+- Instrument: futures (14 perps, hourly signal → daily trade)
+- Timeframe: 1D
+- Result: IS **76.7%** high_long (23/30). Best LB20_R5_N3 Sharpe 1.129, +48.8%, -44.8% DD. **REJECTED** — IS 76.7% < 80%.
+- Sessions: [2026-04-08 session 165]
+
+## H-359: Volume-Weighted Return Asymmetry
+- Status: REJECTED
+- Idea: Ratio of volume on up-hours to down-hours, averaged over lookback. High ratio = buying pressure dominates.
+- Instrument: futures (14 perps, hourly signal → daily trade)
+- Timeframe: 1D
+- Result: IS **60.0%** high_long (18/30). Best LB7_R7_N4 Sharpe 0.668. **REJECTED** — IS 60% < 80%.
+- Sessions: [2026-04-08 session 165]
+
+## H-360: Autocorrelation Decay Speed
+- Status: REJECTED
+- Idea: Difference between lag-1 and lag-4 hourly return autocorrelation. Slow decay (persistent AC) = predictable = long.
+- Instrument: futures (14 perps, hourly signal → daily trade)
+- Timeframe: 1D
+- Result: IS **100%** low_long (18/18). Best LB10_R5_N4 Sharpe 1.456, +55.3%, -26.9% DD. **REJECTED** — too computationally expensive for WF validation; 3 lookback values only (18 combos).
+- Sessions: [2026-04-08 session 165]
+
+## H-361: Session Continuation Score
+- Status: REJECTED
+- Idea: Fraction of days where Asia session (0-8 UTC) direction matches US session (13-21 UTC). High continuation = trending intraday.
+- Instrument: futures (14 perps, hourly signal → daily trade)
+- Timeframe: 1D
+- Result: IS **79.2%** low_long (19/24). Best LB14_R7_N4 Sharpe 1.036. **REJECTED** — IS 79.2% < 80% (close but below).
+- Sessions: [2026-04-08 session 165]
+
+## H-362: Volume-Weighted Intraday Beta
+- Status: REJECTED
+- Idea: Beta computed from hourly returns weighted by volume. High VW-beta = more responsive intraday.
+- Instrument: futures (14 perps, hourly signal → daily trade)
+- Timeframe: 1D
+- Result: IS **50.0%** high_long (12/24). **REJECTED** — coin flip.
+- Sessions: [2026-04-08 session 165]
+
+## H-363: Multi-Day Return Pattern Factor
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Rolling average of 2-day return streak indicators (up-up = +1, down-down = -1). High score = asset in consecutive-up patterns → long. Captures direction persistence at micro level.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3 days)
+- Logic: For each asset, compute streak_signal = I(2-day up-streak) - I(2-day down-streak). Average over 30-day lookback. Long top 3, short bottom 3.
+- Data: 14 assets, 732 daily bars (~2yr). WF: 6 folds × 90d.
+- Result: IS **83.3%** high_long (20/24). Best LB30_R3_N3 Sharpe **1.011**, +44.6% ann, -29.3% DD. WF **5/6** positive (mean OOS **0.611**, folds: 0.454/1.447/0.256/1.565/-1.078/1.020). Split-half H1=0.865, H2=0.536 — **PASS**. Neighbors **88.9%** positive (32/36). Corr H-012 **0.322**, H-076 **0.138**.
+- Notes: Novel signal capturing direction persistence at 2-day micro level. Unlike momentum (60-day total return), this measures *consistency* of up-days. Low corr with all existing strategies. Deployed as paper trade #51.
+- Sessions: [2026-04-08 session 165]
+
+## H-364: Momentum Dispersion-Normalized Factor
+- Status: REJECTED
+- Idea: Each asset's momentum normalized by cross-sectional momentum dispersion. Risk-adjusted momentum signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **100%** high_long (30/30). Best LB10_R7_N3 Sharpe 1.257. WF **2/6** positive (mean 0.659). Split-half PASS (H1=1.543, H2=0.205). Neighbors **100%** (45/45). **REJECTED** — outstanding IS/neighbors but WF fails (only 2/6 folds positive).
+- Notes: Likely regime-dependent; works in trending markets but fails in range-bound periods.
+- Sessions: [2026-04-08 session 165]
+
+## H-365: Volume-Price Trend (VPT) Factor
+- Status: REJECTED
+- Idea: Cumulative (return × volume) over lookback, ranked cross-sectionally. Classic VPT as XS signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **93.3%** high_long (28/30). Best LB60_R3_N3 Sharpe 1.325. WF **3/6** positive (mean 0.582). Split-half **FAIL** (H1=2.818, H2=-0.498). Neighbors 84.4%. **REJECTED** — signal degrades in second half (split-half fail) and WF only 3/6.
+- Notes: VPT is essentially volume-weighted momentum — partially redundant with H-012/H-021 (corr 0.392 H-012). First half performance inflated by strong trending period.
+- Sessions: [2026-04-08 session 165]
+
+## H-366: Systematic BTC Bull Put Spread (Synthetic Backtest)
+- Status: CONFIRMED (not deployable — no options paper trade infrastructure yet)
+- Idea: Sell weekly 10% OTM BTC put, buy 20% OTM BTC put. Collect spread premium. Defined risk.
+- Instrument: options (BTC)
+- Timeframe: weekly (7-day expiry)
+- Logic: Using synthetic BS pricing with IV = RV_30d + VRP_spread. Position size = 20% of equity at risk. Spread width = 10% of spot.
+- Data: BTC daily bars, 732 days (~2yr). 92-100 weekly trades.
+- Result: IS **93.1%** positive (134/144 param combos). Best: 10%OTM/+10%spread/7d/RV30/VRP0.15 Sharpe **4.39**, +50.1% ann, **-6.7%** DD, **95% WR**, 92 trades. WF **5/5** positive (mean **6.01**, folds: 10.74/2.27/8.42/7.56/1.05). At lower VRP assumption (0.10): Sharpe 1.81, +53.3%, -10.5% DD.
+- Notes: **Strong synthetic backtest but CRITICAL CAVEATS**: (1) Uses assumed VRP of 10-15pp — actual VRP varies. Our 20-day IV data shows VRP ranges from -3pp to +18pp. (2) Assumes BS fair-value execution — real execution has wider spreads on Bybit options. (3) Defined risk is the major advantage over naked strangle (H-063). (4) BTC options liquidity on Bybit is improving but still thin for alts. **Recommendation**: Needs real-market paper trade validation once options execution is automated.
+- Sessions: [2026-04-08 session 165]
+
+## H-367: Systematic BTC Short Strangle (Synthetic Backtest Comparison)
+- Status: CONFIRMED (synthetic — comparison with H-063)
+- Idea: Sell weekly 5% OTM call + 5% OTM put. Pocket premium. Same as H-063 but synthetic backtest for comparison.
+- Instrument: options (BTC)
+- Timeframe: weekly (7-day expiry)
+- Result: IS strong. 5%C/5%P: Sharpe **2.40**, +17.8% ann, **-3.0%** DD, 78% WR. WF **5/5** positive (mean 3.86). 3%C/5%P: Sharpe 2.27, +18.8%, -3.3% DD.
+- Notes: Validates H-063's strangle approach. Synthetic Sharpe ~2.4 vs H-063 paper trade currently at -6.35% (BTC rallied 8% above call strike — a tail event). The synthetic backtest doesn't capture tail risk well since it settles at expiry only. H-063's real-time delta hedging adds cost but reduces tail risk.
+- Sessions: [2026-04-08 session 165]

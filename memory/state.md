@@ -505,19 +505,28 @@ Demo eq: $96,783 (-3.22%). BTC spot ~$71,829. 11 open positions. Demo declined d
 - **Runner**: `paper_trades/h355_entropy/runner.py`
 - **Params**: LB14_R3_N3_low_long. WF 5/6 mean 1.684. Corr **0.079** H-012, **-0.020** H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-08 session 164, 09:18 UTC)
-- **Bybit Demo**: ~$96,783 (-3.22%). BTC spot ~$71,829 (close $71,928 on Apr 7 bar). Last daily bar: Apr 7 (complete). Apr 8 bar forming (2174 BTC vol).
-- **Total internal MTM (50 runners)**: 50 runners. **11/50 positive** (unchanged from session 163, no new daily bar).
-- **Positive (11/50)**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.47%), H-332(+0.17%)
-- **Near flat (3/50)**: H-324(0.00%), H-032(0.00%), weekend_iron_condor(0.00%)
-- **Negative (36/50)**: [14 new deploys at -0.24%], H-160(-0.32%), H-277(-0.42%), H-336(-0.42%), H-085(-0.43%), H-046(-0.53%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-182(-1.13%), H-011(-1.20%), H-197(-1.63%), H-021(-1.71%), H-009(-2.10%), H-183(-2.43%), H-063(-4.56%)
-- **Demo OP short losing**: $-4,806 on OP short, dragging demo. BTC (+$2,445), ETH (+$1,637), XRP (+$1,365) longs partially offset.
-- **H-063**: $9,544 (-4.56%), trade 2 in progress (expires Apr 10). BTC $71,829 deep above $69,000 call.
-- **H-039 (DOW)**: $10,575 (+5.75%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
+### H-363: Multi-Day Return Pattern Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-08) — novel direction persistence signal
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG: AVAX, ETH, LINK
+  - SHORT: DOT, NEAR, OP
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h363_multiday_pattern/runner.py`
+- **Params**: LB30_R3_N3_high_long. WF 5/6 mean 0.611. Corr 0.322 H-012, 0.138 H-076.
+
+## Portfolio Summary (mark-to-market 2026-04-08 session 165, 13:41 UTC)
+- **Bybit Demo**: ~$97,787 (-2.21%, improved from -3.22%). BTC spot ~$72,508 (close $71,928 on Apr 7 bar). Last daily bar: Apr 7 (complete). Apr 8 bar forming (5270 BTC vol).
+- **Total internal MTM (51 runners)**: 51 runners (50→51 post-deploy). **11/51 positive** (no new daily bar since session 164).
+- **Positive (11/51)**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.47%), H-332(+0.17%)
+- **Near flat (3/51)**: H-324(0.00%), H-032(0.00%), weekend_iron_condor(0.00%)
+- **Negative (37/51)**: [15 new deploys at -0.24%], H-160(-0.32%), H-277(-0.42%), H-336(-0.42%), H-085(-0.43%), H-046(-0.53%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-182(-1.13%), H-011(-1.20%), H-197(-1.63%), H-021(-1.71%), H-009(-2.10%), H-183(-2.43%), H-063(-6.35%)
+- **Demo positions**: OP short still losing (-$4,433). BTC (+$2,994), ETH (+$1,742), XRP (+$1,437) longs partially offset. NEAR short (-$1,656), ARB short (-$1,492) also dragging.
+- **H-063**: $9,365 (-6.35%, deteriorated from -4.56%). Trade 2 in progress (expires Apr 10). BTC $72.5k deep above $69k call. Major loss expected at settlement unless BTC drops.
+- **H-039 (DOW)**: $10,575 (+5.75%, LONG). Entry at $72,460 for Wed.
 - **H-324**: $10,000 (0.00%, FLAT). ADX < 30. Waiting for trend.
-- **Portfolio optimization (session 164)**: Comprehensive analysis of 33 strategies (short-period) and 26 strategies (long-period 1707 days). Current H-056v2 Sharpe 5.64. Proposed v3 adds H-059/H-076 as diversifiers. Q-005 opened in USER_QA.md for user approval.
-- **AUTOMATED:** Paper trades hourly via cron (50 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on portfolio v3. Options strategies beyond strangles. Monitor H-063 (-4.56%, expires Apr 10).
+- **Options research (session 165)**: Synthetic backtest of bull put spread (H-366) shows Sharpe 1.8-4.4, 93% IS positive, WF 5/5. Strangle comparison (H-367) shows Sharpe 2.4, WF 5/5. BTC VRP analysis: IV overprices RV by 5-15pp, confirming vol-selling edge.
+- **AUTOMATED:** Paper trades hourly via cron (51 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on portfolio v3. Monitor H-063 (-6.35%, expires Apr 10). Continue research.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 151)
+# Session Archive (Sessions bootstrap through 155)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1174,3 +1174,9 @@
 - Done: 37 runners checked. Demo $97,400 (-2.60%). 16/37 positive. H-269/H-270/H-271 all REJECTED. 271 total hypotheses.
 - Next: Continue research. Monitor H-053 (-2.06%) and H-183 (-1.75%).
 - Self-modifications: Archived session 144. (session 154)
+
+### Session 2026-04-06 review+research (session 155)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,750), H-272/H-273/H-274 backtests
+- Done: 37 runners checked. Demo: $98,557 (-1.44%). H-272/H-273/H-274 all REJECTED. 274 total hypotheses.
+- Next: Continue research. Monitor H-063 and H-053.

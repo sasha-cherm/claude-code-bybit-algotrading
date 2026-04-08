@@ -72,6 +72,7 @@ RUNNERS = [
     ("H-351", ROOT / "paper_trades" / "h351_vol_skew" / "runner.py"),
     ("H-353", ROOT / "paper_trades" / "h353_vol_persistence" / "runner.py"),
     ("H-355", ROOT / "paper_trades" / "h355_entropy" / "runner.py"),
+    ("H-363", ROOT / "paper_trades" / "h363_multiday_pattern" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"
