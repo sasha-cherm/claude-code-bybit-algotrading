@@ -514,15 +514,33 @@ Demo eq: $97,301 (-2.70%). BTC spot ~$71,593. 11 open positions.
 - **Runner**: `paper_trades/h363_multiday_pattern/runner.py`
 - **Params**: LB30_R3_N3_high_long. WF 5/6 mean 0.611. Corr 0.322 H-012, 0.138 H-076.
 
-## Portfolio Summary (mark-to-market 2026-04-08 session 166, 17:14 UTC)
-- **Bybit Demo**: ~$97,301 (-2.70%). BTC spot ~$71,593 (close $71,895 on Apr 7 bar). Apr 8 bar forming.
-- **Total internal MTM (54 runners)**: 54 runners (51→54 post-deploy). **11/54 positive** (no new daily bar since session 165 for most runners).
-- **Top performers**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.47%), H-332(+0.17%)
-- **Average PnL**: +0.11% across 54 runners
-- **H-063**: $9,732 (-2.68%, improved from -6.35%). Trade 2 in progress (expires Apr 10). BTC $71.6k above $69k call. Still losing but BTC retreated from $72.5k.
-- **New deploys (session 166)**: H-368 (Vol Share Drift, LONG ADA/ARB/OP, SHORT ATOM/BTC/DOGE), H-382 (Return Kurtosis, LONG AVAX/BTC/DOGE/LINK, SHORT DOT/NEAR/SUI/XRP), H-383 (PVT, LONG AVAX/DOGE/ETH/LINK, SHORT DOT/NEAR/OP/XRP)
-- **AUTOMATED:** Paper trades hourly via cron (54 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on portfolio v3. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
+### H-388: Night-Day Return Differential (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — marginal confirmation
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG: DOT, NEAR, OP
+  - SHORT: DOGE, ETH, SOL
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h388_night_day_diff/runner.py`
+- **Params**: LB30_R5_N3_high_long. WF 4/6 mean 0.358. Corr 0.040 H-012.
+
+### H-394: Intraday Variance Ratio (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — strongest session 167 signal
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: ATOM, BTC, OP, SUI
+  - SHORT: ADA, AVAX, NEAR, XRP
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h394_variance_ratio/runner.py`
+- **Params**: LB10_R3_N4_high_long. WF 4/6 mean 0.351. Split-half 0.932/0.958 PASS. Corr **0.027** H-012.
+
+## Portfolio Summary (mark-to-market 2026-04-08 session 167, 21:52 UTC)
+- **Bybit Demo**: ~$96,481 (-3.52%). BTC spot ~$71,367. Apr 8 bar forming.
+- **Total internal MTM (56 runners)**: 56 runners (54→56 post-deploy). **20/54 positive** (excl. 2 new). Hourly/4h runners updated; no new daily bar.
+- **Top performers**: H-039(+5.75%), H-085(+3.74%), H-031(+3.29%), H-049(+2.84%), H-076(+2.66%), H-019(+2.25%), H-012(+1.97%), H-175(+1.86%), H-062(+1.76%), H-052(+1.65%)
+- **Average PnL**: -0.02% across 54 runners (near breakeven)
+- **H-063**: $9,694 (-3.06%). Trade 2 in progress (expires Apr 10 08:00 UTC). Call $69k ITM (BTC $71.4k). Put $65k OTM.
+- **New deploys (session 167)**: H-388 (Night-Day Diff, LONG DOT/NEAR/OP, SHORT DOGE/ETH/SOL), H-394 (Variance Ratio, LONG ATOM/BTC/OP/SUI, SHORT ADA/AVAX/NEAR/XRP)
+- **AUTOMATED:** Paper trades hourly via cron (56 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on portfolio v3. H-063 expires tomorrow. Continue research.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

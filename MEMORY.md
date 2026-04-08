@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,301 (-2.70%). BTC spot ~$71,593.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$96,481 (-3.52%). BTC spot ~$71,367.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,880 (-1.20%).
-- **Internal paper trades:** 54 runners active. Session 166. **11/54 positive**, avg +0.11%.
-- **H-063**: $9,732 (-2.68%), trade 2 in progress (expires Apr 10, BTC above $69k call).
-- **Top performers**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%).
-- **Session 166 research**: 16 new hypotheses (H-368 to H-383). **3 CONFIRMED**: H-368 (Vol Share Drift, WF 6/6 mean 2.034), H-382 (Return Kurtosis, WF 6/6 mean 1.500, corr -0.152 H-012), H-383 (PVT, WF 4/6 mean 1.312). All 3 deployed.
-- **AUTOMATED:** Paper trades hourly via cron (54 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
+- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,881 (-1.19%).
+- **Internal paper trades:** 56 runners active. Session 167. **20/54 positive** (excl. 2 new), avg -0.02%.
+- **H-063**: $9,694 (-3.06%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM (BTC $71.4k).
+- **Top performers**: H-039(+5.75%), H-085(+3.74%), H-031(+3.29%), H-049(+2.84%), H-076(+2.66%).
+- **Session 167 research**: 16 new hypotheses (H-384 to H-399). **3 CONFIRMED**: H-385 (Vol HHI, WF 4/6 but mean -0.362, NOT deployed), H-388 (Night-Day Diff, WF 4/6 mean 0.358, deployed), H-394 (Variance Ratio, Sharpe 1.014, WF 4/6, split-half PASS, corr 0.027, deployed).
+- **AUTOMATED:** Paper trades hourly via cron (56 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires tomorrow. Continue research.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 155) archived to `memory/session_archive.md`._
-
-### Session 2026-04-07 review+research (session 157)
-- Goal: Review + Research — MTM update with Apr 6 bar, 12 new factor backtests
-- Focus: Paper trade MTM (Apr 6 bar $68,846, BTC now $68,763), H-280 through H-291 backtests
-- Done: 40 runners checked. **Demo**: $100,050 (+0.05%, recovered from -0.83% to near breakeven!). **16/38 positive** (was 9/40). All 12 REJECTED. 291 total hypotheses.
-- Next: Explore fundamentally different signal types. Monitor H-021 (-2.47%) and H-183 (-2.43%).
-- Questions added: none
-- Self-modifications: Archived session 147. (session 157)
+_Older sessions (bootstrap through 157) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-07 review+research (session 158)
 - Goal: Review + Research — MTM update, 8 multi-factor interaction backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 155) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
 - Questions added: none
 - Self-modifications: H-368/H-382/H-383 runners created, added to orchestrator. Archived session 156. (session 166)
+
+### Session 2026-04-09 review+deploy+research (session 167)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests, 2 new deployments
+- Focus: Paper trade MTM (BTC $71,367), H-384 through H-399 backtests (2 batches of 8)
+- Done: 56 runners (54→56). **Demo**: $96,481 (-3.52%). **20/54 positive** (up from 11, avg -0.02%). H-085 surged to +3.74%. H-021 recovered from -4.23% to -0.86%. H-063 at -3.06% (trade 2 expires Apr 10). **Batch 1 (H-384–H-391)**: H-385 CONFIRMED (Vol HHI, IS 83.3%, WF 4/6 but mean -0.362 — NOT deployed). **H-388 CONFIRMED** (Night-Day Diff, IS 96.7%, WF 4/6, corr 0.040, deployed). H-384/H-386/H-387/H-389/H-390/H-391 REJECTED. **Batch 2 (H-392–H-399)**: **H-394 CONFIRMED** (Variance Ratio, IS 86.7%, Sharpe **1.014**, WF 4/6, split-half **0.932/0.958** PASS, corr **0.027** H-012, deployed). H-392/H-393/H-398 no OI data. H-395/H-396/H-397/H-399 REJECTED. **399 total hypotheses.**
+- Next: Await Q-005 answer. H-063 expires Apr 10. Continue research. Try to get OI data working.
+- Questions added: none
+- Self-modifications: H-388/H-394 runners created, added to orchestrator. Archived session 157. (session 167)

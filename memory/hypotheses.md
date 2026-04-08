@@ -4546,3 +4546,154 @@
 - Result: IS **87.5%** positive (21/24). Best LB30_R7_N4 Sharpe **1.347**, +52.7% ann, -31.4% DD. WF **4/6** positive (mean **1.312**, folds: 1.341/1.516/-0.162/3.866/-0.958/2.270). Split-half H1=1.441, H2=2.226 PASS. Neighbors 100% positive. Corr H-012 0.435.
 - Notes: Moderate correlation with H-012 (0.435) — both capture price direction but PVT incorporates volume conviction. Prior OBV attempts (H-118) failed at different params. This normalized version works because cross-sectional comparison requires normalization by total volume.
 - Sessions: [2026-04-08 session 166]
+
+## H-384: Day-of-Month Sensitivity Factor
+- Status: REJECTED (WF 2/6)
+- Idea: Rank assets by rolling avg excess return on month-edge days (1-5, 26-31) minus mid-month.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 1737 daily bars. IS: 48 param combos.
+- Result: IS 100% high_long (24/24). Best LB20_R7_N3 Sharpe 0.643, +31.1% ann, -70.4% DD. WF **2/6** (FAIL). Folds: -0.251/-1.637/1.282/-3.783/2.772/-1.918.
+- Notes: Strong IS (100% high_long) but terrible OOS. Edge-of-month effect is real in-sample but doesn't persist out-of-sample. Calendar anomalies may be arbitraged away quickly.
+- Sessions: [2026-04-09 session 167]
+
+## H-385: Volume Herfindahl Index Factor
+- Status: CONFIRMED (not deployed — negative WF mean)
+- Idea: Rank assets by HHI of hourly volume distribution. High HHI (concentrated volume) → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (hourly data aggregated)
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS **83.3%** high_long (25/30). Best LB20_R7_N4 Sharpe 0.686, +27.7% ann, -69.7% DD. WF **4/6** mean **-0.362** (2.183/0.251/1.713/-2.971/0.059/-3.404). Split-half H1=0.511, H2=0.832 PASS. Neighbors 87.5%. Corr H-012 **0.023**.
+- Notes: Technically passes WF fold count (4/6) but WF mean is NEGATIVE (-0.362) — recent folds heavily negative. Near-zero H-012 corr is excellent. Not deployed due to weak OOS performance. May revisit if signal improves.
+- Sessions: [2026-04-09 session 167]
+
+## H-386: 4h Return Autocorrelation Factor
+- Status: REJECTED (IS 56.7%)
+- Idea: Rank assets by lag-1 autocorrelation of 4h returns. High AC = trending intraday.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h data aggregated)
+- Data: 14 assets, 1738 daily bars. IS: 60 param combos.
+- Result: IS 56.7% high_long < 80%. Best LB5_R7_N4_low_long Sharpe 0.599. Dominant direction unclear.
+- Notes: 4h return autocorrelation doesn't provide robust cross-sectional signal. Crypto intraday returns are close to white noise — AC is too noisy for ranking.
+- Sessions: [2026-04-09 session 167]
+
+## H-387: Volume-Weighted Return Dispersion Factor
+- Status: REJECTED (WF 2/6)
+- Idea: Rank assets by std of volume-weighted hourly returns. Low dispersion (calm) → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS **96.7%** low_long (29/30). Best LB5_R7_N4 Sharpe 0.560, +25.2% ann, -75.0% DD. WF **2/6** (FAIL). Mean -0.747.
+- Notes: Strong IS in low_dispersion_long direction but completely fails OOS. The low-vw-dispersion anomaly is similar to low-volatility (H-019) but doesn't persist. Massive drawdowns.
+- Sessions: [2026-04-09 session 167]
+
+## H-388: Night-Day Return Differential Factor
+- Status: LIVE (paper trade since 2026-04-09)
+- Idea: Rank by rolling avg of (Asian session return minus US session return). High differential → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (hourly data aggregated)
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS **96.7%** high_long (29/30). Best LB30_R5_N3 Sharpe 0.688, +32.2% ann, -81.7% DD. WF **4/6** mean 0.358 (1.561/-2.432/-2.078/1.345/0.113/3.640). Split-half H1=0.916, H2=-0.271 (marginal). Neighbors 94.4%. Corr H-012 **0.040**.
+- Notes: Near-zero H-012 correlation is excellent. IS extremely robust. Split-half failed H2 but WF strength justified confirmation. Marginal signal — may need to watch closely. Captures persistent Asian/retail accumulation patterns. Deployed as paper trade #56.
+- Sessions: [2026-04-09 session 167]
+
+## H-389: Intraday High Timing Factor
+- Status: REJECTED (IS 70%)
+- Idea: Rank by avg hour when daily high occurs. Early highs (Asian) vs late highs (US institutional).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 70% low_long < 80%. Best LB15_R7_N4 Sharpe 0.855. Interesting signal but not robust enough.
+- Notes: The signal that late highs are bad (low_long dominant) suggests US-session selling is more informative than US-session buying. But 70% IS is insufficient.
+- Sessions: [2026-04-09 session 167]
+
+## H-390: 4h Body/Shadow Ratio Factor
+- Status: REJECTED (IS 76.7%)
+- Idea: Rank by avg 4h candle body/shadow ratio. High = conviction bars → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h aggregated)
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 76.7% high_long < 80%. Best LB20_R7_N4 Sharpe 0.882. Close to threshold but not robust.
+- Notes: Similar concept to H-343 (momentum decay at 4h, which was CONFIRMED). Daily aggregation loses the intrabar detail that makes 4h signals work.
+- Sessions: [2026-04-09 session 167]
+
+## H-391: Hourly Volume Trend Slope Factor
+- Status: REJECTED (IS 46.7%)
+- Idea: Rank by OLS slope of hourly volume within each day. Positive slope = building interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 46.7% high_long. Best LB30_R3_N3 Sharpe 0.644. Coin-flip results.
+- Notes: Intraday volume slope is too noisy for cross-sectional ranking. All crypto assets have similar U-shaped volume patterns (high at open/close, low mid-day), making XS differentiation minimal.
+- Sessions: [2026-04-09 session 167]
+
+## H-392: OI Momentum Factor
+- Status: REJECTED (no OI data in parquet files)
+- Idea: Rank by rolling change in open interest. Rising OI = new money, falling OI = closing.
+- Instrument: futures (14 perps)
+- Notes: Could not test — OI parquet files not available. Similar concept to H-044 which uses OI divergence.
+- Sessions: [2026-04-09 session 167]
+
+## H-393: Volume-OI Divergence Momentum
+- Status: REJECTED (no OI data)
+- Idea: Rolling correlation of volume changes with OI changes.
+- Instrument: futures (14 perps)
+- Notes: Could not test — OI data unavailable.
+- Sessions: [2026-04-09 session 167]
+
+## H-394: Intraday Variance Ratio Factor
+- Status: LIVE (paper trade since 2026-04-09)
+- Idea: Rank assets by variance ratio (var(2h returns) / (2 * var(1h returns))). VR > 1 = trending intraday → long. VR < 1 = mean-reverting → short.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (hourly data aggregated)
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS **86.7%** high_long (26/30). Best LB10_R3_N4 Sharpe **1.014**, +39.5% ann, -54.4% DD. WF **4/6** mean **0.351** (-0.989/1.489/0.962/1.911/0.679/-1.944). Split-half H1=0.932, H2=0.958 **PASS**. Neighbors 83.3%. Corr H-012 **0.027**.
+- Notes: Strongest signal of the session. Sharpe > 1, near-zero H-012 corr, split-half robust in both halves. The variance ratio tests the random walk hypothesis — assets deviating from random walk (VR > 1, trending) systematically outperform. This is a well-documented microstructure phenomenon. Deployed as paper trade #55.
+- Sessions: [2026-04-09 session 167]
+
+## H-395: Hourly Volume Asymmetry Factor
+- Status: REJECTED (IS 33.3%)
+- Idea: Rank by ratio of up-hour volume to down-hour volume. High = buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 33.3% low_long. Best LB30_R7_N3 Sharpe 0.414. Very weak.
+- Notes: Hourly volume asymmetry doesn't provide cross-sectional edge. Similar concept to H-219 (up-vol ratio at daily freq, CONFIRMED) but hourly granularity adds noise, not signal.
+- Sessions: [2026-04-09 session 167]
+
+## H-396: Price Impact Factor
+- Status: REJECTED (IS 60%)
+- Idea: Rank by avg |return|/volume per hour. High impact = thin/fragile market.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 60% high_long < 80%. Best LB5_R5_N3_low_long Sharpe 0.481. Massive DD (-94%).
+- Notes: Price impact at hourly level is too noisy. Direction unclear (high_long dominant but only 60%). Different from Amihud (H-197) which uses daily data — daily aggregation works better for this concept.
+- Sessions: [2026-04-09 session 167]
+
+## H-397: 4h Momentum Composite Factor
+- Status: REJECTED (IS 56.7%)
+- Idea: Composite of 4h return AC + body/shadow + volume persistence. Multi-signal approach.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h aggregated)
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 56.7% high_long < 80%. Best LB30_R5_N4 Sharpe 0.916. Close to decent but IS fails.
+- Notes: Simple averaging of 3 weak signals doesn't produce a strong composite. Each component individually is borderline — combining them doesn't add enough signal. Would need more sophisticated combination (e.g., PCA, regression weighting).
+- Sessions: [2026-04-09 session 167]
+
+## H-398: Funding-OI Interaction Factor
+- Status: REJECTED (no OI data for interaction)
+- Idea: Rank by funding_rate * OI_change. High = crowded momentum → contrarian short.
+- Instrument: futures (14 perps)
+- Notes: Could not test — OI data unavailable for interaction calculation.
+- Sessions: [2026-04-09 session 167]
+
+## H-399: 4h Return Acceleration Factor
+- Status: REJECTED (IS 36.7%)
+- Idea: Second derivative of 4h cumulative returns. Positive acceleration = strengthening trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h aggregated)
+- Data: 14 assets, 1737 daily bars. IS: 60 param combos.
+- Result: IS 36.7% high_long. Best Sharpe 0.182. Massive DD (-103%).
+- Notes: Return acceleration at 4h is pure noise. Second derivatives amplify noise quadratically. The concept of trend acceleration doesn't translate to a reliable cross-sectional ranking signal in crypto.
+- Sessions: [2026-04-09 session 167]

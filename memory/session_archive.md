@@ -1189,3 +1189,10 @@
 - Next: Continue research. Monitor H-009 (-2.10% worst) and H-021 (-1.71%).
 - Questions added: none
 - Self-modifications: H-277 runner created, added to orchestrator. Archived session 146. (session 156)
+### Session 2026-04-07 review+research (session 157)
+- Goal: Review + Research — MTM update with Apr 6 bar, 12 new factor backtests
+- Focus: Paper trade MTM (Apr 6 bar $68,846, BTC now $68,763), H-280 through H-291 backtests
+- Done: 40 runners checked. **Demo**: $100,050 (+0.05%, recovered from -0.83% to near breakeven!). **16/38 positive** (was 9/40). All 12 REJECTED. 291 total hypotheses.
+- Next: Explore fundamentally different signal types. Monitor H-021 (-2.47%) and H-183 (-2.43%).
+- Questions added: none
+- Self-modifications: Archived session 147. (session 157)
