@@ -484,19 +484,39 @@ Demo eq: $97,400 (-2.60%). BTC spot ~$69,348. 11 open positions. Demo declined f
 - **Runner**: `paper_trades/h343_momentum_decay/runner.py`
 - **Params**: LB10_R3_N3_high_long. WF **6/6 mean 4.163** (best ever). Corr 0.225 H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-08 session 162, 01:25 UTC)
-- **Bybit Demo**: ~$98,462 (-1.54%). BTC spot ~$71,704 (rallied +2.7% from $69,833). Last daily bar: Apr 7. Apr 8 bar in progress.
-- **Total internal MTM (47 runners)**: 47 runners (43 prior + 4 newly deployed: H-333/H-338/H-342/H-343). **11/47 positive**.
-- **Positive (11/47)**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.47%), H-332(+0.17%)
-- **Near flat (3/47)**: H-324(0.00%), H-032(0.00%), weekend_iron_condor(0.00%)
-- **Negative (33/47)**: [11 new deploys at -0.20%], H-160(-0.32%), H-277(-0.42%), H-336(-0.42%), H-085(-0.43%), H-046(-0.53%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-182(-1.13%), H-011(-1.24%), H-197(-1.63%), H-021(-1.71%), H-009(-2.10%), H-183(-2.43%), H-063(-3.81%)
-- **Key changes from session 161**: BTC rallied $69,833→$71,704 (+2.7%). **H-063 crashed to -3.81%** (call deeply ITM, expires Apr 10). H-332 turned positive +0.17%. H-059 recovered to +0.47%. H-009 deteriorated to -2.10% (SHORT). 4 new runners deployed.
-- **H-063**: $9,619 (-3.81%), trade 2 in progress (expires Apr 10). BTC $71,704 above $69,000 call. Hedge PnL -$214.
+### H-351: Volume Profile Skewness (Hourly) — NEW
+- **Status**: LIVE paper trade (started 2026-04-08) — novel microstructure signal
+- **Position**: LONG BTC/OP/XRP, SHORT AVAX/LINK/SUI
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h351_vol_skew/runner.py`
+- **Params**: LB30_R5_N3_low_long. WF 5/6 mean 1.339. Corr 0.179 H-012, -0.063 H-076.
+
+### H-353: Volume Persistence (Hourly) — NEW
+- **Status**: LIVE paper trade (started 2026-04-08) — outstanding WF
+- **Position**: LONG AVAX/BTC/NEAR/XRP, SHORT ADA/LINK/OP/SUI
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h353_vol_persistence/runner.py`
+- **Params**: LB5_R3_N4_high_long. WF 5/6 mean **2.526**. Corr 0.196 H-012, -0.030 H-076.
+
+### H-355: Hourly Return Entropy — NEW
+- **Status**: LIVE paper trade (started 2026-04-08) — near-zero correlation
+- **Position**: LONG ADA/AVAX/ETH, SHORT BTC/NEAR/XRP
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h355_entropy/runner.py`
+- **Params**: LB14_R3_N3_low_long. WF 5/6 mean 1.684. Corr **0.079** H-012, **-0.020** H-076.
+
+## Portfolio Summary (mark-to-market 2026-04-08 session 163, 05:30 UTC)
+- **Bybit Demo**: ~$98,462 (-1.54%). BTC spot ~$71,590 (close $71,928 on Apr 7 bar). Last daily bar: Apr 7 (complete — BTC rallied +4.5%).
+- **Total internal MTM (50 runners)**: 50 runners (47 prior + 3 newly deployed: H-351/H-353/H-355). **11/50 positive**.
+- **Positive (11/50)**: H-039(+5.75%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%), H-052(+1.92%), H-175(+1.90%), H-053(+1.39%), H-049(+0.56%), H-059(+0.97%), H-332(+0.37%)
+- **Near flat (3/50)**: H-324(0.00%), H-032(0.00%), weekend_iron_condor(0.00%)
+- **Negative (36/50)**: [14 new deploys at -0.24%], H-160(-0.32%), H-277(-0.42%), H-336(-0.42%), H-085(-0.43%), H-046(-0.53%), H-169(-0.59%), H-044(-0.66%), H-215(-1.03%), H-182(-1.13%), H-011(-1.24%), H-197(-1.63%), H-021(-1.71%), H-009(-2.10%), H-183(-2.43%), H-063(-4.65%)
+- **Key changes from session 162**: Fixed Apr 7 daily bar data (was partial, 233 BTC vol → complete 15k BTC vol). H-059 improved to +0.97%. H-332 improved to +0.37%. H-063 deteriorated to -4.65%. 3 new runners deployed.
+- **H-063**: $9,609 (-4.65%), trade 2 in progress (expires Apr 10). BTC $71,590 deep above $69,000 call. Hedge PnL -$220.
 - **H-039 (DOW)**: $10,575 (+5.75%, FLAT). Next LONG entry Wed Apr 9 (00:30 UTC).
 - **H-324**: $10,000 (0.00%, FLAT). ADX < 30. Waiting for trend.
-- **H-011**: $9,876 (-1.24%), still IN.
-- **Research**: 349 hypotheses total. Session 162: 8 hourly-microstructure backtests (H-342 to H-349). **H-342 CONFIRMED** (VP sync, WF 5/6, corr 0.004 H-076), **H-343 CONFIRMED** (momentum decay, WF 6/6 mean 4.163 — best ever). H-348 rejected (redundant with H-343, corr 0.717). 5 others REJECTED. Also deployed H-333/H-338 (confirmed session 161 but undeployed). **Framework refinement**: directional signals with 100% in one direction should be evaluated on dominant direction IS.
-- **AUTOMATED:** Paper trades hourly via cron (47 runners). Claude sessions every 4h. IV collector running.
+- **Research**: 357 hypotheses total. Session 163: 8 hourly-microstructure backtests (H-350 to H-357). **3 CONFIRMED** (H-351 vol skew WF 5/6 mean 1.339, H-353 vol persistence WF 5/6 mean **2.526**, H-355 entropy WF 5/6 mean 1.684). All 3 have very low corr with H-012 (0.08-0.20) and negative corr with H-076. H-357 narrowly rejected (split-half fail H2=-0.073). 4 others rejected (IS < 80%).
+- **AUTOMATED:** Paper trades hourly via cron (50 runners). Claude sessions every 4h. IV collector running.
 - **Next action:** Options strategies beyond strangles. Portfolio optimization of 47 strategies. Monitor H-063 (-3.81%, expires Apr 10) and H-183 (-2.43%).
 - **Open user questions:** None
 

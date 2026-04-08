@@ -15,11 +15,11 @@
     "premium_collected": 189.93181896357046,
     "iv": 0.3823,
     "btc_at_entry": 66866.1,
-    "total_fees": 27.804497226293442,
-    "hedge_pnl": -213.74100179957554,
-    "last_btc_price": 71605.1
+    "total_fees": 28.103682407651977,
+    "hedge_pnl": -219.64712878908338,
+    "last_btc_price": 71650.9
   },
-  "hedge_position": -0.13338749416357415,
+  "hedge_position": -0.13525496285287963,
   "total_trades": 1,
   "total_pnl": 77.64421374702252,
   "equity_history": [
@@ -2926,8 +2926,44 @@
       "equity": 9619.44,
       "btc_price": 71605.1,
       "in_trade": true
+    },
+    {
+      "time": "2026-04-08T01:31:58.810291+00:00",
+      "equity": 9660.39,
+      "btc_price": 71451.6,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-08T02:32:32.814345+00:00",
+      "equity": 9676.17,
+      "btc_price": 71393.8,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-08T03:36:31.904048+00:00",
+      "equity": 9685.36,
+      "btc_price": 71361.2,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-08T04:32:04.389106+00:00",
+      "equity": 9649.13,
+      "btc_price": 71500.8,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-08T05:11:06.317212+00:00",
+      "equity": 9609.51,
+      "btc_price": 71650.0,
+      "in_trade": true
+    },
+    {
+      "time": "2026-04-08T05:11:46.529951+00:00",
+      "equity": 9609.27,
+      "btc_price": 71650.9,
+      "in_trade": true
     }
   ],
-  "last_check": "2026-04-08T01:07:09.818527+00:00",
-  "equity": 9619.44
+  "last_check": "2026-04-08T05:11:46.529951+00:00",
+  "equity": 9609.27
 }

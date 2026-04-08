@@ -4224,3 +4224,73 @@
 - Timeframe: 1D
 - Result: IS **45.8%** positive. Low_long 58.3%, high_long 33.3%. Best Sharpe 0.834. **REJECTED** — gap fill behavior too weak and inconsistent as XS signal.
 - Sessions: [2026-04-08 session 162]
+
+## H-350: Opening Drive Ratio
+- Status: REJECTED
+- Idea: First 4h bar's absolute return / full day's range. High = opening session dominates the day.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **53.3%** dominant direction (high_long). Best LB30_R3_N3 Sharpe 0.810. **REJECTED** — IS 53.3% < 80%.
+- Sessions: [2026-04-08 session 163]
+
+## H-351: Volume Profile Skewness
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Skewness of hourly volume distribution within each day. Low skew = front-loaded volume (institutional conviction). High skew = back-loaded (retail chase).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5 days)
+- Logic: Rank by rolling 30-day avg vol skewness. Long low-skew (front-loaded), short high-skew.
+- Data: 14 assets, 1072 daily bars (~2.9yr). WF: 6 folds.
+- Result: IS **100%** low_long (30/30). Best LB30_R5_N3 Sharpe **1.438**, +95.7% ann, -44.7% DD. WF **5/6** mean **1.339**. Split-half H1=1.109, H2=0.588. Neighbor 100%. Corr H-012 **0.179**, H-076 **-0.063**. Cross-corr: 0.286 H-353, -0.180 H-355.
+- Sessions: [2026-04-08 session 163]
+
+## H-352: Intraday R-squared (Hourly)
+- Status: REJECTED
+- Idea: R² of hourly cumulative returns vs time. High = clean intraday trend. Low = choppy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **76.7%** dominant direction (high_long). Best LB14_R7_N4 Sharpe 0.615. **REJECTED** — IS 76.7% < 80%.
+- Sessions: [2026-04-08 session 163]
+
+## H-353: Volume Persistence
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Autocorrelation of hourly volumes within a day. High persistence = sustained institutional engagement. Low = sporadic bursts.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3 days)
+- Logic: Rank by rolling 5-day avg hourly volume autocorrelation. Long high-persistence, short low.
+- Data: 14 assets, 1072 daily bars (~2.9yr). WF: 6 folds.
+- Result: IS **100%** high_long (30/30). Best LB5_R3_N4 Sharpe **2.501**, +146.2% ann, -19.5% DD. WF **5/6** mean **2.526** (excellent). Split-half H1=1.592, H2=1.035. Neighbor 100%. Corr H-012 **0.196**, H-076 **-0.030**. Cross-corr: 0.286 H-351, 0.057 H-355.
+- Sessions: [2026-04-08 session 163]
+
+## H-354: Session Momentum Ratio
+- Status: REJECTED
+- Idea: US session return / (Asia + Europe session return). Captures institutional vs retail flow imbalance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **43.3%** dominant direction (low_long). Best LB20_R7_N3 Sharpe 0.623. **REJECTED** — IS 43.3% < 80%.
+- Sessions: [2026-04-08 session 163]
+
+## H-355: Hourly Return Entropy
+- Status: LIVE (paper trade since 2026-04-08)
+- Idea: Shannon entropy of discretized hourly returns. Low entropy = structured/trending intraday price action. High entropy = random walk.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 3 days)
+- Logic: Rank by rolling 14-day avg return entropy. Long low-entropy (structured), short high.
+- Data: 14 assets, 1072 daily bars (~2.9yr). WF: 6 folds.
+- Result: IS **100%** low_long (30/30). Best LB14_R3_N3 Sharpe **1.657**, +101.9% ann, -37.0% DD. WF **5/6** mean **1.684**. Split-half H1=0.353, H2=1.059. Neighbor 100%. Corr H-012 **0.079**, H-076 **-0.020**. Cross-corr: -0.180 H-351, 0.057 H-353. Near-zero correlation with everything.
+- Sessions: [2026-04-08 session 163]
+
+## H-356: Volume-at-Extremes
+- Status: REJECTED
+- Idea: Fraction of daily volume occurring at hours with price near daily high or low. High = breakout behavior.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **46.7%** dominant direction (high_long). Best LB14_R7_N4 Sharpe 0.933. **REJECTED** — IS 46.7% < 80%.
+- Sessions: [2026-04-08 session 163]
+
+## H-357: Intraday Mean Reversion Speed
+- Status: REJECTED
+- Idea: |first hour return| - |full day return|. High = first move reverses. Low = extends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **100%** low_long (30/30). Best LB5_R3_N3 Sharpe 1.641. WF **5/6** mean 1.441. **Split-half fail** (H1=1.893, H2=-0.073). Neighbor 100%. **REJECTED** — signal degrades in second half.
+- Sessions: [2026-04-08 session 163]

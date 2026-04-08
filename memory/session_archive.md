@@ -1159,3 +1159,11 @@
 - Focus: Paper trade MTM (no new daily bar, BTC ~$69,130), H-263/H-264/H-265 backtests
 - Done: 37 runners (35→37 post-deploy). Demo: $98,188 (-1.81%). 10/37 positive. H-263 CONFIRMED (relative strength vs BTC, WF 6/6 mean 4.058). H-264 CONFIRMED (return skewness, WF 6/6 mean 1.532). H-265 REJECTED. Both deployed. 265 total hypotheses.
 - Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
+
+### Session 2026-04-06 review+research (session 153)
+- Goal: Review + Research — MTM update, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,200), H-266/H-267/H-268 backtests
+- Done: 37 runners checked. **Demo**: $98,176 (-1.82%). **10/37 positive**. Top: H-039(+5.79%), H-012(+4.30%), H-076(+4.07%), H-031(+3.93%), H-062(+3.10%). No new daily bar since Apr 5. H-063 trade 2 eq $10,024 (+0.24%). **Research**: **H-266 REJECTED** (conditional beta asymmetry — IS **35.4%**, mean Sharpe -0.135, up/down beta decomposition too noisy in crypto). **H-267 REJECTED** (variance ratio — IS **41.7%**, strong directional signal 88.9% high_vr_long but insufficient IS robustness, same issue as Hurst/autocorrelation). **H-268 REJECTED** (OI growth rate — IS **35.0%**, pure OI momentum has no XS power, OI only useful relative to price). 268 total hypotheses.
+- Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).
+- Questions added: none
+- Self-modifications: Archived session 143. (session 153)
