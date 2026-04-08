@@ -1,10 +1,10 @@
 {
   "started": "2026-03-16T15:12:24.454274+00:00",
-  "capital": 9871.860119996672,
+  "capital": 9875.894255634708,
   "in_position": true,
   "position_entry_time": "2026-03-23 00:00:00+00:00",
-  "notional": 49359.3,
-  "total_funding_collected": 51.85568162536997,
+  "notional": 49379.47,
+  "total_funding_collected": 55.889817263406606,
   "total_funding_paid": 30.759236620587227,
   "total_fees": 149.23632500811115,
   "equity_history": [
@@ -342,8 +342,13 @@
       "date": "2026-04-07 16:00:00+00:00",
       "equity": 9871.86,
       "in_position": true
+    },
+    {
+      "date": "2026-04-08 00:00:00+00:00",
+      "equity": 9875.89,
+      "in_position": true
     }
   ],
-  "last_funding_time": "2026-04-07 16:00:00+00:00",
-  "settlements_count": 68
+  "last_funding_time": "2026-04-08 00:00:00+00:00",
+  "settlements_count": 69
 }

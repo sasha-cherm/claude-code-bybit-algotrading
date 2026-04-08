@@ -1,0 +1,19 @@
+[
+  {
+    "date": "2026-04-07",
+    "action": "rebalance",
+    "capital": 9980.0,
+    "positions": {
+      "ETH/USDT": "LONG",
+      "BTC/USDT": "LONG",
+      "SOL/USDT": "LONG",
+      "LINK/USDT": "LONG",
+      "NEAR/USDT": "SHORT",
+      "SUI/USDT": "SHORT",
+      "XRP/USDT": "SHORT",
+      "ATOM/USDT": "SHORT"
+    },
+    "trades": 8,
+    "fees": 20.0
+  }
+]

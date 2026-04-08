@@ -18,5 +18,25 @@
     "trades": 8,
     "fees": 20.0,
     "capital": 9980.0
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-08T00:34:32.080883+00:00",
+    "date": "2026-04-07",
+    "longs": [
+      "DOGE/USDT",
+      "ARB/USDT",
+      "ADA/USDT",
+      "DOT/USDT"
+    ],
+    "shorts": [
+      "ETH/USDT",
+      "BTC/USDT",
+      "SOL/USDT",
+      "ATOM/USDT"
+    ],
+    "trades": 4,
+    "fees": 10.55,
+    "capital": 10190.2
   }
 ]

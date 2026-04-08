@@ -4158,3 +4158,69 @@
 - Timeframe: 1D
 - Result: IS **39.6%** positive. High_long 66.7%. Best Sharpe 0.729. **REJECTED** — return concentration has no reliable XS predictive power.
 - Sessions: [2026-04-07 session 161]
+
+## H-342: Volume-Price Synchronicity (Hourly Microstructure)
+- Status: CONFIRMED (deployed session 162)
+- Idea: Rank assets by corr(hourly volume, |hourly return|) over lookback. High sync = volume appears when price moves (efficient market participation).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from hourly, trade daily)
+- Result: IS **100%** high_long (24/24, overall 50% because low_long 0% — directional signal). Best LB10_R5_N4 Sharpe **1.095**. WF **5/6** mean **1.175**. Split-half H1=0.600, H2=1.584. Corr H-012 **0.273**, H-076 **0.004** (excellent diversifier). Neighbors 12/12 = 100%.
+- Notes: Framework refinement — for directional signals where one direction is 100% positive and the other 0%, evaluate IS on dominant direction only. VP sync captures a fundamentally different aspect of market microstructure from momentum or trend quality.
+- Sessions: [2026-04-08 session 162]
+
+## H-343: Intraday Momentum Decay (4h Microstructure)
+- Status: CONFIRMED (deployed session 162)
+- Idea: Rank assets by avg (close-open)/(high-low) of 4h bars over lookback. High = bars closing near highs (sustained buying). Low = intraday gains given back.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 4h, trade daily)
+- Result: IS **100%** high_long (24/24, overall 50% — directional). Best LB10_R3_N3 Sharpe **4.051**. WF **6/6** mean **4.163** (best WF ever!). Split-half H1=3.789, H2=4.342. Corr H-012 **0.225**, H-076 **0.101**. Neighbors 8/8 = 100%. Cross-corr with H-342: 0.072, H-348: 0.717.
+- Notes: Extraordinary signal — sustained intraday buying pressure predicts XS continuation. Corr 0.717 with H-348 (trend strength R²) so they measure related but different aspects of intraday quality; keep H-343 (higher Sharpe).
+- Sessions: [2026-04-08 session 162]
+
+## H-344: Volume Clustering (Hourly Gini)
+- Status: REJECTED
+- Idea: Gini coefficient of hourly volumes within each day. High clustering = institutional block trades.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **39.6%** positive. Low_long 62.5%, high_long 16.7%. Best Sharpe 0.590. **REJECTED** — volume clustering pattern has no reliable XS signal.
+- Sessions: [2026-04-08 session 162]
+
+## H-345: Asia-US Session Return Spread
+- Status: REJECTED
+- Idea: Avg (US session return - Asia session return) over lookback. Captures institutional flow timing.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **41.7%** positive. High_long 75.0%, low_long 8.3%. Best Sharpe 1.183. **REJECTED** — session-level return spread too noisy for reliable XS ranking.
+- Sessions: [2026-04-08 session 162]
+
+## H-346: Hourly Return Kurtosis
+- Status: REJECTED
+- Idea: Kurtosis of hourly returns over lookback. High = fat tails (event-driven). Low = smooth/mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **50%** overall (high_long 95.8%, low_long 4.2%). Best Sharpe 0.945. WF 3/6 (fail). **REJECTED** — direction clear but WF inconsistent.
+- Sessions: [2026-04-08 session 162]
+
+## H-347: Volume-Weighted Close Location (Hourly)
+- Status: REJECTED
+- Idea: VWAP-like intraday positioning — avg CLV weighted by hourly volume. Captures where in range heavy volume traded.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **47.9%** positive. High_long 83.3%, low_long 12.5%. Best Sharpe 1.527. **REJECTED** — insufficient overall IS robustness.
+- Sessions: [2026-04-08 session 162]
+
+## H-348: Intraday Trend Strength (Hourly R²)
+- Status: REJECTED (redundant with H-343, corr 0.717)
+- Idea: R² of cumulative hourly returns vs time within each day. High R² = clean intraday trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **100%** high_long (24/24, overall 50%). Best LB10_R3_N3 Sharpe **2.983**. WF **6/6** mean **3.035**. Split-half H1=2.887, H2=3.093. Corr H-012 **0.231**, H-076 **0.211**. **Strong signal but corr 0.717 with H-343** — rejected as redundant (H-343 has higher Sharpe 4.05 vs 2.98).
+- Sessions: [2026-04-08 session 162]
+
+## H-349: Opening Gap Fill Rate
+- Status: REJECTED
+- Idea: Fraction of days where first-hour return reverses into rest-of-day. High fill = mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **45.8%** positive. Low_long 58.3%, high_long 33.3%. Best Sharpe 0.834. **REJECTED** — gap fill behavior too weak and inconsistent as XS signal.
+- Sessions: [2026-04-08 session 162]

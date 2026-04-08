@@ -1,0 +1,56 @@
+{
+  "started": "2026-04-08T01:25:53.877900+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "NEAR/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 1.241248,
+      "size": 2685.46881545,
+      "direction": "LONG"
+    },
+    "OP/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 0.109522,
+      "size": 30435.31324177,
+      "direction": "LONG"
+    },
+    "ETH/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 2111.612238,
+      "size": 1.57857265,
+      "direction": "LONG"
+    },
+    "DOT/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 1.238752,
+      "size": -2690.87984936,
+      "direction": "SHORT"
+    },
+    "AVAX/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 8.824235,
+      "size": -377.74757913,
+      "direction": "SHORT"
+    },
+    "ADA/USDT": {
+      "weight": -0.3333333333333333,
+      "entry_price": 0.244951,
+      "size": -13608.16380963,
+      "direction": "SHORT"
+    }
+  },
+  "equity_history": [
+    {
+      "time": "2026-04-08T01:25:55.345184+00:00",
+      "equity": 9976.0,
+      "date": "2026-04-07"
+    }
+  ],
+  "last_daily_date": "2026-04-07",
+  "last_rebal_date": "2026-04-07",
+  "days_since_rebal": 0,
+  "rebal_count": 1,
+  "total_trades": 6,
+  "total_fees": 19.999999999999996,
+  "equity": 9976.0
+}

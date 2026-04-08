@@ -1153,3 +1153,9 @@
 - Focus: Paper trade MTM (BTC Apr 5 final $69,035, Apr 6 in progress $68,939), H-260/H-261/H-262 backtests
 - Done: 35 runners checked. Demo: $98,869 (-1.13%). 16/35 positive. H-260/H-261/H-262 all REJECTED. 262 total hypotheses.
 - Next: Continue research. Monitor H-053 (-2.12%) and H-183 (-1.88%).
+
+### Session 2026-04-06 review+deploy+research (session 152)
+- Goal: Review + Deploy + Research — MTM update, H-263/H-264 deployment, 3 new factor backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,130), H-263/H-264/H-265 backtests
+- Done: 37 runners (35→37 post-deploy). Demo: $98,188 (-1.81%). 10/37 positive. H-263 CONFIRMED (relative strength vs BTC, WF 6/6 mean 4.058). H-264 CONFIRMED (return skewness, WF 6/6 mean 1.532). H-265 REJECTED. Both deployed. 265 total hypotheses.
+- Next: Continue research. Monitor H-009 (-2.10%) and H-021 (-1.71%).

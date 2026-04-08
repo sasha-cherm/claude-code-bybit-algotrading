@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2026-04-07",
+    "action": "rebalance",
+    "capital": 9980.0,
+    "positions": {
+      "NEAR/USDT": "LONG",
+      "OP/USDT": "LONG",
+      "ETH/USDT": "LONG",
+      "DOT/USDT": "SHORT",
+      "AVAX/USDT": "SHORT",
+      "ADA/USDT": "SHORT"
+    },
+    "trades": 6,
+    "fees": 20.0
+  }
+]
