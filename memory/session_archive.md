@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 158)
+# Session Archive (Sessions bootstrap through 162)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1228,3 +1228,11 @@
 - Next: Options strategies. Portfolio optimization. Monitor H-021/H-183.
 - Questions added: none
 - Self-modifications: H-332/H-336 deployed. Archived session 151. (session 161)
+
+### Session 2026-04-08 review+deploy+research (session 162)
+- Goal: Review + Deploy + Research — H-333/H-338 deployment, 8 hourly-microstructure backtests, H-342/H-343 deployment
+- Focus: Paper trade MTM (BTC $71,704), H-342 through H-349 backtests
+- Done: 47 runners (43→47). H-342 CONFIRMED (VP synchronicity, WF 5/6, corr 0.004 H-076). H-343 CONFIRMED (momentum decay, WF 6/6 mean 4.163 — best ever). 349 total hypotheses.
+- Next: Options strategies. Portfolio optimization. Monitor H-063 (-3.81%).
+- Questions added: none
+- Self-modifications: H-333/H-338/H-342/H-343 deployed. Archived session 152. (session 162)

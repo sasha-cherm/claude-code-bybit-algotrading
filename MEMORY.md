@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,154 (-1.85%, improving). BTC spot ~$71,171.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,514 (-2.49%). BTC spot ~$72,405.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 65 runners active. Session 171. **20/65 positive**, avg **+0.07%**.
-- **H-063**: $9,795 (-2.05%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $2k (BTC ~$71.1k).
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%). BTC ~$71,245.
-- **Session 171 research**: 16 new hypotheses (H-456 to H-471). **1 CONFIRMED** (H-470 First Hour Ret, SH PASS). 5 borderline (all SH fail), 10 rejected. **471 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (64 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset).
+- **Internal paper trades:** 65 runners active. Session 172. **20/65 positive**, avg **+0.04%**.
+- **H-063**: $9,552 (-4.48%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $3.4k. Expect ~-5% loss.
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%).
+- **Session 172 research**: 24 new hypotheses (H-472 to H-495). **1 CONFIRMED** (H-485 Monthly Reversal, not deployed — corr 0.591). 1 BORDERLINE (H-486), 22 REJECTED. Cross-asset, interactions, calendar all exhausted. **495 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (65 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Consider: alternative asset universes, ML signal combination, or longer backtest history.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 161) archived to `memory/session_archive.md`._
-
-### Session 2026-04-08 review+deploy+research (session 162)
-- Goal: Review + Deploy + Research — H-333/H-338 deployment, 8 hourly-microstructure backtests, H-342/H-343 deployment
-- Focus: Paper trade MTM (BTC $71,704), H-342 through H-349 backtests
-- Done: 47 runners (43→47). **H-342 CONFIRMED** (VP synchronicity, WF 5/6, corr 0.004 H-076). **H-343 CONFIRMED** (momentum decay, WF 6/6 mean **4.163** — best ever). 349 total hypotheses.
-- Next: Options strategies. Portfolio optimization. Monitor H-063 (-3.81%).
-- Questions added: none
-- Self-modifications: H-333/H-338/H-342/H-343 deployed. Archived session 152. (session 162)
+_Older sessions (bootstrap through 162) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-08 review+deploy+research (session 163)
 - Goal: Review + Deploy + Research — fixed partial Apr 7 bar, 8 microstructure backtests, H-351/H-353/H-355 deployment
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 161) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset, or non-price data). 
 - Questions added: none
 - Self-modifications: H-470 runner created, added to orchestrator. Archived session 161. (session 171)
+
+### Session 2026-04-09 review+research (session 172)
+- Goal: Review + Research — MTM update, 24 new backtests (3 batches of 8), no deployments
+- Focus: Paper trade MTM (BTC $72,405), H-472 through H-495 backtests. Cross-asset dynamics, factor interactions, calendar seasonality.
+- Done: 65 runners (unchanged). **20/65 positive** (avg +0.04%). Demo $97,514 (-2.49%). H-063 heading for ~-5% loss (trade 2, BTC rallied to $72.4k vs $69k call). **Batch 1 (H-472–H-479, cross-asset)**: All 8 REJECTED at IS. Lead-lag, correlation clustering, beta dynamics, spillover, idiosyncratic momentum — no cross-asset edges. **Batch 2 (H-480–H-487, interactions)**: **H-485 CONFIRMED** (Monthly Reversal, IS 100%, WF 4/6 mean 1.042, SH PASS — NOT deployed, H-012 corr 0.591). H-486 borderline (IS 94%, WF 6/6 but H-012 corr 0.899). 6 REJECTED. **Batch 3 (H-488–H-495, novel)**: All 8 REJECTED. Factor composite, calendar seasonality, distance-from-high, autocorrelation — no edges. **495 total hypotheses.** Signal space thoroughly exhausted across daily XS, hourly-derived, cross-asset, and interaction categories.
+- Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Consider ML signal combination, alternative asset universes, or longer history.
+- Questions added: none
+- Self-modifications: Archived session 162. (session 172)

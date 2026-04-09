@@ -613,16 +613,15 @@ Demo eq: ~$96,481 (-3.52%). BTC spot ~$70,814. 11 open positions.
 - **Runner**: `paper_trades/h470_first_hour_ret/runner.py`
 - **Params**: LB20_R7_N4_high_long. WF 4/6 mean 0.365. SH PASS (1.665/0.411). Corr 0.267 H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-09 session 171, 13:18 UTC)
-- **Bybit Demo**: ~$98,154 (-1.85%). BTC spot ~$71,245.
-- **Total internal MTM (65 runners)**: 65 runners (64→65 +H-470 deployed). **20/65 positive** (excl. 1 new). Avg PnL **+0.07%**.
+## Portfolio Summary (mark-to-market 2026-04-09 session 172, 17:00 UTC)
+- **Bybit Demo**: ~$97,514 (-2.49%). BTC spot ~$72,405.
+- **Total internal MTM (65 runners)**: 65 runners. **20/65 positive** (31%). Avg PnL **+0.04%**.
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%), H-039(+3.53%), H-019(+3.47%), H-062(+3.10%), H-338(+2.15%), H-336(+2.04%)
-- **H-063**: $9,764 (-2.36%). Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $2.2k (BTC ~$71.2k).
+- **H-063**: $9,552 (-4.48%). Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by **$3.4k** (BTC $72.4k). Heading for ~$-594 loss.
 - **Worst performers**: H-191(-6.51%), H-223(-3.92%), H-009(-2.78%), H-264(-2.71%), H-021(-2.64%)
-- **New deploy (session 171)**: H-470 (First Hour Return, IS 100%, WF 4/6, SH PASS, corr 0.267)
-- **Research (session 171)**: 16 new hypotheses (H-456 to H-471). **1 CONFIRMED** (H-470 First Hour Ret). 5 BORDERLINE (H-456, H-458, H-459, H-461, H-467 — all fail SH). 10 REJECTED. Hourly-derived signals getting harder — many pass IS+WF but fail split-half. **471 total hypotheses.**
+- **Research (session 172)**: 24 new hypotheses (H-472 to H-495). **1 CONFIRMED** (H-485 Monthly Reversal, not deployed — H-012 corr 0.591). 1 BORDERLINE (H-486, H-012 corr 0.899). 22 REJECTED. **Cross-asset dynamics, factor interactions, calendar seasonality all show no edge.** Signal space thoroughly exhausted. **495 total hypotheses.**
 - **AUTOMATED:** Paper trades hourly via cron (65 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset). H-455/H-467 are near-miss SH failures worth monitoring.
+- **Next action:** Await Q-005 answer. H-063 expires Apr 10 08:00 (expect ~-5% loss on trade 2). Consider: alternative asset universe, different instruments, longer backtests, or ML-based signal combination.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

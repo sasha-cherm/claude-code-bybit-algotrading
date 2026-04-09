@@ -5488,3 +5488,199 @@
 - Data: 14 assets, 732 daily bars.
 - Result: IS 35.4% overall, best direction 54.2% — below 80% threshold.
 - Sessions: [2026-04-09 session 171]
+
+## H-472: BTC Lead-Lag Factor
+- Status: REJECTED (IS 33%)
+- Idea: Rolling correlation of BTC return(t-1) with asset return(t). Cross-asset lead-lag.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars.
+- Result: IS 33% (4/12 positive). No reliable cross-asset lead-lag edge.
+- Sessions: [2026-04-09 session 172]
+
+## H-473: Correlation Clustering Factor
+- Status: REJECTED (IS 50%)
+- Idea: Average pairwise correlation with all other assets. Low corr = independent.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 50% (6/12 positive). Unstable across params.
+- Sessions: [2026-04-09 session 172]
+
+## H-474: Beta Change Factor
+- Status: REJECTED (IS 42%)
+- Idea: Rolling change in BTC beta (beta_10d - beta_30d). Falling beta = safer.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 42% (5/12 positive). Beta dynamics not predictive.
+- Sessions: [2026-04-09 session 172]
+
+## H-475: Relative Funding Spread
+- Status: REJECTED (IS 0%)
+- Idea: Asset funding rate minus cross-sectional median. Contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/6 positive). Zero signal.
+- Sessions: [2026-04-09 session 172]
+
+## H-476: Momentum Spillover Factor
+- Status: REJECTED (IS 38%)
+- Idea: Weighted sum of lagged returns from correlated peers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 38% (3/8 positive). Peer spillover not predictive.
+- Sessions: [2026-04-09 session 172]
+
+## H-477: Idiosyncratic Momentum
+- Status: REJECTED (IS 50%)
+- Idea: Residual return after removing BTC component. Pure alpha signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 50% (6/12 positive). Market-neutral residuals not predictive.
+- Sessions: [2026-04-09 session 172]
+
+## H-478: Dispersion-Conditional Momentum
+- Status: REJECTED (IS 0%)
+- Idea: XS momentum only when cross-sectional return dispersion is high.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/18 positive). Conditioning destroys signal.
+- Sessions: [2026-04-09 session 172]
+
+## H-479: Correlation Regime Switch
+- Status: REJECTED (IS 0%)
+- Idea: Momentum only when overall crypto correlation is falling.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/18 positive). Correlation regime filtering fails.
+- Sessions: [2026-04-09 session 172]
+
+## H-480: Momentum × Volume Interaction
+- Status: REJECTED (IS 0%)
+- Idea: Momentum weighted by relative volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/6 positive). Volume weighting destroys momentum.
+- Sessions: [2026-04-09 session 172]
+
+## H-481: Momentum × Efficiency Interaction
+- Status: REJECTED (IS 0%)
+- Idea: Momentum weighted by price efficiency.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/6 positive).
+- Sessions: [2026-04-09 session 172]
+
+## H-482: Reversal × Volatility Interaction
+- Status: REJECTED (IS 25%)
+- Idea: Short-term reversal weighted by realized vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 25% (1/4 positive).
+- Sessions: [2026-04-09 session 172]
+
+## H-483: Size × Momentum Interaction
+- Status: REJECTED (IS 0%)
+- Idea: Dollar volume × 60d momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/6 positive).
+- Sessions: [2026-04-09 session 172]
+
+## H-484: Weekly Momentum
+- Status: REJECTED (IS 50%)
+- Idea: 5-day return as XS factor.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 50% (6/12 positive). Unstable.
+- Sessions: [2026-04-09 session 172]
+
+## H-485: Monthly Reversal
+- Status: CONFIRMED (not deployed — H-012 corr 0.591)
+- Idea: Short recent 20d winners, long recent 20d losers. Short-horizon reversal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars.
+- Result: IS **100%** (6/6), best Sharpe 1.082 (+57.1%, -44.9% DD). WF **4/6** mean **1.042**. SH **PASS** (1.324/0.600). H-012 corr **0.591**.
+- Notes: Confirmed but too correlated with H-012 to add portfolio value. Not deploying.
+- Sessions: [2026-04-09 session 172]
+
+## H-486: BTC-Regime Conditional Factor
+- Status: REJECTED (H-012 corr 0.899 — momentum proxy)
+- Idea: Momentum when trending (ADX>25), reversal when ranging.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **94%**, WF **6/6** mean **1.279**. But H-012 corr **0.899** — just momentum.
+- Sessions: [2026-04-09 session 172]
+
+## H-487: Dual Momentum
+- Status: REJECTED (WF 2/6, SH fail)
+- Idea: Long when TS>0 AND XS top; short when TS<0 AND XS bottom.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 100%, WF 2/6, SH FAIL (-1.621/-0.605).
+- Sessions: [2026-04-09 session 172]
+
+## H-488: Factor Composite Score
+- Status: REJECTED (IS 0%)
+- Idea: Equal-weight z-score of top 5 confirmed factors.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/6 positive). Averaging z-scores cancels signals.
+- Notes: Factors work independently but not as linear combination — conflicting directions.
+- Sessions: [2026-04-09 session 172]
+
+## H-489: Momentum-Volume Agreement
+- Status: REJECTED (IS 33%)
+- Idea: Only trade momentum when volume trend agrees.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 33% (2/6 positive).
+- Sessions: [2026-04-09 session 172]
+
+## H-490: Day-of-Month Seasonality
+- Status: REJECTED (no significant days)
+- Idea: BTC returns vary by day of month.
+- Instrument: BTC/USDT
+- Timeframe: 1D
+- Result: No statistically significant days (all p > 0.05). 2yr insufficient for calendar effects.
+- Sessions: [2026-04-09 session 172]
+
+## H-491: Monthly Seasonality
+- Status: REJECTED (no significant months)
+- Idea: BTC returns vary by calendar month.
+- Instrument: BTC/USDT
+- Timeframe: 1D
+- Result: No significant months. Feb weakest, May strongest, all p > 0.1. Need longer history.
+- Sessions: [2026-04-09 session 172]
+
+## H-492: Distance from 60-Day High
+- Status: REJECTED (IS 50%)
+- Idea: Assets near 60d high tend to break out; near lows tend to bounce.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 50% (6/12 positive). Unstable.
+- Sessions: [2026-04-09 session 172]
+
+## H-493: Consecutive Direction
+- Status: REJECTED (IS 0%)
+- Idea: Number of consecutive up/down days as overbought/oversold signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% (0/8 positive). No predictive power.
+- Sessions: [2026-04-09 session 172]
+
+## H-494: Range Expansion Rate
+- Status: REJECTED (IS 50%)
+- Idea: Today's range vs 20d avg range. Expanding range = breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 50% (6/12 positive). Unstable.
+- Sessions: [2026-04-09 session 172]
+
+## H-495: Return Autocorrelation
+- Status: REJECTED (IS 33%)
+- Idea: 20-day return autocorrelation as trending/reverting classifier.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 33% (4/12 positive). Not stable enough.
+- Sessions: [2026-04-09 session 172]
