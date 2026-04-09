@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,282 (-2.72%, improving). BTC spot ~$70,742.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,154 (-1.85%, improving). BTC spot ~$71,171.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 61 runners active. Session 169. **20/57 positive** (excl. 4 new), avg **+0.12%** (improved from -0.14%).
-- **H-063**: $9,868 (-1.32%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM (BTC ~$70.7k), expected loss ~$189.
+- **Internal paper trades:** 64 runners active. Session 170. **20/61 positive** (excl. 3 new), avg **+0.09%**.
+- **H-063**: $9,795 (-2.05%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $2k (BTC ~$71.1k).
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%).
-- **Session 169 research**: 24 new hypotheses (H-416 to H-439). Daily XS exhausted (16/16 rejected ~50%). Hourly-derived signals productive: **2 CONFIRMED** (H-435 Hourly Kurtosis, H-437 HL Spread with **-0.183** H-012 corr). H-434 invalidated (constant factor). **439 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (61 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Explore more hourly-derived signals.
+- **Session 170 research**: 16 new hypotheses (H-440 to H-455). **3 CONFIRMED** (H-445 Max Hourly DD corr **-0.200**, H-447 Vol Autocorr corr 0.039, H-451 Close-High Ratio). 4 borderline, 9 rejected. **455 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (64 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Continue hourly-derived exploration.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 159) archived to `memory/session_archive.md`._
-
-### Session 2026-04-07 review+deploy+research (session 160)
-- Goal: Review + Deploy + Research — MTM update, 24 time-series strategy backtests, H-324 deployment
-- Focus: Paper trade MTM (no new daily bar, BTC ~$68,200), H-308 through H-331 backtests (24 TS strategies)
-- Done: 41 runners (40→41). **H-324 CONFIRMED** (ADX-filtered TSMOM, WF 4/5 mean 0.557). 23 REJECTED. Key: TS momentum is regime-dependent; ADX filter is the key. Hourly signals don't survive fees. 331 total hypotheses.
-- Next: Options strategies beyond strangles. Monitor H-021 (-2.47%) and H-183 (-2.43%).
-- Questions added: none
-- Self-modifications: H-324 runner created. Archived session 150. (session 160)
+_Older sessions (bootstrap through 160) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-07 review+deploy+research (session 161)
 - Goal: Review + Deploy + Research — MTM update, 10 novel 4h-microstructure backtests, H-332/H-336 deployment
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 159) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Explore more hourly-derived signals. Consider killing worst performers.
 - Questions added: none
 - Self-modifications: H-435/H-437 runners created, added to orchestrator. Archived session 159. (session 169)
+
+### Session 2026-04-09 review+deploy+research (session 170)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $71,171), H-440 through H-455 backtests. Hourly-derived signal exploration continued.
+- Done: 64 runners (61→64). **20/61 positive** (avg +0.09%). **Demo**: $98,154 (-1.85%, improving). **Batch 1 (H-440–H-447)**: **H-445 CONFIRMED** (Max Hourly DD, IS 95.8%, WF 5/6 mean 1.500, SH PASS, corr **-0.200** — negative, deployed). **H-447 CONFIRMED** (Vol Autocorr, IS 87.5%, WF 4/6, SH PASS, corr 0.039, deployed). H-442/H-444 borderline (SH fail). 4 rejected. **Batch 2 (H-448–H-455)**: **H-451 CONFIRMED** (Close-High Ratio, IS 100%, WF 5/6 mean 1.366, SH PASS, corr 0.258, deployed). H-449/H-452/H-455 borderline (SH fail). H-455 notable: WF **6/6** mean 2.171 but H2=-0.071. 4 rejected. **455 total hypotheses.**
+- Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Continue hourly-derived exploration. H-455 worth revisiting.
+- Questions added: none
+- Self-modifications: H-445/H-447/H-451 runners created, added to orchestrator. Archived session 160. (session 170)

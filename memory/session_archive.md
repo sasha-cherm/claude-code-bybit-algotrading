@@ -1212,3 +1212,11 @@
 - Next: Shift focus to: portfolio optimization, alternative assets, time-series strategies, or options strategies.
 - Questions added: none
 - Self-modifications: Archived session 149. (session 159)
+
+### Session 2026-04-07 review+deploy+research (session 160)
+- Goal: Review + Deploy + Research — MTM update, 24 time-series strategy backtests, H-324 deployment
+- Focus: Paper trade MTM (no new daily bar, BTC ~$68,200), H-308 through H-331 backtests (24 TS strategies)
+- Done: 41 runners (40→41). **H-324 CONFIRMED** (ADX-filtered TSMOM, WF 4/5 mean 0.557). 23 REJECTED. Key: TS momentum is regime-dependent; ADX filter is the key. Hourly signals don't survive fees. 331 total hypotheses.
+- Next: Options strategies beyond strangles. Monitor H-021 (-2.47%) and H-183 (-2.43%).
+- Questions added: none
+- Self-modifications: H-324 runner created. Archived session 150. (session 160)
