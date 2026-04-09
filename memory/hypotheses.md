@@ -4886,3 +4886,238 @@
 - Result: IS high_dispbeta_long **90.0%** (lagged). WF only **2/6** positive, mean 0.348.
 - Notes: IS passes but WF fails — dispersion sensitivity is regime-dependent.
 - Sessions: [2026-04-09 session 168]
+
+## H-416: Composite Score (Efficiency × Volume Surprise)
+- Status: REJECTED (IS 41.7%)
+- Idea: Combine two uncorrelated confirmed signals (price efficiency + volume surprise) via z-scored product.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **41.7%** — composite does not maintain individual signal quality in cross-section.
+- Notes: Combining signals by multiplication destroys the signal — factor interactions aren't additive.
+- Sessions: [2026-04-09 session 169]
+
+## H-417: Volatility-Adaptive Momentum
+- Status: REJECTED (IS 50.0%)
+- Idea: Use BTC realized vol to adaptively shorten momentum lookback in high-vol regimes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — adaptive lookback doesn't improve over fixed.
+- Notes: Vol-adaptive approach is theoretically appealing but doesn't capture XS signal.
+- Sessions: [2026-04-09 session 169]
+
+## H-418: BTC Lead-Lag Timing
+- Status: REJECTED (IS 30.6%)
+- Idea: Rolling correlation of alt_return(t) with BTC_return(t-1). High = lags BTC.
+- Instrument: futures (13 non-BTC perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 36 combos.
+- Result: IS **30.6%** — lead-lag relationship is not persistent cross-sectionally.
+- Sessions: [2026-04-09 session 169]
+
+## H-419: Funding Rate Acceleration
+- Status: REJECTED (no data)
+- Idea: Rate of change of funding rate as contrarian signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: Funding data files not in expected format.
+- Result: NO RESULTS — data loading failed.
+- Sessions: [2026-04-09 session 169]
+
+## H-420: Vol-of-Vol Factor
+- Status: REJECTED (IS 45.8%)
+- Idea: Realized vol of realized vol. Low vol-of-vol = stable regime.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **45.8%** — vol-of-vol doesn't predict XS returns.
+- Sessions: [2026-04-09 session 169]
+
+## H-421: Return Autocorrelation Factor
+- Status: REJECTED (IS 36.1%)
+- Idea: Rolling daily return autocorrelation. High = trending, low = mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 36 combos.
+- Result: IS **36.1%** — autocorrelation not a reliable XS predictor.
+- Sessions: [2026-04-09 session 169]
+
+## H-422: Consecutive Direction Streak Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Count consecutive up/down days as momentum/reversal signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — streak patterns don't predict next-day XS returns.
+- Sessions: [2026-04-09 session 169]
+
+## H-423: Volume-Weighted Return Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Return weighted by relative volume — captures institutional conviction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — volume-weighting doesn't add alpha over raw returns.
+- Sessions: [2026-04-09 session 169]
+
+## H-424: Rank Momentum Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Change in cross-sectional momentum rank over time.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — rank changes are noisy and don't persist.
+- Sessions: [2026-04-09 session 169]
+
+## H-425: Closing Location Value (CLV) Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Where the close falls in the day's range (buying/selling pressure).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — CLV has no persistent XS predictive power.
+- Sessions: [2026-04-09 session 169]
+
+## H-426: True Range Ratio Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: True range / close as volatility proxy. Long calm, short volatile.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — true range variant of low-vol doesn't add over simpler measures.
+- Sessions: [2026-04-09 session 169]
+
+## H-427: Co-Movement Score Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Average pairwise correlation with all other assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — co-movement doesn't predict returns cross-sectionally.
+- Sessions: [2026-04-09 session 169]
+
+## H-428: Dispersion Beta Factor (v2)
+- Status: REJECTED (IS 47.9%)
+- Idea: Beta of asset return to cross-sectional return dispersion.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **47.9%** — dispersion sensitivity not a useful XS signal.
+- Sessions: [2026-04-09 session 169]
+
+## H-429: Price Position (Donchian) Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Current price position in N-day high-low range.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — Donchian position has no persistent XS alpha.
+- Sessions: [2026-04-09 session 169]
+
+## H-430: Volume-Price Correlation Factor
+- Status: REJECTED (IS 45.8%)
+- Idea: Rolling correlation between volume and abs(return).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **45.8%** — vol-price alignment doesn't predict XS returns.
+- Sessions: [2026-04-09 session 169]
+
+## H-431: Momentum Quality Factor
+- Status: REJECTED (IS 50.0%)
+- Idea: Momentum adjusted for max drawdown during lookback.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS **50.0%** — quality-adjusting momentum doesn't improve the signal.
+- Sessions: [2026-04-09 session 169]
+
+## H-432: Volume HHI (Hourly Concentration) Factor
+- Status: BORDERLINE (SH FAIL)
+- Idea: Herfindahl index of hourly volume shares within each day. Lagged.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars. IS: 48 combos (high_long 87.5%).
+- Result: IS high_long **87.5%** (21/24). WF **4/6** mean 0.790. SH FAIL (H1=1.517, H2=-0.930). Corr H-012 **-0.101**.
+- Notes: Passes IS and WF but split-half failure suggests instability. Not deployed.
+- Sessions: [2026-04-09 session 169]
+
+## H-433: Asia-US Session Return Spread Factor
+- Status: REJECTED (IS 70.8% best direction)
+- Idea: Difference between Asian session return and US session return.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars. IS: 48 combos.
+- Result: IS best direction only **70.8%** — insufficient robustness.
+- Sessions: [2026-04-09 session 169]
+
+## H-434: Gap Fill Rate Factor
+- Status: REJECTED (data artifact)
+- Idea: What fraction of overnight gaps get filled during the session.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: **INVALIDATED** — all values are 1.0 (crypto has no real gaps; 24/7 trading means all tiny gaps are immediately filled). No cross-sectional variation.
+- Notes: The 100% IS and 6/6 WF were artifacts of a constant factor producing random but identical portfolios. A useful cautionary tale about checking factor variation.
+- Sessions: [2026-04-09 session 169]
+
+## H-435: Hourly Return Kurtosis Factor
+- Status: CONFIRMED (deployed)
+- Idea: Rolling average of hourly return kurtosis. High kurtosis = fat tails = jump premium.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars. IS: 24 combos (high_long direction).
+- Result:
+  - **IS**: high_long **95.8%** (23/24 positive)
+  - **Best config**: LB20_R3_N4, Sharpe **1.520**, +70.1% ann, -26.6% DD
+  - **WF**: **4/6** positive, mean Sharpe **1.367**
+  - **Split-half**: H1=1.824, H2=1.038 — PASS (both positive)
+  - **Neighbors**: 8/8 positive (100%)
+  - **Correlation**: H-012 **0.106** — low, good diversifier
+- Notes: High-kurtosis assets have more frequent extreme moves, which in crypto tends to be rewarded. Opposite direction (low_long) has 0/24 positive, confirming this is a genuine directional signal. Paper trade deployed: LONG ETH/AVAX/LINK/SOL, SHORT OP/NEAR/DOT/ATOM.
+- Sessions: [2026-04-09 session 169]
+
+## H-436: Volume-Weighted Momentum (Hourly) Factor
+- Status: BORDERLINE (SH FAIL, high corr)
+- Idea: Momentum weighted by relative volume per hourly bar.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars. IS: 24 combos (high_long 91.7%).
+- Result: IS high_long **91.7%**. WF **4/6** mean 0.299. SH FAIL (H1=1.237, H2=-2.026). Corr H-012 **0.466** (too high).
+- Notes: Not deployed — split-half failure and high momentum correlation make this redundant.
+- Sessions: [2026-04-09 session 169]
+
+## H-437: HL Spread Proxy (Bid-Ask Proxy) Factor
+- Status: CONFIRMED (deployed)
+- Idea: Rolling average hourly (high-low)/close as bid-ask spread proxy. Low spread = liquid = quality.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars. IS: 24 combos (low_long direction).
+- Result:
+  - **IS**: low_long **95.8%** (23/24 positive)
+  - **Best config**: LB30_R5_N4, Sharpe **0.870**, +49.5% ann, -55.4% DD
+  - **WF**: **5/6** positive, mean Sharpe **1.049**
+  - **Split-half**: H1=0.068, H2=1.461 — PASS (both positive)
+  - **Neighbors**: 6/6 positive (100%)
+  - **Correlation**: H-012 **-0.183** — NEGATIVE, excellent diversifier
+- Notes: Tight hourly spreads indicate liquid, efficiently-priced assets. These tend to outperform in crypto because liquidity attracts institutional flow. The negative H-012 correlation makes this particularly valuable for portfolio diversification. Paper trade deployed: LONG BTC/ATOM/XRP/LINK, SHORT ARB/SUI/OP/NEAR.
+- Sessions: [2026-04-09 session 169]
+
+## H-438: Intraday Momentum Share Factor
+- Status: REJECTED (IS 54.2% best direction)
+- Idea: Fraction of daily return from largest single hourly move.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS best direction **54.2%** — insufficient robustness.
+- Sessions: [2026-04-09 session 169]
+
+## H-439: Intraday Volume Trend Factor
+- Status: REJECTED (IS 50.0% best direction)
+- Idea: Slope of hourly volume within each day (accumulation vs distribution).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS best direction **50.0%** — no predictive signal.
+- Sessions: [2026-04-09 session 169]

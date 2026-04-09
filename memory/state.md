@@ -559,15 +559,34 @@ Demo eq: ~$96,481 (-3.52%). BTC spot ~$70,814. 11 open positions.
 - **Runner**: `paper_trades/h414_vol_trend/runner.py`
 - **Params**: LB15_R3_N4_high_voltrd_long. WF 5/6 mean **2.437**. Corr **0.028** H-012 — excellent diversifier.
 
-## Portfolio Summary (mark-to-market 2026-04-09 session 168, 01:55 UTC)
-- **Bybit Demo**: ~$96,481 (-3.52%). BTC spot ~$70,814.
-- **Total internal MTM (58 runners)**: 58 runners (56→58 +H-404,H-411,H-414 deployed, -1 net due to counting). **23/55 positive** (excl. 3 new). Avg PnL **-0.14%**.
-- **Top performers**: H-049(+4.93%), H-085(+4.46%), H-193(+4.39%), H-076(+4.02%), H-244(+3.99%), H-039(+3.53%), H-169(+3.50%), H-019(+3.42%), H-052(+2.83%), H-338(+2.15%)
-- **H-063**: $9,906 (-0.94%). Improved from -3.06%. Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM but narrowing (BTC ~$70.8k).
-- **CRITICAL FINDING**: All 4h microstructure backtests had look-ahead bias (using same-day 4h features). Fix: use `< date_i` instead of `<= date_i`. H-332 survives lagged (83.3%→passes), H-336/H-338 do NOT survive lagged (63-67%). Daily factors H-410/H-413 also had same-day close bias. Properly lagged signals are weaker but honest.
-- **New deploys (session 168)**: H-404 (Session Flow, corr 0.008), H-411 (OBV Slope), H-414 (Volume Trend, corr 0.028 — standout)
-- **AUTOMATED:** Paper trades hourly via cron (58 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. H-063 expires tomorrow (Apr 10 08:00). Continue research. Consider fixing 4h backtest look-ahead in existing code.
+### H-435: Hourly Return Kurtosis (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — hourly-derived signal
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: ETH, AVAX, LINK, SOL
+  - SHORT: OP, NEAR, DOT, ATOM
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h435_hourly_kurtosis/runner.py`
+- **Params**: LB20_R3_N4_high_long. WF 4/6 mean 1.367. Corr 0.106 H-012.
+
+### H-437: HL Spread Proxy (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — negative H-012 corr
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: BTC, ATOM, XRP, LINK
+  - SHORT: ARB, SUI, OP, NEAR
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h437_hl_spread/runner.py`
+- **Params**: LB30_R5_N4_low_long. WF 5/6 mean 1.049. Corr **-0.183** H-012 — negative, excellent diversifier.
+
+## Portfolio Summary (mark-to-market 2026-04-09 session 169, 05:26 UTC)
+- **Bybit Demo**: ~$97,282 (-2.72%, improved from -3.52%). BTC spot ~$70,742.
+- **Total internal MTM (61 runners)**: 61 runners (59→61 +H-435,H-437 deployed). **20/57 positive** (excl. 4 new). Avg PnL **+0.12%** (improved from -0.14%).
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%), H-039(+3.53%), H-019(+3.47%), H-062(+3.10%), H-338(+2.15%), H-336(+2.04%)
+- **H-063**: $9,868 (-1.32%). Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM (BTC ~$70.7k). Expected loss ~$189 unless BTC drops below $69k.
+- **Worst performers**: H-191(-6.51%), H-223(-3.92%), H-009(-2.78%), H-264(-2.71%), H-021(-2.64%)
+- **New deploys (session 169)**: H-435 (Hourly Kurtosis, WF 4/6 mean 1.367, corr 0.106), H-437 (HL Spread, WF 5/6 mean 1.049, corr **-0.183**)
+- **Research (session 169)**: 24 new hypotheses (H-416 to H-439). Daily XS factor space exhausted (all 16 daily rejected ~50% IS). Hourly-derived signals still productive: **2 CONFIRMED** (H-435, H-437), 2 borderline (H-432, H-436), H-434 invalidated (data artifact). **439 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (61 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. H-063 expires Apr 10 08:00. Explore more hourly-derived signals. Consider killing worst performers.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

@@ -1,15 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$96,481 (-3.52%). BTC spot ~$70,814.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,282 (-2.72%, improving). BTC spot ~$70,742.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 58 runners active. Session 168. **23/55 positive** (excl. 3 new), avg -0.14%.
-- **H-063**: $9,906 (-0.94%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM but narrowing (BTC ~$70.8k).
-- **Top performers**: H-049(+4.93%), H-085(+4.46%), H-193(+4.39%), H-076(+4.02%), H-244(+3.99%).
-- **Session 168 research**: 16 new hypotheses (H-400 to H-415). **4 CONFIRMED**: H-404 (Session Flow, corr 0.008, deployed), H-411 (OBV Slope, WF 6/6, deployed), H-412 (Vol Z-Score, borderline, NOT deployed), H-414 (Volume Trend, WF 5/6 mean **2.437**, corr 0.028, deployed — **session standout**).
-- **CRITICAL FINDING**: 4h microstructure backtests had look-ahead bias (same-day features). Fix: `< date_i`. H-332 survives lagged, H-336/H-338 do NOT. Daily factors H-410/H-413 also inflated by same-close bias.
-- **AUTOMATED:** Paper trades hourly via cron (58 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires tomorrow (Apr 10). Continue research.
+- **Internal paper trades:** 61 runners active. Session 169. **20/57 positive** (excl. 4 new), avg **+0.12%** (improved from -0.14%).
+- **H-063**: $9,868 (-1.32%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM (BTC ~$70.7k), expected loss ~$189.
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%).
+- **Session 169 research**: 24 new hypotheses (H-416 to H-439). Daily XS exhausted (16/16 rejected ~50%). Hourly-derived signals productive: **2 CONFIRMED** (H-435 Hourly Kurtosis, H-437 HL Spread with **-0.183** H-012 corr). H-434 invalidated (constant factor). **439 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (61 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Explore more hourly-derived signals.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -21,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 158) archived to `memory/session_archive.md`._
-
-### Session 2026-04-07 review+research (session 159)
-- Goal: Review + Research — MTM update, 8 non-momentum signal backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$68,888), H-300 through H-307 backtests
-- Done: 40 runners checked. **Demo**: $99,584 (-0.42%). All 8 REJECTED. Single-factor XS signals largely exhausted after 307 hypotheses.
-- Next: Shift focus to: portfolio optimization, alternative assets, time-series strategies, or options strategies.
-- Questions added: none
-- Self-modifications: Archived session 149. (session 159)
+_Older sessions (bootstrap through 159) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-07 review+deploy+research (session 160)
 - Goal: Review + Deploy + Research — MTM update, 24 time-series strategy backtests, H-324 deployment
@@ -102,3 +93,11 @@ _Older sessions (bootstrap through 158) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 expires Apr 10. Fix 4h backtest look-ahead in existing code. Continue research.
 - Questions added: none
 - Self-modifications: H-404/H-411/H-414 runners created, added to orchestrator. 4h data resampled from 1h. Look-ahead bias documented. Archived session 158. (session 168)
+
+### Session 2026-04-09 review+deploy+research (session 169)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 2 new deployments
+- Focus: Paper trade MTM (BTC $70,742), H-416 through H-439 backtests. Hourly-derived signal exploration.
+- Done: 61 runners (59→61). **20/57 positive** (avg **+0.12%**, improved from -0.14%). **Demo**: $97,282 (-2.72%, improving). H-012 surged to +4.30%. H-191 worst at -6.51%. **Batch 1 (H-416–H-423, daily composite)**: All 8 REJECTED at IS ~50%. **Batch 2 (H-424–H-431, daily structural)**: All 8 REJECTED at IS ~50%. **Daily XS factor space exhausted.** **Batch 3 (H-432–H-439, hourly-derived)**: **H-435 CONFIRMED** (Hourly Kurtosis, IS 95.8%, WF 4/6 mean 1.367, SH PASS, corr 0.106, deployed). **H-437 CONFIRMED** (HL Spread Proxy, IS 95.8%, WF 5/6 mean 1.049, SH PASS, corr **-0.183**, deployed). H-434 INVALIDATED (constant 1.0 — no gaps in 24/7 crypto). H-432/H-436 borderline (SH fail). **439 total hypotheses.**
+- Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Explore more hourly-derived signals. Consider killing worst performers.
+- Questions added: none
+- Self-modifications: H-435/H-437 runners created, added to orchestrator. Archived session 159. (session 169)

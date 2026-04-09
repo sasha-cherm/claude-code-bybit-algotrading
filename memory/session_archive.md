@@ -1204,3 +1204,11 @@
 - Next: Explore non-momentum-based signals. Monitor H-021 (-2.65%) and H-183 (-2.46%).
 - Questions added: none
 - Self-modifications: Archived session 148. Fixed metrics bug. (session 158)
+
+### Session 2026-04-07 review+research (session 159)
+- Goal: Review + Research — MTM update, 8 non-momentum signal backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$68,888), H-300 through H-307 backtests
+- Done: 40 runners checked. **Demo**: $99,584 (-0.42%). All 8 REJECTED. Single-factor XS signals largely exhausted after 307 hypotheses.
+- Next: Shift focus to: portfolio optimization, alternative assets, time-series strategies, or options strategies.
+- Questions added: none
+- Self-modifications: Archived session 149. (session 159)

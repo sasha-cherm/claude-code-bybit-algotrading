@@ -81,6 +81,8 @@ RUNNERS = [
     ("H-404", ROOT / "paper_trades" / "h404_session_flow" / "runner.py"),
     ("H-411", ROOT / "paper_trades" / "h411_obv_slope" / "runner.py"),
     ("H-414", ROOT / "paper_trades" / "h414_vol_trend" / "runner.py"),
+    ("H-435", ROOT / "paper_trades" / "h435_hourly_kurtosis" / "runner.py"),
+    ("H-437", ROOT / "paper_trades" / "h437_hl_spread" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

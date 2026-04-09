@@ -1,0 +1,11 @@
+[
+  {
+    "time": "2026-04-09T05:26:47.529328+00:00",
+    "action": "rebalance",
+    "date": "2026-04-08",
+    "n_positions": 8,
+    "capital": 10000.0,
+    "fees": 20.0,
+    "trades": 8
+  }
+]
