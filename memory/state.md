@@ -604,16 +604,25 @@ Demo eq: ~$96,481 (-3.52%). BTC spot ~$70,814. 11 open positions.
 - **Runner**: `paper_trades/h451_close_high_ratio/runner.py`
 - **Params**: LB30_R5_N3_high_long. WF 5/6 mean 1.366. Corr 0.258 H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-09 session 170, 09:17 UTC)
-- **Bybit Demo**: ~$98,154 (-1.85%, improved from -2.72%). BTC spot ~$71,171.
-- **Total internal MTM (64 runners)**: 64 runners (61→64 +H-445,H-447,H-451 deployed). **20/61 positive** (excl. 3 new). Avg PnL **+0.09%**.
+### H-470: First-Hour Return Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — opening hour predicts
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG (strong openers): AVAX, ADA, DOT, NEAR
+  - SHORT (weak openers): DOGE, SOL, ATOM, XRP
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h470_first_hour_ret/runner.py`
+- **Params**: LB20_R7_N4_high_long. WF 4/6 mean 0.365. SH PASS (1.665/0.411). Corr 0.267 H-012.
+
+## Portfolio Summary (mark-to-market 2026-04-09 session 171, 13:18 UTC)
+- **Bybit Demo**: ~$98,154 (-1.85%). BTC spot ~$71,245.
+- **Total internal MTM (65 runners)**: 65 runners (64→65 +H-470 deployed). **20/65 positive** (excl. 1 new). Avg PnL **+0.07%**.
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%), H-039(+3.53%), H-019(+3.47%), H-062(+3.10%), H-338(+2.15%), H-336(+2.04%)
-- **H-063**: $9,795 (-2.05%). Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $2k (BTC ~$71.1k). Expected loss ~$276 at current price.
+- **H-063**: $9,764 (-2.36%). Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $2.2k (BTC ~$71.2k).
 - **Worst performers**: H-191(-6.51%), H-223(-3.92%), H-009(-2.78%), H-264(-2.71%), H-021(-2.64%)
-- **New deploys (session 170)**: H-445 (Max Hourly DD, WF 5/6, corr **-0.200**), H-447 (Vol Autocorr, WF 4/6, corr 0.039), H-451 (Close-High Ratio, WF 5/6, corr 0.258)
-- **Research (session 170)**: 16 new hypotheses (H-440 to H-455). **3 CONFIRMED** (H-445, H-447, H-451), 4 BORDERLINE (H-442, H-444, H-449, H-455), 9 REJECTED. Hourly-derived signals remain productive. **455 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (64 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. H-063 expires Apr 10 08:00. Continue hourly-derived exploration. H-455 is a near-miss worth revisiting.
+- **New deploy (session 171)**: H-470 (First Hour Return, IS 100%, WF 4/6, SH PASS, corr 0.267)
+- **Research (session 171)**: 16 new hypotheses (H-456 to H-471). **1 CONFIRMED** (H-470 First Hour Ret). 5 BORDERLINE (H-456, H-458, H-459, H-461, H-467 — all fail SH). 10 REJECTED. Hourly-derived signals getting harder — many pass IS+WF but fail split-half. **471 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (65 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset). H-455/H-467 are near-miss SH failures worth monitoring.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

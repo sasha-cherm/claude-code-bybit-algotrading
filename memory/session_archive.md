@@ -1220,3 +1220,11 @@
 - Next: Options strategies beyond strangles. Monitor H-021 (-2.47%) and H-183 (-2.43%).
 - Questions added: none
 - Self-modifications: H-324 runner created. Archived session 150. (session 160)
+
+### Session 2026-04-07 review+deploy+research (session 161)
+- Goal: Review + Deploy + Research — MTM update, 10 novel 4h-microstructure backtests, H-332/H-336 deployment
+- Focus: Paper trade MTM (no new daily bar, BTC ~$69,833), H-332 through H-341 backtests
+- Done: 43 runners (41→43). **4/10 CONFIRMED** (best hit rate!): H-332 Bar Consistency (WF 6/6), H-333 Smart Vol Return (WF 6/6), H-336 Volume Surprise (WF 6/6, corr 0.003), H-338 VW Pressure (WF 6/6). 4h microstructure is a rich signal source. 341 total hypotheses.
+- Next: Options strategies. Portfolio optimization. Monitor H-021/H-183.
+- Questions added: none
+- Self-modifications: H-332/H-336 deployed. Archived session 151. (session 161)

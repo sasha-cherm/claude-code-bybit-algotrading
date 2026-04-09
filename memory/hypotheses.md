@@ -5312,3 +5312,179 @@
   - **Correlation**: H-012 **0.207** — moderate
 - Notes: Exceptional WF performance but narrowly fails SH. Very close to confirmation — worth monitoring. Not deployed yet.
 - Sessions: [2026-04-09 session 170]
+
+## H-456: Volume-Weighted Return Factor
+- Status: BORDERLINE (IS 100%, WF 4/6, SH FAIL)
+- Idea: Average hourly return weighted by volume. High VW return = volume confirms direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result:
+  - **IS**: 100% positive (high_long), best LB20_R3_N4, Sharpe 1.339, +66.8% ann
+  - **WF**: 4/6 positive, mean 1.196
+  - **Split-half**: H1=1.283, H2=-1.839 — **FAIL**
+  - **Correlation**: H-012 **0.625** — very high
+- Notes: High momentum correlation makes this mostly redundant. SH failure in H2 suggests regime-dependent.
+- Sessions: [2026-04-09 session 171]
+
+## H-457: Intraday Autocorrelation Factor
+- Status: REJECTED (IS 45.8%)
+- Idea: Lag-1 autocorrelation of hourly returns. Mean reversion vs trending intraday.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 45.8% overall, best direction 58.3% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]
+
+## H-458: Up Volume Ratio Factor
+- Status: BORDERLINE (IS 100%, WF 5/6, SH FAIL)
+- Idea: Volume on green hours / total volume. High = buying pressure dominant.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result:
+  - **IS**: 100% positive (high_long), best LB30_R5_N4, Sharpe 1.530, +83.9% ann
+  - **WF**: **5/6** positive, mean 1.444
+  - **Split-half**: H1=1.957, H2=-0.555 — **FAIL**
+  - **Correlation**: H-012 **0.598** — very high
+- Notes: Strong WF but fails SH. Very high momentum correlation — effectively a momentum proxy.
+- Sessions: [2026-04-09 session 171]
+
+## H-459: Hourly Amihud Illiquidity Factor
+- Status: BORDERLINE (IS 100%, WF 4/6, SH FAIL)
+- Idea: Mean |return|/volume across hourly bars. Long liquid, short illiquid.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result:
+  - **IS**: 100% positive (low_long), best LB20_R7_N3, Sharpe 1.175, +65.2% ann
+  - **WF**: 4/6 positive, mean 0.836
+  - **Split-half**: H1=2.185, H2=-1.156 — **FAIL**
+  - **Correlation**: H-012 **-0.165** — good (negative, diversifying)
+- Notes: Good negative correlation but fails SH decisively. Interesting diversifier concept but unstable across halves.
+- Sessions: [2026-04-09 session 171]
+
+## H-460: Intraday Close Position Factor
+- Status: REJECTED (WF 3/6)
+- Idea: (close-open)/(high-low) for the day from hourly bars. High = closes near daily high.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 95.8% (high_long), best LB15_R7_N3, Sharpe 1.317. WF 3/6 — rejected.
+- Sessions: [2026-04-09 session 171]
+
+## H-461: Volume HHI Factor
+- Status: BORDERLINE (IS 88%, WF 4/6, SH FAIL)
+- Idea: Herfindahl index of hourly volume distribution. High = concentrated in few hours.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result:
+  - **IS**: 87.5% positive (high_long), best LB10_R5_N4, Sharpe 0.669, +28.5% ann
+  - **WF**: 4/6 positive, mean 0.790
+  - **Split-half**: H1=1.517, H2=-0.930 — **FAIL**
+  - **Correlation**: H-012 **-0.101** — low (good)
+- Notes: Low Sharpe and SH fail. Low correlation is appealing but signal too weak.
+- Sessions: [2026-04-09 session 171]
+
+## H-462: Breakout Persistence Factor
+- Status: REJECTED (IS 31.2%)
+- Idea: Max consecutive same-sign hourly returns / total. High = strong intraday trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 31.2% overall, best direction 41.7% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]
+
+## H-463: Return Asymmetry Factor
+- Status: REJECTED (IS 41.7%)
+- Idea: Ratio of max positive hourly return to abs(max negative). >1 = larger upside moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 41.7% overall, best direction 54.2% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]
+
+## H-464: Volume Momentum Factor (hourly)
+- Status: REJECTED (IS 35.4%)
+- Idea: Slope of hourly volume over the day (linear regression, normalized). Increasing = accumulation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 35.4% overall, best direction 50.0% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]
+
+## H-465: Price-Volume Divergence Factor
+- Status: REJECTED (IS 41.7%)
+- Idea: Mean of sign(return)*sign(vol_change) across hours. Negative = divergence.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 41.7% overall, best direction (low_long) 79.2% — very close but below 80%.
+- Sessions: [2026-04-09 session 171]
+
+## H-466: Intraday Volatility Ratio Factor
+- Status: REJECTED (WF 3/6)
+- Idea: std(hourly returns first half) / std(second half). Front vs back-loaded volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 95.8% (low_long), best LB10_R7_N4, Sharpe 1.117. WF 3/6 — rejected.
+- Sessions: [2026-04-09 session 171]
+
+## H-467: Return Dispersion Factor (hourly)
+- Status: BORDERLINE (IS 96%, WF 5/6, SH FAIL)
+- Idea: Std dev of hourly returns within day. Long low-dispersion, short high-dispersion.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result:
+  - **IS**: 95.8% positive (low_long), best LB30_R5_N3, Sharpe 0.883, +58.0% ann
+  - **WF**: **5/6** positive, mean 1.069
+  - **Split-half**: H1=-0.073, H2=1.425 — **FAIL** (H1 barely negative)
+  - **Correlation**: H-012 **-0.094** — low (good diversifier)
+- Notes: Close to pass — H1 barely negative. Good negative momentum correlation. Similar concept to low-vol anomaly.
+- Sessions: [2026-04-09 session 171]
+
+## H-468: VWAP Position Factor
+- Status: REJECTED (IS 29.2%)
+- Idea: Position of VWAP relative to daily high/low from hourly bars.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 29.2% overall, best direction 50.0% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]
+
+## H-469: Reversal Count Factor
+- Status: REJECTED (IS 41.7%)
+- Idea: Number of sign changes in hourly returns / total hours. High = choppy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 41.7% overall, best direction 58.3% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]
+
+## H-470: First-Hour Return Factor
+- Status: LIVE (paper trade since 2026-04-09)
+- Idea: Rank assets by rolling avg first-hour return. Long strongest openers, short weakest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Logic: Compute first-hour return (close/open - 1) for each asset's first hourly bar. Rolling 20-day average. Long top 4, short bottom 4. 7-day rebalance. Lagged (t-1).
+- Data: 14 assets, 732 daily bars.
+- Result:
+  - **IS**: 100% positive (high_long, 24/24), best LB20_R7_N4, Sharpe **1.564**, +88.0% ann, -24.5% DD
+  - **WF**: **4/6** positive, mean 0.365
+  - **Split-half**: H1=1.665, H2=0.411 — **PASS**
+  - **Neighbors**: 8/8 positive (100%)
+  - **Correlation**: H-012 **0.267** — moderate
+- Notes: First-hour return sets the tone — assets with consistently strong opening hours tend to continue. Moderate momentum correlation but SH passes in both halves.
+- Sessions: [2026-04-09 session 171]
+
+## H-471: Last-Hour Return Factor
+- Status: REJECTED (IS 35.4%)
+- Idea: Rank assets by rolling avg last-hour return. Long strongest closers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (signal from 1h bars, lagged)
+- Data: 14 assets, 732 daily bars.
+- Result: IS 35.4% overall, best direction 54.2% — below 80% threshold.
+- Sessions: [2026-04-09 session 171]

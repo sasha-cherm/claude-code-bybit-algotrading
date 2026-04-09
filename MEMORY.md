@@ -3,12 +3,12 @@
 ## Current State
 - **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,154 (-1.85%, improving). BTC spot ~$71,171.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 64 runners active. Session 170. **20/61 positive** (excl. 3 new), avg **+0.09%**.
+- **Internal paper trades:** 65 runners active. Session 171. **20/65 positive**, avg **+0.07%**.
 - **H-063**: $9,795 (-2.05%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $2k (BTC ~$71.1k).
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%).
-- **Session 170 research**: 16 new hypotheses (H-440 to H-455). **3 CONFIRMED** (H-445 Max Hourly DD corr **-0.200**, H-447 Vol Autocorr corr 0.039, H-451 Close-High Ratio). 4 borderline, 9 rejected. **455 total hypotheses.**
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%). BTC ~$71,245.
+- **Session 171 research**: 16 new hypotheses (H-456 to H-471). **1 CONFIRMED** (H-470 First Hour Ret, SH PASS). 5 borderline (all SH fail), 10 rejected. **471 total hypotheses.**
 - **AUTOMATED:** Paper trades hourly via cron (64 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Continue hourly-derived exploration.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset).
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 160) archived to `memory/session_archive.md`._
-
-### Session 2026-04-07 review+deploy+research (session 161)
-- Goal: Review + Deploy + Research — MTM update, 10 novel 4h-microstructure backtests, H-332/H-336 deployment
-- Focus: Paper trade MTM (no new daily bar, BTC ~$69,833), H-332 through H-341 backtests
-- Done: 43 runners (41→43). **4/10 CONFIRMED** (best hit rate!): H-332 Bar Consistency (WF 6/6), H-333 Smart Vol Return (WF 6/6), H-336 Volume Surprise (WF 6/6, corr 0.003), H-338 VW Pressure (WF 6/6). 4h microstructure is a rich signal source. 341 total hypotheses.
-- Next: Options strategies. Portfolio optimization. Monitor H-021/H-183.
-- Questions added: none
-- Self-modifications: H-332/H-336 deployed. Archived session 151. (session 161)
+_Older sessions (bootstrap through 161) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-08 review+deploy+research (session 162)
 - Goal: Review + Deploy + Research — H-333/H-338 deployment, 8 hourly-microstructure backtests, H-342/H-343 deployment
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 160) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Continue hourly-derived exploration. H-455 worth revisiting.
 - Questions added: none
 - Self-modifications: H-445/H-447/H-451 runners created, added to orchestrator. Archived session 160. (session 170)
+
+### Session 2026-04-09 review+deploy+research (session 171)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), 1 new deployment
+- Focus: Paper trade MTM (BTC $71,245), H-456 through H-471 backtests. Hourly-derived signal exploration — final batch.
+- Done: 65 runners (64→65). **20/65 positive** (avg +0.07%). **Batch 1 (H-456–H-463)**: 0 confirmed. 4 borderline (H-456 VW Ret, H-458 Up Vol, H-459 Amihud, H-461 Vol HHI — all SH FAIL). H-456/H-458 have high H-012 corr (0.6+). 4 rejected. **Batch 2 (H-464–H-471)**: **H-470 CONFIRMED** (First Hour Ret, IS 100%, WF 4/6 mean 0.365, SH **PASS** H1=1.665 H2=0.411, corr 0.267, deployed). H-467 borderline (SH FAIL, H1=-0.073). 6 rejected. **471 total hypotheses.** Hourly-derived space approaching exhaustion — SH failures dominate.
+- Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset, or non-price data). 
+- Questions added: none
+- Self-modifications: H-470 runner created, added to orchestrator. Archived session 161. (session 171)
