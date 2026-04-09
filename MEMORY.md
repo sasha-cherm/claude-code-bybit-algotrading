@@ -1,15 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$96,481 (-3.52%). BTC spot ~$71,367.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$96,481 (-3.52%). BTC spot ~$70,814.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **H-011 status**: DROPPED from demo. Internal paper trade IN. Capital $9,881 (-1.19%).
-- **Internal paper trades:** 56 runners active. Session 167. **20/54 positive** (excl. 2 new), avg -0.02%.
-- **H-063**: $9,694 (-3.06%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM (BTC $71.4k).
-- **Top performers**: H-039(+5.75%), H-085(+3.74%), H-031(+3.29%), H-049(+2.84%), H-076(+2.66%).
-- **Session 167 research**: 16 new hypotheses (H-384 to H-399). **3 CONFIRMED**: H-385 (Vol HHI, WF 4/6 but mean -0.362, NOT deployed), H-388 (Night-Day Diff, WF 4/6 mean 0.358, deployed), H-394 (Variance Ratio, Sharpe 1.014, WF 4/6, split-half PASS, corr 0.027, deployed).
-- **AUTOMATED:** Paper trades hourly via cron (56 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires tomorrow. Continue research.
+- **Internal paper trades:** 58 runners active. Session 168. **23/55 positive** (excl. 3 new), avg -0.14%.
+- **H-063**: $9,906 (-0.94%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM but narrowing (BTC ~$70.8k).
+- **Top performers**: H-049(+4.93%), H-085(+4.46%), H-193(+4.39%), H-076(+4.02%), H-244(+3.99%).
+- **Session 168 research**: 16 new hypotheses (H-400 to H-415). **4 CONFIRMED**: H-404 (Session Flow, corr 0.008, deployed), H-411 (OBV Slope, WF 6/6, deployed), H-412 (Vol Z-Score, borderline, NOT deployed), H-414 (Volume Trend, WF 5/6 mean **2.437**, corr 0.028, deployed — **session standout**).
+- **CRITICAL FINDING**: 4h microstructure backtests had look-ahead bias (same-day features). Fix: `< date_i`. H-332 survives lagged, H-336/H-338 do NOT. Daily factors H-410/H-413 also inflated by same-close bias.
+- **AUTOMATED:** Paper trades hourly via cron (58 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires tomorrow (Apr 10). Continue research.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 157) archived to `memory/session_archive.md`._
-
-### Session 2026-04-07 review+research (session 158)
-- Goal: Review + Research — MTM update, 8 multi-factor interaction backtests
-- Focus: Paper trade MTM (no new daily bar, BTC ~$68,935), H-292 through H-299 backtests
-- Done: 40 runners checked. **Demo**: $99,799 (-0.20%). All 8 REJECTED. **Key insight**: Multi-factor interactions (93-99% IS) are too correlated (0.50-0.75) with components. 299 total hypotheses.
-- Next: Explore non-momentum-based signals. Monitor H-021 (-2.65%) and H-183 (-2.46%).
-- Questions added: none
-- Self-modifications: Archived session 148. Fixed metrics bug. (session 158)
+_Older sessions (bootstrap through 158) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-07 review+research (session 159)
 - Goal: Review + Research — MTM update, 8 non-momentum signal backtests
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 157) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 expires Apr 10. Continue research. Try to get OI data working.
 - Questions added: none
 - Self-modifications: H-388/H-394 runners created, added to orchestrator. Archived session 157. (session 167)
+
+### Session 2026-04-09 review+deploy+research (session 168)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), **critical look-ahead bias discovery**, 3 new deployments
+- Focus: Paper trade MTM (BTC $70,814), H-400 through H-415 backtests. Look-ahead bias investigation.
+- Done: 58 runners (56→58). **23/55 positive** (avg -0.14%). H-049 surged to #1 (+4.93%). H-063 improved to -0.94% (expires tomorrow). **CRITICAL FINDING**: All 4h microstructure backtests had look-ahead bias (same-day features included in signal). Fix: `feat.index < date_i`. H-332 survives lagged (83.3%), but H-336(63.3%)/H-338(66.7%) do NOT. Daily factors H-410/H-413 also inflated by same-close bias. **Batch 1 (H-400–H-407, lagged)**: **H-404 CONFIRMED** (Session Flow, IS 80%, WF 5/6, corr **0.008**, deployed). 7 REJECTED after look-ahead fix. **Batch 2 (H-408–H-415, lagged)**: **H-411 CONFIRMED** (OBV Slope, IS 93.3%, WF 6/6 mean 0.886, deployed). **H-412 CONFIRMED** (Vol Z-Score, borderline WF 4/6, NOT deployed). **H-414 CONFIRMED** (Volume Trend, IS 96.7%, WF 5/6 mean **2.437**, corr **0.028** — session standout, deployed). H-410/H-413 REJECTED (look-ahead inflated). **415 total hypotheses.**
+- Next: Await Q-005 answer. H-063 expires Apr 10. Fix 4h backtest look-ahead in existing code. Continue research.
+- Questions added: none
+- Self-modifications: H-404/H-411/H-414 runners created, added to orchestrator. 4h data resampled from 1h. Look-ahead bias documented. Archived session 158. (session 168)

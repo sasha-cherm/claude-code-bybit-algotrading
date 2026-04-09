@@ -249,5 +249,41 @@
       "NEAR/USDT": 0.6837,
       "DOT/USDT": 0.6595
     }
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-09T00:30:28.291489+00:00",
+    "date": "2026-04-08",
+    "longs": [
+      "ARB/USDT",
+      "AVAX/USDT",
+      "LINK/USDT",
+      "ADA/USDT"
+    ],
+    "shorts": [
+      "DOT/USDT",
+      "OP/USDT",
+      "BTC/USDT",
+      "SOL/USDT"
+    ],
+    "trades": 6,
+    "fees": 15.0,
+    "capital": 9736.15,
+    "vol_momentum": {
+      "ARB/USDT": 1.2689,
+      "AVAX/USDT": 1.2009,
+      "LINK/USDT": 1.1273,
+      "ADA/USDT": 1.0887,
+      "SUI/USDT": 0.9619,
+      "ATOM/USDT": 0.8781,
+      "NEAR/USDT": 0.8564,
+      "XRP/USDT": 0.8414,
+      "ETH/USDT": 0.8314,
+      "DOGE/USDT": 0.8099,
+      "DOT/USDT": 0.7987,
+      "OP/USDT": 0.789,
+      "BTC/USDT": 0.7728,
+      "SOL/USDT": 0.7216
+    }
   }
 ]

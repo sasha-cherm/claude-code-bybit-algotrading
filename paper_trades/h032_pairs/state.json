@@ -10,11 +10,11 @@
       "cumulative_pnl": -3.0000000000000004
     },
     "DOGE/LINK": {
-      "position": 1,
-      "entry_date": "2026-04-07",
-      "entry_z": -1.092,
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
       "entry_equity": 1250.0,
-      "cumulative_pnl": -3.0000000000000004
+      "cumulative_pnl": 0.0
     },
     "DOGE/ADA": {
       "position": 0,
@@ -179,10 +179,27 @@
       "equity": 9988.0,
       "active_pairs": 4,
       "trades_today": 1
+    },
+    {
+      "date": "2026-04-08",
+      "equity": 9985.0,
+      "active_pairs": 3,
+      "trades_today": 1
     }
   ],
-  "last_daily_date": "2026-04-07",
-  "total_trades": 4,
-  "total_fees": 12.000000000000002,
-  "trades_log": []
+  "last_daily_date": "2026-04-08",
+  "total_trades": 5,
+  "total_fees": 15.000000000000002,
+  "trades_log": [
+    {
+      "pair": "DOGE/LINK",
+      "direction": "long_spread",
+      "entry_date": "2026-04-07",
+      "exit_date": "2026-04-08",
+      "entry_z": -1.092,
+      "exit_z": 0.08,
+      "pnl": -6.0,
+      "reason": "exit (z=0.08 > -0.0)"
+    }
+  ]
 }

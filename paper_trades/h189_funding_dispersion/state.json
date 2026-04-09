@@ -1,41 +1,41 @@
 {
   "started": "2026-04-02T09:09:53.233579+00:00",
-  "capital": 9980.0,
+  "capital": 9764.7,
   "positions": {
     "BTC/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 68132.6238,
-      "size": 0.04892419,
+      "entry_price": 71010.39924,
+      "size": 0.04583695,
       "direction": "LONG"
     },
     "ETH/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2140.548024,
-      "size": 1.55723361,
+      "entry_price": 2182.876488,
+      "size": 1.491106,
       "direction": "LONG"
     },
     "LINK/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 8.941788,
-      "size": 372.78152125,
+      "entry_price": 8.85177,
+      "size": 367.71179387,
       "direction": "LONG"
     },
     "ATOM/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.674665,
-      "size": -1990.44784081,
+      "entry_price": 1.780644,
+      "size": -1827.93449516,
       "direction": "SHORT"
     },
     "DOT/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.255749,
-      "size": -2654.4587049,
+      "entry_price": 1.269746,
+      "size": -2563.42624873,
       "direction": "SHORT"
     },
     "OP/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 0.110078,
-      "size": -30281.56342743,
+      "entry_price": 0.114577,
+      "size": -28407.95232012,
       "direction": "SHORT"
     }
   },
@@ -81,12 +81,18 @@
       "equity": 9871.71,
       "positions": 6,
       "rebalanced": false
+    },
+    {
+      "date": "2026-04-08",
+      "equity": 9760.79,
+      "positions": 6,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-04-07",
-  "last_rebal_date": "2026-04-01",
-  "days_since_rebal": 6,
-  "rebal_count": 1,
+  "last_daily_date": "2026-04-08",
+  "last_rebal_date": "2026-04-08",
+  "days_since_rebal": 0,
+  "rebal_count": 2,
   "total_trades": 6,
   "total_fees": 19.999999999999996
 }

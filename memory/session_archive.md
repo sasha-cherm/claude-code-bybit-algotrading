@@ -1,4 +1,4 @@
-# Session Archive (Sessions bootstrap through 155)
+# Session Archive (Sessions bootstrap through 158)
 
 ### Session 2026-03-28 review+research (session 103)
 - Goal: Review + Research — MTM update, H-063 monitoring, 3 new factor backtests
@@ -1196,3 +1196,11 @@
 - Next: Explore fundamentally different signal types. Monitor H-021 (-2.47%) and H-183 (-2.43%).
 - Questions added: none
 - Self-modifications: Archived session 147. (session 157)
+
+### Session 2026-04-07 review+research (session 158)
+- Goal: Review + Research — MTM update, 8 multi-factor interaction backtests
+- Focus: Paper trade MTM (no new daily bar, BTC ~$68,935), H-292 through H-299 backtests
+- Done: 40 runners checked. **Demo**: $99,799 (-0.20%). All 8 REJECTED. **Key insight**: Multi-factor interactions (93-99% IS) are too correlated (0.50-0.75) with components. 299 total hypotheses.
+- Next: Explore non-momentum-based signals. Monitor H-021 (-2.65%) and H-183 (-2.46%).
+- Questions added: none
+- Self-modifications: Archived session 148. Fixed metrics bug. (session 158)

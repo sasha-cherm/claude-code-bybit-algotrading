@@ -1,41 +1,41 @@
 {
   "started": "2026-03-20T01:20:36.131575+00:00",
-  "capital": 10055.93,
+  "capital": 10497.52,
   "positions": {
     "BTC/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 66978.393,
-      "size": 0.05019787,
+      "entry_price": 71010.39924,
+      "size": 0.04934209,
       "direction": "LONG"
     },
     "ETH/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2051.840286,
-      "size": 1.63861316,
+      "entry_price": 2182.876488,
+      "size": 1.6051304,
       "direction": "LONG"
     },
     "NEAR/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 1.209242,
-      "size": 2780.39717547,
+      "entry_price": 1.332266,
+      "size": 2629.95554343,
       "direction": "LONG"
     },
-    "XRP/USDT": {
+    "ARB/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.314037,
-      "size": -2558.65864277,
+      "entry_price": 0.104419,
+      "size": -33555.17334807,
       "direction": "SHORT"
     },
     "OP/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 0.109778,
-      "size": -30627.00413653,
+      "entry_price": 0.114577,
+      "size": -30580.29934094,
       "direction": "SHORT"
     },
-    "SOL/USDT": {
+    "DOGE/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 80.38392,
-      "size": -41.82643102,
+      "entry_price": 0.092242,
+      "size": -37985.06724986,
       "direction": "SHORT"
     }
   },
@@ -159,12 +159,18 @@
       "equity": 10284.24,
       "positions": 6,
       "rebalanced": false
+    },
+    {
+      "date": "2026-04-08",
+      "equity": 10493.33,
+      "positions": 6,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-04-07",
-  "last_rebal_date": "2026-04-03",
-  "days_since_rebal": 4,
-  "rebal_count": 4,
-  "total_trades": 27,
-  "total_fees": 90.76150632142988
+  "last_daily_date": "2026-04-08",
+  "last_rebal_date": "2026-04-08",
+  "days_since_rebal": 0,
+  "rebal_count": 5,
+  "total_trades": 31,
+  "total_fees": 104.64867551357844
 }

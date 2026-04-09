@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-08 17:14 UTC):
-Demo eq: $97,301 (-2.70%). BTC spot ~$71,593. 11 open positions.
+### Current Demo Status (as of 2026-04-09 01:00 UTC):
+Demo eq: ~$96,481 (-3.52%). BTC spot ~$70,814. 11 open positions.
 
 ---
 
@@ -532,15 +532,42 @@ Demo eq: $97,301 (-2.70%). BTC spot ~$71,593. 11 open positions.
 - **Runner**: `paper_trades/h394_variance_ratio/runner.py`
 - **Params**: LB10_R3_N4_high_long. WF 4/6 mean 0.351. Split-half 0.932/0.958 PASS. Corr **0.027** H-012.
 
-## Portfolio Summary (mark-to-market 2026-04-08 session 167, 21:52 UTC)
-- **Bybit Demo**: ~$96,481 (-3.52%). BTC spot ~$71,367. Apr 8 bar forming.
-- **Total internal MTM (56 runners)**: 56 runners (54→56 post-deploy). **20/54 positive** (excl. 2 new). Hourly/4h runners updated; no new daily bar.
-- **Top performers**: H-039(+5.75%), H-085(+3.74%), H-031(+3.29%), H-049(+2.84%), H-076(+2.66%), H-019(+2.25%), H-012(+1.97%), H-175(+1.86%), H-062(+1.76%), H-052(+1.65%)
-- **Average PnL**: -0.02% across 54 runners (near breakeven)
-- **H-063**: $9,694 (-3.06%). Trade 2 in progress (expires Apr 10 08:00 UTC). Call $69k ITM (BTC $71.4k). Put $65k OTM.
-- **New deploys (session 167)**: H-388 (Night-Day Diff, LONG DOT/NEAR/OP, SHORT DOGE/ETH/SOL), H-394 (Variance Ratio, LONG ATOM/BTC/OP/SUI, SHORT ADA/AVAX/NEAR/XRP)
-- **AUTOMATED:** Paper trades hourly via cron (56 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on portfolio v3. H-063 expires tomorrow. Continue research.
+### H-404: Session Flow Imbalance (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — look-ahead-free, near-zero H-012 corr
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: XRP, BTC, ETH, ADA
+  - SHORT: OP, DOT, ATOM, NEAR
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h404_session_flow/runner.py`
+- **Params**: LB20_R3_N4_low_session_imbalance_long. WF 5/6 mean 0.658. Corr **0.008** H-012.
+
+### H-411: OBV Slope (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — lagged, no look-ahead
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG: ARB, LINK, AVAX
+  - SHORT: OP, SOL, XRP
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h411_obv_slope/runner.py`
+- **Params**: LB15_R7_N3_high_obv_long. WF 6/6 mean 0.886. Corr **0.267** H-012.
+
+### H-414: Volume Trend (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-09) — lagged, no look-ahead. **Session standout.**
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: ARB, LINK, AVAX, ADA
+  - SHORT: DOGE, OP, DOT, SOL
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h414_vol_trend/runner.py`
+- **Params**: LB15_R3_N4_high_voltrd_long. WF 5/6 mean **2.437**. Corr **0.028** H-012 — excellent diversifier.
+
+## Portfolio Summary (mark-to-market 2026-04-09 session 168, 01:55 UTC)
+- **Bybit Demo**: ~$96,481 (-3.52%). BTC spot ~$70,814.
+- **Total internal MTM (58 runners)**: 58 runners (56→58 +H-404,H-411,H-414 deployed, -1 net due to counting). **23/55 positive** (excl. 3 new). Avg PnL **-0.14%**.
+- **Top performers**: H-049(+4.93%), H-085(+4.46%), H-193(+4.39%), H-076(+4.02%), H-244(+3.99%), H-039(+3.53%), H-169(+3.50%), H-019(+3.42%), H-052(+2.83%), H-338(+2.15%)
+- **H-063**: $9,906 (-0.94%). Improved from -3.06%. Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM but narrowing (BTC ~$70.8k).
+- **CRITICAL FINDING**: All 4h microstructure backtests had look-ahead bias (using same-day 4h features). Fix: use `< date_i` instead of `<= date_i`. H-332 survives lagged (83.3%→passes), H-336/H-338 do NOT survive lagged (63-67%). Daily factors H-410/H-413 also had same-day close bias. Properly lagged signals are weaker but honest.
+- **New deploys (session 168)**: H-404 (Session Flow, corr 0.008), H-411 (OBV Slope), H-414 (Volume Trend, corr 0.028 — standout)
+- **AUTOMATED:** Paper trades hourly via cron (58 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. H-063 expires tomorrow (Apr 10 08:00). Continue research. Consider fixing 4h backtest look-ahead in existing code.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

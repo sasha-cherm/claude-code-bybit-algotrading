@@ -71,5 +71,24 @@
     "fees": 30.58,
     "trades": 9,
     "capital_after": 10055.93
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-09T00:33:15.906844+00:00",
+    "signal_date": "2026-04-07",
+    "bar_date": "2026-04-08",
+    "longs": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "NEAR/USDT"
+    ],
+    "shorts": [
+      "ARB/USDT",
+      "OP/USDT",
+      "DOGE/USDT"
+    ],
+    "fees": 13.89,
+    "trades": 4,
+    "capital_after": 10497.52
   }
 ]

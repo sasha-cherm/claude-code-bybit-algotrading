@@ -4697,3 +4697,192 @@
 - Result: IS 36.7% high_long. Best Sharpe 0.182. Massive DD (-103%).
 - Notes: Return acceleration at 4h is pure noise. Second derivatives amplify noise quadratically. The concept of trend acceleration doesn't translate to a reliable cross-sectional ranking signal in crypto.
 - Sessions: [2026-04-09 session 167]
+
+---
+
+## H-400: Volume Profile Asymmetry (4h, lagged)
+- Status: REJECTED (WF 2/6)
+- Idea: Ratio of volume in up-4h-bars to total volume. High = buying dominance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, LAGGED — no look-ahead)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS high_vol_asymmetry_long **90.0%** (passes). WF only **2/6** positive, mean 0.377.
+- Notes: Strong IS signal but fails WF — buying volume dominance doesn't predict next-day returns reliably. **Critical finding this session: ALL 4h features had massive look-ahead bias when using same-day data (<=). Fixed to use strictly lagged (<) data.**
+- Sessions: [2026-04-09 session 168]
+
+## H-401: Intraday Range Expansion (4h, lagged)
+- Status: REJECTED (IS 70.0%)
+- Idea: Average 4h bar range (normalized by close) over rolling window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, lagged)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS high_avg_range_long **70.0%**. Below 80% threshold.
+- Notes: Range expansion doesn't predict cross-sectional returns at daily frequency.
+- Sessions: [2026-04-09 session 168]
+
+## H-402: Body-to-Range Ratio (4h, lagged)
+- Status: REJECTED (WF 3/6)
+- Idea: Rolling mean of |close-open|/(high-low) at 4h bars.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, lagged)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS low_body_range_long **80.0%** (borderline passes). WF **3/6** positive, mean 0.470.
+- Notes: Low body-to-range (wicky bars) → long. Signal exists but unstable across WF folds.
+- Sessions: [2026-04-09 session 168]
+
+## H-403: Return Acceleration (4h, lagged)
+- Status: REJECTED (IS 53.3%)
+- Idea: Acceleration of 4h-aggregate momentum (recent half vs older half of lookback).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, lagged)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS low_agg_mom_long only **53.3%**. Best Sharpe 1.299.
+- Notes: Without look-ahead, 4h momentum acceleration is noisy. Confirms acceleration signals are fragile.
+- Sessions: [2026-04-09 session 168]
+
+## H-404: Session Flow Imbalance
+- Status: LIVE (paper trade since 2026-04-09)
+- Idea: Rank by rolling mean of (Asian session return - US session return). LOW imbalance (US outperforms Asia) → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (1h session features, LAGGED)
+- Logic: session_imbalance = asia_ret - us_ret per day, rolling 20d mean. Low → long (ascending sort).
+- Data: 14 assets, 1073 daily bars. IS: 60 combos. WF: 6 folds.
+- Result:
+  - **IS**: low_session_imbalance_long **80.0%** (24/30 positive)
+  - **Best config**: LB20_R3_N4, Sharpe **0.748**, +36.3% ann, -36.0% DD
+  - **WF**: **5/6** positive, mean Sharpe **0.658**
+  - **Split-half**: H1=0.296, H2=1.313 (both positive, improving in second half)
+  - **Neighbors**: 14/16 positive (**87.5%**)
+  - **Correlation**: H-012 **0.008** — near-zero, genuine diversifier
+- Notes: Captures geographic flow divergence. When US sessions push price more than Asian sessions, next-day continuation. Look-ahead-free by construction. Paper trade deployed: LONG XRP/BTC/ETH/ADA, SHORT OP/DOT/ATOM/NEAR.
+- Sessions: [2026-04-09 session 168]
+
+## H-405: Consecutive Direction Streak (4h, lagged)
+- Status: REJECTED (IS 56.7%)
+- Idea: Rolling avg of longest same-direction streak in 4h bars.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, lagged)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS high_signed_streak_long only **56.7%**.
+- Notes: Without look-ahead, streak length doesn't predict next-day returns.
+- Sessions: [2026-04-09 session 168]
+
+## H-406: Volume-Price Trend Coherence (4h, lagged)
+- Status: REJECTED (IS 50.0%)
+- Idea: Rolling correlation of 4h returns and 4h volume changes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, lagged)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS high_vp_corr_long only **50.0%**.
+- Notes: Volume-return coherence at 4h doesn't predict next-day cross-sectional returns.
+- Sessions: [2026-04-09 session 168]
+
+## H-407: Intrabar Momentum Quality (4h, lagged)
+- Status: REJECTED (IS 33.3%)
+- Idea: Rolling Sharpe ratio of individual 4h bar returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (4h features, lagged)
+- Data: 14 assets, 1073 daily bars. IS: 60 combos.
+- Result: IS high_intrabar_sharpe_long only **33.3%**. Dead signal with lag.
+- Notes: **Key finding**: This had Sharpe 4.83 WITH look-ahead, -0.05 WITHOUT. Confirms 4h microstructure at daily lag is mostly noise. The "signal" was the day's own return reflected in the features.
+- Sessions: [2026-04-09 session 168]
+
+## H-408: Weekday Seasonality XS
+- Status: REJECTED (IS 56.7%)
+- Idea: For each asset, compute avg return on today's weekday over lookback. Rank by expected weekday-specific return.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 60 combos.
+- Result: IS low_weekday_long **56.7%**. Best Sharpe 1.247.
+- Notes: Weekday seasonality doesn't differentiate cross-sectionally — all crypto assets have similar weekday patterns.
+- Sessions: [2026-04-09 session 168]
+
+## H-409: Lead-Lag Score
+- Status: REJECTED (IS 36.7%)
+- Idea: Rolling correlation of each asset's return(t) with BTC return(t-1). High = lags BTC.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 60 combos.
+- Result: IS high_leadlag_long **36.7%**. Best Sharpe 0.467.
+- Notes: Lead-lag relationships in crypto are too unstable for cross-sectional ranking. All altcoins lag BTC similarly.
+- Sessions: [2026-04-09 session 168]
+
+## H-410: Drawdown Depth XS
+- Status: REJECTED (look-ahead inflated, lagged IS 66.7%)
+- Idea: Current drawdown from rolling peak. Shallow DD = quality/momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 60 combos (lagged).
+- Result: **Original**: IS 100%, Sharpe 5.315, WF 6/6. **LAGGED**: IS 66.7%, Sharpe 1.352. **Massive look-ahead bias** — today's close determines both DD and return.
+- Notes: Today's close being high → shallow DD AND positive return → spurious positive. The factor is measuring the return itself. Classic same-day look-ahead.
+- Sessions: [2026-04-09 session 168]
+
+## H-411: OBV Slope Factor
+- Status: LIVE (paper trade since 2026-04-09)
+- Idea: Slope of On-Balance Volume (signed volume cumulative sum) over rolling window. Rising OBV = accumulation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (lagged — signal uses data up to yesterday)
+- Logic: For each asset: compute OBV = cumsum(vol × sign(ret)) over LB days. Linear regression slope, normalized by mean volume. High slope → long (accumulation).
+- Data: 14 assets, 732 daily bars. IS: 60 combos.
+- Result:
+  - **IS (lagged)**: high_obv_long **93.3%** (28/30 positive)
+  - **Best config**: LB15_R7_N3, Sharpe **1.547**, +114.2% ann, -30.6% DD
+  - **WF (lagged)**: **6/6** positive, mean Sharpe **0.886**
+  - **Split-half**: H1=1.968, H2=1.063 (both positive)
+  - **Neighbors**: 12/12 positive (**100%**)
+  - **Correlation**: H-012 **0.267**
+- Notes: OBV captures net buying/selling pressure through volume flow. The lagged version survives because OBV slope changes slowly — yesterday's accumulation pattern predicts today's continuation. Higher H-012 correlation (0.267) than ideal but still adds value. Paper trade deployed: LONG ARB/LINK/AVAX, SHORT OP/SOL/XRP.
+- Sessions: [2026-04-09 session 168]
+
+## H-412: Relative Volatility Z-Score
+- Status: CONFIRMED (borderline WF)
+- Idea: Z-score of short-term vol change relative to longer history. Rising vol = regime shift.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (lagged)
+- Data: 14 assets, 732 daily bars. IS: 60 combos.
+- Result:
+  - **IS (lagged)**: high_volz_long **86.7%** (26/30)
+  - **Best config**: LB10_R7_N4, Sharpe **2.577**
+  - **WF (lagged)**: **4/6** positive, mean Sharpe **0.172** (borderline — folds 3-4 deeply negative)
+  - **Split-half**: H1=2.608, H2=2.579 (both positive)
+  - **Neighbors**: 10/12 (83.3%)
+  - **Correlation**: H-012 **-0.010** (near-zero, excellent diversifier)
+- Notes: Excellent IS and split-half but WF is regime-dependent with high variance. NOT deployed due to borderline WF. The negative H-012 corr is attractive but reliability is questionable.
+- Sessions: [2026-04-09 session 168]
+
+## H-413: Price-MA Distance XS
+- Status: REJECTED (look-ahead inflated, lagged IS 66.7%)
+- Idea: Distance from rolling MA. Far above = extended.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 732 daily bars. IS: 60 combos (lagged).
+- Result: **Original**: IS 100%, Sharpe 5.649, WF 6/6. **LAGGED**: IS 66.7%, Sharpe 0.868. Same look-ahead pattern as H-410.
+- Notes: Price-MA distance uses today's close in both signal and return. Without look-ahead, the signal largely vanishes. Similar to pure momentum but shorter-term.
+- Sessions: [2026-04-09 session 168]
+
+## H-414: Volume Trend Factor
+- Status: LIVE (paper trade since 2026-04-09)
+- Idea: Linear regression slope of log-volume over rolling window. Rising volume = increasing interest/accumulation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (lagged — signal uses data up to yesterday)
+- Logic: For each asset: linregress(x, log1p(volume)) over LB days. High slope → long.
+- Data: 14 assets, 732 daily bars. IS: 60 combos.
+- Result:
+  - **IS (lagged)**: high_voltrd_long **96.7%** (29/30 positive) — strongest IS of the batch
+  - **Best config**: LB15_R3_N4, Sharpe **2.520**, +189.9% ann, -15.4% DD
+  - **WF (lagged)**: **5/6** positive, mean Sharpe **2.437** — excellent
+  - **Split-half**: H1=2.369, H2=2.762 (both positive, improving in H2)
+  - **Neighbors**: 12/12 positive (**100%**)
+  - **Correlation**: H-012 **0.028** — near-zero, excellent diversifier
+- Notes: **Standout of this session**. Volume trend is purely volume-based (no price in signal), making it immune to price look-ahead. Volume trends are persistent — an asset with accelerating volume yesterday continues to attract attention today. Near-zero H-012 corr makes it an excellent portfolio diversifier. Paper trade deployed: LONG ARB/LINK/AVAX/ADA, SHORT DOGE/OP/DOT/SOL.
+- Sessions: [2026-04-09 session 168]
+
+## H-415: Dispersion Beta Factor
+- Status: REJECTED (WF 2/6)
+- Idea: Beta of each asset's daily return to cross-sectional return dispersion.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (lagged)
+- Data: 14 assets, 732 daily bars. IS: 60 combos.
+- Result: IS high_dispbeta_long **90.0%** (lagged). WF only **2/6** positive, mean 0.348.
+- Notes: IS passes but WF fails — dispersion sensitivity is regime-dependent.
+- Sessions: [2026-04-09 session 168]

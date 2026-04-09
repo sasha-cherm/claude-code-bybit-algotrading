@@ -1,0 +1,25 @@
+{
+  "H-368": {
+    "hid": "H-368",
+    "name": "Volume Market Share Drift",
+    "total_params": 54,
+    "pct_positive_is": 90.74074074074075,
+    "best_config": "lookback30_drift_window5_rebal5_n_pos3",
+    "best_sharpe": 1.6280300091795805,
+    "best_annual_return": 0.855335188619119,
+    "best_max_dd": 0.2379681541192194,
+    "corr_h012": 0.20565000904860226,
+    "corr_h076": 0.1150929927188963,
+    "mean_sharpe": 0.6197560851870935,
+    "wf_results": [
+      2.3704779926104056,
+      0.5655081401111329,
+      3.225013273847907,
+      0.9621912921812213,
+      3.739564777066496,
+      1.3420516932902036
+    ],
+    "wf_positive": 6,
+    "wf_mean": 2.0341345281845613,
+    "confirmed": true,
+    "is_pass": 

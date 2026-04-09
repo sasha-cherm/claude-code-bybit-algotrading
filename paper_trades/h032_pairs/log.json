@@ -34,5 +34,15 @@
     "direction": "long_spread",
     "z": -1.092,
     "hedge_ratio": 1.0212
+  },
+  {
+    "type": "close",
+    "time": "2026-04-09T00:30:28.413807+00:00",
+    "date": "2026-04-08",
+    "pair": "DOGE/LINK",
+    "direction": "long_spread",
+    "z": 0.08,
+    "pnl": -6.0,
+    "reason": "exit (z=0.08 > -0.0)"
   }
 ]

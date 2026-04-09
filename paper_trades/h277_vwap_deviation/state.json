@@ -51,13 +51,17 @@
     {
       "date": "2026-04-07",
       "equity": 9958.04
+    },
+    {
+      "date": "2026-04-08",
+      "equity": 9981.7
     }
   ],
-  "last_daily_date": "2026-04-07",
+  "last_daily_date": "2026-04-08",
   "last_rebal_date": "2026-04-05",
-  "days_since_rebal": 2,
+  "days_since_rebal": 3,
   "rebal_count": 1,
   "total_trades": 6,
   "total_fees": 19.999999999999996,
-  "equity": 9958.04
+  "equity": 9981.7
 }

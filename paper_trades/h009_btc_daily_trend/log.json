@@ -36,5 +36,31 @@
     "leverage": 0.38,
     "fee": 3.77,
     "capital_after": 9789.97
+  },
+  {
+    "type": "close",
+    "time": "2026-04-09T00:30:01.810882+00:00",
+    "signal_date": "2026-04-08",
+    "direction": "SHORT",
+    "entry_price": 69909.32,
+    "exit_price": 71010.4,
+    "size_btc": 0.05387065,
+    "gross_pnl": -59.32,
+    "fee": 3.83,
+    "net_pnl": -63.14,
+    "capital_after": 9726.82,
+    "holding_days": 20
+  },
+  {
+    "type": "open",
+    "time": "2026-04-09T00:30:01.810924+00:00",
+    "signal_date": "2026-04-08",
+    "direction": "LONG",
+    "entry_price": 71010.4,
+    "size_btc": 0.06790605,
+    "notional": 4822.04,
+    "leverage": 0.5,
+    "fee": 4.82,
+    "capital_after": 9722.0
   }
 ]

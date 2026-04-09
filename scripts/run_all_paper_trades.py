@@ -78,6 +78,9 @@ RUNNERS = [
     ("H-383", ROOT / "paper_trades" / "h383_pvt" / "runner.py"),
     ("H-388", ROOT / "paper_trades" / "h388_night_day_diff" / "runner.py"),
     ("H-394", ROOT / "paper_trades" / "h394_variance_ratio" / "runner.py"),
+    ("H-404", ROOT / "paper_trades" / "h404_session_flow" / "runner.py"),
+    ("H-411", ROOT / "paper_trades" / "h411_obv_slope" / "runner.py"),
+    ("H-414", ROOT / "paper_trades" / "h414_vol_trend" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

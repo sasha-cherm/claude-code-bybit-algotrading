@@ -37,5 +37,44 @@
     },
     "trades": 6,
     "fees": 20.0
+  },
+  {
+    "date": "2026-04-08",
+    "action": "rebalance",
+    "capital": 9990.23,
+    "positions": {
+      "OP/USDT": {
+        "dir": "LONG",
+        "entry": 0.119924,
+        "w": 0.3333333333333333
+      },
+      "ARB/USDT": {
+        "dir": "LONG",
+        "entry": 0.103781,
+        "w": 0.3333333333333333
+      },
+      "SUI/USDT": {
+        "dir": "LONG",
+        "entry": 0.960692,
+        "w": 0.3333333333333333
+      },
+      "DOT/USDT": {
+        "dir": "SHORT",
+        "entry": 1.313737,
+        "w": -0.3333333333333333
+      },
+      "XRP/USDT": {
+        "dir": "SHORT",
+        "entry": 1.377225,
+        "w": -0.3333333333333333
+      },
+      "SOL/USDT": {
+        "dir": "SHORT",
+        "entry": 84.423112,
+        "w": -0.3333333333333333
+      }
+    },
+    "trades": 6,
+    "fees": 20.7312
   }
 ]
