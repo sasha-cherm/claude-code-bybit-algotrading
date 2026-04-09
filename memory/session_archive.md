@@ -1236,3 +1236,11 @@
 - Next: Options strategies. Portfolio optimization. Monitor H-063 (-3.81%).
 - Questions added: none
 - Self-modifications: H-333/H-338/H-342/H-343 deployed. Archived session 152. (session 162)
+
+### Session 2026-04-08 review+deploy+research (session 163)
+- Goal: Review + Deploy + Research — fixed partial Apr 7 bar, 8 microstructure backtests, H-351/H-353/H-355 deployment
+- Focus: Paper trade MTM (BTC $71,590), H-350 through H-357 backtests
+- Done: 50 runners (47→50). **3/8 CONFIRMED**: H-351 Vol Skew (WF 5/6), H-353 Vol Persistence (WF 5/6 mean 2.526), H-355 Entropy (corr 0.079). All mutually low-corr. 357 total hypotheses.
+- Next: Options strategies. Monitor H-063 (-4.65%, expires Apr 10).
+- Questions added: none
+- Self-modifications: H-351/H-353/H-355 deployed. Archived session 153. (session 163)

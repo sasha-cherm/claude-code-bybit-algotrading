@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,514 (-2.49%). BTC spot ~$72,405.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,538 (-2.46%). BTC spot ~$72,385.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 65 runners active. Session 172. **20/65 positive**, avg **+0.04%**.
-- **H-063**: $9,552 (-4.48%), trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by $3.4k. Expect ~-5% loss.
+- **Internal paper trades:** 66 runners active. Session 173. **20/66 positive**, avg **+0.01%**.
+- **H-063**: $9,358 (-6.42%), trade 2 expires Apr 10 08:00 UTC. Expected ~-$662 loss on this trade.
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%).
-- **Session 172 research**: 24 new hypotheses (H-472 to H-495). **1 CONFIRMED** (H-485 Monthly Reversal, not deployed — corr 0.591). 1 BORDERLINE (H-486), 22 REJECTED. Cross-asset, interactions, calendar all exhausted. **495 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (65 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 expires Apr 10 08:00. Consider: alternative asset universes, ML signal combination, or longer backtest history.
+- **Session 173 research**: **H-496 ML Ensemble CONFIRMED+deployed.** Best Sharpe ever: 2.149. Equal-weight 10-factor composite. **496 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (66 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 settles Apr 10 08:00. Monitor H-496 paper trade performance.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 162) archived to `memory/session_archive.md`._
-
-### Session 2026-04-08 review+deploy+research (session 163)
-- Goal: Review + Deploy + Research — fixed partial Apr 7 bar, 8 microstructure backtests, H-351/H-353/H-355 deployment
-- Focus: Paper trade MTM (BTC $71,590), H-350 through H-357 backtests
-- Done: 50 runners (47→50). **3/8 CONFIRMED**: H-351 Vol Skew (WF 5/6), H-353 Vol Persistence (WF 5/6 mean 2.526), H-355 Entropy (corr 0.079). All mutually low-corr. 357 total hypotheses.
-- Next: Options strategies. Monitor H-063 (-4.65%, expires Apr 10).
-- Questions added: none
-- Self-modifications: H-351/H-353/H-355 deployed. Archived session 153. (session 163)
+_Older sessions (bootstrap through 163) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-08 review+optimize (session 164)
 - Goal: Review + Portfolio Optimization — comprehensive analysis of 33 confirmed strategies
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 162) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Consider ML signal combination, alternative asset universes, or longer history.
 - Questions added: none
 - Self-modifications: Archived session 162. (session 172)
+
+### Session 2026-04-09 review+research (session 173)
+- Goal: Review + Research — MTM update, ML ensemble signal combination, H-496 deployed
+- Focus: Paper trade MTM (BTC $72,385), ML ensemble backtest combining 30 confirmed XS factors
+- Done: 66 runners (65→66). **20/66 positive** (avg +0.01%). Demo $97,538 (-2.46%). H-063 at -6.42% (expires tomorrow 08:00, expected -$662 loss). **ML Ensemble research**: Tested 3 methods (equal-weight, IC-weighted, ridge) on 30 factors. Equal-weight best. **Focused 10-factor subset dramatically outperforms**: Sharpe **2.149** (+98.7% ann, -23.8% DD). WF **5/6** positive (mean 2.189). SH PASS (2.555/1.655). Param robust 12/12. H-496 = best single-strategy Sharpe ever found. Key insight: simpler equal-weight beats ML weighting. Most recent fold flat (-0.049). **496 total hypotheses.**
+- Next: Await Q-005 answer. H-063 settles Apr 10 08:00. Monitor H-496 paper performance. Consider H-496 for v3 portfolio.
+- Questions added: none
+- Self-modifications: H-496 runner created, added to orchestrator. Archived session 163. (session 173)

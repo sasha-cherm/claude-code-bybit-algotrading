@@ -5684,3 +5684,21 @@
 - Timeframe: 1D
 - Result: IS 33% (4/12 positive). Not stable enough.
 - Sessions: [2026-04-09 session 172]
+
+## H-496: ML Ensemble (Focused Equal-Weight 10-Factor Composite)
+- Status: CONFIRMED (deployed to paper trade)
+- Idea: Combine 10 confirmed XS factor z-scores via equal-weight averaging into single composite signal. Long top 4, short bottom 4.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 5d)
+- Logic: Compute 10 factor z-scores (momentum, low_vol, size, premium, vol_term, dd_momentum, efficiency, turnover, vol_surprise, vw_pressure). Average z-scores cross-sectionally. Rank composite. Long top 4, short bottom 4.
+- Data: 14 assets, 1073 daily bars (~2.9 years). 952-day evaluation period.
+- Result:
+  - **Full sample**: Sharpe **2.149**, +98.7% annual, -23.8% DD, 56.3% WR
+  - **Walk-forward (6 folds x 90d)**: **5/6 positive**, mean Sharpe **2.189**, min -0.049
+  - **Split-half**: H1=2.555, H2=1.655 — **PASS**
+  - **Param robustness**: **12/12 positive** (n_long=[3,4,5,6] x rf=[3,5,7]), mean 1.35, min 0.86
+  - **Correlation with H-012**: 0.547 (moderate — shares momentum component)
+  - **Factor importance (leave-one-out delta)**: vol_term(-0.711), premium(-0.580), efficiency(-0.556), momentum(-0.519), dd_momentum(-0.440), vw_pressure(-0.330), turnover(-0.226), vol_surprise(-0.170), low_vol(+0.061), size(+0.022)
+  - **30-factor full set**: Sharpe 0.662 (diluted by weak factors). IC-weighted: 0.571 (overfit). Ridge: -0.298 (overfit).
+- Notes: Best single-strategy Sharpe found. Equal-weight outperforms ML weighting (ridge/IC) — simpler is better. Most recent WF fold (Jan-Apr 2026) essentially flat (-0.049). The premium and vol_term factors contribute most beyond momentum. low_vol and size can be dropped with no loss. Correlation with H-012 at 0.547 means some momentum overlap but substantial diversification from the other 8 factors.
+- Sessions: [2026-04-09 session 173]

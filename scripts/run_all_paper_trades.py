@@ -87,6 +87,7 @@ RUNNERS = [
     ("H-447", ROOT / "paper_trades" / "h447_vol_autocorr" / "runner.py"),
     ("H-451", ROOT / "paper_trades" / "h451_close_high_ratio" / "runner.py"),
     ("H-470", ROOT / "paper_trades" / "h470_first_hour_ret" / "runner.py"),
+    ("H-496", ROOT / "paper_trades" / "h496_ml_ensemble" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"
