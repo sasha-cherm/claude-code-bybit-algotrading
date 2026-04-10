@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98-99k. BTC spot ~$71,966 (+2.01% 24h).
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$94,608 (-5.39%). BTC spot ~$72,128.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 66 runners active. Session 174. **26/66 positive**, avg **-0.10%**.
-- **H-063**: ~$9,563 (-4.37%), trade 2 expires Apr 10 08:00 UTC (~7h). Expected ~-$514 loss (call ITM at $71,966).
+- **Internal paper trades:** 67 runners active. Session 175. **26/66 positive** (pre-H-528), avg **-0.11%**.
+- **H-063**: ~$9,509 (-4.91%), trade 2 expires Apr 10 08:00 UTC (~3h). Expected ~-$574 loss.
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%).
-- **Session 174 research**: 16 new hypotheses (H-497–H-512), ALL REJECTED. Regime-adaptive timing (8) and portfolio construction improvements (8) — base H-496 ensemble proved optimal. **512 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (66 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 settles Apr 10 08:00. Monitor H-496 paper trade. Explore new data sources / higher frequency / alternative universes.
+- **Session 175 research**: 19 new hypotheses (H-513–H-531). H-528 Range Expansion CONFIRMED+deployed (100% param robust, corr -0.001 H-012). 3 more CONFIRMED (not deployed — redundant). 15 REJECTED. **531 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (67 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 settles today. Monitor H-496/H-528 paper trades. Explore higher-frequency strategies or alternative instruments.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 164) archived to `memory/session_archive.md`._
-
-### Session 2026-04-08 review+deploy+research (session 165)
-- Goal: Review + Deploy + Research — MTM update, 10 new backtests (8 XS + 2 options), H-363 deployment
-- Focus: Paper trade MTM (BTC $72,508), H-358 through H-367 backtests, VRP analysis, options strategies
-- Done: 51 runners (50→51 post-deploy). **Demo**: $97,787 (-2.21%, improved from -3.22%). H-063 deteriorated to **-6.35%** (BTC $72.5k above $69k call). **Research**: 8 XS signals tested — **H-363 CONFIRMED** (multi-day return pattern, IS 83.3% high_long, WF **5/6** mean 0.611, split-half PASS, neighbors 88.9%, corr 0.322 H-012). H-358(76.7%), H-359(60%), H-360(100% but too slow), H-361(79.2%), H-362(50%) REJECTED at IS. H-364(WF 2/6), H-365(split-half fail) REJECTED at WF. **Options research**: Bull put spread (H-366) IS 93.1%, WF **5/5** mean 6.01, Sharpe 1.8-4.4. Strangle (H-367) WF 5/5 mean 3.86. **BTC VRP analysis**: IV overprices RV by +5-15pp (20 days of data), confirming vol-selling edge. 367 total hypotheses.
-- Next: Await Q-005 answer. Monitor H-063 (-6.35%, expires Apr 10). Continue research.
-- Questions added: none
-- Self-modifications: H-363 runner created, added to orchestrator. Archived session 155. (session 165)
+_Older sessions (bootstrap through 165) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-08 review+deploy+research (session 166)
 - Goal: Review + Deploy + Research — MTM update, 16 new backtests, 3 new deployments
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 164) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 settles today 08:00. Explore new data sources, higher frequency, or alternative asset universes.
 - Questions added: none
 - Self-modifications: Archived session 164. (session 174)
+
+### Session 2026-04-10 review+deploy+research (session 175)
+- Goal: Review + Deploy + Research — MTM update, 19 new backtests, H-528 deployment
+- Focus: Paper trade MTM (BTC $72,128), expanded universe testing, novel signal categories (H-513–H-531)
+- Done: 67 runners (66→67). **26/66 positive** (avg -0.11%). Demo $94,608 (-5.39%). H-063 at -4.91% (trade 2 expires 08:00 UTC, expected -$574 loss). H-496 at +0.22% (day 1). **Expanded universe**: Tested 27-asset momentum (Sharpe 0.26) and size (0.77) — both worse than 14-asset. **Batch 1 (H-513–H-522)**: H-518 Regime Mom (Sharpe 1.36, WF 6/6 but corr 0.793 H-012 = redundant). **H-519 Vol Shock** (Sharpe 1.52, 100% robust, corr -0.041 H-012, but 0.704 corr H-336 = redundant). H-522 PVT Slope (Sharpe 0.98, 100% robust, corr 0.425 H-012). 7 REJECTED. **Batch 2 (H-523–H-531)**: **H-528 Range Expansion CONFIRMED+deployed** (IS 0.849, 100% param robust 96/96, WF 4/6, SH PASS, corr **-0.001** H-012 — perfect diversifier). H-530 DV Share passes all tests but corr 0.934 with H-031 = identical. 8 REJECTED. **531 total hypotheses.**
+- Next: Await Q-005 answer. H-063 settles today 08:00. Monitor H-496/H-528. Explore higher-frequency or different instruments.
+- Questions added: none
+- Self-modifications: H-528 runner created, added to orchestrator. Archived session 165. (session 175)

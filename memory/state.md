@@ -625,15 +625,28 @@ Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 
 - **Backtest**: Sharpe **2.149**, +98.7% annual, -23.8% DD. Param robustness 12/12 positive. Corr 0.547 H-012.
 - **Note**: Equal weight beats ML methods (ridge, IC-weighted). Most recent WF fold (Jan-Apr 2026) essentially flat (-0.049).
 
-## Portfolio Summary (mark-to-market 2026-04-09 session 173, 21:30 UTC)
-- **Bybit Demo**: ~$97,538 (-2.46%). BTC spot ~$72,385.
-- **Total internal MTM (66 runners)**: 66 runners (65+1 new). **20/66 positive** (30%). Avg PnL **+0.01%**.
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%), H-039(+3.53%), H-019(+3.47%), H-062(+3.10%), H-338(+2.15%), H-336(+2.04%)
-- **H-063**: $9,358 (-6.42%). Trade 2 expires Apr 10 08:00 UTC. Call $69k ITM by **$3.4k** (BTC $72.4k). Expected ~**-$662 loss** on trade 2. Overall H-063: ~**-5.8%** after settlement.
-- **Worst performers**: H-191(-6.51%), H-063(-6.42%), H-223(-3.92%), H-009(-2.78%), H-264(-2.71%)
-- **Research (session 173)**: **H-496 ML Ensemble CONFIRMED+deployed.** Best single-strategy Sharpe found (2.149). Equal-weight 10-factor composite beats ML weighting. **496 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (66 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. H-063 expires Apr 10 08:00 (expect ~-5% loss on trade 2). Consider: alternative asset universe, different instruments, longer backtests, or ML-based signal combination.
+### H-528: Range Expansion Momentum Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — 100% param robust, zero H-012 corr
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: AVAX, ARB, SUI, DOT
+  - SHORT: ETH, OP, XRP, DOGE
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h528_range_expansion/runner.py`
+- **Params**: SW5_LW30_R5_N4 (5-day short range, 30-day long range, 5-day rebalance, top/bottom 4, high_range_expansion_long)
+- **Backtest**: IS Sharpe 0.849, +36.8% ann, -37.5% DD. WF 4/6. SH PASS (1.502/0.164). **100% param robust (96/96)**. Best config (3,30,3,3) Sharpe 2.021.
+- **Correlation**: **-0.001** H-012, -0.052 H-031, 0.029 H-076, 0.069 H-182. Perfect diversifier.
+- **Note**: Captures breakout dynamics — coins with expanding daily range tend to continue trending.
+
+## Portfolio Summary (mark-to-market 2026-04-10 session 175, 05:22 UTC)
+- **Bybit Demo**: ~$94,608 (-5.39%). BTC spot ~$72,128.
+- **Total internal MTM (67 runners)**: 67 runners (66+1 new H-528). **26/66 positive** (39%). Avg PnL **-0.11%**.
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-353(+3.52%), H-019(+3.47%), H-062(+3.10%), H-277(+2.97%), H-052(+2.88%)
+- **H-063**: $9,509 (-4.91%). Trade 2 expires Apr 10 08:00 UTC (~3h). Call $69k ITM at BTC $72.1k. Expected ~-$574 loss on trade 2.
+- **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-063(-4.91%), H-223(-3.92%), H-046(-3.18%)
+- **H-496 ML Ensemble**: $10,022 (+0.22%) — day 1, positions look good.
+- **Research (session 175)**: 19 new hypotheses (H-513–H-531). 3 CONFIRMED (H-518 Regime Mom, H-519 Vol Shock, H-522 PVT Slope — not deployed, redundant). **H-528 Range Expansion CONFIRMED+deployed** — 100% param robust (96/96), corr -0.001 H-012. 16 REJECTED. **531 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (67 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. H-063 settles today 08:00. Monitor H-496 and H-528 paper trades. Explore higher-frequency or alternative instrument strategies.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

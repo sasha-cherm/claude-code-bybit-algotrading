@@ -5845,3 +5845,174 @@
 - Result: IS Sharpe 2.037 (-4.7%), WF 6/6, SH PASS (2.421/1.596). Slightly worse.
 - Notes: Risk-parity is robust (6/6 WF) but doesn't beat equal-weight. The XS ranking already accounts for vol differences.
 - Sessions: [2026-04-10 session 174]
+
+## H-513: Expanded Universe XS Momentum (27 coins)
+- Status: REJECTED
+- Idea: Run cross-sectional momentum on 27 assets instead of 14. More coins = more diversification.
+- Instrument: futures (27 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.258, Ann +12.4%, DD -57.3%. WF 3/6 (mean 0.238). SH PASS (0.219/0.314). 14-asset: Sharpe 0.782.
+- Notes: Expanding universe dilutes the signal. More noise, less edge. 14-asset universe is optimal.
+- Sessions: [2026-04-10 session 175]
+
+## H-514: Expanded Universe Size Factor (27 coins)
+- Status: REJECTED
+- Idea: Run size factor on 27 assets. More coins = bigger size spread.
+- Instrument: futures (27 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.769, Ann +33.8%, DD -39.3%. WF 6/6 (mean 0.898). SH PASS. Corr 0.661 with 14-asset H-031.
+- Notes: WF 6/6 but inferior to 14-asset H-031 (Sharpe ~2.5) and corr 0.661 = redundant. No gain from expansion.
+- Sessions: [2026-04-10 session 175]
+
+## H-515: Sector Momentum Rotation (L1 vs L2/Infra)
+- Status: REJECTED
+- Idea: Rotate between L1 coins (BTC,ETH,SOL...) and L2/infra (LINK,OP,ARB) based on sector momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.137, Ann +5.5%, DD -51.7%. WF 3/6. SH FAIL (H1=-0.642). Corr 0.181 H-012.
+- Notes: Crypto sectors are too small and correlated for sector rotation. Not enough independent sectors.
+- Sessions: [2026-04-10 session 175]
+
+## H-516: Long-Horizon Reversal (120d lookback, contrarian)
+- Status: REJECTED
+- Idea: Contrarian 120-day reversal — long worst performers, short best.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -1.099, Ann -52.2%, DD -85.0%. WF 0/6. SH FAIL.
+- Notes: Crypto has strong momentum, not reversal. Going against trend is disastrous.
+- Sessions: [2026-04-10 session 175]
+
+## H-517: Volatility Mean Reversion
+- Status: REJECTED
+- Idea: Long coins whose volatility recently dropped (normalizing), short those still elevated.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.432, Ann -19.0%, DD -69.3%. WF 3/6. SH FAIL.
+- Notes: Vol mean reversion doesn't work as a cross-sectional factor. Vol isn't mean-reverting fast enough to predict returns.
+- Sessions: [2026-04-10 session 175]
+
+## H-518: BTC Regime-Conditional Momentum
+- Status: CONFIRMED (not deployed)
+- Idea: Only take XS momentum positions when BTC in uptrend (20d SMA > 60d SMA). Zero positions in downtrend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.360, Ann +65.9%, DD -46.7%. WF 6/6 (mean 1.441). SH PASS (1.230/1.556). Corr 0.793 H-012.
+- Notes: Strong but essentially just momentum with a filter. Corr 0.793 with H-012 = redundant. Not adding independent information.
+- Sessions: [2026-04-10 session 175]
+
+## H-519: Relative Volume Shock
+- Status: CONFIRMED (not deployed)
+- Idea: Long coins with sudden volume increase (3d vs 30d volume ratio). Volume shock as breakout signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.516, Ann +64.6%, DD -38.8%. WF 5/6 (mean 1.562). SH PASS (1.956/0.996). Corr -0.041 H-012. **100% param robust (96/96).**
+- Notes: Excellent standalone signal with near-zero H-012 corr. BUT corr 0.704 with H-336 (Volume Surprise) — same signal family. H-336 already deployed. Not adding.
+- Sessions: [2026-04-10 session 175]
+
+## H-520: Return Acceleration (momentum of momentum)
+- Status: REJECTED
+- Idea: Second derivative of price — long accelerating coins, short decelerating.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.479, Ann -21.0%, DD -65.2%. WF 2/6. SH FAIL. Corr -0.089 H-012.
+- Notes: Acceleration doesn't work — crypto momentum is linear, not accelerating.
+- Sessions: [2026-04-10 session 175]
+
+## H-521: Realized Vol Expansion (vol breakout, high direction)
+- Status: REJECTED
+- Idea: Long coins with expanding realized vol (5d/60d vol ratio high). Vol breakout signals trending.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.632, Ann +26.0%, DD -59.4%. WF 4/6. SH FAIL (H1=1.718, H2=-0.594). Corr -0.035 H-012.
+- Notes: Passes IS and WF but second half of sample is negative. Signal decayed over time.
+- Sessions: [2026-04-10 session 175]
+
+## H-522: PVT Slope (cumulative price-volume trend)
+- Status: CONFIRMED (not deployed)
+- Idea: Slope of cumulative PVT (daily_return * volume) over 20 days. High slope = volume-confirmed trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.978, Ann +39.8%, DD -40.6%. WF 4/6 (mean 0.779). SH PASS (1.704/0.114). Corr 0.425 H-012. **100% param robust (30/30).**
+- Notes: Passes all tests, 100% robust. But moderate H-012 corr (0.425) and weak H2 (0.114). Corr 0.330 with H-383 PVT Level. Not independent enough to deploy.
+- Sessions: [2026-04-10 session 175]
+
+## H-523: Weekend Relative Performance
+- Status: REJECTED
+- Idea: Rank coins by weekend vs weekday return differential. Long weekend outperformers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.892, Ann -38.9%, DD -81.2%. WF 2/6. SH FAIL.
+- Notes: Weekend/weekday return patterns not stable enough for cross-sectional ranking.
+- Sessions: [2026-04-10 session 175]
+
+## H-524: Beta Stability (low beta change vs BTC)
+- Status: REJECTED
+- Idea: Long coins with stable beta to BTC, short coins with unstable beta.
+- Instrument: futures (13 non-BTC perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.393, Ann +15.1%, DD -58.4%. WF 5/6. SH FAIL (H1=-0.308).
+- Notes: WF 5/6 but SH failure and low Sharpe. Beta stability has weak predictive power.
+- Sessions: [2026-04-10 session 175]
+
+## H-525: Cumulative Volume Delta (buy vs sell pressure)
+- Status: REJECTED (borderline)
+- Idea: Approximate buy/sell pressure from candle direction. Long high CVD, short low CVD.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.030, Ann +40.5%, DD -35.5%. WF 4/6. SH FAIL (H1=1.857, H2=-0.028). Corr 0.398 H-012.
+- Notes: Strong H1 but essentially zero H2. Momentum-correlated. Signal degraded in second half.
+- Sessions: [2026-04-10 session 175]
+
+## H-526: Volume Decay Rate
+- Status: REJECTED
+- Idea: Ratio of short-to-medium vs short-to-long volume ratios. Captures volume concentration pattern.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.988, Ann -43.2%, DD -84.7%. WF 2/6. SH FAIL.
+- Notes: Volume decay rate has no predictive power. Complex ratio just adds noise.
+- Sessions: [2026-04-10 session 175]
+
+## H-527: Body-to-Shadow Ratio (candle structure)
+- Status: REJECTED
+- Idea: Rank coins by average body-to-shadow ratio. High body = directional conviction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.139, Ann +5.7%, DD -62.6%. WF 4/6. SH FAIL.
+- Notes: Candle body vs wick ratio has minimal cross-sectional predictive power.
+- Sessions: [2026-04-10 session 175]
+
+## H-528: Range Expansion Momentum
+- Status: CONFIRMED — **DEPLOYED**
+- Idea: Long coins with expanding daily range (5d/30d high-low range ratio), short contracting. Breakout signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.849, Ann +36.8%, DD -37.5%. WF 4/6. SH PASS (1.502/0.164). **100% param robust (96/96).** Corr **-0.001** H-012. Near-zero with H-031 (-0.052), H-076 (0.029), H-182 (0.069).
+- Notes: Near-perfect diversifier — zero correlation with momentum, size, and efficiency. 100% robust across all parameter combinations. Deployed to paper trade. Best (3,30,3,3) Sharpe 2.021.
+- Sessions: [2026-04-10 session 175]
+
+## H-529: Return Streak Persistence (contrarian)
+- Status: REJECTED
+- Idea: Contrarian on consecutive up/down day streaks. Long losing streaks, short winning.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.553, Ann +22.2%, DD -57.0%. WF 4/6. SH FAIL (H1=-0.638). Corr 0.056 H-012.
+- Notes: Passes IS+WF but first half negative. Streak reversal not reliable.
+- Sessions: [2026-04-10 session 175]
+
+## H-530: Dollar Volume Share (market attention proxy)
+- Status: REJECTED (redundant)
+- Idea: Rank coins by share of total universe dollar volume. Long high share, short low.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.129, Ann +55.8%, DD -50.5%. WF 5/6. SH PASS (0.533/1.713). Corr 0.543 H-012, **0.934 H-031**.
+- Notes: Passes all tests but corr 0.934 with H-031 (Size Factor) = identical signal. Dollar volume share IS size. Redundant.
+- Sessions: [2026-04-10 session 175]
+
+## H-531: Range Contraction (inverse of H-528)
+- Status: REJECTED
+- Idea: Inverse of H-528 — long contracting range, short expanding.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.849, Ann -36.8%, DD -83.3%. WF 2/6. SH FAIL.
+- Notes: Exact mirror of H-528 — confirms H-528's direction (high range expansion is bullish).
+- Sessions: [2026-04-10 session 175]
