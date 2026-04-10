@@ -1,0 +1,20 @@
+{
+  "started": "2026-04-10T13:13:32.027322+00:00",
+  "capital": 9997.5,
+  "position": -59.50255861002023,
+  "entry_price": 84.03,
+  "signal": -1,
+  "last_signal_date": "2026-04-09",
+  "last_rebal_date": "2026-04-10",
+  "total_trades": 1,
+  "equity_history": [
+    {
+      "time": "2026-04-10T13:13:32.027333+00:00",
+      "equity": 9997.5,
+      "sol_price": 84.03,
+      "position": -59.50255861002023,
+      "signal": -1
+    }
+  ],
+  "log": []
+}

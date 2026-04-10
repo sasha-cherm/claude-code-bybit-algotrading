@@ -6171,3 +6171,292 @@
 - Result: Best config momentum_N5: Sharpe 0.721, Ann +11.0%, DD -14.4%. Only 5% exposure.
 - Notes: Interesting Sharpe and low DD, but only 5% exposure = too few trades for statistical significance. Good IS but can't validate OOS with so few events.
 - Sessions: [2026-04-10 session 176]
+
+## H-548: ETH Intraday Session Momentum
+- Status: REJECTED
+- Idea: ETH first 6h return predicts next-day direction (same as H-535 but for ETH).
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.447, Ann -44.2%, DD 97.8%. Param robust 3/8 (38%).
+- Notes: ETH does not exhibit the intraday session momentum pattern. Sharp contrast with BTC/SOL.
+- Sessions: [2026-04-10 session 177]
+
+## H-549: ETH Keltner Channel Breakout
+- Status: REJECTED
+- Idea: Keltner channel breakout on ETH daily.
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.152, Ann -13.5%, DD 81.6%. Param robust 16/20 (80%) but Sharpe too low.
+- Notes: Param robust but base Sharpe well below 0.5 threshold.
+- Sessions: [2026-04-10 session 177]
+
+## H-550: ETH Range Squeeze
+- Status: REJECTED
+- Idea: Bollinger Bands inside Keltner channel = squeeze. Breakout direction = trade.
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.135, Ann -11.3%, DD 70.0%. Param robust 11/27 (41%).
+- Notes: Squeeze signals are too noisy on ETH. Failed IS and param robustness.
+- Sessions: [2026-04-10 session 177]
+
+## H-551: ETH RSI Mean Reversion
+- Status: REJECTED
+- Idea: RSI mean-reversion on ETH daily (buy oversold, sell overbought).
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.322, Ann -24.4%, DD 81.1%. Param robust 0/16 (0%).
+- Notes: Mean-reversion universally fails in crypto. 0% param robustness confirms no edge.
+- Sessions: [2026-04-10 session 177]
+
+## H-552: ETH Volume Spike Momentum
+- Status: REJECTED
+- Idea: Trade in direction of price on volume spike days.
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.179, Ann -13.4%, DD 70.0%. Param robust 8/16 (50%).
+- Notes: Volume spikes on ETH are not predictive of continuation.
+- Sessions: [2026-04-10 session 177]
+
+## H-553: ETH MACD Crossover
+- Status: REJECTED
+- Idea: Classic MACD crossover on ETH daily.
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.071, Ann -18.5%, DD 81.5%. Param robust 12/27 (44%).
+- Notes: MACD generates too many whipsaw trades in crypto. Sharpe near zero.
+- Sessions: [2026-04-10 session 177]
+
+## H-554: ETH Overnight Gap Contrarian
+- Status: REJECTED
+- Idea: Trade contrarian to overnight (00-06 UTC) gap on ETH.
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.915, Ann -51.2%, DD 98.5%. Param robust 0/6 (0%).
+- Notes: Contrarian gap trading is catastrophically wrong — crypto overnight moves continue into the day, not reverse.
+- Sessions: [2026-04-10 session 177]
+
+## H-555: ETH Bollinger Band Reversion
+- Status: REJECTED
+- Idea: Bollinger band mean-reversion on ETH daily (buy lower band, sell upper).
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.265, Ann -25.3%, DD 81.7%. Param robust 5/20 (25%).
+- Notes: Another mean-reversion failure. Crypto trends dominate.
+- Sessions: [2026-04-10 session 177]
+
+## H-556: BTC-ETH Spread Mean Reversion
+- Status: REJECTED
+- Idea: Log BTC/ETH price ratio z-score mean-reversion.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.326, Ann -19.6%, DD 76.5%. Param robust 1/20 (5%).
+- Notes: BTC/ETH ratio is not mean-reverting over these timeframes. The ratio has structural trends.
+- Sessions: [2026-04-10 session 177]
+
+## H-557: Multi-Asset TSMOM Portfolio (BTC+ETH+SOL)
+- Status: REJECTED
+- Idea: Time-series momentum on BTC, ETH, SOL individually, equal-weight portfolio.
+- Instrument: futures (BTC/ETH/SOL perps)
+- Timeframe: 1D
+- Result: Sharpe 0.303, Ann NaN (calculation issue), DD 67.4%. Param robust 6/6 (100%).
+- Notes: 100% param robust but Sharpe too low (0.303 < 0.5 threshold). Not enough edge.
+- Sessions: [2026-04-10 session 177]
+
+## H-558: BTC Hourly Mean Reversion
+- Status: REJECTED
+- Idea: Intraday mean-reversion on BTC using hourly z-score.
+- Instrument: BTC/USDT perp
+- Timeframe: 1h
+- Result: Sharpe -2.116, Ann -57.4%, DD 98.4%. Param robust 0/16 (0%).
+- Notes: BTC does NOT mean-revert at hourly frequency. Strongest rejection in this batch.
+- Sessions: [2026-04-10 session 177]
+
+## H-559: BTC Weekend Effect
+- Status: REJECTED
+- Idea: BTC long from Friday close to Monday close (weekend effect).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.279, Ann 3.6%, DD 50.9%.
+- Notes: Very weak edge (Sharpe 0.279). Weekend effect exists but too small to trade profitably after fees.
+- Sessions: [2026-04-10 session 177]
+
+## H-560: BTC->ETH Leader-Follower
+- Status: REJECTED
+- Idea: BTC hourly momentum predicts ETH next-day direction.
+- Instrument: ETH/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.256, Ann -35.4%, DD 89.5%. Param robust 2/5 (40%).
+- Notes: BTC does not lead ETH at daily frequency. Both move together.
+- Sessions: [2026-04-10 session 177]
+
+## H-561: BTC ATR Breakout
+- Status: REJECTED
+- Idea: Trade when BTC daily close moves > mult*ATR from previous close.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.404, Ann 7.7%, DD 71.2%. Param robust 17/20 (85%).
+- Notes: Close to passing (Sharpe 0.404, 85% param robust) but below 0.5 threshold.
+- Sessions: [2026-04-10 session 177]
+
+## H-562: BTC Donchian Channel
+- Status: REJECTED
+- Idea: Donchian channel (turtle-style) breakout on BTC daily.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.021, Ann -14.1%, DD 82.3%. Param robust 2/7 (29%).
+- Notes: Classic turtle system doesn't work in crypto. Too many false breakouts.
+- Sessions: [2026-04-10 session 177]
+
+## H-563: BTC Vol Regime Adaptive
+- Status: REJECTED
+- Idea: Momentum in low-vol regimes, mean-reversion in high-vol regimes.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.034, Ann -8.9%, DD 74.2%. Param robust 3/20 (15%).
+- Notes: Regime switching doesn't add value. Both momentum and mean-reversion components cancel out.
+- Sessions: [2026-04-10 session 177]
+
+## H-564: BTC Adaptive EMA
+- Status: REJECTED
+- Idea: Adaptive EMA crossover — shorter EMAs in low vol, longer in high vol.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.125, Ann -3.8%, DD 58.6%. Param robust 6/6 (100%) but Sharpe too low.
+- Notes: Adaptive parameters don't improve over fixed EMA. Overfitting risk.
+- Sessions: [2026-04-10 session 177]
+
+## H-565: BTC 4h EMA Trend
+- Status: REJECTED
+- Idea: BTC 4h EMA crossover trend following.
+- Instrument: BTC/USDT perp
+- Timeframe: 4h
+- Result: Sharpe -0.052, Ann -15.1%, DD 74.6%. Param robust 2/20 (10%).
+- Notes: 4h EMA crossover generates excessive whipsaw. 10% param robustness.
+- Sessions: [2026-04-10 session 177]
+
+## H-566: BTC 4h RSI Momentum
+- Status: REJECTED
+- Idea: BTC 4h RSI momentum — long when RSI > 50, short below.
+- Instrument: BTC/USDT perp
+- Timeframe: 4h
+- Result: Sharpe -0.843, Ann -43.9%, DD 95.2%. Param robust 0/12 (0%).
+- Notes: RSI as a directional signal fails completely on 4h BTC.
+- Sessions: [2026-04-10 session 177]
+
+## H-567: BTC 4h VWAP Reversion
+- Status: REJECTED
+- Idea: BTC 4h VWAP deviation mean-reversion.
+- Instrument: BTC/USDT perp
+- Timeframe: 4h
+- Result: Sharpe -0.601, Ann -30.3%, DD 90.2%. Param robust 0/16 (0%).
+- Notes: Mean-reversion fails at 4h too. Crypto trends dominate all frequencies.
+- Sessions: [2026-04-10 session 177]
+
+## H-568: BTC 4h Momentum+Vol Filter
+- Status: REJECTED
+- Idea: BTC 4h momentum only in expanding volatility regimes.
+- Instrument: BTC/USDT perp
+- Timeframe: 4h
+- Result: Sharpe 0.166, Ann -1.0%, DD 49.8%. Param robust 7/12 (58%).
+- Notes: Vol filter helps (lower DD than pure momentum) but Sharpe still too low.
+- Sessions: [2026-04-10 session 177]
+
+## H-569: SOL Daily EMA Trend
+- Status: REJECTED
+- Idea: SOL daily EMA crossover trend following.
+- Instrument: SOL/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.383, Ann -9.8%, DD 90.0%. Param robust 18/19 (95%). WF 3/7 (FAIL).
+- Notes: High param robustness but Sharpe below threshold and WF fails.
+- Sessions: [2026-04-10 session 177]
+
+## H-570: SOL Keltner Breakout
+- Status: REJECTED
+- Idea: SOL Keltner channel breakout.
+- Instrument: SOL/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.286, Ann -17.3%, DD 94.4%. Param robust 16/20 (80%).
+- Notes: Keltner breakout on SOL doesn't generate sufficient edge.
+- Sessions: [2026-04-10 session 177]
+
+## H-571: SOL Intraday Session Momentum
+- Status: LIVE (paper trade since 2026-04-10)
+- Idea: SOL first 6h return of the day predicts next-day SOL direction. Long if > 0, short if < 0. First SOL time-series strategy.
+- Instrument: SOL/USDT perp
+- Timeframe: 1D (signal from hourly bars)
+- Logic: Compute first 6 hours return. If positive, go long SOL next day. If negative, short. 50% capital allocation.
+- Result: IS Sharpe 0.847, Ann +42.8%, DD 77.5%. WF **6/7** positive (mean 0.848). SH PASS (H1=0.679, H2=1.06). Param robust **12/12 (100%)**. BTC corr **-0.092**.
+- Notes: Same pattern as BTC H-535 but works even better on SOL. Negative BTC correlation means excellent diversifier. High DD (77.5%) is due to SOL's extreme volatility, not strategy weakness. Deployed 2026-04-10.
+- Sessions: [2026-04-10 session 177]
+
+## H-572: BTC Multi-Timeframe (Daily+Hourly)
+- Status: REJECTED
+- Idea: Daily EMA trend filter + hourly momentum confirmation. Only trade when both timeframes agree.
+- Instrument: BTC/USDT perp
+- Timeframe: 1h (with daily filter)
+- Result: IS Sharpe 0.651, Ann +20.5%, DD 33.9%. WF **6/7** positive (mean 0.482). SH PASS (H1=0.663, H2=0.758). Param robust **25/36 (69%)** — below 75% threshold.
+- Notes: Strong WF and SH results but param robustness at 69% fails the 75% cutoff. Close but REJECTED. Could revisit with refined parameter space.
+- Sessions: [2026-04-10 session 177]
+
+## H-573: BTC Trend + Vol Targeting
+- Status: REJECTED
+- Idea: BTC daily EMA trend with volatility targeting (similar to H-009 with different params).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.071, Ann -1.9%, DD 29.0%. Param robust 3/12 (25%).
+- Notes: Already have H-009 doing this. Different params don't improve. Low DD is only merit.
+- Sessions: [2026-04-10 session 177]
+
+## H-574: BTC ADX Trend
+- Status: REJECTED
+- Idea: BTC ADX trend strength — only trade in strong trends (ADX > threshold).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.232, Ann -20.6%, DD 81.9%. Param robust 5/16 (31%).
+- Notes: ADX filtering doesn't work for crypto. Trends start/end too abruptly for ADX to capture.
+- Sessions: [2026-04-10 session 177]
+
+## H-575: BTC Volume-Confirmed Momentum
+- Status: REJECTED
+- Idea: BTC price momentum confirmed by expanding volume trend.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.141, Ann -12.8%, DD 69.0%. Param robust 8/16 (50%).
+- Notes: Volume confirmation doesn't improve momentum in crypto. Volume patterns are noisy.
+- Sessions: [2026-04-10 session 177]
+
+## H-576: BTC SuperTrend
+- Status: REJECTED
+- Idea: BTC SuperTrend indicator signal.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Deep validation: Sharpe -0.07, Ann -16.5%, DD 83.3%. Initial screening inflated by low trade count.
+- Notes: Initial screening showed Sharpe 0.56 with 100% param robust, but deep validation revealed the signal has 103 flips over 4.7 years (reasonable) yet Sharpe is actually negative. WF 5/7 was also misleading. BTC buy-and-hold Sharpe 0.566 is better.
+- Sessions: [2026-04-10 session 177]
+
+## H-577: BTC Heikin-Ashi Trend
+- Status: REJECTED
+- Idea: BTC Heikin-Ashi candle trend confirmation (N consecutive bullish/bearish candles).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.349, Ann -20.9%, DD 74.0%. Param robust 0/6 (0%).
+- Notes: Heikin-Ashi smoothing doesn't add signal beyond raw price. 0% param robustness.
+- Sessions: [2026-04-10 session 177]
+
+## H-578: BTC Ichimoku Cloud
+- Status: REJECTED
+- Idea: BTC Ichimoku cloud signal (above cloud + TK cross = long).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.195, Ann -1.0%, DD 50.2%. Param robust 17/27 (63%).
+- Notes: Ichimoku is too lagging for crypto. By the time signals confirm, the move is over.
+- Sessions: [2026-04-10 session 177]
+
+## H-579: BTC Daily Mean Reversion
+- Status: REJECTED
+- Idea: BTC daily z-score mean-reversion (buy below MA, sell above).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe 0.474, Ann 11.0%, DD 33.7%. Param robust 5/20 (25%).
+- Notes: Best mean-reversion result we've seen (Sharpe 0.474, low DD 33.7%) but still below 0.5 threshold and only 25% param robust.
+- Sessions: [2026-04-10 session 177]

@@ -667,18 +667,29 @@ Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 
 - **Correlation**: **0.109** H-009, **0.124** H-539 — near-zero with everything.
 - **Note**: Entered LONG immediately — current market IS in a squeeze. 100% param robustness.
 
-## Portfolio Summary (mark-to-market 2026-04-10 session 176, 09:26 UTC)
-- **Bybit Demo**: ~$94,700 (-5.30%). BTC spot ~$71,681.
-- **Total internal MTM (70 runners)**: 70 runners (67+3 new BTC TS). **14/66 positive** (21%, down from 26). Avg PnL **-0.17%**.
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-019(+3.47%), H-062(+3.10%), H-052(+2.88%), H-039(+2.40%), H-076(+2.24%)
-- **H-063**: $9,624 (-3.76%). **Trade 2 settled** at 08:32 UTC, BTC $71,641. Call payoff $395, net loss -$454. 2 trades total: +$78, -$454. Waiting for trade 3.
+### H-571: SOL Intraday Session Momentum — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — first SOL TS strategy
+- **Position**: SHORT 59.5 SOL @ $84.03 (yesterday's first 6h was -0.52%)
+- **Mark equity**: $9,998 (-0.02%) — day 0.
+- **Runner**: `paper_trades/h571_sol_session_momentum/runner.py`
+- **Params**: 6h lookback, 50% capital, daily rebalance.
+- **Backtest**: IS Sharpe **0.847**, Ann +42.8%, DD 77.5%. WF **6/7** mean **0.848**. SH PASS (0.679/1.060). Param robust **12/12 (100%)**.
+- **Correlation**: **-0.092** BTC — excellent diversifier. Same intraday momentum pattern as BTC H-535 but works even better on SOL.
+- **Note**: First non-BTC time-series strategy. Negative BTC correlation provides genuine diversification.
+
+## Portfolio Summary (mark-to-market 2026-04-10 session 177, 13:13 UTC)
+- **Bybit Demo**: ~$95,900 (**-4.10%**, recovering from -5.30%). BTC spot ~$72,202 (+1.3% 24h).
+- **Total internal MTM (71 runners)**: 71 runners (70+1 new SOL TS). **26/70 positive** (37%, up from 21%). Avg PnL **-0.09%** (improved from -0.17%).
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-353(+3.52%), H-019(+3.47%), H-062(+3.10%), H-277(+2.97%), H-052(+2.88%)
+- **H-063**: $9,624 (-3.76%). Trade 2 settled, now **FLAT**. 2 trades total: +$78, -$454. Awaiting cron for trade 3.
 - **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-223(-3.92%), H-063(-3.76%), H-046(-3.18%)
 - **H-496 ML Ensemble**: $10,022 (+0.22%) — day 2, stable.
-- **H-528 Range Expansion**: $9,976 (-0.24%) — day 0.
-- **Research (session 176)**: 16 new hypotheses (H-532–H-547). **3 CONFIRMED+deployed** (H-535 Intra Mom, H-539 Keltner, H-544 Squeeze). 13 REJECTED. **CRITICAL: H-540 Multi-Asset TSMOM had look-ahead bias — Sharpe 6.17 was fake, real Sharpe 0.57.** **547 total hypotheses.**
-- **New strategy type**: First BTC time-series (TS) strategies deployed (all prior were cross-sectional XS). These trade BTC directionally, complementing the XS portfolio.
-- **AUTOMATED:** Paper trades hourly via cron (70 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor H-535/H-539/H-544 BTC TS paper trades. H-063 trade 3 entry tonight. Consider further TS strategies or alternative instruments.
+- **H-528 Range Expansion**: $9,976 (-0.24%) — day 1.
+- **BTC TS strategies** (H-535/H-539/H-544): Essentially flat, just deployed.
+- **Research (session 177)**: 32 new hypotheses (H-548–H-579). **1 CONFIRMED+deployed** (H-571 SOL Session Momentum). 31 REJECTED. ETH TS strategies and classic indicators all fail in crypto. Mean-reversion universally fails. **579 total hypotheses.**
+- **Key finding**: SOL Session Momentum (H-571) works even better than BTC version (H-535). ETH version doesn't work. Intraday momentum is asset-specific.
+- **AUTOMATED:** Paper trades hourly via cron (71 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor TS paper trades (H-535/H-539/H-544/H-571). H-063 trade 3 entry tonight. Consider options strategies or non-price data sources.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

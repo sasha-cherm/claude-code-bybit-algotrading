@@ -1,0 +1,155 @@
+{
+  "H-548": {
+    "sharpe": -0.447,
+    "ann_ret": -0.442,
+    "max_dd": 0.9782,
+    "total_ret": -0.938,
+    "n_trades": 1844,
+    "win_rate": 0.488,
+    "n_days": 1740,
+    "param_robust": "3/8"
+  },
+  "H-549": {
+    "sharpe": 0.152,
+    "ann_ret": -0.135,
+    "max_dd": 0.8162,
+    "total_ret": -0.4993,
+    "n_trades": 69,
+    "win_rate": 0.492,
+    "n_days": 1741,
+    "param_robust": "16/20"
+  },
+  "H-550": {
+    "sharpe": -0.135,
+    "ann_ret": -0.1132,
+    "max_dd": 0.7,
+    "total_ret": -0.4363,
+    "n_trades": 73,
+    "win_rate": 0.458,
+    "n_days": 1741,
+    "param_robust": "11/27"
+  },
+  "H-551": {
+    "sharpe": -0.322,
+    "ann_ret": -0.2445,
+    "max_dd": 0.8113,
+    "total_ret": -0.7375,
+    "n_trades": 50,
+    "win_rate": 0.469,
+    "n_days": 1741,
+    "param_robust": "0/16"
+  },
+  "H-552": {
+    "sharpe": -0.179,
+    "ann_ret": -0.1336,
+    "max_dd": 0.6998,
+    "total_ret": -0.4953,
+    "n_trades": 158,
+    "win_rate": 0.414,
+    "n_days": 1741,
+    "param_robust": "8/16"
+  },
+  "H-553": {
+    "sharpe": 0.071,
+    "ann_ret": -0.1854,
+    "max_dd": 0.8149,
+    "total_ret": -0.6241,
+    "n_trades": 263,
+    "win_rate": 0.485,
+    "n_days": 1741,
+    "param_robust": "12/27"
+  },
+  "H-554": {
+    "sharpe": -0.915,
+    "ann_ret": -0.5125,
+    "max_dd": 0.9853,
+    "total_ret": -0.9675,
+    "n_trades": 1503,
+    "win_rate": 0.347,
+    "n_days": 1740,
+    "param_robust": "0/6"
+  },
+  "H-555": {
+    "sharpe": -0.265,
+    "ann_ret": -0.253,
+    "max_dd": 0.817,
+    "total_ret": -0.7513,
+    "n_trades": 119,
+    "win_rate": 0.472,
+    "n_days": 1741,
+    "param_robust": "5/20"
+  },
+  "H-556": {
+    "sharpe": -0.326,
+    "ann_ret": -0.1955,
+    "max_dd": 0.765,
+    "total_ret": -0.6457,
+    "n_trades": 194,
+    "win_rate": 0.445,
+    "n_days": 1741,
+    "param_robust": "1/20"
+  },
+  "H-557": {
+    "sharpe": 0.303,
+    "ann_ret": NaN,
+    "max_dd": 0.6739,
+    "n_days": 1633,
+    "param_robust": "6/6"
+  },
+  "H-558": {
+    "sharpe": -2.116,
+    "ann_ret": -0.5737,
+    "max_dd": 0.9836,
+    "n_hours": 41760,
+    "param_robust": "0/16"
+  },
+  "H-559": {
+    "sharpe": 0.279,
+    "ann_ret": 0.0363,
+    "max_dd": 0.5094,
+    "total_ret": 0.1852,
+    "n_trades": 496,
+    "win_rate": 0.383,
+    "n_days": 1741
+  },
+  "H-560": {
+    "sharpe": -0.256,
+    "ann_ret": -0.3543,
+    "max_dd": 0.8955,
+    "total_ret": -0.8759,
+    "n_trades": 1809,
+    "win_rate": 0.486,
+    "n_days": 1741,
+    "param_robust": "2/5"
+  },
+  "H-561": {
+    "sharpe": 0.404,
+    "ann_ret": 0.0774,
+    "max_dd": 0.7119,
+    "total_ret": 0.4269,
+    "n_trades": 17,
+    "win_rate": 0.515,
+    "n_days": 1741,
+    "param_robust": "17/20"
+  },
+  "H-562": {
+    "sharpe": -0.021,
+    "ann_ret": -0.1407,
+    "max_dd": 0.8231,
+    "total_ret": -0.5147,
+    "n_trades": 85,
+    "win_rate": 0.485,
+    "n_days": 1741,
+    "param_robust": "2/7"
+  },
+  "H-563": {
+    "sharpe": 0.034,
+    "ann_ret": -0.0886,
+    "max_dd": 0.7417,
+    "total_ret": -0.3576,
+    "n_trades": 411,
+    "win_rate": 0.494,
+    "n_days": 1741,
+    "param_robust": "3/20"
+  }
+}

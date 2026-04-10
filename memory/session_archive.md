@@ -1267,3 +1267,10 @@
 - Next: Await Q-005 answer. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
 - Questions added: none
 - Self-modifications: H-368/H-382/H-383 runners created, added to orchestrator. Archived session 156. (session 166)
+
+### Session 2026-04-09 review+deploy+research (session 167)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests, 2 new deployments
+- Focus: Paper trade MTM (BTC $71,367), H-384 through H-399 backtests (2 batches of 8)
+- Done: 56 runners (54→56). Demo: $96,481 (-3.52%). 20/54 positive. H-388 CONFIRMED (Night-Day Diff, deployed). H-394 CONFIRMED (Variance Ratio, deployed). 399 total hypotheses.
+- Next: Await Q-005 answer. H-063 expires Apr 10. Continue research.
+- Self-modifications: H-388/H-394 runners created.

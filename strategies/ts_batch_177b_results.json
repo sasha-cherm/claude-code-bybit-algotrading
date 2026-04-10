@@ -1,0 +1,166 @@
+{
+  "H-572": {
+    "sharpe": 0.651,
+    "ann_ret": 0.2055,
+    "max_dd": 0.3392,
+    "n_trades": 4423,
+    "win_rate": 0.45,
+    "n_bars": 41760,
+    "param_robust": "11/12"
+  },
+  "H-564": {
+    "sharpe": 0.125,
+    "ann_ret": -0.0377,
+    "max_dd": 0.5855,
+    "n_trades": 107,
+    "win_rate": 0.5,
+    "n_bars": 1741,
+    "param_robust": "6/6"
+  },
+  "H-565": {
+    "sharpe": -0.052,
+    "ann_ret": -0.1514,
+    "max_dd": 0.7461,
+    "n_trades": 1223,
+    "win_rate": 0.491,
+    "n_bars": 10440,
+    "param_robust": "2/20"
+  },
+  "H-566": {
+    "sharpe": -0.843,
+    "ann_ret": -0.4392,
+    "max_dd": 0.9525,
+    "n_trades": 2143,
+    "win_rate": 0.481,
+    "n_bars": 10440,
+    "param_robust": "0/12"
+  },
+  "H-567": {
+    "sharpe": -0.601,
+    "ann_ret": -0.3031,
+    "max_dd": 0.9024,
+    "n_trades": 729,
+    "win_rate": 0.476,
+    "n_bars": 10440,
+    "param_robust": "0/16"
+  },
+  "H-568": {
+    "sharpe": 0.166,
+    "ann_ret": -0.0099,
+    "max_dd": 0.4982,
+    "n_trades": 626,
+    "win_rate": 0.481,
+    "n_bars": 10440,
+    "param_robust": "7/12"
+  },
+  "H-569": {
+    "sharpe": 0.383,
+    "ann_ret": -0.0979,
+    "max_dd": 0.9004,
+    "n_trades": 105,
+    "win_rate": 0.494,
+    "n_bars": 1633,
+    "param_robust": "18/19",
+    "wf_folds": [
+      -1.248,
+      -0.019,
+      2.666,
+      -0.646,
+      0.24,
+      0.504,
+      -0.663
+    ],
+    "wf_positive": "3/7"
+  },
+  "H-570": {
+    "sharpe": 0.286,
+    "ann_ret": -0.1727,
+    "max_dd": 0.9436,
+    "n_trades": 61,
+    "win_rate": 0.492,
+    "n_bars": 1633,
+    "param_robust": "16/20"
+  },
+  "H-571": {
+    "sharpe": 0.847,
+    "ann_ret": 0.4275,
+    "max_dd": 0.7745,
+    "n_trades": 1668,
+    "win_rate": 0.516,
+    "n_bars": 1632,
+    "param_robust": "8/8"
+  },
+  "H-573": {
+    "sharpe": -0.071,
+    "ann_ret": -0.019,
+    "max_dd": 0.2904,
+    "n_trades": 54,
+    "win_rate": 0.455,
+    "n_bars": 1741,
+    "param_robust": "3/12"
+  },
+  "H-574": {
+    "sharpe": -0.232,
+    "ann_ret": -0.2064,
+    "max_dd": 0.8186,
+    "n_trades": 283,
+    "win_rate": 0.456,
+    "n_bars": 1741,
+    "param_robust": "5/16"
+  },
+  "H-575": {
+    "sharpe": -0.141,
+    "ann_ret": -0.1279,
+    "max_dd": 0.6904,
+    "n_trades": 242,
+    "win_rate": 0.476,
+    "n_bars": 1741,
+    "param_robust": "8/16"
+  },
+  "H-576": {
+    "sharpe": 0.56,
+    "ann_ret": 0.1692,
+    "max_dd": 0.7661,
+    "n_trades": 1,
+    "win_rate": 0.496,
+    "n_bars": 1741,
+    "param_robust": "16/16",
+    "wf_folds": [
+      -1.358,
+      1.219,
+      1.23,
+      1.931,
+      2.03,
+      0.443,
+      -1.381
+    ],
+    "wf_positive": "5/7"
+  },
+  "H-577": {
+    "sharpe": -0.349,
+    "ann_ret": -0.2094,
+    "max_dd": 0.7396,
+    "n_trades": 489,
+    "win_rate": 0.371,
+    "n_bars": 1741,
+    "param_robust": "0/6"
+  },
+  "H-578": {
+    "sharpe": 0.195,
+    "ann_ret": -0.0098,
+    "max_dd": 0.5023,
+    "n_trades": 222,
+    "win_rate": 0.45,
+    "n_bars": 1741,
+    "param_robust": "17/27"
+  },
+  "H-579": {
+    "sharpe": 0.474,
+    "ann_ret": 0.1098,
+    "max_dd": 0.3374,
+    "n_trades": 183,
+    "win_rate": 0.473,
+    "n_bars": 1741,
+    "param_robust": "5/20"
+  }
+}

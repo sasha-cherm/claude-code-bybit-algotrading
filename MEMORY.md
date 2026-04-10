@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$94,700 (-5.30%). BTC spot ~$71,681.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$95,900 (-4.10%, recovering). BTC spot ~$72,202.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 70 runners active. Session 176. **14/66 positive** (21%), avg **-0.17%**.
-- **H-063**: $9,624 (-3.76%). Trade 2 settled (loss -$454). Waiting for trade 3.
+- **Internal paper trades:** 71 runners active. Session 177. **26/70 positive** (37%), avg **-0.09%**.
+- **H-063**: $9,624 (-3.76%). Trade 2 settled (loss -$454). Now flat, awaiting trade 3.
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%).
-- **Session 176 research**: 16 new hypotheses (H-532–H-547). **3 CONFIRMED+deployed** (H-535 Intra Mom, H-539 Keltner, H-544 Squeeze). 13 REJECTED. **First BTC time-series strategies.** Caught look-ahead bias in H-540. **547 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (70 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor BTC TS paper trades (H-535/H-539/H-544). H-063 trade 3 tonight. Consider alternative instruments.
+- **Session 177 research**: 32 new hypotheses (H-548–H-579). **1 CONFIRMED+deployed** (H-571 SOL Session Mom). 31 REJECTED. ETH TS strategies all fail. Mean-reversion universally fails in crypto. **579 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (71 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor TS paper trades (H-535/H-539/H-544/H-571). H-063 trade 3 tonight. Explore options strategies or non-price data.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 165) archived to `memory/session_archive.md`._
-
-### Session 2026-04-09 review+deploy+research (session 167)
-- Goal: Review + Deploy + Research — MTM update, 16 new backtests, 2 new deployments
-- Focus: Paper trade MTM (BTC $71,367), H-384 through H-399 backtests (2 batches of 8)
-- Done: 56 runners (54→56). **Demo**: $96,481 (-3.52%). **20/54 positive** (up from 11, avg -0.02%). H-085 surged to +3.74%. H-021 recovered from -4.23% to -0.86%. H-063 at -3.06% (trade 2 expires Apr 10). **Batch 1 (H-384–H-391)**: H-385 CONFIRMED (Vol HHI, IS 83.3%, WF 4/6 but mean -0.362 — NOT deployed). **H-388 CONFIRMED** (Night-Day Diff, IS 96.7%, WF 4/6, corr 0.040, deployed). H-384/H-386/H-387/H-389/H-390/H-391 REJECTED. **Batch 2 (H-392–H-399)**: **H-394 CONFIRMED** (Variance Ratio, IS 86.7%, Sharpe **1.014**, WF 4/6, split-half **0.932/0.958** PASS, corr **0.027** H-012, deployed). H-392/H-393/H-398 no OI data. H-395/H-396/H-397/H-399 REJECTED. **399 total hypotheses.**
-- Next: Await Q-005 answer. H-063 expires Apr 10. Continue research. Try to get OI data working.
-- Questions added: none
-- Self-modifications: H-388/H-394 runners created, added to orchestrator. Archived session 157. (session 167)
+_Older sessions (bootstrap through 167) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-09 review+deploy+research (session 168)
 - Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), **critical look-ahead bias discovery**, 3 new deployments
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 165) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor BTC TS paper trades. H-063 trade 3 entry tonight. Consider alternative instruments or higher-frequency.
 - Questions added: none
 - Self-modifications: H-535/H-539/H-544 runners created, added to orchestrator. Archived session 166. (session 176)
+
+### Session 2026-04-10 review+deploy+research (session 177)
+- Goal: Review + Deploy + Research — MTM update, 32 new backtests (ETH TS, multi-asset, classic indicators, multi-TF), 1 deployment
+- Focus: Paper trade MTM (BTC $72,202), ETH/SOL time-series and classic indicator strategies (H-548–H-579)
+- Done: 71 runners (70→71). **26/70 positive** (37%, up from 21%). Avg **-0.09%** (improved). Demo ~$95,900 (-4.10%, recovering). **Batch 1 (H-548–H-563, ETH TS + cross-asset)**: All 16 REJECTED. ETH intraday momentum FAILS (Sharpe -0.45), mean-reversion universally fails in crypto, BTC-ETH spread not mean-reverting, leader-follower doesn't work. Best was H-561 ATR Breakout (Sharpe 0.404, close but below threshold). **Batch 2 (H-564–H-579, multi-TF/adaptive/SOL/classic)**: **H-571 CONFIRMED** (SOL Session Momentum, IS **0.847**, WF **6/7** mean 0.848, SH PASS, **100% param robust**, BTC corr **-0.092**, deployed). H-572 BTC Multi-TF close (Sharpe 0.651, WF 6/7, SH PASS) but param robust only 69% — REJECTED. 15 REJECTED. **579 total hypotheses.**
+- Next: Await Q-005 answer. Monitor TS paper trades (H-535/H-539/H-544/H-571). H-063 trade 3 tonight. Explore options strategies or non-price data.
+- Questions added: none
+- Self-modifications: H-571 runner created, added to orchestrator. Archived session 167. (session 177)
