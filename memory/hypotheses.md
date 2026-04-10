@@ -6460,3 +6460,291 @@
 - Result: Sharpe 0.474, Ann 11.0%, DD 33.7%. Param robust 5/20 (25%).
 - Notes: Best mean-reversion result we've seen (Sharpe 0.474, low DD 33.7%) but still below 0.5 threshold and only 25% param robust.
 - Sessions: [2026-04-10 session 177]
+
+## H-580: Multi-Period Momentum Combo
+- Status: REJECTED
+- Idea: Average z-scored 5d/20d/60d momentum for XS ranking.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.587, Ann +23.0%, DD 34.5%. Corr 0.607 H-012 (redundant).
+- Notes: Below IS threshold. High H-012 correlation — captures same momentum signal. SH 1.13/-0.15 unstable.
+- Sessions: [2026-04-10 session 178]
+
+## H-581: Return Dispersion Factor
+- Status: REJECTED
+- Idea: XS ranking by own-vol z-score relative to cross-section. Low dispersion = long.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.040, Ann +1.7%, DD 60.7%. No edge.
+- Notes: Cross-sectional return dispersion has no predictive power in crypto.
+- Sessions: [2026-04-10 session 178]
+
+## H-582: Momentum Acceleration
+- Status: REJECTED
+- Idea: Change in 5-day momentum (current - lagged) as XS signal.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -1.185, Ann -49.5%, DD 75.5%. Strong negative = mean-reversion bias.
+- Notes: Acceleration captures the wrong signal in crypto — buying accelerating assets is a loss.
+- Sessions: [2026-04-10 session 178]
+
+## H-583: OBV Rate of Change
+- Status: REJECTED
+- Idea: On-Balance Volume 20-day percent change as XS factor.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.936, Ann -32.6%, DD 62.1%.
+- Notes: OBV ROC has strong negative Sharpe — OBV momentum actually reverses in crypto.
+- Sessions: [2026-04-10 session 178]
+
+## H-584: Price-EMA Distance Factor
+- Status: REJECTED
+- Idea: Distance from 21-EMA as XS momentum proxy.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.091, Ann +4.1%, DD 46.9%. Corr 0.305 H-012.
+- Notes: Weak edge. Mostly captures same signal as raw momentum. SH -0.21/0.53 fail.
+- Sessions: [2026-04-10 session 178]
+
+## H-585: Direction Streak Factor
+- Status: REJECTED
+- Idea: Count up days minus down days over 20d period as XS factor.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.666, Ann +25.2%, DD 32.4%. Corr 0.229 H-012. Close but below threshold.
+- Notes: SH 0.36/1.01 borderline. Just below 0.7 Sharpe threshold.
+- Sessions: [2026-04-10 session 178]
+
+## H-586: Relative Volume Surge Factor
+- Status: REJECTED
+- Idea: Today's dollar volume / 20d avg dollar volume as XS factor.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.544, Ann +21.5%, DD 39.5%. Corr -0.030 H-012.
+- Notes: Near-zero H-012 corr but IS too weak. SH -0.49/1.82 very unstable.
+- Sessions: [2026-04-10 session 178]
+
+## H-587: Close-Open Gap Reversal
+- Status: REJECTED
+- Idea: Contrarian signal based on average open-to-close gap over 10d.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.284, Ann -19.5%, DD 81.5%.
+- Notes: Gaps don't exist meaningfully in 24/7 crypto. No edge.
+- Sessions: [2026-04-10 session 178]
+
+## H-588: Funding Rate Momentum
+- Status: REJECTED
+- Idea: Change in cumulative funding rate over 7d period (contrarian) as XS signal.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.601, Ann +22.1%, DD 33.2%. Corr -0.105 H-012. Close but below threshold.
+- Notes: Funding momentum captures different signal than pure price momentum but insufficient IS Sharpe. SH 1.02/-0.01 borderline.
+- Sessions: [2026-04-10 session 178]
+
+## H-589: Volatility Ratio (Short/Long Realized)
+- Status: CONFIRMED (not deployed — factor-level redundancy with H-059)
+- Idea: Rank by 5d/30d realized vol ratio. High ratio = expanding vol = long.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 1.213, Ann +47.1%, DD 42.5%. WF **5/6** (mean varies by fold). SH 0.474/2.304 PASS. Param 77%. Corr **-0.144** H-012.
+- Notes: Strong IS and WF. But factor-level corr with H-059 is **0.82+** per asset — same signal (short vol / long vol ratio). PnL corr 0.43 is lower due to different N/rebal, but deploying both double-counts the signal. CONFIRMED standalone quality, NOT deployed.
+- Sessions: [2026-04-10 session 178]
+
+## H-590: Price-Volume Correlation Factor
+- Status: REJECTED
+- Idea: Rolling 20d correlation between price returns and volume returns.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.421, Ann +15.1%, DD 29.8%. Corr 0.408 H-012.
+- Notes: Moderate H-012 overlap, insufficient IS Sharpe.
+- Sessions: [2026-04-10 session 178]
+
+## H-591: Body-to-Range Ratio
+- Status: REJECTED
+- Idea: Avg candlestick body/range ratio over 15d. High body = clean trend.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.623, Ann -23.8%, DD 64.6%. Negative edge.
+- Notes: Candlestick body/range has negative predictive power in crypto.
+- Sessions: [2026-04-10 session 178]
+
+## H-592: Upper Shadow Ratio
+- Status: REJECTED
+- Idea: Average upper shadow proportion of daily candle over 15d (low shadow = bullish).
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.107, Ann +3.8%, DD 53.8%. SH -1.24/1.65 very unstable.
+- Notes: No edge in cross-section. Upper shadow doesn't predict future returns.
+- Sessions: [2026-04-10 session 178]
+
+## H-593: Volume-Weighted Return Momentum
+- Status: REJECTED
+- Idea: 20d volume-weighted cumulative return as XS factor.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.837, Ann +32.8%, DD 27.3%. WF 3/6 (FAIL). Corr 0.560 H-012. Param 94%.
+- Notes: Passes IS and param robustness, but WF 3/6 FAIL. High H-012 correlation — mostly captures momentum.
+- Sessions: [2026-04-10 session 178]
+
+## H-594: Tail Asymmetry Factor
+- Status: REJECTED
+- Idea: Ratio of 90th percentile positive returns to 10th percentile negative returns over 30d.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.510, Ann +18.7%, DD 35.3%. Below threshold.
+- Notes: Tail risk asymmetry has moderate but insufficient edge. SH 0.85/0.09 borderline.
+- Sessions: [2026-04-10 session 178]
+
+## H-595: Large Move Persistence Factor
+- Status: REJECTED
+- Idea: Count of >2% daily moves (up minus down) over 20d period.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.242, Ann +9.0%, DD 35.8%. No meaningful edge.
+- Notes: Counting large moves is too noisy. SH -0.04/0.62 unstable.
+- Sessions: [2026-04-10 session 178]
+
+## H-596: Wicking Factor
+- Status: REJECTED
+- Idea: Avg wick-to-body ratio over 15d. Low wick = clean trend = long.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.206, Ann -6.6%, DD 37.3%.
+- Notes: Wick/body ratio has no predictive power. Similar to H-591 (body/range) failure.
+- Sessions: [2026-04-10 session 178]
+
+## H-597: Overnight Return Momentum
+- Status: REJECTED
+- Idea: 20d cumulative overnight (open - prev close) returns as XS signal.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.253, Ann -17.3%, DD 81.5%.
+- Notes: No meaningful overnight in 24/7 crypto. Same result as H-587.
+- Sessions: [2026-04-10 session 178]
+
+## H-598: Return Autocorrelation Factor
+- Status: REJECTED
+- Idea: Rolling 20d lag-1 autocorrelation as XS ranking factor.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.272, Ann -10.4%, DD 54.9%.
+- Notes: Serial correlation doesn't predict XS returns.
+- Sessions: [2026-04-10 session 178]
+
+## H-599: RSI Cross-Sectional Factor
+- Status: LIVE (paper trade since 2026-04-10)
+- Idea: Rank 14 assets by 14-period RSI. Long highest RSI, short lowest.
+- Instrument: 14 crypto perps
+- Timeframe: 1D (rebalance every 5 days)
+- Result: IS Sharpe **1.148**, Ann +47.7%, DD 29.4%. WF **4/6** (mean 0.977). SH **1.621/0.544 PASS**. Param robust **60/60 (100%)**, best 2.306. Corr 0.455 H-012.
+- Notes: RSI captures momentum direction + strength. 100% param robust across 5 periods x 12 configs. Borderline H-012 corr but passes threshold. Deployed.
+- Sessions: [2026-04-10 session 178]
+
+## H-600: Intraday Range Expansion Rate
+- Status: REJECTED
+- Idea: Ratio of recent 20d avg range to previous 20d avg range as XS signal.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 1.130, Ann +45.1%, DD 37.2%. WF 3/6 (FAIL). SH 2.49/-0.44.
+- Notes: Strong IS but WF 3/6 and SH H2 negative = time-varying edge. Not robust enough.
+- Sessions: [2026-04-10 session 178]
+
+## H-601: Volume Decline Rate Factor
+- Status: LIVE (paper trade since 2026-04-10)
+- Idea: Rank by recent vs longer-term dollar volume (10d/20d avg). Rising volume = long.
+- Instrument: 14 crypto perps
+- Timeframe: 1D (rebalance every 5 days)
+- Result: IS Sharpe **0.965**, Ann +39.3%, DD 32.1%. WF **4/6** (mean 1.482). SH **0.731/1.321 PASS**. Param robust **60/60 (100%)**, best 1.843. Corr **0.054** H-012 — near-zero.
+- Notes: Captures volume trend / flow-of-funds signal. 100% param robust. Near-zero H-012 correlation = excellent diversifier. Corr H-076 -0.212 (negative = anti-correlated). One of the best diversifiers found.
+- Sessions: [2026-04-10 session 178]
+
+## H-602: Momentum Quality Factor
+- Status: REJECTED
+- Idea: Rolling 30d return / volatility (risk-adjusted momentum) as XS signal.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.723, Ann +29.0%, DD 39.1%. WF 4/6 but mean -0.218 (FAIL). Corr 0.614 H-012.
+- Notes: Passes IS but WF mean is negative (last folds strongly negative). SH 1.50/-0.23 fail. High H-012 corr.
+- Sessions: [2026-04-10 session 178]
+
+## H-603: BTC Beta Change Factor
+- Status: REJECTED
+- Idea: Change in rolling beta vs BTC over 30d. Rising beta = increasing market sensitivity.
+- Instrument: 13 non-BTC crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe -0.225, Ann -10.8%, DD 66.0%.
+- Notes: Beta dynamics have no XS predictive power. Direction of beta change doesn't predict returns.
+- Sessions: [2026-04-10 session 178]
+
+## H-604: 4h Momentum Persistence
+- Status: REJECTED
+- Idea: % of 4h bars matching daily direction over 10d as XS ranking.
+- Instrument: 14 crypto perps
+- Timeframe: 4h → 1D
+- Result: IS Sharpe -0.796, Ann -27.6%, DD 67.7%.
+- Notes: Intraday-to-daily consistency has negative predictive power. Coins with consistent 4h direction underperform.
+- Sessions: [2026-04-10 session 178]
+
+## H-605: Hourly Volume Clustering (HHI)
+- Status: REJECTED
+- Idea: Herfindahl index of hourly dollar volume within each day, averaged over 14d.
+- Instrument: 14 crypto perps
+- Timeframe: 1h → 1D
+- Result: IS Sharpe 0.597, Ann +22.5%, DD 37.2%. Corr -0.067 H-012. Below threshold.
+- Notes: Volume concentration captures some institutional flow but insufficient edge. Near-zero H-012 corr is interesting.
+- Sessions: [2026-04-10 session 178]
+
+## H-606: Close Location Value (CLV)
+- Status: CONFIRMED (not deployed — redundant with H-451)
+- Idea: Average (close-low)/(high-low) - 0.5 over 15d as XS factor. High = closes near highs.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe **1.260**, Ann +53.4%, DD 32.6%. WF **5/6** (mean 1.854). SH 1.260/1.294 PASS. Param 75%. Corr 0.327 H-012.
+- Notes: Strong signal — essentially identical to H-451 (Close-to-High Ratio). PnL corr 0.691 with H-451 (already deployed), factor corr ~0.68 per asset. CONFIRMED standalone but NOT deployed. Redundant.
+- Sessions: [2026-04-10 session 178]
+
+## H-607: Intraday Trend Score
+- Status: REJECTED
+- Idea: Signed R² of hourly price regression within each day, averaged over 10d.
+- Instrument: 14 crypto perps
+- Timeframe: 1h → 1D
+- Result: IS Sharpe 0.195, Ann +7.5%, DD 46.5%.
+- Notes: Intraday trend quality (R²) doesn't predict next-day XS returns.
+- Sessions: [2026-04-10 session 178]
+
+## H-608: Late-Day Volume Share
+- Status: REJECTED
+- Idea: Share of dollar volume after 18:00 UTC averaged over 14d.
+- Instrument: 14 crypto perps
+- Timeframe: 1h → 1D
+- Result: IS Sharpe 0.678, Ann +25.2%, DD 35.2%. Corr 0.258 H-012. Close but below threshold.
+- Notes: Late-day volume concentration captures some institutional signal but insufficient edge. SH 0.71/0.67 passes.
+- Sessions: [2026-04-10 session 178]
+
+## H-609: Price Smoothness Factor
+- Status: REJECTED
+- Idea: Ratio of net price change to gross path length over 30d.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.633, Ann +24.4%, DD 28.8%. Corr 0.261 H-012. Below threshold.
+- Notes: Similar concept to H-076 (efficiency) but different lookback. Near-zero H-076 corr would need to be checked. IS below threshold.
+- Sessions: [2026-04-10 session 178]
+
+## H-610: Dollar Volume Acceleration
+- Status: REJECTED
+- Idea: Change in short/long volume ratio over time.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.398, Ann +15.0%, DD 45.4%. Corr -0.147 H-012.
+- Notes: Second-order volume dynamics have insufficient predictive power. SH -0.41/1.46 unstable.
+- Sessions: [2026-04-10 session 178]
+
+## H-611: Signed Volume Momentum
+- Status: REJECTED
+- Idea: Net buy pressure (CLV-weighted volume) accumulated over 20d as XS signal.
+- Instrument: 14 crypto perps
+- Timeframe: 1D
+- Result: IS Sharpe 0.274, Ann +10.6%, DD 33.7%. Corr 0.455 H-012.
+- Notes: Buy/sell volume decomposition based on close-location has weak edge. Too correlated with momentum.
+- Sessions: [2026-04-10 session 178]

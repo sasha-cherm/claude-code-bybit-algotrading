@@ -677,20 +677,42 @@ Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 
 - **Correlation**: **-0.092** BTC — excellent diversifier. Same intraday momentum pattern as BTC H-535 but works even better on SOL.
 - **Note**: First non-BTC time-series strategy. Negative BTC correlation provides genuine diversification.
 
-## Portfolio Summary (mark-to-market 2026-04-10 session 177, 13:13 UTC)
-- **Bybit Demo**: ~$95,900 (**-4.10%**, recovering from -5.30%). BTC spot ~$72,202 (+1.3% 24h).
-- **Total internal MTM (71 runners)**: 71 runners (70+1 new SOL TS). **26/70 positive** (37%, up from 21%). Avg PnL **-0.09%** (improved from -0.17%).
+### H-599: RSI Cross-Sectional Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — 100% param robust
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG (high RSI): NEAR, ARB, ATOM, ETH
+  - SHORT (low RSI): ADA, XRP, DOT, SOL
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h599_rsi_xs/runner.py`
+- **Params**: RSI(14), R5_N4. IS Sharpe 1.148. WF 4/6 mean 0.977. SH PASS (1.621/0.544).
+- **Param robust**: **60/60 (100%)**, best 2.306.
+- **Correlation**: 0.455 H-012 (borderline but passing), 0.175 H-059, -0.019 H-076.
+
+### H-601: Volume Decline Rate Factor (14 Assets) — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — 100% param robust, near-zero H-012 corr
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG (rising volume): ARB, LINK, AVAX, ADA
+  - SHORT (falling volume): DOGE, OP, SOL, DOT
+- **Mark equity**: $9,976 (-0.24%) — day 0.
+- **Runner**: `paper_trades/h601_vol_decline/runner.py`
+- **Params**: LB20_R5_N4. IS Sharpe 0.965. WF 4/6 mean 1.482. SH PASS (0.731/1.321).
+- **Param robust**: **60/60 (100%)**, best 1.843.
+- **Correlation**: **0.054** H-012 (near-zero), 0.254 H-059, **-0.212** H-076 (negative — excellent diversifier).
+
+## Portfolio Summary (mark-to-market 2026-04-10 session 178, 17:10 UTC)
+- **Bybit Demo**: ~$96k-$97k (BTC $72,892). BTC spot ~$72,892 (+0.6% 24h).
+- **Total internal MTM (73 runners)**: 73 runners (71+2 new). **26/71 positive** (37%). Avg PnL **-0.09%** (unchanged).
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-353(+3.52%), H-019(+3.47%), H-062(+3.10%), H-277(+2.97%), H-052(+2.88%)
-- **H-063**: $9,624 (-3.76%). Trade 2 settled, now **FLAT**. 2 trades total: +$78, -$454. Awaiting cron for trade 3.
+- **H-063**: $9,624 (-3.76%). Trade 2 settled, now **FLAT**. Awaiting cron for trade 3 at 01:00 UTC.
 - **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-223(-3.92%), H-063(-3.76%), H-046(-3.18%)
 - **H-496 ML Ensemble**: $10,022 (+0.22%) — day 2, stable.
 - **H-528 Range Expansion**: $9,976 (-0.24%) — day 1.
 - **BTC TS strategies** (H-535/H-539/H-544): Essentially flat, just deployed.
-- **Research (session 177)**: 32 new hypotheses (H-548–H-579). **1 CONFIRMED+deployed** (H-571 SOL Session Momentum). 31 REJECTED. ETH TS strategies and classic indicators all fail in crypto. Mean-reversion universally fails. **579 total hypotheses.**
-- **Key finding**: SOL Session Momentum (H-571) works even better than BTC version (H-535). ETH version doesn't work. Intraday momentum is asset-specific.
-- **AUTOMATED:** Paper trades hourly via cron (71 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor TS paper trades (H-535/H-539/H-544/H-571). H-063 trade 3 entry tonight. Consider options strategies or non-price data sources.
-- **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
+- **Research (session 178)**: 32 new hypotheses (H-580–H-611). **2 CONFIRMED+deployed** (H-599 RSI XS, H-601 Vol Decline). **2 CONFIRMED not deployed** (H-589 Vol Ratio — redundant H-059, H-606 CLV — redundant H-451). 28 REJECTED. Candlestick patterns, OBV, momentum derivatives, beta dynamics all fail in crypto. 100% param robustness for both deployed strategies. **611 total hypotheses.**
+- **Key findings**: (1) RSI works well as XS factor (100% param robust, Sharpe 1.15). (2) Vol Decline Rate is excellent diversifier with near-zero H-012 corr and negative H-076 corr. (3) Vol ratio (H-589) is factor-level redundant with H-059 despite moderate PnL corr. (4) CLV (H-606) confirmed but identical to H-451.
+- **AUTOMATED:** Paper trades hourly via cron (73 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all TS paper trades. H-063 trade 3 entry tonight 01:00 UTC. Explore options/on-chain/alternative data.
+- **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
 - **10% H-009** (BTC daily trend): directional alpha, Sharpe ~0.6-0.9

@@ -1274,3 +1274,8 @@
 - Done: 56 runners (54→56). Demo: $96,481 (-3.52%). 20/54 positive. H-388 CONFIRMED (Night-Day Diff, deployed). H-394 CONFIRMED (Variance Ratio, deployed). 399 total hypotheses.
 - Next: Await Q-005 answer. H-063 expires Apr 10. Continue research.
 - Self-modifications: H-388/H-394 runners created.
+
+### Session 2026-04-09 review+deploy+research (session 168)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), critical look-ahead bias discovery, 3 new deployments
+- Focus: Paper trade MTM (BTC $70,814), H-400 through H-415 backtests. Look-ahead bias investigation.
+- Done: 58 runners (56→58). 23/55 positive (avg -0.14%). CRITICAL: Look-ahead bias found in 4h backtests. H-404/H-411/H-414 CONFIRMED+deployed. 415 total hypotheses.
