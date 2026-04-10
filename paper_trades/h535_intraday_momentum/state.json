@@ -1,0 +1,20 @@
+{
+  "started": "2026-04-10T09:23:41.432139+00:00",
+  "capital": 9997.5,
+  "position": -0.06965059084596215,
+  "entry_price": 71786.9,
+  "signal": -1,
+  "last_signal_date": "2026-04-09",
+  "last_rebal_date": "2026-04-10",
+  "total_trades": 1,
+  "equity_history": [
+    {
+      "time": "2026-04-10T09:23:41.432150+00:00",
+      "equity": 9997.5,
+      "btc_price": 71786.9,
+      "position": -0.06965059084596215,
+      "signal": -1
+    }
+  ],
+  "log": []
+}

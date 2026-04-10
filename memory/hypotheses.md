@@ -6016,3 +6016,158 @@
 - Result: IS Sharpe -0.849, Ann -36.8%, DD -83.3%. WF 2/6. SH FAIL.
 - Notes: Exact mirror of H-528 — confirms H-528's direction (high range expansion is bullish).
 - Sessions: [2026-04-10 session 175]
+
+## H-532: BTC Funding Rate Contrarian (Time-Series)
+- Status: REJECTED
+- Idea: Fade the crowd — short BTC when funding rate is high, long when low.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Logic: Average 8h funding rate over N days. Contrarian position based on threshold.
+- Result: Best config W10_T5e-05: Sharpe -0.042, Ann -0.9%, DD -48.6%. Win rate 49.6%, 19% exposure, 36 trades.
+- Notes: No edge in funding rate contrarian on BTC TS. Funding is too noisy and mean-reverting for directional signals. XS version (H-053) works because relative ranking is more stable.
+- Sessions: [2026-04-10 session 176]
+
+## H-533: BTC Volatility Breakout (Bollinger Band)
+- Status: REJECTED
+- Idea: Trade BTC breakouts from Bollinger Bands.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Logic: Long when close > upper BB, short when close < lower BB.
+- Result: Best config LB10_M1.5: Sharpe 0.374, Ann +10.9%, DD -33.5%. Win rate 32.4%, 22% exposure.
+- Notes: Weak Sharpe, low win rate. Trend following captures the same signal better (H-539 Keltner).
+- Sessions: [2026-04-10 session 176]
+
+## H-534: BTC RSI Mean Reversion
+- Status: REJECTED
+- Idea: Short BTC when RSI overbought, long when oversold.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Logic: RSI(N) > overbought -> short. RSI(N) < oversold -> long.
+- Result: Best config LB7_OB75: Sharpe 0.135, Ann +4.7%, DD -61.0%. Win rate 41.6%.
+- Notes: Mean reversion doesn't work in crypto — momentum dominates. High DD confirms.
+- Sessions: [2026-04-10 session 176]
+
+## H-535: BTC Intraday Session Momentum
+- Status: CONFIRMED (deployed)
+- Idea: First 6h return of the day predicts next-day BTC direction.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D (signal from hourly)
+- Logic: If first 6h return > 0, go LONG next day. If < 0, SHORT.
+- Result: IS Sharpe 0.735, Ann +39.3%, DD -54.8%. 100% exposure, 50% win rate.
+- WF: **6/8 positive**, mean **1.051**. SH: **PASS** (H1=0.985, H2=1.245). Corr 0.111 H-009, 0.195 H-539.
+- Notes: Strong OOS evidence. 100% exposure means always in market. DD -54.8% borderline but WF 6/8 with mean >1 is very strong. Low correlation with H-009 (different signal despite both trading BTC). First BTC TS strategy with genuine validation.
+- Sessions: [2026-04-10 session 176]
+
+## H-536: BTC Funding-Price Divergence
+- Status: REJECTED
+- Idea: Trade BTC when funding and price direction diverge.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Best config FW3_PW7: Sharpe 0.574, Ann +6.4%, DD -12.6%. Only 6% exposure, 106 trades in 730 days.
+- Notes: Low exposure means very few signals. Good DD but insufficient trade count for statistical significance.
+- Sessions: [2026-04-10 session 176]
+
+## H-537: BTC Volume Shock Reversal
+- Status: REJECTED
+- Idea: After extreme volume days, expect mean reversion.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Best config LB30_Z2.0: Sharpe 0.362, Ann +6.9%, DD -29.5%. 6% exposure.
+- Notes: Weak Sharpe. Volume shocks don't reliably predict reversals in BTC.
+- Sessions: [2026-04-10 session 176]
+
+## H-538: BTC Month-of-Year Seasonality
+- Status: REJECTED
+- Idea: Trade BTC based on historical monthly patterns (long in positive months, short in negative).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: IS Sharpe 1.108, Ann +59.1%, DD -63.6%. But WF: **2/5 positive** (mean -0.154). SH: FAIL (H1=1.88, H2=-0.12).
+- Notes: Monthly patterns are unstable — only ~4 observations per month in 4.7 years. Pattern shifts across cycles. Look-ahead bias inflated IS.
+- Sessions: [2026-04-10 session 176]
+
+## H-539: BTC Keltner Channel Breakout
+- Status: CONFIRMED (deployed)
+- Idea: Trade BTC breakouts from Keltner Channel (EMA + ATR bands).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Logic: Long when close > EMA(30) + 2.5*ATR(30). Short when close < EMA(30) - 2.5*ATR(30). Flat inside.
+- Result: IS Sharpe 0.832, Ann +20.2%, DD -26.2%. 15% exposure, 106 trades.
+- WF: **5/7 positive** (mean **0.751**). SH: **PASS** (H1=0.691, H2=0.959). Param robust **83%** (25/30 positive).
+- Corr: 0.453 H-009, 0.195 H-535, 0.124 H-544.
+- Notes: Selective trend following — only trades during strong breakouts. Low exposure (15%) = excellent diversifier. H-009 correlation (0.453) because when active, it aligns with the trend H-009 is tracking. But only 15% of the time.
+- Sessions: [2026-04-10 session 176]
+
+## H-540: Multi-Asset TSMOM (14 perps)
+- Status: REJECTED
+- Idea: Per-asset TS momentum: long if 10d return > 0, short if < 0. Equal weight all 14 assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: **CRITICAL: Initial IS Sharpe 6.17 was due to LOOK-AHEAD BIAS** (positions not shifted by 1 day). After fix: Sharpe 0.571, Ann +34.5%, DD -64.3%. WF: 4/8 positive (mean 0.658). SH: 0.89/0.26.
+- Notes: Bug caught and documented. Without look-ahead, strategy has mediocre Sharpe with terrible DD. Multi-asset TSMOM doesn't add enough over BTC-only strategies. Daily sign-based positions are too noisy.
+- Sessions: [2026-04-10 session 176]
+
+## H-541: Multi-Asset Carry (Funding Rate)
+- Status: REJECTED
+- Idea: Long-short based on funding rate level — either pro-carry (long high funding) or anti-carry (contrarian).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Pro-carry Sharpe -0.703 (wrong direction). Anti-carry best: Sharpe 0.773, Ann +17.3%, DD -27.3%.
+- Notes: Anti-carry = same as H-053 (Funding XS Contrarian). Redundant. Pro-carry loses money — in crypto, high funding predicts reversals, not continuation.
+- Sessions: [2026-04-10 session 176]
+
+## H-542: BTC Vol-Adjusted Momentum
+- Status: REJECTED
+- Idea: BTC momentum signal scaled by inverse volatility (risk parity).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Best config M30_V30: Sharpe 0.629, Ann +10.6%, DD -23.4%.
+- Notes: Marginal improvement over basic momentum (H-009). Not novel enough to deploy.
+- Sessions: [2026-04-10 session 176]
+
+## H-543: BTC Absolute Momentum (Cash Filter)
+- Status: REJECTED
+- Idea: Long BTC only when beating cash (5% annual). Short when significantly negative.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Best config LB40: Sharpe 0.459, Ann +24.0%, DD -61.6%.
+- Notes: Weak Sharpe with high DD. Cash filter doesn't add enough value in crypto.
+- Sessions: [2026-04-10 session 176]
+
+## H-544: BTC Range Squeeze Breakout
+- Status: CONFIRMED (deployed)
+- Idea: After periods of range contraction (low ATR), trade breakout direction.
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Logic: When ATR(20) is in bottom 10th percentile (60d window), signal = direction of last daily move. Flat when not in squeeze.
+- Result: IS Sharpe 0.986, Ann +23.0%, DD -23.2%. ~14-21% exposure.
+- WF: **5/8 positive** (mean **0.470**). SH: **PASS** (H1=1.235, H2=0.427). Param robust **100%** (36/36 positive).
+- Corr: **0.109** H-009, **0.124** H-539 — near-zero with all existing strategies.
+- Notes: 100% parameter robustness is strongest validation signal. Near-zero correlation with everything. Currently in squeeze (ATR 8.3rd percentile) — entered LONG at deployment. Selective strategy ~14-21% exposure.
+- Sessions: [2026-04-10 session 176]
+
+## H-545: Multi-Asset Short-Term Reversal
+- Status: REJECTED
+- Idea: Cross-sectional reversal: short recent winners, long recent losers (1-5 day returns).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best config LB5_H3: Sharpe -3.744, Ann -91.9%, DD -85.2%.
+- Notes: Short-term reversal is catastrophically wrong in crypto — momentum dominates at all frequencies. Anti-momentum = guaranteed loss.
+- Sessions: [2026-04-10 session 176]
+
+## H-546: BTC Full Week Seasonality
+- Status: REJECTED
+- Idea: Trade BTC based on full 7-day DOW pattern (not just Wed/Thu like H-039).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Sharpe -0.737, Ann -39.4%, DD -93.8%.
+- Notes: Full-week DOW pattern is unstable. H-039's Wed-long/Thu-short is the only robust DOW signal. Adding more days dilutes the edge.
+- Sessions: [2026-04-10 session 176]
+
+## H-547: BTC Consecutive Returns Signal
+- Status: REJECTED
+- Idea: After 5+ consecutive up/down days, bet on continuation (momentum).
+- Instrument: BTC/USDT perp
+- Timeframe: 1D
+- Result: Best config momentum_N5: Sharpe 0.721, Ann +11.0%, DD -14.4%. Only 5% exposure.
+- Notes: Interesting Sharpe and low DD, but only 5% exposure = too few trades for statistical significance. Good IS but can't validate OOS with so few events.
+- Sessions: [2026-04-10 session 176]

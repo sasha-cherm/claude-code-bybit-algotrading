@@ -1259,3 +1259,11 @@
 - Done: 51 runners (50→51 post-deploy). Demo: $97,787 (-2.21%). H-363 CONFIRMED+deployed. 367 total hypotheses.
 - Next: Await Q-005 answer. Monitor H-063 (-6.35%, expires Apr 10). Continue research.
 - Self-modifications: H-363 runner created, added to orchestrator. Archived session 155. (session 165)
+
+### Session 2026-04-08 review+deploy+research (session 166)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests, 3 new deployments
+- Focus: Paper trade MTM (BTC $71,593), H-368 through H-383 backtests (2 batches of 8)
+- Done: 54 runners (51→54 post-deploy). **Demo**: $97,301 (-2.70%). H-063 improved to -2.68% (BTC retreated from $72.5k to $71.6k). **Research batch 1 (H-368–H-375)**: **H-368 CONFIRMED** (Vol Share Drift — IS **90.7%**, WF **6/6** mean **2.034**, split-half PASS, neighbors 100%, Sharpe 1.628, corr 0.206 H-012). H-369(43% IS), H-370(17%), H-371(80% borderline), H-372(28%), H-373(6%), H-374(2%), H-375(50%) REJECTED. **Research batch 2 (H-376–H-383)**: **H-382 CONFIRMED** (Return Kurtosis — IS **87.5%**, WF **6/6** mean **1.500**, corr **-0.152** H-012). **H-383 CONFIRMED** (PVT — IS **87.5%**, WF **4/6** mean **1.312**, split-half PASS). H-376(67%), H-377(63%), H-378(75%), H-379(17%), H-380(4%), H-381(78% borderline) REJECTED. **383 total hypotheses.**
+- Next: Await Q-005 answer. Monitor H-063 (-2.68%, expires Apr 10). Continue research.
+- Questions added: none
+- Self-modifications: H-368/H-382/H-383 runners created, added to orchestrator. Archived session 156. (session 166)

@@ -637,16 +637,48 @@ Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 
 - **Correlation**: **-0.001** H-012, -0.052 H-031, 0.029 H-076, 0.069 H-182. Perfect diversifier.
 - **Note**: Captures breakout dynamics — coins with expanding daily range tend to continue trending.
 
-## Portfolio Summary (mark-to-market 2026-04-10 session 175, 05:22 UTC)
-- **Bybit Demo**: ~$94,608 (-5.39%). BTC spot ~$72,128.
-- **Total internal MTM (67 runners)**: 67 runners (66+1 new H-528). **26/66 positive** (39%). Avg PnL **-0.11%**.
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-353(+3.52%), H-019(+3.47%), H-062(+3.10%), H-277(+2.97%), H-052(+2.88%)
-- **H-063**: $9,509 (-4.91%). Trade 2 expires Apr 10 08:00 UTC (~3h). Call $69k ITM at BTC $72.1k. Expected ~-$574 loss on trade 2.
-- **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-063(-4.91%), H-223(-3.92%), H-046(-3.18%)
-- **H-496 ML Ensemble**: $10,022 (+0.22%) — day 1, positions look good.
-- **Research (session 175)**: 19 new hypotheses (H-513–H-531). 3 CONFIRMED (H-518 Regime Mom, H-519 Vol Shock, H-522 PVT Slope — not deployed, redundant). **H-528 Range Expansion CONFIRMED+deployed** — 100% param robust (96/96), corr -0.001 H-012. 16 REJECTED. **531 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (67 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. H-063 settles today 08:00. Monitor H-496 and H-528 paper trades. Explore higher-frequency or alternative instrument strategies.
+### H-535: BTC Intraday Session Momentum — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — first validated BTC TS strategy
+- **Position**: SHORT 0.070 BTC @ $71,787 (yesterday's first 6h was -0.12%)
+- **Mark equity**: $9,998 (-0.02%) — day 0.
+- **Runner**: `paper_trades/h535_intraday_momentum/runner.py`
+- **Params**: 6h lookback, 50% capital, daily rebalance.
+- **Backtest**: IS Sharpe 0.735, +39.3% ann, -54.8% DD. WF **6/8** mean **1.051**. SH PASS (0.985/1.245).
+- **Correlation**: **0.111** H-009 — low despite both trading BTC. 0.195 H-539.
+- **Note**: 100% exposure. First BTC time-series strategy with genuine OOS validation.
+
+### H-539: BTC Keltner Channel Breakout — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — selective trend breakout
+- **Position**: FLAT — BTC inside Keltner Channel (EMA30 ± 2.5*ATR30).
+- **Mark equity**: $10,000 (+0.00%) — day 0.
+- **Runner**: `paper_trades/h539_keltner_breakout/runner.py`
+- **Params**: EMA30, ATR30, mult 2.5. Only trades breakouts (~15% exposure).
+- **Backtest**: IS Sharpe 0.832, +20.2% ann, -26.2% DD. WF **5/7** mean **0.751**. SH PASS (0.691/0.959). Param robust 83%.
+- **Correlation**: 0.453 H-009, 0.124 H-544.
+- **Note**: Selective — only active during strong breakouts. Currently flat (price inside channel).
+
+### H-544: BTC Range Squeeze Breakout — NEW
+- **Status**: LIVE paper trade (started 2026-04-10) — 100% param robust, near-zero correlation
+- **Position**: LONG 0.070 BTC @ $71,765 — ATR in 8.3rd percentile (SQUEEZE detected).
+- **Mark equity**: $9,998 (-0.02%) — day 0.
+- **Runner**: `paper_trades/h544_range_squeeze/runner.py`
+- **Params**: ATR(20), 60d percentile window, squeeze < 10th percentile.
+- **Backtest**: IS Sharpe 0.986, +23.0% ann, -23.2% DD. WF **5/8** mean **0.470**. SH PASS (1.235/0.427). Param robust **100%** (36/36).
+- **Correlation**: **0.109** H-009, **0.124** H-539 — near-zero with everything.
+- **Note**: Entered LONG immediately — current market IS in a squeeze. 100% param robustness.
+
+## Portfolio Summary (mark-to-market 2026-04-10 session 176, 09:26 UTC)
+- **Bybit Demo**: ~$94,700 (-5.30%). BTC spot ~$71,681.
+- **Total internal MTM (70 runners)**: 70 runners (67+3 new BTC TS). **14/66 positive** (21%, down from 26). Avg PnL **-0.17%**.
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-019(+3.47%), H-062(+3.10%), H-052(+2.88%), H-039(+2.40%), H-076(+2.24%)
+- **H-063**: $9,624 (-3.76%). **Trade 2 settled** at 08:32 UTC, BTC $71,641. Call payoff $395, net loss -$454. 2 trades total: +$78, -$454. Waiting for trade 3.
+- **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-223(-3.92%), H-063(-3.76%), H-046(-3.18%)
+- **H-496 ML Ensemble**: $10,022 (+0.22%) — day 2, stable.
+- **H-528 Range Expansion**: $9,976 (-0.24%) — day 0.
+- **Research (session 176)**: 16 new hypotheses (H-532–H-547). **3 CONFIRMED+deployed** (H-535 Intra Mom, H-539 Keltner, H-544 Squeeze). 13 REJECTED. **CRITICAL: H-540 Multi-Asset TSMOM had look-ahead bias — Sharpe 6.17 was fake, real Sharpe 0.57.** **547 total hypotheses.**
+- **New strategy type**: First BTC time-series (TS) strategies deployed (all prior were cross-sectional XS). These trade BTC directionally, complementing the XS portfolio.
+- **AUTOMATED:** Paper trades hourly via cron (70 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor H-535/H-539/H-544 BTC TS paper trades. H-063 trade 3 entry tonight. Consider further TS strategies or alternative instruments.
 - **Open user questions:** Q-005 (H-056 v3 upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

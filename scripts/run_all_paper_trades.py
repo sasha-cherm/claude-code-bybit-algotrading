@@ -89,6 +89,9 @@ RUNNERS = [
     ("H-470", ROOT / "paper_trades" / "h470_first_hour_ret" / "runner.py"),
     ("H-496", ROOT / "paper_trades" / "h496_ml_ensemble" / "runner.py"),
     ("H-528", ROOT / "paper_trades" / "h528_range_expansion" / "runner.py"),
+    ("H-535", ROOT / "paper_trades" / "h535_intraday_momentum" / "runner.py"),
+    ("H-539", ROOT / "paper_trades" / "h539_keltner_breakout" / "runner.py"),
+    ("H-544", ROOT / "paper_trades" / "h544_range_squeeze" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

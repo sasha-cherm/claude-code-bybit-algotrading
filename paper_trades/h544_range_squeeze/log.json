@@ -1,0 +1,11 @@
+[
+  {
+    "type": "open",
+    "time": "2026-04-10T09:26:01.839446+00:00",
+    "btc_price": 71765.3,
+    "direction": "LONG",
+    "position": 0.06967155435844342,
+    "notional": 5000.0,
+    "atr_pctile": 8.3
+  }
+]

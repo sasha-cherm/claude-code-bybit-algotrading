@@ -1,0 +1,20 @@
+{
+  "started": "2026-04-10T09:26:01.839435+00:00",
+  "capital": 9997.5,
+  "position": 0.06967155435844342,
+  "entry_price": 71765.3,
+  "signal": 1,
+  "in_squeeze": true,
+  "last_check_date": "2026-04-10",
+  "total_trades": 1,
+  "equity_history": [
+    {
+      "time": "2026-04-10T09:26:01.839446+00:00",
+      "equity": 9997.5,
+      "btc_price": 71765.3,
+      "signal": 1,
+      "in_squeeze": true,
+      "atr_pctile": 8.3
+    }
+  ]
+}
