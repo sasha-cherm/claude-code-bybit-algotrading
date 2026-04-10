@@ -699,19 +699,25 @@ Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 
 - **Param robust**: **60/60 (100%)**, best 1.843.
 - **Correlation**: **0.054** H-012 (near-zero), 0.254 H-059, **-0.212** H-076 (negative — excellent diversifier).
 
-## Portfolio Summary (mark-to-market 2026-04-10 session 178, 17:10 UTC)
-- **Bybit Demo**: ~$96k-$97k (BTC $72,892). BTC spot ~$72,892 (+0.6% 24h).
-- **Total internal MTM (73 runners)**: 73 runners (71+2 new). **26/71 positive** (37%). Avg PnL **-0.09%** (unchanged).
+### H-617: BTC 4h Volume Breakout — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — first 4h timeframe strategy
+- **Position**: FLAT (no volume surge signal yet at entry)
+- **Mark equity**: $10,000 (+0.00%) — just deployed.
+- **Runner**: `paper_trades/h617_4h_vol_breakout/runner.py`
+- **Params**: mom_period=12 (48h), vol_mult=1.5. IS Sharpe 0.971, Ann +43.6%, DD 53.4%. WF 6/8 mean 0.425. SH PASS (0.425/0.575).
+- **Param robust**: **14/16 (88%)**.
+- **Correlation**: 0.292 H-009 (moderate), -0.190 BTC buy&hold (negative — good diversifier).
+
+## Portfolio Summary (mark-to-market 2026-04-11 session 179, 21:15 UTC)
+- **Bybit Demo**: ~$97k (BTC $73,310). BTC spot ~$73,310 (+1.3% 24h).
+- **Total internal MTM (74 runners)**: 74 runners (73+1 new). **26/74 positive** (35%). Avg PnL **-0.10%**.
 - **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-353(+3.52%), H-019(+3.47%), H-062(+3.10%), H-277(+2.97%), H-052(+2.88%)
-- **H-063**: $9,624 (-3.76%). Trade 2 settled, now **FLAT**. Awaiting cron for trade 3 at 01:00 UTC.
+- **H-063**: $9,624 (-3.76%). FLAT. Awaiting trade 3 entry.
 - **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-223(-3.92%), H-063(-3.76%), H-046(-3.18%)
-- **H-496 ML Ensemble**: $10,022 (+0.22%) — day 2, stable.
-- **H-528 Range Expansion**: $9,976 (-0.24%) — day 1.
-- **BTC TS strategies** (H-535/H-539/H-544): Essentially flat, just deployed.
-- **Research (session 178)**: 32 new hypotheses (H-580–H-611). **2 CONFIRMED+deployed** (H-599 RSI XS, H-601 Vol Decline). **2 CONFIRMED not deployed** (H-589 Vol Ratio — redundant H-059, H-606 CLV — redundant H-451). 28 REJECTED. Candlestick patterns, OBV, momentum derivatives, beta dynamics all fail in crypto. 100% param robustness for both deployed strategies. **611 total hypotheses.**
-- **Key findings**: (1) RSI works well as XS factor (100% param robust, Sharpe 1.15). (2) Vol Decline Rate is excellent diversifier with near-zero H-012 corr and negative H-076 corr. (3) Vol ratio (H-589) is factor-level redundant with H-059 despite moderate PnL corr. (4) CLV (H-606) confirmed but identical to H-451.
-- **AUTOMATED:** Paper trades hourly via cron (73 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all TS paper trades. H-063 trade 3 entry tonight 01:00 UTC. Explore options/on-chain/alternative data.
+- **Research (session 179)**: 24 new hypotheses (H-612–H-635). **1 CONFIRMED+deployed** (H-617 BTC 4h Volume Breakout). **1 CONFIRMED not deployed** (H-622 Multi-Asset 4h Vol Breakout — redundant with H-617, corr 0.724). 22 REJECTED. 4h EMA/MACD/RSI indicators = noise. Mean reversion fails at all timeframes. Funding rate timing strategies all fail. Vol compression, session patterns, multi-TF alignment — no edges. **635 total hypotheses.**
+- **Key findings**: (1) Volume confirmation is critical at 4h — raw momentum/trend signals are noise. (2) Mean reversion universally fails in crypto at 4h too. (3) Funding rate (2yr data) has no standalone time-series edge for BTC price prediction. (4) 4h structural patterns (sessions, weekend, vol compression) are too weak to trade.
+- **AUTOMATED:** Paper trades hourly via cron (74 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades. H-063 trade 3 entry. Explore alternative asset TS strategies, higher-frequency XS factors, or on-chain data.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
