@@ -1244,3 +1244,11 @@
 - Next: Options strategies. Monitor H-063 (-4.65%, expires Apr 10).
 - Questions added: none
 - Self-modifications: H-351/H-353/H-355 deployed. Archived session 153. (session 163)
+
+### Session 2026-04-08 review+optimize (session 164)
+- Goal: Review + Portfolio Optimization — comprehensive analysis of 33 confirmed strategies
+- Focus: Demo MTM ($96,783, -3.22%), portfolio optimization using backtest return series
+- Done: 50 runners (no new bar, BTC $71,829). **Portfolio optimization**: H-056v2 Sharpe 5.64. Proposed v3 adds H-059/H-076. H-031/H-197/H-183 corr 0.88-0.97 (redundant). Q-005 opened.
+- Next: Await Q-005 answer. Options strategies. Monitor H-063 (-4.56%).
+- Questions added: Q-005 (H-056 v3 proposal)
+- Self-modifications: Created comprehensive_optimizer.py. Archived session 154. (session 164)

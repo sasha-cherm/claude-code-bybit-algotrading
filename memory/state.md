@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-09 01:00 UTC):
-Demo eq: ~$96,481 (-3.52%). BTC spot ~$70,814. 11 open positions.
+### Current Demo Status (as of 2026-04-10 01:00 UTC):
+Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 open positions.
 
 ---
 
@@ -172,15 +172,15 @@ Demo eq: ~$96,481 (-3.52%). BTC spot ~$70,814. 11 open positions.
 
 ### H-063: Systematic BTC Short Strangle with Delta Hedging (Vol Selling)
 - **Status**: LIVE paper trade (started 2026-03-25) — first options strategy
-- **Position**: FLAT — Trade 1 settled at expiry Apr 3 08:00 UTC.
-  - Trade 1: Sold 73000C + 69000P, 0.1403 contracts, $364.14 premium, entry BTC $71,264.
-  - Settlement: BTC $67,060. Call expired OTM (worthless). Put settled ITM ($69k-$67,060=$1,940 intrinsic, $272 payoff).
-  - **Net P&L: +$77.64 (+0.78%)** — premium > put liability. First trade profitable!
-- **Mark equity**: $10,078 (+0.78%)
+- **Position**: IN TRADE — Trade 2 expires Apr 10 08:00 UTC (~7h away).
+  - Trade 1: Sold 73000C + 69000P, 0.1403 contracts. Net P&L: +$77.64 (+0.78%).
+  - Trade 2: Sold 69000C + 65000P, 0.1496 contracts, $189.93 premium, entry BTC $66,866.
+    - BTC at $71,966: Call ITM ($435 liability), hedge PnL -$236, fees $33. **Expected loss ~-$514.**
+- **Mark equity**: ~$9,563 (-4.37%) — trade 2 underwater due to BTC rally through call strike.
 - **Runner**: `paper_trades/h063_vol_selling/runner.py`
 - **Backtest**: Sharpe 1.54, +52.5% ann, -18.4% DD, 73% WR. WF 6/6 positive. 60/60 params positive.
 - **Logic**: Sell 7-day 3% OTM BTC strangle, delta-hedge daily, 10% stop
-- **Next**: Waiting for next 7-day option entry (cron will handle automatically).
+- **Next**: Trade 2 settles Apr 10 08:00 UTC. Expected loss ~$514 on this trade. Cron will enter trade 3 after settlement.
 - **Correlation**: -0.10 vs H-009, ~0 vs BTC — truly market-neutral
 
 ### H-076: Price Efficiency Factor (14 Assets) — NEW

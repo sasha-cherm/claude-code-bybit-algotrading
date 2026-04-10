@@ -47,5 +47,54 @@
     },
     "trades": 8,
     "fees": 20.0
+  },
+  {
+    "date": "2026-04-09",
+    "action": "rebalance",
+    "capital": 9821.91,
+    "positions": {
+      "AVAX/USDT": {
+        "dir": "LONG",
+        "entry": 9.354871,
+        "w": 0.25
+      },
+      "SOL/USDT": {
+        "dir": "LONG",
+        "entry": 83.326662,
+        "w": 0.25
+      },
+      "XRP/USDT": {
+        "dir": "LONG",
+        "entry": 1.344169,
+        "w": 0.25
+      },
+      "ETH/USDT": {
+        "dir": "LONG",
+        "entry": 2187.517416,
+        "w": 0.25
+      },
+      "OP/USDT": {
+        "dir": "SHORT",
+        "entry": 0.113577,
+        "w": -0.25
+      },
+      "BTC/USDT": {
+        "dir": "SHORT",
+        "entry": 71728.05152,
+        "w": -0.25
+      },
+      "NEAR/USDT": {
+        "dir": "SHORT",
+        "entry": 1.358728,
+        "w": -0.25
+      },
+      "ATOM/USDT": {
+        "dir": "SHORT",
+        "entry": 1.80064,
+        "w": -0.25
+      }
+    },
+    "trades": 6,
+    "fees": 15.0381
   }
 ]

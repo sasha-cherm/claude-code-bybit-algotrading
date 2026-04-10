@@ -47,5 +47,54 @@
     },
     "trades": 8,
     "fees": 20.0
+  },
+  {
+    "date": "2026-04-09",
+    "action": "rebalance",
+    "capital": 10403.72,
+    "positions": {
+      "DOGE/USDT": {
+        "dir": "LONG",
+        "entry": 0.092629,
+        "w": 0.25
+      },
+      "OP/USDT": {
+        "dir": "LONG",
+        "entry": 0.113623,
+        "w": 0.25
+      },
+      "SOL/USDT": {
+        "dir": "LONG",
+        "entry": 83.326662,
+        "w": 0.25
+      },
+      "NEAR/USDT": {
+        "dir": "LONG",
+        "entry": 1.359272,
+        "w": 0.25
+      },
+      "DOT/USDT": {
+        "dir": "SHORT",
+        "entry": 1.29774,
+        "w": -0.25
+      },
+      "LINK/USDT": {
+        "dir": "SHORT",
+        "entry": 8.94721,
+        "w": -0.25
+      },
+      "ARB/USDT": {
+        "dir": "SHORT",
+        "entry": 0.107828,
+        "w": -0.25
+      },
+      "AVAX/USDT": {
+        "dir": "SHORT",
+        "entry": 9.351129,
+        "w": -0.25
+      }
+    },
+    "trades": 10,
+    "fees": 26.2552
   }
 ]

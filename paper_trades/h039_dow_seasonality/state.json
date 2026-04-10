@@ -1,10 +1,10 @@
 {
   "started": "2026-03-19T17:12:27.268315+00:00",
-  "capital": 10353.20269777322,
-  "position": -1,
-  "entry_price": 70996.2,
-  "entry_time": "2026-04-08",
-  "size_btc": 0.14588592,
+  "capital": 10240.156141858417,
+  "position": 0,
+  "entry_price": 0.0,
+  "entry_time": null,
+  "size_btc": 0.0,
   "equity_history": [
     {
       "date": "2026-03-19",
@@ -152,9 +152,16 @@
       "price": 70996.2,
       "position": -1,
       "dow": "Wed"
+    },
+    {
+      "date": "2026-04-09",
+      "equity": 10240.16,
+      "price": 71742.4,
+      "position": 0,
+      "dow": "Thu"
     }
   ],
-  "last_signal_date": "2026-04-08",
-  "trades_count": 5,
-  "total_fees": 45.04726027677897
+  "last_signal_date": "2026-04-09",
+  "trades_count": 6,
+  "total_fees": 49.23374268758217
 }

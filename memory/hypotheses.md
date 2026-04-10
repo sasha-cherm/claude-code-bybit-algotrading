@@ -5702,3 +5702,146 @@
   - **30-factor full set**: Sharpe 0.662 (diluted by weak factors). IC-weighted: 0.571 (overfit). Ridge: -0.298 (overfit).
 - Notes: Best single-strategy Sharpe found. Equal-weight outperforms ML weighting (ridge/IC) — simpler is better. Most recent WF fold (Jan-Apr 2026) essentially flat (-0.049). The premium and vol_term factors contribute most beyond momentum. low_vol and size can be dropped with no loss. Correlation with H-012 at 0.547 means some momentum overlap but substantial diversification from the other 8 factors.
 - Sessions: [2026-04-09 session 173]
+
+## H-497: BTC Trend Regime Exposure Scaling
+- Status: REJECTED
+- Idea: Scale ensemble exposure by BTC EMA(20)/EMA(50) trend direction. Full exposure in uptrend, 50% in downtrend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Regime overlay on H-496 base ensemble. When BTC trend positive, full exposure; negative, halve exposure.
+- Result: IS Sharpe 2.182 (+2.1% vs base 2.137), WF 5/6, SH PASS (2.672/1.552). Improvement insufficient (<5%).
+- Notes: Regime timing adds marginal value. DD improved to -19.6% from -23.8% but annual return dropped to 88.9%.
+- Sessions: [2026-04-10 session 174]
+
+## H-498: Volatility Regime Exposure Scaling
+- Status: REJECTED
+- Idea: Reduce exposure in high-vol environments. Scale from 1.0x (low vol) to 0.3x (high vol) based on rolling vol percentile.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.179 (+2.0%), WF 5/6, SH PASS (3.277/1.059). Improvement insufficient.
+- Notes: DD improved to -17.8% but annual dropped to 60%. Vol scaling reduces both risk and return proportionally.
+- Sessions: [2026-04-10 session 174]
+
+## H-499: Dispersion Regime Exposure Scaling
+- Status: REJECTED
+- Idea: Scale exposure UP when XS return dispersion is high (more opportunity). Down when low.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.112 (-1.2%), WF 5/6, SH PASS (2.485/1.701). No improvement.
+- Notes: Dispersion-based scaling doesn't add value — XS opportunities exist regardless of dispersion level.
+- Sessions: [2026-04-10 session 174]
+
+## H-500: Momentum Crash Protection
+- Status: REJECTED
+- Idea: Deleverage to 30% when 5d momentum drawdown exceeds -5%.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.824 (-14.6%), WF 5/6, SH PASS (2.511/0.970). Significantly worse.
+- Notes: Crash protection hurts — drawdown periods are actually recovery opportunities for the ensemble.
+- Sessions: [2026-04-10 session 174]
+
+## H-501: Correlation Regime Exposure Scaling
+- Status: REJECTED
+- Idea: Reduce exposure when average pairwise asset correlations spike (less XS opportunity).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.078 (-2.8%), WF 5/6, SH PASS (2.653/1.326). No improvement.
+- Sessions: [2026-04-10 session 174]
+
+## H-502: Volume Regime Exposure Scaling
+- Status: REJECTED
+- Idea: Scale exposure by aggregate volume ratio (high volume = more signal strength).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.091 (-2.2%), WF 5/6, SH PASS (2.438/1.675). No improvement.
+- Sessions: [2026-04-10 session 174]
+
+## H-503: Trend-Adaptive Factor Weighting
+- Status: REJECTED
+- Idea: Tilt factor weights toward momentum in strong BTC trends, toward mean-reversion in choppy markets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.985 (-7.1%), WF 5/6, SH PASS (2.353/1.539). Worse than equal weight.
+- Notes: Dynamic factor weighting underperforms static equal-weight. Confirms H-496 finding: simpler is better.
+- Sessions: [2026-04-10 session 174]
+
+## H-504: Drawdown-Conditional Exposure
+- Status: REJECTED
+- Idea: Reduce exposure to 50% during portfolio drawdowns >3%.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.736 (-18.8%), WF 4/6, SH PASS (2.212/1.139). Worst of batch.
+- Notes: Drawdown-based deleveraging is costly — the ensemble recovers quickly, so reducing exposure during DD cuts recovery.
+- Sessions: [2026-04-10 session 174]
+
+## H-505: Continuous Z-Score Proportional Weighting
+- Status: REJECTED
+- Idea: Instead of binary top/bottom 4, weight all assets proportional to their composite z-score.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.624 (-24.0%), WF 5/6, SH PASS (2.097/1.030). Significantly worse.
+- Notes: Continuous weighting dilutes the signal by including low-conviction assets.
+- Sessions: [2026-04-10 session 174]
+
+## H-506: Volatility-Scaled Asset Weights
+- Status: REJECTED
+- Idea: Scale each selected asset's weight by inverse recent volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.290 (-86.4%), WF 2/6, SH FAIL. Catastrophic failure.
+- Notes: Implementation issue — vol scaling inverts the natural factor exposure and creates extreme weights.
+- Sessions: [2026-04-10 session 174]
+
+## H-507: Multi-Horizon Ensemble (3d/5d/10d)
+- Status: REJECTED
+- Idea: Blend signals from 3-day, 5-day, and 10-day rebalance frequencies.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.346 (-37.0%), WF 6/6, SH PASS (1.407/1.291). Worse despite robust WF.
+- Notes: Blending frequencies dilutes the 5d signal which is already optimal.
+- Sessions: [2026-04-10 session 174]
+
+## H-508: Asymmetric Long/Short (L5/S3)
+- Status: REJECTED
+- Idea: More longs (5) with concentrated shorts (3) instead of balanced L4/S4.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.652 (-22.7%), WF 5/6, SH PASS (1.631/1.710). Param sweep confirms L4/S4 optimal.
+- Notes: Asymmetry hurts. L4/S4 = 2.137, all other N combos worse. Short side contributes significantly.
+- Sessions: [2026-04-10 session 174]
+
+## H-509: Signal-Strength Threshold (z>0.3)
+- Status: REJECTED
+- Idea: Only trade assets with composite z-score exceeding 0.3 threshold.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.251 (-41.5%), WF 4/6, SH PASS (1.647/0.726). Much worse.
+- Notes: Thresholding creates variable position count and reduces time-in-market.
+- Sessions: [2026-04-10 session 174]
+
+## H-510: Turnover-Penalized Signal Blending
+- Status: REJECTED
+- Idea: Blend new signal with previous signal (60/40) to reduce turnover.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.581 (-26.0%), WF 5/6, SH PASS (1.772/1.364). Worse. Sweep shows blend=1.0 (no blending) is optimal.
+- Notes: Turnover penalty hurts more than it saves in fees. The 5d rebalance is already infrequent enough.
+- Sessions: [2026-04-10 session 174]
+
+## H-511: Dynamic N (Signal Dispersion Adaptive)
+- Status: REJECTED
+- Idea: Vary number of long/short positions (3-5) based on composite signal dispersion.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.159 (+1.0%), WF 6/6, SH PASS (2.546/1.694). Closest to base but improvement <5%.
+- Notes: Marginal improvement — dynamic N concentrates when signals are strong. 0.990 correlation with base.
+- Sessions: [2026-04-10 session 174]
+
+## H-512: Risk-Parity Weighting (Inverse Vol)
+- Status: REJECTED
+- Idea: Weight selected assets by inverse volatility (equal risk contribution) instead of equal weight.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.037 (-4.7%), WF 6/6, SH PASS (2.421/1.596). Slightly worse.
+- Notes: Risk-parity is robust (6/6 WF) but doesn't beat equal-weight. The XS ranking already accounts for vol differences.
+- Sessions: [2026-04-10 session 174]

@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,538 (-2.46%). BTC spot ~$72,385.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98-99k. BTC spot ~$71,966 (+2.01% 24h).
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 66 runners active. Session 173. **20/66 positive**, avg **+0.01%**.
-- **H-063**: $9,358 (-6.42%), trade 2 expires Apr 10 08:00 UTC. Expected ~-$662 loss on this trade.
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-076(+4.07%).
-- **Session 173 research**: **H-496 ML Ensemble CONFIRMED+deployed.** Best Sharpe ever: 2.149. Equal-weight 10-factor composite. **496 total hypotheses.**
+- **Internal paper trades:** 66 runners active. Session 174. **26/66 positive**, avg **-0.10%**.
+- **H-063**: ~$9,563 (-4.37%), trade 2 expires Apr 10 08:00 UTC (~7h). Expected ~-$514 loss (call ITM at $71,966).
+- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%).
+- **Session 174 research**: 16 new hypotheses (H-497–H-512), ALL REJECTED. Regime-adaptive timing (8) and portfolio construction improvements (8) — base H-496 ensemble proved optimal. **512 total hypotheses.**
 - **AUTOMATED:** Paper trades hourly via cron (66 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer on H-056 v3. H-063 settles Apr 10 08:00. Monitor H-496 paper trade performance.
+- **Next action:** Await Q-005 answer on H-056 v3. H-063 settles Apr 10 08:00. Monitor H-496 paper trade. Explore new data sources / higher frequency / alternative universes.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 163) archived to `memory/session_archive.md`._
-
-### Session 2026-04-08 review+optimize (session 164)
-- Goal: Review + Portfolio Optimization — comprehensive analysis of 33 confirmed strategies
-- Focus: Demo MTM ($96,783, -3.22%), portfolio optimization using backtest return series
-- Done: 50 runners (no new bar, BTC $71,829). **Portfolio optimization**: H-056v2 Sharpe 5.64. Proposed v3 adds H-059/H-076. H-031/H-197/H-183 corr 0.88-0.97 (redundant). Q-005 opened.
-- Next: Await Q-005 answer. Options strategies. Monitor H-063 (-4.56%).
-- Questions added: Q-005 (H-056 v3 proposal)
-- Self-modifications: Created comprehensive_optimizer.py. Archived session 154. (session 164)
+_Older sessions (bootstrap through 164) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-08 review+deploy+research (session 165)
 - Goal: Review + Deploy + Research — MTM update, 10 new backtests (8 XS + 2 options), H-363 deployment
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 163) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. H-063 settles Apr 10 08:00. Monitor H-496 paper performance. Consider H-496 for v3 portfolio.
 - Questions added: none
 - Self-modifications: H-496 runner created, added to orchestrator. Archived session 163. (session 173)
+
+### Session 2026-04-10 review+research (session 174)
+- Goal: Review + Research — MTM update, 16 new hypotheses (regime timing + portfolio construction)
+- Focus: Paper trade MTM (BTC $71,966), H-497 through H-512 backtests
+- Done: 66 runners (unchanged). **26/66 positive** (avg -0.10%). H-063 trade 2 expires today 08:00 (expected -$514 loss, call ITM). H-496 paper trade at +0.22% (1 day). **Research batch 1 (H-497–H-504, regime-adaptive)**: All 8 REJECTED. BTC trend/vol/dispersion/correlation/volume regime timing and trend-adaptive weighting all fail to beat base ensemble (Sharpe 2.137). Best was H-497 at +2.1%. **Research batch 2 (H-505–H-512, portfolio construction)**: All 8 REJECTED. Continuous weighting, vol-scaled, multi-horizon, asymmetric L/S, signal threshold, turnover penalty, dynamic N, risk-parity — none beat simple L4/S4 equal-weight 5d rebal. Best was H-511 Dynamic N at +1.0%. **512 total hypotheses.** Meta-conclusion: base ensemble is optimal — simpler is better.
+- Next: Await Q-005 answer. H-063 settles today 08:00. Explore new data sources, higher frequency, or alternative asset universes.
+- Questions added: none
+- Self-modifications: Archived session 164. (session 174)
