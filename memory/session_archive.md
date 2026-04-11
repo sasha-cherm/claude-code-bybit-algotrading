@@ -1289,3 +1289,11 @@
 - Goal: Review + Deploy + Research — MTM update, 16 new backtests, 3 new deployments
 - Focus: Paper trade MTM (BTC $71,171), H-440 through H-455 backtests. Hourly-derived signals.
 - Done: 64 runners (61→64). 20/61 positive. H-445/H-447/H-451 CONFIRMED+deployed. 455 total hypotheses.
+
+### Session 2026-04-09 review+deploy+research (session 171)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), 1 new deployment
+- Focus: Paper trade MTM (BTC $71,245), H-456 through H-471 backtests. Hourly-derived signal exploration — final batch.
+- Done: 65 runners (64→65). 20/65 positive (avg +0.07%). H-470 CONFIRMED+deployed. 471 total hypotheses.
+- Next: Await Q-005 answer. H-063 expires Apr 10 08:00.
+- Questions added: none
+- Self-modifications: H-470 runner created, added to orchestrator. Archived session 161. (session 171)

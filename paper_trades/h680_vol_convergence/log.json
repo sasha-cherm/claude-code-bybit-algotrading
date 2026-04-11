@@ -1,0 +1,19 @@
+[
+  {
+    "type": "rebalance",
+    "time": "2026-04-11T05:29:33.918083+00:00",
+    "longs": [
+      "BTC",
+      "ETH",
+      "DOGE",
+      "ARB"
+    ],
+    "shorts": [
+      "SOL",
+      "DOT",
+      "OP",
+      "ATOM"
+    ],
+    "equity": 9995.0
+  }
+]

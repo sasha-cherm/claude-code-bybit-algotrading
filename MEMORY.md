@@ -1,14 +1,14 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$72,799.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$72,751.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 75 runners active. Session 180. **30/74 positive** (41%), avg **-0.18%**.
-- **H-063**: $9,624 (-3.76%). FLAT. Awaiting trade 3 entry.
-- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.04%).
-- **Session 180 research**: 32 new hypotheses (H-636–H-667). **1 CONFIRMED+deployed** (H-657 BTC Realized Skew). 1 CONFIRMED not deployed (H-666). 2 BORDERLINE. 28 REJECTED. **667 total hypotheses.**
-- **AUTOMATED:** Paper trades hourly via cron (75 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades. H-063 trade 3. Explore options strategies, on-chain data, or micro-structure signals.
+- **Internal paper trades:** 79 runners active. Session 181. **30/74 positive** (41%), avg **-0.17%**.
+- **H-063**: $9,638 (-3.62%). Trade 3 active (75000C/71000P, $196 premium, exp Apr 17).
+- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%).
+- **Session 181 research**: 16 new hypotheses (H-668–H-683). **4 CONFIRMED+deployed** (H-676 Consecutive Contrarian, H-677 Crash Bounce, H-679 Vol Regime Switch, H-680 Vol Convergence). 12 REJECTED. **683 total hypotheses.**
+- **AUTOMATED:** Paper trades hourly via cron (79 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades. Explore options strategies (IV data ~22 days, need 60+), on-chain data.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +20,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 170) archived to `memory/session_archive.md`._
-
-### Session 2026-04-09 review+deploy+research (session 171)
-- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), 1 new deployment
-- Focus: Paper trade MTM (BTC $71,245), H-456 through H-471 backtests. Hourly-derived signal exploration — final batch.
-- Done: 65 runners (64→65). **20/65 positive** (avg +0.07%). **Batch 1 (H-456–H-463)**: 0 confirmed. 4 borderline (H-456 VW Ret, H-458 Up Vol, H-459 Amihud, H-461 Vol HHI — all SH FAIL). H-456/H-458 have high H-012 corr (0.6+). 4 rejected. **Batch 2 (H-464–H-471)**: **H-470 CONFIRMED** (First Hour Ret, IS 100%, WF 4/6 mean 0.365, SH **PASS** H1=1.665 H2=0.411, corr 0.267, deployed). H-467 borderline (SH FAIL, H1=-0.073). 6 rejected. **471 total hypotheses.** Hourly-derived space approaching exhaustion — SH failures dominate.
-- Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Explore new signal categories (multi-timeframe, cross-asset, or non-price data). 
-- Questions added: none
-- Self-modifications: H-470 runner created, added to orchestrator. Archived session 161. (session 171)
+_Older sessions (bootstrap through 171) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-09 review+research (session 172)
 - Goal: Review + Research — MTM update, 24 new backtests (3 batches of 8), no deployments
@@ -101,3 +93,11 @@ _Older sessions (bootstrap through 170) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor all 75 runners (esp. H-657). H-063 trade 3. Explore options strategies, on-chain data, or micro-structure signals.
 - Questions added: none
 - Self-modifications: H-657 runner created, added to orchestrator. Archived session 170. (session 180)
+
+### Session 2026-04-11 review+deploy+research (session 181)
+- Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), 4 new deployments
+- Focus: Paper trade MTM (BTC $72,751), calendar/timing effects (H-668–H-675) and multi-period/composite strategies (H-676–H-683)
+- Done: 79 runners (75→79). **30/74 positive** (41%). Avg **-0.17%** (stable). H-063 trade 3 active (75000C/71000P, $196 premium, exp Apr 17). **Batch 1 (H-668–H-675, calendar/timing)**: All 8 REJECTED. Turn-of-month (Sharpe -1.46), week-of-month (data-mined), expiry effects (not significant), funding settlement (Sharpe 0.23), weekend drift (SH fail), intra-month seasonality (WF fail), quarterly expiry (N=8 insufficient), monthly momentum (SH fail). **Batch 2 (H-676–H-683, multi-period/novel)**: **H-676 CONFIRMED** (BTC 3d Contrarian, Sharpe 1.308, **WF 5/5**, param 100%, H-012 corr **-0.039**). **H-677 CONFIRMED** (BTC Crash Bounce, active Sharpe 1.610, **WF 5/5**, H-009 corr **-0.455**). **H-679 CONFIRMED** (BTC Vol Regime Switch, Sharpe 1.464, WF 4/5, param 88%, H-012 corr 0.023). **H-680 CONFIRMED** (Return-Volume Convergence XS, Sharpe 1.486, WF 4/5, param 90%, H-012 corr 0.264). 4 REJECTED (H-678 marginal, H-681 directional, H-682 below threshold, H-683 SH fail). **683 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 79 runners. Calendar effects exhausted in crypto. Explore options strategies (need more IV data), on-chain data.
+- Questions added: none
+- Self-modifications: H-676/H-677/H-679/H-680 runners created, added to orchestrator. Archived session 171. (session 181)

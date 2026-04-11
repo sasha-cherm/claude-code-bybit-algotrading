@@ -7263,3 +7263,174 @@
 - Result: IS Sharpe 0.492, Ann 12.2%, DD 53.7%.
 - Notes: Requiring momentum confirmation reduces the skew signal quality. The additional filter removes good trades (when skew and momentum disagree but skew is right).
 - Sessions: [2026-04-11 session 180]
+
+## H-668: BTC Turn-of-Month Momentum
+- Status: REJECTED
+- Idea: Buy BTC on day 28-2 of month (turn-of-month effect). Calendar timing strategy.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe **-1.464**. All param variants negative (d27-d3: -1.53, d28-d2: -1.46, d29-d1: -0.98, d26-d4: -1.95).
+- Notes: Turn-of-month effect does NOT exist in BTC. Strongly negative — anti-pattern.
+- Sessions: [2026-04-11 session 181]
+
+## H-669: Week-of-Month XS Momentum
+- Status: REJECTED
+- Idea: Run cross-sectional momentum only during the "best" week of each month.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Week 1 Sharpe 2.73, Week 2: -0.10, Week 3: 0.53, Week 4: -1.07, Week 5: 7.39. Highly variable — data-mined selection.
+- Notes: Week 5 has very few data points (inflated Sharpe). Selecting specific weeks is overfitting.
+- Sessions: [2026-04-11 session 181]
+
+## H-670: BTC Options Expiry Week Effect
+- Status: REJECTED
+- Idea: Short BTC on Friday (expiry pinning), long on weekend (post-expiry expansion).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: No statistically significant day-of-week effects. Thu most negative (mean -0.42%, p=0.126) but not significant. Already captured by H-039 DOW.
+- Notes: Options expiry doesn't create a tradable pattern at daily level.
+- Sessions: [2026-04-11 session 181]
+
+## H-671: BTC Funding Settlement Alpha
+- Status: REJECTED
+- Idea: Trade BTC around 8h funding settlement times (00:00/08:00/16:00 UTC). Trade significant hours.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1h
+- Result: Sharpe 0.230. WF 3/6. SH 0.156/0.330. Only Hour 22 significant (p=0.003). Strategy too weak.
+- Notes: Hour 22 (0.04%/hr) is significant but hourly alpha is too small to trade profitably. Already known from H-037 analysis.
+- Sessions: [2026-04-11 session 181]
+
+## H-672: BTC Weekend Drift
+- Status: REJECTED
+- Idea: Long weekend, short weekday (or vice versa). Weekend vs weekday differential.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: Sharpe 0.406. WF 3/5. SH -0.455/1.408 (FAIL — first half negative).
+- Notes: Weekend mean -0.01%, weekday +0.05%, diff not significant (p=0.756). Split-half failure.
+- Sessions: [2026-04-11 session 181]
+
+## H-673: Intra-Month Seasonality XS
+- Status: REJECTED
+- Idea: Rank assets by historical seasonal return pattern for current part of month (early/mid/late).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Sharpe 0.518. WF 1/3. SH -0.115/1.536 (FAIL — first half negative).
+- Notes: Walk-forward failure. Intra-month seasonal patterns are not stable enough for cross-sectional ranking.
+- Sessions: [2026-04-11 session 181]
+
+## H-674: BTC Quarterly Options Expiry Effect
+- Status: REJECTED
+- Idea: Long BTC for 3 days after quarterly options expiry (last Friday of Mar/Jun/Sep/Dec).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: 3-day post-expiry mean +0.15%, t=0.15, p=0.885. N=8 (insufficient data).
+- Notes: Only 8 quarterly expiries in 2 years. No effect. Insufficient sample size.
+- Sessions: [2026-04-11 session 181]
+
+## H-675: BTC Monthly Momentum
+- Status: REJECTED
+- Idea: Long BTC if prior N months positive, short if negative. Monthly time-series momentum.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D (monthly signal)
+- Result: Best 6mo lookback: Sharpe 0.680. WF 2/3. SH 1.774/-0.454 (FAIL — second half negative).
+- Notes: All lookbacks (1mo: 0.32, 2mo: 0.30, 3mo: 0.50, 6mo: 0.68) below threshold. Split-half failure on best.
+- Sessions: [2026-04-11 session 181]
+
+## H-676: BTC Consecutive Day Contrarian
+- Status: CONFIRMED (deployed session 181)
+- Idea: After 3+ consecutive up days, short BTC. After 3+ consecutive down days, long BTC. Mean reversion.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: Count consecutive up/down days. Signal triggers when streak >= 3. Contrarian direction.
+- Result:
+  - **Full Sharpe: 1.308**, Active Sharpe: 2.708
+  - **Ann return: 30.3%**, Max DD: -17.0%
+  - **Walk-forward: 5/5 positive** (0.754, 2.493, 4.245, 0.004, 3.079) — PERFECT
+  - **Split-half: 0.674/2.219** — PASS
+  - **Param robustness: 4/4 (100%)** — 2d (0.739), 3d (1.308), 4d (0.606), 5d (0.651)
+  - **Exposure: 23.6%** (flat ~76% of the time)
+  - **Correlation: H-012=-0.039, H-009=-0.154** — excellent diversifier
+- Notes: Pure mean-reversion BTC signal. Negative correlation with both momentum and trend strategies. Low exposure makes it a good overlay. 173 active trade days in 2 years.
+- Sessions: [2026-04-11 session 181]
+
+## H-677: BTC Crash Bounce
+- Status: CONFIRMED (deployed session 181)
+- Idea: Buy BTC after a >3% daily drop, hold for 2 days. Post-crash mean reversion.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: If yesterday's return < -3%, go long for 2 days. Otherwise flat.
+- Result:
+  - **Active Sharpe: 1.610**, Full Sharpe: 0.657
+  - **Walk-forward: 5/5 positive** (1.526, 0.573, 3.433, 2.961, 0.443) — PERFECT
+  - **Split-half: 0.731/0.582** — PASS
+  - **Param robustness: 16/20 (80%)**
+  - **Exposure: 16.6%** (only active after crashes)
+  - **Correlation: H-012=-0.166, H-009=-0.455** — strongly negative with trend
+- Notes: Excellent diversifier due to strong negative correlation with H-009 trend. Works because crypto crashes tend to overshoot and mean-revert within 2 days. 122 active trade days in 2 years.
+- Sessions: [2026-04-11 session 181]
+
+## H-678: Multi-Lookback Momentum XS
+- Status: REJECTED
+- Idea: Combine 5d+60d momentum z-scores as composite XS factor.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best (5,60) Sharpe 1.246. Just a variant of H-012 with mixed lookbacks. Not sufficiently different.
+- Notes: Composite of (5,60) beats (20,60) and (5,20,60). But Sharpe improvement over H-012 (1.11) is marginal and likely due to parameter mining.
+- Sessions: [2026-04-11 session 181]
+
+## H-679: BTC Vol Regime Switch
+- Status: CONFIRMED (deployed session 181)
+- Idea: Follow BTC 5d trend when vol expanding (5d/30d ratio > 1). Fade trend when contracting.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: Short vol (5d) / long vol (30d) ratio determines regime. Momentum in high vol, contrarian in low vol.
+- Result:
+  - **Sharpe: 1.464**, Ann: 68.8%, Max DD: -30.1%
+  - **Walk-forward: 4/5 positive** (4.531, 1.340, 0.959, 1.904, -0.162)
+  - **Split-half: 1.825/1.042** — STRONG PASS
+  - **Param robustness: 21/24 (88%)**
+  - **Correlation: H-012=0.023, H-009=0.241, H-676=0.101**
+- Notes: Strongest BTC TS strategy found yet. Always in position. Near-zero H-012 correlation. Moderate H-009 correlation (0.241) but fundamentally different signal (vol regime vs trend). Key insight: momentum works in vol expansions, contrarian works in vol contractions.
+- Sessions: [2026-04-11 session 181]
+
+## H-680: Return-Volume Convergence XS
+- Status: CONFIRMED (deployed session 181)
+- Idea: Long assets where price AND volume move together (confirmed momentum). Short where both decline.
+- Instrument: futures (14 perps)
+- Timeframe: 1D, 3-day rebalance
+- Logic: Z-score price momentum + volume momentum. Rank composite. L4/S4.
+- Result:
+  - **Sharpe: 1.486** (LB20_N4_R3)
+  - **Walk-forward: 4/5 positive**
+  - **Split-half: 1.835/1.039** — PASS
+  - **Param robustness: 27/30 (90%)**
+  - **Correlation: H-012=0.264** — moderate but acceptable
+- Notes: Volume-confirmed momentum is a genuine signal improvement over pure price momentum. The volume confirmation reduces false signals. 3-day rebalance is more frequent than H-012 (5d). H-012 corr 0.264 shows they capture different aspects of momentum.
+- Sessions: [2026-04-11 session 181]
+
+## H-681: Rolling Correlation Alpha XS
+- Status: REJECTED
+- Idea: Trade assets decorrelating/recorrelating with BTC.
+- Instrument: futures (13 non-BTC perps)
+- Timeframe: 1D
+- Result: LB20 decorrelating Sharpe 1.957 but recorrelating has -1.957 (perfect mirror). Only 2/6 param combos have consistent direction. Not robust.
+- Notes: The signal is purely directional — same signal with opposite sign produces exactly opposite results. This means it's capturing market direction, not a real factor.
+- Sessions: [2026-04-11 session 181]
+
+## H-682: PCA Residual Momentum XS
+- Status: REJECTED
+- Idea: Market-factor-neutral momentum using PCA residuals.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Max Sharpe 0.774 (LB60). All n_components give identical results (suspicious). Below 0.8 threshold.
+- Notes: PCA doesn't add value — the market factor in crypto is so dominant that residual momentum is noise.
+- Sessions: [2026-04-11 session 181]
+
+## H-683: BTC Gap-and-Follow TS
+- Status: REJECTED
+- Idea: If first 4h candle is positive, hold long for rest of day (intraday momentum continuation).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 4h/1D
+- Result: Best 4h_follow Sharpe 0.287. WF 4/6. SH 0.619/-0.098 (FAIL — second half negative).
+- Notes: Intraday continuation signal is weak at 4h level. Already captured better by H-535 (6h intraday session momentum).
+- Sessions: [2026-04-11 session 181]

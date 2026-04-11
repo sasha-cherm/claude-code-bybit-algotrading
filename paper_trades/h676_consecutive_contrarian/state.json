@@ -1,0 +1,19 @@
+{
+  "started": "2026-04-11T05:29:02.196326+00:00",
+  "capital": 10000,
+  "initial_capital": 10000,
+  "position": 0,
+  "entry_price": 0,
+  "signal": 0,
+  "last_date": "2026-04-11",
+  "total_trades": 0,
+  "equity": 10000,
+  "equity_history": [
+    {
+      "time": "2026-04-11T05:29:02.196336+00:00",
+      "equity": 10000,
+      "btc_price": 72794.8,
+      "signal": 0
+    }
+  ]
+}

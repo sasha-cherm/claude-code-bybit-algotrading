@@ -1,0 +1,57 @@
+{
+  "started": "2026-04-11T05:29:33.918071+00:00",
+  "initial_capital": 10000,
+  "capital": 9995.0,
+  "positions": {
+    "BTC": {
+      "qty": 0.017170329670329672,
+      "entry_price": 72800.0,
+      "side": "LONG"
+    },
+    "ETH": {
+      "qty": 0.5591890416841879,
+      "entry_price": 2235.38,
+      "side": "LONG"
+    },
+    "DOGE": {
+      "qty": 13393.33547626701,
+      "entry_price": 0.09333,
+      "side": "LONG"
+    },
+    "ARB": {
+      "qty": 10878.078496214428,
+      "entry_price": 0.11491,
+      "side": "LONG"
+    },
+    "SOL": {
+      "qty": -14.838556505223172,
+      "entry_price": 84.24,
+      "side": "SHORT"
+    },
+    "DOT": {
+      "qty": -972.0062208398133,
+      "entry_price": 1.286,
+      "side": "SHORT"
+    },
+    "OP": {
+      "qty": -11061.946902654867,
+      "entry_price": 0.113,
+      "side": "SHORT"
+    },
+    "ATOM": {
+      "qty": -697.9341150195422,
+      "entry_price": 1.791,
+      "side": "SHORT"
+    }
+  },
+  "last_rebal_date": "2026-04-11",
+  "rebal_count": 1,
+  "total_trades": 8,
+  "equity": 9995.0,
+  "equity_history": [
+    {
+      "time": "2026-04-11T05:29:33.918083+00:00",
+      "equity": 9995.0
+    }
+  ]
+}

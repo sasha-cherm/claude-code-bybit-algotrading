@@ -718,16 +718,58 @@ Demo eq: estimated ~$97k. BTC spot ~$72,799 (+1.3% 24h). 11 open positions.
 - **Correlation**: **0.052** H-012 (near-zero), 0.404 H-009 (moderate), 0.120 BTC direction.
 - **Logic**: Trades based on 30-day return distribution shape — positive skew (>0.5) → long, negative skew (<-0.5) → short. Long 30%, Short 15%, Flat 55%.
 
-## Portfolio Summary (mark-to-market 2026-04-11 session 180, 01:00 UTC)
-- **Bybit Demo**: ~$97k (BTC $72,799). BTC spot ~$72,799 (+1.3% 24h).
-- **Total internal MTM (75 runners)**: 75 runners (74+1 new H-657). **30/74 positive** (41%, up from 35%). Avg PnL **-0.18%**.
-- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.04%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
-- **H-063**: $9,624 (-3.76%). FLAT. Awaiting trade 3 entry.
-- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%), H-063(-3.76%), H-355(-3.44%), H-219(-3.34%), H-046(-3.18%), H-342(-2.82%)
-- **Research (session 180)**: 32 new hypotheses (H-636–H-667). **1 CONFIRMED+deployed** (H-657 BTC Realized Skew — Sharpe 0.947, 98% param robust). **1 CONFIRMED not deployed** (H-666 Multi-Asset Skew Portfolio — inferior to H-657 BTC-only). **2 BORDERLINE** (H-658 4h XS, H-665 SOL Skew). 28 REJECTED. **667 total hypotheses.**
-- **Key findings**: (1) 4h TS strategies do NOT transfer from BTC to altcoins — ETH/SOL/DOGE/XRP/AVAX/LINK all fail. (2) Realized skew is BTC-specific — ETH skew (Sharpe 0.189) and SOL skew (SH fails) don't work. (3) Funding rate TS doesn't work for individual coins. (4) Higher-order moments (kurtosis, Hurst, autocorrelation, tail ratio) are not predictive. (5) ETH/BTC ratio, monthly calendar, BTC dominance — no edges.
-- **AUTOMATED:** Paper trades hourly via cron (75 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades. H-063 trade 3 entry. Explore options strategies (once IV data >60 days), on-chain data, or micro-structure signals.
+### H-676: BTC Consecutive Day Contrarian — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — mean reversion, negative H-012 corr
+- **Position**: FLAT (last 3 days: -1.19%, +1.01%, +1.62% = MIXED)
+- **Mark equity**: $10,000 (+0.00%) — just deployed.
+- **Runner**: `paper_trades/h676_consecutive_contrarian/runner.py`
+- **Params**: 3 consecutive days, 50% capital. IS Sharpe 1.308, WF **5/5**, SH 0.674/2.219.
+- **Param robust**: **4/4 (100%)** — 2d (0.74), 3d (1.31), 4d (0.61), 5d (0.65).
+- **Correlation**: H-012=**-0.039**, H-009=**-0.154** — negative with both momentum and trend.
+- **Logic**: After 3+ consecutive up days → short. After 3+ consecutive down days → long. Exposure ~24%.
+
+### H-677: BTC Crash Bounce — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — excellent diversifier
+- **Position**: FLAT (no crash detected, yesterday +1.62%)
+- **Mark equity**: $10,000 (+0.00%) — just deployed.
+- **Runner**: `paper_trades/h677_crash_bounce/runner.py`
+- **Params**: threshold -3%, hold 2 days, 50% capital. Active Sharpe 1.610, WF **5/5**, SH 0.731/0.582.
+- **Param robust**: **16/20 (80%)**.
+- **Correlation**: H-012=**-0.166**, H-009=**-0.455** — strongly negative with trend, excellent diversifier.
+- **Logic**: Buy BTC after >3% daily drop, hold 2 days. Exposure ~17%.
+
+### H-679: BTC Vol Regime Switch — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — strongest BTC TS strategy
+- **Position**: LONG 0.069 BTC @ $72,800 (vol expanding + uptrend → momentum)
+- **Mark equity**: $9,998 (-0.02%) — just deployed.
+- **Runner**: `paper_trades/h679_vol_regime_switch/runner.py`
+- **Params**: short_vol=5d, long_vol=30d, trend=5d. IS Sharpe **1.464**, WF 4/5, SH **1.825/1.042**.
+- **Param robust**: **21/24 (88%)**.
+- **Correlation**: H-012=**0.023**, H-009=**0.241**, H-676=0.101.
+- **Logic**: Vol expanding → follow trend. Vol contracting → fade trend. Always in position. Ann 68.8%, DD -30.1%.
+
+### H-680: Return-Volume Convergence XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — volume-confirmed momentum
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: BTC, ETH, DOGE, ARB
+  - SHORT: SOL, DOT, OP, ATOM
+- **Mark equity**: $9,995 (-0.05%) — just deployed.
+- **Runner**: `paper_trades/h680_vol_convergence/runner.py`
+- **Params**: LB20_N4_R3. IS Sharpe **1.486**, WF 4/5, SH 1.835/1.039.
+- **Param robust**: **27/30 (90%)**.
+- **Correlation**: H-012=**0.264** — moderate but acceptable, captures volume-confirmed subset of momentum.
+- **Logic**: Z-score(price_mom + volume_mom). L4/S4, 3-day rebalance. Long where price AND volume both rising.
+
+## Portfolio Summary (mark-to-market 2026-04-11 session 181, 05:00 UTC)
+- **Bybit Demo**: ~$97k (BTC $72,751).
+- **Total internal MTM (79 runners)**: 79 runners (75+4 new H-676/H-677/H-679/H-680). **30/74 positive** (41%). Avg PnL **-0.17%**.
+- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
+- **H-063**: $9,638 (-3.62%). Trade 3 active (75000C/71000P, $196 premium, exp Apr 17).
+- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%), H-063(-3.62%), H-355(-3.44%), H-219(-3.34%), H-046(-3.18%), H-342(-2.82%)
+- **Research (session 181)**: 16 new hypotheses (H-668–H-683). **4 CONFIRMED+deployed**. 12 REJECTED. **683 total hypotheses.**
+- **Key findings**: (1) Calendar effects don't work in crypto beyond DOW (H-039). Turn-of-month, week-of-month, options expiry, weekend drift, monthly momentum — all fail. (2) BTC mean reversion works: 3d contrarian (Sharpe 1.31) and crash bounce (Sharpe 1.61) both confirmed with negative H-009 correlation. (3) Vol regime switching is the strongest BTC TS signal found (Sharpe 1.46, near-zero H-012 corr). (4) Volume-confirmed momentum (convergence) beats pure price momentum.
+- **AUTOMATED:** Paper trades hourly via cron (79 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades. Explore options strategies (IV data ~22 days, need 60+), on-chain data.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+"""
+H-677: BTC Crash Bounce Paper Trade Runner
+Buy BTC after a >3% daily drop, hold for 2 days.
+Active Sharpe 1.610, WF 5/5, SH 0.731/0.582, 80% param robust.
+Corr: H-012=-0.166, H-009=-0.455 (negative — excellent diversifier).
+"""
+import json, os
+from datetime import datetime, timezone
+import numpy as np
+import pandas as pd
+import ccxt
+
+STATE_FILE = os.path.join(os.path.dirname(__file__), 'state.json')
+LOG_FILE = os.path.join(os.path.dirname(__file__), 'log.json')
+
+PARAMS = {
+    'crash_threshold': -0.03,
+    'hold_days': 2,
+    'position_frac': 0.5,
+}
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE) as f:
+            return json.load(f)
+    return {
+        'started': datetime.now(timezone.utc).isoformat(),
+        'capital': 10000,
+        'initial_capital': 10000,
+        'position': 0,
+        'entry_price': 0,
+        'signal': 0,
+        'last_date': None,
+        'total_trades': 0,
+        'equity': 10000,
+        'equity_history': [],
+        'hold_remaining': 0,
+    }
+
+def save_state(state):
+    with open(STATE_FILE, 'w') as f:
+        json.dump(state, f, indent=2)
+
+def append_log(entry):
+    log = []
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE) as f:
+            log = json.load(f)
+    log.append(entry)
+    with open(LOG_FILE, 'w') as f:
+        json.dump(log, f, indent=2)
+
+def run():
+    state = load_state()
+    now = datetime.now(timezone.utc)
+
+    print(f"=== H-677 BTC Crash Bounce Paper Trade Runner ===")
+    print(f"Time: {now.strftime('%Y-%m-%d %H:%M')} UTC")
+
+    ex = ccxt.bybit()
+    ohlcv = ex.fetch_ohlcv('BTC/USDT', '1d', limit=10)
+
+    df = pd.DataFrame(ohlcv, columns=['ts', 'open', 'high', 'low', 'close', 'volume'])
+    df['date'] = pd.to_datetime(df['ts'], unit='ms')
+    df.set_index('date', inplace=True)
+    df['ret'] = df['close'].pct_change()
+
+    btc_price = df['close'].iloc[-1]
+    today = df.index[-1].strftime('%Y-%m-%d')
+
+    if state['last_date'] == today:
+        if state['position'] != 0:
+            pnl = state['position'] * (btc_price - state['entry_price'])
+            equity = state['capital'] + pnl
+        else:
+            equity = state['capital']
+        pnl_pct = (equity / state['initial_capital'] - 1) * 100
+        state['equity'] = round(equity, 2)
+        state['equity_history'].append({
+            'time': now.isoformat(), 'equity': round(equity, 2),
+            'btc_price': btc_price, 'signal': state['signal']
+        })
+        if len(state['equity_history']) > 500:
+            state['equity_history'] = state['equity_history'][-500:]
+        save_state(state)
+        direction = 'LONG' if state['position'] > 0 else 'FLAT'
+        print(f"  Same day. Holding {direction}. Equity ${equity:,.2f} ({pnl_pct:+.2f}%)")
+        return
+
+    # Check yesterday's return (completed bar)
+    completed = df.iloc[:-1]
+    if len(completed) < 2:
+        print("  Not enough data")
+        save_state(state)
+        return
+
+    yesterday_ret = completed['ret'].iloc[-1]
+    crash_detected = yesterday_ret < PARAMS['crash_threshold']
+
+    print(f"  BTC: ${btc_price:.2f}")
+    print(f"  Yesterday return: {yesterday_ret:.2%}")
+    print(f"  Crash detected: {crash_detected} (threshold: {PARAMS['crash_threshold']:.0%})")
+
+    if state['position'] != 0:
+        pnl = state['position'] * (btc_price - state['entry_price'])
+        equity = state['capital'] + pnl
+    else:
+        equity = state['capital']
+
+    # Decrement hold counter
+    hold_remaining = state.get('hold_remaining', 0)
+    if hold_remaining > 0:
+        hold_remaining -= 1
+
+    if crash_detected:
+        hold_remaining = PARAMS['hold_days']
+        new_signal = 1
+    elif hold_remaining > 0:
+        new_signal = 1
+    else:
+        new_signal = 0
+
+    print(f"  Hold remaining: {hold_remaining} days")
+    print(f"  Signal: {new_signal} ({'LONG' if new_signal > 0 else 'FLAT'})")
+
+    old_signal = state['signal']
+    if new_signal != old_signal:
+        if state['position'] != 0:
+            pnl = state['position'] * (btc_price - state['entry_price'])
+            state['capital'] += pnl
+            cost = abs(state['position']) * btc_price * 0.0005
+            state['capital'] -= cost
+            state['total_trades'] += 1
+            append_log({
+                'type': 'close', 'time': now.isoformat(),
+                'btc_price': btc_price, 'position': state['position'],
+                'entry_price': state['entry_price'],
+                'pnl': round(pnl, 2), 'cost': round(cost, 2),
+            })
+            print(f"  Closed LONG: PnL ${pnl:.2f}")
+            state['position'] = 0
+            state['entry_price'] = 0
+
+        if new_signal == 1:
+            notional = state['capital'] * PARAMS['position_frac']
+            position_size = notional / btc_price
+            cost = position_size * btc_price * 0.0005
+            state['capital'] -= cost
+            state['position'] = position_size
+            state['entry_price'] = btc_price
+            state['total_trades'] += 1
+            append_log({
+                'type': 'open', 'time': now.isoformat(),
+                'btc_price': btc_price, 'direction': 'LONG',
+                'position': position_size, 'notional': notional,
+                'trigger_ret': yesterday_ret,
+            })
+            print(f"  Opened LONG {position_size:.6f} BTC @ ${btc_price:.2f}")
+
+        state['signal'] = new_signal
+    else:
+        direction = 'LONG' if state['position'] > 0 else 'FLAT'
+        print(f"  No signal change. Holding {direction}.")
+
+    if state['position'] != 0:
+        pnl = state['position'] * (btc_price - state['entry_price'])
+        equity = state['capital'] + pnl
+    else:
+        equity = state['capital']
+
+    pnl_pct = (equity / state['initial_capital'] - 1) * 100
+    state['equity'] = round(equity, 2)
+    state['hold_remaining'] = hold_remaining
+    state['equity_history'].append({
+        'time': now.isoformat(), 'equity': round(equity, 2),
+        'btc_price': btc_price, 'signal': new_signal,
+    })
+    if len(state['equity_history']) > 500:
+        state['equity_history'] = state['equity_history'][-500:]
+    state['last_date'] = today
+    save_state(state)
+
+    direction = 'LONG' if state['position'] > 0 else 'FLAT'
+    print(f"\n  Equity:  ${equity:,.2f} ({pnl_pct:+.2f}%)")
+    if state['position'] != 0:
+        print(f"  Position: {direction} {abs(state['position']):.6f} BTC @ ${state['entry_price']:.2f}")
+    else:
+        print(f"  Position: FLAT")
+    print(f"  Trades: {state['total_trades']}")
+
+if __name__ == '__main__':
+    run()
