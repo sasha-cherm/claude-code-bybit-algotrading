@@ -1,17 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$73,041.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$95,490 (-4.51%). BTC spot ~$73,335.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 83 runners active. Session 184. **32/80 positive** (40%), avg **-0.15%**.
-- **H-063**: ~$9,652 (-3.48%). Iron condor active (70K/75.5K, exp Apr 13).
+- **Internal paper trades:** 87 runners active. Session 185. **32/83 positive** (39%), avg **-0.15%**.
+- **H-063**: ~$9,659 (-3.41%). Iron condor (70K/75.5K) expires Apr 13 — BTC within strikes.
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%).
-- **Session 184 research**: 24 new hypotheses (H-716–H-739). **3 deployed** (H-726 Max DD, H-733 DV Change, H-736 Volume Delta). **739 total hypotheses.**
-- **H-736 Volume Delta**: Sharpe **1.703**, WF **6/6 (PERFECT)**, SH corrected PASS, 96% param robust, H-012 corr 0.366. Best new XS factor. Buy/sell pressure from OHLC microstructure.
-- **H-726 Max DD Factor**: Sharpe 0.980, WF **6/6 (PERFECT)**, 100% param robust. Contrarian DD-based factor.
-- **H-733 DV Change**: Sharpe 1.262, 97% robust, H-012 corr **0.046** (near-zero — excellent diversifier).
-- **AUTOMATED:** Paper trades hourly via cron (83 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-726/H-733/H-736). Explore sentiment data, liquidation signals.
+- **Session 185 research**: 24 new hypotheses (H-740–H-763). **4 deployed** (H-754 Lead-Lag, H-759 ADX Trend, H-761 Gap, H-763 Mom-Vol Ratio). **763 total hypotheses.**
+- **H-759 ADX Trend Strength**: IS Sharpe **1.723**, WF **5/5**, SH p=0.016, H-012 corr 0.064. Best new signal.
+- **H-761 Gap Signal**: IS Sharpe **1.673**, WF **5/5**, SH p=0.019, H-012 corr 0.054.
+- **H-754 Lead-Lag**: IS Sharpe 1.232, WF **4/4**, H-012 corr **-0.014**. Novel microstructure signal.
+- **AUTOMATED:** Paper trades hourly via cron (87 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor new deployments. H-063 expires tomorrow. Explore non-price data or multi-TF combos.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -23,15 +23,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 174) archived to `memory/session_archive.md`._
-
-### Session 2026-04-10 review+deploy+research (session 175)
-- Goal: Review + Deploy + Research — MTM update, 19 new backtests, H-528 deployment
-- Focus: Paper trade MTM (BTC $72,128), expanded universe testing, novel signal categories (H-513–H-531)
-- Done: 67 runners (66→67). **26/66 positive** (avg -0.11%). Demo $94,608 (-5.39%). H-063 at -4.91% (trade 2 expires 08:00 UTC, expected -$574 loss). H-496 at +0.22% (day 1). **Expanded universe**: Tested 27-asset momentum (Sharpe 0.26) and size (0.77) — both worse than 14-asset. **Batch 1 (H-513–H-522)**: H-518 Regime Mom (Sharpe 1.36, WF 6/6 but corr 0.793 H-012 = redundant). **H-519 Vol Shock** (Sharpe 1.52, 100% robust, corr -0.041 H-012, but 0.704 corr H-336 = redundant). H-522 PVT Slope (Sharpe 0.98, 100% robust, corr 0.425 H-012). 7 REJECTED. **Batch 2 (H-523–H-531)**: **H-528 Range Expansion CONFIRMED+deployed** (IS 0.849, 100% param robust 96/96, WF 4/6, SH PASS, corr **-0.001** H-012 — perfect diversifier). H-530 DV Share passes all tests but corr 0.934 with H-031 = identical. 8 REJECTED. **531 total hypotheses.**
-- Next: Await Q-005 answer. H-063 settles today 08:00. Monitor H-496/H-528. Explore higher-frequency or different instruments.
-- Questions added: none
-- Self-modifications: H-528 runner created, added to orchestrator. Archived session 165. (session 175)
+_Older sessions (bootstrap through 175) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-10 review+deploy+research (session 176)
 - Goal: Review + Deploy + Research — MTM update, H-063 settlement check, 16 new BTC time-series backtests, 3 deployments
@@ -104,3 +96,11 @@ _Older sessions (bootstrap through 174) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor H-726/H-733/H-736. Explore sentiment data, liquidation signals, or non-price data sources.
 - Questions added: none
 - Self-modifications: H-726/H-733/H-736 runners created, added to orchestrator. Archived session 174. (session 184)
+
+### Session 2026-04-12 review+deploy+research (session 185)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 4 new deployments
+- Focus: Paper trade MTM (BTC $73,335), residual/idiosyncratic signals (H-740–H-747), correlation dynamics (H-748–H-755), novel constructions (H-756–H-763)
+- Done: 87 runners (83→87). **32/83 positive** (39%). Avg **-0.15%**. Demo ~$95,490 (-4.51%). **Batch 1 (H-740–H-747, residual/idio)**: All 8 REJECTED. Idiosyncratic vol, residual momentum, skewness, beta deviation, tracking error, info ratio, residual reversal, systematic risk share — crypto market factor too dominant, residuals are noise. H-745 Info Ratio decent IS (0.983) but WF 1/4. **Batch 2 (H-748–H-755, correlation dynamics)**: **H-754 CONFIRMED+deployed** (Lead-Lag, IS 1.232, WF **4/4**, SH p=0.089, H-012 corr **-0.014**). H-750 Relative RSI (Sharpe 0.918, SH fail). H-753 Corr Concentration (WF 1/4). 6 REJECTED. **Batch 3 (H-756–H-763, novel constructions)**: **H-759 CONFIRMED+deployed** (ADX Trend Strength, IS **1.723**, WF **5/5**, SH p=0.016, corr 0.064). **H-761 CONFIRMED+deployed** (Gap Signal, IS **1.673**, WF **5/5**, SH p=0.019, corr 0.054). **H-763 CONFIRMED+deployed** (Mom-Vol Ratio, IS 1.239, WF 3/5, SH p=0.085, corr 0.027). H-757 Return Consistency borderline (SH p=0.103). H-758 Momentum Persistence param-fragile. **763 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 87 runners (esp. H-754/H-759/H-761/H-763). H-063 expires tomorrow. Explore multi-TF combinations, sentiment APIs.
+- Questions added: none
+- Self-modifications: H-754/H-759/H-761/H-763 runners created, added to orchestrator. Archived session 175. (session 185)

@@ -7949,3 +7949,217 @@
 - Result: IS Sharpe 1.037, WF 4/6, SH 1.426/0.645 (PASS basic). H-012 corr 0.295.
 - Notes: Novel but depends on BTC being in universe. Not validated with corrected SH.
 - Sessions: [2026-04-11 session 184]
+
+## H-740: Idiosyncratic Volatility XS
+- Status: REJECTED
+- Idea: Short high-idiosyncratic-vol assets (residual vol after removing market beta).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.336. No edge.
+- Notes: Low-vol anomaly doesn't extend to residual vol in crypto.
+- Sessions: [2026-04-12 session 185]
+
+## H-741: Residual Momentum XS
+- Status: REJECTED
+- Idea: Cumulative residual return after beta-adjusting for market.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.568, WF 1/4 (fail). 100% param robust but no OOS edge.
+- Notes: Market factor too dominant in crypto — residuals are noise.
+- Sessions: [2026-04-12 session 185]
+
+## H-742: Idiosyncratic Skewness XS
+- Status: REJECTED
+- Idea: Short positive-skew (lottery ticket) assets, long negative-skew.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.063. No edge.
+- Notes: Lottery preference anomaly doesn't exist in crypto cross-section.
+- Sessions: [2026-04-12 session 185]
+
+## H-743: Beta Deviation XS
+- Status: REJECTED
+- Idea: Short assets whose short-term beta exceeds long-term beta (mean revert).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.277. Below threshold.
+- Sessions: [2026-04-12 session 185]
+
+## H-744: Tracking Error XS
+- Status: REJECTED
+- Idea: Long assets with high tracking error vs market (independent movers).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.398. Below threshold.
+- Sessions: [2026-04-12 session 185]
+
+## H-745: Information Ratio XS
+- Status: REJECTED
+- Idea: Rank by mean residual return / residual volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.983, 100% param robust, WF 1/4 (fail).
+- Notes: Good IS but completely unstable OOS. Overfitting to in-sample residual patterns.
+- Sessions: [2026-04-12 session 185]
+
+## H-746: Residual Reversal XS
+- Status: REJECTED
+- Idea: Short-term reversal in idiosyncratic (beta-adjusted) returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.368. Below threshold.
+- Notes: Mean-reversion in residuals doesn't work in crypto.
+- Sessions: [2026-04-12 session 185]
+
+## H-747: Systematic Risk Share XS
+- Status: REJECTED
+- Idea: Long low-R² assets (idiosyncratic movers). R² of asset vs market.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0. Signal had computation issues (pandas chained assignment).
+- Sessions: [2026-04-12 session 185]
+
+## H-748: Correlation Breakaway XS
+- Status: REJECTED
+- Idea: Change in rolling correlation with BTC — decorrelating assets have momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.079. No edge.
+- Sessions: [2026-04-12 session 185]
+
+## H-749: Pairwise Correlation Change XS
+- Status: REJECTED
+- Idea: Average correlation change with all other assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.366. Negative edge.
+- Sessions: [2026-04-12 session 185]
+
+## H-750: Relative Strength RSI XS
+- Status: REJECTED
+- Idea: RSI of price relative to BTC (relative strength momentum/contrarian).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.918, 100% robust, WF 3/5, but SH p=0.200 (fail).
+- Notes: Good IS but statistically insignificant. Both momentum and contrarian tested.
+- Sessions: [2026-04-12 session 185]
+
+## H-751: Mean Distance XS
+- Status: REJECTED
+- Idea: Z-score of price vs rolling mean (contrarian).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.009. No edge at all.
+- Notes: Cross-sectional mean-reversion doesn't work in crypto (again confirmed).
+- Sessions: [2026-04-12 session 185]
+
+## H-752: Sector Rotation XS
+- Status: REJECTED
+- Idea: Return relative to sector average (L1 vs L2 vs meme rotation).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.156. Below threshold.
+- Notes: Crypto sectors too correlated for meaningful rotation signals.
+- Sessions: [2026-04-12 session 185]
+
+## H-753: Correlation Concentration XS
+- Status: REJECTED
+- Idea: Average absolute correlation with all other assets. Long decorrelated.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.827, 100% robust, WF 1/4 (fail).
+- Sessions: [2026-04-12 session 185]
+
+## H-754: Lead-Lag Signal XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Rank by lagged correlation with BTC — corr(asset_ret(t-1), BTC_ret(t)). Long assets that lead BTC.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: 30-day rolling correlation of each asset's t-1 return with BTC's t return. Long top 3, short bottom 3.
+- Result: IS Sharpe 1.232, Ann +61.7%, DD -34.7%. WF **4/4** mean 1.766. SH p=0.089 (PASS). 100% param robust.
+- H-012 corr: **-0.014** (near-zero — excellent diversifier).
+- Notes: Classic microstructure signal. Assets leading BTC by 1 day. Very strong WF performance.
+- Sessions: [2026-04-12 session 185]
+
+## H-755: Cross-Correlation Momentum XS
+- Status: REJECTED
+- Idea: Momentum of correlation with BTC (rising vs falling correlation).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.467. Below threshold.
+- Sessions: [2026-04-12 session 185]
+
+## H-756: Asymmetric Beta XS
+- Status: REJECTED
+- Idea: Downside beta minus upside beta. Short high downside beta.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.303. Below threshold.
+- Sessions: [2026-04-12 session 185]
+
+## H-757: Return Consistency XS
+- Status: REJECTED
+- Idea: Fraction of positive return days. Long consistent winners.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.171, 100% robust, WF 4/5, but SH p=0.103 (borderline fail).
+- Notes: Very close to passing all tests. Essentially a short-term momentum proxy.
+- Sessions: [2026-04-12 session 185]
+
+## H-758: Momentum Persistence XS
+- Status: REJECTED
+- Idea: Streak length of consecutive gains/losses.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.293, but param robust only 33% (fail).
+- Notes: Extremely parameter-sensitive — only works with specific rebal frequency.
+- Sessions: [2026-04-12 session 185]
+
+## H-759: ADX Trend Strength XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Long strong-trending assets (high ADX), short weak-trending.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: ADX(14) for each asset. Long top 3 (strongest trends), short bottom 3 (weakest).
+- Result: IS Sharpe **1.723**, Ann +75.6%, DD -28.4%. WF **5/5** mean 1.454. SH p=0.016 (PASS). 100% param robust.
+- H-012 corr: **0.064** (near-zero — excellent diversifier).
+- Notes: ADX captures trend strength regardless of direction. Best IS Sharpe in batch. All WF folds positive.
+- Sessions: [2026-04-12 session 185]
+
+## H-760: Volume Surprise XS
+- Status: REJECTED
+- Idea: Volume z-score — current volume vs rolling average.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.122, 67% robust, WF 2/5 (fail).
+- Sessions: [2026-04-12 session 185]
+
+## H-761: Gap Signal XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Open-to-previous-close gap. 5-day average gap as ranking signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (daily rebal)
+- Logic: Gap = (open - prev_close) / prev_close. 5-day rolling average. Long top 4 gaps, short bottom 4.
+- Result: IS Sharpe **1.673**, Ann +76.9%, DD -46.8%. WF **5/5** mean 1.512. SH p=0.019 (PASS). 100% param robust.
+- H-012 corr: **0.054** (near-zero — excellent diversifier).
+- Notes: Overnight/gap effect captures momentum alignment. Daily rebal is high turnover but backtested with fees.
+- Sessions: [2026-04-12 session 185]
+
+## H-762: Range Position XS
+- Status: REJECTED
+- Idea: Where in recent high-low range the price sits.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.823, 83% robust, WF 3/5, SH p=0.252 (fail).
+- Sessions: [2026-04-12 session 185]
+
+## H-763: Momentum-Vol Ratio XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Momentum normalized by volatility (signal-to-noise ratio).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: 20-day return / 20-day volatility. Long top 4 (highest SNR), short bottom 4.
+- Result: IS Sharpe 1.239, Ann +52.0%, DD -24.2%. WF 3/5 mean 0.701. SH p=0.085 (PASS). 100% param robust.
+- H-012 corr: **0.027** (near-zero — excellent diversifier).
+- Notes: Essentially a risk-adjusted momentum signal. Captures momentum quality not just magnitude.
+- Sessions: [2026-04-12 session 185]

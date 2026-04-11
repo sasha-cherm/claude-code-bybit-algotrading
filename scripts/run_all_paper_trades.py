@@ -105,6 +105,10 @@ RUNNERS = [
     ("H-726", ROOT / "paper_trades" / "h726_max_dd_factor" / "runner.py"),
     ("H-733", ROOT / "paper_trades" / "h733_dv_change" / "runner.py"),
     ("H-736", ROOT / "paper_trades" / "h736_volume_delta" / "runner.py"),
+    ("H-754", ROOT / "paper_trades" / "h754_lead_lag" / "runner.py"),
+    ("H-759", ROOT / "paper_trades" / "h759_adx_trend" / "runner.py"),
+    ("H-761", ROOT / "paper_trades" / "h761_gap_signal" / "runner.py"),
+    ("H-763", ROOT / "paper_trades" / "h763_mom_vol_ratio" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

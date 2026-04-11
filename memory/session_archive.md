@@ -1316,3 +1316,9 @@
 - Done: 66 runners (unchanged). 26/66 positive (avg -0.10%). Research batch 1 (H-497-H-504): All 8 REJECTED. Research batch 2 (H-505-H-512): All 8 REJECTED. 512 total hypotheses.
 - Next: Await Q-005 answer. Explore new data sources.
 - Self-modifications: Archived session 164. (session 174)
+
+### Session 2026-04-10 review+deploy+research (session 175)
+- Goal: Review + Deploy + Research — MTM update, 19 new backtests, H-528 deployment
+- Focus: Paper trade MTM (BTC $72,128), expanded universe testing, novel signal categories (H-513–H-531)
+- Done: 67 runners (66→67). 26/66 positive (avg -0.11%). Demo $94,608 (-5.39%). H-528 Range Expansion CONFIRMED+deployed. 531 total hypotheses.
+- Next: Await Q-005 answer. H-063 settles today 08:00. Monitor H-496/H-528.

@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-11 17:30 UTC):
-Demo eq: estimated ~$97k. BTC spot ~$73,041. 11 open positions.
+### Current Demo Status (as of 2026-04-12 session 185):
+Demo eq: ~$95,490 (-4.51%). BTC spot ~$73,335. 13 open positions.
 
 ---
 
@@ -806,17 +806,53 @@ Demo eq: estimated ~$97k. BTC spot ~$73,041. 11 open positions.
 - **Correlation**: H-012=0.366 (moderate).
 - **Logic**: Buy fraction = (close-open)/(high-low). Cumulative signed volume / total volume.
 
-## Portfolio Summary (mark-to-market 2026-04-11 session 184, 17:30 UTC)
-- **Bybit Demo**: ~$97k (BTC $73,041).
-- **Total internal MTM (83 runners)**: 83 runners (80+3 new). **32/80 positive** (40%). Avg PnL **-0.15%**.
+### H-754: Lead-Lag Signal XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG: NEAR, OP, ATOM (lead BTC by 1 day)
+  - SHORT: DOT, LINK, ADA (lag BTC)
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h754_lead_lag/runner.py`
+- **Params**: CW30_R3_N3. IS Sharpe 1.232, WF **4/4**, SH p=0.089. H-012 corr **-0.014**.
+
+### H-759: ADX Trend Strength XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG: DOT, OP, ARB (strongest trends)
+  - SHORT: ETH, LINK, DOGE (weakest trends)
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h759_adx_trend/runner.py`
+- **Params**: ADX14_R3_N3. IS Sharpe **1.723**, WF **5/5**, SH p=0.016. H-012 corr 0.064.
+
+### H-761: Gap Signal XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: BTC, ETH, SOL, SUI (positive overnight gaps)
+  - SHORT: NEAR, OP, ARB, ATOM (negative gaps)
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h761_gap_signal/runner.py`
+- **Params**: GW5_R1_N4. IS Sharpe **1.673**, WF **5/5**, SH p=0.019. H-012 corr 0.054.
+
+### H-763: Momentum-Vol Ratio XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: ARB, ETH, BTC, NEAR (highest SNR)
+  - SHORT: OP, SOL, XRP, DOT (lowest SNR)
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h763_mom_vol_ratio/runner.py`
+- **Params**: M20_V20_R5_N4. IS Sharpe 1.239, WF 3/5, SH p=0.085. H-012 corr 0.027.
+
+## Portfolio Summary (mark-to-market 2026-04-12 session 185)
+- **Bybit Demo**: ~$95,490 (-4.51%, BTC $73,335).
+- **Total internal MTM (87 runners)**: 87 runners (83+4 new). **32/83 positive** (39%). Avg PnL **-0.15%**.
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
-- **H-063**: ~$9,652 (-3.48%). Iron condor active (70K/75.5K, exp Apr 13).
+- **H-063**: ~$9,659 (-3.41%). Iron condor (70K/75.5K) expires Apr 13 — BTC at $73,335 is within strikes.
 - **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%)
-- **Research (session 184)**: 24 new hypotheses (H-716–H-739). **3 deployed** (H-726 Max DD, H-733 DV Change, H-736 Volume Delta). 1 CONFIRMED not deployed (H-724 redundant). 4 BORDERLINE (H-727/H-731/H-738/H-739). 16 REJECTED. **739 total hypotheses.**
-- **Key findings**: (1) Basis/carry signals fail in crypto — spot-perp spread is too tight and noisy. (2) H-736 Volume Delta is the strongest new XS factor (Sharpe 1.703, 6/6 WF, SH PASS). (3) H-726 Max DD has perfect 6/6 WF with 100% param robustness. (4) H-733 Dollar Volume Change has near-zero momentum correlation (0.046).
-- **Meta-conclusions**: Basis = dead end. Novel OHLCV microstructure factors (volume delta, DD contrarian) are productive. Interaction effects (vol×mom) are mostly redundant with component signals.
-- **AUTOMATED:** Paper trades hourly via cron (83 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-726/H-733/H-736). Explore sentiment data, liquidation signals, or non-price data sources.
+- **Research (session 185)**: 24 new hypotheses (H-740–H-763). **4 deployed** (H-754 Lead-Lag, H-759 ADX Trend, H-761 Gap Signal, H-763 Mom-Vol Ratio). **763 total hypotheses.**
+- **Key findings**: (1) Residual/idiosyncratic signals completely fail in crypto — market factor too dominant, residuals are noise. (2) Correlation dynamics mostly fail — crypto is too correlated for meaningful cross-asset correlation signals. (3) ADX Trend Strength (Sharpe 1.723, WF 5/5) is the best new signal. (4) Lead-Lag is a novel microstructure signal with near-zero momentum correlation.
+- **Meta-conclusions**: Factor model-based signals (CAPM residuals, idio vol, beta decomposition) don't apply to crypto. Trend strength, overnight gaps, and lead-lag relationships are the new productive categories.
+- **AUTOMATED:** Paper trades hourly via cron (87 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. new 4). H-063 iron condor expires tomorrow. Explore non-price data or multi-timeframe combinations.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
