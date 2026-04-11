@@ -7578,3 +7578,156 @@
 - Result: IS Sharpe 2.107 (raw) → -0.265 (lagged). Look-ahead + redundant (H-012 corr 0.808).
 - Notes: Both look-ahead (4h component) and redundant (0.808 corr with plain momentum). After lag: complete failure. The 4h component was the sole source of apparent alpha, and it was all look-ahead.
 - Sessions: [2026-04-11 session 182]
+
+## H-700: OI Velocity (2nd Derivative) XS
+- Status: REJECTED
+- Idea: Acceleration of OI change — rate of change of OI growth rate. Assets with accelerating OI may see continuation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Data: 14 assets, 734 days (common OHLCV + OI period).
+- Result: IS 100% (high_long, LB30), best LB30_R7_N4 Sharpe 0.871, Ann +29.4%, DD -30.0%. Params 6/6 (100%). **WF 1/4** — poor OOS. SH PASS (1.0/0.1). H-012 corr -0.033.
+- Notes: Good IS but WF kills it. OI acceleration has no persistent XS predictive power despite near-zero H-012 corr.
+- Sessions: [2026-04-11 session 183]
+
+## H-701: OI-Volume Ratio (Positioning Density) XS
+- Status: BORDERLINE (SH FAIL)
+- Idea: Rank by OI / rolling average volume. High ratio = many positions held relative to activity = crowded.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 83% (low_long), best LB10_R5_N3 Sharpe 0.477, Ann +23.0%, DD -85.5%. Params 5/6 (83%). **WF 4/5** (mean 1.236). SH FAIL (H1=-0.519, H2=1.470). H-012 corr -0.003 (excellent diversifier).
+- Notes: Outstanding WF but SH failure and low IS Sharpe. Interesting diversifier concept but unstable in first half of data. Not deployed.
+- Sessions: [2026-04-11 session 183]
+
+## H-702: OI-Funding Interaction (Crowding) XS
+- Status: REJECTED
+- Idea: OI growth × funding rate as composite crowding signal. High crowding = contrarian trade.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 83% (high_long, LB10), best LB10_R7_N3 Sharpe 1.077. WF 2/5. SH FAIL (H1=1.433, H2=-0.211). H-012 corr 0.091.
+- Notes: WF fails. Crowding signal (OI × funding) doesn't predict XS returns. LB20 and LB30 also fail IS.
+- Sessions: [2026-04-11 session 183]
+
+## H-703: OI Surprise (Residual) XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-11)
+- Idea: OI change minus volume change. Assets where OI grows LESS than volume (low positioning density relative to activity) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebalance every 7 days)
+- Logic: Compute OI_pct_change(15) - Volume_pct_change(15). Rank XS. Long bottom 3 (lowest surprise), short top 3.
+- Data: 14 assets, 734 daily bars + real OI history from Bybit V5 API.
+- Result:
+  - **IS**: 83% positive (25/30 expanded grid), best **LB15_R7_N3** Sharpe **1.578**, +66.5% ann, -38.2% DD
+  - **WF**: **5/6** positive (83%), mean **1.422** — outstanding
+  - **Split-half**: H1=**1.409**, H2=**1.332** — PASS (both strong)
+  - **Param robustness**: All 6 R×N neighbors positive (100%), range 1.225-1.578
+  - **Correlation**: H-012 **-0.010** — near-zero (excellent diversifier)
+  - **Yearly consistency**: 2024 Sharpe 1.59, 2025 Sharpe 1.57, 2026 Sharpe 1.85
+- Notes: First strategy using real OI data from Bybit. Signal captures informed directional trading (high volume without proportional position-building). LB15 is optimal; LB10 has much worse DD (-84.6%). Deployed: LONG AVAX/ARB/SUI, SHORT OP/NEAR/DOT.
+- Sessions: [2026-04-11 session 183]
+
+## H-704: OI Mean Reversion (Percentile Rank) XS
+- Status: BORDERLINE (SH FAIL)
+- Idea: OI percentile rank over rolling window. Assets at extreme OI levels revert.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 100% (low_long, LB120), best LB120_R3_N3 Sharpe 0.374. Params 6/6 (100%). WF 3/4. SH FAIL (H1=-0.625, H2=0.743). H-012 corr -0.007.
+- Notes: Low IS Sharpe (0.374) despite 100% params. OI percentile rank is too slow to be useful. Not deployed.
+- Sessions: [2026-04-11 session 183]
+
+## H-705: BTC OI Breakout TS
+- Status: REJECTED
+- Idea: Long BTC when OI > OI_MA and Price > Price_MA. Combined conviction signal.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.295, Ann +10.9%, DD -43.6%. Too low for further testing.
+- Notes: Simple OI + price MA crossover doesn't work for BTC timing. Signal too noisy.
+- Sessions: [2026-04-11 session 183]
+
+## H-706: BTC OI-Price Regime TS
+- Status: REJECTED
+- Idea: 4-quadrant model: (OI up/down) × (Price up/down) → different positions. Confirmed breakout, capitulation buying, etc.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.073, Ann -3.1%, DD -46.5%. Negative Sharpe.
+- Notes: OI-Price quadrant model is noise for BTC timing. Regime classification doesn't predict next-day returns.
+- Sessions: [2026-04-11 session 183]
+
+## H-707: Multi-Asset OI Momentum TS
+- Status: BORDERLINE (50% param robust)
+- Idea: Average OI growth across top-N assets as macro timing signal for BTC.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.956, Ann +44.3%, DD -80.6%. Params 5/10 (50%). WF 4/5 (mean 1.291). SH PASS (0.099/1.989).
+- Notes: Interesting WF performance but only 50% param robust. Huge DD (-80.6%). SH passes but H1 barely positive (0.099). Not deployed.
+- Sessions: [2026-04-11 session 183]
+
+## H-708: BTC OI Divergence TS
+- Status: REJECTED
+- Idea: Trade divergences between price new highs/lows and OI new highs/lows. Classic technical divergence.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.338, Ann -10.0%, DD -40.6%. Negative Sharpe.
+- Notes: Price-OI divergence is not predictive for BTC timing. Classic TA divergence fails.
+- Sessions: [2026-04-11 session 183]
+
+## H-709: BTC Liquidation Proxy TS
+- Status: REJECTED
+- Idea: Detect rapid OI drop + price drop (liquidation cascade), buy the bounce. Hold for N days.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.628, Ann +16.3%, DD -26.8%. Params 15/27 (56%). WF 2/5. SH PASS (1.0/0.07). H-009 corr -0.358.
+- Notes: Liquidation bounces exist (interesting negative H-009 correlation) but too infrequent and inconsistent for reliable strategy. WF 2/5 kills it.
+- Sessions: [2026-04-11 session 183]
+
+## H-710: BTC Funding-OI Composite TS
+- Status: BORDERLINE (low Sharpe, SH FAIL)
+- Idea: Z-score composite of OI growth + funding rate + price momentum. Contrarian at extremes.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.303, Ann +10.9%, DD -33.5%. Params 3/8 (38%). WF 3/5. SH FAIL (0.465/-0.310). H-009 corr -0.430.
+- Notes: Excellent negative trend correlation (-0.43) but signal too weak. Funding-OI composite doesn't add enough value over individual signals.
+- Sessions: [2026-04-11 session 183]
+
+## H-711: ETH/BTC OI Ratio TS
+- Status: REJECTED
+- Idea: ETH OI / BTC OI ratio change as altcoin rotation signal. Rising ratio = altcoin season.
+- Instrument: futures (ETH/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.265, Ann +12.0%, DD -63.9%. Too low.
+- Notes: ETH/BTC OI ratio doesn't predict ETH performance. Altcoin rotation via OI ratio fails.
+- Sessions: [2026-04-11 session 183]
+
+## H-712: Aggregate OI Expansion TS
+- Status: REJECTED
+- Idea: Total OI in USD across all 14 assets as macro timing signal. Expanding OI = bullish.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.261, Ann +8.7%, DD -33.8%. Too low.
+- Notes: Aggregate OI growth is too noisy for BTC timing. Total positioning doesn't predict returns.
+- Sessions: [2026-04-11 session 183]
+
+## H-713: OI-Volatility Regime TS
+- Status: REJECTED
+- Idea: Trade BTC based on OI-vol regimes. High OI + low vol = squeeze → breakout. High OI + high vol = crowded → revert.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.115, Ann -1.8%, DD -26.3%. Negative.
+- Notes: OI-vol regime classification is noise. Squeeze detection via OI + vol percentiles doesn't work.
+- Sessions: [2026-04-11 session 183]
+
+## H-714: BTC OI Percentile Timing TS
+- Status: REJECTED
+- Idea: Contrarian trade at OI extremes. Sell when OI is at 90th percentile (crowded), buy at 10th (uncrowded).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.299, Ann +7.9%, DD -26.3%. Too low.
+- Notes: OI percentile timing is too slow and unreliable. Extreme OI doesn't consistently predict BTC returns.
+- Sessions: [2026-04-11 session 183]
+
+## H-715: OI Breadth TS
+- Status: BORDERLINE (SH FAIL)
+- Idea: Fraction of assets with rising OI (breadth) as macro signal. High breadth = broad participation = bullish.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.780, Ann +17.3%, DD -16.5%. Params 10/12 (83%). WF 3/5. SH FAIL (1.350/-0.475). H-009 corr 0.205.
+- Notes: Decent IS and params but SH fails. OI breadth signal works in second half only (H2=-0.475). Moderate trend correlation. Not deployed.
+- Sessions: [2026-04-11 session 183]

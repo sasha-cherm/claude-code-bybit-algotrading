@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-11 09:00 UTC):
-Demo eq: estimated ~$97k. BTC spot ~$72,665 (-0.2% since last). 11 open positions.
+### Current Demo Status (as of 2026-04-11 13:00 UTC):
+Demo eq: estimated ~$97k. BTC spot ~$72,665. 11 open positions.
 
 ---
 
@@ -760,16 +760,28 @@ Demo eq: estimated ~$97k. BTC spot ~$72,665 (-0.2% since last). 11 open position
 - **Correlation**: H-012=**0.264** — moderate but acceptable, captures volume-confirmed subset of momentum.
 - **Logic**: Z-score(price_mom + volume_mom). L4/S4, 3-day rebalance. Long where price AND volume both rising.
 
-## Portfolio Summary (mark-to-market 2026-04-11 session 181, 05:00 UTC)
-- **Bybit Demo**: ~$97k (BTC $72,751).
-- **Total internal MTM (79 runners)**: 79 runners (75+4 new H-676/H-677/H-679/H-680). **30/74 positive** (41%). Avg PnL **-0.17%**.
+### H-703: OI Surprise (Residual) XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — OI-based residual signal
+- **Position**: 6 positions (3 long, 3 short)
+  - LONG: AVAX, ARB, SUI
+  - SHORT: OP, NEAR, DOT
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h703_oi_surprise/runner.py`
+- **Params**: LB15_N3_R7. IS Sharpe **1.578**, WF 5/6 (mean 1.422), SH 1.409/1.332.
+- **Param robust**: **25/30 (83%)**, all 6 R×N neighbors positive.
+- **Correlation**: H-012=**-0.010** — near-zero (perfect diversifier).
+- **Logic**: OI_pct_change(15) - Volume_pct_change(15). Low surprise (OI grows less than volume) outperforms. L3/S3, 7-day rebalance.
+
+## Portfolio Summary (mark-to-market 2026-04-11 session 183, 13:00 UTC)
+- **Bybit Demo**: ~$97k (BTC $72,665).
+- **Total internal MTM (80 runners)**: 80 runners (79+1 new H-703). **31/79 positive** (39%). Avg PnL **-0.15%**.
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
-- **H-063**: $9,638 (-3.62%). Trade 3 active (75000C/71000P, $196 premium, exp Apr 17).
-- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%), H-063(-3.62%), H-355(-3.44%), H-219(-3.34%), H-046(-3.18%), H-342(-2.82%)
-- **Research (session 181)**: 16 new hypotheses (H-668–H-683). **4 CONFIRMED+deployed**. 12 REJECTED. **683 total hypotheses.**
-- **Key findings**: (1) Calendar effects don't work in crypto beyond DOW (H-039). Turn-of-month, week-of-month, options expiry, weekend drift, monthly momentum — all fail. (2) BTC mean reversion works: 3d contrarian (Sharpe 1.31) and crash bounce (Sharpe 1.61) both confirmed with negative H-009 correlation. (3) Vol regime switching is the strongest BTC TS signal found (Sharpe 1.46, near-zero H-012 corr). (4) Volume-confirmed momentum (convergence) beats pure price momentum.
-- **AUTOMATED:** Paper trades hourly via cron (79 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades. Explore options strategies (IV data ~22 days, need 60+), on-chain data.
+- **H-063**: $9,647 (-3.53%). Iron condor active (70K/75.5K, exp Apr 13).
+- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%), H-063(-3.53%), H-355(-3.44%), H-219(-3.34%), H-046(-3.18%), H-342(-2.82%)
+- **Research (session 183)**: 16 new hypotheses (H-700–H-715). **1 CONFIRMED+deployed** (H-703 OI Surprise). 15 REJECTED/BORDERLINE. Fetched full OI history from Bybit V5 API for all 14 assets. **715 total hypotheses.**
+- **Key findings**: (1) Real OI data adds modest value as XS signal (H-703 OI Surprise confirmed) but fails as BTC timing signal (H-705 to H-715 all fail). (2) OI-based TS strategies (breakout, divergence, regime, breadth) don't work. (3) H-703 OI Surprise is a perfect diversifier (H-012 corr -0.01) with excellent WF (5/6 mean 1.422). (4) Institutional flow proxy via OI-Volume residual captures genuine alpha.
+- **AUTOMATED:** Paper trades hourly via cron (80 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-703). Explore liquidation data, on-chain metrics, or sentiment APIs if available.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

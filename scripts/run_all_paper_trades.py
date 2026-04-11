@@ -101,6 +101,7 @@ RUNNERS = [
     ("H-677", ROOT / "paper_trades" / "h677_crash_bounce" / "runner.py"),
     ("H-679", ROOT / "paper_trades" / "h679_vol_regime_switch" / "runner.py"),
     ("H-680", ROOT / "paper_trades" / "h680_vol_convergence" / "runner.py"),
+    ("H-703", ROOT / "paper_trades" / "h703_oi_surprise" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

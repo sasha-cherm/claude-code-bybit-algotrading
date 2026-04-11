@@ -6,10 +6,10 @@
 - **Internal paper trades:** 79 runners active. Session 182. **30/79 positive** (38%), avg **-0.16%**.
 - **H-063**: ~$9,642 (-3.58%). New iron condor (70K/75.5K short, 66K/79K wings, exp Apr 13).
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%).
-- **Session 182 research**: 16 new hypotheses (H-684–H-699). **0 deployed.** All REJECTED. Gold-crypto intermarket has no edge. OHLC microstructure signals were look-ahead artifacts. **699 total hypotheses.**
-- **CRITICAL FINDING**: SH test in batch scripts was broken (permutation preserves mean). Fixed with t-test + block bootstrap. Also found massive look-ahead bias in 4h→daily signal resampling (H-698: Sharpe 3.2→0.2).
-- **AUTOMATED:** Paper trades hourly via cron (79 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades. Explore on-chain data, sentiment signals, or re-evaluate prior SH FAIL rejects with corrected test.
+- **Session 183 research**: 16 new hypotheses (H-700–H-715). **1 CONFIRMED+deployed** (H-703 OI Surprise XS). 15 REJECTED/BORDERLINE. Fetched full OI history from Bybit V5 API. **715 total hypotheses.**
+- **H-703 OI Surprise**: Sharpe **1.578**, WF 5/6 (mean 1.422), SH PASS (1.41/1.33), H-012 corr **-0.01**. Perfect diversifier. First strategy using real Bybit OI data.
+- **AUTOMATED:** Paper trades hourly via cron (80 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-703). Explore liquidation data, sentiment APIs, or new data sources.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -21,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 172) archived to `memory/session_archive.md`._
-
-### Session 2026-04-09 review+research (session 173)
-- Goal: Review + Research — MTM update, ML ensemble signal combination, H-496 deployed
-- Focus: Paper trade MTM (BTC $72,385), ML ensemble backtest combining 30 confirmed XS factors
-- Done: 66 runners (65→66). **20/66 positive** (avg +0.01%). Demo $97,538 (-2.46%). H-063 at -6.42% (expires tomorrow 08:00, expected -$662 loss). **ML Ensemble research**: Tested 3 methods (equal-weight, IC-weighted, ridge) on 30 factors. Equal-weight best. **Focused 10-factor subset dramatically outperforms**: Sharpe **2.149** (+98.7% ann, -23.8% DD). WF **5/6** positive (mean 2.189). SH PASS (2.555/1.655). Param robust 12/12. H-496 = best single-strategy Sharpe ever found. Key insight: simpler equal-weight beats ML weighting. Most recent fold flat (-0.049). **496 total hypotheses.**
-- Next: Await Q-005 answer. H-063 settles Apr 10 08:00. Monitor H-496 paper performance. Consider H-496 for v3 portfolio.
-- Questions added: none
-- Self-modifications: H-496 runner created, added to orchestrator. Archived session 163. (session 173)
+_Older sessions (bootstrap through 173) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-10 review+research (session 174)
 - Goal: Review + Research — MTM update, 16 new hypotheses (regime timing + portfolio construction)
@@ -102,3 +94,11 @@ _Older sessions (bootstrap through 172) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 79 runners. Re-evaluate prior SH FAIL rejects with corrected test. Explore on-chain data or sentiment signals.
 - Questions added: none
 - Self-modifications: Identified and fixed SH test bug (permutation→t-test). Archived session 172. (session 182)
+
+### Session 2026-04-11 review+deploy+research (session 183)
+- Goal: Review + Deploy + Research — MTM update, 16 new OI-based backtests (2 batches of 8), 1 deployment
+- Focus: Paper trade MTM (BTC $72,665), advanced OI signals using real Bybit OI history (H-700–H-715)
+- Done: 80 runners (79→80). **31/79 positive** (39%). Avg **-0.15%**. Fetched full OI history from Bybit V5 API (2000+ days BTC/ETH, 1000+ all others). **Batch 1 (H-700–H-707, OI XS + BTC TS)**: **H-703 CONFIRMED+deployed** (OI Surprise, IS 1.578, WF 5/6 mean 1.422, SH 1.41/1.33, H-012 corr -0.01 — perfect diversifier). H-700 OI Velocity (WF 1/4), H-701 OI-Volume Ratio borderline (WF 4/5, SH FAIL). H-705/H-706 BTC OI TS fail. **Batch 2 (H-708–H-715, BTC TS with OI)**: All 8 REJECTED. OI divergence, liquidation proxy, funding-OI composite, ETH/BTC OI ratio, aggregate OI, OI-vol regime, OI percentile, OI breadth — none work for BTC timing. H-715 OI Breadth borderline (Sharpe 0.78, SH FAIL). **715 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 80 runners (esp. H-703). OI as TS signal for BTC doesn't work; XS residual is the only viable approach. Explore liquidation data or sentiment APIs.
+- Questions added: none
+- Self-modifications: H-703 runner created, added to orchestrator. OI data fetcher built (V5 API pagination, 2000+ rows). Archived session 173. (session 183)

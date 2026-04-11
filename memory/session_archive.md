@@ -1303,3 +1303,9 @@
 - Focus: Paper trade MTM (BTC $72,405), H-472 through H-495 backtests. Cross-asset dynamics, factor interactions, calendar seasonality.
 - Done: 65 runners (unchanged). 20/65 positive (avg +0.04%). Demo $97,514 (-2.49%). Batch 1-3: 24 tested, 1 confirmed (H-485 Monthly Reversal, not deployed). 495 total hypotheses.
 - Next: Await Q-005 answer. H-063 expires Apr 10 08:00.
+
+### Session 2026-04-09 review+research (session 173)
+- Goal: Review + Research — MTM update, ML ensemble signal combination, H-496 deployed
+- Focus: Paper trade MTM (BTC $72,385), ML ensemble backtest combining 30 confirmed XS factors
+- Done: 66 runners (65→66). 20/66 positive (avg +0.01%). H-496 deployed (ML ensemble, best Sharpe ever: 2.149). 496 total hypotheses.
+- Next: Await Q-005 answer. H-063 settles Apr 10 08:00.
