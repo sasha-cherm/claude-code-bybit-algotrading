@@ -13,5 +13,20 @@
     },
     "trades": 6,
     "fees": 20.0
+  },
+  {
+    "date": "2026-04-10",
+    "action": "rebalance",
+    "capital": 9853.22,
+    "positions": {
+      "ARB/USDT": "LONG",
+      "AVAX/USDT": "LONG",
+      "SOL/USDT": "LONG",
+      "NEAR/USDT": "SHORT",
+      "XRP/USDT": "SHORT",
+      "DOGE/USDT": "SHORT"
+    },
+    "trades": 8,
+    "fees": 26.97
   }
 ]

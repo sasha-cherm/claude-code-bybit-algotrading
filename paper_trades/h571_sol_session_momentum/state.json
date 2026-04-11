@@ -1,12 +1,12 @@
 {
   "started": "2026-04-10T13:13:32.027322+00:00",
-  "capital": 9997.5,
-  "position": -59.50255861002023,
-  "entry_price": 84.03,
-  "signal": -1,
-  "last_signal_date": "2026-04-09",
-  "last_rebal_date": "2026-04-10",
-  "total_trades": 1,
+  "capital": 9950.243876963583,
+  "position": 58.725112461521,
+  "entry_price": 84.74,
+  "signal": 1,
+  "last_signal_date": "2026-04-10",
+  "last_rebal_date": "2026-04-11",
+  "total_trades": 3,
   "equity_history": [
     {
       "time": "2026-04-10T13:13:32.027333+00:00",
@@ -77,6 +77,41 @@
       "sol_price": 85.15,
       "position": -59.50255861002023,
       "signal": -1
+    },
+    {
+      "time": "2026-04-10T21:34:38.432561+00:00",
+      "equity": 9939.78,
+      "sol_price": 85.0,
+      "position": -59.50255861002023,
+      "signal": -1
+    },
+    {
+      "time": "2026-04-10T22:34:23.975228+00:00",
+      "equity": 9940.38,
+      "sol_price": 84.99,
+      "position": -59.50255861002023,
+      "signal": -1
+    },
+    {
+      "time": "2026-04-10T23:39:07.177121+00:00",
+      "equity": 9948.71,
+      "sol_price": 84.85,
+      "position": -59.50255861002023,
+      "signal": -1
+    },
+    {
+      "time": "2026-04-11T00:36:23.243215+00:00",
+      "equity": 9950.24,
+      "sol_price": 84.74,
+      "position": 58.725112461521,
+      "signal": 1
+    },
+    {
+      "time": "2026-04-11T01:09:33.673060+00:00",
+      "equity": 9948.48,
+      "sol_price": 84.71,
+      "position": 58.725112461521,
+      "signal": 1
     }
   ],
   "log": []

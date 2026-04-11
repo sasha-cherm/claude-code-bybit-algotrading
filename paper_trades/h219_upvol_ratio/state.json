@@ -1,41 +1,41 @@
 {
   "started": "2026-04-04T01:14:41.834038+00:00",
-  "capital": 9980.0,
+  "capital": 9665.87,
   "positions": {
-    "ETH/USDT": {
+    "NEAR/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2054.21076,
-      "size": 1.62268322,
+      "entry_price": 1.356271,
+      "size": 2385.62047054,
       "direction": "LONG"
     },
-    "LINK/USDT": {
+    "ARB/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 8.660732,
-      "size": 384.87894676,
+      "entry_price": 0.116293,
+      "size": 27822.32182036,
+      "direction": "LONG"
+    },
+    "AVAX/USDT": {
+      "weight": 0.3333333333333333,
+      "entry_price": 9.398879,
+      "size": 344.24830883,
       "direction": "LONG"
     },
     "DOGE/USDT": {
-      "weight": 0.3333333333333333,
-      "entry_price": 0.091588,
-      "size": 36394.74500353,
-      "direction": "LONG"
-    },
-    "DOT/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.239752,
-      "size": -2688.70978497,
+      "entry_price": 0.093621,
+      "size": -34559.96985734,
       "direction": "SHORT"
     },
-    "NEAR/USDT": {
+    "SOL/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.207758,
-      "size": -2759.93388523,
+      "entry_price": 84.813034,
+      "size": -38.14918752,
       "direction": "SHORT"
     },
-    "ATOM/USDT": {
+    "OP/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.687662,
-      "size": -1975.11856242,
+      "entry_price": 0.114977,
+      "size": -28140.83110818,
       "direction": "SHORT"
     }
   },
@@ -67,12 +67,16 @@
     {
       "date": "2026-04-09",
       "equity": 9545.86
+    },
+    {
+      "date": "2026-04-10",
+      "equity": 9661.99
     }
   ],
-  "last_daily_date": "2026-04-09",
-  "last_rebal_date": "2026-04-03",
-  "days_since_rebal": 6,
-  "rebal_count": 1,
-  "total_trades": 6,
-  "total_fees": 19.999999999999996
+  "last_daily_date": "2026-04-10",
+  "last_rebal_date": "2026-04-10",
+  "days_since_rebal": 0,
+  "rebal_count": 2,
+  "total_trades": 18,
+  "total_fees": 60.77405868643905
 }

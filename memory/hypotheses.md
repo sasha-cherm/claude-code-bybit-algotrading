@@ -6965,3 +6965,301 @@
 - Result: IS Sharpe 0.050, Ann -9.5%, DD 65.4%.
 - Notes: RSI-volume divergence at 4h is not predictive. Volume dynamics don't reliably signal reversals at this frequency.
 - Sessions: [2026-04-11 session 179]
+
+## H-636: ETH 4h Volume Breakout
+- Status: REJECTED
+- Idea: H-617 (BTC 4h volume breakout) pattern applied to ETH.
+- Instrument: futures (ETH/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe -0.006, Ann -21.5%, DD 85.9%.
+- Notes: Volume breakout pattern is BTC-specific. ETH lacks the clean trend structure that BTC has at 4h.
+- Sessions: [2026-04-11 session 180]
+
+## H-637: SOL 4h Volume Breakout
+- Status: REJECTED
+- Idea: H-617 pattern applied to SOL.
+- Instrument: futures (SOL/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe 0.526 but DD 88.6% — risk-adjusted terrible.
+- Notes: Marginal IS Sharpe but 88.6% DD makes it untradeable. SOL too volatile for 4h trend-following.
+- Sessions: [2026-04-11 session 180]
+
+## H-638: ETH 4h Keltner Breakout
+- Status: REJECTED
+- Idea: Keltner channel breakout on ETH 4h (like H-539 BTC variant).
+- Instrument: futures (ETH/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe 0.29, Ann -3.7%, DD 82.3%.
+- Notes: ETH 4h has no channel breakout edge. Whipsaws dominate.
+- Sessions: [2026-04-11 session 180]
+
+## H-639: DOGE 4h Momentum
+- Status: REJECTED
+- Idea: 48-bar momentum signal on DOGE 4h.
+- Instrument: futures (DOGE/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe 0.012, Ann -36.8%, DD 94.7%.
+- Notes: DOGE 4h momentum is pure noise. High-beta meme coin has no short-term trend persistence.
+- Sessions: [2026-04-11 session 180]
+
+## H-640: XRP 4h Range Squeeze
+- Status: REJECTED
+- Idea: BB/KC squeeze breakout on XRP 4h.
+- Instrument: futures (XRP/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe -0.377, Ann -48.1%, DD 99.4%.
+- Notes: XRP squeeze breakouts fail catastrophically. Compression leads to random direction, not predictable breakout.
+- Sessions: [2026-04-11 session 180]
+
+## H-641: AVAX 4h ATR Trailing Trend
+- Status: REJECTED
+- Idea: ATR trailing stop trend following on AVAX 4h.
+- Instrument: futures (AVAX/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe 0.285, Ann -18.1%, DD 83.6%.
+- Notes: ATR trailing stop doesn't work for AVAX at 4h. Alt 4h TS confirmed as dead-end across the board.
+- Sessions: [2026-04-11 session 180]
+
+## H-642: LINK 4h Volume Breakout
+- Status: REJECTED
+- Idea: H-617 pattern applied to LINK — mid-cap DeFi.
+- Instrument: futures (LINK/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe -0.619, Ann -62.0%, DD 99.0%.
+- Notes: Strongly negative — LINK volume patterns are contrarian to momentum at 4h.
+- Sessions: [2026-04-11 session 180]
+
+## H-643: NEAR 4h Keltner Breakout
+- Status: REJECTED
+- Idea: Keltner channel breakout on NEAR 4h.
+- Instrument: futures (NEAR/USDT perp)
+- Timeframe: 4h
+- Result: IS Sharpe 0.598, Ann 8.8%, DD 92.0%. WF errored (borderline regardless with 92% DD).
+- Notes: Marginal Sharpe with extreme DD. 4h Keltner works for BTC only.
+- Sessions: [2026-04-11 session 180]
+
+## H-644: ETH Daily Volume Breakout
+- Status: REJECTED (BORDERLINE)
+- Idea: Volume breakout on ETH daily (mom_period=10, vol_mult=1.5).
+- Instrument: futures (ETH/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.569, WF 4/6, SH FAIL (H1=-0.098, H2=1.279).
+- Notes: Daily volume breakout passes IS but fails SH first half — recent pattern only. Not robust across full sample.
+- Sessions: [2026-04-11 session 180]
+
+## H-645: SOL Daily Volume Breakout
+- Status: REJECTED
+- Idea: Volume breakout on SOL daily.
+- Instrument: futures (SOL/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.17, Ann -25.1%, DD 90.1%.
+- Notes: SOL daily volume breakout fails. Volume patterns on SOL are noise.
+- Sessions: [2026-04-11 session 180]
+
+## H-646: BTC Funding Rate TS (Contrarian)
+- Status: REJECTED
+- Idea: Trade BTC based on its own funding rate momentum (9/27 MA crossover, contrarian).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D (signal from 8h funding)
+- Result: IS Sharpe -0.664, Ann -23.1%, DD 55.2%. Only 667 bars (~2yr).
+- Notes: Individual coin funding rate contrarian doesn't work. Funding rates are not mean-reverting enough.
+- Sessions: [2026-04-11 session 180]
+
+## H-647: ETH Funding Rate TS (Contrarian)
+- Status: REJECTED
+- Idea: Trade ETH based on its own funding rate momentum (contrarian).
+- Instrument: futures (ETH/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.002, Ann -14.3%, DD 61.6%.
+- Notes: ETH funding rate TS also fails. No individual coin funding rate edge.
+- Sessions: [2026-04-11 session 180]
+
+## H-648: BTC OI Change TS
+- Status: REJECTED (ERROR)
+- Idea: Trade based on OI changes — rising OI + price trend = continuation.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: Error — OI data format issue. Would have tested OI/price confirmation.
+- Notes: OI data needs index alignment fix. Concept tested in XS as H-044/H-193.
+- Sessions: [2026-04-11 session 180]
+
+## H-649: BTC Vol Regime Switch
+- Status: REJECTED
+- Idea: Trade BTC differently in high vs low vol regimes. Low vol: buy dips. High vol: momentum.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.43, Ann 9.5%, DD 47.8%.
+- Notes: Close to threshold but regime identification doesn't add value over pure momentum. Tested in H-497–H-504 range previously.
+- Sessions: [2026-04-11 session 180]
+
+## H-650: BTC Intraday Volume Distribution Pattern
+- Status: REJECTED
+- Idea: Trade based on late vs early session volume ratio (rising late-session volume = bullish).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.836, Ann -36.1%, DD 90.1%.
+- Notes: Intraday volume distribution is not predictive of next-day direction. Strongly negative.
+- Sessions: [2026-04-11 session 180]
+
+## H-651: Multi-Coin Aggregate Funding Contrarian
+- Status: REJECTED
+- Idea: Contrarian on aggregate funding across BTC/ETH/SOL/DOGE/XRP. Trade BTC when aggregate funding extreme.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.046, Ann -1.6%, DD 33.6%.
+- Notes: Aggregate funding provides no edge. Already tested as XS in H-053 (which works). TS version fails.
+- Sessions: [2026-04-11 session 180]
+
+## H-652: ETH/BTC Ratio Momentum
+- Status: REJECTED
+- Idea: Trade BTC based on ETH/BTC ratio trend (rising ratio = risk-on = long BTC).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.183, Ann -21.2%, DD 83.9%.
+- Notes: ETH/BTC ratio momentum provides no edge for trading BTC directionally.
+- Sessions: [2026-04-11 session 180]
+
+## H-653: ETH/BTC Ratio Mean-Reversion
+- Status: REJECTED
+- Idea: Mean-revert on ETH/BTC ratio — extreme deviation signals BTC reversal.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.484, Ann 12.0%, DD 45.7%.
+- Notes: Close to threshold (0.484 vs 0.5). The ratio does weakly mean-revert but not enough for a standalone strategy.
+- Sessions: [2026-04-11 session 180]
+
+## H-654: BTC Monthly Calendar Effect
+- Status: REJECTED
+- Idea: Day-of-month effects — long month-start/end, short mid-month.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.022, Ann -4.6%, DD 54.8%.
+- Notes: No monthly calendar effect in BTC. Already tested DOW effect (H-039 works); monthly is different and doesn't exist.
+- Sessions: [2026-04-11 session 180]
+
+## H-655: BTC Vol-of-Vol Signal
+- Status: REJECTED
+- Idea: Low vol-of-vol = stable trend regime (trade momentum), high VoV = choppy (stay flat).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.491, Ann -17.0%, DD 70.1%.
+- Notes: Vol-of-vol doesn't predict tradeable regimes. The regime identification adds noise rather than filtering.
+- Sessions: [2026-04-11 session 180]
+
+## H-656: Multi-TF BTC Confirmation (Daily + 4h)
+- Status: REJECTED
+- Idea: Long only when daily AND 4h signals agree (daily momentum + 4h volume breakout).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D+4h
+- Result: IS Sharpe 0.281, Ann 2.8%, DD 50.1%.
+- Notes: Multi-TF confirmation reduces signal quality rather than improving it. Disagreement periods (which are filtered out) contain edge. Revisited from H-572 (similar finding). Multi-TF is a dead end.
+- Sessions: [2026-04-11 session 180]
+
+## H-657: BTC Realized Skew
+- Status: LIVE (paper trade since 2026-04-11)
+- Idea: Trade BTC based on 30-day realized skew of returns. Positive skew (>0.5) → long, negative (<-0.5) → short.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Logic: Compute scipy skew of 30-day return window. Positive skew = upside bias = long. Negative skew = crash risk = short. Between thresholds = flat.
+- Data: BTC daily, 1742 bars (~4.8 years).
+- Result:
+  - **IS**: Sharpe **0.947**, Ann +32.5%, DD 48.1%, 122 trades.
+  - **WF**: 5/6 positive (mean ~1.46). Folds: [0.0, 1.224, 2.768, 1.190, 2.224, 1.365].
+  - **SH**: PASS (H1=0.624, H2=1.524).
+  - **Param robust**: **98%** (48/49 positive, lookback 15-60, threshold 0.3-1.0).
+  - **H-012 PnL corr**: **0.052** (near zero — excellent diversifier for XS strategies).
+  - **H-009 PnL corr**: 0.404 (moderate overlap with BTC trend).
+  - **BTC direction corr**: 0.120 (low).
+  - **Signal**: Long 30%, Short 15%, Flat 55% (long bias).
+- Notes: Captures return distribution shape — different from momentum or vol signals. Best new single-asset TS strategy found since H-617. Deployed 2026-04-11.
+- Sessions: [2026-04-11 session 180]
+
+## H-658: Cross-Sectional Momentum at 4h
+- Status: REJECTED (BORDERLINE)
+- Idea: H-012 XS momentum at 4h frequency (48-bar lookback, rebal every 6 bars).
+- Instrument: futures (14 perps)
+- Timeframe: 4h
+- Result: IS Sharpe 0.697, Ann 22.7%, DD 51.6%. SH PASS (0.612/1.075). WF 5/7. H-012 corr 0.306.
+- Notes: Higher-frequency version of H-012. Works but adds noise and complexity. Much higher turnover = more fees. Not worth deploying separately when H-012 daily version is superior and already running.
+- Sessions: [2026-04-11 session 180]
+
+## H-659: BTC Dominance Proxy
+- Status: REJECTED
+- Idea: Trade BTC based on relative performance vs ETH+SOL (dominance proxy).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.353, Ann -19.4%, DD 82.0%.
+- Notes: BTC dominance changes are not predictive of BTC direction. Relative performance is noise at daily frequency.
+- Sessions: [2026-04-11 session 180]
+
+## H-660: BTC Realized Kurtosis
+- Status: REJECTED
+- Idea: Trade direction based on realized kurtosis (fat tails indicator).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.143, Ann -0.5%, DD 49.6%.
+- Notes: Kurtosis doesn't predict direction. Fat tails indicate regime uncertainty but not tradeable bias.
+- Sessions: [2026-04-11 session 180]
+
+## H-661: BTC Tail Ratio
+- Status: REJECTED
+- Idea: Ratio of right vs left tail magnitude (5th/95th percentile) as directional signal.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.234, Ann 2.0%, DD 59.1%.
+- Notes: Tail ratio has weak directional content. Right tail dominance is weakly bullish but not enough for standalone edge.
+- Sessions: [2026-04-11 session 180]
+
+## H-662: BTC Hurst Exponent
+- Status: REJECTED
+- Idea: Hurst exponent to classify trending vs mean-reverting regimes.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.942, Ann -26.0%, DD 79.5%.
+- Notes: Strongly negative. R/S Hurst estimation is too noisy at 100-day lookback. Regime classification based on Hurst fails decisively.
+- Sessions: [2026-04-11 session 180]
+
+## H-663: BTC Return Autocorrelation
+- Status: REJECTED
+- Idea: Positive autocorrelation = trend (follow), negative = mean-revert (contrarian).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.315, Ann 4.7%, DD 61.1%.
+- Notes: Autocorrelation-based regime switching marginally positive but well below threshold. BTC autocorrelation is too unstable for reliable regime identification.
+- Sessions: [2026-04-11 session 180]
+
+## H-664: ETH Realized Skew
+- Status: REJECTED
+- Idea: H-657 realized skew signal applied to ETH.
+- Instrument: futures (ETH/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.189, Ann -1.8%, DD 72.8%.
+- Notes: Realized skew is BTC-specific. ETH return distribution shape is not predictive of future direction. Key finding: skew edge exists in BTC's unique market microstructure (institutional flow, miner dynamics).
+- Sessions: [2026-04-11 session 180]
+
+## H-665: SOL Realized Skew
+- Status: REJECTED (BORDERLINE)
+- Idea: H-657 realized skew signal applied to SOL.
+- Instrument: futures (SOL/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.796, Ann 35.3%, DD 65.4%. WF 4/6. SH FAIL (H1=1.489, H2=-0.158). H-657 corr 0.364.
+- Notes: SOL skew has some signal in first half but fails in second half. Not robust. Slightly correlated with BTC skew.
+- Sessions: [2026-04-11 session 180]
+
+## H-666: Multi-Asset Skew Portfolio (BTC+ETH+SOL)
+- Status: CONFIRMED (NOT deployed — inferior to H-657)
+- Idea: Equal-weight portfolio of realized skew signals across BTC, ETH, and SOL.
+- Instrument: futures (BTC, ETH, SOL perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.887, Ann 30.0%, DD 43.1%. SH PASS (1.130/0.584).
+- Notes: Portfolio Sharpe (0.887) is lower than BTC-only (0.947). Adding ETH (0.189) and SOL (borderline) dilutes the BTC signal. Better to run H-657 alone. Lower DD (43.1% vs 48.1%) is the only advantage but not enough to justify complexity.
+- Sessions: [2026-04-11 session 180]
+
+## H-667: BTC Skew + Momentum Combined
+- Status: REJECTED
+- Idea: Trade only when skew AND momentum agree (both positive → long, both negative → short).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 0.492, Ann 12.2%, DD 53.7%.
+- Notes: Requiring momentum confirmation reduces the skew signal quality. The additional filter removes good trades (when skew and momentum disagree but skew is right).
+- Sessions: [2026-04-11 session 180]

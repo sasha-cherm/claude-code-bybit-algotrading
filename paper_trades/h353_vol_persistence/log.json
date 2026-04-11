@@ -40,5 +40,47 @@
     "capital": 9980.0,
     "fees": 20.0,
     "trades": 8
+  },
+  {
+    "time": "2026-04-11T00:35:07.367272+00:00",
+    "action": "rebalance",
+    "date": "2026-04-10",
+    "positions": {
+      "BTC/USDT": {
+        "weight": 0.25,
+        "entry_price": 71927.28258
+      },
+      "ETH/USDT": {
+        "weight": 0.25,
+        "entry_price": 2194.23876
+      },
+      "NEAR/USDT": {
+        "weight": 0.25,
+        "entry_price": 1.3632726
+      },
+      "ARB/USDT": {
+        "weight": 0.25,
+        "entry_price": 0.108841764
+      },
+      "DOT/USDT": {
+        "weight": -0.25,
+        "entry_price": 1.2977404000000001
+      },
+      "ATOM/USDT": {
+        "weight": -0.25,
+        "entry_price": 1.8126374
+      },
+      "LINK/USDT": {
+        "weight": -0.25,
+        "entry_price": 8.9462104
+      },
+      "OP/USDT": {
+        "weight": -0.25,
+        "entry_price": 0.11407718
+      }
+    },
+    "capital": 10329.31,
+    "fees": 30.4601,
+    "trades": 12
   }
 ]

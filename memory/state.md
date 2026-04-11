@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-10 01:00 UTC):
-Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 open positions.
+### Current Demo Status (as of 2026-04-11 01:00 UTC):
+Demo eq: estimated ~$97k. BTC spot ~$72,799 (+1.3% 24h). 11 open positions.
 
 ---
 
@@ -708,16 +708,26 @@ Demo eq: estimated ~$98k-$99k (BTC rallied). BTC spot ~$71,966 (+2.01% 24h). 11 
 - **Param robust**: **14/16 (88%)**.
 - **Correlation**: 0.292 H-009 (moderate), -0.190 BTC buy&hold (negative — good diversifier).
 
-## Portfolio Summary (mark-to-market 2026-04-11 session 179, 21:15 UTC)
-- **Bybit Demo**: ~$97k (BTC $73,310). BTC spot ~$73,310 (+1.3% 24h).
-- **Total internal MTM (74 runners)**: 74 runners (73+1 new). **26/74 positive** (35%). Avg PnL **-0.10%**.
-- **Top performers**: H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-012(+4.30%), H-244(+4.04%), H-353(+3.52%), H-019(+3.47%), H-062(+3.10%), H-277(+2.97%), H-052(+2.88%)
+### H-657: BTC Realized Skew — NEW
+- **Status**: LIVE paper trade (started 2026-04-11) — distributional signal strategy
+- **Position**: FLAT (skew 0.110, between thresholds ±0.5)
+- **Mark equity**: $10,000 (+0.00%) — just deployed.
+- **Runner**: `paper_trades/h657_realized_skew/runner.py`
+- **Params**: lookback=30, long_thresh=0.5, short_thresh=-0.5. IS Sharpe **0.947**, Ann +32.5%, DD 48.1%. WF **5/6** mean 1.46. SH PASS (0.624/1.524).
+- **Param robust**: **98%** (48/49 positive).
+- **Correlation**: **0.052** H-012 (near-zero), 0.404 H-009 (moderate), 0.120 BTC direction.
+- **Logic**: Trades based on 30-day return distribution shape — positive skew (>0.5) → long, negative skew (<-0.5) → short. Long 30%, Short 15%, Flat 55%.
+
+## Portfolio Summary (mark-to-market 2026-04-11 session 180, 01:00 UTC)
+- **Bybit Demo**: ~$97k (BTC $72,799). BTC spot ~$72,799 (+1.3% 24h).
+- **Total internal MTM (75 runners)**: 75 runners (74+1 new H-657). **30/74 positive** (41%, up from 35%). Avg PnL **-0.18%**.
+- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.04%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
 - **H-063**: $9,624 (-3.76%). FLAT. Awaiting trade 3 entry.
-- **Worst performers**: H-191(-6.51%), H-053(-5.38%), H-223(-3.92%), H-063(-3.76%), H-046(-3.18%)
-- **Research (session 179)**: 24 new hypotheses (H-612–H-635). **1 CONFIRMED+deployed** (H-617 BTC 4h Volume Breakout). **1 CONFIRMED not deployed** (H-622 Multi-Asset 4h Vol Breakout — redundant with H-617, corr 0.724). 22 REJECTED. 4h EMA/MACD/RSI indicators = noise. Mean reversion fails at all timeframes. Funding rate timing strategies all fail. Vol compression, session patterns, multi-TF alignment — no edges. **635 total hypotheses.**
-- **Key findings**: (1) Volume confirmation is critical at 4h — raw momentum/trend signals are noise. (2) Mean reversion universally fails in crypto at 4h too. (3) Funding rate (2yr data) has no standalone time-series edge for BTC price prediction. (4) 4h structural patterns (sessions, weekend, vol compression) are too weak to trade.
-- **AUTOMATED:** Paper trades hourly via cron (74 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades. H-063 trade 3 entry. Explore alternative asset TS strategies, higher-frequency XS factors, or on-chain data.
+- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%), H-063(-3.76%), H-355(-3.44%), H-219(-3.34%), H-046(-3.18%), H-342(-2.82%)
+- **Research (session 180)**: 32 new hypotheses (H-636–H-667). **1 CONFIRMED+deployed** (H-657 BTC Realized Skew — Sharpe 0.947, 98% param robust). **1 CONFIRMED not deployed** (H-666 Multi-Asset Skew Portfolio — inferior to H-657 BTC-only). **2 BORDERLINE** (H-658 4h XS, H-665 SOL Skew). 28 REJECTED. **667 total hypotheses.**
+- **Key findings**: (1) 4h TS strategies do NOT transfer from BTC to altcoins — ETH/SOL/DOGE/XRP/AVAX/LINK all fail. (2) Realized skew is BTC-specific — ETH skew (Sharpe 0.189) and SOL skew (SH fails) don't work. (3) Funding rate TS doesn't work for individual coins. (4) Higher-order moments (kurtosis, Hurst, autocorrelation, tail ratio) are not predictive. (5) ETH/BTC ratio, monthly calendar, BTC dominance — no edges.
+- **AUTOMATED:** Paper trades hourly via cron (75 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades. H-063 trade 3 entry. Explore options strategies (once IV data >60 days), on-chain data, or micro-structure signals.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
