@@ -71,5 +71,78 @@
         "order_id": "af8916d0-e020-4142-8bc1-47820ae26af4"
       }
     ]
+  },
+  {
+    "type": "auto_reset",
+    "time": "2026-04-11T08:01:01.292420+00:00",
+    "expired": "6APR26"
+  },
+  {
+    "type": "open",
+    "time": "2026-04-11T08:02:19.745696+00:00",
+    "btc": 72685.7,
+    "equity": 1038.41338747,
+    "expiry": "13APR26",
+    "qty": 0.06,
+    "legs": {
+      "sell_call": {
+        "symbol": "BTC-13APR26-75500-C-USDT",
+        "strike": 75500.0,
+        "premium": 85.0
+      },
+      "sell_put": {
+        "symbol": "BTC-13APR26-70000-P-USDT",
+        "strike": 70000.0,
+        "premium": 120.0
+      },
+      "buy_call": {
+        "symbol": "BTC-13APR26-79000-C-USDT",
+        "strike": 79000.0,
+        "cost": 25.0
+      },
+      "buy_put": {
+        "symbol": "BTC-13APR26-66000-P-USDT",
+        "strike": 66000.0,
+        "cost": 40.0
+      }
+    },
+    "orders": [
+      {
+        "leg": "sell_call",
+        "symbol": "BTC-13APR26-75500-C-USDT",
+        "side": "Sell",
+        "qty": 0.06,
+        "price": 85.0,
+        "result": "OK",
+        "order_id": "b8ca8a95-db79-4edd-b514-183ebf0f453c"
+      },
+      {
+        "leg": "sell_put",
+        "symbol": "BTC-13APR26-70000-P-USDT",
+        "side": "Sell",
+        "qty": 0.06,
+        "price": 120.0,
+        "result": "OK",
+        "order_id": "fec6c65c-0407-4d0e-9cea-e7ac46ba87f6"
+      },
+      {
+        "leg": "buy_call",
+        "symbol": "BTC-13APR26-79000-C-USDT",
+        "side": "Buy",
+        "qty": 0.06,
+        "price": 25.0,
+        "result": "OK",
+        "order_id": "bb70901d-bd62-4cf6-b34b-6e643ce5c4bf"
+      },
+      {
+        "leg": "buy_put",
+        "symbol": "BTC-13APR26-66000-P-USDT",
+        "side": "Buy",
+        "qty": 0.06,
+        "price": 40.0,
+        "result": "OK",
+        "order_id": "9bd51d55-fa78-4696-a909-28d9b1ef7b94"
+      }
+    ]
   }
 ]

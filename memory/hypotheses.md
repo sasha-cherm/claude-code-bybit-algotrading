@@ -7434,3 +7434,147 @@
 - Result: Best 4h_follow Sharpe 0.287. WF 4/6. SH 0.619/-0.098 (FAIL — second half negative).
 - Notes: Intraday continuation signal is weak at 4h level. Already captured better by H-535 (6h intraday session momentum).
 - Sessions: [2026-04-11 session 181]
+
+## H-684: Gold-Crypto Correlation XS
+- Status: REJECTED
+- Idea: Rank crypto by rolling correlation with gold (XAUT). Long low-corr (risk-on), short high-corr.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.061, Ann -0.4%, DD -17.0%. WF 0/4. Params 2/8 (25%). H-012 corr 0.107.
+- Notes: Gold-crypto correlation has no cross-sectional predictive power. Only 365 days common data (XAUT listed Apr 2025).
+- Sessions: [2026-04-11 session 182]
+
+## H-685: Gold Momentum Regime Filter XS
+- Status: REJECTED
+- Idea: When gold trending up (risk-off), favor low-vol crypto. When down, favor high-vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.021, Ann -2.4%, DD -22.7%. WF 4/4 (but IS is noise). Params 7/9 (78%).
+- Notes: Gold momentum doesn't differentiate crypto cross-section. Regime switching is noise.
+- Sessions: [2026-04-11 session 182]
+
+## H-686: Gold/BTC Ratio Momentum XS
+- Status: REJECTED
+- Idea: Use gold/BTC ratio momentum to select high/low beta crypto positions.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -1.593, Ann -28.0%, DD -29.2%. WF 0/3. Params 2/6 (33%).
+- Notes: Strongly negative Sharpe — gold/BTC ratio is counterproductive as XS signal.
+- Sessions: [2026-04-11 session 182]
+
+## H-687: Gold Return Predicts Crypto XS
+- Status: REJECTED
+- Idea: Gold returns today predict crypto cross-section tomorrow (via asset sensitivity to gold).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.900, Ann -16.3%, DD -18.4%. WF 1/3. Params 4/6 (67%).
+- Notes: Gold returns have zero predictive power for next-day crypto cross-section.
+- Sessions: [2026-04-11 session 182]
+
+## H-688: Gold Vol Spillover XS
+- Status: REJECTED
+- Idea: Gold vol spikes predict crypto vol — position for it by ranking assets by volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.121 (marginal), Ann 26.6%, DD -14.6%. WF 1/3. SH FAIL (corrected t-test). Params 7/9 (78%).
+- Notes: Promising IS but fails WF badly. Gold vol spillover to crypto is inconsistent.
+- Sessions: [2026-04-11 session 182]
+
+## H-689: Gold-Crypto Correlation Regime Switch XS
+- Status: REJECTED
+- Idea: Switch between momentum and mean-reversion XS based on gold-crypto correlation regime.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -1.419, Ann -21.5%, DD -26.4%. WF 1/3. Params 0/9 (0%).
+- Notes: Gold-crypto correlation is not a useful regime indicator. Zero param robustness.
+- Sessions: [2026-04-11 session 182]
+
+## H-690: Gold-Adjusted Momentum XS
+- Status: REJECTED
+- Idea: Residual momentum after hedging out gold beta (pure crypto alpha momentum).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.485. Params 12/12 (100%). BUT H-012 signal corr 0.949 — identical to plain momentum.
+- Notes: Gold beta in crypto is negligible. Hedging it out doesn't change the signal. Redundant with H-012.
+- Sessions: [2026-04-11 session 182]
+
+## H-691: Gold Hedging Demand Proxy XS
+- Status: REJECTED
+- Idea: Strong gold returns = flight to safety → short high-BTC-beta crypto, long low-beta.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.148, Ann 22.4%, DD -10.0%. WF 4/4 (mean 1.634). Params 12/12 (100%). SH FAIL (corrected). H-012 corr -0.114.
+- Notes: Promising WF and params but SH FAIL with corrected test. Only 336 days data limits statistical power. Worth revisiting when XAUT has 2+ years of data.
+- Sessions: [2026-04-11 session 182]
+
+## H-692: Taker Volume Proxy XS
+- Status: REJECTED
+- Idea: Approximate buy/sell pressure from OHLCV ((close-low)/(high-low) * volume). Rank by rolling buy pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.924 (raw) → -0.252 (lagged). LOOK-AHEAD BIAS. WF 3/6 (lagged). Params 5/7 (71% lagged).
+- Notes: CRITICAL: IS Sharpe was 1.924 using same-day data. Drops to -0.252 when signal lagged by 1 day. Entire signal was look-ahead bias. Same-day OHLCV → same-day return prediction is a classic pitfall.
+- Sessions: [2026-04-11 session 182]
+
+## H-693: Range Compression XS
+- Status: REJECTED
+- Idea: Assets with narrowing daily ranges (compression) tend to break out.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -2.350, Ann -43.1%, DD -65.2%. WF 0/6. Params 0/9 (0%).
+- Notes: Range compression is ANTI-predictive in crypto. Compressed assets actually underperform. Worst performer of this batch.
+- Sessions: [2026-04-11 session 182]
+
+## H-694: Volume-Adjusted Return XS
+- Status: REJECTED
+- Idea: Return per unit of dollar volume — measures price efficiency/conviction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.218, Ann 2.4%, DD -22.1%. WF 2/6. Params 7/7 (100%).
+- Notes: Weak signal. Return/volume has no cross-sectional predictive power despite 100% params. H-012 corr 0.427 (moderate momentum content).
+- Sessions: [2026-04-11 session 182]
+
+## H-695: Range Momentum XS
+- Status: REJECTED (borderline)
+- Idea: Rank by expanding range × return direction (range expansion + positive return = bullish).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.590 (raw) → 1.278 (lagged). SH PASS (t-test), FAIL (bootstrap). WF 2/6 (lagged). Params 9/9 (100%).
+- Notes: Significant IS even after lag correction. But WF 2/6 kills it. Signal is partially look-ahead contaminated (short_w=5, today is 1/5 of signal). Low H-012 corr (0.222) = good diversifier. May revisit with stronger lag.
+- Sessions: [2026-04-11 session 182]
+
+## H-696: Return Efficiency XS
+- Status: REJECTED
+- Idea: Rank by |close-close_prev|/(high-low) × direction — efficient movers (high conviction) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.434. WF 3/6. SH FAIL (corrected). Params 5/6 (83%). H-012 corr 0.270.
+- Notes: Fails both SH and WF. Direction-weighted efficiency has some signal but insufficient statistical significance.
+- Sessions: [2026-04-11 session 182]
+
+## H-697: Overnight Gap XS
+- Status: REJECTED (borderline)
+- Idea: Rank by cumulative overnight gap (open vs prev close). Assets with persistent gaps continue.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.666 (lagged). SH PASS (both t-test and bootstrap). WF 3/6 (mean 1.547). Params 7/7 (100%).
+- Notes: Survives look-ahead correction (signal uses open-to-close, properly lagged). SH passes both tests. WF only 3/6 kills deployment. Mean WF Sharpe strong (1.547) — positive folds very strong, negative folds mild. PnL corr 0.411 with momentum (moderate). Revisit if more data or different WF structure.
+- Sessions: [2026-04-11 session 182]
+
+## H-698: 4h Momentum XS
+- Status: REJECTED
+- Idea: 4h cumulative momentum resampled to daily ranking for faster signal.
+- Instrument: futures (14 perps)
+- Timeframe: 4h → 1D
+- Result: IS Sharpe 3.201 (raw) → 0.189 (lagged). MASSIVE LOOK-AHEAD BIAS.
+- Notes: CRITICAL: Sharpe 3.201 was 100% look-ahead bias — last 4h bar includes most of same-day's return. After 1-day lag: Sharpe 0.189, WF 2/6, params 57%. Complete artifact. This is why 4h→daily resampling needs careful lag handling.
+- Sessions: [2026-04-11 session 182]
+
+## H-699: Multi-TF Momentum Composite XS
+- Status: REJECTED
+- Idea: Combine daily 60d momentum + 4h 30-bar momentum as composite XS signal.
+- Instrument: futures (14 perps)
+- Timeframe: 4h + 1D
+- Result: IS Sharpe 2.107 (raw) → -0.265 (lagged). Look-ahead + redundant (H-012 corr 0.808).
+- Notes: Both look-ahead (4h component) and redundant (0.808 corr with plain momentum). After lag: complete failure. The 4h component was the sole source of apparent alpha, and it was all look-ahead.
+- Sessions: [2026-04-11 session 182]

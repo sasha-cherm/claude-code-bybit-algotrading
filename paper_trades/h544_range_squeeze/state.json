@@ -223,6 +223,38 @@
       "signal": 1,
       "in_squeeze": true,
       "atr_pctile": 3.3
+    },
+    {
+      "time": "2026-04-11T06:34:27.175031+00:00",
+      "equity": 10063.46,
+      "btc_price": 72712.0,
+      "signal": 1,
+      "in_squeeze": true,
+      "atr_pctile": 3.3
+    },
+    {
+      "time": "2026-04-11T07:40:23.231883+00:00",
+      "equity": 10069.31,
+      "btc_price": 72796.0,
+      "signal": 1,
+      "in_squeeze": true,
+      "atr_pctile": 3.3
+    },
+    {
+      "time": "2026-04-11T08:34:17.997262+00:00",
+      "equity": 10066.2,
+      "btc_price": 72751.4,
+      "signal": 1,
+      "in_squeeze": true,
+      "atr_pctile": 3.3
+    },
+    {
+      "time": "2026-04-11T09:09:13.727297+00:00",
+      "equity": 10057.95,
+      "btc_price": 72632.9,
+      "signal": 1,
+      "in_squeeze": true,
+      "atr_pctile": 3.3
     }
   ]
 }

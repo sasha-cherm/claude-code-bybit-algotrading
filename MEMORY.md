@@ -1,14 +1,15 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$72,751.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$72,665.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 79 runners active. Session 181. **30/74 positive** (41%), avg **-0.17%**.
-- **H-063**: $9,638 (-3.62%). Trade 3 active (75000C/71000P, $196 premium, exp Apr 17).
+- **Internal paper trades:** 79 runners active. Session 182. **30/79 positive** (38%), avg **-0.16%**.
+- **H-063**: ~$9,642 (-3.58%). New iron condor (70K/75.5K short, 66K/79K wings, exp Apr 13).
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%).
-- **Session 181 research**: 16 new hypotheses (H-668–H-683). **4 CONFIRMED+deployed** (H-676 Consecutive Contrarian, H-677 Crash Bounce, H-679 Vol Regime Switch, H-680 Vol Convergence). 12 REJECTED. **683 total hypotheses.**
+- **Session 182 research**: 16 new hypotheses (H-684–H-699). **0 deployed.** All REJECTED. Gold-crypto intermarket has no edge. OHLC microstructure signals were look-ahead artifacts. **699 total hypotheses.**
+- **CRITICAL FINDING**: SH test in batch scripts was broken (permutation preserves mean). Fixed with t-test + block bootstrap. Also found massive look-ahead bias in 4h→daily signal resampling (H-698: Sharpe 3.2→0.2).
 - **AUTOMATED:** Paper trades hourly via cron (79 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades. Explore options strategies (IV data ~22 days, need 60+), on-chain data.
+- **Next action:** Await Q-005 answer. Monitor all paper trades. Explore on-chain data, sentiment signals, or re-evaluate prior SH FAIL rejects with corrected test.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -20,15 +21,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 171) archived to `memory/session_archive.md`._
-
-### Session 2026-04-09 review+research (session 172)
-- Goal: Review + Research — MTM update, 24 new backtests (3 batches of 8), no deployments
-- Focus: Paper trade MTM (BTC $72,405), H-472 through H-495 backtests. Cross-asset dynamics, factor interactions, calendar seasonality.
-- Done: 65 runners (unchanged). **20/65 positive** (avg +0.04%). Demo $97,514 (-2.49%). H-063 heading for ~-5% loss (trade 2, BTC rallied to $72.4k vs $69k call). **Batch 1 (H-472–H-479, cross-asset)**: All 8 REJECTED at IS. Lead-lag, correlation clustering, beta dynamics, spillover, idiosyncratic momentum — no cross-asset edges. **Batch 2 (H-480–H-487, interactions)**: **H-485 CONFIRMED** (Monthly Reversal, IS 100%, WF 4/6 mean 1.042, SH PASS — NOT deployed, H-012 corr 0.591). H-486 borderline (IS 94%, WF 6/6 but H-012 corr 0.899). 6 REJECTED. **Batch 3 (H-488–H-495, novel)**: All 8 REJECTED. Factor composite, calendar seasonality, distance-from-high, autocorrelation — no edges. **495 total hypotheses.** Signal space thoroughly exhausted across daily XS, hourly-derived, cross-asset, and interaction categories.
-- Next: Await Q-005 answer. H-063 expires Apr 10 08:00. Consider ML signal combination, alternative asset universes, or longer history.
-- Questions added: none
-- Self-modifications: Archived session 162. (session 172)
+_Older sessions (bootstrap through 172) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-09 review+research (session 173)
 - Goal: Review + Research — MTM update, ML ensemble signal combination, H-496 deployed
@@ -101,3 +94,11 @@ _Older sessions (bootstrap through 171) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 79 runners. Calendar effects exhausted in crypto. Explore options strategies (need more IV data), on-chain data.
 - Questions added: none
 - Self-modifications: H-676/H-677/H-679/H-680 runners created, added to orchestrator. Archived session 171. (session 181)
+
+### Session 2026-04-11 review+research (session 182)
+- Goal: Review + Research — MTM update, 16 new backtests (2 batches of 8), 0 deployments
+- Focus: Paper trade MTM (BTC $72,665), gold-crypto intermarket signals (H-684–H-691) and OHLC microstructure (H-692–H-699)
+- Done: 79 runners (unchanged). **30/79 positive** (38%). Avg **-0.16%**. H-063 new iron condor (70K/75.5K, exp Apr 13). **Batch 1 (H-684–H-691, gold-crypto)**: All 8 REJECTED. Fetched XAUT (gold) 1yr data. Gold-crypto correlation, gold momentum regime, gold/BTC ratio, gold return predictor, gold vol spillover, gold corr regime, gold-adjusted momentum, gold hedging demand — none work. Gold doesn't predict crypto XS. **Batch 2 (H-692–H-699, microstructure)**: All 8 REJECTED after look-ahead correction. **CRITICAL BUG FOUND**: SH test in batch scripts was broken (permutation preserves mean → always p≈1). Fixed with t-test+bootstrap. **CRITICAL FINDING**: H-698 4h Momentum had Sharpe 3.201 that dropped to 0.189 after 1-day lag (100% look-ahead bias). H-692/H-699 also artifacts. H-697 Overnight Gap borderline (1.666, SH PASS, WF 3/6). **699 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 79 runners. Re-evaluate prior SH FAIL rejects with corrected test. Explore on-chain data or sentiment signals.
+- Questions added: none
+- Self-modifications: Identified and fixed SH test bug (permutation→t-test). Archived session 172. (session 182)
