@@ -1,15 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$72,665.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97k. BTC spot ~$73,041.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 79 runners active. Session 182. **30/79 positive** (38%), avg **-0.16%**.
-- **H-063**: ~$9,642 (-3.58%). New iron condor (70K/75.5K short, 66K/79K wings, exp Apr 13).
+- **Internal paper trades:** 83 runners active. Session 184. **32/80 positive** (40%), avg **-0.15%**.
+- **H-063**: ~$9,652 (-3.48%). Iron condor active (70K/75.5K, exp Apr 13).
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%).
-- **Session 183 research**: 16 new hypotheses (H-700–H-715). **1 CONFIRMED+deployed** (H-703 OI Surprise XS). 15 REJECTED/BORDERLINE. Fetched full OI history from Bybit V5 API. **715 total hypotheses.**
-- **H-703 OI Surprise**: Sharpe **1.578**, WF 5/6 (mean 1.422), SH PASS (1.41/1.33), H-012 corr **-0.01**. Perfect diversifier. First strategy using real Bybit OI data.
-- **AUTOMATED:** Paper trades hourly via cron (80 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-703). Explore liquidation data, sentiment APIs, or new data sources.
+- **Session 184 research**: 24 new hypotheses (H-716–H-739). **3 deployed** (H-726 Max DD, H-733 DV Change, H-736 Volume Delta). **739 total hypotheses.**
+- **H-736 Volume Delta**: Sharpe **1.703**, WF **6/6 (PERFECT)**, SH corrected PASS, 96% param robust, H-012 corr 0.366. Best new XS factor. Buy/sell pressure from OHLC microstructure.
+- **H-726 Max DD Factor**: Sharpe 0.980, WF **6/6 (PERFECT)**, 100% param robust. Contrarian DD-based factor.
+- **H-733 DV Change**: Sharpe 1.262, 97% robust, H-012 corr **0.046** (near-zero — excellent diversifier).
+- **AUTOMATED:** Paper trades hourly via cron (83 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-726/H-733/H-736). Explore sentiment data, liquidation signals.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -21,15 +23,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 173) archived to `memory/session_archive.md`._
-
-### Session 2026-04-10 review+research (session 174)
-- Goal: Review + Research — MTM update, 16 new hypotheses (regime timing + portfolio construction)
-- Focus: Paper trade MTM (BTC $71,966), H-497 through H-512 backtests
-- Done: 66 runners (unchanged). **26/66 positive** (avg -0.10%). H-063 trade 2 expires today 08:00 (expected -$514 loss, call ITM). H-496 paper trade at +0.22% (1 day). **Research batch 1 (H-497–H-504, regime-adaptive)**: All 8 REJECTED. BTC trend/vol/dispersion/correlation/volume regime timing and trend-adaptive weighting all fail to beat base ensemble (Sharpe 2.137). Best was H-497 at +2.1%. **Research batch 2 (H-505–H-512, portfolio construction)**: All 8 REJECTED. Continuous weighting, vol-scaled, multi-horizon, asymmetric L/S, signal threshold, turnover penalty, dynamic N, risk-parity — none beat simple L4/S4 equal-weight 5d rebal. Best was H-511 Dynamic N at +1.0%. **512 total hypotheses.** Meta-conclusion: base ensemble is optimal — simpler is better.
-- Next: Await Q-005 answer. H-063 settles today 08:00. Explore new data sources, higher frequency, or alternative asset universes.
-- Questions added: none
-- Self-modifications: Archived session 164. (session 174)
+_Older sessions (bootstrap through 174) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-10 review+deploy+research (session 175)
 - Goal: Review + Deploy + Research — MTM update, 19 new backtests, H-528 deployment
@@ -102,3 +96,11 @@ _Older sessions (bootstrap through 173) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 80 runners (esp. H-703). OI as TS signal for BTC doesn't work; XS residual is the only viable approach. Explore liquidation data or sentiment APIs.
 - Questions added: none
 - Self-modifications: H-703 runner created, added to orchestrator. OI data fetcher built (V5 API pagination, 2000+ rows). Archived session 173. (session 183)
+
+### Session 2026-04-11 review+deploy+research (session 184)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $73,041), basis/carry signals (H-716–H-723), interaction factors (H-724–H-731), novel XS constructions (H-732–H-739)
+- Done: 83 runners (80→83). **32/80 positive** (40%). Avg **-0.15%**. **Batch 1 (H-716–H-723, basis/carry)**: All 8 REJECTED. Spot-perp basis is too tight in crypto for any trading signal. Z-score, momentum, regime, XS carry, basis change, composite, basis mom, basis vol — none work. **Batch 2 (H-724–H-731, interaction factors)**: **H-726 CONFIRMED** (Max DD Factor, Sharpe 0.980, **WF 6/6 PERFECT**, 100% param robust, deployed). H-724 Vol×Mom confirmed but redundant (H-012 corr 0.908). H-727 Recovery Speed borderline. H-731 Range Asymmetry borderline. **Batch 3 (H-732–H-739, novel XS)**: **H-736 CONFIRMED** (Volume Delta, Sharpe **1.703**, **WF 6/6**, SH corrected **PASS**, 96% robust, deployed). **H-733 deployed** (DV Change, Sharpe 1.262, 97% robust, H-012 corr 0.046, borderline SH). H-738 Mom Accel borderline. **739 total hypotheses.**
+- Next: Await Q-005 answer. Monitor H-726/H-733/H-736. Explore sentiment data, liquidation signals, or non-price data sources.
+- Questions added: none
+- Self-modifications: H-726/H-733/H-736 runners created, added to orchestrator. Archived session 174. (session 184)

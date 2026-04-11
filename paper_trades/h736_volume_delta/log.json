@@ -1,0 +1,22 @@
+[
+  {
+    "time": "2026-04-11T17:34:18.463719+00:00",
+    "action": "rebalance",
+    "date": "2026-04-10",
+    "longs": [
+      "ARB/USDT",
+      "NEAR/USDT",
+      "BTC/USDT",
+      "SUI/USDT"
+    ],
+    "shorts": [
+      "OP/USDT",
+      "XRP/USDT",
+      "SOL/USDT",
+      "DOGE/USDT"
+    ],
+    "capital": 9980.0,
+    "fees": 20.0,
+    "trades": 8
+  }
+]

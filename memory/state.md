@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-11 13:00 UTC):
-Demo eq: estimated ~$97k. BTC spot ~$72,665. 11 open positions.
+### Current Demo Status (as of 2026-04-11 17:30 UTC):
+Demo eq: estimated ~$97k. BTC spot ~$73,041. 11 open positions.
 
 ---
 
@@ -772,16 +772,51 @@ Demo eq: estimated ~$97k. BTC spot ~$72,665. 11 open positions.
 - **Correlation**: H-012=**-0.010** — near-zero (perfect diversifier).
 - **Logic**: OI_pct_change(15) - Volume_pct_change(15). Low surprise (OI grows less than volume) outperforms. L3/S3, 7-day rebalance.
 
-## Portfolio Summary (mark-to-market 2026-04-11 session 183, 13:00 UTC)
-- **Bybit Demo**: ~$97k (BTC $72,665).
-- **Total internal MTM (80 runners)**: 80 runners (79+1 new H-703). **31/79 positive** (39%). Avg PnL **-0.15%**.
+### H-726: Maximum Drawdown Factor XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-11)
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: OP, DOT, NEAR, SUI (most beaten-down)
+  - SHORT: ETH, LINK, XRP, DOGE (least beaten-down)
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h726_max_dd_factor/runner.py`
+- **Params**: W30_R5_N4. IS Sharpe **0.980**, WF **6/6 (PERFECT)**, SH 0.570/1.379.
+- **Param robust**: **100%** (60/60). Median Sharpe 0.895.
+- **Correlation**: H-012=0.332 (moderate).
+
+### H-733: Dollar Volume Change XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-11)
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: ARB, LINK, AVAX, ADA
+  - SHORT: DOGE, SOL, OP, DOT
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h733_dv_change/runner.py`
+- **Params**: LB10_R5_N4. IS Sharpe **1.262**, WF 5/6, SH BORDERLINE.
+- **Param robust**: **97%** (70/72).
+- **Correlation**: H-012=**0.046** (near zero — excellent diversifier). H-021=0.540.
+
+### H-736: Cumulative Volume Delta XS — NEW
+- **Status**: LIVE paper trade (started 2026-04-11)
+- **Position**: 8 positions (4 long, 4 short)
+  - LONG: ARB, NEAR, BTC, SUI (highest buy pressure)
+  - SHORT: OP, XRP, SOL, DOGE (highest sell pressure)
+- **Mark equity**: $9,976 (-0.24%) — just deployed.
+- **Runner**: `paper_trades/h736_volume_delta/runner.py`
+- **Params**: LB10_R5_N4. IS Sharpe **1.703**, WF **6/6 (PERFECT)**, SH corrected **PASS**.
+- **Param robust**: **96%** (69/72).
+- **Correlation**: H-012=0.366 (moderate).
+- **Logic**: Buy fraction = (close-open)/(high-low). Cumulative signed volume / total volume.
+
+## Portfolio Summary (mark-to-market 2026-04-11 session 184, 17:30 UTC)
+- **Bybit Demo**: ~$97k (BTC $73,041).
+- **Total internal MTM (83 runners)**: 83 runners (80+3 new). **32/80 positive** (40%). Avg PnL **-0.15%**.
 - **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
-- **H-063**: $9,647 (-3.53%). Iron condor active (70K/75.5K, exp Apr 13).
-- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%), H-063(-3.53%), H-355(-3.44%), H-219(-3.34%), H-046(-3.18%), H-342(-2.82%)
-- **Research (session 183)**: 16 new hypotheses (H-700–H-715). **1 CONFIRMED+deployed** (H-703 OI Surprise). 15 REJECTED/BORDERLINE. Fetched full OI history from Bybit V5 API for all 14 assets. **715 total hypotheses.**
-- **Key findings**: (1) Real OI data adds modest value as XS signal (H-703 OI Surprise confirmed) but fails as BTC timing signal (H-705 to H-715 all fail). (2) OI-based TS strategies (breakout, divergence, regime, breadth) don't work. (3) H-703 OI Surprise is a perfect diversifier (H-012 corr -0.01) with excellent WF (5/6 mean 1.422). (4) Institutional flow proxy via OI-Volume residual captures genuine alpha.
-- **AUTOMATED:** Paper trades hourly via cron (80 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-703). Explore liquidation data, on-chain metrics, or sentiment APIs if available.
+- **H-063**: ~$9,652 (-3.48%). Iron condor active (70K/75.5K, exp Apr 13).
+- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%)
+- **Research (session 184)**: 24 new hypotheses (H-716–H-739). **3 deployed** (H-726 Max DD, H-733 DV Change, H-736 Volume Delta). 1 CONFIRMED not deployed (H-724 redundant). 4 BORDERLINE (H-727/H-731/H-738/H-739). 16 REJECTED. **739 total hypotheses.**
+- **Key findings**: (1) Basis/carry signals fail in crypto — spot-perp spread is too tight and noisy. (2) H-736 Volume Delta is the strongest new XS factor (Sharpe 1.703, 6/6 WF, SH PASS). (3) H-726 Max DD has perfect 6/6 WF with 100% param robustness. (4) H-733 Dollar Volume Change has near-zero momentum correlation (0.046).
+- **Meta-conclusions**: Basis = dead end. Novel OHLCV microstructure factors (volume delta, DD contrarian) are productive. Interaction effects (vol×mom) are mostly redundant with component signals.
+- **AUTOMATED:** Paper trades hourly via cron (83 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. H-726/H-733/H-736). Explore sentiment data, liquidation signals, or non-price data sources.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)

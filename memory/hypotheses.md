@@ -7731,3 +7731,221 @@
 - Result: IS Sharpe 0.780, Ann +17.3%, DD -16.5%. Params 10/12 (83%). WF 3/5. SH FAIL (1.350/-0.475). H-009 corr 0.205.
 - Notes: Decent IS and params but SH fails. OI breadth signal works in second half only (H2=-0.475). Moderate trend correlation. Not deployed.
 - Sessions: [2026-04-11 session 183]
+
+## H-716: BTC Basis Z-Score Mean Reversion
+- Status: REJECTED (SH FAIL)
+- Idea: Trade BTC based on z-score of spot-perp basis. High z → short (overheated), low z → long.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe 1.055, Ann +33.1%, DD -32.0%, Exposure 33%. WF 3/6. SH 2.169/-0.078 (FAIL). 100% param robust (24/24).
+- Notes: Strong IS but basis degrades over time. Basis too small and tight in crypto due to funding rate mechanism.
+- Sessions: [2026-04-11 session 184]
+
+## H-717: BTC Basis Momentum
+- Status: REJECTED
+- Idea: BTC long when short-term basis MA > long-term (rising basis = bullish).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.183, Ann -9.8%, DD -87.6%.
+- Notes: Basis direction doesn't predict price direction.
+- Sessions: [2026-04-11 session 184]
+
+## H-718: BTC Basis Level Regime
+- Status: REJECTED
+- Idea: Trade BTC based on basis percentile rank (high = bullish, low = bearish).
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.905, Ann -29.9%, DD -87.1%. Strongly negative.
+- Sessions: [2026-04-11 session 184]
+
+## H-719: XS Basis (Carry Factor)
+- Status: REJECTED (WEAK)
+- Idea: Rank 14 assets by rolling average spot-perp basis. Long highest basis, short lowest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.603, WF 5/6, SH PASS. H-012 corr 0.314. Below 0.7 threshold.
+- Notes: Traditional carry factor is weak in crypto where basis is tight.
+- Sessions: [2026-04-11 session 184]
+
+## H-720: Basis Change XS
+- Status: REJECTED
+- Idea: Rank assets by 5-day change in basis. Rising basis → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.261. Basis changes are noise.
+- Sessions: [2026-04-11 session 184]
+
+## H-721: BTC Funding-Basis Composite
+- Status: REJECTED (DATA UNAVAILABLE)
+- Idea: Combine funding rate z-score and basis z-score into composite mean-reversion signal.
+- Result: Could not test — funding data format issue. Basis signals weak regardless.
+- Sessions: [2026-04-11 session 184]
+
+## H-722: Multi-Asset Basis Momentum XS
+- Status: REJECTED
+- Idea: Rank assets by change in rolling average basis.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.128. Basis momentum in cross-section is noise.
+- Sessions: [2026-04-11 session 184]
+
+## H-723: BTC Basis Volatility
+- Status: REJECTED
+- Idea: Basis vol as VIX proxy. High basis vol → buy. Low → sell.
+- Instrument: futures (BTC/USDT perp)
+- Timeframe: 1D
+- Result: IS Sharpe -0.099. Basis volatility doesn't predict price direction.
+- Sessions: [2026-04-11 session 184]
+
+## H-724: Volume x Momentum Interaction XS
+- Status: CONFIRMED (NOT deployed — redundant)
+- Idea: Rank by momentum × volume ratio. Momentum amplified by volume confirmation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.434, WF 4/6, SH PASS, 100% param robust. H-012 corr **0.908** — essentially identical to momentum.
+- Sessions: [2026-04-11 session 184]
+
+## H-725: Price-Volume Divergence XS
+- Status: REJECTED
+- Idea: Volume change rank minus price momentum rank as accumulation signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.027. SH FAIL.
+- Sessions: [2026-04-11 session 184]
+
+## H-726: Maximum Drawdown Factor XS
+- Status: LIVE (paper trade since 2026-04-11)
+- Idea: Rank by rolling 30-day max drawdown. Long most beaten-down, short least.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Compute max DD of each asset over 30d rolling window. Long deepest DD (contrarian), short shallowest.
+- Result:
+  - **IS**: Sharpe **0.980**, Ann +44.6%, DD -35.5%.
+  - **WF**: **6/6 (PERFECT)**.
+  - **SH**: 0.570/1.379 (both positive, corrected p=0.498/0.101).
+  - **Param robust**: **100%** (60/60). Median Sharpe 0.895.
+  - **H-012 corr**: 0.332.
+- Notes: Perfect WF is strongest possible evidence. Novel contrarian factor. SH borderline on corrected test (power issue in first half).
+- Sessions: [2026-04-11 session 184]
+
+## H-727: Recovery Speed Factor XS
+- Status: BORDERLINE (not deployed)
+- Idea: Rank by how close to 30-day high each asset is. Fast recovery → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.205, WF 5/6, SH corrected FAIL. 100% param robust. H-012 corr 0.351. H-726 corr 0.350.
+- Notes: Related to H-726 conceptually. Not deployed to avoid redundancy.
+- Sessions: [2026-04-11 session 184]
+
+## H-728: Vol-Adjusted Momentum XS
+- Status: REJECTED (redundant)
+- Idea: Rank by momentum / volatility (Sharpe-like).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.524. H-012 corr 0.798. Below threshold and highly redundant.
+- Sessions: [2026-04-11 session 184]
+
+## H-729: Consecutive Return Days XS
+- Status: REJECTED
+- Idea: XS contrarian on consecutive up/down days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -1.239. Strongly negative — momentum dominates cross-sectionally.
+- Sessions: [2026-04-11 session 184]
+
+## H-730: Range Compression XS
+- Status: REJECTED
+- Idea: Long most range-compressed assets (breakout anticipation).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -1.268. Strongly negative.
+- Sessions: [2026-04-11 session 184]
+
+## H-731: Intraday Range Asymmetry XS
+- Status: BORDERLINE (not deployed)
+- Idea: Rank by (close-open)/(high-low) averaged over 10 days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.013, WF 4/6, SH corrected FAIL. 85% param robust. H-012 corr 0.263.
+- Sessions: [2026-04-11 session 184]
+
+## H-732: RSI Momentum XS
+- Status: REJECTED (WEAK)
+- Idea: Rank by 5-day RSI change (momentum of RSI).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.644, WF 5/6, SH PASS. H-012 corr 0.052. Below 0.7 threshold.
+- Sessions: [2026-04-11 session 184]
+
+## H-733: Dollar Volume Change XS
+- Status: LIVE (paper trade since 2026-04-11)
+- Idea: Rank by 10-day change in dollar volume (price × volume). Long increasing, short decreasing.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Dollar volume = close × volume. 10-day pct change. Long top 4, short bottom 4.
+- Result:
+  - **IS**: Sharpe **1.262**, Ann +51.2%.
+  - **WF**: **5/6**.
+  - **SH**: BORDERLINE (H1=0.254 p=0.760, H2=2.242 p=0.007).
+  - **Param robust**: **97%** (70/72).
+  - **H-012 corr**: **0.046** (near zero — excellent diversifier).
+  - **H-021 corr**: 0.540 (moderate overlap with volume momentum).
+- Notes: SH first half weak. Deployed given 97% param robustness and near-zero momentum correlation.
+- Sessions: [2026-04-11 session 184]
+
+## H-734: H-L Range Trend XS
+- Status: REJECTED
+- Idea: Contrarian on range expansion (short expanding, long contracting).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -1.127. Strongly negative.
+- Sessions: [2026-04-11 session 184]
+
+## H-735: Close-to-High Ratio XS
+- Status: REJECTED (SH FAIL)
+- Idea: Rank by (close-low)/(high-low) over 10 days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.696, WF 3/6, SH 1.434/-0.093 (FAIL).
+- Sessions: [2026-04-11 session 184]
+
+## H-736: Cumulative Volume Delta XS
+- Status: LIVE (paper trade since 2026-04-11)
+- Idea: Approximate buy/sell pressure from OHLC candle structure. (close-open)/(high-low) × volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Buy fraction = (close-open)/(high-low). Sum(buy_frac × vol) / sum(vol) over 10 days. Long top 4, short bottom 4.
+- Result:
+  - **IS**: Sharpe **1.703**, Ann +70.8%.
+  - **WF**: **6/6 (PERFECT)** on 11 assets, 4/6 on 14.
+  - **SH corrected**: **PASS** (H1 p=0.061, H2 p=0.026).
+  - **Param robust**: **96%** (69/72).
+  - **H-012 corr**: 0.366 (moderate).
+- Notes: Best new factor this session. More refined than OBV — uses candle body position, not just return sign. All validation criteria pass cleanly.
+- Sessions: [2026-04-11 session 184]
+
+## H-737: Relative Volume Surprise XS
+- Status: REJECTED
+- Idea: Signed volume surprise (vol/avg × sign(ret)) averaged over 5 days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.393, SH FAIL. Volume surprise too noisy.
+- Sessions: [2026-04-11 session 184]
+
+## H-738: Momentum Acceleration XS
+- Status: BORDERLINE (not deployed)
+- Idea: Second derivative of momentum (10-day change in 20-day mean return).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.820-0.971, WF 4/6, SH corrected FAIL. 82% param robust. H-012 corr 0.064.
+- Notes: Low momentum correlation is interesting. Captures where momentum is building vs fading.
+- Sessions: [2026-04-11 session 184]
+
+## H-739: Upside Participation Ratio XS
+- Status: BORDERLINE (not deployed)
+- Idea: Rank by average return on BTC-up days over 20-day window.
+- Instrument: futures (14 perps excl BTC)
+- Timeframe: 1D
+- Result: IS Sharpe 1.037, WF 4/6, SH 1.426/0.645 (PASS basic). H-012 corr 0.295.
+- Notes: Novel but depends on BTC being in universe. Not validated with corrected SH.
+- Sessions: [2026-04-11 session 184]

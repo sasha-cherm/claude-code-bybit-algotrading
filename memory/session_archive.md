@@ -1309,3 +1309,10 @@
 - Focus: Paper trade MTM (BTC $72,385), ML ensemble backtest combining 30 confirmed XS factors
 - Done: 66 runners (65→66). 20/66 positive (avg +0.01%). H-496 deployed (ML ensemble, best Sharpe ever: 2.149). 496 total hypotheses.
 - Next: Await Q-005 answer. H-063 settles Apr 10 08:00.
+
+### Session 2026-04-10 review+research (session 174)
+- Goal: Review + Research — MTM update, 16 new hypotheses (regime timing + portfolio construction)
+- Focus: Paper trade MTM (BTC $71,966), H-497 through H-512 backtests
+- Done: 66 runners (unchanged). 26/66 positive (avg -0.10%). Research batch 1 (H-497-H-504): All 8 REJECTED. Research batch 2 (H-505-H-512): All 8 REJECTED. 512 total hypotheses.
+- Next: Await Q-005 answer. Explore new data sources.
+- Self-modifications: Archived session 164. (session 174)
