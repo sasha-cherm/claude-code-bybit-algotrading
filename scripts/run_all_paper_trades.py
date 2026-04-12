@@ -116,6 +116,8 @@ RUNNERS = [
     ("H-778", ROOT / "paper_trades" / "h778_clv" / "runner.py"),
     ("H-781", ROOT / "paper_trades" / "h781_signal_agreement" / "runner.py"),
     ("H-786", ROOT / "paper_trades" / "h786_vol_confirmed" / "runner.py"),
+    ("H-792", ROOT / "paper_trades" / "h792_oi_price_coherence" / "runner.py"),
+    ("H-810", ROOT / "paper_trades" / "h810_vol_trend_strength" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

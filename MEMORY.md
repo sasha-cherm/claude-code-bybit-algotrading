@@ -1,18 +1,17 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$95,490 (-4.51%). BTC spot ~$73,082.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,767 (-2.23%, recovering). BTC spot ~$71,452.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 94 runners active. Session 186. **45/87 positive** (52%, up from 39%), avg **+0.49%** (recovered).
-- **H-063**: ~$9,666 (-3.34%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC within strikes.
-- **Top performers**: H-277(+7.44%), H-353(+7.37%), H-085(+6.94%), H-169(+6.18%), H-332(+5.99%).
-- **Session 186 research**: 24 new hypotheses (H-764–H-787). **7 CONFIRMED+deployed** (H-768/H-769/H-773/H-777/H-778/H-781/H-786). **787 total hypotheses.**
-- **H-773 OI-Confirmed Momentum**: IS Sharpe **1.698**, WF **4/4 PERFECT**, SH p=0.020, H-012 corr **-0.001**. Best new signal.
-- **H-778 Close Location Value**: IS Sharpe **1.506**, WF **4/4 PERFECT**, SH p=0.039, H-012 corr -0.034.
-- **H-768 Sequential Pattern**: IS Sharpe **1.667**, WF 3/4, SH p=0.022, corr -0.018.
-- **Key finding**: High IS Sharpe composites (H-783: 1.89, H-785: 1.93) ALL fail WF — confirms overfitting via complex signals.
-- **AUTOMATED:** Paper trades hourly via cron (94 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 94 runners. Explore sentiment APIs, on-chain data, or non-price signals.
+- **Internal paper trades:** 95 runners active. Session 187. **43/93 positive** (46%), avg **+0.31%**.
+- **H-063**: ~$9,624 (-3.76%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $71,452, approaching 71K put.
+- **Top performers**: H-277(+7.44%), H-353(+7.37%), H-332(+5.99%), H-169(+5.13%), H-049(+4.98%).
+- **Session 187 research**: 24 new hypotheses (H-788–H-811). **2 CONFIRMED+deployed** (H-792/H-810). **811 total hypotheses.**
+- **H-792 OI-Price Coherence**: IS Sharpe **1.839**, WF **5/6**, SH p=**0.005**, H-012 corr **-0.097**. Session best.
+- **H-810 Volume Trend Strength (Vol-ADX)**: IS Sharpe **1.573**, WF **6/6 PERFECT**, SH p=**0.013**, corr **-0.063**. Novel signal.
+- **Key findings**: Intraday structure signals (overnight gaps, VWAP, entropy) fail for XS. OI-based signals continue strong. Momentum-correlated signals (H-796, H-806, H-811) pass IS but fail independence check.
+- **AUTOMATED:** Paper trades hourly via cron (95 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 95 runners. Explore on-chain data, sentiment APIs, or ML ensemble approaches.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -25,14 +24,6 @@
 
 
 _Older sessions (bootstrap through 176) archived to `memory/session_archive.md`._
-
-### Session 2026-04-10 review+deploy+research (session 177)
-- Goal: Review + Deploy + Research — MTM update, 32 new backtests (ETH TS, multi-asset, classic indicators, multi-TF), 1 deployment
-- Focus: Paper trade MTM (BTC $72,202), ETH/SOL time-series and classic indicator strategies (H-548–H-579)
-- Done: 71 runners (70→71). **26/70 positive** (37%, up from 21%). Avg **-0.09%** (improved). Demo ~$95,900 (-4.10%, recovering). **Batch 1 (H-548–H-563, ETH TS + cross-asset)**: All 16 REJECTED. ETH intraday momentum FAILS (Sharpe -0.45), mean-reversion universally fails in crypto, BTC-ETH spread not mean-reverting, leader-follower doesn't work. Best was H-561 ATR Breakout (Sharpe 0.404, close but below threshold). **Batch 2 (H-564–H-579, multi-TF/adaptive/SOL/classic)**: **H-571 CONFIRMED** (SOL Session Momentum, IS **0.847**, WF **6/7** mean 0.848, SH PASS, **100% param robust**, BTC corr **-0.092**, deployed). H-572 BTC Multi-TF close (Sharpe 0.651, WF 6/7, SH PASS) but param robust only 69% — REJECTED. 15 REJECTED. **579 total hypotheses.**
-- Next: Await Q-005 answer. Monitor TS paper trades (H-535/H-539/H-544/H-571). H-063 trade 3 tonight. Explore options strategies or non-price data.
-- Questions added: none
-- Self-modifications: H-571 runner created, added to orchestrator. Archived session 167. (session 177)
 
 ### Session 2026-04-10 review+deploy+research (session 178)
 - Goal: Review + Deploy + Research — MTM update, 32 new backtests (4 batches of 8), 2 new deployments
@@ -105,3 +96,11 @@ _Older sessions (bootstrap through 176) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 94 runners (esp. H-773/H-778 with perfect WF). Explore sentiment APIs, on-chain data.
 - Questions added: none
 - Self-modifications: 7 runners created (H-768/H-769/H-773/H-777/H-778/H-781/H-786), added to orchestrator. Archived session 176. (session 186)
+
+### Session 2026-04-12 review+deploy+research (session 187)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 2 new deployments
+- Focus: Paper trade MTM (BTC $71,452), liquidation proxy/tail-risk/OI signals (H-788–H-795), intraday structure/volume clock (H-796–H-803), information-theoretic/regime signals (H-804–H-811)
+- Done: 95 runners (93→95). **43/93 positive** (46%). Avg **+0.31%**. Demo ~$97,767 (-2.23%, recovering). H-063 trade 3 active (BTC near 71K put strike). **Batch 1 (H-788–H-795, liquidation/tail/OI)**: **H-792 CONFIRMED+deployed** (OI-Price Coherence, IS **1.839**, WF **5/6**, SH p=**0.005**, corr **-0.097** — session best). 7 REJECTED. Liquidation proxy, tail asymmetry, recovery speed, funding velocity — all fail. **Batch 2 (H-796–H-803, intraday structure)**: All 8 REJECTED. Volume clock momentum corr 0.594 with H-012 + split-half fail. Overnight gaps, VWAP, entropy, intraday reversal, range compression — no XS edges from intraday structure. **Batch 3 (H-804–H-811, info-theoretic/regime)**: **H-810 CONFIRMED+deployed** (Vol Trend Strength Vol-ADX, IS **1.573**, WF **6/6 PERFECT**, SH p=**0.013**, corr **-0.063**). H-806 Conditional Vol Ratio strong IS but split-half fail + corr 0.666. H-811 Multi-Period Consistency passes all tests except corr 0.601 (redundant with momentum). **811 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 95 runners (esp. H-792/H-810). H-063 iron condor — BTC near 71K put strike, watch closely. Explore on-chain data, sentiment APIs.
+- Questions added: none
+- Self-modifications: H-792/H-810 runners created, added to orchestrator. Archived session 177. (session 187)

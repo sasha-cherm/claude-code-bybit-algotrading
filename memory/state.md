@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-12 session 186):
-Demo eq: ~$95,490 (-4.51%). BTC spot ~$73,082. 13 open positions.
+### Current Demo Status (as of 2026-04-12 session 187):
+Demo eq: ~$97,767 (-2.23%, recovering). BTC spot ~$71,452. 13 open positions.
 
 ---
 
@@ -1072,3 +1072,17 @@ Demo eq: ~$95,490 (-4.51%). BTC spot ~$73,082. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h786_vol_confirmed/runner.py`
 - **Params**: window=20, rebal=5, n_ls=3
+
+### H-792: OI-Price Coherence XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: SUI, AVAX, XRP. SHORT: DOGE, BTC, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h792_oi_price_coherence/runner.py`
+- **Params**: corr_lb=7, rebal=7, n_ls=3
+
+### H-810: Volume Trend Strength (Vol-ADX) XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ARB, AVAX, DOGE, LINK. SHORT: BTC, OP, ATOM, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h810_vol_trend_strength/runner.py`
+- **Params**: adx_lb=20, rebal=7, n_ls=4
