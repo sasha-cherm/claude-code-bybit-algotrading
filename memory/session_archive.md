@@ -1352,3 +1352,9 @@
 - Questions added: none
 - Self-modifications: H-617 runner created, added to orchestrator. Archived session 169. (session 179)
 
+
+### Session 2026-04-11 review+deploy+research (session 180)
+- Goal: Review + Deploy + Research — MTM update, 32 new backtests (4 batches of 8), 1 new deployment
+- Focus: Paper trade MTM (BTC $72,799), altcoin TS, funding rate TS, distributional/higher-order moment signals (H-636–H-667)
+- Done: 75 runners (74→75). 30/74 positive (41%). H-657 CONFIRMED+deployed (BTC Realized Skew). 667 total hypotheses.
+- Self-modifications: H-657 runner created. Archived session 170.

@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-12 session 189):
-Demo eq: ~$98,017 (-1.96%). BTC spot ~$71,017. 13 open positions.
+### Current Demo Status (as of 2026-04-12 session 190):
+Demo eq: ~$98,017 (-1.96%). BTC spot ~$70,949. 13 open positions.
 
 ---
 
@@ -1156,3 +1156,59 @@ Demo eq: ~$98,017 (-1.96%). BTC spot ~$71,017. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h854_clv/runner.py`
 - **Params**: W=20, rebal=7, n_ls=4. IS Sharpe 1.267, WF 4/5. CLV as novel XS ranking signal.
+
+### H-861: Downside Protection XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: XRP, DOT, ATOM. SHORT: OP, ADA, SUI.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h861_downside_protect/runner.py`
+- **Params**: W=40, R=3, N=3. IS Sharpe 1.255, WF 3/4, SH p=0.085. H-012 corr -0.021.
+
+### H-863: Win Rate XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ETH, ARB, AVAX. SHORT: DOT, XRP, OP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h863_win_rate/runner.py`
+- **Params**: W=20, R=7, N=3. IS Sharpe 1.207, WF 4/5, SH p=0.093. H-012 corr -0.022.
+
+### H-864: Conditional Momentum XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ARB, NEAR, ADA, AVAX. SHORT: ATOM, SOL, XRP, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h864_conditional_mom/runner.py`
+- **Params**: W=20, R=5, N=4. IS Sharpe **1.608**, WF 4/5, SH p=0.025. H-012 corr **0.000** — zero! Session best novel signal.
+
+### H-866: VW Return Divergence XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ARB, SUI, LINK, AVAX. SHORT: DOGE, ATOM, DOT, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h866_vw_return_div/runner.py`
+- **Params**: W=20, R=3, N=4. IS Sharpe 1.591, WF 3/5, SH p=0.027. H-012 corr 0.005. Smart money signal.
+
+### H-867: Max Gain Dependency XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ETH, ARB, ADA, BTC. SHORT: SUI, XRP, DOGE, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h867_max_gain_dep/runner.py`
+- **Params**: W=40, R=7, N=4. IS Sharpe **1.766**, WF 3/4, SH p=0.015. H-012 corr 0.046. Highest Sharpe of batch.
+
+### H-873: Distance from 20-Day High XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: BTC, NEAR, ATOM, ETH. SHORT: OP, SOL, ADA, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h873_dist_from_high/runner.py`
+- **Params**: W=20, R=7, N=4. IS Sharpe 1.391, WF 4/5, SH p=0.053. H-012 corr 0.023.
+
+### H-878: Stochastic %K XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: NEAR, ARB, BTC, ETH. SHORT: OP, DOGE, DOT, ADA.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h878_stochastic/runner.py`
+- **Params**: P=14, R=7, N=4. IS Sharpe 1.406, WF 3/5, SH p=0.050. H-012 corr 0.005. Near-zero corr.
+
+### H-882: Ease of Movement XS (session 190)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: BTC, ETH, SOL, NEAR. SHORT: OP, DOGE, ADA, AVAX.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h882_emv/runner.py`
+- **Params**: P=10, R=7, N=4. IS Sharpe 1.383, WF 3/5, SH p=0.053. H-012 corr -0.009. Microstructure signal.

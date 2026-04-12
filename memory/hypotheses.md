@@ -8995,3 +8995,219 @@
 - Timeframe: 1D
 - Result: IS 28% positive. Best Sharpe 0.707. No XS signal from trend alignment.
 - Sessions: [2026-04-12 session 189]
+
+## H-860: Upside Capture XS
+- Status: REJECTED
+- Idea: Avg return on BTC-up days. Long assets that outperform on BTC-up days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 33% positive (W20), 0% (W30/W40). Best Sharpe 0.061. No XS signal from upside capture.
+- Sessions: [2026-04-12 session 190]
+
+## H-861: Downside Protection XS
+- Status: CONFIRMED (deployed)
+- Idea: Avg return on BTC-down days — long assets that lose least when BTC drops.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Compute avg return on BTC-down days over 40-day window. Rank XS. Long top 3 (best protection), short bottom 3 (worst).
+- Result: IS Sharpe **1.255**, 100% param positive, WF **3/4**, SH p=**0.085**, H-012 corr **-0.021**. Ann ret +63.5%, DD -43.2%.
+- Params: W40_R3_N3
+- Sessions: [2026-04-12 session 190]
+
+## H-862: Up-Down Capture Ratio XS
+- Status: REJECTED
+- Idea: Upside capture / downside capture ratio. Long assets with favorable asymmetry.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 100% pos but best Sharpe 0.652. Below threshold. Combining captures doesn't work — individual capture better.
+- Sessions: [2026-04-12 session 190]
+
+## H-863: Win Rate XS
+- Status: CONFIRMED (deployed)
+- Idea: Fraction of positive return days. Long high win-rate, short low win-rate assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Rolling 20-day fraction of positive days. Rank XS. Long top 3, short bottom 3.
+- Result: IS Sharpe **1.207**, 100% param positive, WF **4/5**, SH p=**0.093**, H-012 corr **-0.022**. Ann ret +54.7%, DD -48.7%.
+- Params: W20_R7_N3
+- Sessions: [2026-04-12 session 190]
+
+## H-864: Conditional Momentum XS
+- Status: CONFIRMED (deployed)
+- Idea: Momentum computed only on high-volume days — filters noise by ignoring low-volume drift.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Sum of returns only on above-median volume days over 20-day window. Rank XS. Top/bottom 4.
+- Result: IS Sharpe **1.608**, 100% param positive, WF **4/5**, SH p=**0.025**, H-012 corr **0.000** (zero!). Ann ret +67.9%, DD -45.9%.
+- Notes: **Session best.** Zero correlation with H-012 is remarkable — volume-filtered momentum captures entirely different signal from raw momentum. Genuinely novel diversifier.
+- Params: W20_R5_N4
+- Sessions: [2026-04-12 session 190]
+
+## H-865: Return Consistency XS
+- Status: REJECTED
+- Idea: Mean / std of sub-period (5-day) returns as quality measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.990, WF 3/5, but SH p=0.168 (FAIL). Consistency metric too noisy.
+- Sessions: [2026-04-12 session 190]
+
+## H-866: Volume-Weighted Return Divergence XS
+- Status: CONFIRMED (deployed)
+- Idea: VWAP return vs simple return divergence — smart money buying signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: VW return minus EW return over 20 days. Positive = high-vol days had good returns. Rank XS. Top/bottom 4.
+- Result: IS Sharpe **1.591**, 100% param positive, WF **3/5**, SH p=**0.027**, H-012 corr **0.005**. Ann ret +59.7%, DD -32.9%.
+- Notes: Near-zero corr with momentum. Captures volume-informed price discovery.
+- Params: W20_R3_N4
+- Sessions: [2026-04-12 session 190]
+
+## H-867: Max Gain Dependency XS
+- Status: CONFIRMED (deployed)
+- Idea: Short assets where most of return came from single day (fragile, tail-dependent momentum).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: -(max_daily_gain / |total_return|) over 40 days. Low dependency = robust returns. Rank XS. Top/bottom 4.
+- Result: IS Sharpe **1.766**, 100% param positive, WF **3/4**, SH p=**0.015**, H-012 corr **0.046**. Ann ret +74.8%, DD -36.4%.
+- Notes: **Highest Sharpe of batch.** Penalizing tail-dependent returns is a novel and powerful signal.
+- Params: W40_R7_N4
+- Sessions: [2026-04-12 session 190]
+
+## H-868: 1-Day Reversal XS
+- Status: REJECTED
+- Idea: Contrarian on 1-day returns across assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 67% positive. Best Sharpe 1.023 but below 70% param robustness threshold.
+- Sessions: [2026-04-12 session 190]
+
+## H-869: 3-Day Reversal XS
+- Status: REJECTED
+- Idea: Contrarian on 3-day returns across assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.841**, SH p=0.010 — strong IS signal. But **WF 2/5 FAIL**. Doesn't survive OOS. Classic overfit.
+- Sessions: [2026-04-12 session 190]
+
+## H-870: 5-Day Reversal XS
+- Status: REJECTED
+- Idea: Contrarian on 5-day returns across assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% positive. Best Sharpe -0.060. Pure 5-day reversal doesn't exist in crypto XS.
+- Sessions: [2026-04-12 session 190]
+
+## H-871: 10-Day Reversal XS
+- Status: REJECTED
+- Idea: Contrarian on 10-day returns across assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0% positive. Best Sharpe -0.506. Reversal at 10d is anti-momentum — confirmed that momentum is the dominant force.
+- Sessions: [2026-04-12 session 190]
+
+## H-872: RSI Contrarian XS
+- Status: REJECTED
+- Idea: Buy lowest-RSI, sell highest-RSI assets cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All 3 periods (10/14/21) 0% positive. Best Sharpe -0.302. RSI contrarian is anti-momentum — fails badly in crypto.
+- Sessions: [2026-04-12 session 190]
+
+## H-873: Distance from 20-Day High XS
+- Status: CONFIRMED (deployed)
+- Idea: Close / rolling_max - 1. Long assets near their highs, short assets far from highs.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Distance from 20-day high as momentum-like signal. Rank XS. Top/bottom 4.
+- Result: IS Sharpe **1.391**, 83% param positive, WF **4/5**, SH p=**0.053**, H-012 corr **0.023**. Ann ret +61.1%, DD -29.6%.
+- Notes: Low correlation with 60d momentum despite being momentum-flavored. Captures price level info, not return info.
+- Params: W20_R7_N4
+- Sessions: [2026-04-12 session 190]
+
+## H-874: Z-Score Mean Reversion XS
+- Status: REJECTED
+- Idea: Price z-score vs 20d MA as contrarian signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: W10: Sharpe 0.553. W20/W30: 0% positive. Mean reversion doesn't work in crypto XS.
+- Sessions: [2026-04-12 session 190]
+
+## H-875: Bollinger Band Position XS
+- Status: REJECTED
+- Idea: Position within Bollinger bands (contrarian — buy near lower, sell near upper).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: W15: 50% pos. W20/W30: 0% positive. Same as z-score — contrarian fails in crypto.
+- Notes: **Key finding from H-868–H-875: Mean reversion / contrarian strategies fail in crypto XS. Momentum dominates.** Only 1-3 day reversal shows weak signal (H-868/H-869) but doesn't survive WF. Distance-from-high (H-873) works but it's momentum-like, not contrarian.
+- Sessions: [2026-04-12 session 190]
+
+## H-876: MACD XS
+- Status: REJECTED (borderline)
+- Idea: MACD(fast,slow) normalized by price, ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: MACD 8/21: Sharpe 1.046, WF 4/5, but SH p=0.147 (FAIL). MACD 5/35: Sharpe 1.338, SH p=0.066, but WF 2/4 (FAIL). Mixed signals — no clear pass.
+- Sessions: [2026-04-12 session 190]
+
+## H-877: CCI XS
+- Status: REJECTED (borderline)
+- Idea: Commodity Channel Index ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best P30: Sharpe 1.028, WF 2/4 (FAIL), SH p=0.156. P20: Sharpe 0.952. CCI is mostly noise in XS crypto.
+- Sessions: [2026-04-12 session 190]
+
+## H-878: Stochastic %K XS
+- Status: CONFIRMED (deployed)
+- Idea: Stochastic oscillator %K ranked cross-sectionally (momentum direction).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: %K = (Close - Low_14) / (High_14 - Low_14) × 100. Rank XS. Long high %K, short low %K.
+- Result: IS Sharpe **1.406**, 83% param positive, WF **3/5**, SH p=**0.050**, H-012 corr **0.005**. Ann ret +60.1%, DD -37.7%.
+- Notes: Near-zero correlation with raw momentum. Captures price position within range rather than return direction.
+- Params: P14_R7_N4
+- Sessions: [2026-04-12 session 190]
+
+## H-879: Williams %R XS
+- Status: REJECTED
+- Idea: Williams %R ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P10: 50% pos. P14/P21: 0% positive. Despite being similar to Stochastic, the flipped scale and different normalization kill the signal.
+- Sessions: [2026-04-12 session 190]
+
+## H-880: Chaikin Money Flow XS
+- Status: REJECTED (borderline)
+- Idea: CMF = CLV × volume as buying pressure indicator, ranked XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: Sharpe 0.906, WF 3/5, but SH p=0.207 (FAIL). Buying pressure signal too noisy.
+- Sessions: [2026-04-12 session 190]
+
+## H-881: OBV Slope XS
+- Status: REJECTED (borderline — WF 5/5 but SH fail)
+- Idea: OBV slope (linear regression) ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20: Sharpe 1.114, **WF 5/5 PERFECT**, halves 1.14/1.13 (extremely consistent), but SH p=**0.122** (above 0.10 threshold). H-012 corr 0.051.
+- Notes: One of the most consistent WF results ever seen. Worth re-examining with more data.
+- Sessions: [2026-04-12 session 190]
+
+## H-882: Ease of Movement XS
+- Status: CONFIRMED (deployed)
+- Idea: EMV = midpoint change / (volume / range). High EMV = price moves easily on low volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: EMV smoothed over 10 days, ranked cross-sectionally. Long high EMV (easy movers), short low EMV.
+- Result: IS Sharpe **1.383**, 100% param positive, WF **3/5**, SH p=**0.053**, H-012 corr **-0.009**. Ann ret +52.9%, DD -45.5%.
+- Notes: EMV P14 had WF 5/5 PERFECT but SH p=0.189. P10 best overall. Novel microstructure signal.
+- Params: P10_R7_N4
+- Sessions: [2026-04-12 session 190]
+
+## H-883: Force Index XS
+- Status: REJECTED (borderline)
+- Idea: Force Index (return × volume, EMA smoothed) ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20: Sharpe 1.002, WF 3/5, SH p=0.164 (FAIL). Force index is too noisy. P7 SH p=0.251. P13 SH p=0.257.
+- Sessions: [2026-04-12 session 190]

@@ -1,18 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,017 (-1.96%). BTC spot ~$71,017.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,017 (-1.96%). BTC spot ~$70,949.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 106 runners active. Session 189. **27/101 positive** (27%), avg **+0.37%** (BTC -2.5% 24h pullback).
-- **H-063**: ~$9,607 (-3.93%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $71,017, below 71K put.
-- **Top performers**: H-277(+7.44%), H-353(+7.37%), H-332(+5.99%), H-343(+4.60%), H-338(+4.18%).
-- **Session 189 research**: 24 new hypotheses (H-836–H-859). **5 CONFIRMED+deployed** (H-837/H-843/H-849/H-851/H-854). **859 total hypotheses.**
-- **H-843 Range-Vol Ratio**: IS Sharpe **2.038**, WF **5/5 PERFECT**, SH p=**0.005**, H-012 corr **-0.015**. Session best. Novel microstructure signal.
-- **H-837 Volume Turnover**: IS Sharpe **1.958**, WF **5/5 PERFECT**, SH p=**0.006**, corr **0.058**. Near-zero corr with all.
-- **H-851 DD Mean Reversion**: IS Sharpe **1.637**, WF **3/4**, SH p=**0.027**, corr **-0.012**. Contrarian DD signal.
-- **Key findings**: Liquidity signals work well in crypto XS (Amihud, turnover, price impact all pass). Drawdown dynamics partially useful (DD mean reversion, underwater vol). Price pattern signals mostly fail (acceleration, body ratio, channel). Volume turnover and range-vol are genuinely novel, uncorrelated diversifiers.
-- **AUTOMATED:** Paper trades hourly via cron (106 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 106 runners (esp. H-843/H-837/H-849). Explore on-chain data, sentiment APIs, ML ensembles, or re-examine rejected signals with corrected SH test.
+- **Internal paper trades:** 114 runners active. Session 190. **43/106 positive** (40%), avg **+0.24%**.
+- **H-063**: ~$9,591 (-4.09%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $70,949.
+- **Top performers**: H-277(+7.44%), H-353(+7.37%), H-332(+5.99%), H-169(+5.13%), H-049(+4.98%).
+- **Session 190 research**: 24 new hypotheses (H-860–H-883). **8 CONFIRMED+deployed** (H-861/H-863/H-864/H-866/H-867/H-873/H-878/H-882). **883 total hypotheses.**
+- **H-864 Conditional Momentum**: IS Sharpe **1.608**, WF **4/5**, SH p=**0.025**, H-012 corr **0.000** (zero!). Volume-filtered momentum is entirely different signal. Session best novel finding.
+- **H-867 Max Gain Dependency**: IS Sharpe **1.766** (highest), WF **3/4**, SH p=**0.015**, corr **0.046**. Penalizing tail-dependent returns is novel and powerful.
+- **H-866 VW Return Divergence**: IS Sharpe **1.591**, WF **3/5**, SH p=**0.027**, corr **0.005**. Smart money buying signal.
+- **Key findings**: Return decomposition is rich signal space — downside protection, win rate, conditional momentum, VW divergence, max gain dependency all work as XS signals. Mean reversion/contrarian FAILS in crypto XS (RSI, z-score, Bollinger all 0% positive). Technical indicators mixed — Stochastic and EMV work as XS signals, MACD/CCI/CMF/Force Index borderline. OBV Slope had WF 5/5 PERFECT but SH borderline.
+- **AUTOMATED:** Paper trades hourly via cron (114 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 114 runners (esp. H-864/H-867/H-866 new stars). Explore on-chain data, sentiment APIs, ML ensembles, or OBV Slope re-test with more data.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -24,15 +24,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 179) archived to `memory/session_archive.md`._
-
-### Session 2026-04-11 review+deploy+research (session 180)
-- Goal: Review + Deploy + Research — MTM update, 32 new backtests (4 batches of 8), 1 new deployment
-- Focus: Paper trade MTM (BTC $72,799), altcoin TS, funding rate TS, distributional/higher-order moment signals (H-636–H-667)
-- Done: 75 runners (74→75). **30/74 positive** (41%, up from 35%). Avg **-0.18%**. **Batch 1 (H-636–H-643, altcoin 4h TS)**: All 8 REJECTED at IS. ETH/SOL/DOGE/XRP/AVAX/LINK/NEAR 4h TS strategies fail — BTC volume breakout pattern doesn't transfer. **Batch 2 (H-644–H-651, daily alt TS + funding + OI)**: All 8 REJECTED. ETH daily vol breakout borderline (SH fail). Funding rate TS (BTC/ETH), OI change, vol regime, intraday vol distribution, aggregate funding — no edges. **Batch 3 (H-652–H-659)**: **H-657 CONFIRMED+deployed** (BTC Realized Skew, IS **0.947**, WF 5/6, SH PASS 0.624/1.524, **98% param robust**, H-012 corr **0.052** — excellent diversifier). ETH/BTC ratio, monthly calendar, vol-of-vol, multi-TF, BTC dominance — all fail. **Batch 4 (H-660–H-667)**: **H-666 CONFIRMED** (Multi-Asset Skew Portfolio, IS 0.887, SH PASS) but NOT deployed — inferior to H-657 BTC-only. Kurtosis, tail ratio, Hurst, autocorrelation all fail. **667 total hypotheses.**
-- Next: Await Q-005 answer. Monitor all 75 runners (esp. H-657). H-063 trade 3. Explore options strategies, on-chain data, or micro-structure signals.
-- Questions added: none
-- Self-modifications: H-657 runner created, added to orchestrator. Archived session 170. (session 180)
+_Older sessions (bootstrap through 180) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-11 review+deploy+research (session 181)
 - Goal: Review + Deploy + Research — MTM update, 16 new backtests (2 batches of 8), 4 new deployments
@@ -105,3 +97,11 @@ _Older sessions (bootstrap through 179) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 106 runners (esp. H-843/H-837/H-849). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 5 runners created (H-837/H-843/H-849/H-851/H-854), added to orchestrator. Archived session 179. (session 189)
+
+### Session 2026-04-12 review+deploy+research (session 190)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 8 new deployments
+- Focus: Paper trade MTM (BTC $70,949), return decomposition/quality (H-860–H-867), short-term reversal (H-868–H-875), technical indicator XS (H-876–H-883)
+- Done: 114 runners (106→114). **43/106 positive** (40%). Avg **+0.24%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-860–H-867, return quality)**: **5 CONFIRMED+deployed**: H-864 Conditional Momentum (Sharpe **1.608**, WF 4/5, SH p=0.025, **corr 0.000** — zero!), H-867 Max Gain Dep (**1.766**, WF 3/4, p=0.015), H-866 VW Return Div (**1.591**, WF 3/5, p=0.027, corr 0.005), H-873 Dist High (1.391, WF 4/5), H-861 Downside Protect (1.255, WF 3/4). H-863 Win Rate (1.207, WF 4/5). H-860/H-862/H-865 REJECTED. **Batch 2 (H-868–H-875, reversal)**: **1 CONFIRMED** H-873 Dist from High (1.391, WF 4/5, SH p=0.053). Mean reversion FAILS in crypto XS (RSI, z-score, Bollinger all 0% positive). 3-day reversal Sharpe 1.841 but WF 2/5 fail. **Batch 3 (H-876–H-883, technical)**: **2 CONFIRMED**: H-878 Stochastic (1.406, WF 3/5, corr 0.005), H-882 EMV (1.383, WF 3/5, corr -0.009). H-881 OBV Slope notable (WF 5/5 PERFECT but SH p=0.122). MACD/CCI borderline, Williams/Force fail. **883 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 114 runners (esp. H-864/H-867/H-866 new stars). Explore on-chain data, sentiment APIs, ML ensembles, OBV Slope re-test.
+- Questions added: none
+- Self-modifications: 8 runners created (H-861/H-863/H-864/H-866/H-867/H-873/H-878/H-882), added to orchestrator. Archived session 180. (session 190)
