@@ -1322,3 +1322,8 @@
 - Focus: Paper trade MTM (BTC $72,128), expanded universe testing, novel signal categories (H-513–H-531)
 - Done: 67 runners (66→67). 26/66 positive (avg -0.11%). Demo $94,608 (-5.39%). H-528 Range Expansion CONFIRMED+deployed. 531 total hypotheses.
 - Next: Await Q-005 answer. H-063 settles today 08:00. Monitor H-496/H-528.
+
+### Session 2026-04-10 review+deploy+research (session 176)
+- Goal: Review + Deploy + Research — MTM update, H-063 settlement check, 16 new BTC time-series backtests, 3 deployments
+- Focus: Paper trade MTM (BTC $71,681), BTC time-series strategies (H-532–H-547)
+- Done: 70 runners (67→70). 14/66 positive (21%). Avg -0.17%. 3 confirmed (H-535/H-539/H-544). H-063 trade 2 settled. 13 REJECTED. 547 total hypotheses.

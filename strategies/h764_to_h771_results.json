@@ -1,0 +1,140 @@
+[
+  {
+    "name": "H-764: Return Autocorrelation XS",
+    "status": "REJECTED",
+    "reason": "param robust 50%",
+    "sharpe": 0.506,
+    "annual_ret": 20.2,
+    "max_dd": -35.2
+  },
+  {
+    "name": "H-765: Close-to-High Ratio XS",
+    "status": "REJECTED",
+    "reason": "SH p=0.2437",
+    "sharpe": 0.849,
+    "annual_ret": 43.4,
+    "max_dd": -104.2,
+    "wf": [
+      4.025047336739217,
+      2.249597632633882,
+      0.4752006605228667,
+      0.7941430512584334
+    ],
+    "robust_pct": 100.0,
+    "sh": [
+      -0.2940303960407392,
+      2.1528375246786835,
+      0.24366195442454974
+    ]
+  },
+  {
+    "name": "H-766: Volume-Weighted Return XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 1.47,
+    "annual_ret": 62.8,
+    "max_dd": -49.2,
+    "wf": [
+      0.5935465039467354,
+      -1.6503776812607172,
+      2.3316311738535065,
+      -0.046013215468964634
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-767: Intraday Range Ratio XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe 0.116",
+    "sharpe": 0.116,
+    "annual_ret": 4.6,
+    "max_dd": -45.2
+  },
+  {
+    "name": "H-768: Sequential Pattern Score XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.667,
+    "annual_ret": 74.0,
+    "max_dd": -39.9,
+    "params": [
+      40,
+      3,
+      3
+    ],
+    "wf": [
+      2.9493332616692225,
+      1.1788314539335296,
+      1.8298202037142246,
+      -0.6507113825825848
+    ],
+    "wf_pass": "3/4",
+    "wf_mean": 1.327,
+    "robust_pct": 100.0,
+    "sh": [
+      1.613,
+      1.762,
+      0.0222
+    ],
+    "h012_corr": -0.018,
+    "direction": "high_long",
+    "n_days": 691
+  },
+  {
+    "name": "H-769b: Multi-Horizon Divergence (contrarian)",
+    "status": "CONFIRMED",
+    "sharpe": 1.544,
+    "annual_ret": 67.7,
+    "max_dd": -32.2,
+    "params": [
+      20,
+      3,
+      4
+    ],
+    "wf": [
+      0.9338449143023196,
+      -0.8185842599680804,
+      3.304783352729713,
+      0.7056436214031825,
+      2.7199625723450658
+    ],
+    "wf_pass": "4/5",
+    "wf_mean": 1.369,
+    "robust_pct": 100.0,
+    "sh": [
+      1.724,
+      1.343,
+      0.0316
+    ],
+    "h012_corr": 0.015,
+    "direction": "low_long",
+    "n_days": 711
+  },
+  {
+    "name": "H-770b: Drawdown Depth (momentum)",
+    "status": "REJECTED",
+    "reason": "SH p=0.1334",
+    "sharpe": 1.109,
+    "annual_ret": 53.9,
+    "max_dd": -38.5,
+    "wf": [
+      2.908466960970959,
+      0.26423662066736686,
+      0.5833340402962743,
+      -0.5380489312862009
+    ],
+    "robust_pct": 75.0,
+    "sh": [
+      0.9105390106151189,
+      1.4424884342550144,
+      0.1334234595460033
+    ]
+  },
+  {
+    "name": "H-771: Volume Climax XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe 0.089",
+    "sharpe": 0.089,
+    "annual_ret": 3.3,
+    "max_dd": -65.9
+  }
+]

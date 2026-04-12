@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-12 session 185):
-Demo eq: ~$95,490 (-4.51%). BTC spot ~$73,335. 13 open positions.
+### Current Demo Status (as of 2026-04-12 session 186):
+Demo eq: ~$95,490 (-4.51%). BTC spot ~$73,082. 13 open positions.
 
 ---
 
@@ -1023,3 +1023,52 @@ Demo eq: ~$95,490 (-4.51%). BTC spot ~$73,335. 13 open positions.
 - **Research: Bybit API rich data sources**: Premium index (exploited in H-052), options IV (collecting), order book depth (collecting), LSR (exploited in H-049).
 - **Options IV surface data collection started**: BTC/ETH/SOL/XRP/DOGE daily snapshots. ATM IV levels: BTC ~46-52%, ETH ~63-75%, SOL ~70-79%, DOGE ~67-96%. After 60-90 days of collection, options-based cross-sectional signals become backtestable.
 - **Order book depth collection started**: 14 assets daily snapshots. Bid/ask imbalance at 5/10/25 levels. After ~60-90 days, microstructure signals become backtestable.
+
+### H-768: Sequential Pattern Score XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ARB, BTC, NEAR. SHORT: XRP, SUI, OP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h768_sequential_pattern/runner.py`
+- **Params**: pattern_window=10, rebal=3, n_ls=3
+
+### H-769: Multi-Horizon Divergence XS (Contrarian)
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ARB, OP, ETH, LINK. SHORT: AVAX, XRP, SOL, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h769_multi_horizon_div/runner.py`
+- **Params**: short=5d, long=20d, rebal=3, n_ls=4
+
+### H-773: OI-Confirmed Momentum XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ETH, ARB, BTC. SHORT: ADA, DOT, OP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h773_oi_confirmed_mom/runner.py`
+- **Params**: mom=40d, oi=5d, rebal=3, n_ls=3
+
+### H-777: Price-Volume Trend XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ETH, BTC, XRP. SHORT: OP, ATOM, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h777_pvt/runner.py`
+- **Params**: pvt_window=30, rebal=3, n_ls=3
+
+### H-778: Close Location Value XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: BTC, ARB, ETH, XRP. SHORT: LINK, ADA, NEAR, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h778_clv/runner.py`
+- **Params**: clv_window=20, rebal=3, n_ls=4
+
+### H-781: Signal Agreement XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: NEAR, BTC, AVAX. SHORT: ADA, OP, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h781_signal_agreement/runner.py`
+- **Params**: 4 factor consensus, rebal=3, n_ls=3
+
+### H-786: Volume-Confirmed Strength XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ARB, ETH, LINK. SHORT: XRP, ATOM, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h786_vol_confirmed/runner.py`
+- **Params**: window=20, rebal=5, n_ls=3

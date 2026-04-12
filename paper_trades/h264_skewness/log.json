@@ -76,5 +76,44 @@
     },
     "trades": 2,
     "fees": 6.7287
+  },
+  {
+    "date": "2026-04-11",
+    "action": "rebalance",
+    "capital": 9542.87,
+    "positions": {
+      "DOT/USDT": {
+        "dir": "LONG",
+        "entry": 1.287257,
+        "w": 0.3333333333333333
+      },
+      "NEAR/USDT": {
+        "dir": "LONG",
+        "entry": 1.40228,
+        "w": 0.3333333333333333
+      },
+      "DOGE/USDT": {
+        "dir": "LONG",
+        "entry": 0.093089,
+        "w": 0.3333333333333333
+      },
+      "BTC/USDT": {
+        "dir": "SHORT",
+        "entry": 73033.8903,
+        "w": -0.3333333333333333
+      },
+      "ARB/USDT": {
+        "dir": "SHORT",
+        "entry": 0.115547,
+        "w": -0.3333333333333333
+      },
+      "OP/USDT": {
+        "dir": "SHORT",
+        "entry": 0.114477,
+        "w": -0.3333333333333333
+      }
+    },
+    "trades": 0,
+    "fees": 0.0
   }
 ]

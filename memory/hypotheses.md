@@ -8163,3 +8163,216 @@
 - H-012 corr: **0.027** (near-zero — excellent diversifier).
 - Notes: Essentially a risk-adjusted momentum signal. Captures momentum quality not just magnitude.
 - Sessions: [2026-04-12 session 185]
+
+## H-764: Return Autocorrelation XS
+- Status: REJECTED
+- Idea: Serial correlation of daily returns as cross-sectional signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.506, param robust 50% (fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-765: Close-to-High Ratio XS
+- Status: REJECTED
+- Idea: Average close/high ratio — buying pressure proxy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.849, WF 4/4, but SH p=0.244 (fail). First-half negative.
+- Sessions: [2026-04-12 session 186]
+
+## H-766: Volume-Weighted Return XS
+- Status: REJECTED
+- Idea: Cumulative return weighted by volume over window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.470, 100% robust, but WF 2/4 (fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-767: Intraday Range Ratio XS
+- Status: REJECTED
+- Idea: (high-low)/|close change| — noise vs signal ratio.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.116 (fail at IS).
+- Sessions: [2026-04-12 session 186]
+
+## H-768: Sequential Pattern Score XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Score based on 3-day directional patterns (UUU, UUD, etc.), averaged over window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: For each asset, compute 3-day direction sum (+3 to -3), average over 10 days. Long top 3, short bottom 3.
+- Result: IS Sharpe **1.667**, Ann +74.0%, DD -39.9%. WF 3/4 mean 1.327. SH p=0.022 (PASS). 100% param robust.
+- H-012 corr: **-0.018** (near-zero — excellent diversifier).
+- Notes: Novel pattern-based signal. Captures persistence in directional moves.
+- Sessions: [2026-04-12 session 186]
+
+## H-769: Multi-Horizon Divergence XS (Contrarian)
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Short-term (5d) vs long-term (20d) momentum divergence, traded contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: Divergence = 5d_ret - 20d_ret. Long lowest divergence (underextended), short highest (overextended). Top/bottom 4.
+- Result: IS Sharpe **1.544**, Ann +67.7%, DD -32.2%. WF **4/5** mean 1.369. SH p=0.032 (PASS). 100% param robust.
+- H-012 corr: **0.015** (near-zero — excellent diversifier).
+- Notes: Contrarian on short-term overextension. Different from pure momentum or mean-reversion.
+- Sessions: [2026-04-12 session 186]
+
+## H-770: Drawdown Depth XS
+- Status: REJECTED
+- Idea: Current drawdown from rolling high as cross-sectional signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Buy beaten-down: IS Sharpe -0.319 (fail). Momentum variant: IS 1.109, WF 3/4, SH p=0.133 (fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-771: Volume Climax XS
+- Status: REJECTED
+- Idea: Volume z-score × sign of return — directional volume climax.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.089 (fail at IS).
+- Sessions: [2026-04-12 session 186]
+
+## H-772: Momentum × Volume Change XS
+- Status: REJECTED
+- Idea: Momentum weighted by volume trend (confirmation signal).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.155, 100% robust, WF 3/5, but SH p=0.110 (borderline fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-773: OI-Confirmed Momentum XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Momentum amplified when OI is expanding (more conviction behind price moves).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: mom(40d) × (0.5 + OI_expanding). OI expanding = OI change over 5d > 0. Long top 3, short bottom 3.
+- Result: IS Sharpe **1.698**, Ann +78.4%, DD -33.6%. WF **4/4 PERFECT** mean 1.709. SH p=0.020 (PASS). 100% param robust.
+- H-012 corr: **-0.001** (essentially zero — perfect diversifier).
+- Notes: Best signal this session. OI confirmation creates near-zero correlation with pure momentum. All WF folds positive.
+- Sessions: [2026-04-12 session 186]
+
+## H-774: Funding-Adjusted Momentum XS
+- Status: REJECTED
+- Idea: Momentum penalized by extreme funding rate.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.060, 100% robust, WF 3/4, SH p=0.145 (fail). No funding data loaded.
+- Sessions: [2026-04-12 session 186]
+
+## H-775: Vol-Regime Momentum XS
+- Status: REJECTED
+- Idea: Momentum amplified in low-vol regime, dampened in high-vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.170, 100% robust, WF 3/4, SH p=0.108 (borderline fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-776: Return-Volume Asymmetry XS
+- Status: REJECTED
+- Idea: Average return on high-volume vs low-volume days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.390, 100% robust, but WF 2/4 (fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-777: Price-Volume Trend XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Cumulative (return × volume) — Price-Volume Trend indicator as XS signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: PVT = sum of (daily_return × dollar_volume) over 30 days. Long top 3, short bottom 3.
+- Result: IS Sharpe **1.679**, Ann +84.5%, DD -47.0%. WF 3/5 mean 1.426. SH p=0.020 (PASS). 100% param robust.
+- H-012 corr: **-0.024** (near-zero — excellent diversifier).
+- Notes: Volume-weighted momentum. Captures where money is actually flowing, not just price direction.
+- Sessions: [2026-04-12 session 186]
+
+## H-778: Close Location Value XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Average (close - low) / (high - low) — where in daily range price closes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: CLV = (close - low)/(high - low) averaged over 20 days. Long top 4, short bottom 4.
+- Result: IS Sharpe **1.506**, Ann +60.6%, DD -26.9%. WF **4/4 PERFECT** mean 1.058. SH p=0.039 (PASS). 100% param robust.
+- H-012 corr: **-0.034** (near-zero — excellent diversifier).
+- Notes: Captures buying pressure — assets consistently closing near highs vs lows. Low DD = nice risk profile.
+- Sessions: [2026-04-12 session 186]
+
+## H-779: Relative Spread XS
+- Status: REJECTED
+- Idea: Normalized (high-low)/close spread as volatility proxy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Low_long IS 0.531, WF 4/5, SH p=0.462 (fail). High_long IS -0.202 (fail).
+- Sessions: [2026-04-12 session 186]
+
+## H-780: Rank Average Composite XS
+- Status: REJECTED
+- Idea: Z-score average of momentum + turnover + short-term reversal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.625, 100% robust, but WF 2/5 (fail). Classic in-sample overfitting.
+- Sessions: [2026-04-12 session 186]
+
+## H-781: Signal Agreement XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Count factors agreeing on direction (60d mom, 20d mom, vol mom, low vol).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: For each asset, count how many of 4 factors are positive. Long highest agreement (3-4), short lowest (0-1). Top/bottom 3.
+- Result: IS Sharpe 1.293, Ann +63.6%, DD -73.1%. WF **4/5** mean 0.710. SH p=0.072 (PASS). 100% param robust.
+- H-012 corr: **-0.008** (near-zero — excellent diversifier).
+- Notes: Ensemble approach. Higher DD than most but strong WF validation. Borderline SH but passes threshold.
+- Sessions: [2026-04-12 session 186]
+
+## H-782: Residual Alpha XS
+- Status: REJECTED
+- Idea: Alpha after removing market-weighted momentum exposure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.155, 100% robust, but WF 1/4 (fail). In-sample alpha doesn't persist OOS.
+- Sessions: [2026-04-12 session 186]
+
+## H-783: Factor Timing Momentum XS
+- Status: REJECTED
+- Idea: Dynamically pick best factor (momentum vs volume) based on recent performance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.887 (!), 100% robust, but WF 2/4 (fail). Highest IS Sharpe = worst WF. Pure overfitting.
+- Sessions: [2026-04-12 session 186]
+
+## H-784: Momentum Quality XS
+- Status: REJECTED
+- Idea: Momentum × consistency (fraction of sub-periods positive).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.851, 100% robust, but WF 2/4 (fail). Another overfitting case.
+- Sessions: [2026-04-12 session 186]
+
+## H-785: Trend + Reversion Composite XS
+- Status: REJECTED
+- Idea: 60d trend (60%) + 5d reversal (40%) composite z-score.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.927 (highest in session!), 100% robust, but WF 2/4 (fail). Proves that high IS Sharpe ≠ real signal.
+- Sessions: [2026-04-12 session 186]
+
+## H-786: Volume-Confirmed Strength XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Composite of momentum + volume trend + up-volume ratio, z-scored.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Z-score each of: 20d return, volume trend (20d/40d MA ratio), up-volume ratio. Average the 3 z-scores. Long top 3, short bottom 3.
+- Result: IS Sharpe 1.213, Ann +56.7%, DD -40.1%. WF 3/4 mean 0.385. SH p=0.096 (PASS). 100% param robust.
+- H-012 corr: **-0.016** (near-zero — excellent diversifier).
+- Notes: Multi-signal composite with volume confirmation. Borderline SH but crosses threshold.
+- Sessions: [2026-04-12 session 186]
+
+## H-787: Dynamic Tilt XS
+- Status: REJECTED
+- Idea: Momentum in trending markets, contrarian in ranging markets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.593, param robust 50% (fail). Regime detection adds noise, doesn't help.
+- Sessions: [2026-04-12 session 186]

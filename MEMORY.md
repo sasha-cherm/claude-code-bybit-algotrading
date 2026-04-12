@@ -1,17 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$95,490 (-4.51%). BTC spot ~$73,335.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$95,490 (-4.51%). BTC spot ~$73,082.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 87 runners active. Session 185. **32/83 positive** (39%), avg **-0.15%**.
-- **H-063**: ~$9,659 (-3.41%). Iron condor (70K/75.5K) expires Apr 13 — BTC within strikes.
-- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%).
-- **Session 185 research**: 24 new hypotheses (H-740–H-763). **4 deployed** (H-754 Lead-Lag, H-759 ADX Trend, H-761 Gap, H-763 Mom-Vol Ratio). **763 total hypotheses.**
-- **H-759 ADX Trend Strength**: IS Sharpe **1.723**, WF **5/5**, SH p=0.016, H-012 corr 0.064. Best new signal.
-- **H-761 Gap Signal**: IS Sharpe **1.673**, WF **5/5**, SH p=0.019, H-012 corr 0.054.
-- **H-754 Lead-Lag**: IS Sharpe 1.232, WF **4/4**, H-012 corr **-0.014**. Novel microstructure signal.
-- **AUTOMATED:** Paper trades hourly via cron (87 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor new deployments. H-063 expires tomorrow. Explore non-price data or multi-TF combos.
+- **Internal paper trades:** 94 runners active. Session 186. **45/87 positive** (52%, up from 39%), avg **+0.49%** (recovered).
+- **H-063**: ~$9,666 (-3.34%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC within strikes.
+- **Top performers**: H-277(+7.44%), H-353(+7.37%), H-085(+6.94%), H-169(+6.18%), H-332(+5.99%).
+- **Session 186 research**: 24 new hypotheses (H-764–H-787). **7 CONFIRMED+deployed** (H-768/H-769/H-773/H-777/H-778/H-781/H-786). **787 total hypotheses.**
+- **H-773 OI-Confirmed Momentum**: IS Sharpe **1.698**, WF **4/4 PERFECT**, SH p=0.020, H-012 corr **-0.001**. Best new signal.
+- **H-778 Close Location Value**: IS Sharpe **1.506**, WF **4/4 PERFECT**, SH p=0.039, H-012 corr -0.034.
+- **H-768 Sequential Pattern**: IS Sharpe **1.667**, WF 3/4, SH p=0.022, corr -0.018.
+- **Key finding**: High IS Sharpe composites (H-783: 1.89, H-785: 1.93) ALL fail WF — confirms overfitting via complex signals.
+- **AUTOMATED:** Paper trades hourly via cron (94 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 94 runners. Explore sentiment APIs, on-chain data, or non-price signals.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -23,15 +24,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 175) archived to `memory/session_archive.md`._
-
-### Session 2026-04-10 review+deploy+research (session 176)
-- Goal: Review + Deploy + Research — MTM update, H-063 settlement check, 16 new BTC time-series backtests, 3 deployments
-- Focus: Paper trade MTM (BTC $71,681), BTC time-series strategies (H-532–H-547)
-- Done: 70 runners (67→70). **14/66 positive** (21%, down from 26). Avg **-0.17%**. Demo ~$94,700 (-5.30%). **H-063 trade 2 settled**: BTC $71,641 at expiry, 69kC ITM, loss -$454, total -3.76%. **Research**: Explored BTC time-series (TS) strategies — fundamentally different from all prior XS factors. **H-535 CONFIRMED** (Intra Mom, WF 6/8 mean 1.05, SH PASS). **H-539 CONFIRMED** (Keltner Breakout, WF 5/7, 83% param robust, SH PASS). **H-544 CONFIRMED** (Range Squeeze, WF 5/8, **100% param robust**, SH PASS, corr 0.109 H-009). **CRITICAL**: H-540 Multi-Asset TSMOM had look-ahead bias (Sharpe 6.17 fake → 0.57 real). 13 REJECTED. **547 total hypotheses.**
-- Next: Await Q-005 answer. Monitor BTC TS paper trades. H-063 trade 3 entry tonight. Consider alternative instruments or higher-frequency.
-- Questions added: none
-- Self-modifications: H-535/H-539/H-544 runners created, added to orchestrator. Archived session 166. (session 176)
+_Older sessions (bootstrap through 176) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-10 review+deploy+research (session 177)
 - Goal: Review + Deploy + Research — MTM update, 32 new backtests (ETH TS, multi-asset, classic indicators, multi-TF), 1 deployment
@@ -104,3 +97,11 @@ _Older sessions (bootstrap through 175) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 87 runners (esp. H-754/H-759/H-761/H-763). H-063 expires tomorrow. Explore multi-TF combinations, sentiment APIs.
 - Questions added: none
 - Self-modifications: H-754/H-759/H-761/H-763 runners created, added to orchestrator. Archived session 175. (session 185)
+
+### Session 2026-04-12 review+deploy+research (session 186)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
+- Focus: Paper trade MTM (BTC $73,082), sequential patterns (H-764–H-771), interaction signals (H-772–H-779), composite signals (H-780–H-787)
+- Done: 94 runners (87→94). **45/87 positive** (52%, up from 39%). Avg **+0.49%** (recovered from -0.15%). Demo ~$95,490 (-4.51%). **Batch 1 (H-764–H-771, sequential/pattern)**: **H-768 CONFIRMED+deployed** (Sequential Pattern, IS 1.667, WF 3/4, SH p=0.022, corr -0.018). **H-769 CONFIRMED+deployed** (Multi-Horizon Divergence contrarian, IS 1.544, WF 4/5, SH p=0.032, corr 0.015). H-766 Vol-Weighted Return had IS 1.47 but WF 2/4 fail. 6 REJECTED. **Batch 2 (H-772–H-779, interaction/conditional)**: **H-773 CONFIRMED+deployed** (OI-Confirmed Momentum, IS **1.698**, WF **4/4 PERFECT**, SH p=0.020, corr **-0.001** — session best). **H-777 CONFIRMED+deployed** (PVT, IS 1.679, WF 3/5, SH p=0.020, corr -0.024). **H-778 CONFIRMED+deployed** (CLV, IS 1.506, WF **4/4 PERFECT**, SH p=0.039, corr -0.034). H-772/H-774/H-775 all borderline SH fail. 5 REJECTED. **Batch 3 (H-780–H-787, composite)**: **H-781 CONFIRMED+deployed** (Signal Agreement, IS 1.293, WF 4/5, SH p=0.072, corr -0.008). **H-786 CONFIRMED+deployed** (Vol-Confirmed Strength, IS 1.213, WF 3/4, SH p=0.096, corr -0.016). H-783/H-784/H-785 had IS Sharpe 1.85-1.93 but ALL WF 2/4 — proves high IS ≠ real signal. 6 REJECTED. **787 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 94 runners (esp. H-773/H-778 with perfect WF). Explore sentiment APIs, on-chain data.
+- Questions added: none
+- Self-modifications: 7 runners created (H-768/H-769/H-773/H-777/H-778/H-781/H-786), added to orchestrator. Archived session 176. (session 186)

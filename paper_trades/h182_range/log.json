@@ -34,5 +34,23 @@
     "trades": 0,
     "fees": 0.0,
     "capital": 9886.97
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-12T00:34:21.384148+00:00",
+    "date": "2026-04-11",
+    "longs": [
+      "BTC/USDT",
+      "ATOM/USDT",
+      "XRP/USDT"
+    ],
+    "shorts": [
+      "ARB/USDT",
+      "SUI/USDT",
+      "OP/USDT"
+    ],
+    "trades": 2,
+    "fees": 6.88,
+    "capital": 9499.1
   }
 ]

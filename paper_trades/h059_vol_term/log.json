@@ -64,5 +64,27 @@
     "trades": 9,
     "fees": 11.953961472000003,
     "capital": 9949.680598528
+  },
+  {
+    "time": "2026-04-12T00:34:18.364581+00:00",
+    "event": "rebalance",
+    "date": "2026-04-11",
+    "longs": [
+      "SUI",
+      "SOL",
+      "ATOM",
+      "ADA",
+      "ARB"
+    ],
+    "shorts": [
+      "XRP",
+      "BTC",
+      "ETH",
+      "DOT",
+      "NEAR"
+    ],
+    "trades": 8,
+    "fees": 11.939616718233603,
+    "capital": 9937.740981809768
   }
 ]

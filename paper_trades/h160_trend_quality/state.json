@@ -1,41 +1,41 @@
 {
   "started": "2026-03-31T17:07:35.782659+00:00",
-  "capital": 9788.5,
+  "capital": 9936.7,
   "positions": {
-    "ETH/USDT": {
+    "ARB/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2182.876488,
-      "size": 1.49677781,
+      "entry_price": 0.115683,
+      "size": 28651.14661196,
       "direction": "LONG"
     },
     "BTC/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 71010.39924,
-      "size": 0.0460113,
+      "entry_price": 73132.82364,
+      "size": 0.04532102,
       "direction": "LONG"
     },
-    "LINK/USDT": {
+    "ETH/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 8.85177,
-      "size": 369.11048203,
+      "entry_price": 2287.55742,
+      "size": 1.44890543,
       "direction": "LONG"
     },
     "SOL/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 82.463504,
-      "size": -39.62093451,
+      "entry_price": 84.973002,
+      "size": -39.0059701,
       "direction": "SHORT"
     },
     "XRP/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.339632,
-      "size": -2438.93923311,
+      "entry_price": 1.354729,
+      "size": -2446.58110623,
       "direction": "SHORT"
     },
     "DOT/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.269746,
-      "size": -2573.17691216,
+      "entry_price": 1.285743,
+      "size": -2577.85178767,
       "direction": "SHORT"
     }
   },
@@ -111,12 +111,18 @@
       "equity": 9822.65,
       "positions": 6,
       "rebalanced": false
+    },
+    {
+      "date": "2026-04-11",
+      "equity": 9932.73,
+      "positions": 6,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-04-10",
-  "last_rebal_date": "2026-04-08",
-  "days_since_rebal": 2,
-  "rebal_count": 4,
-  "total_trades": 20,
-  "total_fees": 66.31402910309168
+  "last_daily_date": "2026-04-11",
+  "last_rebal_date": "2026-04-11",
+  "days_since_rebal": 0,
+  "rebal_count": 5,
+  "total_trades": 22,
+  "total_fees": 72.97638405747173
 }

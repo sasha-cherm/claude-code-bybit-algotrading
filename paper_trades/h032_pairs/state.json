@@ -31,11 +31,11 @@
       "cumulative_pnl": 0.0
     },
     "SOL/DOGE": {
-      "position": 1,
-      "entry_date": "2026-04-01",
-      "entry_z": -2.137,
+      "position": 0,
+      "entry_date": null,
+      "entry_z": null,
       "entry_equity": 1250.0,
-      "cumulative_pnl": -3.0000000000000004
+      "cumulative_pnl": 0.0
     },
     "AVAX/DOT": {
       "position": -1,
@@ -45,11 +45,11 @@
       "cumulative_pnl": -3.0000000000000004
     },
     "NEAR/OP": {
-      "position": 0,
-      "entry_date": null,
-      "entry_z": null,
+      "position": -1,
+      "entry_date": "2026-04-11",
+      "entry_z": 2.415,
       "entry_equity": 1250.0,
-      "cumulative_pnl": 0.0
+      "cumulative_pnl": -3.0000000000000004
     },
     "ARB/ATOM": {
       "position": 0,
@@ -197,11 +197,17 @@
       "equity": 9985.0,
       "active_pairs": 3,
       "trades_today": 0
+    },
+    {
+      "date": "2026-04-11",
+      "equity": 9979.0,
+      "active_pairs": 3,
+      "trades_today": 2
     }
   ],
-  "last_daily_date": "2026-04-10",
-  "total_trades": 5,
-  "total_fees": 15.000000000000002,
+  "last_daily_date": "2026-04-11",
+  "total_trades": 7,
+  "total_fees": 21.000000000000004,
   "trades_log": [
     {
       "pair": "DOGE/LINK",
@@ -212,6 +218,16 @@
       "exit_z": 0.08,
       "pnl": -6.0,
       "reason": "exit (z=0.08 > -0.0)"
+    },
+    {
+      "pair": "SOL/DOGE",
+      "direction": "long_spread",
+      "entry_date": "2026-04-01",
+      "exit_date": "2026-04-11",
+      "entry_z": -2.137,
+      "exit_z": 0.221,
+      "pnl": -6.0,
+      "reason": "exit (z=0.22 > -0.0)"
     }
   ]
 }

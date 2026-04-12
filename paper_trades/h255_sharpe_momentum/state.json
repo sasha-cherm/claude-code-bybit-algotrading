@@ -1,41 +1,41 @@
 {
   "started": "2026-04-05T17:15:54.152340+00:00",
-  "capital": 9980.0,
+  "capital": 10161.05,
   "positions": {
-    "DOGE/USDT": {
+    "ARB/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 0.092068,
-      "size": 36204.96252008,
+      "entry_price": 0.115593,
+      "size": 29400.4283065,
       "direction": "LONG"
     },
-    "ETH/USDT": {
+    "NEAR/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2065.983114,
-      "size": 1.61343687,
+      "entry_price": 1.40228,
+      "size": 2423.5431522,
       "direction": "LONG"
     },
-    "LINK/USDT": {
+    "BTC/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 8.696739,
-      "size": 383.2854284,
+      "entry_price": 73063.1097,
+      "size": 0.0465144,
       "direction": "LONG"
     },
-    "ATOM/USDT": {
+    "ADA/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.713657,
-      "size": -1945.15760406,
+      "entry_price": 0.24945,
+      "size": -13623.91540786,
       "direction": "SHORT"
     },
-    "XRP/USDT": {
+    "SOL/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.315037,
-      "size": -2534.78304064,
+      "entry_price": 84.903016,
+      "size": -40.02787205,
       "direction": "SHORT"
     },
     "DOT/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.252749,
-      "size": -2660.81415272,
+      "entry_price": 1.286743,
+      "size": -2641.155318,
       "direction": "SHORT"
     }
   },
@@ -67,12 +67,16 @@
     {
       "date": "2026-04-10",
       "equity": 9904.2
+    },
+    {
+      "date": "2026-04-11",
+      "equity": 10156.98
     }
   ],
-  "last_daily_date": "2026-04-10",
-  "last_rebal_date": "2026-04-04",
-  "days_since_rebal": 6,
-  "rebal_count": 1,
-  "total_trades": 6,
-  "total_fees": 19.999999999999996
+  "last_daily_date": "2026-04-11",
+  "last_rebal_date": "2026-04-11",
+  "days_since_rebal": 0,
+  "rebal_count": 2,
+  "total_trades": 16,
+  "total_fees": 54.41482351184068
 }

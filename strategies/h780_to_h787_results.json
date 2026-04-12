@@ -1,0 +1,145 @@
+[
+  {
+    "name": "H-780: Rank Average Composite XS",
+    "status": "REJECTED",
+    "reason": "WF 2/5",
+    "sharpe": 1.625,
+    "annual_ret": 82.1,
+    "max_dd": -43.2,
+    "wf": [
+      -0.5249063004493818,
+      -1.563314135399076,
+      1.195266168388247,
+      3.7073721704003892,
+      -0.11675309140018779
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-781: Signal Agreement XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.293,
+    "annual_ret": 63.6,
+    "max_dd": -73.1,
+    "params": [
+      20,
+      3,
+      3
+    ],
+    "wf": [
+      0.7476840913371107,
+      0.5901945048850712,
+      2.3379816314907105,
+      -2.047669648781391,
+      1.9221536133939763
+    ],
+    "wf_pass": "4/5",
+    "wf_mean": 0.71,
+    "robust_pct": 100.0,
+    "sh": [
+      1.148,
+      1.484,
+      0.0718
+    ],
+    "h012_corr": -0.008,
+    "direction": "high_long",
+    "n_days": 711
+  },
+  {
+    "name": "H-782: Residual Alpha XS",
+    "status": "REJECTED",
+    "reason": "WF 1/4",
+    "sharpe": 1.155,
+    "annual_ret": 42.1,
+    "max_dd": -38.2,
+    "wf": [
+      -0.024276585461246433,
+      -0.7019891609040584,
+      1.794913795209364,
+      -1.0692099570260722
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-783: Factor Timing Momentum XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 1.887,
+    "annual_ret": 100.3,
+    "max_dd": -26.1,
+    "wf": [
+      0.6153053996341101,
+      -1.1539913733885576,
+      3.1263134297117254,
+      -0.7489071101537892
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-784: Momentum Quality XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 1.851,
+    "annual_ret": 74.4,
+    "max_dd": -18.4,
+    "wf": [
+      -0.4539338066922217,
+      -1.3234392266203954,
+      1.650483378108421,
+      0.9849914467684767
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-785: Trend + Reversion Composite XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 1.927,
+    "annual_ret": 100.7,
+    "max_dd": -36.2,
+    "wf": [
+      -1.5093484174832044,
+      -1.7513647637097771,
+      0.8305192915293406,
+      0.2462395448318655
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-786: Volume-Confirmed Strength XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.213,
+    "annual_ret": 56.7,
+    "max_dd": -40.1,
+    "params": [
+      40,
+      5,
+      3
+    ],
+    "wf": [
+      1.7518028176807137,
+      -2.1966266513301984,
+      1.9260728385604098,
+      0.05977500928540644
+    ],
+    "wf_pass": "3/4",
+    "wf_mean": 0.385,
+    "robust_pct": 100.0,
+    "sh": [
+      1.502,
+      0.86,
+      0.0958
+    ],
+    "h012_corr": -0.016,
+    "direction": "high_long",
+    "n_days": 691
+  },
+  {
+    "name": "H-787: Dynamic Tilt XS",
+    "status": "REJECTED",
+    "reason": "param robust 50%",
+    "sharpe": 0.593,
+    "annual_ret": 29.2,
+    "max_dd": -57.4
+  }
+]

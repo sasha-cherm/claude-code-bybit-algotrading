@@ -1,41 +1,41 @@
 {
   "started": "2026-04-06T05:18:16.837711+00:00",
-  "capital": 9728.99,
+  "capital": 9542.87,
   "positions": {
     "DOT/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 1.314263,
-      "size": 2469.24609707,
+      "entry_price": 1.287257,
+      "size": 2471.11142108,
       "direction": "LONG"
     },
     "NEAR/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 1.311262,
-      "size": 2474.89654581,
+      "entry_price": 1.40228,
+      "size": 2268.41683234,
       "direction": "LONG"
     },
     "DOGE/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 0.094539,
-      "size": 34327.0140875,
+      "entry_price": 0.093089,
+      "size": 34171.27322374,
       "direction": "LONG"
     },
     "BTC/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 71541.1889,
-      "size": -0.04536182,
+      "entry_price": 73033.8903,
+      "size": -0.04355453,
       "direction": "SHORT"
     },
     "ARB/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 0.103739,
-      "size": -31282.64713684,
+      "entry_price": 0.115547,
+      "size": -27529.57325924,
       "direction": "SHORT"
     },
     "OP/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 0.119876,
-      "size": -27071.62190924,
+      "entry_price": 0.114477,
+      "size": -27786.83652026,
       "direction": "SHORT"
     }
   },
@@ -63,12 +63,16 @@
     {
       "date": "2026-04-10",
       "equity": 9726.41
+    },
+    {
+      "date": "2026-04-11",
+      "equity": 9539.04
     }
   ],
-  "last_daily_date": "2026-04-10",
-  "last_rebal_date": "2026-04-08",
-  "days_since_rebal": 2,
-  "rebal_count": 2,
+  "last_daily_date": "2026-04-11",
+  "last_rebal_date": "2026-04-11",
+  "days_since_rebal": 0,
+  "rebal_count": 3,
   "total_trades": 8,
   "total_fees": 26.728693113611595
 }

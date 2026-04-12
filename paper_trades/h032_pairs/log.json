@@ -44,5 +44,24 @@
     "z": 0.08,
     "pnl": -6.0,
     "reason": "exit (z=0.08 > -0.0)"
+  },
+  {
+    "type": "close",
+    "time": "2026-04-12T00:30:17.648734+00:00",
+    "date": "2026-04-11",
+    "pair": "SOL/DOGE",
+    "direction": "long_spread",
+    "z": 0.221,
+    "pnl": -6.0,
+    "reason": "exit (z=0.22 > -0.0)"
+  },
+  {
+    "type": "open",
+    "time": "2026-04-12T00:30:17.649574+00:00",
+    "date": "2026-04-11",
+    "pair": "NEAR/OP",
+    "direction": "short_spread",
+    "z": 2.415,
+    "hedge_ratio": 0.4549
   }
 ]

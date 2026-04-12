@@ -5,7 +5,7 @@
   "position": 0,
   "entry_price": 0,
   "signal": 0,
-  "last_date": "2026-04-11",
+  "last_date": "2026-04-12",
   "total_trades": 0,
   "equity": 10000,
   "equity_history": [
@@ -123,7 +123,44 @@
       "equity": 10000,
       "btc_price": 72887.6,
       "signal": 0
+    },
+    {
+      "time": "2026-04-11T18:36:17.697077+00:00",
+      "equity": 10000,
+      "btc_price": 73479.4,
+      "signal": 0
+    },
+    {
+      "time": "2026-04-11T19:40:45.842246+00:00",
+      "equity": 10000,
+      "btc_price": 73657.6,
+      "signal": 0
+    },
+    {
+      "time": "2026-04-11T20:35:33.914593+00:00",
+      "equity": 10000,
+      "btc_price": 73296.9,
+      "signal": 0
+    },
+    {
+      "time": "2026-04-11T21:35:02.388890+00:00",
+      "equity": 10000,
+      "btc_price": 73431.2,
+      "signal": 0
+    },
+    {
+      "time": "2026-04-11T23:37:54.584932+00:00",
+      "equity": 10000,
+      "btc_price": 73159.0,
+      "signal": 0
+    },
+    {
+      "time": "2026-04-12T00:42:03.243924+00:00",
+      "equity": 10000,
+      "btc_price": 73008.1,
+      "signal": 0,
+      "skew": 0.1261773038381674
     }
   ],
-  "last_check_date": "2026-04-11"
+  "last_check_date": "2026-04-12"
 }
