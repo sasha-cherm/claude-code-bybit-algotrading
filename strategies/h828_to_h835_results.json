@@ -1,0 +1,148 @@
+[
+  {
+    "name": "H-828: Top-5 Signal Ensemble XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.693,
+    "annual_ret": 69.6,
+    "max_dd": -31.0,
+    "params": [
+      40,
+      3,
+      4
+    ],
+    "wf": [
+      1.509121473169707,
+      0.7028529158025643,
+      1.5651724512549514,
+      -1.6416222061758874
+    ],
+    "wf_pass": "3/4",
+    "wf_mean": 0.534,
+    "robust_pct": 100.0,
+    "sh": [
+      2.209,
+      1.128,
+      0.0202
+    ],
+    "h012_corr": -0.001,
+    "direction": "high_long",
+    "n_days": 691
+  },
+  {
+    "name": "H-829: PCA Residual Momentum XS",
+    "status": "REJECTED",
+    "reason": "SH p=0.1119",
+    "sharpe": 1.175,
+    "annual_ret": 46.3,
+    "max_dd": -37.3,
+    "wf": [
+      0.687361543524564,
+      0.9520378453460473,
+      2.761922429676657,
+      -2.377632772525975
+    ],
+    "robust_pct": 94.44444444444444,
+    "sh": [
+      1.4569737865108423,
+      0.8120228901172988,
+      0.11192660035576729
+    ]
+  },
+  {
+    "name": "H-830: Regime-Conditional Momentum XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe -0.354",
+    "sharpe": -0.354,
+    "annual_ret": -12.1,
+    "max_dd": -61.2
+  },
+  {
+    "name": "H-831: Volume-Confirmed Breakout XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.274,
+    "annual_ret": 50.7,
+    "max_dd": -37.2,
+    "params": [
+      30,
+      3,
+      4
+    ],
+    "wf": [
+      1.5062665821326557,
+      1.8493563771568025,
+      1.16339647583254,
+      -0.8480592347711433,
+      1.334387633904644
+    ],
+    "wf_pass": "4/5",
+    "wf_mean": 1.001,
+    "robust_pct": 94.44444444444444,
+    "sh": [
+      1.552,
+      0.952,
+      0.0781
+    ],
+    "h012_corr": 0.006,
+    "direction": "high_long",
+    "n_days": 701
+  },
+  {
+    "name": "H-832: Funding-OI Composite XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe -0.049",
+    "sharpe": -0.049,
+    "annual_ret": -1.7,
+    "max_dd": -42.2
+  },
+  {
+    "name": "H-833: Variance Ratio (trending) XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 0.849,
+    "annual_ret": 32.4,
+    "max_dd": -29.3,
+    "wf": [
+      -0.7197502699332073,
+      0.6467682113412966,
+      1.41003347177702,
+      -1.380706552601176
+    ],
+    "robust_pct": 88.88888888888889
+  },
+  {
+    "name": "H-834: Tail Ratio XS",
+    "status": "REJECTED",
+    "reason": "WF 1/4",
+    "sharpe": 1.548,
+    "annual_ret": 62.7,
+    "max_dd": -35.1,
+    "wf": [
+      -0.20865869057195727,
+      -2.0119203279017155,
+      -0.6138672556688535,
+      1.529148921004291
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-835: Rolling Sharpe XS",
+    "status": "REJECTED",
+    "reason": "SH p=0.1147",
+    "sharpe": 1.132,
+    "annual_ret": 52.7,
+    "max_dd": -30.1,
+    "wf": [
+      1.715562093871194,
+      -1.6611902288455749,
+      2.0380226865714994,
+      1.1265504894799014,
+      0.45901654363539396
+    ],
+    "robust_pct": 100.0,
+    "sh": [
+      1.3691841530730362,
+      0.8434618332710392,
+      0.11473982493308185
+    ]
+  }
+]

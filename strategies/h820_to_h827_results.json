@@ -1,0 +1,130 @@
+[
+  {
+    "name": "H-820: Coskewness with Market XS",
+    "status": "REJECTED",
+    "reason": "WF 1/4",
+    "sharpe": 0.999,
+    "annual_ret": 43.0,
+    "max_dd": -32.3,
+    "wf": [
+      -0.68321920160854,
+      1.236996629487691,
+      -0.4341582176271426,
+      -0.7039865709487994
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-821b: Low Downside Beta (safety) XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 0.872,
+    "annual_ret": 45.5,
+    "max_dd": -57.1,
+    "wf": [
+      3.4543842374939944,
+      2.0410593297086246,
+      -0.06988896270403556,
+      -0.8842493890306858
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-822b: Low Quantile Spread XS",
+    "status": "REJECTED",
+    "reason": "SH p=0.1540",
+    "sharpe": 1.031,
+    "annual_ret": 45.7,
+    "max_dd": -66.1,
+    "wf": [
+      3.3623231074065574,
+      0.7577427502906632,
+      0.8436289286808164,
+      0.502790414090763,
+      5.352915390318837
+    ],
+    "robust_pct": 100.0,
+    "sh": [
+      0.49707428755667576,
+      1.6478077284174388,
+      0.1539792688476152
+    ]
+  },
+  {
+    "name": "H-823: Max Daily Return XS",
+    "status": "REJECTED",
+    "reason": "WF 2/5",
+    "sharpe": 0.52,
+    "annual_ret": 21.2,
+    "max_dd": -74.9,
+    "wf": [
+      -0.9957379175805333,
+      -5.138928811568222,
+      0.8673922396667553,
+      -0.8645602188887961,
+      0.6387519247692481
+    ],
+    "robust_pct": 72.22222222222221
+  },
+  {
+    "name": "H-824: Min Daily Return (resilience) XS",
+    "status": "CONFIRMED",
+    "sharpe": 2.094,
+    "annual_ret": 93.1,
+    "max_dd": -32.1,
+    "params": [
+      30,
+      3,
+      4
+    ],
+    "wf": [
+      5.2772586707945415,
+      1.2235546414935579,
+      0.17867626233689796,
+      0.41541208964493126,
+      4.31429868247922
+    ],
+    "wf_pass": "5/5",
+    "wf_mean": 2.282,
+    "robust_pct": 100.0,
+    "sh": [
+      2.28,
+      1.893,
+      0.0038
+    ],
+    "h012_corr": -0.052,
+    "direction": "high_long",
+    "n_days": 701
+  },
+  {
+    "name": "H-825: Return Entropy XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe 0.198",
+    "sharpe": 0.198,
+    "annual_ret": 7.3,
+    "max_dd": -66.7
+  },
+  {
+    "name": "H-826: Return Herfindahl XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe 0.346",
+    "sharpe": 0.346,
+    "annual_ret": 14.7,
+    "max_dd": -89.8
+  },
+  {
+    "name": "H-827: Sortino Ratio Ranking XS",
+    "status": "REJECTED",
+    "reason": "WF 1/4",
+    "sharpe": 0.775,
+    "annual_ret": 31.5,
+    "max_dd": -53.0,
+    "wf": [
+      -3.7097928724320495,
+      -2.728639603571465,
+      2.396586104525483,
+      -0.15155215959020274
+    ],
+    "robust_pct": 100.0
+  }
+]

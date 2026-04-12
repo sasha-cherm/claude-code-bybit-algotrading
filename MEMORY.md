@@ -1,17 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$97,767 (-2.23%, recovering). BTC spot ~$71,452.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,361 (-1.64%, recovering). BTC spot ~$71,606.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 95 runners active. Session 187. **43/93 positive** (46%), avg **+0.31%**.
-- **H-063**: ~$9,624 (-3.76%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $71,452, approaching 71K put.
+- **Internal paper trades:** 100 runners active. Session 188. **43/95 positive** (45%), avg **+0.30%**.
+- **H-063**: ~$9,651 (-3.49%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $71,606, near 71K put.
 - **Top performers**: H-277(+7.44%), H-353(+7.37%), H-332(+5.99%), H-169(+5.13%), H-049(+4.98%).
-- **Session 187 research**: 24 new hypotheses (H-788–H-811). **2 CONFIRMED+deployed** (H-792/H-810). **811 total hypotheses.**
-- **H-792 OI-Price Coherence**: IS Sharpe **1.839**, WF **5/6**, SH p=**0.005**, H-012 corr **-0.097**. Session best.
-- **H-810 Volume Trend Strength (Vol-ADX)**: IS Sharpe **1.573**, WF **6/6 PERFECT**, SH p=**0.013**, corr **-0.063**. Novel signal.
-- **Key findings**: Intraday structure signals (overnight gaps, VWAP, entropy) fail for XS. OI-based signals continue strong. Momentum-correlated signals (H-796, H-806, H-811) pass IS but fail independence check.
-- **AUTOMATED:** Paper trades hourly via cron (95 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 95 runners. Explore on-chain data, sentiment APIs, or ML ensemble approaches.
+- **Session 188 research**: 24 new hypotheses (H-812–H-835). **5 CONFIRMED+deployed** (H-814/H-817/H-824/H-828/H-831). **835 total hypotheses.**
+- **H-824 Min Return (Resilience)**: IS Sharpe **2.094**, WF **5/5 PERFECT**, SH p=**0.004**, H-012 corr **-0.052**. Session best. Novel signal.
+- **H-814 Rank Velocity**: IS Sharpe **1.886**, WF **3/4**, corr **0.062**. Captures rank acceleration.
+- **H-828 Top-5 Ensemble**: IS Sharpe **1.693**, WF **3/4**, corr **-0.001**. 5-signal composite.
+- **Key findings**: Higher-order stats (coskewness, entropy, Herfindahl) don't work for XS. Cross-asset info flow weak (BTC propagation, breadth, synchronicity fail). Resilience (min daily return) is a genuinely novel, high-Sharpe signal. Ensemble of diverse signals works well.
+- **AUTOMATED:** Paper trades hourly via cron (100 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 100 runners (esp. H-824/H-814/H-828). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -23,15 +24,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 176) archived to `memory/session_archive.md`._
-
-### Session 2026-04-10 review+deploy+research (session 178)
-- Goal: Review + Deploy + Research — MTM update, 32 new backtests (4 batches of 8), 2 new deployments
-- Focus: Paper trade MTM (BTC $72,892), novel XS signals: multi-period momentum, funding dynamics, candlestick patterns, volume trends (H-580–H-611)
-- Done: 73 runners (71→73). **26/71 positive** (37%). Avg **-0.09%** (stable). Demo ~$96k-$97k. H-063 flat, trade 3 at 01:00 UTC. **Batch 1 (H-580–H-587)**: All 8 REJECTED. Multi-period mom, dispersion, OBV ROC, gap reversal — no edges above 0.7 Sharpe. **Batch 2 (H-588–H-595)**: H-589 Vol Ratio CONFIRMED (IS 1.213, WF 5/6, SH PASS, but factor corr 0.82+ with H-059 → NOT deployed). H-593 VW Momentum REJECTED (WF 3/6 fail). 6 more REJECTED. **Batch 3 (H-596–H-603)**: **H-599 RSI XS CONFIRMED** (IS 1.148, WF 4/6, **100% param robust**, deployed). **H-601 Vol Decline CONFIRMED** (IS 0.965, WF 4/6, **100% param robust**, corr **0.054** H-012, deployed). H-606 CLV CONFIRMED (IS 1.260, WF 5/6) but redundant with H-451 (PnL corr 0.691). 5 REJECTED. **Batch 4 (H-604–H-611)**: H-606 CLV confirmed above. 7 REJECTED. **611 total hypotheses.**
-- Next: Await Q-005 answer. Monitor all 73 runners. H-063 trade 3 tonight. Continue exploring options/on-chain/alternative data.
-- Questions added: none
-- Self-modifications: H-599/H-601 runners created, added to orchestrator. Archived session 168. Fixed WF min-days bug (90-day folds were below 100-day threshold). (session 178)
+_Older sessions (bootstrap through 178) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-11 review+deploy+research (session 179)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 1 new deployment
@@ -104,3 +97,11 @@ _Older sessions (bootstrap through 176) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 95 runners (esp. H-792/H-810). H-063 iron condor — BTC near 71K put strike, watch closely. Explore on-chain data, sentiment APIs.
 - Questions added: none
 - Self-modifications: H-792/H-810 runners created, added to orchestrator. Archived session 177. (session 187)
+
+### Session 2026-04-12 review+deploy+research (session 188)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 5 new deployments
+- Focus: Paper trade MTM (BTC $71,606), cross-asset information flow (H-812–H-819), higher-order/non-linear stats (H-820–H-827), composite/ensemble signals (H-828–H-835)
+- Done: 100 runners (95→100). **43/95 positive** (45%). Avg **+0.30%**. Demo ~$98,361 (-1.64%, recovering). H-063 trade 3 active ($9,651). **Batch 1 (H-812–H-819, cross-asset info)**: **H-814 CONFIRMED+deployed** (Rank Velocity, IS **1.886**, WF 3/4, SH p=0.011, corr 0.062). **H-817 CONFIRMED+deployed** (Vol Spillover, IS **1.423**, WF 3/4, SH p=0.054, corr 0.011). BTC propagation fails (-0.475). Breadth mom, comovement, synchronicity, idiosyncratic mom — all fail OOS. **Batch 2 (H-820–H-827, higher-order)**: **H-824 CONFIRMED+deployed** (Min Daily Return/Resilience, IS **2.094**, WF **5/5 PERFECT**, SH p=**0.004**, corr **-0.052** — **session best**). Coskewness, downside beta, entropy, Herfindahl, Sortino — all fail. H-822 Low Quantile Spread borderline (WF 5/5 but SH fail). **Batch 3 (H-828–H-835, composite/ensemble)**: **H-828 CONFIRMED+deployed** (Top-5 Ensemble, IS **1.693**, WF 3/4, SH p=0.020, corr **-0.001**). **H-831 CONFIRMED+deployed** (Vol-Confirmed Breakout, IS **1.274**, WF 4/5, SH p=0.078, corr 0.006). PCA residual borderline (SH fail). Regime-conditional, funding-OI composite, variance ratio — fail. **835 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 100 runners (esp. H-824 with Sharpe 2.094). H-063 iron condor near 71K put. Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 5 runners created (H-814/H-817/H-824/H-828/H-831), added to orchestrator. Archived session 178. (session 188)

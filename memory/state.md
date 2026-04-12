@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-12 session 187):
-Demo eq: ~$97,767 (-2.23%, recovering). BTC spot ~$71,452. 13 open positions.
+### Current Demo Status (as of 2026-04-12 session 188):
+Demo eq: ~$98,361 (-1.64%, recovering). BTC spot ~$71,606. 13 open positions.
 
 ---
 
@@ -1086,3 +1086,38 @@ Demo eq: ~$97,767 (-2.23%, recovering). BTC spot ~$71,452. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h810_vol_trend_strength/runner.py`
 - **Params**: adx_lb=20, rebal=7, n_ls=4
+
+### H-814: Rank Velocity XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ETH, ARB, SOL, SUI. SHORT: BTC, ADA, DOT, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h814_rank_velocity/runner.py`
+- **Params**: lb=60, rebal=10, n_ls=4
+
+### H-817: Cross-Asset Vol Spillover XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 10 positions (5L/5S). LONG: DOT, NEAR, OP, SUI, DOGE. SHORT: ETH, LINK, ATOM, XRP, BTC.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h817_vol_spillover/runner.py`
+- **Params**: lb=60, rebal=7, n_ls=5
+
+### H-824: Min Daily Return (Resilience) XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: BTC, XRP, NEAR, ARB. SHORT: ADA, LINK, AVAX, OP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h824_min_return/runner.py`
+- **Params**: lb=30, rebal=3, n_ls=4
+
+### H-828: Top-5 Signal Ensemble XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: BTC, NEAR, DOGE, ARB. SHORT: SUI, OP, SOL, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h828_signal_ensemble/runner.py`
+- **Params**: lb=40, rebal=3, n_ls=4
+
+### H-831: Volume-Confirmed Breakout XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ARB, BTC, ETH, NEAR. SHORT: ATOM, XRP, ADA, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h831_vol_breakout/runner.py`
+- **Params**: lb=30, rebal=3, n_ls=4

@@ -8577,3 +8577,210 @@
 - Result: IS Sharpe 1.300, 93.8% positive, SH p=0.033, WF 4/6, split-half PASS. BUT H-012 corr **0.601** (too correlated with momentum). Rejected for redundancy.
 - Notes: Multi-period momentum agreement is essentially just a smoothed momentum signal — redundant with H-012.
 - Sessions: [2026-04-12 session 187]
+
+## H-812: BTC Return Propagation XS
+- Status: REJECTED
+- Idea: Rolling beta of each asset to BTC lagged returns. High beta = reacts more to BTC moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.475. BTC lagged returns don't predict altcoin XS returns.
+- Sessions: [2026-04-12 session 188]
+
+## H-813: Market Breadth Momentum XS
+- Status: REJECTED
+- Idea: Rate of change of market breadth (fraction of assets with positive return) × momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.160, 72% robust, but WF **1/4** fail. Breadth momentum not persistent.
+- Sessions: [2026-04-12 session 188]
+
+## H-814: Rank Velocity XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Speed of rank position changes — fast-rising assets continue rising. 5-day rank change smoothed.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 10 days)
+- Logic: Compute momentum rank, track 5-day rank change, smooth over half-lookback. Long fastest-rising, short fastest-falling.
+- Result: IS Sharpe **1.886**, Ann +71.6%, DD -34.2%. WF **3/4** mean 1.610. SH p=**0.011**. 100% param robust.
+- H-012 corr: **0.062** (excellent diversifier).
+- Notes: Strong signal — captures acceleration of momentum rank rather than raw momentum.
+- Sessions: [2026-04-12 session 188]
+
+## H-815: Pairwise Comovement Score XS
+- Status: REJECTED
+- Idea: Asset's average rolling correlation with all others. Low comovement = idiosyncratic potential.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Contrarian IS 0.920 (WF 1/4 fail). Momentum IS -0.228. Comovement not predictive for XS.
+- Sessions: [2026-04-12 session 188]
+
+## H-816: BTC-Relative Momentum XS
+- Status: REJECTED
+- Idea: Momentum relative to BTC (not absolute). Long outperformers vs BTC, short underperformers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.929, 94% robust, WF 3/5, but SH p=0.195 (fail). Not significantly different from zero.
+- Sessions: [2026-04-12 session 188]
+
+## H-817: Cross-Asset Vol Spillover XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: When BTC vol rises, long low-vol assets (shelter); when falls, long high-vol (risk-on).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 7 days)
+- Logic: BTC 60d rolling vol 5-day pct change. Rank assets by 60d vol. Reverse ranking when BTC vol rising.
+- Result: IS Sharpe **1.423**, Ann +55.1%, DD -54.2%. WF **3/4** mean 1.004. SH p=**0.054**. 83% param robust.
+- H-012 corr: **0.011** (excellent diversifier).
+- Notes: Genuine regime-based signal — BTC vol regime determines optimal vol-tilt direction.
+- Sessions: [2026-04-12 session 188]
+
+## H-818: Return Synchronicity XS
+- Status: REJECTED
+- Idea: Fraction of days asset returns have same sign as market. Low sync = contrarian potential.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Contrarian IS 1.048, WF 4/5, but SH p=0.144 (fail). Momentum direction IS -0.216.
+- Sessions: [2026-04-12 session 188]
+
+## H-819: Idiosyncratic Momentum XS
+- Status: REJECTED
+- Idea: Momentum of residuals after removing BTC beta factor. Pure idiosyncratic return momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.911, 100% robust, but WF **2/4** fail. Idiosyncratic momentum unstable OOS.
+- Sessions: [2026-04-12 session 188]
+
+## H-820: Coskewness with Market XS
+- Status: REJECTED
+- Idea: Third co-moment of asset returns with market portfolio. Negative coskewness = tail risk premium.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.999, 100% robust, but WF **1/4** fail. Coskewness doesn't rank XS well in crypto.
+- Sessions: [2026-04-12 session 188]
+
+## H-821: Downside Beta XS
+- Status: REJECTED
+- Idea: Beta computed only on BTC down-days. High downside beta = crashes with market.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: High beta IS -0.415 (fail). Low beta IS 0.872, WF 2/4 (fail). Downside beta not predictive.
+- Sessions: [2026-04-12 session 188]
+
+## H-822: Quantile Spread XS
+- Status: REJECTED
+- Idea: 75th-25th percentile of daily returns (dispersion). Low spread = less volatile micro-structure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: High IS -0.514. Low IS 1.031, WF 5/5 PERFECT, but SH p=0.154 (fail). Borderline.
+- Sessions: [2026-04-12 session 188]
+
+## H-823: Max Daily Return XS
+- Status: REJECTED
+- Idea: Largest single-day return in lookback window. Extreme winners momentum or reversal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.520, WF 2/5 fail. Max return not a reliable XS signal.
+- Sessions: [2026-04-12 session 188]
+
+## H-824: Min Daily Return (Resilience) XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Worst single-day loss in lookback. High = least negative = most resilient. Long resilient, short fragile.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: Rolling 30-day min of daily returns. Rank cross-sectionally. Long top 4 (most resilient), short bottom 4.
+- Result: IS Sharpe **2.094**, Ann +93.1%, DD -32.1%. WF **5/5 PERFECT** mean 2.282. SH p=**0.004** (very strong). 100% param robust.
+- H-012 corr: **-0.052** (excellent diversifier).
+- Notes: **Session best.** Assets that avoided large single-day losses outperform those that didn't. Genuinely novel signal — not momentum, not vol, not OI.
+- Sessions: [2026-04-12 session 188]
+
+## H-825: Return Entropy XS
+- Status: REJECTED
+- Idea: Shannon entropy of binned daily returns. Low entropy = trending/predictable.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Low IS 0.198, High IS 0.184. Entropy of returns not predictive for XS.
+- Sessions: [2026-04-12 session 188]
+
+## H-826: Herfindahl Return Concentration XS
+- Status: REJECTED
+- Idea: Herfindahl index of absolute daily returns — few big days vs many small days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: High IS 0.346, Low IS 0.311. Return concentration not useful for XS ranking.
+- Sessions: [2026-04-12 session 188]
+
+## H-827: Sortino Ratio Ranking XS
+- Status: REJECTED
+- Idea: Rolling Sortino ratio (mean/downside deviation) as direct XS ranking signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.775, 100% robust, but WF **1/4** fail. Sortino ratio unstable OOS.
+- Sessions: [2026-04-12 session 188]
+
+## H-828: Top-5 Signal Ensemble XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Equal-weight z-score of 5 diverse signals: momentum, vol momentum, OI change, inverse vol, dollar volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: Z-score each signal cross-sectionally, average. Long top 4, short bottom 4.
+- Result: IS Sharpe **1.693**, Ann +69.6%, DD -31.0%. WF **3/4** mean 0.534. SH p=**0.020**. 100% param robust.
+- H-012 corr: **-0.001** (perfectly uncorrelated with momentum).
+- Notes: Ensemble diversification works — combining 5 weak signals into a stronger composite.
+- Sessions: [2026-04-12 session 188]
+
+## H-829: PCA Residual Momentum XS
+- Status: REJECTED
+- Idea: Momentum of residuals after removing first principal component (market factor).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.175, 94% robust, WF 3/4, but SH p=0.112 (fail). Borderline.
+- Sessions: [2026-04-12 session 188]
+
+## H-830: Regime-Conditional Momentum XS
+- Status: REJECTED
+- Idea: Momentum when BTC vol low, contrarian when BTC vol high.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.354. Regime switching adds noise rather than signal.
+- Sessions: [2026-04-12 session 188]
+
+## H-831: Volume-Confirmed Breakout XS
+- Status: CONFIRMED → LIVE (paper trade since 2026-04-12)
+- Idea: Price position in N-day range × volume ratio. Near high + high volume = confirmed breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 3 days)
+- Logic: (close - low_N) / (high_N - low_N) × (volume / avg_volume_N). Long top 4, short bottom 4.
+- Result: IS Sharpe **1.274**, Ann +50.7%, DD -37.2%. WF **4/5** mean 1.001. SH p=**0.078**. 94% param robust.
+- H-012 corr: **0.006** (excellent diversifier).
+- Notes: Breakout with volume confirmation — distinct from pure momentum or pure volume signals.
+- Sessions: [2026-04-12 session 188]
+
+## H-832: Funding-OI Composite XS
+- Status: REJECTED
+- Idea: Combined funding rate and OI change signal. Rising OI + rising funding = crowded → contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.049. Funding-OI interaction has no XS signal.
+- Sessions: [2026-04-12 session 188]
+
+## H-833: Variance Ratio XS
+- Status: REJECTED
+- Idea: Variance ratio test (var(5d)/5×var(1d)). >1 = trending, <1 = mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Trending IS 0.849, WF 2/4 fail. MR IS 0.084. Variance ratio not useful for XS ranking.
+- Sessions: [2026-04-12 session 188]
+
+## H-834: Tail Ratio XS
+- Status: REJECTED
+- Idea: 95th/|5th| percentile of daily returns. High = fatter right tail = bullish asymmetry.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.548, 100% robust, but WF **1/4** fail. Tail ratio unstable OOS.
+- Sessions: [2026-04-12 session 188]
+
+## H-835: Rolling Sharpe XS
+- Status: REJECTED
+- Idea: Rolling Sharpe ratio as direct XS ranking signal. High recent Sharpe → continue.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.132, 100% robust, WF 4/5, but SH p=0.115 (fail). Borderline but doesn't pass.
+- Sessions: [2026-04-12 session 188]

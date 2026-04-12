@@ -1,0 +1,155 @@
+[
+  {
+    "name": "H-812: BTC Return Propagation XS",
+    "status": "REJECTED",
+    "reason": "IS Sharpe -0.475",
+    "sharpe": -0.475,
+    "annual_ret": -17.9,
+    "max_dd": -67.3
+  },
+  {
+    "name": "H-813: Market Breadth Momentum XS",
+    "status": "REJECTED",
+    "reason": "WF 1/4",
+    "sharpe": 1.16,
+    "annual_ret": 62.6,
+    "max_dd": -30.0,
+    "wf": [
+      1.228052749728315,
+      -1.1478762590237483,
+      -1.4479250071762686,
+      -2.375592934710523
+    ],
+    "robust_pct": 72.22222222222221
+  },
+  {
+    "name": "H-814: Rank Velocity XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.886,
+    "annual_ret": 71.6,
+    "max_dd": -34.2,
+    "params": [
+      60,
+      10,
+      4
+    ],
+    "wf": [
+      0.21969636949788798,
+      -1.2178230851945626,
+      4.331269598660517,
+      3.1071439240171856
+    ],
+    "wf_pass": "3/4",
+    "wf_mean": 1.61,
+    "robust_pct": 100.0,
+    "sh": [
+      2.125,
+      1.617,
+      0.0108
+    ],
+    "h012_corr": 0.062,
+    "direction": "high_long",
+    "n_days": 671
+  },
+  {
+    "name": "H-815: Pairwise Comovement (contrarian) XS",
+    "status": "REJECTED",
+    "reason": "WF 1/4",
+    "sharpe": 0.92,
+    "annual_ret": 43.9,
+    "max_dd": -74.2,
+    "wf": [
+      -2.784809848191619,
+      -1.5296359256745262,
+      -1.6069978718450681,
+      2.3226165261488925
+    ],
+    "robust_pct": 100.0
+  },
+  {
+    "name": "H-816: BTC-Relative Momentum XS",
+    "status": "REJECTED",
+    "reason": "SH p=0.1954",
+    "sharpe": 0.929,
+    "annual_ret": 47.6,
+    "max_dd": -44.9,
+    "wf": [
+      1.1352045991804238,
+      -1.2227942452542726,
+      1.5687475830444864,
+      -0.07569880025885282,
+      0.8689002557155117
+    ],
+    "robust_pct": 94.44444444444444,
+    "sh": [
+      1.2571030405612038,
+      0.5028488671966577,
+      0.19535686995993884
+    ]
+  },
+  {
+    "name": "H-817: Vol Spillover XS",
+    "status": "CONFIRMED",
+    "sharpe": 1.423,
+    "annual_ret": 55.1,
+    "max_dd": -54.2,
+    "params": [
+      60,
+      7,
+      5
+    ],
+    "wf": [
+      1.0896679740760091,
+      0.023052296743871575,
+      -1.8251892235085931,
+      4.728341483084176
+    ],
+    "wf_pass": "3/4",
+    "wf_mean": 1.004,
+    "robust_pct": 83.33333333333334,
+    "sh": [
+      1.337,
+      1.559,
+      0.0543
+    ],
+    "h012_corr": 0.011,
+    "direction": "high_long",
+    "n_days": 671
+  },
+  {
+    "name": "H-818: Return Synchronicity XS",
+    "status": "REJECTED",
+    "reason": "SH p=0.1444",
+    "sharpe": 1.048,
+    "annual_ret": 48.3,
+    "max_dd": -33.2,
+    "wf": [
+      0.6615275240225363,
+      -1.3697273448586917,
+      0.7244635129228612,
+      0.8204897246445743,
+      1.4505227533740304
+    ],
+    "robust_pct": 100.0,
+    "sh": [
+      1.2978680729915237,
+      0.7215796776157755,
+      0.14436849666902957
+    ]
+  },
+  {
+    "name": "H-819: Idiosyncratic Momentum XS",
+    "status": "REJECTED",
+    "reason": "WF 2/4",
+    "sharpe": 0.911,
+    "annual_ret": 37.6,
+    "max_dd": -28.5,
+    "wf": [
+      1.7838404345871872,
+      -0.6821454785172503,
+      3.1774415513464684,
+      -0.7449057056569044
+    ],
+    "robust_pct": 100.0
+  }
+]
