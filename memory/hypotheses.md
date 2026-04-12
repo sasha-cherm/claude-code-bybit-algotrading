@@ -9211,3 +9211,204 @@
 - Timeframe: 1D
 - Result: P20: Sharpe 1.002, WF 3/5, SH p=0.164 (FAIL). Force index is too noisy. P7 SH p=0.251. P13 SH p=0.257.
 - Sessions: [2026-04-12 session 190]
+
+## H-884: Hurst Exponent XS
+- Status: REJECTED
+- Idea: Hurst exponent (trending vs mean-reverting) as XS factor. Long trending assets, short mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30 IS 67% pos Sharpe 0.810. P60 IS 100% pos but Sharpe 0.742. Below threshold.
+- Sessions: [2026-04-13 session 191]
+
+## H-885: AR(1) Coefficient XS
+- Status: REJECTED
+- Idea: Lag-1 autocorrelation of returns ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20 IS 0% positive Sharpe -0.268. P30 33% pos. P45 67% pos. AR(1) doesn't work as XS signal.
+- Sessions: [2026-04-13 session 191]
+
+## H-886: Volatility of Volatility XS
+- Status: REJECTED
+- Idea: Vol-of-vol (coefficient of variation of rolling vol) as uncertainty signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All params 0% positive, Sharpe -0.56 to -1.23. Low vol-of-vol does NOT predict returns.
+- Sessions: [2026-04-13 session 191]
+
+## H-887: Maximum Adverse Excursion XS
+- Status: REJECTED
+- Idea: Worst intra-period drawdown as resilience indicator. Long resilient, short fragile.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All 0% positive, Sharpe -0.55 to -0.76. Resilient assets underperform (contrarian to MAE is reversal = fails in crypto).
+- Sessions: [2026-04-13 session 191]
+
+## H-888: Parkinson Volatility Ratio XS
+- Status: REJECTED
+- Idea: Range-based vs close-close vol ratio. Low ratio = clean trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All 0% positive, Sharpe -0.07 to -0.47. Parkinson ratio has no XS predictive power.
+- Sessions: [2026-04-13 session 191]
+
+## H-889: Return Autocorrelation Profile XS
+- Status: REJECTED
+- Idea: Sum of lag-1 to lag-5 autocorrelation. Positive sum = momentum persistence.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20 IS 67% pos Sharpe 0.820. P30 100% pos but 0.545. Below threshold.
+- Sessions: [2026-04-13 session 191]
+
+## H-890: Conditional Tail Expectation (CVaR) XS
+- Status: REJECTED
+- Idea: Expected shortfall at 5% level. Long low tail risk, short high.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All 0% positive, Sharpe -0.54 to -1.22. Tail risk is NOT priced in crypto XS (no low-CVaR premium).
+- Sessions: [2026-04-13 session 191]
+
+## H-891: Up/Down Day Ratio XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Proportion of positive return days over lookback. High = consistent upward sentiment.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.233 (P20, R5_N3), 100% params positive, WF 4/5, SH p=0.087, H-012 corr 0.015.
+- Notes: Different from raw momentum — captures consistency of direction. Near-zero correlation with H-012.
+- Sessions: [2026-04-13 session 191]
+
+## H-892: Volume Acceleration XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Second derivative of volume — change in short/long volume ratio. Acceleration of buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.455 (S7/L30, R7_N3), 100% params positive, WF 3/4, SH p=0.045, H-012 corr -0.026.
+- Notes: Volume acceleration captures momentum of institutional attention. Strong SH pass.
+- Sessions: [2026-04-13 session 191]
+
+## H-893: Volume Volatility XS
+- Status: REJECTED
+- Idea: Coefficient of variation of volume. Low vol-vol = stable institutional flow.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14 33% pos Sharpe 0.501. P20/P30 0% positive. Volume stability doesn't predict returns.
+- Sessions: [2026-04-13 session 191]
+
+## H-894: Volume-Price Correlation XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Rolling correlation between returns and volume. Positive = volume confirms price moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.314 (P14, R5_N3), 100% params positive, WF 4/5, SH p=0.067, H-012 corr 0.048.
+- Notes: Volume confirmation is a genuine signal — assets where volume supports price direction outperform.
+- Sessions: [2026-04-13 session 191]
+
+## H-895: Dollar Volume Rank Change XS
+- Status: REJECTED
+- Idea: Drift in volume ranking (short-term rank vs long-term rank).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 5/20 version WF 3/5 but SH p=0.166 (FAIL). 7/30 version WF 2/4 (FAIL). Ranking drift doesn't persist.
+- Sessions: [2026-04-13 session 191]
+
+## H-896: Relative Volume XS
+- Status: REJECTED
+- Idea: Current vs historical average volume. High RVOL = unusual activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.798 but WF 0/4 (TOTAL FAIL). Classic IS overfitting — RVOL has no OOS predictive power.
+- Sessions: [2026-04-13 session 191]
+
+## H-897: Volume Concentration XS
+- Status: REJECTED
+- Idea: Herfindahl index of volume share variability. Concentrated vs dispersed volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14 50% pos. P20 100% pos but Sharpe 0.646. P30 83% pos Sharpe 0.479. Below threshold.
+- Sessions: [2026-04-13 session 191]
+
+## H-898: Cumulative Volume Divergence XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Cumulative sum of (vol - SMA(vol)) / SMA(vol). Sustained above-average volume = accumulation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.713 (S3/L20, R3_N3), 100% params positive, WF 4/5, SH p=0.018, H-012 corr -0.008 (near zero!).
+- Notes: Strong signal — sustained volume divergence captures accumulation/distribution. Best config (3/20) had WF 4/5 vs the highest-IS config (7/30) which had WF 2/4.
+- Sessions: [2026-04-13 session 191]
+
+## H-899: Volume Trend Persistence XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Proportion of days with above-average volume. Sustained high volume = institutional interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.560 (P20, R7_N4), 100% params positive, WF **5/5 PERFECT**, SH p=0.030, H-012 corr -0.048.
+- Notes: **SESSION BEST**. Perfect walk-forward, strong SH, negative H-012 correlation. Volume persistence is a robust, independent signal.
+- Sessions: [2026-04-13 session 191]
+
+## H-900: Timeframe Consistency XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Sign agreement of returns across 3d/7d/14d/30d timeframes. +4 = all up, -4 = all down.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.460 (R7_N4), 83% params positive, WF 3/4, SH p=0.044, H-012 corr -0.004 (near zero!).
+- Notes: Multi-timeframe confirmation captures strong cross-horizon trends. Near-zero correlation with pure momentum.
+- Sessions: [2026-04-13 session 191]
+
+## H-901: Momentum Acceleration XS
+- Status: REJECTED
+- Idea: Change in momentum strength (short-term mom minus normalized long-term mom).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 7/30 IS 17% pos Sharpe 0.230. 14/60 100% pos but Sharpe 0.443. 10/45 33% pos. Momentum acceleration doesn't work.
+- Sessions: [2026-04-13 session 191]
+
+## H-902: Momentum Quality XS
+- Status: LIVE (paper trade since 2026-04-13)
+- Idea: Mean(daily ret) / std(daily ret) = Sharpe-like measure. High quality = consistent positive returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.598 (P14, R7_N3), 100% params positive, WF 3/5, SH p=0.026, H-012 corr -0.017.
+- Notes: Risk-adjusted momentum is different from raw momentum. Filters out noisy high-return/high-vol assets.
+- Sessions: [2026-04-13 session 191]
+
+## H-903: Return Dispersion Ratio XS
+- Status: REJECTED
+- Idea: Std of daily returns / abs(total period return). Low dispersion = smooth directional move.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30 IS Sharpe 2.108 but WF 1/4 (FAIL). Classic IS overfitting — smooth trend selection doesn't persist OOS.
+- Sessions: [2026-04-13 session 191]
+
+## H-904: Direction Count XS
+- Status: CONFIRMED (not deployed — similar to H-891)
+- Idea: Net count of up days minus down days over lookback.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.231 (P14, R7_N3), 100% params positive, WF 4/5, SH p=0.086, H-012 corr -0.036.
+- Notes: Very similar to H-891 Up/Down Ratio. Not deployed to avoid redundancy. WF results nearly identical.
+- Sessions: [2026-04-13 session 191]
+
+## H-905: Weighted Return Consistency XS
+- Status: REJECTED
+- Idea: Time-weighted sum of returns (recent days weighted more).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14 IS Sharpe 0.934, WF 3/5 but SH p=0.193 (FAIL). P20/P30 below Sharpe threshold. Time-weighting adds noise.
+- Sessions: [2026-04-13 session 191]
+
+## H-906: Momentum Gap XS
+- Status: REJECTED
+- Idea: Distance from cross-sectional mean momentum. Extreme outperformers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14 SH p=0.234 (FAIL). P60 SH p=0.133 (FAIL). Extreme momentum distance doesn't persist.
+- Sessions: [2026-04-13 session 191]
+
+## H-907: Normalized Momentum XS
+- Status: REJECTED
+- Idea: Momentum / volatility (risk-adjusted XS momentum). Different from H-902 in dividing total return by vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 14/14 IS 1.621 WF 2/4 (FAIL). 30/20 IS 1.548 WF 3/4 SH p=0.036 but weaker than H-902. 60/30 WF 1/4 (FAIL). Borderline.
+- Notes: H-902 (Momentum Quality using Sharpe-like ratio) captures the same concept better. Not deployed.
+- Sessions: [2026-04-13 session 191]

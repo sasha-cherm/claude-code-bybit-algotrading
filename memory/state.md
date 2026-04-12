@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-12 session 190):
-Demo eq: ~$98,017 (-1.96%). BTC spot ~$70,949. 13 open positions.
+### Current Demo Status (as of 2026-04-13 session 191):
+Demo eq: ~$98,017 (-1.96%). BTC spot ~$71,393. 13 open positions.
 
 ---
 
@@ -1212,3 +1212,52 @@ Demo eq: ~$98,017 (-1.96%). BTC spot ~$70,949. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h882_emv/runner.py`
 - **Params**: P=10, R=7, N=4. IS Sharpe 1.383, WF 3/5, SH p=0.053. H-012 corr -0.009. Microstructure signal.
+
+### H-891: Up/Down Day Ratio XS (session 191)
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 6 positions (3L/3S). LONG: ETH, ARB, AVAX. SHORT: DOT, XRP, OP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h891_up_down_ratio/runner.py`
+- **Params**: P=20, R=5, N=3. IS Sharpe 1.233, WF 4/5, SH p=0.087. H-012 corr 0.015.
+
+### H-892: Volume Acceleration XS (session 191)
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 6 positions (3L/3S). LONG: ARB, DOGE, AVAX. SHORT: ADA, OP, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h892_vol_acceleration/runner.py`
+- **Params**: S7/L30, R=7, N=3. IS Sharpe 1.455, WF 3/4, SH p=0.045. H-012 corr -0.026.
+
+### H-894: Volume-Price Correlation XS (session 191)
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 6 positions (3L/3S). LONG: SUI, OP, AVAX. SHORT: ARB, SOL, DOGE.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h894_vol_price_corr/runner.py`
+- **Params**: P=14, R=5, N=3. IS Sharpe 1.314, WF 4/5, SH p=0.067. H-012 corr 0.048.
+
+### H-898: Cumulative Volume Divergence XS (session 191)
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 6 positions (3L/3S). LONG: ARB, DOGE, OP. SHORT: AVAX, ATOM, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h898_cum_vol_div/runner.py`
+- **Params**: S3/L20, R=3, N=3. IS Sharpe 1.713, WF 4/5, SH p=0.018. H-012 corr -0.008. Strong accumulation signal.
+
+### H-899: Volume Trend Persistence XS (session 191) — SESSION BEST
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 8 positions (4L/4S). LONG: BTC, ARB, DOGE, ETH. SHORT: ATOM, XRP, OP, NEAR.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h899_vol_trend_persist/runner.py`
+- **Params**: P=20, R=7, N=4. IS Sharpe 1.560, WF **5/5 PERFECT**, SH p=0.030. H-012 corr -0.048.
+
+### H-900: Timeframe Consistency XS (session 191)
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 8 positions (4L/4S). LONG: ETH, ARB, NEAR, BTC. SHORT: LINK, OP, DOT, ADA.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h900_tf_consistency/runner.py`
+- **Params**: R=7, N=4. IS Sharpe 1.460, WF 3/4, SH p=0.044. H-012 corr -0.004. Multi-timeframe confirmation.
+
+### H-902: Momentum Quality XS (session 191)
+- **Status**: LIVE paper trade (started 2026-04-13)
+- **Position**: 6 positions (3L/3S). LONG: ARB, NEAR, BTC. SHORT: XRP, ADA, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h902_momentum_quality/runner.py`
+- **Params**: P=14, R=7, N=3. IS Sharpe 1.598, WF 3/5, SH p=0.026. H-012 corr -0.017. Risk-adjusted momentum.
