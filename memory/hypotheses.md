@@ -8784,3 +8784,214 @@
 - Timeframe: 1D
 - Result: IS 1.132, 100% robust, WF 4/5, but SH p=0.115 (fail). Borderline but doesn't pass.
 - Sessions: [2026-04-12 session 188]
+
+## H-836: Amihud Illiquidity Factor
+- Status: CONFIRMED (not deployed — 0.696 corr with H-843, 0.454 with H-012)
+- Idea: |return| / dollar_volume as illiquidity proxy. Long liquid, short illiquid.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = -mean(|return|/dollar_volume, window). Grid: W∈[10,20,30] × R∈[3,5,7] × N∈[3,4] = 18 combos.
+- Data: 14 assets, 736 daily bars.
+- Result: IS **100%** positive (18/18). Best: W30_R5_N3 Sharpe **1.654**, +82.7% ann, -59.2% DD. WF **5/5 PERFECT** mean 2.084. SH 1.235/2.130 p=0.022 (PASS). H-012 corr **-0.005**. **CONFIRMED** but NOT deployed — 0.696 correlation with H-843 (redundant) and 0.454 with H-012.
+- Notes: Amihud illiquidity works perfectly as XS signal — liquid assets outperform. But high DD (-59.2%) and redundancy with H-843 mean we only deploy the better signal.
+- Sessions: [2026-04-12 session 189]
+
+## H-837: Volume Turnover Rate XS
+- Status: LIVE (paper trade since 2026-04-12)
+- Idea: Dollar volume / rolling avg dollar volume as activity signal. High turnover = active trading interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = (volume / rolling_avg_volume).rolling(W).mean(). Grid: W∈[10,20,30] × R∈[3,5,7] × N∈[3,4] = 18 combos.
+- Data: 14 assets, 736 daily bars.
+- Result: IS **100%** positive (18/18). Best: W10_R3_N3 Sharpe **1.958**, +84.3% ann, -28.2% DD. WF **5/5 PERFECT** mean 1.906. SH 1.081/3.187 p=**0.006** (PASS). H-012 corr **0.058**. Near-zero correlation with all other confirmed signals.
+- Notes: Volume turnover is a genuinely novel, high-Sharpe signal. Low DD (-28.2%). Zero correlation with Amihud/momentum/everything. Best diversifier found in the liquidity batch.
+- Sessions: [2026-04-12 session 189]
+
+## H-838: Bid-Ask Spread Proxy (H-L)/Close
+- Status: REJECTED
+- Idea: Corwin-Schultz-like spread estimator = (H-L)/close. Long tight spread.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 89%, best Sharpe 0.896, WF 4/5, but SH p=0.215 (FAIL). H1=-0.182.
+- Sessions: [2026-04-12 session 189]
+
+## H-839: Volume Concentration
+- Status: REJECTED
+- Idea: Fraction of total volume from top 20% of days. High concentration = lumpy liquidity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **0%** positive (0/12). Best Sharpe -0.064. No signal at all.
+- Sessions: [2026-04-12 session 189]
+
+## H-840: Price Impact Ratio (Kyle's Lambda Proxy)
+- Status: CONFIRMED (not deployed — similar concept to H-836, redundant)
+- Idea: sum(|return|) / sum(volume) as price impact. Long low-impact (liquid).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS **100%** positive (12/12). Best: W30_R7_N4 Sharpe **1.546**, +75.4% ann, -38.7% DD. WF **5/5 PERFECT** mean 1.769. SH 1.460/1.639 p=0.033 (PASS). H-012 corr **-0.033**.
+- Notes: Another strong illiquidity signal but redundant with H-836 (both measure return-per-volume). Only deploying H-843 from this family.
+- Sessions: [2026-04-12 session 189]
+
+## H-841: Zero-Return Days
+- Status: REJECTED
+- Idea: Count of near-zero return days (|ret| < 0.1%) as illiquidity measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 89%, best Sharpe 0.903, WF 4/5, SH p=0.208 (FAIL).
+- Sessions: [2026-04-12 session 189]
+
+## H-842: Volume Autocorrelation
+- Status: REJECTED
+- Idea: Persistence of volume as liquidity stability measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 92%, best Sharpe 0.862, WF **2/5** fail. SH p=0.233 (FAIL).
+- Sessions: [2026-04-12 session 189]
+
+## H-843: Intraday Range-Vol Ratio XS
+- Status: LIVE (paper trade since 2026-04-12)
+- Idea: (-range_body_zscore + volume_zscore).rolling(W).mean(). Low range/body + high volume = strong directional moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: body = |C-O|, range = H-L. Signal combines XS-zscore of range/body ratio (inverted) with volume zscore.
+- Data: 14 assets, 736 daily bars.
+- Result: IS **100%** positive (18/18). Best: W30_R7_N4 Sharpe **2.038**, +79.0% ann, -29.9% DD. WF **5/5 PERFECT** mean 2.450. SH 1.559/2.707 p=**0.005** (PASS). H-012 corr **-0.015**. **Session best Sharpe.**
+- Notes: Session best. The range-volume interaction captures a real signal: assets with small intraday range relative to body (strong directional candles) and high volume outperform. Novel construct combining two microstructure features.
+- Sessions: [2026-04-12 session 189]
+
+## H-844: Current Drawdown Depth (Contrarian)
+- Status: CONFIRMED (not deployed — borderline WF/SH)
+- Idea: How far from rolling high (contrarian: buy deep DD assets).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 94%, best W90_R7_N4 Sharpe 1.260, WF 3/4, SH p=0.096 (borderline). H-012 corr -0.013. Confirmed but too borderline to deploy.
+- Sessions: [2026-04-12 session 189]
+
+## H-845: Drawdown Duration (Exhaustion Reversal)
+- Status: REJECTED
+- Idea: Days since rolling high. Long assets with longest DD duration (exhaustion).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 17% positive. Best Sharpe 0.280. Duration alone has no XS predictive power.
+- Sessions: [2026-04-12 session 189]
+
+## H-846: Recovery Speed
+- Status: REJECTED
+- Idea: Rate of change of drawdown (improving DD = recovery signal).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 8% positive. Best Sharpe 0.141. Recovery speed is noise.
+- Sessions: [2026-04-12 session 189]
+
+## H-847: DD-Adjusted Momentum
+- Status: REJECTED
+- Idea: Momentum × (1 + drawdown). Penalizes momentum for assets in DD.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 83%, best Sharpe 1.425, WF 3/4, SH p=0.054. But **H-012 corr 0.884** — just momentum with extra steps. REJECTED for redundancy.
+- Sessions: [2026-04-12 session 189]
+
+## H-848: Max Gain Factor
+- Status: REJECTED
+- Idea: Maximum gain from rolling trough within window. Strength indicator.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 83%, best Sharpe 1.026, WF **2/4** fail. SH p=0.165 (FAIL). H-012 corr 0.454.
+- Sessions: [2026-04-12 session 189]
+
+## H-849: Underwater Volatility XS
+- Status: LIVE (paper trade since 2026-04-12)
+- Idea: Volatility during drawdown periods vs overall. Long low-underwater-vol (calm DD) assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = -(std_drawdown_returns / std_all_returns). Grid: W∈[30,60] × R∈[3,5,7] × N∈[3,4] = 12 combos.
+- Data: 14 assets, 736 daily bars.
+- Result: IS **100%** positive (12/12). Best: W30_R5_N4 Sharpe **1.463**, +56.9% ann, -33.2% DD. WF **4/5** mean 0.870. SH 2.006/0.772 p=**0.043** (PASS). H-012 corr **0.001** — perfect diversifier!
+- Notes: Assets with calm drawdowns (low vol during DD) outperform. Zero correlation with momentum. Genuinely novel risk-quality signal. Similar concept to H-824 (resilience) but different mechanism.
+- Sessions: [2026-04-12 session 189]
+
+## H-850: Peak Distance Ratio
+- Status: REJECTED
+- Idea: Current price / rolling high. Identical to H-844 mathematically (same ranking).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Identical to H-844 (Sharpe 1.260, WF 3/4, corr -0.013). Redundant.
+- Sessions: [2026-04-12 session 189]
+
+## H-851: Drawdown Mean Reversion XS
+- Status: LIVE (paper trade since 2026-04-12)
+- Idea: Z-score of current DD vs historical DD distribution. Extreme negative z = unusually deep DD → reversion.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = (dd - dd_mean) / dd_std. Contrarian: most negative z-score → LONG. Grid: W∈[30,60] × R∈[3,5,7] × N∈[3,4] = 12 combos.
+- Data: 14 assets, 736 daily bars.
+- Result: IS **100%** positive (12/12). Best: W60_R3_N3 Sharpe **1.637**, +77.7% ann, -26.8% DD. WF **3/4** mean 0.805. SH 2.141/0.996 p=**0.027** (PASS). H-012 corr **-0.012**.
+- Notes: Strong contrarian signal — assets in unusually deep drawdowns relative to their own history revert. Low DD (-26.8%). Near-zero momentum correlation. Good diversifier.
+- Sessions: [2026-04-12 session 189]
+
+## H-852: Price Acceleration
+- Status: REJECTED
+- Idea: 2nd derivative of price (momentum of momentum). Positive acceleration = momentum increasing.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 75% positive. Best Sharpe 1.489. Below 80% IS threshold.
+- Sessions: [2026-04-12 session 189]
+
+## H-853: Relative Volume Trend
+- Status: REJECTED
+- Idea: Volume trend slope relative to price trend slope. Accumulation/distribution.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 33% positive. Best Sharpe 0.315. Volume-price trend divergence has no XS signal.
+- Sessions: [2026-04-12 session 189]
+
+## H-854: Close Location Value XS
+- Status: LIVE (paper trade since 2026-04-12)
+- Idea: CLV = (Close - Low) / (High - Low), averaged. High CLV = consistently closing near highs = bullish.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: signal = clv.rolling(W).mean(). Grid: W∈[10,20,30] × R∈[3,5,7] × N∈[3,4] = 18 combos.
+- Data: 14 assets, 736 daily bars.
+- Result: IS **94%** positive (17/18). Best: W20_R7_N4 Sharpe **1.267**, +50.7% ann, -35.5% DD. WF **4/5** mean 0.788. SH 1.289/1.250 p=**0.078** (PASS). H-012 corr **0.005**.
+- Notes: CLV is a well-known technical analysis concept but novel as XS ranking signal. Zero momentum correlation. Captures accumulation pattern (closing near highs consistently).
+- Sessions: [2026-04-12 session 189]
+
+## H-855: Candle Body Ratio
+- Status: REJECTED
+- Idea: Body/range averaged with direction sign. Measures directional candle strength.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 78% positive. Best Sharpe 1.125. Below 80% IS threshold.
+- Sessions: [2026-04-12 session 189]
+
+## H-856: Channel Position × Width
+- Status: REJECTED
+- Idea: Position in Donchian channel × channel width. Near top of wide channel = breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 61% positive. Best Sharpe 1.210. Too few params positive.
+- Sessions: [2026-04-12 session 189]
+
+## H-857: Normalized ATR Rank
+- Status: REJECTED
+- Idea: ATR/close as normalized volatility. Long low-ATR, short high-ATR.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 94% but best Sharpe only 0.754. Below Sharpe threshold.
+- Sessions: [2026-04-12 session 189]
+
+## H-858: Weighted Close Momentum
+- Status: REJECTED
+- Idea: Momentum using weighted close = (H+L+2C)/4 instead of close-to-close.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 83%, best Sharpe 1.081, WF 3/4, SH p=0.143 (FAIL). **H-012 corr 0.939** — just momentum.
+- Sessions: [2026-04-12 session 189]
+
+## H-859: Volume-Price Trend Divergence
+- Status: REJECTED
+- Idea: sign(price_trend) × sign(volume_trend). Alignment/divergence as continuation signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 28% positive. Best Sharpe 0.707. No XS signal from trend alignment.
+- Sessions: [2026-04-12 session 189]

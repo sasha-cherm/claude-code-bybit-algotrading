@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-12 session 188):
-Demo eq: ~$98,361 (-1.64%, recovering). BTC spot ~$71,606. 13 open positions.
+### Current Demo Status (as of 2026-04-12 session 189):
+Demo eq: ~$98,017 (-1.96%). BTC spot ~$71,017. 13 open positions.
 
 ---
 
@@ -1121,3 +1121,38 @@ Demo eq: ~$98,361 (-1.64%, recovering). BTC spot ~$71,606. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h831_vol_breakout/runner.py`
 - **Params**: lb=30, rebal=3, n_ls=4
+
+### H-837: Volume Turnover Rate XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ARB, NEAR, LINK. SHORT: ETH, XRP, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h837_vol_turnover/runner.py`
+- **Params**: W=10, rebal=3, n_ls=3. IS Sharpe 1.958, WF 5/5. Novel turnover signal.
+
+### H-843: Intraday Range-Vol Ratio XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: BTC, ETH, SOL, ARB. SHORT: SUI, XRP, NEAR, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h843_range_vol/runner.py`
+- **Params**: W=30, rebal=7, n_ls=4. IS Sharpe 2.038, WF 5/5. Session 189 best signal.
+
+### H-849: Underwater Volatility XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: NEAR, XRP, ETH, DOGE. SHORT: DOT, ADA, OP, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h849_underwater_vol/runner.py`
+- **Params**: W=30, rebal=5, n_ls=4. IS Sharpe 1.463, WF 4/5. H-012 corr 0.001 — perfect diversifier.
+
+### H-851: Drawdown Mean Reversion XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 6 positions (3L/3S). LONG: ATOM, DOT, ADA. SHORT: ETH, BTC, ARB.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h851_dd_mean_reversion/runner.py`
+- **Params**: W=60, rebal=3, n_ls=3. IS Sharpe 1.637, WF 3/4. Contrarian DD signal.
+
+### H-854: Close Location Value XS
+- **Status**: LIVE paper trade (started 2026-04-12)
+- **Position**: 8 positions (4L/4S). LONG: ARB, BTC, OP, ETH. SHORT: SOL, NEAR, ADA, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h854_clv/runner.py`
+- **Params**: W=20, rebal=7, n_ls=4. IS Sharpe 1.267, WF 4/5. CLV as novel XS ranking signal.

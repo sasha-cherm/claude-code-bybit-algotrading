@@ -123,6 +123,11 @@ RUNNERS = [
     ("H-824", ROOT / "paper_trades" / "h824_min_return" / "runner.py"),
     ("H-828", ROOT / "paper_trades" / "h828_signal_ensemble" / "runner.py"),
     ("H-831", ROOT / "paper_trades" / "h831_vol_breakout" / "runner.py"),
+    ("H-837", ROOT / "paper_trades" / "h837_vol_turnover" / "runner.py"),
+    ("H-843", ROOT / "paper_trades" / "h843_range_vol" / "runner.py"),
+    ("H-849", ROOT / "paper_trades" / "h849_underwater_vol" / "runner.py"),
+    ("H-851", ROOT / "paper_trades" / "h851_dd_mean_reversion" / "runner.py"),
+    ("H-854", ROOT / "paper_trades" / "h854_clv" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"
