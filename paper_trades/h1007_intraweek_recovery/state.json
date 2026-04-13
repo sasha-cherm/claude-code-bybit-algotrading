@@ -1,0 +1,79 @@
+{
+  "started": "2026-04-13T17:26:11.193667+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "BTC/USDT": {
+      "size": 0.028265815129815564,
+      "entry_price": 70756.84853999999,
+      "weight": 0.2,
+      "symbol": "BTC/USDT"
+    },
+    "ARB/USDT": {
+      "size": 18024.15792305754,
+      "entry_price": 0.11096218799999999,
+      "weight": 0.2,
+      "symbol": "ARB/USDT"
+    },
+    "OP/USDT": {
+      "size": 18705.332834275054,
+      "entry_price": 0.10692138,
+      "weight": 0.2,
+      "symbol": "OP/USDT"
+    },
+    "ETH/USDT": {
+      "size": 0.9123969720540809,
+      "entry_price": 2192.028318,
+      "weight": 0.2,
+      "symbol": "ETH/USDT"
+    },
+    "NEAR/USDT": {
+      "size": 1486.6915092817867,
+      "entry_price": 1.345269,
+      "weight": 0.2,
+      "symbol": "NEAR/USDT"
+    },
+    "SOL/USDT": {
+      "size": -24.53575469172088,
+      "entry_price": 81.513694,
+      "weight": -0.2,
+      "symbol": "SOL/USDT"
+    },
+    "ATOM/USDT": {
+      "size": -1159.6522202991323,
+      "entry_price": 1.724655,
+      "weight": -0.2,
+      "symbol": "ATOM/USDT"
+    },
+    "DOGE/USDT": {
+      "size": -22021.136944253667,
+      "entry_price": 0.090821832,
+      "weight": -0.2,
+      "symbol": "DOGE/USDT"
+    },
+    "ADA/USDT": {
+      "size": -8469.094326909413,
+      "entry_price": 0.23615276,
+      "weight": -0.2,
+      "symbol": "ADA/USDT"
+    },
+    "DOT/USDT": {
+      "size": -1632.979657155921,
+      "entry_price": 1.224755,
+      "weight": -0.2,
+      "symbol": "DOT/USDT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-04-12",
+      "equity": 9976.0
+    }
+  ],
+  "last_daily_date": "2026-04-12",
+  "last_rebal_date": "2026-04-12",
+  "days_since_rebal": 5,
+  "rebal_count": 1,
+  "total_trades": 10,
+  "total_fees": 20.0,
+  "equity": 9975.999999840005
+}

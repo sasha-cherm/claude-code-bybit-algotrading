@@ -1392,3 +1392,9 @@
 - Focus: Paper trade MTM (BTC $73,335), residual/idiosyncratic signals (H-740–H-747), correlation dynamics (H-748–H-755), novel constructions (H-756–H-763)
 - Done: 87 runners (83→87). 32/83 positive (39%). Avg -0.15%. Batch 1 all REJECTED. Batch 2: H-754 deployed (Lead-Lag). Batch 3: H-759/H-761/H-763 deployed. 763 total hypotheses.
 - Next: Await Q-005 answer. Monitor 87 runners.
+
+### Session 2026-04-12 review+deploy+research (session 186)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
+- Focus: Paper trade MTM (BTC $73,082), sequential patterns (H-764–H-771), interaction signals (H-772–H-779), composite signals (H-780–H-787)
+- Done: 94 runners (87→94). 45/87 positive (52%). Avg +0.49%. Demo ~$95,490 (-4.51%). 7 CONFIRMED+deployed: H-768, H-769, H-773, H-777, H-778, H-781, H-786. 17 REJECTED. 787 total hypotheses.
+- Next: Await Q-005 answer. Monitor 94 runners.
