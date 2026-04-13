@@ -1380,3 +1380,9 @@
 - Next: Await Q-005 answer. Monitor 80 runners (esp. H-703). OI as TS signal for BTC doesn't work; XS residual is the only viable approach. Explore liquidation data or sentiment APIs.
 - Questions added: none
 - Self-modifications: H-703 runner created, added to orchestrator. OI data fetcher built (V5 API pagination, 2000+ rows). Archived session 173. (session 183)
+
+### Session 2026-04-11 review+deploy+research (session 184)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $73,041), basis/carry signals (H-716–H-723), interaction factors (H-724–H-731), novel XS constructions (H-732–H-739)
+- Done: 83 runners (80→83). 32/80 positive (40%). Avg -0.15%. Batch 1 (H-716–H-723, basis/carry): All 8 REJECTED. Batch 2 (H-724–H-731): H-726 CONFIRMED (Max DD Factor), H-736 CONFIRMED (Volume Delta), H-733 deployed. Batch 3 (H-732–H-739): 3 deployed. 739 total hypotheses.
+- Next: Await Q-005 answer. Monitor H-726/H-733/H-736.

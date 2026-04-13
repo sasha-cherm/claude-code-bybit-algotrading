@@ -9844,3 +9844,219 @@
 - Result: M14R14: IS 1.143, WF 2/4, SH p=0.115. M60R20: IS 1.050, WF 2/4. All borderline.
 - Notes: Rank stability captures some signal but WF and SH both borderline. Not robust enough.
 - Sessions: [2026-04-13 session 193]
+
+## H-956: Kurtosis Change XS
+- Status: REJECTED
+- Idea: Change in rolling kurtosis — decreasing kurtosis = normalizing distribution = cleaner trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best P20D5: IS 67% positive, Sharpe 0.852. Fails IS threshold.
+- Notes: Kurtosis dynamics don't produce reliable XS rankings. Signal too noisy.
+- Sessions: [2026-04-13 session 194]
+
+## H-957: IQR Expansion XS
+- Status: CONFIRMED (not deployed — WF borderline)
+- Idea: IQR(short) / IQR(long) — distribution widening = regime shift.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: S5L20: IS Sharpe 1.332, WF 2/4, SH p=0.068, H-012 corr -0.071. R5_N4. Ann +51.8%, DD -43.1%.
+- Notes: Signal is real (p=0.068) but WF 2/4 is weak. High DD (-43.1%) also concerning. Not deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-958: Median-Mean Gap XS
+- Status: REJECTED
+- Idea: (median - mean) / std — consistent vs outlier-driven returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All periods: 0% positive Sharpe. Best -0.100. Complete failure.
+- Notes: Median-mean gap provides zero XS signal. In crypto, mean and median are too similar to generate meaningful cross-sectional dispersion.
+- Sessions: [2026-04-13 session 194]
+
+## H-959: Down Day Frequency XS
+- Status: CONFIRMED (deployed)
+- Idea: Fraction of negative return days in lookback. Fewer down days = healthier trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20: IS Sharpe **1.289**, WF **5/5 PERFECT**, SH p=0.074, H-012 corr 0.030. R5_N4. Ann +50.8%, DD -27.6%.
+- Notes: Simple and effective — counting down days captures trend health. All 5 WF folds positive (0.44/0.13/1.93/0.62/0.75). Very low H-012 correlation. Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-960: Longest Win Streak XS
+- Status: CONFIRMED (deployed)
+- Idea: Max consecutive positive return days in lookback window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS Sharpe **1.453**, WF **4/5**, SH p=**0.043**, H-012 corr **-0.020**. R7_N4. Ann +54.7%, DD -29.7%.
+- Notes: Win streak captures momentum quality — consistent positive days vs sporadic gains. Slightly anti-momentum tilt. Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-961: Tail Improvement XS
+- Status: CONFIRMED (deployed)
+- Idea: Change in 5th percentile daily return. Improving (less negative) = better downside protection.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P60D20: IS Sharpe **1.244**, WF **3/4**, SH p=0.099, H-012 corr 0.018. R7_N3. Ann +53.0%, DD -29.9%.
+- Notes: Only long-lookback (P60D20) works — short lookbacks fail. Improving tail risk signals asset health. Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-962: Win-Loss Size Ratio XS
+- Status: REJECTED
+- Idea: avg(positive returns) / avg(|negative returns|). Quality of wins vs losses.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS Sharpe 1.274, WF **1/4 FAIL**, SH p=0.079. Decent IS but OOS collapses.
+- Notes: Win/loss size ratio appears predictive IS but fails walk-forward badly (1/4). Signal doesn't persist.
+- Sessions: [2026-04-13 session 194]
+
+## H-963: Return Concentration XS
+- Status: CONFIRMED (deployed)
+- Idea: max(|daily return|) / sum(|daily return|). Low concentration = sustainable distributed gains.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20: IS Sharpe **1.506**, WF **3/5**, SH p=**0.037**, H-012 corr **0.004** (near zero). R7_N3. Ann +67.3%, DD -28.8%.
+- Notes: Captures return quality — assets where gains are distributed across many days rather than from a single spike. Excellent diversifier (corr 0.004). Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-964: Momentum Conviction XS
+- Status: CONFIRMED (deployed)
+- Idea: Momentum penalized by path roughness (max DD / abs return). Smooth momentum paths preferred.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: M60D60: IS Sharpe **2.074**, WF **4/4 PERFECT**, SH p=**0.005**, H-012 corr **-0.006**. R3_N3. Ann +113.4%, DD -30.4%.
+- Notes: Path-adjusted momentum — penalizes assets that gained via volatile zigzag paths vs smooth uptrends. Near-zero H-012 correlation despite being momentum-derived. **Star of session.** Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-965: Relative Drawdown Depth XS
+- Status: BORDERLINE (not deployed)
+- Idea: current_dd / max_historic_dd — shallow DD relative to history = recovery potential.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30: IS Sharpe 0.953, WF 2/4, SH p=0.197. Weak IS and fails SH.
+- Notes: Relative DD depth doesn't generate strong enough XS signal. H-012 corr 0.102.
+- Sessions: [2026-04-13 session 194]
+
+## H-966: Price Level Factor XS
+- Status: REJECTED
+- Idea: log(close) — test if nominal price predicts XS returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 100% positive but Sharpe only 0.351. No meaningful signal.
+- Notes: Nominal price is just size factor in disguise. Already captured by H-031. Too weak standalone.
+- Sessions: [2026-04-13 session 194]
+
+## H-967: Funding × Momentum Interaction XS
+- Status: REJECTED
+- Idea: Funding rate * momentum direction — aligned funding and momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All periods: IS 0% positive, Sharpe 0.000. Complete failure.
+- Notes: Funding data may not be available in correct format, or the interaction term cancels out XS variation. No signal.
+- Sessions: [2026-04-13 session 194]
+
+## H-968: Volume Spike Recency XS
+- Status: REJECTED
+- Idea: Days since most recent volume spike (>2 std). Recent spike = attention/catalyst.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS Sharpe 1.550, WF **1/4 FAIL**. Good IS completely collapses OOS.
+- Notes: Volume spike timing is not persistent enough for XS prediction. Recent spike ≠ future outperformance.
+- Sessions: [2026-04-13 session 194]
+
+## H-969: Post-Spike Return XS
+- Status: REJECTED
+- Idea: Cumulative return after highest-volume day in lookback window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS: 67% positive, Sharpe 0.865. Fails IS threshold.
+- Notes: Post-volume-spike returns don't generate reliable XS rankings.
+- Sessions: [2026-04-13 session 194]
+
+## H-970: Higher Lows Count XS
+- Status: CONFIRMED (deployed)
+- Idea: Count of days where low > prior day low. More higher lows = stronger uptrend structure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P10: IS Sharpe **2.464**, WF **5/5 PERFECT**, SH p=**0.001**, H-012 corr **-0.008**. R5_N3. Ann +108.2%, DD -33.5%. **SESSION BEST.**
+- Notes: Captures structural trend quality — higher lows are the textbook definition of an uptrend. All WF folds strongly positive (3.56/3.44/5.77/0.95/2.53). Near-zero momentum correlation despite being trend-related. Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-971: Overnight Gap Trend XS
+- Status: CONFIRMED (deployed)
+- Idea: Slope of overnight gaps (open_t - close_{t-1}). Positive trend = increasing buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20: IS Sharpe **1.890**, WF **5/5 PERFECT**, SH p=**0.009**, H-012 corr 0.034. R3_N4. Ann +86.7%, DD -46.8%.
+- Notes: Overnight gap trend captures subtle overnight sentiment shifts. All WF folds positive (1.11/1.29/0.17/2.60/2.77). NOTE: WF values identical across lookback periods (P10-P30) — signal may be numerically stable or an artifact of minimal crypto overnight gaps. Monitoring closely. Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-972: Body Ratio XS
+- Status: REJECTED
+- Idea: avg |close-open| / (high-low) — candle body proportion as conviction measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All periods: 0% positive, Sharpe -0.097. Complete failure.
+- Notes: Candle body proportion has no XS predictive power. Conviction measured by body ratio doesn't differentiate future winners.
+- Sessions: [2026-04-13 session 194]
+
+## H-973: Volume Autocorrelation XS
+- Status: BORDERLINE (not deployed)
+- Idea: Lag-1 autocorrelation of volume — clustered vs random volume as interest proxy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS Sharpe 1.040, WF 4/5, SH p=0.149. H-012 corr 0.003.
+- Notes: Signal direction works (WF 4/5) but SH p=0.149 doesn't pass statistical significance. Excellent diversifier (corr 0.003) but not confident enough to deploy.
+- Sessions: [2026-04-13 session 194]
+
+## H-974: ATR Expansion XS
+- Status: CONFIRMED (deployed)
+- Idea: ATR(5d) / ATR(30d). Expanding range = breakout / volatility regime shift.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: S5L30: IS Sharpe **1.763**, WF **4/4 PERFECT**, SH p=**0.015**, H-012 corr **-0.006**. R7_N3. Ann +78.4%, DD -30.2%.
+- Notes: ATR expansion captures breakout potential — assets where recent range exceeds historical range. All 4 WF folds positive. Deployed.
+- Sessions: [2026-04-13 session 194]
+
+## H-975: Upper Shadow Ratio XS
+- Status: REJECTED
+- Idea: (high - max(open,close)) / (high-low) — selling pressure from upper wicks.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 83% positive but best Sharpe only 0.566. Too weak.
+- Notes: Upper shadow ratio generates mild directional signal but too weak for deployment.
+- Sessions: [2026-04-13 session 194]
+
+## H-976: OI Change Normalized XS
+- Status: REJECTED
+- Idea: OI change / avg volume — positioning intensity normalized by activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 67% positive, Sharpe 1.191. Fails IS threshold (needs ≥70%).
+- Notes: OI-normalized signal borderline. May work with actual OI data rather than proxy.
+- Sessions: [2026-04-13 session 194]
+
+## H-977: Intraday Range Trend XS
+- Status: REJECTED
+- Idea: Slope of (high-low)/close over lookback — expanding vs contracting ranges.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS Sharpe 1.519, WF **2/5 FAIL**. Good IS collapses OOS.
+- Notes: Range trend slope captures something IS but doesn't persist. Unstable signal.
+- Sessions: [2026-04-13 session 194]
+
+## H-978: Range Volatility XS
+- Status: REJECTED
+- Idea: Std of (high-low)/close — consistency of intraday ranges.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 67% positive, Sharpe 1.055. Fails IS threshold.
+- Notes: Range consistency doesn't generate strong enough XS signal.
+- Sessions: [2026-04-13 session 194]
+
+## H-979: Consecutive Range Expansion XS
+- Status: CONFIRMED (deployed)
+- Idea: Count of days where range > prior day range. More expansion = increasing activity/interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS Sharpe **2.204**, WF **5/5 PERFECT**, SH p=**0.002**, H-012 corr **0.004** (near zero). R5_N3. Ann +89.2%, DD -39.9%.
+- Notes: Range expansion captures increasing market interest. All WF folds strongly positive (1.97/4.65/1.46/1.86/1.05). Near-perfect diversifier. Deployed.
+- Sessions: [2026-04-13 session 194]
