@@ -1,0 +1,22 @@
+[
+  {
+    "time": "2026-04-13T05:15:30.563397+00:00",
+    "action": "rebalance",
+    "date": "2026-04-12",
+    "longs": [
+      "ARB/USDT",
+      "NEAR/USDT",
+      "ETH/USDT",
+      "BTC/USDT"
+    ],
+    "shorts": [
+      "AVAX/USDT",
+      "SOL/USDT",
+      "ADA/USDT",
+      "DOT/USDT"
+    ],
+    "capital": 9980.0,
+    "fees": 20.0,
+    "trades": 8
+  }
+]

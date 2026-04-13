@@ -9628,3 +9628,219 @@
 - Result: 5/30 variant: IS Sharpe **1.796**, WF **3/4**, SH p=**0.013**, H-012 corr **0.000**. Best: S=5, L=30, R=3, N=3. Ann ret +84.2%, DD -32.2%.
 - Notes: Volume regime change is a powerful signal. Zero H-012 corr — completely independent. 7/30 variant IS 2.061 but WF 2/4. Deployed with 5/30 params.
 - Sessions: [2026-04-13 session 192]
+
+## H-932: Multi-TF Momentum Consensus XS
+- Status: REJECTED
+- Idea: Average z-score of momentum across 7d/14d/30d/60d timeframes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.126, 100% positive. WF **2/4** (fail). SH p=0.129 (fail). H-012 corr 0.047.
+- Notes: Combining momentum across TFs doesn't add enough OOS stability. Individual TF momentum is better.
+- Sessions: [2026-04-13 session 193]
+
+## H-933: Return Acceleration XS
+- Status: REJECTED
+- Idea: Second derivative of price — momentum of momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: S14 variant IS Sharpe 1.487. WF **2/4** (fail). SH p=0.042 (pass). H-012 corr 0.046. Short variants (S5/S7) all negative.
+- Notes: Momentum acceleration is too noisy as XS signal. Strong IS but doesn't hold OOS.
+- Sessions: [2026-04-13 session 193]
+
+## H-934: Momentum Decay Rate XS
+- Status: REJECTED
+- Idea: Ratio of short-term to long-term momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best S14L60: IS Sharpe 0.999, WF **1/4** (fail). S7L30 and S7L60 variants 33% positive.
+- Notes: Short/long momentum ratio doesn't capture usable XS edge.
+- Sessions: [2026-04-13 session 193]
+
+## H-935: Trend Strength R² XS
+- Status: CONFIRMED (deployed)
+- Idea: Signed R² of linear regression on returns. Captures trend quality/smoothness.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30 variant: IS Sharpe **1.243**, WF **3/4**, SH p=**0.087**, H-012 corr **-0.043**. Ann ret +49.5%, DD -34.5%.
+- Notes: Clean trend quality signal. Negative H-012 corr = slight contrarian tilt. R7_N4 best params. Deployed.
+- Sessions: [2026-04-13 session 193]
+
+## H-936: Lookback-Adaptive Momentum XS
+- Status: REJECTED
+- Idea: Use momentum lookback period with highest recent autocorrelation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.616 (below 0.8 threshold). 100% positive but weak.
+- Notes: Adaptive lookback selection adds complexity without improving signal quality.
+- Sessions: [2026-04-13 session 193]
+
+## H-937: Momentum Z-Score XS
+- Status: REJECTED
+- Idea: Momentum normalized by its own trailing volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: M14V60 variant: IS Sharpe **1.854** (highest in batch), WF **2/4** (fail). SH p=0.013. H-012 corr 0.052.
+- Notes: Excellent IS Sharpe but WF instability. High IS Sharpe that doesn't translate OOS — a pattern warning sign.
+- Sessions: [2026-04-13 session 193]
+
+## H-938: Range-Adjusted Momentum XS
+- Status: CONFIRMED (deployed)
+- Idea: Momentum / average daily range. Normalizes momentum by activity level.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14 variant: IS Sharpe **1.585**, WF **3/5**, SH p=**0.027**, H-012 corr **0.018**. Ann ret +75.9%, DD -50.5%. R3_N3 best.
+- Notes: Range normalization improves momentum signal. Nearly zero H-012 corr — captures different info from raw momentum. Deployed.
+- Sessions: [2026-04-13 session 193]
+
+## H-939: Volume-Confirmed Trend XS
+- Status: CONFIRMED (deployed)
+- Idea: Momentum * volume trend ratio. Amplifies momentum when volume is rising.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: M20V10 variant: IS Sharpe **1.182**, WF **4/5**, SH p=0.101 (borderline), H-012 corr **0.001** (zero!). Ann ret +50.5%, DD -41.1%. R5_N4 best.
+- Notes: Zero H-012 correlation despite being momentum-based (volume interaction creates orthogonal signal). Strong WF compensates for borderline SH. Deployed.
+- Sessions: [2026-04-13 session 193]
+
+## H-940: Gain-to-Pain Ratio XS
+- Status: CONFIRMED (deployed)
+- Idea: Sum of returns / |sum of negative returns|. Higher = more gains per unit of pain.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20 variant: IS Sharpe **1.356**, WF **4/5**, SH p=**0.060**, H-012 corr **0.014**. Ann ret +54.7%, DD -26.0%. R5_N4 best.
+- Notes: Risk-adjusted returns work as XS factor. Low DD (-26%) is notable. Deployed.
+- Sessions: [2026-04-13 session 193]
+
+## H-941: Omega Ratio XS
+- Status: REJECTED (duplicate of H-940)
+- Idea: Probability-weighted gains/losses above zero threshold.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: **Identical** to H-940 at all periods. Omega ratio = monotonic transform of Gain-to-Pain.
+- Notes: Gain-to-Pain and Omega are the same signal — they produce identical cross-sectional rankings.
+- Sessions: [2026-04-13 session 193]
+
+## H-942: Calmar Ratio XS
+- Status: REJECTED
+- Idea: Cumulative return / max drawdown depth.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best P60: IS Sharpe 1.022, WF 2/4, SH p=0.168. Other periods weaker.
+- Notes: Calmar ratio doesn't capture enough XS signal. DD-based metrics are noisy for short lookbacks.
+- Sessions: [2026-04-13 session 193]
+
+## H-943: Tail Ratio XS
+- Status: REJECTED
+- Idea: 95th percentile return / |5th percentile return|.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P90 variant: IS Sharpe 1.589, but WF **1/4** (fail). P60 WF 2/4. Strong IS, no OOS stability.
+- Notes: Tail shape is too unstable over time to use as XS signal. Another IS-attractive, OOS-failing pattern.
+- Sessions: [2026-04-13 session 193]
+
+## H-944: Pain Index XS
+- Status: REJECTED
+- Idea: Inverse of average drawdown depth (long resilient assets).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30: WF 3/4 but SH p=0.187 (fail). P90: WF 3/4 but SH p=0.159. All borderline.
+- Notes: Drawdown-based factors are consistently borderline — some XS signal but not robust.
+- Sessions: [2026-04-13 session 193]
+
+## H-945: Sterling Ratio XS
+- Status: REJECTED
+- Idea: Cumulative return / mean of worst N drawdowns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P60: IS 1.121, WF 3/4, SH p=0.131. All variants SH fail.
+- Notes: Sterling ratio is similar to Calmar but averaging worst drawdowns. Still not enough statistical power.
+- Sessions: [2026-04-13 session 193]
+
+## H-946: Kappa Ratio XS
+- Status: CONFIRMED (deployed)
+- Idea: Mean return / sqrt(lower partial moment). Penalizes downside only.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P20 variant: IS Sharpe **1.251**, WF **4/5**, SH p=**0.082**, H-012 corr **-0.014**. Ann ret +59.1%, DD -34.0%. R3_N3 best.
+- Notes: Kappa ratio captures downside-risk-adjusted XS edge. 4/5 WF is strong. Deployed.
+- Sessions: [2026-04-13 session 193]
+
+## H-947: Burke Ratio XS
+- Status: REJECTED
+- Idea: Cumulative return / sqrt(sum of squared drawdowns).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30: IS 1.167, WF 3/4, SH p=0.108. P60/P90 weaker.
+- Notes: Burke ratio is more sensitive to DD frequency. Borderline but fails SH.
+- Sessions: [2026-04-13 session 193]
+
+## H-948: Price Discovery Speed XS
+- Status: REJECTED
+- Idea: First-order return autocorrelation as XS signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All periods negative or below threshold. P14/P20 Sharpe negative. P60 Sharpe 0.665.
+- Notes: Autocorrelation is useless as XS factor (confirms earlier findings). Crypto assets all have near-zero autocorrelation.
+- Sessions: [2026-04-13 session 193]
+
+## H-949: Noise Ratio (Variance Ratio) XS
+- Status: REJECTED
+- Idea: Variance ratio at different frequencies (random walk deviation).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best S5L30: IS 1.089, WF 2/4, SH p=0.142. S1L10: WF 3/4, SH p=0.240.
+- Notes: Variance ratio captures some XS signal but too noisy. VR > 1 (trending) slightly predicts but not robustly.
+- Sessions: [2026-04-13 session 193]
+
+## H-950: Signal-to-Noise Ratio XS
+- Status: REJECTED (duplicate of H-935)
+- Idea: |Trend component| / noise component from linear regression.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30 variant: **Identical** to H-935 (same Sharpe 1.243, WF, SH, corr). Same underlying linregress calculation.
+- Notes: Signal-to-Noise and signed R² produce identical XS rankings. Both are monotonic transforms of the same regression.
+- Sessions: [2026-04-13 session 193]
+
+## H-951: Information Share (R² vs BTC) XS
+- Status: REJECTED
+- Idea: R² of asset vs BTC (low R² = more idiosyncratic = more alpha potential).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All periods: IS 0.51-0.61 (below threshold). 83-100% positive but weak.
+- Notes: Crypto R² vs BTC doesn't predict returns. All alts are high-beta BTC anyway.
+- Sessions: [2026-04-13 session 193]
+
+## H-952: Price Efficiency Index XS
+- Status: REJECTED
+- Idea: abs(close-to-close return) / mean(high-low range).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: All periods: 0-67% positive. Best Sharpe 0.635 (P14). Longer periods go negative.
+- Notes: Price efficiency doesn't predict returns XS. Efficient and inefficient assets don't differ in future returns.
+- Sessions: [2026-04-13 session 193]
+
+## H-953: Intrabar Reversal XS
+- Status: REJECTED
+- Idea: Rolling mean of (close-open)/(high-low) as bar quality signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS 1.402, WF **2/5** (fail), SH p=0.051. P20: WF 3/5, SH p=0.122. Strong IS, weak OOS.
+- Notes: Bar quality captures some signal but inconsistent across WF folds. Close to confirmation at P20 but SH fails.
+- Sessions: [2026-04-13 session 193]
+
+## H-954: Drift-to-Volatility XS
+- Status: CONFIRMED (deployed)
+- Idea: mean(daily return) / std(daily returns). Directional strength relative to noise.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14 variant: IS Sharpe **1.598**, WF **3/5**, SH p=**0.026**, H-012 corr **-0.017**. Ann ret +74.9%, DD -37.2%. R7_N3 best. **SESSION BEST.**
+- Notes: Information ratio of returns as XS factor. Captures assets with strong drift vs noise. Negative H-012 corr = slight anti-momentum tilt. Deployed.
+- Sessions: [2026-04-13 session 193]
+
+## H-955: Momentum Predictability XS
+- Status: REJECTED
+- Idea: Autocorrelation of momentum rankings (stable rank = predictable momentum).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: M14R14: IS 1.143, WF 2/4, SH p=0.115. M60R20: IS 1.050, WF 2/4. All borderline.
+- Notes: Rank stability captures some signal but WF and SH both borderline. Not robust enough.
+- Sessions: [2026-04-13 session 193]
