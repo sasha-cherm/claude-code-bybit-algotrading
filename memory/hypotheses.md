@@ -10492,3 +10492,219 @@
 - Result: IS Sharpe -0.449. 0% positive. No signal.
 - Notes: Reversal/turnaround plays have no XS alpha in crypto. Consistent with prior findings that mean reversion fails.
 - Sessions: [2026-04-13 session 196]
+
+## H-1028: Turn-of-Month Effect XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Rank assets by their turn-of-month return premium (last 3 + first 3 days vs mid-month). Long high-TOM-premium assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 7d)
+- Result: IS Sharpe **1.979**, WF 3/4, SH p=**0.008**, H-012 corr **-0.031**. Split-half: 2.198/1.735 (stable).
+- Notes: Calendar seasonality per asset — TOM effect exists and varies cross-sectionally. Strong IS and OOS. Near-zero corr with momentum.
+- Sessions: [2026-04-14 session 197]
+
+## H-1029: Monthly Return Persistence XS
+- Status: REJECTED
+- Idea: Last 30-day XS return rank as predictor.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.623. Below 0.8 threshold.
+- Notes: Monthly momentum too slow for crypto XS — 60d momentum (H-012) works, 30d doesn't.
+- Sessions: [2026-04-14 session 197]
+
+## H-1030: Return Horizon Ratio XS
+- Status: CONFIRMED (not deployed — unstable split-half)
+- Idea: 7d/30d return ratio — momentum acceleration signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.724**, WF 3/4, SH p=**0.018**, H-012 corr 0.012. Split-half: 2.995/**-0.113** (COLLAPSE in 2nd half).
+- Notes: Strong IS but second half of sample is negative — signal may be decaying or spurious. Not deployed due to instability.
+- Sessions: [2026-04-14 session 197]
+
+## H-1031: Same-Weekday Momentum XS
+- Status: BORDERLINE
+- Idea: Average return on same weekday over past 8 weeks.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.229, WF 2/4, SH p=0.096, H-012 corr **0.507** (too correlated).
+- Notes: Passes SH but WF borderline and high momentum correlation. Weekday patterns captured by momentum.
+- Sessions: [2026-04-14 session 197]
+
+## H-1032: Intramonth Position XS
+- Status: REJECTED
+- Idea: First vs second half of month relative performance per asset.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.864, WF 1/4. WF fails.
+- Notes: Intramonth seasonality has no stable XS edge.
+- Sessions: [2026-04-14 session 197]
+
+## H-1033: Lagged Week Return XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Prior week's XS return as signal for current week. Weekly momentum carry-over.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 5d)
+- Result: IS Sharpe **1.400**, WF **4/5**, SH p=**0.050**, H-012 corr **-0.023**. Split-half: 1.342/1.550 (very stable).
+- Notes: Weekly momentum persists. Clean signal with near-zero momentum correlation. Extremely stable split-half.
+- Sessions: [2026-04-14 session 197]
+
+## H-1034: Monthly Reversal XS
+- Status: REJECTED
+- Idea: Short recent monthly winners, long monthly losers. Monthly-horizon mean reversion.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.299. 0% positive.
+- Notes: Monthly reversal is anti-signal in crypto — consistent with strong momentum finding.
+- Sessions: [2026-04-14 session 197]
+
+## H-1035: Day-of-Month Seasonality XS
+- Status: REJECTED
+- Idea: Rolling average return by day-of-month phase (early/mid/late).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.629. Below 0.8 threshold.
+- Notes: Day-of-month seasonality too noisy for XS ranking.
+- Sessions: [2026-04-14 session 197]
+
+## H-1036: Consecutive Return Direction XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Length of current win/loss streak. Short assets on long winning streaks, long those ending losing streaks (contrarian).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 5d, N=5, low_long)
+- Result: IS Sharpe **1.808**, WF **4/5**, SH p=**0.012**, H-012 corr **-0.036**. Split-half: 0.753/3.024 (improving over time).
+- Notes: Contrarian streak signal — short extended winners, long extended losers. Works because of XS mean reversion at very short horizons. Negative corr with momentum = excellent diversifier.
+- Sessions: [2026-04-14 session 197]
+
+## H-1037: Return Regime Duration XS
+- Status: CONFIRMED (not deployed — unstable split-half)
+- Idea: Days since return regime changed (sign of rolling 10d return). Long established uptrends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.654**, WF 3/5, SH p=**0.021**, H-012 corr 0.009. Split-half: 2.909/**0.165** (2nd half barely positive).
+- Notes: Regime duration signal strong IS but collapses in recent data. Not deployed.
+- Sessions: [2026-04-14 session 197]
+
+## H-1038: Mean Reversion Timer XS
+- Status: BORDERLINE
+- Idea: Days since price was at rolling max vs min.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.811, WF 3/4, SH p=0.263. SH fails.
+- Notes: Concept is sound but signal too noisy. Split-half not significant.
+- Sessions: [2026-04-14 session 197]
+
+## H-1039: Return Acceleration XS
+- Status: REJECTED
+- Idea: Second derivative of price — change in momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.451. 0% positive.
+- Notes: Momentum acceleration/deceleration has no XS predictive power.
+- Sessions: [2026-04-14 session 197]
+
+## H-1040: Momentum Freshness (EW) XS
+- Status: BORDERLINE
+- Idea: Exponentially-weighted momentum (halflife 10d, 60d window). Recent returns weighted more.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.848, WF 3/4, SH p=0.252. SH fails.
+- Notes: EW momentum doesn't significantly improve over uniform momentum. Split-half not significant.
+- Sessions: [2026-04-14 session 197]
+
+## H-1041: Trend Persistence Ratio XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Fraction of days with same-sign return as overall 30d trend. Long persistent trends, short erratic.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 5d)
+- Result: IS Sharpe **1.304**, WF **3/4**, SH p=**0.072**, H-012 corr **0.006**. Split-half: 1.151/1.532 (very stable).
+- Notes: Measures quality of trend — consistent direction day-to-day. Near-zero corr with momentum means it captures trend quality, not trend magnitude.
+- Sessions: [2026-04-14 session 197]
+
+## H-1042: Recovery Rate XS
+- Status: BORDERLINE
+- Idea: Speed of recovery from recent drawdown.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.836 (low_long), WF 2/4, SH p=0.251. WF borderline, SH fails.
+- Notes: Recovery rate concept doesn't work as XS signal — too noisy.
+- Sessions: [2026-04-14 session 197]
+
+## H-1043: Return Predictability (R-squared) XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: R-squared of linear fit to log prices over 20 days. High R2 = smooth, predictable trend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 5d)
+- Result: IS Sharpe **1.313**, WF **5/5 PERFECT**, SH p=**0.068**, H-012 corr **0.008**. Split-half: 1.339/1.318 (near-identical!).
+- Notes: **STAR signal** — perfect WF and remarkably stable split-half. Measures trend smoothness/predictability. Near-zero momentum corr = independent signal. Signed R2 captures both direction and quality.
+- Sessions: [2026-04-14 session 197]
+
+## H-1044: Volume Skewness XS
+- Status: REJECTED
+- Idea: Skewness of daily volume distribution.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.273. 25% positive. No signal.
+- Notes: Volume skewness has no XS predictive power.
+- Sessions: [2026-04-14 session 197]
+
+## H-1045: Volume Concentration XS
+- Status: REJECTED
+- Idea: Max daily volume / mean volume. Concentrated institutional activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.852, WF 0/4. Complete WF failure.
+- Notes: Volume concentration passes IS but zero OOS folds — classic overfit.
+- Sessions: [2026-04-14 session 197]
+
+## H-1046: Relative Volume Duration XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Consecutive days with short-term avg volume > long-term. Sustained high RVOL = institutional interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 5d)
+- Result: IS Sharpe **2.000**, WF **5/5 PERFECT**, SH p=**0.006**, H-012 corr **0.015**. Split-half: 2.867/0.952 (both positive).
+- Notes: **SESSION BEST** — sustained relative volume captures institutional accumulation. Perfect WF, highly significant. Near-zero momentum corr. Duration > level (RVOL level alone fails as per H-893).
+- Sessions: [2026-04-14 session 197]
+
+## H-1047: Volume-Price Agreement XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Correlation between volume and |returns|. High agreement = efficient pricing, information-rich trading.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 3d)
+- Result: IS Sharpe **1.914**, WF **3/5**, SH p=**0.008**, H-012 corr **-0.018**. Split-half: 2.643/0.945 (both positive).
+- Notes: Efficient market microstructure signal — when volume validates price moves. Near-zero momentum corr. Strong IS and significant.
+- Sessions: [2026-04-14 session 197]
+
+## H-1048: Volume Decay Rate XS
+- Status: REJECTED
+- Idea: Autocorrelation of volume — how fast volume spikes decay.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.844, WF 2/5. WF fails.
+- Notes: Volume persistence as autocorrelation doesn't create stable XS spread.
+- Sessions: [2026-04-14 session 197]
+
+## H-1049: Volume Gini XS
+- Status: REJECTED
+- Idea: Gini coefficient of daily volumes. Concentrated vs distributed activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.336, WF 1/4. WF fails.
+- Notes: Volume inequality passes IS but collapses OOS — classic overfit.
+- Sessions: [2026-04-14 session 197]
+
+## H-1050: Buy Volume Ratio Trend XS
+- Status: REJECTED
+- Idea: Trend in buy-volume ratio (close > open = buy bar).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe -0.131. 0% positive.
+- Notes: Accumulation/distribution via open/close has no XS signal in crypto daily bars.
+- Sessions: [2026-04-14 session 197]
+
+## H-1051: Volume Momentum Spread XS
+- Status: CONFIRMED (deployed session 197)
+- Idea: Difference between short-term and mid-term volume ratios vs long-term. Accelerating volume interest.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 5d)
+- Result: IS Sharpe **1.581**, WF **3/4**, SH p=**0.033**, H-012 corr **0.070**. Split-half: 2.180/0.787 (both positive).
+- Notes: Volume momentum spread captures accelerating institutional attention. Low momentum corr. Distinct from H-1046 (duration vs acceleration).
+- Sessions: [2026-04-14 session 197]
