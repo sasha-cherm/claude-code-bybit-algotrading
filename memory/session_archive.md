@@ -1367,3 +1367,8 @@
 - Next: Await Q-005 answer. Monitor 79 runners. Calendar effects exhausted in crypto. Explore options strategies (need more IV data), on-chain data.
 - Questions added: none
 - Self-modifications: H-676/H-677/H-679/H-680 runners created, added to orchestrator. Archived session 171. (session 181)
+### Session 2026-04-11 review+research (session 182)
+- Goal: Review + Research — MTM update, 16 new backtests (2 batches of 8), 0 deployments
+- Focus: Paper trade MTM (BTC $72,665), gold-crypto intermarket signals (H-684–H-691) and OHLC microstructure (H-692–H-699)
+- Done: 79 runners (unchanged). 30/79 positive (38%). Avg -0.16%. H-063 new iron condor (70K/75.5K, exp Apr 13). Batch 1 (H-684–H-691, gold-crypto): All 8 REJECTED. Batch 2 (H-692–H-699, microstructure): All 8 REJECTED after look-ahead correction. CRITICAL BUG FOUND: SH test was broken (permutation→t-test). 699 total hypotheses.
+- Next: Re-evaluate prior SH FAIL rejects with corrected test.

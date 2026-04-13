@@ -9412,3 +9412,219 @@
 - Result: 14/14 IS 1.621 WF 2/4 (FAIL). 30/20 IS 1.548 WF 3/4 SH p=0.036 but weaker than H-902. 60/30 WF 1/4 (FAIL). Borderline.
 - Notes: H-902 (Momentum Quality using Sharpe-like ratio) captures the same concept better. Not deployed.
 - Sessions: [2026-04-13 session 191]
+
+## H-908: Positive Return Ratio XS
+- Status: CONFIRMED (deployed)
+- Idea: Fraction of positive daily returns over lookback. High ratio = consistent uptrend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.233, WF 4/5, SH p=0.087, H-012 corr 0.015. Best: P=20, R=5, N=3. 100% param robust. Ann ret +53.8%, DD -51.6%.
+- Notes: Simple but robust. Low H-012 correlation. Borderline SH but strong WF. Not deployed — borderline SH, possibly redundant with H-912/H-914.
+- Sessions: [2026-04-13 session 192]
+
+## H-909: Return Asymmetry XS
+- Status: REJECTED
+- Idea: mean(positive returns) / mean(abs(negative returns)). Captures upside skew.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.008, WF 0/4 (FAIL). Pure overfitting. Identical to H-911 (Gain-Loss Ratio).
+- Notes: Return asymmetry = gain-loss ratio mathematically. No XS predictive power OOS.
+- Sessions: [2026-04-13 session 192]
+
+## H-910: Tail Ratio XS
+- Status: REJECTED
+- Idea: 95th percentile / abs(5th percentile) of return distribution.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.287, WF 2/4 (FAIL). First half strong (2.29), second half negative. Time-unstable.
+- Notes: Tail ratio has XS dispersion but doesn't persist OOS.
+- Sessions: [2026-04-13 session 192]
+
+## H-911: Gain-Loss Ratio XS
+- Status: REJECTED
+- Idea: Average gain / average loss as XS factor.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Identical to H-909 (mathematically same signal). IS 1.008, WF 0/4 (FAIL).
+- Notes: Redundant with H-909. Both rejected.
+- Sessions: [2026-04-13 session 192]
+
+## H-912: Consecutive Gain Streak XS
+- Status: CONFIRMED (not deployed)
+- Idea: Current streak of consecutive positive/negative closes. Captures short-term persistence.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.226, WF 4/5, SH p=0.086, H-012 corr 0.065. Best: R=5, N=3. Ann ret +57.0%, DD -56.1%.
+- Notes: Passes all tests but borderline SH. Not deployed — potentially redundant with H-908/H-914.
+- Sessions: [2026-04-13 session 192]
+
+## H-913: Up Capture Ratio XS
+- Status: REJECTED
+- Idea: Asset's mean return on market-up days / market mean return on up days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 17% positive only. Sharpe 0.136. Complete failure.
+- Notes: Up capture has no cross-sectional predictive power. Market beta structure too homogeneous in crypto.
+- Sessions: [2026-04-13 session 192]
+
+## H-914: Return Smoothness XS
+- Status: CONFIRMED (deployed)
+- Idea: R-squared of cumulative returns vs linear trend, signed by slope. Smooth trends persist.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.471**, WF **4/5**, SH p=**0.040**, H-012 corr **-0.019**. Best: P=14, R=7, N=3. Ann ret +69.3%, DD -51.3%.
+- Notes: Strong signal — smooth trends predict continuation better than raw momentum. Negative H-012 correlation = good diversifier. Deployed.
+- Sessions: [2026-04-13 session 192]
+
+## H-915: Sortino-like XS
+- Status: CONFIRMED (deployed)
+- Idea: Mean return / downside deviation. Penalizes downside risk, rewards upside volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.549**, WF **3/5**, SH p=**0.032**, H-012 corr **0.044**. Best: P=20, R=3, N=3. Ann ret +74.6%, DD -33.4%.
+- Notes: Risk-adjusted momentum variant. Low correlation with H-012. Deployed.
+- Sessions: [2026-04-13 session 192]
+
+## H-916: Trend Linearity XS
+- Status: CONFIRMED (deployed)
+- Idea: R-squared of close prices vs time, signed by slope direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.521**, WF **4/5**, SH p=**0.034**, H-012 corr **-0.030**. Best: P=14, R=7, N=3. Ann ret +71.3%, DD -44.0%.
+- Notes: Linear trends predict better than raw momentum. Negative H-012 corr. Deployed.
+- Sessions: [2026-04-13 session 192]
+
+## H-917: Price Efficiency Ratio XS
+- Status: CONFIRMED (deployed)
+- Idea: Net price change / sum of absolute daily changes. 1.0 = straight line.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.594**, WF **3/5**, SH p=**0.026**, H-012 corr **-0.012**. Best: P=14, R=7, N=4. Ann ret +65.6%, DD -30.7%.
+- Notes: Fractal efficiency ratio. Efficient movers continue. Negative H-012 corr. Deployed.
+- Sessions: [2026-04-13 session 192]
+
+## H-918: Hurst Deviation XS
+- Status: REJECTED
+- Idea: Rescaled range Hurst exponent deviation from 0.5.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P=20 IS 17%, P=30 IS 50% (FAIL). P=45 IS 1.336 but WF 2/4 (FAIL).
+- Notes: Hurst exponent doesn't translate to XS predictive power. Confirms session 191 finding that time-series statistics fail as XS factors.
+- Sessions: [2026-04-13 session 192]
+
+## H-919: Swing Count XS
+- Status: REJECTED
+- Idea: Number of direction reversals in lookback (fewer = smoother trend).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.124, SH p=0.117 (FAIL). WF 3/5 borderline.
+- Notes: Swing count captures noise vs trend but not statistically significant.
+- Sessions: [2026-04-13 session 192]
+
+## H-920: Higher-Low Ratio XS
+- Status: CONFIRMED (not deployed)
+- Idea: Count of higher-lows / total. Captures uptrend structure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.483, WF 3/5, SH p=0.039, H-012 corr 0.012. Best: P=14, R=3, N=4. Ann ret +61.8%, DD -35.2%.
+- Notes: Passes all tests. Not deployed — potentially redundant with trend linearity signals (H-914/H-916). CONFIRMED for standalone use.
+- Sessions: [2026-04-13 session 192]
+
+## H-921: Price Position XS
+- Status: REJECTED
+- Idea: Where current price sits in lookback range (0=low, 1=high).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.086, SH p=0.132 (FAIL). WF 4/5 but not statistically significant.
+- Notes: Price position relative to range doesn't carry significant XS edge.
+- Sessions: [2026-04-13 session 192]
+
+## H-922: Mean Reversion Speed XS
+- Status: REJECTED
+- Idea: Return autocorrelation as XS factor (positive=trending, negative=mean-reverting).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 17-67% positive. Best Sharpe 0.506. Complete failure.
+- Notes: Autocorrelation of returns has no XS predictive power. Confirms session 191 finding.
+- Sessions: [2026-04-13 session 192]
+
+## H-923: Fractal Dimension XS
+- Status: REJECTED
+- Idea: Higuchi fractal dimension proxy — complexity of price path.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P=30 IS Sharpe 1.856 (high!) but WF 1/4 (FAIL). Classic overfitting. P=14 SH fails.
+- Notes: High IS with terrible WF = pure in-sample artifact. Fractal dimension not robust OOS.
+- Sessions: [2026-04-13 session 192]
+
+## H-924: Volume Conviction XS
+- Status: REJECTED
+- Idea: Avg volume on up days / avg volume on down days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 17-33% positive across all periods. Best Sharpe 0.294. Complete failure.
+- Notes: Up-day vs down-day volume ratio has zero XS predictive power. Volume direction doesn't matter; volume level does.
+- Sessions: [2026-04-13 session 192]
+
+## H-925: Price-Volume Trend Correlation XS
+- Status: REJECTED
+- Idea: Correlation of price changes and volume changes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0-67% positive. Best Sharpe 0.622. Fails.
+- Notes: Price-volume correlation doesn't predict XS returns. The direction of volume relative to price is noise.
+- Sessions: [2026-04-13 session 192]
+
+## H-926: Volume Breakout XS
+- Status: REJECTED
+- Idea: Current volume / max volume in lookback.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P=14 IS Sharpe 1.607 but only 67% param robust (FAIL). Other periods 33-50%. Inconsistent.
+- Notes: Volume breakout relative to period max doesn't generalize. Regime change (H-931) captures this better.
+- Sessions: [2026-04-13 session 192]
+
+## H-927: Accumulation Index XS
+- Status: CONFIRMED (deployed)
+- Idea: Rolling sum of CLV * volume, normalized. CLV=(close-open)/(high-low). Buying/selling pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.557**, WF **4/5**, SH p=**0.031**, H-012 corr **0.081**. Best: P=20, R=3, N=3. Ann ret +73.1%, DD -37.8%.
+- Notes: Accumulation/distribution captures institutional buying pressure. Strong WF. Low H-012 corr. Deployed.
+- Sessions: [2026-04-13 session 192]
+
+## H-928: Volume-Momentum Divergence XS
+- Status: REJECTED
+- Idea: Z-score divergence between price momentum and volume momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0-50% positive. Best Sharpe 0.372. Complete failure.
+- Notes: Volume-price divergence is a popular technical concept but has no XS predictive power. Volume levels matter, divergence doesn't.
+- Sessions: [2026-04-13 session 192]
+
+## H-929: Volume-Weighted Momentum XS
+- Status: CONFIRMED (deployed)
+- Idea: Sum of (return * relative_volume) over lookback. High-volume moves weighted more.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.753**, WF **4/5**, SH p=**0.015**, H-012 corr **0.006**. Best: P=14, R=7, N=3. Ann ret +83.0%, DD -39.4%.
+- Notes: **Session best**. Volume-weighting dramatically improves momentum. High-conviction (high-volume) moves predict continuation. Nearly zero H-012 correlation — different information from raw momentum. Deployed.
+- Sessions: [2026-04-13 session 192]
+
+## H-930: Money Flow Strength XS
+- Status: REJECTED
+- Idea: Net money flow (up MF - down MF) / total MF.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 33-83% positive. Best Sharpe 0.777. Fails IS threshold.
+- Notes: Traditional MFI doesn't work as XS factor. The accumulation index (H-927) is a superior construct.
+- Sessions: [2026-04-13 session 192]
+
+## H-931: Volume Regime Change XS
+- Status: CONFIRMED (deployed)
+- Idea: Short-term / long-term average volume ratio. High = volume spike (regime change).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 5/30 variant: IS Sharpe **1.796**, WF **3/4**, SH p=**0.013**, H-012 corr **0.000**. Best: S=5, L=30, R=3, N=3. Ann ret +84.2%, DD -32.2%.
+- Notes: Volume regime change is a powerful signal. Zero H-012 corr — completely independent. 7/30 variant IS 2.061 but WF 2/4. Deployed with 5/30 params.
+- Sessions: [2026-04-13 session 192]

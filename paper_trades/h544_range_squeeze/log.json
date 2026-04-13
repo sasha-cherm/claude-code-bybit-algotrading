@@ -7,5 +7,23 @@
     "position": 0.06967155435844342,
     "notional": 5000.0,
     "atr_pctile": 8.3
+  },
+  {
+    "type": "close",
+    "time": "2026-04-13T00:36:16.422452+00:00",
+    "btc_price": 71073.0,
+    "position": 0.06967155435844342,
+    "entry_price": 71765.3,
+    "pnl": -48.23,
+    "cost": 2.48
+  },
+  {
+    "type": "open",
+    "time": "2026-04-13T00:36:16.422452+00:00",
+    "btc_price": 71073.0,
+    "direction": "SHORT",
+    "position": -0.06997587339584786,
+    "notional": 4973.395249863095,
+    "atr_pctile": 0.0
   }
 ]

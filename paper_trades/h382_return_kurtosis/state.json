@@ -1,54 +1,54 @@
 {
   "started": "2026-04-08T17:19:19.252861+00:00",
-  "capital": 9980.0,
+  "capital": 9869.641905157778,
   "positions": {
-    "BTC/USDT": {
-      "size": 0.034750270758472125,
-      "entry_price": 71941.8855,
-      "weight": 0.25,
-      "entry_date": "2026-04-07"
-    },
     "AVAX/USDT": {
-      "size": 265.1426859000747,
-      "entry_price": 9.428885399999999,
+      "size": 264.1045851563973,
+      "entry_price": 9.35187,
       "weight": 0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
     },
     "LINK/USDT": {
-      "size": 269.08172031219766,
-      "entry_price": 9.2908578,
+      "size": 272.4680427245189,
+      "entry_price": 9.0648126,
       "weight": 0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
     },
-    "DOGE/USDT": {
-      "size": 26321.610151432225,
-      "entry_price": 0.094978992,
+    "BTC/USDT": {
+      "size": 0.033788723096816284,
+      "entry_price": 73097.51658,
       "weight": 0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
+    },
+    "ARB/USDT": {
+      "size": 21487.79908816842,
+      "entry_price": 0.114942984,
+      "weight": 0.25,
+      "entry_date": "2026-04-12"
     },
     "SUI/USDT": {
-      "size": -2604.6876041875043,
-      "entry_price": 0.959808,
+      "size": -2627.210273264434,
+      "entry_price": 0.9401119400000001,
       "weight": -0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
     },
-    "XRP/USDT": {
-      "size": -1813.6651193298062,
-      "entry_price": 1.37842426,
+    "ATOM/USDT": {
+      "size": -1387.0667153007003,
+      "entry_price": 1.7806438,
       "weight": -0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
     },
     "NEAR/USDT": {
-      "size": -1911.6973241743149,
-      "entry_price": 1.3077384,
+      "size": -1774.6880890449336,
+      "entry_price": 1.3917216,
       "weight": -0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
     },
     "DOT/USDT": {
-      "size": -1902.9681126484047,
-      "entry_price": 1.3137372,
+      "size": -1923.9609189646008,
+      "entry_price": 1.2837432,
       "weight": -0.25,
-      "entry_date": "2026-04-07"
+      "entry_date": "2026-04-12"
     }
   },
   "equity_history": [
@@ -76,13 +76,18 @@
       "time": "2026-04-12T00:40:38.172879+00:00",
       "equity": 9855.627696169717,
       "date": "2026-04-11"
+    },
+    {
+      "time": "2026-04-13T00:35:26.106924+00:00",
+      "equity": 9865.690110204845,
+      "date": "2026-04-12"
     }
   ],
-  "last_daily_date": "2026-04-11",
-  "last_rebal_date": "2026-04-07",
-  "days_since_rebal": 4,
-  "rebal_count": 1,
-  "total_trades": 8,
-  "total_fees": 20.0,
-  "equity": 9855.627696169717
+  "last_daily_date": "2026-04-12",
+  "last_rebal_date": "2026-04-12",
+  "days_since_rebal": 5,
+  "rebal_count": 2,
+  "total_trades": 12,
+  "total_fees": 29.84508198845113,
+  "equity": 9865.690110204845
 }

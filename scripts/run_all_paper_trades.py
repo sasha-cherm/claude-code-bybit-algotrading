@@ -143,6 +143,13 @@ RUNNERS = [
     ("H-899", ROOT / "paper_trades" / "h899_vol_trend_persist" / "runner.py"),
     ("H-900", ROOT / "paper_trades" / "h900_tf_consistency" / "runner.py"),
     ("H-902", ROOT / "paper_trades" / "h902_momentum_quality" / "runner.py"),
+    ("H-914", ROOT / "paper_trades" / "h914_return_smoothness" / "runner.py"),
+    ("H-915", ROOT / "paper_trades" / "h915_sortino" / "runner.py"),
+    ("H-916", ROOT / "paper_trades" / "h916_trend_linearity" / "runner.py"),
+    ("H-917", ROOT / "paper_trades" / "h917_price_efficiency" / "runner.py"),
+    ("H-927", ROOT / "paper_trades" / "h927_accumulation_index" / "runner.py"),
+    ("H-929", ROOT / "paper_trades" / "h929_vw_momentum" / "runner.py"),
+    ("H-931", ROOT / "paper_trades" / "h931_vol_regime_change" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

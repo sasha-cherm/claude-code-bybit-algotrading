@@ -32,5 +32,22 @@
     },
     "trades": 6,
     "fees": 15.49
+  },
+  {
+    "date": "2026-04-12",
+    "action": "rebalance",
+    "capital": 10227.12,
+    "positions": {
+      "ARB/USDT": "LONG",
+      "NEAR/USDT": "LONG",
+      "BTC/USDT": "LONG",
+      "ATOM/USDT": "LONG",
+      "ETH/USDT": "SHORT",
+      "XRP/USDT": "SHORT",
+      "DOT/USDT": "SHORT",
+      "SOL/USDT": "SHORT"
+    },
+    "trades": 10,
+    "fees": 25.5
   }
 ]

@@ -32,5 +32,39 @@
     "capital": 9980.0,
     "fees": 20.0,
     "trades": 6
+  },
+  {
+    "time": "2026-04-13T00:35:22.566870+00:00",
+    "action": "rebalance",
+    "date": "2026-04-12",
+    "positions": {
+      "OP/USDT": {
+        "weight": 0.3333333333333333,
+        "entry_price": 0.11442288
+      },
+      "BTC/USDT": {
+        "weight": 0.3333333333333333,
+        "entry_price": 73097.51658
+      },
+      "XRP/USDT": {
+        "weight": 0.3333333333333333,
+        "entry_price": 1.3537706999999999
+      },
+      "ARB/USDT": {
+        "weight": -0.3333333333333333,
+        "entry_price": 0.11489701599999999
+      },
+      "AVAX/USDT": {
+        "weight": -0.3333333333333333,
+        "entry_price": 9.34813
+      },
+      "SUI/USDT": {
+        "weight": -0.3333333333333333,
+        "entry_price": 0.9401119400000001
+      }
+    },
+    "capital": 10001.35,
+    "fees": 23.3028,
+    "trades": 7
   }
 ]

@@ -64,13 +64,18 @@
       "time": "2026-04-12T00:40:23.622566+00:00",
       "equity": 10003.19,
       "date": "2026-04-11"
+    },
+    {
+      "time": "2026-04-13T00:35:11.417727+00:00",
+      "equity": 10002.02,
+      "date": "2026-04-12"
     }
   ],
-  "last_daily_date": "2026-04-11",
+  "last_daily_date": "2026-04-12",
   "last_rebal_date": "2026-04-10",
-  "days_since_rebal": 1,
+  "days_since_rebal": 2,
   "rebal_count": 2,
   "total_trades": 14,
   "total_fees": 46.97284532073482,
-  "equity": 10003.19
+  "equity": 10002.02
 }
