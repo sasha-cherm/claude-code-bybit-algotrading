@@ -10060,3 +10060,219 @@
 - Result: P14: IS Sharpe **2.204**, WF **5/5 PERFECT**, SH p=**0.002**, H-012 corr **0.004** (near zero). R5_N3. Ann +89.2%, DD -39.9%.
 - Notes: Range expansion captures increasing market interest. All WF folds strongly positive (1.97/4.65/1.46/1.86/1.05). Near-perfect diversifier. Deployed.
 - Sessions: [2026-04-13 session 194]
+
+## H-980: Vol Surprise XS
+- Status: REJECTED
+- Idea: Realized vol vs EWM predicted vol — long assets with lower vol than expected.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS 17% positive, Sharpe 0.156. Vol prediction has no XS predictive power.
+- Notes: Realized vs expected vol spread is noise in crypto XS. All variants fail.
+- Sessions: [2026-04-13 session 195]
+
+## H-981: Vol Mean Reversion Speed XS
+- Status: REJECTED
+- Idea: Correlation between vol deviation from mean and subsequent vol change. Fast mean reverters = stable.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: VW10LB40: IS Sharpe 1.888, WF **2/4 FAIL**. VW20LB90: WF 4/4 but SH p=0.213 FAIL.
+- Notes: WF pattern inconsistent. Best variant either fails WF or SH. Signal isn't robust.
+- Sessions: [2026-04-13 session 195]
+
+## H-982: Vol Clustering Intensity XS
+- Status: REJECTED
+- Idea: Autocorrelation of squared returns (GARCH-like persistence).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS 50% positive, Sharpe 0.316. Vol clustering has no XS predictive power.
+- Notes: All period variants fail. ARCH effects are similar across crypto assets.
+- Sessions: [2026-04-13 session 195]
+
+## H-983: RV Spread (Vol Term Structure Proxy) XS
+- Status: REJECTED (duplicate H-059)
+- Idea: Short/long realized vol ratio as proxy for vol term structure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: S7L30: IS Sharpe 1.730, WF 3/4, SH p=0.017, corr -0.0. Strong but identical to H-059.
+- Notes: Same formula as H-059 (std short / std long). Redundant — skip.
+- Sessions: [2026-04-13 session 195]
+
+## H-984: Vol Regime Duration XS
+- Status: REJECTED
+- Idea: Days since last vol regime change — long stable regimes, short unstable.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS 100% positive but Sharpe only 0.619. Below deployment threshold.
+- Notes: Regime duration is too noisy as XS signal.
+- Sessions: [2026-04-13 session 195]
+
+## H-985: Vol Asymmetry XS
+- Status: REJECTED
+- Idea: Up-vol vs down-vol ratio — long assets with more upside volatility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P14: IS 1.488, WF 3/5, SH p=0.038, corr -0.044. But WF has -5.009 and -2.796 folds.
+- Notes: Extremely unstable WF pattern — two very negative folds. Signal breaks in certain regimes.
+- Sessions: [2026-04-13 session 195]
+
+## H-986: Vol Breakout Frequency XS
+- Status: CONFIRMED (deployed)
+- Idea: Count of days where |return| > 2-sigma in 60-day lookback. More breakouts = more active/dynamic.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P60 T2.0: IS Sharpe **2.874**, WF **3/4**, SH p=**0.0001**, H-012 corr **-0.04**. R7_N4. Ann +100.7%, DD -13.8%. **SESSION BEST.**
+- Notes: Strongest IS Sharpe + lowest p-value in many sessions. Assets with more 2-sigma breakouts continue to outperform — activity breeds more activity. Only slightly negative WF fold (-0.484). Deployed.
+- Sessions: [2026-04-13 session 195]
+
+## H-987: Vol Compression XS
+- Status: REJECTED
+- Idea: Recent range / historical range — compressed = ready to break out.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0% positive across all variants. Compression is NOT a breakout predictor in crypto XS.
+- Notes: Buying compressed and shorting expanded goes completely wrong — in crypto, expanded range assets continue (momentum), compressed ones stay dormant.
+- Sessions: [2026-04-13 session 195]
+
+## H-988: Price Dispersion / XS Outlier Score
+- Status: REJECTED
+- Idea: |Z-score| within cross-section of returns — outlier magnitude.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P60 HL: IS 1.514, WF **2/4 FAIL**, SH p=0.041. Short periods fail IS.
+- Notes: Being an XS outlier (either direction) only works at long horizons (P60) and even then WF fails. No robust edge.
+- Sessions: [2026-04-13 session 195]
+
+## H-989: Return Rank Persistence XS
+- Status: REJECTED
+- Idea: Autocorrelation of XS rank over time — long consistent rankers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS 50% positive, Sharpe 0.377. Rank persistence has no XS predictive power.
+- Notes: Crypto assets don't maintain consistent XS rank — too much rotation.
+- Sessions: [2026-04-13 session 195]
+
+## H-990: Relative Drawdown XS
+- Status: REJECTED
+- Idea: Each asset's DD relative to XS median — long least drawn down, short most.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30: IS 0.830, WF **4/4 PERFECT**, SH p=0.253 FAIL. P60: WF 2/4.
+- Notes: WF perfect at P30 but SH p-value too high. Interesting signal (near-zero H-012 corr) but lacks statistical significance.
+- Sessions: [2026-04-13 session 195]
+
+## H-991: Relative Recovery XS
+- Status: REJECTED
+- Idea: Pct recovered from max DD vs XS — long fastest recoverers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P90: IS 0.913, WF 3/4, SH p=0.229 FAIL.
+- Notes: Recovery speed shows some WF promise but not statistically significant.
+- Sessions: [2026-04-13 session 195]
+
+## H-992: XS Skew Position (Short-Term XS Percentile)
+- Status: CONFIRMED (deployed)
+- Idea: Each asset's return percentile within XS distribution. Long right-tail outperformers, short left-tail.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P10: IS Sharpe **1.236**, WF **4/5**, SH p=**0.084**, H-012 corr **0.021**. R7_N4. Ann +53.5%, DD -32.2%.
+- Notes: Short-term (10d) XS momentum, different from H-012 (60d) — low 0.021 correlation confirms. 4/5 WF folds positive (one fold -3.867 but others strong). Deployed.
+- Sessions: [2026-04-13 session 195]
+
+## H-993: Demeaned Momentum XS
+- Status: REJECTED (duplicate H-992)
+- Idea: Return minus XS mean (demeaned return momentum).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P60: IS 1.115, WF 3/4, SH p=0.133. Same signal as H-992 P60 (identical rankings).
+- Notes: XS demeaned return produces same ranking as percentile rank. Duplicate.
+- Sessions: [2026-04-13 session 195]
+
+## H-994: Relative Volume Profile (Volume Rank Change) XS
+- Status: CONFIRMED (deployed)
+- Idea: Volume rank change over time — long assets gaining relative volume, short declining.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P10C10: IS Sharpe **1.618**, WF **3/5**, SH p=**0.025**, H-012 corr **-0.017**. R3_N4. Ann +60.1%, DD -41.4%.
+- Notes: Recent folds very strong (3.117/2.076/3.746), early folds negative (-2.748/-0.990). Possibly regime-dependent — works better recently. SH significant. Deployed.
+- Sessions: [2026-04-13 session 195]
+
+## H-995: XS Beta Momentum
+- Status: REJECTED
+- Idea: Momentum of rolling beta to BTC — long increasing beta, short decreasing.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS 50% positive, Sharpe 0.448. Beta momentum has no XS predictive power.
+- Notes: Changes in BTC beta don't predict future returns cross-sectionally.
+- Sessions: [2026-04-13 session 195]
+
+## H-996: Trend Acceleration XS
+- Status: REJECTED
+- Idea: Second derivative of price — momentum of momentum. Long accelerating trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: M30A10: IS 1.094, WF 3/4, SH p=0.134 FAIL. M60A20: WF 1/4.
+- Notes: Acceleration captures something short-term but not statistically significant.
+- Sessions: [2026-04-13 session 195]
+
+## H-997: Momentum-Vol Interaction (Risk-Adjusted XS Momentum)
+- Status: CONFIRMED (deployed)
+- Idea: Return / volatility — risk-adjusted momentum, long efficient movers, short noisy losers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: M20V20: IS Sharpe **1.576**, WF **3/5**, SH p=**0.029**, H-012 corr **0.04**. R3_N3. Ann +76.9%, DD -33.8%.
+- Notes: Momentum divided by vol — rewards consistent moves, penalizes volatile zigzags. Near-zero correlation with raw momentum despite being momentum-derived. Deployed.
+- Sessions: [2026-04-13 session 195]
+
+## H-998: Funding-Adjusted Return XS
+- Status: REJECTED
+- Idea: Return minus cumulative funding cost — true carry-adjusted momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P60: IS 1.115, WF 3/4, SH p=0.133. Same as raw momentum — funding is negligible vs 60d returns.
+- Notes: Funding rates are tiny (<0.1%/day) relative to multi-week returns. No incremental signal.
+- Sessions: [2026-04-13 session 195]
+
+## H-999: Volume Climax Reversal XS
+- Status: REJECTED
+- Idea: Extreme volume as contrarian signal — short after vol climax, long after drought.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0% positive across all variants. Sharpe -0.905 to -1.183.
+- Notes: Volume climax is momentum-confirming in crypto XS, NOT contrarian. Shorting after a volume spike = fighting the trend. Confirmed that volume momentum works (H-021) and contrarian volume fails.
+- Sessions: [2026-04-13 session 195]
+
+## H-1000: Price-Volume Divergence XS
+- Status: REJECTED
+- Idea: Correlation of price change and volume change — convergent = bullish.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P10/P20: 0% positive, Sharpe -0.393 to -1.621. P30: 100% positive but Sharpe 0.621.
+- Notes: PV divergence/convergence doesn't work cross-sectionally. At short horizons the signal is actively harmful.
+- Sessions: [2026-04-13 session 195]
+
+## H-1001: Momentum Breadth XS
+- Status: CONFIRMED (deployed)
+- Idea: Pct of sub-periods (5-day chunks) with positive return in 30-day window. Broad = consistent uptrend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: P30: IS Sharpe **1.798**, WF **4/4 PERFECT**, SH p=**0.013**, H-012 corr **0.012**. R7_N4. Ann +67.5%, DD -30.9%.
+- Notes: Measures momentum consistency, not just magnitude. Asset consistently up across sub-periods = broad momentum. All 4 WF folds positive (0.256/0.021/0.108/1.635). Near-zero H-012 correlation despite being momentum-related. Deployed.
+- Sessions: [2026-04-13 session 195]
+
+## H-1002: RSI Rank Stability XS
+- Status: REJECTED
+- Idea: Stability of RSI rank over lookback — long consistently high RSI rank.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: Best IS 83% positive, Sharpe 0.510. Too weak.
+- Notes: RSI rank stability doesn't generate strong enough XS signal. RSI-based signals generally weak in crypto.
+- Sessions: [2026-04-13 session 195]
+
+## H-1003: ATR-Normalized Return XS
+- Status: CONFIRMED (deployed)
+- Idea: Return / ATR — signal strength per unit of volatility. Long efficient movers, short noisy ones.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: R20A14: IS Sharpe **1.406**, WF **3/5**, SH p=**0.051**, H-012 corr **0.012**. R7_N3. Ann +64.5%, DD -30.4%.
+- Notes: Similar concept to H-997 but uses ATR instead of return std. Borderline SH. WF has two slightly negative folds (-0.699/-0.695). Deployed as borderline.
+- Sessions: [2026-04-13 session 195]

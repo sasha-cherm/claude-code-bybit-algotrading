@@ -1,18 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,126 (-1.87%). BTC spot ~$70,842.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,126 (-1.87%). BTC spot ~$71,115.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 142 runners active. Session 194. **61/142 positive** (42%), avg **+0.22%**.
-- **H-063**: ~$9,632 (-3.68%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $70,842.
+- **Internal paper trades:** 149 runners active. Session 195. **67/143 positive** (47%, up from 42%), avg **+0.22%**.
+- **H-063**: ~$9,607 (-3.93%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $71,115.
 - **Top performers**: H-277(+7.17%), H-353(+7.07%), H-332(+5.60%), H-169(+5.13%), H-049(+4.98%).
-- **Session 194 research**: 24 new hypotheses (H-956–H-979). **9 CONFIRMED** (9 deployed: H-959/H-960/H-961/H-963/H-964/H-970/H-971/H-974/H-979). **979 total hypotheses.**
-- **H-970 Higher Lows Count**: IS Sharpe **2.464**, WF **5/5 PERFECT**, SH p=**0.001**, H-012 corr **-0.008**. **SESSION BEST** — textbook uptrend structure as XS factor. Strongest WF ever (all folds >0.95).
-- **H-964 Momentum Conviction**: IS Sharpe **2.074**, WF **4/4 PERFECT**, SH p=**0.005**, corr **-0.006**. Path-adjusted momentum — penalizes volatile zigzag gains.
-- **H-979 Consecutive Range Expansion**: IS Sharpe **2.204**, WF **5/5 PERFECT**, SH p=**0.002**, corr **0.004**. Increasing activity signal.
-- **Key findings**: Distributional dynamics — kurtosis change, median-mean gap, win-loss ratio all fail. Down day frequency and win streak work (simple trend health metrics). Structural signals — higher lows count (Sharpe 2.46!) and overnight gap trend are strong. Microstructure — body ratio and upper shadow useless, but ATR expansion and consecutive range expansion work. Price level = size factor in disguise. Funding × momentum = no signal.
-- **AUTOMATED:** Paper trades hourly via cron (142 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 142 runners (esp. H-970/H-964/H-979 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Session 195 research**: 24 new hypotheses (H-980–H-1003). **6 CONFIRMED** (6 deployed: H-986/H-992/H-994/H-997/H-1001/H-1003). **1003 total hypotheses.**
+- **H-986 Vol Breakout Frequency**: IS Sharpe **2.874**, WF **3/4**, SH p=**0.0001**, H-012 corr **-0.04**. **SESSION BEST** — assets with more 2-sigma breakouts continue to outperform.
+- **H-1001 Momentum Breadth**: IS Sharpe **1.798**, WF **4/4 PERFECT**, SH p=**0.013**, corr **0.012**. Momentum consistency (pct of sub-periods positive), near-zero corr with raw momentum.
+- **H-997 Momentum-Vol Interaction**: IS Sharpe **1.576**, WF **3/5**, SH p=**0.029**, corr **0.04**. Risk-adjusted XS momentum.
+- **Key findings**: Vol forecasting — vol surprise/clustering/regime duration all useless, but vol breakout frequency is outstanding (Sharpe 2.87!). Vol compression = anti-signal (0% positive). Relative value — rank persistence/beta momentum/relative DD fail. Short-term XS percentile (H-992) works as distinct signal. Volume climax is momentum-confirming, NOT contrarian. PV divergence fails. Momentum breadth (consistency) is independent of magnitude. Funding-adjusted return = raw momentum (funding negligible).
+- **AUTOMATED:** Paper trades hourly via cron (149 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 149 runners (esp. H-986/H-1001/H-997 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -25,14 +25,6 @@
 
 
 _Older sessions (bootstrap through 184) archived to `memory/session_archive.md`._
-
-### Session 2026-04-12 review+deploy+research (session 185)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 4 new deployments
-- Focus: Paper trade MTM (BTC $73,335), residual/idiosyncratic signals (H-740–H-747), correlation dynamics (H-748–H-755), novel constructions (H-756–H-763)
-- Done: 87 runners (83→87). **32/83 positive** (39%). Avg **-0.15%**. Demo ~$95,490 (-4.51%). **Batch 1 (H-740–H-747, residual/idio)**: All 8 REJECTED. Idiosyncratic vol, residual momentum, skewness, beta deviation, tracking error, info ratio, residual reversal, systematic risk share — crypto market factor too dominant, residuals are noise. H-745 Info Ratio decent IS (0.983) but WF 1/4. **Batch 2 (H-748–H-755, correlation dynamics)**: **H-754 CONFIRMED+deployed** (Lead-Lag, IS 1.232, WF **4/4**, SH p=0.089, H-012 corr **-0.014**). H-750 Relative RSI (Sharpe 0.918, SH fail). H-753 Corr Concentration (WF 1/4). 6 REJECTED. **Batch 3 (H-756–H-763, novel constructions)**: **H-759 CONFIRMED+deployed** (ADX Trend Strength, IS **1.723**, WF **5/5**, SH p=0.016, corr 0.064). **H-761 CONFIRMED+deployed** (Gap Signal, IS **1.673**, WF **5/5**, SH p=0.019, corr 0.054). **H-763 CONFIRMED+deployed** (Mom-Vol Ratio, IS 1.239, WF 3/5, SH p=0.085, corr 0.027). H-757 Return Consistency borderline (SH p=0.103). H-758 Momentum Persistence param-fragile. **763 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 87 runners (esp. H-754/H-759/H-761/H-763). H-063 expires tomorrow. Explore multi-TF combinations, sentiment APIs.
-- Questions added: none
-- Self-modifications: H-754/H-759/H-761/H-763 runners created, added to orchestrator. Archived session 175. (session 185)
 
 ### Session 2026-04-12 review+deploy+research (session 186)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
@@ -105,3 +97,11 @@ _Older sessions (bootstrap through 184) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 142 runners (esp. H-970/H-964/H-979 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 9 runners created (H-959/H-960/H-961/H-963/H-964/H-970/H-971/H-974/H-979), added to orchestrator. Archived session 184. (session 194)
+
+### Session 2026-04-13 review+deploy+research (session 195)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $71,115), vol forecasting/regime (H-980–H-987), spread/relative value (H-988–H-995), adaptive/conditional (H-996–H-1003)
+- Done: 149 runners (143→149). **67/143 positive** (47%, up from 42%). Avg **+0.22%**. Demo ~$98,126 (-1.87%). **Batch 1 (H-980–H-987, vol forecast)**: **H-986 CONFIRMED+deployed** (Vol Breakout Freq, **2.874**, WF 3/4, p=**0.0001**, corr -0.04 — **SESSION BEST**). H-983 (RV Spread) strong but duplicate H-059. H-985 Vol Asymmetry WF unstable. H-980/H-982/H-984/H-987 all fail IS. Vol compression 0% positive (anti-signal). **Batch 2 (H-988–H-995, relative value)**: **H-992 CONFIRMED+deployed** (XS Skew Position, 1.236, WF **4/5**, p=0.084, corr 0.021). **H-994 CONFIRMED+deployed** (Vol Rank Change, **1.618**, WF 3/5, p=0.025, corr -0.017). H-993 = H-992 duplicate. Rank persistence/beta momentum fail. Relative DD interesting (WF 4/4) but SH fail. **Batch 3 (H-996–H-1003, adaptive)**: **H-1001 CONFIRMED+deployed** (Momentum Breadth, **1.798**, WF **4/4 PERFECT**, p=**0.013**, corr **0.012** — **star**). **H-997 CONFIRMED+deployed** (Mom-Vol Interaction, 1.576, WF 3/5, p=0.029, corr 0.04). **H-1003 CONFIRMED+deployed** (ATR-Norm Return, 1.406, WF 3/5, p=0.051, corr 0.012). Vol climax reversal 0% — contrarian volume fails. PV divergence fails. **1003 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 149 runners (esp. H-986/H-1001/H-997 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 6 runners created (H-986/H-992/H-994/H-997/H-1001/H-1003), added to orchestrator. Archived session 185. (session 195)

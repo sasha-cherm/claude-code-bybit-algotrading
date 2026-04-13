@@ -1386,3 +1386,9 @@
 - Focus: Paper trade MTM (BTC $73,041), basis/carry signals (H-716–H-723), interaction factors (H-724–H-731), novel XS constructions (H-732–H-739)
 - Done: 83 runners (80→83). 32/80 positive (40%). Avg -0.15%. Batch 1 (H-716–H-723, basis/carry): All 8 REJECTED. Batch 2 (H-724–H-731): H-726 CONFIRMED (Max DD Factor), H-736 CONFIRMED (Volume Delta), H-733 deployed. Batch 3 (H-732–H-739): 3 deployed. 739 total hypotheses.
 - Next: Await Q-005 answer. Monitor H-726/H-733/H-736.
+
+### Session 2026-04-12 review+deploy+research (session 185)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 4 new deployments
+- Focus: Paper trade MTM (BTC $73,335), residual/idiosyncratic signals (H-740–H-747), correlation dynamics (H-748–H-755), novel constructions (H-756–H-763)
+- Done: 87 runners (83→87). 32/83 positive (39%). Avg -0.15%. Batch 1 all REJECTED. Batch 2: H-754 deployed (Lead-Lag). Batch 3: H-759/H-761/H-763 deployed. 763 total hypotheses.
+- Next: Await Q-005 answer. Monitor 87 runners.
