@@ -1444,3 +1444,12 @@
 - Next: Await Q-005 answer. Monitor 127 runners.
 - Questions added: none
 - Self-modifications: 7 runners created, added to orchestrator. Archived session 182. (session 192)
+
+### Session 2026-04-13 review+deploy+research (session 193)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $70,896), multi-TF/consensus signals (H-932–H-939), risk-adjusted return factors (H-940–H-947), information/efficiency signals (H-948–H-955)
+- Done: 133 runners (127→133). **61/133 positive** (46%). Avg **+0.25%**. Demo ~$98,126 (-1.87%). **Batch 1 (H-932–H-939, multi-TF)**: **H-935 CONFIRMED+deployed** (Trend Strength R², 1.243, WF 3/4, corr -0.043). **H-938 CONFIRMED+deployed** (Range-Adj Mom, **1.585**, WF 3/5, p=0.027, corr 0.018). **H-939 CONFIRMED+deployed** (Vol-Confirmed Trend, 1.182, WF **4/5**, corr **0.001**). H-937 Momentum Z-Score IS 1.854 but WF 2/4. 5 REJECTED. **Batch 2 (H-940–H-947, risk-adjusted)**: **H-940 CONFIRMED+deployed** (Gain-to-Pain, **1.356**, WF **4/5**, p=0.060). **H-946 CONFIRMED+deployed** (Kappa Ratio, 1.251, WF **4/5**, p=0.082). H-941 = H-940 (Omega≡Gain-to-Pain, identical rankings). H-943 Tail Ratio IS 1.589 but WF 1/4. 6 REJECTED. **Batch 3 (H-948–H-955, info/efficiency)**: **H-954 CONFIRMED+deployed** (Drift-to-Volatility, **1.598**, WF 3/5, p=**0.026** — **session best**). H-950 = H-935 (SNR≡signed R², duplicate). Autocorrelation, variance ratio, R² vs BTC, price efficiency all fail. **955 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 133 runners (esp. H-954/H-938/H-940). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 6 runners created (H-935/H-938/H-939/H-940/H-946/H-954), added to orchestrator. Archived session 183. (session 193)
+

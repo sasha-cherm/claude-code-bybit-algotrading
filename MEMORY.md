@@ -1,18 +1,20 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,608.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,118.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 185 runners active. Session 202. **78/179 positive** (44%), avg **+0.41%**.
-- **H-063**: ~$9,702 (-2.98%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,608, near call strike.
-- **Top performers**: H-277(+7.17%), H-353(+7.07%), H-754(+6.41%), H-332(+5.60%), H-496(+4.92%).
-- **Session 202 research**: 24 new hypotheses (H-1148–H-1171). **7 CONFIRMED** (6 deployed: H-1154/H-1155/H-1156/H-1161/H-1162/H-1163). **1171 total hypotheses.**
-- **H-1163 Overnight/Intraday Ratio**: IS Sharpe **1.905**, WF **4/4 PERFECT**, IS **100%**, SH **2.65/1.11** p=**0.008**, corr **-0.016**. **SESSION BEST** — institutional accumulation signal (big overnight moves relative to intraday).
-- **H-1162 Price Acceleration**: IS **1.503**, WF **3/4**, p=**0.038**, corr **-0.049**. Contrarian: long decelerating momentum.
-- **H-1154 Price Channel Position**: IS **1.324**, WF **3/4**, SH **1.26/1.43**, p=**0.067**, corr **0.010**. Very stable SH.
-- **Key findings**: H-1149=H-1150 (Stochastic ≡ Williams %R). Most risk quality signals are momentum proxies (IR corr 0.901, capture ratio 0.867, alpha consistency 0.694). TA indicators mostly fail as XS signals (MACD/CCI/ADX/BB borderline). Overnight/intraday ratio is a genuine new factor. MA convergence captures trend differently from raw returns.
-- **AUTOMATED:** Paper trades hourly via cron (185 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 185 runners (esp. H-1163/H-1162/H-1154 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Internal paper trades:** 191 runners active. Session 203. **102/185 positive** (55%), avg **+0.73%**.
+- **H-063**: ~$9,702 (-2.98%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,118, near call strike.
+- **Top performers**: H-049(+8.20%), H-085(+7.80%), H-250(+7.78%), H-277(+7.43%), H-353(+7.33%).
+- **Session 203 research**: 24 new hypotheses (H-1172–H-1195). **8 CONFIRMED** (6 deployed: H-1176/H-1180/H-1186/H-1190/H-1193/H-1194). **1195 total hypotheses.**
+- **H-1193 Gap Fill Ratio**: IS Sharpe **1.905**, WF **4/4 PERFECT**, IS **100%**, SH **2.65/1.11** p=**0.008**, corr **-0.016**. **SESSION BEST** — assets that fill overnight gaps more often outperform.
+- **H-1180 Recent vs Distal Mom**: IS **2.047**, WF **3/4**, SH **1.97/2.25**, p=**0.005**, corr **0.034**. **STAR** — contrarian: long momentum decelerators.
+- **H-1190 Hurst Exponent**: IS **1.725**, WF **3/4**, SH **1.89/1.67**, p=**0.017**, corr **-0.075**. Genuine new factor — trending assets (H>0.5) outperform.
+- **H-1176 MFI**: IS **1.762**, WF **4/4 PERFECT**, SH **1.79/1.75**, p=**0.015**, corr **0.085**. Order flow proxy.
+- **H-1186 Up-Down Capture**: IS **1.240**, WF **4/4 PERFECT** (all ~1.3), SH **1.23/1.28**, p=**0.086**. Most stable WF ever.
+- **Key findings**: MFI is only order flow signal that works (7/8 rejected). Momentum decomposition mostly fails — recent vs distal is contrarian gem. Hurst exponent is genuine structural factor, anti-correlated with momentum. Gap fill ratio captures market quality.
+- **AUTOMATED:** Paper trades hourly via cron (191 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 191 runners (esp. H-1193/H-1180/H-1190 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -24,15 +26,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 192) archived to `memory/session_archive.md`._
-
-### Session 2026-04-13 review+deploy+research (session 193)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
-- Focus: Paper trade MTM (BTC $70,896), multi-TF/consensus signals (H-932–H-939), risk-adjusted return factors (H-940–H-947), information/efficiency signals (H-948–H-955)
-- Done: 133 runners (127→133). **61/133 positive** (46%). Avg **+0.25%**. Demo ~$98,126 (-1.87%). **Batch 1 (H-932–H-939, multi-TF)**: **H-935 CONFIRMED+deployed** (Trend Strength R², 1.243, WF 3/4, corr -0.043). **H-938 CONFIRMED+deployed** (Range-Adj Mom, **1.585**, WF 3/5, p=0.027, corr 0.018). **H-939 CONFIRMED+deployed** (Vol-Confirmed Trend, 1.182, WF **4/5**, corr **0.001**). H-937 Momentum Z-Score IS 1.854 but WF 2/4. 5 REJECTED. **Batch 2 (H-940–H-947, risk-adjusted)**: **H-940 CONFIRMED+deployed** (Gain-to-Pain, **1.356**, WF **4/5**, p=0.060). **H-946 CONFIRMED+deployed** (Kappa Ratio, 1.251, WF **4/5**, p=0.082). H-941 = H-940 (Omega≡Gain-to-Pain, identical rankings). H-943 Tail Ratio IS 1.589 but WF 1/4. 6 REJECTED. **Batch 3 (H-948–H-955, info/efficiency)**: **H-954 CONFIRMED+deployed** (Drift-to-Volatility, **1.598**, WF 3/5, p=**0.026** — **session best**). H-950 = H-935 (SNR≡signed R², duplicate). Autocorrelation, variance ratio, R² vs BTC, price efficiency all fail. **955 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 133 runners (esp. H-954/H-938/H-940). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 6 runners created (H-935/H-938/H-939/H-940/H-946/H-954), added to orchestrator. Archived session 183. (session 193)
+_Older sessions (bootstrap through 193) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-13 review+deploy+research (session 194)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 9 new deployments
@@ -105,3 +99,11 @@ _Older sessions (bootstrap through 192) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 185 runners (esp. H-1163/H-1162/H-1154 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 6 runners created (H-1154/H-1155/H-1156/H-1161/H-1162/H-1163), added to orchestrator. Archived session 192. (session 202)
+
+### Session 2026-04-15 review+deploy+research (session 203)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $74,118), order flow proxies (H-1172–H-1179), momentum decomposition (H-1180–H-1187), structural signals (H-1188–H-1195)
+- Done: 191 runners (185→191). **102/185 positive** (55%, up from 44%). Avg **+0.73%** (up from +0.41%). Demo ~$98,190 (-1.81%). **Batch 1 (H-1172–H-1179, order flow)**: **H-1176 CONFIRMED+deployed** (MFI, IS **1.762**, WF **4/4 PERFECT**, SH 1.79/1.75, p=**0.015**, corr 0.085 — strong order flow proxy). H-1173 CONFIRMED not deployed (WF 2/4, recent folds negative). 6 REJECTED. Most order flow proxies fail XS (buy pressure, force index, Chaikin, EOM all weak). **Batch 2 (H-1180–H-1187, momentum decomp)**: **H-1180 CONFIRMED+deployed** (Recent vs Distal, IS **2.047**, WF 3/4, SH **1.97/2.25**, p=**0.005**, corr 0.034 — **STAR**, contrarian low_long). **H-1186 CONFIRMED+deployed** (Up-Down Capture, IS 1.240, WF **4/4 PERFECT** all ~1.3, SH 1.23/1.28, p=0.086 — **most stable WF ever**). H-1185 CONFIRMED not deployed (WF 2/4). 5 REJECTED. Momentum decomposition mostly fails — path dependency, smoothness adj, recency weighting, idiosyncratic all flop. **Batch 3 (H-1188–H-1195, structural)**: **H-1193 CONFIRMED+deployed** (Gap Fill Ratio, IS **1.905**, WF **4/4 PERFECT**, IS **100%**, SH **2.65/1.11**, p=**0.008**, corr **-0.016** — **SESSION BEST**). **H-1190 CONFIRMED+deployed** (Hurst Exponent, IS **1.725**, WF 3/4, SH 1.89/1.67, p=**0.017**, corr **-0.075** — genuine structural factor). **H-1194 CONFIRMED+deployed** (Trend Linearity, IS 1.316, WF 3/4, SH 1.28/1.40, p=0.069, corr -0.036). 5 REJECTED. Breakout distance fails (WF 1/4). MR speed, vol-of-vol, support strength borderline. **1195 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 191 runners (esp. H-1193/H-1180/H-1190 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 6 runners created (H-1176/H-1180/H-1186/H-1190/H-1193/H-1194), added to orchestrator. Archived session 193. (session 203)

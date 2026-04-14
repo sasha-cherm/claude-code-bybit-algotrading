@@ -11797,3 +11797,219 @@
 - Result: IS Sharpe 0.786, IS 37%, WF 2/3, SH 0.94/0.59 p=0.287, H-012 corr -0.153.
 - Notes: Low momentum correlation (-0.153) is promising direction but signal too weak.
 - Sessions: [2026-04-14 session 202]
+
+## H-1172: Buy Pressure Index XS
+- Status: REJECTED
+- Idea: (close - low) / (high - low) averaged over 5d as order flow proxy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.373, IS 25%, WF 2/4, SH 0.24/0.59 p=0.605, H-012 corr 0.037.
+- Notes: Too weak. Buy pressure doesn't differentiate assets meaningfully.
+- Sessions: [2026-04-15 session 203]
+
+## H-1173: Volume Imbalance XS
+- Status: CONFIRMED (not deployed)
+- Idea: Up-day volume / down-day volume ratio over 10d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.166, IS 41%, WF 2/4 [1.55, 1.19, -1.09, -1.23], SH 0.74/1.84 p=0.107, H-012 corr -0.010.
+- Notes: Recent WF folds negative — signal may be decaying. Not deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1174: Price Impact Ratio XS
+- Status: REJECTED
+- Idea: |return| / log(volume) avg 10d. Low impact = liquid.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.649, IS 50%, WF 4/4, SH -0.03/1.45 p=0.369, H-012 corr -0.036.
+- Notes: WF perfect but IS too low and SH first half negative. Not reliable.
+- Sessions: [2026-04-15 session 203]
+
+## H-1175: Accumulation/Distribution Change XS
+- Status: REJECTED
+- Idea: 20d change in A/D line (CLV × volume).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.885, IS 50%, WF 4/4, SH 0.62/1.26 p=0.221, H-012 corr -0.014.
+- Notes: WF perfect but p too high. Borderline — could revisit with tighter params.
+- Sessions: [2026-04-15 session 203]
+
+## H-1176: Money Flow Index XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: RSI applied to typical_price × volume, 14d period. Long high MFI.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.762, IS 41%, WF 4/4 PERFECT [1.40, 3.69, 1.59, 2.16], SH 1.79/1.75 p=0.015, H-012 corr 0.085.
+- Notes: Strong order flow signal. Very stable split-half. WF all positive. Deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1177: Force Index XS
+- Status: REJECTED
+- Idea: (close diff) × volume, 13d EMA, normalized.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.321, IS 33%, WF 3/4, SH 0.37/0.26 p=0.656, H-012 corr 0.044.
+- Notes: Too weak. Force index doesn't capture XS dynamics.
+- Sessions: [2026-04-15 session 203]
+
+## H-1178: Ease of Movement XS
+- Status: REJECTED
+- Idea: Mid-price diff / (volume / range), 14d avg.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.824, IS 50%, WF 4/4, SH 0.26/1.52 p=0.254, H-012 corr 0.035.
+- Notes: WF perfect but low IS, SH first half nearly zero. Not robust.
+- Sessions: [2026-04-15 session 203]
+
+## H-1179: Chaikin Oscillator XS
+- Status: REJECTED
+- Idea: EMA(3) - EMA(10) of A/D line, normalized.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.280, IS 25%, WF 3/4, SH -0.69/1.52 p=0.698, H-012 corr 0.008.
+- Notes: Very weak IS. SH first half negative. Not viable.
+- Sessions: [2026-04-15 session 203]
+
+## H-1180: Recent vs Distal Momentum XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: 5d return now minus 5d return from 55d ago. Contrarian: long momentum decelerators.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.047, IS 50%, WF 3/4 [-1.37, 2.19, 1.43, 2.34], SH 1.97/2.25 p=0.005, H-012 corr 0.034.
+- Notes: STAR signal. Very low p-value, perfectly stable SH. Direction=low_long (contrarian). One WF fold negative but 3/4 strong. Deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1181: Momentum Gap XS
+- Status: REJECTED
+- Idea: 60d return minus 120d return. Long-horizon acceleration.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.538, IS 41%, WF 2/4, SH 0.76/0.24 p=0.457, H-012 corr -0.050.
+- Notes: Too weak. Long horizon acceleration doesn't persist.
+- Sessions: [2026-04-15 session 203]
+
+## H-1182: Path-Dependent Momentum XS
+- Status: REJECTED
+- Idea: Streak-weighted cumulative 30d returns. Consecutive same-sign moves weighted more.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.521, IS 41%, WF 2/4, SH 1.24/-0.49 p=0.470, H-012 corr 0.002.
+- Notes: SH collapse in second half. Path dependency doesn't help XS.
+- Sessions: [2026-04-15 session 203]
+
+## H-1183: Smoothness-Adjusted Momentum XS
+- Status: REJECTED
+- Idea: 20d return / (1 + 20d vol). Return per unit risk.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.013, IS 50%, WF 2/4, SH 0.94/1.15 p=0.161, H-012 corr 0.033.
+- Notes: IS decent but WF unstable (recent folds negative). Vol adjustment doesn't add alpha.
+- Sessions: [2026-04-15 session 203]
+
+## H-1184: Recency-Weighted Return XS
+- Status: REJECTED
+- Idea: EWM return with half-life 10d. Recent days count more.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.694, IS 33%, WF 2/4, SH 1.49/-0.32 p=0.337, H-012 corr 0.024.
+- Notes: SH collapse in second half. Momentum reweighting doesn't add value.
+- Sessions: [2026-04-15 session 203]
+
+## H-1185: Momentum Consistency XS
+- Status: CONFIRMED (not deployed)
+- Idea: % of positive 5d sub-period returns over 30d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.500, IS 75%, WF 2/4 [0.19, -0.66, -0.44, 0.45], SH 1.01/2.18 p=0.038, H-012 corr -0.005.
+- Notes: Strong p-value and IS% (75%) but WF 3 of 4 folds near zero/negative. Not deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1186: Up-Capture minus Down-Capture XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Asymmetric market participation. Long high up-capture / low down-capture ratio.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.240, IS 50%, WF 4/4 PERFECT [1.36, 1.46, 1.26, 1.26], SH 1.23/1.28 p=0.086, H-012 corr 0.024.
+- Notes: Extremely stable — all 4 WF folds within 1.26-1.46. SH nearly identical (1.23/1.28). Very independent signal. Deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1187: Idiosyncratic Momentum XS
+- Status: REJECTED
+- Idea: Cumulative residual return (return - beta × market), 30d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.819, IS 50%, WF 2/4, SH 1.42/-0.03 p=0.257, H-012 corr -0.008.
+- Notes: SH collapse. Idiosyncratic momentum doesn't hold in crypto.
+- Sessions: [2026-04-15 session 203]
+
+## H-1188: Breakout Distance XS
+- Status: REJECTED
+- Idea: (close - 40d high) / 40d range. Proximity to breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.599, IS 50%, WF 1/4, SH 0.73/0.45 p=0.406, H-012 corr 0.025.
+- Notes: WF 1/4 — fails badly OOS. Breakout proximity is not a viable XS signal.
+- Sessions: [2026-04-15 session 203]
+
+## H-1189: Support Strength XS
+- Status: REJECTED
+- Idea: Number of bounces near 20d low over 20d. Anti-fragility.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.911, IS 75%, WF 3/4, SH 0.79/1.09 p=0.207, H-012 corr -0.006.
+- Notes: Interesting concept (low_long — fewer bounces = outperform) but p too high.
+- Sessions: [2026-04-15 session 203]
+
+## H-1190: Hurst Exponent XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: R/S Hurst exponent over 40d. Long trending (H>0.5), short mean-reverting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.725, IS 50%, WF 3/4 [0.38, -1.93, 1.35, 1.85], SH 1.89/1.67 p=0.017, H-012 corr -0.075.
+- Notes: Genuine new factor — anti-correlated with momentum (-0.075). Trending assets outperform. Very stable SH. Deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1191: Return Autocorrelation XS
+- Status: REJECTED
+- Idea: Autocorrelation of 5d returns over 60d window. Regime persistence.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.031, IS 50%, WF 2/4, SH 1.35/0.58 p=0.154, H-012 corr -0.053.
+- Notes: Borderline — decent IS and anti-momentum, but WF too unstable.
+- Sessions: [2026-04-15 session 203]
+
+## H-1192: Volatility of Volatility XS
+- Status: REJECTED
+- Idea: Std of 5d rolling vol over 20d window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.634, IS 50%, WF 4/4, SH -0.04/1.50 p=0.380, H-012 corr 0.001.
+- Notes: WF perfect but IS too low and SH first half flat. Very independent (corr 0.001).
+- Sessions: [2026-04-15 session 203]
+
+## H-1193: Gap Fill Ratio XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: % of overnight gaps filled same day over 20d. Market microstructure quality.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.905, IS 100%, WF 4/4 PERFECT [0.90, 1.36, 1.43, 2.42], SH 2.65/1.11 p=0.008, H-012 corr -0.016. SESSION BEST.
+- Notes: Exceptional signal — 100% IS positive, perfect WF, very low p-value. Assets that fill gaps more often outperform. Independent of momentum. Deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1194: Trend Linearity XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Signed R² of linear regression on log-closes over 20d. Clean trends outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.316, IS 50%, WF 3/4, SH 1.28/1.40 p=0.069, H-012 corr -0.036.
+- Notes: Very stable SH (1.28/1.40). Anti-momentum. Clean trending assets outperform noisy ones. Deployed.
+- Sessions: [2026-04-15 session 203]
+
+## H-1195: Mean Reversion Speed XS
+- Status: REJECTED
+- Idea: OU process half-life estimated from 40d window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.888, IS 50%, WF 3/4, SH 1.25/0.41 p=0.219, H-012 corr -0.016.
+- Notes: Interesting idea but p too high. SH second half weak.
+- Sessions: [2026-04-15 session 203]
