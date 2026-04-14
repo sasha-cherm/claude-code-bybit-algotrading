@@ -11140,3 +11140,219 @@
 - Result: IS Sharpe 1.168, IS 62%, WF **3/3**, SH 1.91/0.22 p=0.114, H-012 corr **0.590**.
 - Notes: WF 3/3 but high momentum corr (0.590) and SH collapses (1.91→0.22). Just a dressed-up momentum signal.
 - Sessions: [2026-04-14 session 199]
+
+## H-1100: Amihud Illiquidity Ratio
+- Status: CONFIRMED (deployed session 200)
+- Idea: Rank by Amihud illiquidity (|return|/dollar_volume, 20d rolling mean). Long most liquid, short least.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.609**, IS 50% (4/8), WF **3/3** [1.61, 1.56, 1.80], SH **1.415/1.832** p=**0.030**, H-012 corr 0.471.
+- Notes: Very strong and consistent — both SH halves strong, all 3 WF folds positive. Essentially a liquidity/size premium. Corr 0.471 with momentum (liquid assets tend to have momentum). Direction: low_long (long liquid).
+- Sessions: [2026-04-14 session 200]
+
+## H-1101: Roll Spread Estimator
+- Status: REJECTED (borderline — WF 2/3 but p=0.316)
+- Idea: Estimate bid-ask spread from serial autocovariance of price changes. Long tight spreads.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.739, IS 87% (7/8), WF 2/3, SH 0.19/1.61 p=0.316, H-012 corr 0.372.
+- Notes: High param robustness (87%) but weak IS and SH first half collapse. Spread estimate too noisy for reliable XS signal.
+- Sessions: [2026-04-14 session 200]
+
+## H-1102: Kyle Lambda (Market Depth)
+- Status: CONFIRMED (deployed session 200)
+- Idea: Kyle lambda — regression slope of |return| on sqrt(dollar_volume). Measures market depth/price impact. Long deepest markets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.218**, IS 50% (4/8), WF **3/3** [0.18, 1.32, 1.24], SH 0.390/2.081 p=**0.099**, H-012 corr 0.295.
+- Notes: WF 3/3 perfect despite weak first SH half. Kyle lambda measures how much volume moves price — deep markets (low lambda) outperform shallow ones. Related to but distinct from Amihud. Direction: low_long.
+- Sessions: [2026-04-14 session 200]
+
+## H-1103: Illiquidity Trend
+- Status: REJECTED (IS near zero)
+- Idea: Slope of Amihud ratio over 40 days — improving liquidity → bullish.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.111, IS 25%, WF 3/3 [0.84, 2.19, 2.28], SH -1.18/2.00 p=0.880, H-012 corr -0.384.
+- Notes: Paradox: WF 3/3 but IS 0.111 and SH -1.18 in first half. The anti-momentum direction (corr -0.384) worked in recent folds but not historically. Unreliable.
+- Sessions: [2026-04-14 session 200]
+
+## H-1104: Return-Volume Elasticity
+- Status: REJECTED (WF 0/3)
+- Idea: Rolling regression of return on log(volume change). How elastic is price to volume?
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.916, IS 50%, WF **0/3** [-1.22, -1.97, -0.71], SH 1.52/0.12 p=0.215, H-012 corr 0.381.
+- Notes: Complete WF failure. Signal was overfit to IS period. SH also collapses.
+- Sessions: [2026-04-14 session 200]
+
+## H-1105: Price Impact Asymmetry
+- Status: REJECTED (borderline — p=0.291)
+- Idea: Ratio of Amihud on up days vs down days. Buying easier than selling = bullish.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.780, IS 50%, WF 3/3 [0.95, 0.85, 0.69], SH 1.57/-0.24 p=0.291, H-012 corr 0.042.
+- Notes: Interesting low corr (0.042) and consistent WF. But SH collapses in second half. Very noisy signal.
+- Sessions: [2026-04-14 session 200]
+
+## H-1106: Volume Innovation
+- Status: REJECTED (weak IS + SH collapse)
+- Idea: Volume surprise: (current volume - 20d MA) / 20d std. Long volume surges.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.546, IS 37%, WF 2/3, SH -0.18/1.84 p=0.460, H-012 corr 0.065.
+- Notes: SH first half negative. Volume surprise is too noisy day-to-day for reliable XS ranking.
+- Sessions: [2026-04-14 session 200]
+
+## H-1107: Spread Regime
+- Status: REJECTED (SH collapse + weak IS)
+- Idea: Current Roll spread vs 60d average — z-score. Long cheap-to-trade assets.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.545, IS 37%, WF 2/3, SH 1.21/-0.44 p=0.460, H-012 corr 0.194.
+- Notes: SH second half negative. Spread regime changes are not predictive of returns.
+- Sessions: [2026-04-14 session 200]
+
+## H-1108: Momentum × Low Vol (Factor Interaction)
+- Status: REJECTED (WF 0/3, SH collapse)
+- Idea: z(momentum) × z(-volatility). Quality momentum — winners with low vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.225, IS 50%, WF **0/3**, SH 1.03/-1.14 p=0.761, H-012 corr 0.386.
+- Notes: Interaction DESTROYS signal. Low vol is anti-momentum in crypto — momentum winners tend to be volatile. Combining them cancels.
+- Sessions: [2026-04-14 session 200]
+
+## H-1109: Volume Surge × Trend Quality
+- Status: REJECTED (WF 0/3)
+- Idea: z(volume ratio) × z(higher lows count). Volume confirming structural uptrend.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.534, IS 62%, WF **0/3**, SH 0.11/1.24 p=0.470, H-012 corr 0.088.
+- Notes: WF total failure. Volume surge and trend quality are independently useful but combining them doesn't add value.
+- Sessions: [2026-04-14 session 200]
+
+## H-1110: Size × Momentum
+- Status: REJECTED (IS near zero)
+- Idea: z(dollar volume) × z(momentum). Large cap momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.155, IS 50%, WF 1/3, SH 0.72/-1.01 p=0.833, H-012 corr 0.525.
+- Notes: Interaction weakens both signals. High H-012 corr confirms it's just noisy momentum.
+- Sessions: [2026-04-14 session 200]
+
+## H-1111: Momentum × Carry Proxy
+- Status: REJECTED (WF 1/3, SH collapse)
+- Idea: z(momentum) × z(carry proxy from average daily return). Momentum aligned with carry.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.479, IS 50%, WF 1/3, SH 1.66/-1.34 p=0.516, H-012 corr 0.262.
+- Notes: Carry proxy (average return) is just another momentum measure. Combining them adds nothing.
+- Sessions: [2026-04-14 session 200]
+
+## H-1112: Vol Expansion × Mom Direction
+- Status: REJECTED (borderline — WF 2/3 but p=0.429)
+- Idea: z(vol expansion ratio) × sign(momentum). Expanding vol in momentum direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.584, IS 50%, WF 2/3, SH 0.64/0.53 p=0.429, H-012 corr 0.058.
+- Notes: Low H-012 corr (0.058) is appealing but IS too weak to confirm. Vol breakout direction has marginal value.
+- Sessions: [2026-04-14 session 200]
+
+## H-1113: Reversal × Low Turnover
+- Status: REJECTED (WF 1/3)
+- Idea: z(5d reversal) × z(-turnover). Short-term reversal filtered by low turnover.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.718, IS 50%, WF 1/3, SH 1.33/-0.18 p=0.330, H-012 corr 0.312.
+- Notes: Reversal still doesn't work in crypto XS even with turnover filter. SH collapse.
+- Sessions: [2026-04-14 session 200]
+
+## H-1114: Trend Linearity × Low Kurtosis
+- Status: REJECTED (WF 1/3, SH 1st half negative)
+- Idea: z(R²) × z(-kurtosis). Smooth trends with thin-tailed returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.732, IS 37%, WF 1/3, SH -0.27/1.97 p=0.322, H-012 corr -0.071.
+- Notes: Low corr (-0.071) with H-012 but unstable — SH first half negative. Interaction doesn't hold.
+- Sessions: [2026-04-14 session 200]
+
+## H-1115: Return Stability × Vol Persistence
+- Status: REJECTED (borderline — p=0.429)
+- Idea: z(return stability) × z(volatility autocorrelation). Consistent returns with persistent vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.584, IS 50%, WF 2/3, SH 0.57/0.67 p=0.429, H-012 corr 0.288.
+- Notes: Both SH halves are mediocre but at least both positive. Not strong enough to confirm.
+- Sessions: [2026-04-14 session 200]
+
+## H-1116: Dispersion-Timed Momentum
+- Status: CONFIRMED (deployed session 200)
+- Idea: Scale momentum signal by cross-sectional return dispersion z-score. High dispersion amplifies momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.293**, IS 50% (4/8), WF **2/3** [0.49, -0.88, 0.68], SH **1.970**/0.310 p=**0.080**, H-012 corr 0.635.
+- Notes: Strong IS and significant p-value. But SH second half collapses (0.31) and high H-012 corr (0.635). Dispersion timing adds marginal value to momentum. Direction: high_long.
+- Sessions: [2026-04-14 session 200]
+
+## H-1117: Vol-Regime Conditional
+- Status: REJECTED (borderline — p=0.553, SH collapse)
+- Idea: Momentum in low-vol regime, reversal in high-vol regime (switching signal).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.437, IS 50%, WF 2/3, SH 1.44/-1.36 p=0.553, H-012 corr 0.569.
+- Notes: Regime switching damages signal. SH collapses badly. High vol reversal doesn't work.
+- Sessions: [2026-04-14 session 200]
+
+## H-1118: BTC-Trend Conditional
+- Status: REJECTED (WF 0/3)
+- Idea: Momentum when BTC is trending, reversal when ranging.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.502, IS 50%, WF **0/3**, SH 0.64/0.31 p=0.496, H-012 corr 0.434.
+- Notes: BTC trend as conditioning variable adds nothing. Complete WF failure.
+- Sessions: [2026-04-14 session 200]
+
+## H-1119: Correlation-Adjusted Momentum
+- Status: REJECTED (WF 1/3, near-identical to H-012)
+- Idea: Scale momentum down when average XS correlation is high.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.555, IS 50%, WF 1/3, SH 0.78/0.22 p=0.452, H-012 corr **0.835**.
+- Notes: Correlation adjustment barely changes the signal — corr 0.835 with plain momentum. Pure redundancy.
+- Sessions: [2026-04-14 session 200]
+
+## H-1120: Dynamic Lookback Momentum
+- Status: REJECTED (WF 1/3 despite strong IS)
+- Idea: Use shorter lookback (20d) in high vol, longer (60d) in low vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe **1.312**, IS 50%, WF **1/3**, SH **2.008**/0.297 p=**0.076**, H-012 corr **0.844**.
+- Notes: IS looks great but WF 1/3 kills it. SH 2nd half collapses. Corr 0.844 — it's just momentum. Adaptive lookback adds nothing reliable.
+- Sessions: [2026-04-14 session 200]
+
+## H-1121: Breadth-Conditional
+- Status: REJECTED (IS weak, WF 1/3)
+- Idea: Momentum when market breadth is narrow, reversal when wide.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.335, IS 37%, WF 1/3, SH -0.17/1.14 p=0.650, H-012 corr 0.132.
+- Notes: Breadth conditioning doesn't help. SH first half negative. Low corr but too weak to use.
+- Sessions: [2026-04-14 session 200]
+
+## H-1122: Momentum Crash Protection
+- Status: REJECTED (WF 1/3, pure momentum)
+- Idea: Reduce momentum position when recent momentum DD is high.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.479, IS 50%, WF 1/3, SH 0.77/0.00 p=0.517, H-012 corr **0.885**.
+- Notes: Corr 0.885 — nearly identical to H-012. Crash protection actually hurts by reducing positions at wrong times.
+- Sessions: [2026-04-14 session 200]
+
+## H-1123: Performance-Adaptive Signal
+- Status: REJECTED (borderline — p=0.296 despite WF 3/3)
+- Idea: Weight between momentum/vol/size factors based on recent 20d factor performance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.771, IS 50%, WF **3/3** [1.48, 1.19, 0.65], SH 0.31/1.40 p=0.296, H-012 corr 0.648.
+- Notes: WF 3/3 is promising but IS too weak and not significant. SH first half is 0.31. Factor rotation adds instability. Corr 0.648 — mostly momentum.
+- Sessions: [2026-04-14 session 200]

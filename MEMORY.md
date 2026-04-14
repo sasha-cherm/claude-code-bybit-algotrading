@@ -3,16 +3,15 @@
 ## Current State
 - **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,354.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 173 runners active. Session 199. **94/167 positive** (56%), avg **+0.44%**.
-- **H-063**: ~$9,624 (-3.76%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,354, approaching call strike.
-- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.41%), H-332(+5.60%).
-- **Session 199 research**: 24 new hypotheses (H-1076–H-1099). **7 CONFIRMED** (6 deployed: H-1077/H-1078/H-1081/H-1087/H-1090/H-1091). **1099 total hypotheses.**
-- **H-1081 Relative Volume Surprise**: IS Sharpe **1.923**, WF **4/4 PERFECT**, SH p=**0.007**, SH **1.97/1.90**, corr **0.043**. **SESSION BEST** — volume surge relative to XS peers captures capital flow.
-- **H-1090 Consecutive Extreme Frequency**: IS Sharpe **2.397**, IS **100%**, WF 3/4, SH p=**0.001**, corr **-0.023**. Vol clustering → trending.
-- **H-1091 Overnight Return Share**: IS Sharpe **1.905**, IS **100%**, WF **4/4 PERFECT**, SH p=**0.008**, corr **-0.016**. Institutional accumulation signal.
-- **Key findings**: Relative performance dynamics — rank change momentum and outperformance consistency are independent XS signals (corr ~0 with H-012). Return distribution — consecutive extreme frequency and overnight return share are novel strong signals. Multi-horizon composites — ALL 8 are momentum variants (corr 0.57-0.88 with H-012). Term structure, weighted momentum, sign agreement add ZERO independent info beyond 60d momentum.
+- **Internal paper trades:** 176 runners active. Session 200. **78/173 positive** (45%), avg **+0.44%**.
+- **H-063**: ~$9,730 (-2.70%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,748, near call strike.
+- **Top performers**: H-277(+7.17%), H-353(+7.07%), H-754(+6.41%), H-332(+5.60%), H-496(+4.92%).
+- **Session 200 research**: 24 new hypotheses (H-1100–H-1123). **3 CONFIRMED** (3 deployed: H-1100/H-1102/H-1116). **1123 total hypotheses.**
+- **H-1100 Amihud Illiquidity**: IS Sharpe **1.609**, WF **3/3**, SH **1.41/1.83** p=**0.030**, corr 0.471. **SESSION BEST** — liquidity premium (long liquid, short illiquid).
+- **H-1102 Kyle Lambda**: IS Sharpe **1.218**, WF **3/3**, SH 0.39/2.08 p=**0.099**, corr 0.295. Market depth proxy — deep markets outperform.
+- **Key findings**: Liquidity premium exists in crypto XS (Amihud + Kyle Lambda both work as low_long). Factor interactions are WORTHLESS — ALL 8 z(A)×z(B) combinations failed. Regime conditioning doesn't improve momentum — adaptive lookback, correlation adjustment, crash protection, breadth conditioning all fail or are pure momentum proxies (corr 0.84-0.89).
 - **AUTOMATED:** Paper trades hourly via cron (173 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 173 runners (esp. H-1081/H-1090/H-1091 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Next action:** Await Q-005 answer. Monitor 176 runners (esp. H-1100/H-1102 liquidity premium). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -24,15 +23,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 189) archived to `memory/session_archive.md`._
-
-### Session 2026-04-12 review+deploy+research (session 190)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 8 new deployments
-- Focus: Paper trade MTM (BTC $70,949), return decomposition/quality (H-860–H-867), short-term reversal (H-868–H-875), technical indicator XS (H-876–H-883)
-- Done: 114 runners (106→114). **43/106 positive** (40%). Avg **+0.24%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-860–H-867, return quality)**: **5 CONFIRMED+deployed**: H-864 Conditional Momentum (Sharpe **1.608**, WF 4/5, SH p=0.025, **corr 0.000** — zero!), H-867 Max Gain Dep (**1.766**, WF 3/4, p=0.015), H-866 VW Return Div (**1.591**, WF 3/5, p=0.027, corr 0.005), H-873 Dist High (1.391, WF 4/5), H-861 Downside Protect (1.255, WF 3/4). H-863 Win Rate (1.207, WF 4/5). H-860/H-862/H-865 REJECTED. **Batch 2 (H-868–H-875, reversal)**: **1 CONFIRMED** H-873 Dist from High (1.391, WF 4/5, SH p=0.053). Mean reversion FAILS in crypto XS (RSI, z-score, Bollinger all 0% positive). 3-day reversal Sharpe 1.841 but WF 2/5 fail. **Batch 3 (H-876–H-883, technical)**: **2 CONFIRMED**: H-878 Stochastic (1.406, WF 3/5, corr 0.005), H-882 EMV (1.383, WF 3/5, corr -0.009). H-881 OBV Slope notable (WF 5/5 PERFECT but SH p=0.122). MACD/CCI borderline, Williams/Force fail. **883 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 114 runners (esp. H-864/H-867/H-866 new stars). Explore on-chain data, sentiment APIs, ML ensembles, OBV Slope re-test.
-- Questions added: none
-- Self-modifications: 8 runners created (H-861/H-863/H-864/H-866/H-867/H-873/H-878/H-882), added to orchestrator. Archived session 180. (session 190)
+_Older sessions (bootstrap through 190) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-13 review+deploy+research (session 191)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
@@ -105,3 +96,11 @@ _Older sessions (bootstrap through 189) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 173 runners (esp. H-1081/H-1090/H-1091 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 6 runners created (H-1077/H-1078/H-1081/H-1087/H-1090/H-1091), added to orchestrator. Archived session 189. (session 199)
+
+### Session 2026-04-14 review+deploy+research (session 200)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $74,748), liquidity/market quality (H-1100–H-1107), factor interactions (H-1108–H-1115), regime-conditional (H-1116–H-1123)
+- Done: 176 runners (173→176). **78/173 positive** (45%). Avg **+0.44%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1100–H-1107, liquidity)**: **H-1100 CONFIRMED+deployed** (Amihud Illiquidity, IS **1.609**, WF **3/3**, SH **1.41/1.83** p=**0.030** — **SESSION BEST**, corr 0.471). **H-1102 CONFIRMED+deployed** (Kyle Lambda, 1.218, WF **3/3**, SH 0.39/2.08 p=0.099, corr 0.295). 6 REJECTED/BORDERLINE. Liquidity premium real: long liquid, short illiquid assets outperform. **Batch 2 (H-1108–H-1115, factor interactions)**: **ALL 8 REJECTED**. z(A)×z(B) factor interactions add ZERO alpha beyond individual factors. Mom×LowVol, Size×Mom, Rev×Turnover, Trend×Kurtosis all fail. Key finding: factor synergies don't exist in crypto XS. **Batch 3 (H-1116–H-1123, regime-conditional)**: **H-1116 CONFIRMED+deployed** (Dispersion-Timed Mom, IS 1.293, WF 2/3, p=0.080, corr 0.635 — marginal). 7 REJECTED. Adaptive lookback (0.844 corr), crash protection (0.885 corr), correlation adjustment (0.835 corr) are all pure momentum proxies. **1123 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 176 runners (esp. H-1100/H-1102 liquidity premium). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 3 runners created (H-1100/H-1102/H-1116), added to orchestrator. Archived session 190. (session 200)

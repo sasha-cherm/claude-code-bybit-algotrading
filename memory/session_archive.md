@@ -1424,3 +1424,8 @@
 - Questions added: none
 - Self-modifications: 5 runners created (H-837/H-843/H-849/H-851/H-854), added to orchestrator. Archived session 179. (session 189)
 
+### Session 2026-04-12 review+deploy+research (session 190)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 8 new deployments
+- Focus: Paper trade MTM (BTC $70,949), return decomposition/quality (H-860–H-867), short-term reversal (H-868–H-875), technical indicator XS (H-876–H-883)
+- Done: 114 runners (106→114). **43/106 positive** (40%). Avg **+0.24%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-860–H-867, return quality)**: **5 CONFIRMED+deployed**: H-864 Conditional Momentum, H-867 Max Gain Dep, H-866 VW Return Div, H-873 Dist High, H-861 Downside Protect. **Batch 2 (H-868–H-875, reversal)**: 1 CONFIRMED. Mean reversion FAILS in crypto XS. **Batch 3 (H-876–H-883, technical)**: 2 CONFIRMED: H-878 Stochastic, H-882 EMV. **883 total hypotheses.**
+

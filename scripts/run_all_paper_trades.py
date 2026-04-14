@@ -195,6 +195,9 @@ RUNNERS = [
     ("H-1087", ROOT / "paper_trades" / "h1087_return_kurtosis" / "runner.py"),
     ("H-1090", ROOT / "paper_trades" / "h1090_consec_extreme" / "runner.py"),
     ("H-1091", ROOT / "paper_trades" / "h1091_overnight_share" / "runner.py"),
+    ("H-1100", ROOT / "paper_trades" / "h1100_amihud_illiq" / "runner.py"),
+    ("H-1102", ROOT / "paper_trades" / "h1102_kyle_lambda" / "runner.py"),
+    ("H-1116", ROOT / "paper_trades" / "h1116_disp_timed_mom" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"
