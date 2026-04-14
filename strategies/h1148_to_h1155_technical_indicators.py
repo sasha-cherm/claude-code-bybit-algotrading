@@ -1,0 +1,329 @@
+"""
+Batch backtest: H-1148 to H-1155 — Technical Indicator XS Signals.
+Converting common TA indicators into cross-sectional ranking signals.
+
+H-1148: MACD Histogram — MACD(12,26) histogram value, ranked XS. Trend acceleration.
+H-1149: Stochastic %K — 14-day stochastic oscillator. XS overbought/oversold.
+H-1150: Williams %R — 14-day Williams %R. Similar to stochastic but inverted scale.
+H-1151: CCI — Commodity Channel Index (20-day). XS mean deviation from typical price.
+H-1152: Bollinger Band Position — (close - lower) / (upper - lower). Where in the band.
+H-1153: ADX Relative Trend — 14-day ADX × sign(DI+ - DI-). Directional trend strength.
+H-1154: Price Channel Position — (close - Donchian low) / (Donchian high - low). Position in channel.
+H-1155: Rate of Change Divergence — 5d ROC - 20d ROC. Short-term vs long-term momentum gap.
+"""
+
+import numpy as np
+import pandas as pd
+from pathlib import Path
+from scipy import stats
+
+DATA_DIR = Path("data")
+FEE_RATE = 0.00055
+SLIPPAGE_BPS = 2
+
+ASSETS = ["BTC", "ETH", "SOL", "SUI", "XRP", "DOGE", "AVAX", "LINK",
+          "ADA", "DOT", "NEAR", "OP", "ARB", "ATOM"]
+
+
+def load_daily():
+    closes, highs, lows, opens, volumes = {}, {}, {}, {}, {}
+    for ticker in ASSETS:
+        try:
+            df = pd.read_parquet(DATA_DIR / f"{ticker}_USDT_1d.parquet")
+            if df.index.tz is not None:
+                df.index = df.index.tz_localize(None)
+            closes[f"{ticker}/USDT"] = df["close"]
+            highs[f"{ticker}/USDT"] = df["high"]
+            lows[f"{ticker}/USDT"] = df["low"]
+            opens[f"{ticker}/USDT"] = df["open"]
+            volumes[f"{ticker}/USDT"] = df["volume"] * df["close"]
+        except:
+            pass
+    closes = pd.DataFrame(closes).sort_index().dropna(how="all")
+    highs = pd.DataFrame(highs).sort_index().dropna(how="all")
+    lows = pd.DataFrame(lows).sort_index().dropna(how="all")
+    opens = pd.DataFrame(opens).sort_index().dropna(how="all")
+    volumes = pd.DataFrame(volumes).sort_index().dropna(how="all")
+    common = closes.index
+    return closes.loc[common], highs.loc[common], lows.loc[common], opens.loc[common], volumes.loc[common]
+
+
+def compute_signals(closes, highs, lows, opens, volumes):
+    returns = closes.pct_change()
+    signals = {}
+
+    # H-1148: MACD Histogram — EMA(12) - EMA(26) - signal(9)
+    macd_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        ema12 = closes[col].ewm(span=12, adjust=False).mean()
+        ema26 = closes[col].ewm(span=26, adjust=False).mean()
+        macd_line = ema12 - ema26
+        signal_line = macd_line.ewm(span=9, adjust=False).mean()
+        macd_df[col] = macd_line - signal_line
+    # Normalize by price for cross-asset comparability
+    macd_norm = macd_df / closes.clip(lower=1)
+    signals["macd_hist"] = macd_norm
+
+    # H-1149: Stochastic %K (14-day)
+    stoch_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        low14 = lows[col].rolling(14).min()
+        high14 = highs[col].rolling(14).max()
+        stoch_df[col] = (closes[col] - low14) / (high14 - low14).clip(lower=1e-10)
+    signals["stoch_k"] = stoch_df
+
+    # H-1150: Williams %R (14-day)
+    willr_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        high14 = highs[col].rolling(14).max()
+        low14 = lows[col].rolling(14).min()
+        willr_df[col] = (high14 - closes[col]) / (high14 - low14).clip(lower=1e-10)
+    signals["williams_r"] = willr_df
+
+    # H-1151: CCI (20-day)
+    cci_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        tp = (highs[col] + lows[col] + closes[col]) / 3
+        sma20 = tp.rolling(20).mean()
+        mad20 = tp.rolling(20).apply(lambda x: np.mean(np.abs(x - x.mean())), raw=True)
+        cci_df[col] = (tp - sma20) / (0.015 * mad20).clip(lower=1e-10)
+    signals["cci"] = cci_df
+
+    # H-1152: Bollinger Band Position — (close - lower) / (upper - lower)
+    bb_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        sma20 = closes[col].rolling(20).mean()
+        std20 = closes[col].rolling(20).std()
+        upper = sma20 + 2 * std20
+        lower = sma20 - 2 * std20
+        bb_df[col] = (closes[col] - lower) / (upper - lower).clip(lower=1e-10)
+    signals["bb_position"] = bb_df
+
+    # H-1153: ADX Directional — ADX(14) × sign(DI+ - DI-)
+    adx_dir_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        high = highs[col]
+        low = lows[col]
+        close = closes[col]
+        tr = pd.concat([high - low, (high - close.shift()).abs(), (low - close.shift()).abs()], axis=1).max(axis=1)
+        plus_dm = (high - high.shift()).clip(lower=0)
+        minus_dm = (low.shift() - low).clip(lower=0)
+        mask = plus_dm < minus_dm
+        plus_dm[mask] = 0
+        mask2 = minus_dm < plus_dm
+        minus_dm[mask2] = 0
+        atr14 = tr.rolling(14).mean()
+        plus_di = 100 * plus_dm.rolling(14).mean() / atr14.clip(lower=1e-10)
+        minus_di = 100 * minus_dm.rolling(14).mean() / atr14.clip(lower=1e-10)
+        dx = 100 * (plus_di - minus_di).abs() / (plus_di + minus_di).clip(lower=1e-10)
+        adx = dx.rolling(14).mean()
+        adx_dir_df[col] = adx * np.sign(plus_di - minus_di)
+    signals["adx_directional"] = adx_dir_df
+
+    # H-1154: Price Channel Position — Donchian 20-day
+    pch_df = pd.DataFrame(index=closes.index, columns=closes.columns, dtype=float)
+    for col in closes.columns:
+        high20 = highs[col].rolling(20).max()
+        low20 = lows[col].rolling(20).min()
+        pch_df[col] = (closes[col] - low20) / (high20 - low20).clip(lower=1e-10)
+    signals["price_channel"] = pch_df
+
+    # H-1155: ROC Divergence — 5d ROC - 20d ROC (normalized)
+    roc5 = closes.pct_change(5)
+    roc20 = closes.pct_change(20)
+    signals["roc_divergence"] = roc5 - roc20
+
+    return signals
+
+
+def xs_backtest(closes, signal_df, lookback, rebal_days, n_ls, direction="high_long"):
+    returns = closes.pct_change()
+    slippage = SLIPPAGE_BPS / 10_000
+    warmup = lookback + 5
+    positions = {}
+    days_since = rebal_days
+    pnl_daily = []
+
+    for i in range(warmup, len(closes)):
+        days_since += 1
+        if days_since >= rebal_days:
+            sig_row = signal_df.iloc[i - 1]
+            sig_row = sig_row.dropna()
+            if len(sig_row) < 2 * n_ls:
+                pnl_daily.append(0)
+                continue
+            if direction == "high_long":
+                ranked = sig_row.sort_values(ascending=False)
+            else:
+                ranked = sig_row.sort_values(ascending=True)
+            longs = set(ranked.index[:n_ls])
+            shorts = set(ranked.index[-n_ls:])
+            old_syms = set(positions.keys())
+            new_syms = longs | shorts
+            changed = old_syms.symmetric_difference(new_syms)
+            fee_cost = len(changed) * FEE_RATE / (2 * n_ls)
+            slip_cost = len(changed) * slippage / (2 * n_ls)
+            positions = {}
+            for sym in longs:
+                positions[sym] = 1.0 / n_ls
+            for sym in shorts:
+                positions[sym] = -1.0 / n_ls
+            days_since = 0
+            daily_ret = -fee_cost - slip_cost
+        else:
+            daily_ret = 0.0
+        for sym, w in positions.items():
+            if sym in returns.columns:
+                r = returns[sym].iloc[i]
+                if np.isfinite(r):
+                    daily_ret += w * r
+        pnl_daily.append(daily_ret)
+    return np.array(pnl_daily)
+
+
+def compute_sharpe(pnl, ann_factor=365):
+    if len(pnl) < 30 or np.std(pnl) == 0:
+        return 0
+    return np.mean(pnl) / np.std(pnl) * np.sqrt(ann_factor)
+
+
+def compute_metrics(pnl):
+    if len(pnl) < 30:
+        return {"sharpe": 0, "annual_ret": 0, "max_dd": 0}
+    sharpe = compute_sharpe(pnl)
+    cum = np.cumsum(pnl)
+    annual_ret = np.mean(pnl) * 365
+    running_max = np.maximum.accumulate(cum)
+    dd = cum - running_max
+    max_dd = np.min(dd) if len(dd) > 0 else 0
+    return {"sharpe": round(sharpe, 3), "annual_ret": round(annual_ret * 100, 1),
+            "max_dd": round(max_dd * 100, 1)}
+
+
+def walk_forward(closes, signal_df, lookback, rebal, n_ls, direction,
+                 n_folds=5, test_days=120):
+    results = []
+    for fold in range(n_folds):
+        test_end = len(closes) - fold * test_days
+        test_start = test_end - test_days
+        if test_start < 200 + lookback + 5:
+            break
+        c_test = closes.iloc[test_start - lookback - 5:test_end]
+        s_test = signal_df.iloc[test_start - lookback - 5:test_end]
+        pnl = xs_backtest(c_test, s_test, lookback, rebal, n_ls, direction)
+        sh = compute_sharpe(pnl)
+        results.append(sh)
+    return results
+
+
+def split_half_test(pnl):
+    if len(pnl) < 60:
+        return 0, 0, 1.0
+    t_stat, p_val = stats.ttest_1samp(pnl, 0)
+    mid = len(pnl) // 2
+    return compute_sharpe(pnl[:mid]), compute_sharpe(pnl[mid:]), p_val
+
+
+def h012_correlation(closes, signal_df, lookback, rebal, n_ls, direction):
+    pnl_test = xs_backtest(closes, signal_df, lookback, rebal, n_ls, direction)
+    ret60 = closes.pct_change(60)
+    pnl_h012 = xs_backtest(closes, ret60, 60, 5, 4, "high_long")
+    mn = min(len(pnl_test), len(pnl_h012))
+    if mn < 30:
+        return 0
+    return round(np.corrcoef(pnl_test[:mn], pnl_h012[:mn])[0, 1], 3)
+
+
+def run_signal(name, signal_df, closes, lookback, directions, n_ls_list=[4],
+               rebal_list=[5, 7]):
+    common_idx = closes.index.intersection(signal_df.index)
+    common_cols = [c for c in closes.columns if c in signal_df.columns]
+    if len(common_cols) < 8 or len(common_idx) < 200:
+        print(f"  {name}: Insufficient data ({len(common_cols)} assets, {len(common_idx)} days) — SKIP")
+        return None
+    closes_c = closes[common_cols].loc[common_idx]
+    signal_c = signal_df[common_cols].loc[common_idx]
+
+    best = {"sharpe": -999}
+    all_positive = 0
+    all_total = 0
+    for direction in directions:
+        for n_ls in n_ls_list:
+            for rebal in rebal_list:
+                pnl = xs_backtest(closes_c, signal_c, lookback, rebal, n_ls, direction)
+                m = compute_metrics(pnl)
+                all_total += 1
+                if m["sharpe"] > 0:
+                    all_positive += 1
+                if m["sharpe"] > best.get("sharpe", -999):
+                    best = {**m, "direction": direction, "n_ls": n_ls, "rebal": rebal,
+                            "pnl": pnl, "closes_c": closes_c, "signal_c": signal_c}
+    is_pct = f"{100*all_positive//all_total}%" if all_total > 0 else "N/A"
+    if best["sharpe"] <= 0:
+        print(f"  {name}: IS {is_pct} ({all_positive}/{all_total} positive) — SKIP")
+        return None
+    pnl = best["pnl"]
+    wf = walk_forward(best["closes_c"], best["signal_c"], lookback, best["rebal"],
+                      best["n_ls"], best["direction"])
+    sh1, sh2, p_val = split_half_test(pnl)
+    corr = h012_correlation(best["closes_c"], best["signal_c"], lookback, best["rebal"],
+                            best["n_ls"], best["direction"])
+    wf_pos = sum(1 for x in wf if x > 0)
+    print(f"  {name}: IS Sharpe {best['sharpe']:.3f} | Ann {best['annual_ret']:.1f}% | DD {best['max_dd']:.1f}% | "
+          f"Dir={best['direction']} | IS {is_pct} ({all_positive}/{all_total}) | "
+          f"WF {wf_pos}/{len(wf)} {[round(x,2) for x in wf]} | SH {sh1:.3f}/{sh2:.3f} p={p_val:.3f} | "
+          f"H012 corr {corr:.3f} | N={len(pnl)}")
+    return {
+        "sharpe": best["sharpe"], "annual_ret": best["annual_ret"],
+        "max_dd": best["max_dd"], "direction": best["direction"],
+        "n_ls": best["n_ls"], "rebal": best["rebal"],
+        "wf": wf, "wf_pos": wf_pos, "wf_total": len(wf),
+        "sh1": sh1, "sh2": sh2, "p_val": round(p_val, 4),
+        "h012_corr": corr, "n_bars": len(pnl),
+        "is_positive_pct": is_pct
+    }
+
+
+def main():
+    print("Loading data...")
+    closes, highs, lows, opens, volumes = load_daily()
+    print(f"Loaded {len(closes)} bars, {len(closes.columns)} assets")
+    print()
+
+    print("Computing signals...")
+    signals = compute_signals(closes, highs, lows, opens, volumes)
+    print(f"Got {len(signals)} signal types")
+    print()
+
+    feature_map = {
+        "H-1148": ("macd_hist", "MACD Histogram"),
+        "H-1149": ("stoch_k", "Stochastic %K (14d)"),
+        "H-1150": ("williams_r", "Williams %R (14d)"),
+        "H-1151": ("cci", "CCI (20d)"),
+        "H-1152": ("bb_position", "Bollinger Band Position"),
+        "H-1153": ("adx_directional", "ADX Directional Trend"),
+        "H-1154": ("price_channel", "Price Channel Position"),
+        "H-1155": ("roc_divergence", "ROC Divergence (5d-20d)"),
+    }
+
+    results = {}
+    lookback = 30
+
+    for hyp_id, (sig_name, desc) in feature_map.items():
+        print(f"\n{hyp_id}: {desc}")
+        sig_df = signals[sig_name]
+        r = run_signal(hyp_id, sig_df, closes, lookback,
+                       ["high_long", "low_long"], [3, 4], [3, 5, 7])
+        if r:
+            results[hyp_id] = r
+
+    print(f"\n{'='*80}")
+    print(f"BATCH SUMMARY: {len(results)}/{8} signals with positive IS Sharpe")
+    for name, r in sorted(results.items(), key=lambda x: -x[1]["sharpe"]):
+        status = "CONFIRMED" if r["wf_pos"] >= max(2, r["wf_total"] * 0.5) and r["p_val"] < 0.15 else "BORDERLINE" if r["wf_pos"] >= 2 else "REJECTED"
+        print(f"  {name}: Sharpe {r['sharpe']:.3f} | WF {r['wf_pos']}/{r['wf_total']} | p={r['p_val']:.3f} | "
+              f"corr {r['h012_corr']:.3f} | SH {r['sh1']:.2f}/{r['sh2']:.2f} | {status}")
+
+
+if __name__ == "__main__":
+    main()

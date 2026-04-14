@@ -11575,3 +11575,225 @@
 - Result: IS Sharpe 1.032, IS 50%, WF 1/3, SH 2.13/-0.56 p=0.162, H-012 corr 0.548.
 - Notes: Identical results to H-1144 (R²). Idio ratio = 1 - synchronicity. High momentum correlation. Both fail.
 - Sessions: [2026-04-14 session 201]
+
+## H-1148: MACD Histogram XS
+- Status: REJECTED (borderline — p=0.158, SH collapse 0.43/1.76)
+- Idea: MACD(12,26) histogram normalized by price, ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.019, IS 50%, WF 2/4, SH 0.43/1.76 p=0.158, H-012 corr 0.032.
+- Notes: Signal only works in second half. Not significant enough.
+- Sessions: [2026-04-14 session 202]
+
+## H-1149: Stochastic %K XS
+- Status: REJECTED (borderline — p=0.166, = H-1150)
+- Idea: 14-day stochastic %K ranked cross-sectionally. Overbought outperforms?
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.001, IS 50%, WF 3/4, SH 0.85/1.22 p=0.166, H-012 corr 0.023.
+- Notes: Identical to H-1150 (Williams %R is inverted stochastic). Borderline — not significant at p=0.166.
+- Sessions: [2026-04-14 session 202]
+
+## H-1150: Williams %R XS
+- Status: REJECTED (= H-1149 duplicate)
+- Idea: 14-day Williams %R ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.001, IS 50%, WF 3/4, SH 0.85/1.22 p=0.166, H-012 corr 0.023.
+- Notes: Identical to H-1149 (Stochastic). Williams %R = 1 - %K.
+- Sessions: [2026-04-14 session 202]
+
+## H-1151: CCI XS
+- Status: REJECTED (weak — p=0.336)
+- Idea: 20-day Commodity Channel Index ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.695, IS 50%, WF 2/4, SH 0.57/0.86 p=0.336, H-012 corr 0.010.
+- Notes: Weak signal. CCI adds no information beyond simpler momentum measures.
+- Sessions: [2026-04-14 session 202]
+
+## H-1152: Bollinger Band Position XS
+- Status: REJECTED (borderline — p=0.205)
+- Idea: Position within 20d Bollinger Bands ranked cross-sectionally.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.915, IS 41%, WF 3/4, SH 0.44/1.53 p=0.205, H-012 corr -0.016.
+- Notes: WF 3/4 decent but p too high. SH collapse in first half. Low corr is promising but significance insufficient.
+- Sessions: [2026-04-14 session 202]
+
+## H-1153: ADX Directional Trend XS
+- Status: REJECTED (WF 1/4)
+- Idea: ADX(14) × sign(DI+ - DI-) as directional trend strength, ranked XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.660, IS 50%, WF 1/4, SH 0.89/0.38 p=0.361, H-012 corr -0.026.
+- Notes: ADX doesn't work as XS signal. Trend strength doesn't predict cross-sectional returns.
+- Sessions: [2026-04-14 session 202]
+
+## H-1154: Price Channel Position XS
+- Status: CONFIRMED (WF 3/4, deployed)
+- Idea: Donchian 20d channel position: (close - low20) / (high20 - low20). High = near channel top.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: 20d price channel position ranked XS. High_long: long assets near channel top (trend continuation).
+- Result: IS Sharpe **1.324**, IS 50%, WF **3/4** [1.82, 1.19, 0.70, -0.78], SH **1.26/1.43** p=**0.067**, H-012 corr **0.010**.
+- Notes: Very stable split-half (1.26/1.43). Near-zero momentum correlation — channel position captures something different from raw return. R=5, N=3.
+- Sessions: [2026-04-14 session 202]
+
+## H-1155: ROC Divergence XS
+- Status: CONFIRMED (deployed — borderline WF 2/4 but strong SH + p)
+- Idea: 5d ROC minus 20d ROC. Low_long: long when short-term underperforming long-term.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: ROC divergence = short-term vs long-term momentum gap. Low_long = contrarian.
+- Result: IS Sharpe **1.220**, IS 50%, WF **2/4** [1.07, -0.03, 1.40, -0.84], SH **1.44/0.96** p=**0.091**, H-012 corr **-0.006**.
+- Notes: Near-zero momentum correlation (-0.006). Stable SH. Contrarian short-term signal. R=5, N=3.
+- Sessions: [2026-04-14 session 202]
+
+## H-1156: MA Convergence XS
+- Status: CONFIRMED (WF 3/4, deployed)
+- Idea: (EMA20 - EMA50) / EMA50 ranked cross-sectionally. Trend direction via MA separation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: MA convergence measures trend strength/direction. High_long: long strongest MA trends.
+- Result: IS Sharpe **1.258**, IS 50%, WF **3/4** [1.69, -0.19, 0.02, 1.33], SH **1.38/1.12** p=**0.082**, H-012 corr **0.012**.
+- Notes: Stable SH (1.38/1.12). Very low momentum correlation — MA convergence captures trend differently from raw returns. R=5, N=3.
+- Sessions: [2026-04-14 session 202]
+
+## H-1157: New High Frequency XS
+- Status: REJECTED (borderline — p=0.308)
+- Idea: Count of 20d highs in last 40 days as persistence strength signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.736, IS 50%, WF 2/4, SH 1.02/0.41 p=0.308, H-012 corr -0.008.
+- Notes: Too noisy. New high frequency doesn't predict well cross-sectionally.
+- Sessions: [2026-04-14 session 202]
+
+## H-1158: Price Efficiency Ratio XS
+- Status: REJECTED (SH collapse 2.48/-0.94)
+- Idea: Kaufman efficiency ratio (net/gross move over 20d) ranked XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.025, IS 50%, WF 2/4, SH 2.48/-0.94 p=0.156, H-012 corr -0.030.
+- Notes: Massive SH collapse — signal only works in first half. Overfit.
+- Sessions: [2026-04-14 session 202]
+
+## H-1159: Candle Body Ratio XS
+- Status: REJECTED (SH collapse 2.49/0.01)
+- Idea: |close - open| / (high - low) averaged over 5 days. Low_long: low conviction candles bounce.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.478, IS 50%, WF 2/4, SH 2.49/0.01 p=0.041, H-012 corr 0.020.
+- Notes: SH collapse 2.49→0.01. Signal only works in first half despite significant p-value.
+- Sessions: [2026-04-14 session 202]
+
+## H-1160: Upper Shadow Ratio XS
+- Status: REJECTED (WF 1/4, SH collapse 3.02/-0.03)
+- Idea: (high - max(open,close)) / (high - low) averaged over 5 days. Selling pressure indicator.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.701, IS 41%, WF 1/4, SH 3.02/-0.03 p=0.019, H-012 corr 0.035.
+- Notes: Classic overfit. Strong IS/p-value but WF 1/4 + total SH collapse. Selling pressure doesn't persist.
+- Sessions: [2026-04-14 session 202]
+
+## H-1161: Volume-Price Trend Change XS
+- Status: CONFIRMED (WF 3/4, deployed)
+- Idea: 20d change in cumulative VPT (volume × return), normalized by avg volume.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: High_long: long assets where volume confirms price direction.
+- Result: IS Sharpe **1.327**, IS 50%, WF **3/4** [0.02, 0.35, 1.54, -0.03], SH **2.01/0.43** p=**0.066**, H-012 corr **-0.021**.
+- Notes: SH drops from 2.01 to 0.43 (still positive). Volume-price confirmation adds independent info. R=5, N=3.
+- Sessions: [2026-04-14 session 202]
+
+## H-1162: Price Acceleration XS
+- Status: CONFIRMED (WF 3/4, deployed)
+- Idea: Second derivative of price: 5d ROC minus lagged 5d ROC. Low_long: long decelerating.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Low_long: long assets whose momentum is decelerating (contrarian). Short accelerating.
+- Result: IS Sharpe **1.503**, IS 41%, WF **3/4** [0.85, -0.80, 0.01, 1.68], SH **2.14/0.71** p=**0.038**, H-012 corr **-0.049**.
+- Notes: Contrarian signal — buy momentum deceleration. Low correlation with pure momentum. R=5, N=3.
+- Sessions: [2026-04-14 session 202]
+
+## H-1163: Overnight/Intraday Ratio XS
+- Status: CONFIRMED (WF 4/4 PERFECT, deployed — SESSION BEST)
+- Idea: Ratio of overnight move to intraday move, averaged over 5 days. High = big overnight moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: High_long: long assets with high overnight/intraday ratio (institutional accumulation proxy).
+- Result: IS Sharpe **1.905**, IS **100%** (12/12), WF **4/4** [0.90, 1.36, 1.43, 2.42], SH **2.65/1.11** p=**0.008**, H-012 corr **-0.016**.
+- Notes: **SESSION BEST**. Perfect WF, 100% IS positive, very stable SH, near-zero momentum correlation. Assets with large overnight gaps relative to intraday moves outperform — suggests institutional or smart money activity outside regular hours. R=5, N=3.
+- Sessions: [2026-04-14 session 202]
+
+## H-1164: Information Ratio XS
+- Status: REJECTED (momentum proxy — corr 0.901)
+- Idea: Rolling 60d information ratio (alpha / tracking error vs equal-weight market).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.995, IS 50%, WF 1/3, SH 1.49/0.20 p=0.178, H-012 corr 0.901.
+- Notes: Nearly identical to momentum (corr 0.901). Info ratio in crypto XS = momentum in disguise.
+- Sessions: [2026-04-14 session 202]
+
+## H-1165: Upside Capture XS
+- Status: REJECTED (weak — p=0.384)
+- Idea: Asset return on market-up days / market return on up days (60d rolling).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.642, IS 50%, WF 2/3, SH 0.18/1.18 p=0.384, H-012 corr 0.076.
+- Notes: Weak signal. Low momentum correlation is interesting but insufficient significance.
+- Sessions: [2026-04-14 session 202]
+
+## H-1166: Downside Capture XS
+- Status: CONFIRMED (not deployed — corr 0.597 too high)
+- Idea: Asset return on market-down days / market return on down days (60d rolling). Low_long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.311, IS 50%, WF **3/3**, SH **1.36/1.27** p=**0.076**, H-012 corr 0.597.
+- Notes: Perfect WF 3/3, stable SH, significant p. But corr 0.597 with momentum — likely a momentum proxy. Low downside capture ≈ assets with recent outperformance. Not deployed.
+- Sessions: [2026-04-14 session 202]
+
+## H-1167: Up/Down Capture Ratio XS
+- Status: REJECTED (momentum proxy — corr 0.867)
+- Idea: Upside capture / downside capture ratio. High = more up, less down.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.149, IS 50%, WF 2/3, SH 1.80/0.10 p=0.120, H-012 corr 0.867.
+- Notes: Extreme momentum proxy (corr 0.867). SH collapse 1.80→0.10.
+- Sessions: [2026-04-14 session 202]
+
+## H-1168: Alpha Consistency XS
+- Status: REJECTED (momentum proxy — corr 0.694, weak IS)
+- Idea: Fraction of rolling 20d windows with positive alpha (excess vs market).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.388, IS 50%, WF 2/3, SH 0.52/0.20 p=0.599, H-012 corr 0.694.
+- Notes: Momentum proxy (0.694). Consistent alpha ≈ recent winners ≈ momentum.
+- Sessions: [2026-04-14 session 202]
+
+## H-1169: Tail Ratio XS
+- Status: REJECTED (WF 1/3, momentum proxy — corr 0.553)
+- Idea: 95th / |5th| percentile of 60d daily returns. Positive skew preference.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.420, IS 50%, WF 1/3, SH 2.34/0.18 p=0.055, H-012 corr 0.553.
+- Notes: Strong IS but WF 1/3 + SH collapse. Tail ratio is a momentum proxy in crypto.
+- Sessions: [2026-04-14 session 202]
+
+## H-1170: Max Favorable Excursion XS
+- Status: REJECTED (not significant — p=0.747)
+- Idea: Avg (high/open - 1) over 10 days. Higher = more intraday upside.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.238, IS 50%, WF 3/3, SH 1.17/-0.82 p=0.747, H-012 corr -0.090.
+- Notes: WF 3/3 but p=0.747 — pure noise. SH collapse. MFE has no XS predictive power.
+- Sessions: [2026-04-14 session 202]
+
+## H-1171: Autocorrelation Magnitude XS
+- Status: REJECTED (not significant — p=0.287)
+- Idea: |autocorrelation(1)| of 40d daily returns. Low autocorr = more random = outperform?
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.786, IS 37%, WF 2/3, SH 0.94/0.59 p=0.287, H-012 corr -0.153.
+- Notes: Low momentum correlation (-0.153) is promising direction but signal too weak.
+- Sessions: [2026-04-14 session 202]

@@ -201,6 +201,12 @@ RUNNERS = [
     ("H-1127", ROOT / "paper_trades" / "h1127_beta_stability" / "runner.py"),
     ("H-1135", ROOT / "paper_trades" / "h1135_extreme_return" / "runner.py"),
     ("H-1137", ROOT / "paper_trades" / "h1137_rsi_xs" / "runner.py"),
+    ("H-1154", ROOT / "paper_trades" / "h1154_price_channel" / "runner.py"),
+    ("H-1155", ROOT / "paper_trades" / "h1155_roc_divergence" / "runner.py"),
+    ("H-1156", ROOT / "paper_trades" / "h1156_ma_convergence" / "runner.py"),
+    ("H-1161", ROOT / "paper_trades" / "h1161_vpt_change" / "runner.py"),
+    ("H-1162", ROOT / "paper_trades" / "h1162_acceleration" / "runner.py"),
+    ("H-1163", ROOT / "paper_trades" / "h1163_on_intra_ratio" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

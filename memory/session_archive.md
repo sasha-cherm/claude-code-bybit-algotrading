@@ -1436,3 +1436,11 @@
 - Done: 120 runners (113→120). **46/113 positive** (41%). Avg **+0.32%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-884–H-891, TS stats)**: **1 CONFIRMED+deployed**: H-891 Up/Down Ratio (1.233, WF 4/5, corr 0.015). 7 REJECTED. **Batch 2 (H-892–H-899, volume dynamics)**: **4 CONFIRMED+deployed**: H-899 Vol Trend Persistence (**1.560**, WF **5/5 PERFECT**, p=0.030 — **session best**), H-898 CumVolDiv, H-892 Vol Acceleration, H-894 Vol-Price Corr. **Batch 3 (H-900–H-907, momentum refinements)**: **2 CONFIRMED+deployed**: H-902 Momentum Quality, H-900 TF Consistency. **907 total hypotheses.**
 - Next: Monitor runners. Explore on-chain data, sentiment APIs, ML ensembles.
 - Self-modifications: 7 runners created, added to orchestrator. Archived session 181.
+
+### Session 2026-04-13 review+deploy+research (session 192)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
+- Focus: Paper trade MTM (BTC $71,204), return shape/distribution (H-908–H-915), price structure/trend anatomy (H-916–H-923), volume-price coupling (H-924–H-931)
+- Done: 127 runners (120→127). **62/127 positive** (49%). Avg **+0.28%**. Demo ~$98,126 (-1.87%). 10 CONFIRMED, 7 deployed (H-914/H-915/H-916/H-917/H-927/H-929/H-931). **931 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 127 runners.
+- Questions added: none
+- Self-modifications: 7 runners created, added to orchestrator. Archived session 182. (session 192)
