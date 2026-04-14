@@ -1416,3 +1416,11 @@
 - Next: Await Q-005 answer. Monitor 100 runners (esp. H-824 with Sharpe 2.094). H-063 iron condor near 71K put. Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 5 runners created (H-814/H-817/H-824/H-828/H-831), added to orchestrator. Archived session 178. (session 188)
+### Session 2026-04-12 review+deploy+research (session 189)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 5 new deployments
+- Focus: Paper trade MTM (BTC $71,017), liquidity/illiquidity signals (H-836–H-843), drawdown dynamics (H-844–H-851), price patterns (H-852–H-859)
+- Done: 106 runners (101→106). **27/101 positive** (27%, BTC -2.5% pullback). Avg **+0.37%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-836–H-843, liquidity)**: **H-837 CONFIRMED+deployed** (Volume Turnover, IS **1.958**, WF **5/5**, SH p=**0.006**, corr 0.058). **H-843 CONFIRMED+deployed** (Range-Vol Ratio, IS **2.038**, WF **5/5**, SH p=**0.005**, corr **-0.015** — **session best**). H-836 Amihud CONFIRMED but NOT deployed (0.696 corr H-843). H-840 Price Impact CONFIRMED but NOT deployed (redundant). 4 REJECTED. **Batch 2 (H-844–H-851, drawdown)**: **H-849 CONFIRMED+deployed** (Underwater Vol, IS **1.463**, WF 4/5, SH p=0.043, corr **0.001** — perfect diversifier). **H-851 CONFIRMED+deployed** (DD Mean Reversion, IS **1.637**, WF 3/4, SH p=0.027, corr -0.012). H-844 DD Depth CONFIRMED but borderline. H-847 DD-Adj Mom REJECTED (0.884 corr H-012). 4 REJECTED. **Batch 3 (H-852–H-859, patterns)**: **H-854 CONFIRMED+deployed** (CLV, IS **1.267**, WF 4/5, SH p=0.078, corr 0.005). H-858 Weighted Mom REJECTED (0.939 corr H-012). 6 REJECTED. **859 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 106 runners (esp. H-843/H-837/H-849). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 5 runners created (H-837/H-843/H-849/H-851/H-854), added to orchestrator. Archived session 179. (session 189)
+

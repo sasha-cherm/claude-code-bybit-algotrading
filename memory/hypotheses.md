@@ -10924,3 +10924,219 @@
 - Result: IS Sharpe 0.869, WF 4/5, SH p=0.224, H-012 corr 0.001.
 - Notes: Good WF (4/5) and zero corr but not significant. Intraday CLV has some merit but too noisy for deployment.
 - Sessions: [2026-04-14 session 198]
+
+## H-1076: Rank Persistence (XS Rank Autocorrelation)
+- Status: REJECTED (SH fail)
+- Idea: Autocorrelation of asset's XS return rank over trailing 20d windows.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.393, IS 50%, WF 4/4, SH -0.05/1.14 p=0.584, H-012 corr -0.022.
+- Notes: Good WF but not significant. First half SH negative. Rank autocorrelation too noisy.
+- Sessions: [2026-04-14 session 199]
+
+## H-1077: Rank Change Momentum
+- Status: CONFIRMED (deployed to paper trade)
+- Idea: Change in asset's XS return rank (5d avg rank now vs 10d ago). Rising rank = improving performance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (R=5, N=4, high_long)
+- Result: IS Sharpe **1.390**, IS 37%, WF **3/4**, SH **1.756/0.926** p=**0.053**, H-012 corr **-0.031**.
+- Notes: Assets improving in XS rank outperform. Near-zero momentum correlation — captures something different from raw return momentum. SH stable.
+- Sessions: [2026-04-14 session 199]
+
+## H-1078: Outperformance Consistency
+- Status: CONFIRMED (deployed to paper trade)
+- Idea: Fraction of trailing 20 days where asset's return beat XS median. Consistent winners continue.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (R=7, N=3, high_long)
+- Result: IS Sharpe **1.239**, IS 50%, WF **3/4**, SH **1.270/1.222** p=**0.084**, H-012 corr **-0.014**.
+- Notes: Very stable SH (both halves ~1.25). Essentially persistence of relative performance. Zero momentum correlation.
+- Sessions: [2026-04-14 session 199]
+
+## H-1079: Pairwise Dominance Count
+- Status: REJECTED (not significant)
+- Idea: Fraction of other assets beaten over trailing 20d window.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.913, IS 50%, WF 3/4, SH 0.76/1.14 p=0.203, H-012 corr 0.008.
+- Notes: WF 3/4 but not significant. Pairwise dominance is essentially another way to compute rank.
+- Sessions: [2026-04-14 session 199]
+
+## H-1080: Catch-Up Factor (5d vs 30d Rank)
+- Status: CONFIRMED (not deployed — weak WF)
+- Idea: Ratio of 30d return rank to 5d return rank. Low ratio = catching up (recent improvement vs longer-term).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (low_long direction)
+- Result: IS Sharpe **1.412**, IS 50%, WF **2/4**, SH **1.958/0.682** p=**0.049**, H-012 corr **-0.066**.
+- Notes: Significant (p=0.049) but WF only 2/4 with -2.30 and -0.61 in recent folds. SH decays. Confirmed but not deployed — signal may be degrading.
+- Sessions: [2026-04-14 session 199]
+
+## H-1081: Relative Volume Surprise
+- Status: CONFIRMED (deployed to paper trade) — **SESSION BEST**
+- Idea: Asset's 5d/20d volume ratio minus cross-sectional mean. Assets with relative volume surge outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (R=7, N=4, high_long)
+- Result: IS Sharpe **1.923**, IS 50%, WF **4/4 PERFECT**, SH **1.970/1.898** p=**0.007**, H-012 corr **0.043**.
+- Notes: **Outstanding signal.** WF 4/4 PERFECT, p=0.007***, and SH remarkably stable (1.97/1.90 — both halves almost identical). Volume surge vs XS peers captures attention/capital flow. Low momentum correlation. Different from H-085 (Turnover Velocity) which compares asset's own vol windows — this measures RELATIVE surge vs peers.
+- Sessions: [2026-04-14 session 199]
+
+## H-1082: Rank Volatility
+- Status: REJECTED (not significant)
+- Idea: Std dev of asset's XS rank over trailing 20d. Stable rank = predictable performance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.457, IS 37%, WF 2/4, SH 0.04/1.11 p=0.524, H-012 corr 0.077.
+- Notes: Low-rank-volatility (low_long) marginally better but not significant. Rank stability doesn't predict returns.
+- Sessions: [2026-04-14 session 199]
+
+## H-1083: XS Distance from Median
+- Status: REJECTED (not significant)
+- Idea: Average daily return distance from XS median over 20d. Far from median = divergent.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.699, IS 50%, WF 3/4, SH 0.49/0.98 p=0.329, H-012 corr -0.005.
+- Notes: Not significant. Distance from XS median is too noisy.
+- Sessions: [2026-04-14 session 199]
+
+## H-1084: Return Entropy (Shannon)
+- Status: REJECTED (not significant)
+- Idea: Shannon entropy of discretized daily returns over trailing 30d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.328, IS 12%, WF 3/4, SH -0.60/1.75 p=0.650, H-012 corr -0.026.
+- Notes: Return entropy has no XS signal. Only 1/8 IS params positive.
+- Sessions: [2026-04-14 session 199]
+
+## H-1085: Positive Volume Ratio
+- Status: REJECTED (SH fail)
+- Idea: Volume on up days / total volume over 20d. Higher = buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.556, IS 50%, WF 4/4, SH -0.16/1.47 p=0.441, H-012 corr -0.087.
+- Notes: Good WF (4/4) and interesting negative momentum corr, but SH first half negative. Signal didn't work in first period.
+- Sessions: [2026-04-14 session 199]
+
+## H-1086: DD Recovery Speed
+- Status: REJECTED (weak WF)
+- Idea: Inverse of time to recover from drawdowns. Fast recovery = resilient.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.054, IS 50%, WF 2/4, SH 1.28/0.80 p=0.145, H-012 corr -0.012.
+- Notes: WF 2/4 and not significant. DD recovery speed is too noisy as XS signal.
+- Sessions: [2026-04-14 session 199]
+
+## H-1087: Return Kurtosis (Excess)
+- Status: CONFIRMED (deployed to paper trade)
+- Idea: Rolling 30d excess kurtosis. Low kurtosis (thin tails, stable returns) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (R=7, N=4, low_long)
+- Result: IS Sharpe **1.198**, IS 50%, WF **3/4**, SH **0.501/2.330** p=**0.097**, H-012 corr **0.019**.
+- Notes: Low-kurtosis assets outperform high-kurtosis. Second half SH much stronger (2.33). Near-zero momentum corr. Borderline but interesting distributional signal.
+- Sessions: [2026-04-14 session 199]
+
+## H-1088: Up-Move Efficiency
+- Status: REJECTED (not significant)
+- Idea: Avg return on up days / avg range on up days. Efficient gains = quality moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.436, IS 37%, WF 3/4, SH 0.13/0.84 p=0.546, H-012 corr -0.028.
+- Notes: Not significant. Up-move efficiency doesn't predict XS returns.
+- Sessions: [2026-04-14 session 199]
+
+## H-1089: Return Quantile Position
+- Status: REJECTED (not significant)
+- Idea: Where current 5d return sits in 60d return distribution. High quantile = extended.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.586, IS 37%, WF 3/4, SH 0.63/0.55 p=0.417, H-012 corr 0.014.
+- Notes: Not significant. Return quantile position has no XS edge.
+- Sessions: [2026-04-14 session 199]
+
+## H-1090: Consecutive Extreme Frequency
+- Status: CONFIRMED (deployed to paper trade)
+- Idea: Frequency of back-to-back extreme days (|ret| > 1.5σ) over 30d. Vol clustering leads to trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (R=7, N=3, high_long)
+- Result: IS Sharpe **2.397**, IS **100%** (8/8), WF **3/4**, SH **3.302/1.253** p=**0.001**, H-012 corr **-0.023**.
+- Notes: Strongest IS Sharpe this batch. 100% IS params positive. p=0.001***. Vol clustering (extreme days followed by more extreme days) captures trending/momentum behavior at the distributional level. Near-zero momentum corr — measures a different aspect of trends. SH decays from 3.30 to 1.25 but both halves strong.
+- Sessions: [2026-04-14 session 199]
+
+## H-1091: Overnight Return Share
+- Status: CONFIRMED (deployed to paper trade)
+- Idea: Share of total return earned overnight (close-to-open vs intraday). High overnight share = accumulation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (R=7, N=4, high_long)
+- Result: IS Sharpe **1.905**, IS **100%** (8/8), WF **4/4 PERFECT**, SH **2.647/1.114** p=**0.008**, H-012 corr **-0.016**.
+- Notes: **Star signal.** WF 4/4 PERFECT, IS 100%, p=0.008**. Assets where returns accrue overnight (vs intraday) continue to outperform. Overnight = less visible to retail, captures institutional/smart money accumulation. Zero momentum correlation.
+- Sessions: [2026-04-14 session 199]
+
+## H-1092: Momentum Term Structure Slope
+- Status: REJECTED (momentum proxy, corr 0.879)
+- Idea: Slope of momentum across 5/10/20/40/60d lookbacks. Positive slope = accelerating.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.296, IS 50%, WF 0/3, SH 0.67/-0.33 p=0.688, H-012 corr **0.879**.
+- Notes: 0.879 correlation with H-012 — just momentum measured differently. WF 0/3. No value.
+- Sessions: [2026-04-14 session 199]
+
+## H-1093: Vol Term Structure Curvature
+- Status: REJECTED (unstable)
+- Idea: Second derivative of vol across lookback windows (5d - 2×20d + 60d).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.557, IS 37%, WF 1/3, SH 0.91/0.09 p=0.451, H-012 corr -0.056.
+- Notes: Vol curvature has no reliable XS signal. WF 1/3.
+- Sessions: [2026-04-14 session 199]
+
+## H-1094: Multi-Horizon Sign Agreement
+- Status: REJECTED (momentum proxy, corr 0.652)
+- Idea: Fraction of lookback windows (5/10/20/40/60d) where return is positive.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.870, IS 50%, WF 2/3, SH 0.84/0.93 p=0.239, H-012 corr **0.652**.
+- Notes: High momentum correlation. Sign agreement is just another way to measure momentum.
+- Sessions: [2026-04-14 session 199]
+
+## H-1095: Lookback-Weighted Momentum
+- Status: REJECTED (momentum proxy, corr 0.574)
+- Idea: Exponentially-weighted average of standardized momentum across lookbacks.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.901, IS 50%, WF 2/3, SH 0.77/1.14 p=0.222, H-012 corr **0.574**.
+- Notes: Weighted momentum is still momentum. No independent signal.
+- Sessions: [2026-04-14 session 199]
+
+## H-1096: Acceleration Term Structure
+- Status: REJECTED (SH collapse)
+- Idea: Slope of momentum acceleration across lookback windows.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.116, IS 50%, WF **3/3**, SH **2.196/-0.481** p=0.131, H-012 corr 0.236.
+- Notes: WF 3/3 PERFECT but SH second half NEGATIVE (-0.48). Signal completely decayed in second period. Not robust.
+- Sessions: [2026-04-14 session 199]
+
+## H-1097: Multi-Horizon Sharpe
+- Status: REJECTED (momentum proxy, corr 0.732)
+- Idea: Average of (return/vol) across multiple lookback windows.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.927, IS 50%, WF 2/3, SH 1.34/0.35 p=0.209, H-012 corr **0.732**.
+- Notes: Very high momentum correlation. Risk-adjusted momentum is still momentum.
+- Sessions: [2026-04-14 session 199]
+
+## H-1098: Return Rank Stability
+- Status: REJECTED (not significant)
+- Idea: Mean absolute rank change across all lookback windows. Low stability = noisy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.625, IS 50%, WF 3/3, SH 0.70/0.55 p=0.397, H-012 corr 0.090.
+- Notes: WF 3/3 but not significant. Low momentum corr is appealing but IS too weak.
+- Sessions: [2026-04-14 session 199]
+
+## H-1099: Momentum Quality Score
+- Status: REJECTED (momentum proxy + SH collapse)
+- Idea: Sign agreement × return smoothness across multiple timeframes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.168, IS 62%, WF **3/3**, SH 1.91/0.22 p=0.114, H-012 corr **0.590**.
+- Notes: WF 3/3 but high momentum corr (0.590) and SH collapses (1.91→0.22). Just a dressed-up momentum signal.
+- Sessions: [2026-04-14 session 199]

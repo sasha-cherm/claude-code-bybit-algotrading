@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-14 session 198):
-Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,089. 13 open positions.
+### Current Demo Status (as of 2026-04-14 session 199):
+Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,354. 13 open positions.
 
 ---
 
@@ -1261,3 +1261,45 @@ Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,089. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h902_momentum_quality/runner.py`
 - **Params**: P=14, R=7, N=3. IS Sharpe 1.598, WF 3/5, SH p=0.026. H-012 corr -0.017. Risk-adjusted momentum.
+
+### H-1077: Rank Change Momentum XS (session 199)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). LONG: OP, ADA, ATOM, ARB. SHORT: ETH, XRP, BTC, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1077_rank_change_mom/runner.py`
+- **Params**: R=5, N=4. IS Sharpe 1.390, WF 3/4, SH p=0.053. H-012 corr -0.031. Rising XS rank = improving.
+
+### H-1078: Outperformance Consistency XS (session 199)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 6 positions (3L/3S). LONG: ETH, BTC, ARB. SHORT: AVAX, DOT, OP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1078_outperf_consistency/runner.py`
+- **Params**: R=7, N=3. IS Sharpe 1.239, WF 3/4, SH p=0.084. H-012 corr -0.014. Very stable SH (1.27/1.22).
+
+### H-1081: Relative Volume Surprise XS (session 199) — SESSION BEST
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). LONG: ARB, DOT, BTC, OP. SHORT: ADA, AVAX, ATOM, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1081_rel_vol_surprise/runner.py`
+- **Params**: R=7, N=4. IS Sharpe **1.923**, WF **4/4 PERFECT**, SH p=**0.007**. H-012 corr 0.043. SH 1.97/1.90 (remarkable stability). Volume surge relative to XS peers.
+
+### H-1087: Return Kurtosis XS (session 199)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). LONG: AVAX, LINK, BTC, ADA. SHORT: SUI, NEAR, ATOM, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1087_return_kurtosis/runner.py`
+- **Params**: R=7, N=4, low_long. IS Sharpe 1.198, WF 3/4, SH p=0.097. H-012 corr 0.019. Thin-tailed returns outperform.
+
+### H-1090: Consecutive Extreme Frequency XS (session 199)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 6 positions (3L/3S). LONG: BTC, OP, NEAR. SHORT: AVAX, ARB, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1090_consec_extreme/runner.py`
+- **Params**: R=7, N=3. IS Sharpe **2.397**, IS 100%, WF 3/4, SH p=**0.001**. H-012 corr -0.023. Vol clustering → trending.
+
+### H-1091: Overnight Return Share XS (session 199)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). LONG: BTC, ETH, SOL, SUI. SHORT: NEAR, OP, ARB, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1091_overnight_share/runner.py`
+- **Params**: R=7, N=4. IS Sharpe **1.905**, IS 100%, WF **4/4 PERFECT**, SH p=**0.008**. H-012 corr -0.016. Overnight accumulation signal.

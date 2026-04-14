@@ -189,6 +189,12 @@ RUNNERS = [
     ("H-1065", ROOT / "paper_trades" / "h1065_oi_rank_stability" / "runner.py"),
     ("H-1068", ROOT / "paper_trades" / "h1068_intraday_vol_ratio" / "runner.py"),
     ("H-1071", ROOT / "paper_trades" / "h1071_range_expansion" / "runner.py"),
+    ("H-1077", ROOT / "paper_trades" / "h1077_rank_change_mom" / "runner.py"),
+    ("H-1078", ROOT / "paper_trades" / "h1078_outperf_consistency" / "runner.py"),
+    ("H-1081", ROOT / "paper_trades" / "h1081_rel_vol_surprise" / "runner.py"),
+    ("H-1087", ROOT / "paper_trades" / "h1087_return_kurtosis" / "runner.py"),
+    ("H-1090", ROOT / "paper_trades" / "h1090_consec_extreme" / "runner.py"),
+    ("H-1091", ROOT / "paper_trades" / "h1091_overnight_share" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"
