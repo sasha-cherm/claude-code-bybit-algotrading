@@ -1,17 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,354.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,748.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 176 runners active. Session 200. **78/173 positive** (45%), avg **+0.44%**.
+- **Internal paper trades:** 179 runners active. Session 201. **94/176 positive** (53%), avg **+0.40%**.
 - **H-063**: ~$9,730 (-2.70%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,748, near call strike.
-- **Top performers**: H-277(+7.17%), H-353(+7.07%), H-754(+6.41%), H-332(+5.60%), H-496(+4.92%).
-- **Session 200 research**: 24 new hypotheses (H-1100–H-1123). **3 CONFIRMED** (3 deployed: H-1100/H-1102/H-1116). **1123 total hypotheses.**
-- **H-1100 Amihud Illiquidity**: IS Sharpe **1.609**, WF **3/3**, SH **1.41/1.83** p=**0.030**, corr 0.471. **SESSION BEST** — liquidity premium (long liquid, short illiquid).
-- **H-1102 Kyle Lambda**: IS Sharpe **1.218**, WF **3/3**, SH 0.39/2.08 p=**0.099**, corr 0.295. Market depth proxy — deep markets outperform.
-- **Key findings**: Liquidity premium exists in crypto XS (Amihud + Kyle Lambda both work as low_long). Factor interactions are WORTHLESS — ALL 8 z(A)×z(B) combinations failed. Regime conditioning doesn't improve momentum — adaptive lookback, correlation adjustment, crash protection, breadth conditioning all fail or are pure momentum proxies (corr 0.84-0.89).
-- **AUTOMATED:** Paper trades hourly via cron (173 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 176 runners (esp. H-1100/H-1102 liquidity premium). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.41%), H-332(+5.60%).
+- **Session 201 research**: 24 new hypotheses (H-1124–H-1147). **3 CONFIRMED** (3 deployed: H-1127/H-1135/H-1137). **1147 total hypotheses.**
+- **H-1135 Extreme Return Reversal**: IS Sharpe **1.836**, WF **4/4 PERFECT**, IS **100%**, SH **2.08/1.59** p=**0.011**, corr **-0.002**. **SESSION BEST** — contrarian extreme reversal works (buy extreme losers, short extreme winners).
+- **H-1137 RSI XS**: IS Sharpe **1.552**, WF **3/4**, SH **1.59/1.54** p=**0.032**, corr 0.021. Remarkably stable SH — RSI captures momentum aspect uncorrelated with H-012.
+- **H-1127 Beta Stability**: IS Sharpe 1.151, WF **3/3 PERFECT**, SH 0.71/1.60 p=0.119, corr **0.089**. Borderline p but perfect WF + very independent.
+- **Key findings**: Correlation structure signals are UNRELIABLE — BTC correlation, pairwise correlation, downside correlation all fail with massive SH collapse. Lead-lag signals DON'T WORK in crypto XS — information propagates same-day. H-1144=H-1147 (synchronicity ≡ 1-idio ratio). Short-term extreme reversal is a genuine new factor. RSI is an independent momentum measure.
+- **AUTOMATED:** Paper trades hourly via cron (179 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 179 runners (esp. H-1135/H-1137/H-1127 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -23,15 +24,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 190) archived to `memory/session_archive.md`._
-
-### Session 2026-04-13 review+deploy+research (session 191)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
-- Focus: Paper trade MTM (BTC $71,393), time-series statistics (H-884–H-891), volume dynamics (H-892–H-899), momentum refinements (H-900–H-907)
-- Done: 120 runners (113→120). **46/113 positive** (41%). Avg **+0.32%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-884–H-891, TS stats)**: **1 CONFIRMED+deployed**: H-891 Up/Down Ratio (1.233, WF 4/5, corr 0.015). 7 REJECTED. Hurst/AR1/VoV/MAE/Parkinson/CVaR all fail — time-series statistics have no XS predictive power. **Batch 2 (H-892–H-899, volume dynamics)**: **4 CONFIRMED+deployed**: H-899 Vol Trend Persistence (**1.560**, WF **5/5 PERFECT**, p=0.030, corr -0.048 — **session best**), H-898 CumVolDiv (1.713, WF 4/5, p=0.018, corr -0.008), H-892 Vol Acceleration (1.455, WF 3/4, p=0.045, corr -0.026), H-894 Vol-Price Corr (1.314, WF 4/5, p=0.067, corr 0.048). RVOL IS 1.798 but WF 0/4. 4 REJECTED. **Batch 3 (H-900–H-907, momentum refinements)**: **2 CONFIRMED+deployed**: H-902 Momentum Quality (1.598, WF 3/5, p=0.026, corr -0.017), H-900 TF Consistency (1.460, WF 3/4, p=0.044, corr -0.004). H-904 Direction Count CONFIRMED not deployed (redundant H-891). H-903 RetDisp IS 2.108 but WF 1/4. 5 REJECTED. **907 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 120 runners (esp. H-899/H-898/H-902 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 7 runners created (H-891/H-892/H-894/H-898/H-899/H-900/H-902), added to orchestrator. Archived session 181. (session 191)
+_Older sessions (bootstrap through 191) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-13 review+deploy+research (session 192)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
@@ -104,3 +97,11 @@ _Older sessions (bootstrap through 190) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 176 runners (esp. H-1100/H-1102 liquidity premium). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 3 runners created (H-1100/H-1102/H-1116), added to orchestrator. Archived session 190. (session 200)
+
+### Session 2026-04-14 review+deploy+research (session 201)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $74,748), correlation/co-movement (H-1124–H-1131), short-term reversal (H-1132–H-1139), lead-lag/spillover (H-1140–H-1147)
+- Done: 179 runners (176→179). **94/176 positive** (53%, up from 45%). Avg **+0.40%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1124–H-1131, correlation)**: **H-1127 CONFIRMED+deployed** (Beta Stability, IS 1.151, WF **3/3 PERFECT**, p=0.119, corr **0.089** — borderline p but perfect WF + very independent). 7 REJECTED. Correlation signals are UNRELIABLE — BTC corr, pairwise corr, downside corr all fail with massive SH collapse (2.49→-2.12). Residual momentum doesn't exist. **Batch 2 (H-1132–H-1139, reversal)**: **H-1135 CONFIRMED+deployed** (Extreme Return Reversal, IS **1.836**, WF **4/4 PERFECT**, IS **100%**, p=**0.011**, corr **-0.002** — **SESSION BEST**). **H-1137 CONFIRMED+deployed** (RSI XS, IS **1.552**, WF **3/4**, SH **1.59/1.54** p=**0.032**, corr 0.021). 6 REJECTED/BORDERLINE. Short-term extreme reversal is a genuine new factor. RSI is independent momentum measure. **Batch 3 (H-1140–H-1147, lead-lag)**: **ALL 8 REJECTED**. Lead-lag signals DON'T WORK in crypto XS — information propagates same-day. H-1144=H-1147 (identical). BTC lag, ETH spread, residual persistence, large-cap lead all fail. **1147 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 179 runners (esp. H-1135/H-1137/H-1127 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 3 runners created (H-1127/H-1135/H-1137), added to orchestrator. Archived session 191. (session 201)

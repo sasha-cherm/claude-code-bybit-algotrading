@@ -11356,3 +11356,222 @@
 - Result: IS Sharpe 0.771, IS 50%, WF **3/3** [1.48, 1.19, 0.65], SH 0.31/1.40 p=0.296, H-012 corr 0.648.
 - Notes: WF 3/3 is promising but IS too weak and not significant. SH first half is 0.31. Factor rotation adds instability. Corr 0.648 — mostly momentum.
 - Sessions: [2026-04-14 session 200]
+
+## H-1124: BTC Correlation (30d rolling)
+- Status: REJECTED (WF 1/3, SH collapse)
+- Idea: Low BTC-correlated assets are more idiosyncratic and outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.406, IS 37%, WF 1/3, SH 2.49/-2.12 p=0.582, H-012 corr 0.014.
+- Notes: Massive split-half collapse (2.49 → -2.12). BTC correlation is NOT a reliable XS signal.
+- Sessions: [2026-04-14 session 201]
+
+## H-1125: Average Pairwise Correlation
+- Status: REJECTED (WF 1/3, momentum proxy)
+- Idea: Assets with low average pairwise correlation are more independent and outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.795, IS 50%, WF 1/3, SH 1.97/-1.12 p=0.282, H-012 corr 0.540.
+- Notes: High momentum correlation (0.54). SH collapse. Correlated assets may just be large-cap momentum leaders.
+- Sessions: [2026-04-14 session 201]
+
+## H-1126: Correlation Change (30d-60d)
+- Status: REJECTED (WF 0/3)
+- Idea: Assets decoupling from BTC (falling correlation) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.374, IS 50%, WF 0/3, SH 2.22/-2.49 p=0.613, H-012 corr 0.092.
+- Notes: WF 0/3 — zero OOS confirmation. Worst SH collapse in batch (2.22 → -2.49).
+- Sessions: [2026-04-14 session 201]
+
+## H-1127: Beta Stability
+- Status: CONFIRMED (WF 3/3 PERFECT, deployed)
+- Idea: Assets with stable BTC beta (low std of rolling beta) outperform. Predictable risk = lower risk premium demanded.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: Std of rolling 20d beta estimates over 60d window. Low_long: long stable beta.
+- Result: IS Sharpe 1.151, IS 50%, WF **3/3** [1.33, 2.19, 0.28], SH 0.71/1.60 p=0.119, H-012 corr 0.089.
+- Notes: Perfect WF despite marginal p-value. Very low momentum correlation (0.089). SH improving (0.71→1.60). Deployed borderline — signal is strengthening over time.
+- Sessions: [2026-04-14 session 201]
+
+## H-1128: Downside Correlation with BTC
+- Status: REJECTED (WF 0/3)
+- Idea: Assets with low downside correlation with BTC (crash hedges) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.230, IS 50%, WF 0/3, SH 1.21/-0.89 p=0.755, H-012 corr 0.028.
+- Notes: Downside correlation has no XS predictive power. Everything crashes together in crypto.
+- Sessions: [2026-04-14 session 201]
+
+## H-1129: Tail Co-occurrence with BTC
+- Status: REJECTED (WF 1/3)
+- Idea: Assets rarely in bottom quartile when BTC is (low tail co-occurrence) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.951, IS 87%, WF 1/3, SH 1.67/-0.05 p=0.198, H-012 corr -0.160.
+- Notes: Strong IS (87% positive, interesting negative mom corr) but fails WF. SH collapse to near-zero.
+- Sessions: [2026-04-14 session 201]
+
+## H-1130: Correlation Dispersion
+- Status: REJECTED (borderline, p=0.303)
+- Idea: Assets with varied pairwise correlations (high dispersion = diversifier) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.760, IS 50%, WF 2/3 [1.49, -0.51, 0.59], SH 0.78/0.76 p=0.303, H-012 corr 0.259.
+- Notes: Stable SH but weak overall. Moderate momentum correlation.
+- Sessions: [2026-04-14 session 201]
+
+## H-1131: Residual Momentum (beta-adjusted)
+- Status: REJECTED (WF 1/3, weak IS)
+- Idea: Cumulative alpha (after BTC beta removal) over 60d predicts future returns.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.169, IS 25%, WF 1/3, SH -0.17/0.78 p=0.819, H-012 corr 0.132.
+- Notes: Alpha momentum doesn't exist in crypto XS. After removing BTC beta, residual return has no predictive power.
+- Sessions: [2026-04-14 session 201]
+
+## H-1132: 1-Day Return Reversal
+- Status: REJECTED (borderline — WF 3/4 but p=0.148, SH collapse)
+- Idea: Yesterday's XS losers outperform today (overnight reversal).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.046, IS 50%, WF 3/4 [1.95, 0.63, -0.24, 0.48], SH 1.82/0.05 p=0.148, H-012 corr -0.033.
+- Notes: SH collapses from 1.82 to 0.05 — first-half is strong but recent period is flat. Reversal signal may be decaying.
+- Sessions: [2026-04-14 session 201]
+
+## H-1133: 3-Day Return Reversal
+- Status: REJECTED (WF 2/4, p=0.173)
+- Idea: 3-day cumulative XS return reversal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.985, IS 33%, WF 2/4 [-2.92, 1.92, -0.35, 1.87], SH 1.00/0.98 p=0.173, H-012 corr -0.001.
+- Notes: Very volatile WF (-2.92 to 1.92). Stable SH but not significant. Zero momentum correlation.
+- Sessions: [2026-04-14 session 201]
+
+## H-1134: 5-Day Return (Continuation)
+- Status: REJECTED (weak IS, p=0.552)
+- Idea: 5-day return continuation or reversal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.429, IS 33%, WF 2/4, SH 0.22/0.76 p=0.552, H-012 corr 0.002.
+- Notes: Best as continuation (high_long) not reversal. Very weak overall.
+- Sessions: [2026-04-14 session 201]
+
+## H-1135: Extreme Return Reversal
+- Status: CONFIRMED (WF 4/4 PERFECT, deployed — SESSION BEST)
+- Idea: Extreme losers (5d return z < -2) bounce back, extreme winners mean-revert.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: 5d return z-score (vs 20d vol), zero when |z| < 2. Low_long: buy extreme losers.
+- Result: IS Sharpe **1.836**, IS **100%** (12/12), WF **4/4** [1.43, 2.54, 1.06, 2.60], SH **2.08/1.59** p=**0.011**, H-012 corr **-0.002**.
+- Notes: **STAR**. Perfect WF, 100% IS positive, near-zero momentum correlation, very stable SH. Contrarian extreme reversal is a genuine factor in crypto XS. R=3, N=3.
+- Sessions: [2026-04-14 session 201]
+
+## H-1136: Volume-Weighted Reversal
+- Status: REJECTED (SH collapse 1.80/-0.34)
+- Idea: 5d return weighted by relative volume (capitulation signal reversal).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.873, IS 41%, WF 3/4, SH 1.80/-0.34 p=0.227, H-012 corr 0.027.
+- Notes: SH collapse — signal doesn't persist into recent period. Volume weighting doesn't improve reversal.
+- Sessions: [2026-04-14 session 201]
+
+## H-1137: RSI Cross-Sectional
+- Status: CONFIRMED (WF 3/4, deployed)
+- Idea: High RSI(14) assets continue outperforming (momentum via RSI).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Logic: 14-day RSI ranked cross-sectionally. High_long: long highest RSI.
+- Result: IS Sharpe **1.552**, IS 50%, WF **3/4** [0.47, 1.69, 2.49, -1.18], SH **1.59/1.54** p=**0.032**, H-012 corr 0.021.
+- Notes: Remarkably stable split-half (1.59/1.54). Nearly zero momentum correlation despite being a momentum-like signal — RSI captures different aspect (bounded, mean-reverting). R=3, N=3.
+- Sessions: [2026-04-14 session 201]
+
+## H-1138: Distance to 20d High
+- Status: REJECTED (borderline — WF 4/4 but p=0.296)
+- Idea: Assets closest to 20d high (momentum) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.755, IS 41%, WF **4/4** [2.22, 2.19, 0.44, 0.04], SH 0.06/1.60 p=0.296, H-012 corr 0.014.
+- Notes: WF 4/4 perfect but IS too weak (p=0.296). SH 0.06 in first half — signal only works recently. Not significant enough.
+- Sessions: [2026-04-14 session 201]
+
+## H-1139: Intraday Return Signal
+- Status: REJECTED (weak IS, p=0.498)
+- Idea: Assets with positive intraday returns (close > open) over 5 days continue outperforming.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.490, IS 41%, WF 2/4, SH 0.30/0.76 p=0.498, H-012 corr -0.001.
+- Notes: Weak signal. Intraday return has minimal XS predictive power.
+- Sessions: [2026-04-14 session 201]
+
+## H-1140: BTC Lagged Return × Beta
+- Status: REJECTED (WF 1/3 — overfit)
+- Idea: When BTC rises, high-beta alts follow next day. Short when BTC falls.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.760, IS 50%, WF 1/3 [-4.42, 1.04, -1.46], SH 2.67/0.62 p=0.017, H-012 corr -0.154.
+- Notes: Strong IS + significant p-value but WF 1/3 — classic overfit. Lead-lag effect doesn't persist out of sample.
+- Sessions: [2026-04-14 session 201]
+
+## H-1141: ETH-BTC Spread Momentum
+- Status: REJECTED (weak IS, SH collapse)
+- Idea: ETH/BTC ratio momentum × asset beta as risk-on/off indicator.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.459, IS 50%, WF 2/3, SH 1.62/-1.00 p=0.534, H-012 corr 0.305.
+- Notes: ETH/BTC spread has no reliable XS signal. SH collapse. 97% max DD in worst config.
+- Sessions: [2026-04-14 session 201]
+
+## H-1142: Residual Return Persistence (5d)
+- Status: REJECTED (weak IS, SH collapse)
+- Idea: Short-term (5d) cumulative residual after BTC beta removal predicts.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.444, IS 50%, WF 2/3, SH 1.05/-0.56 p=0.547, H-012 corr 0.220.
+- Notes: Residual momentum fails at both 5d (here) and 60d (H-1131). Alpha is not persistent.
+- Sessions: [2026-04-14 session 201]
+
+## H-1143: Large-Cap Lead Signal
+- Status: REJECTED (borderline, p=0.237)
+- Idea: Top-3 market cap return × beta predicts smaller cap returns next period.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.872, IS 37%, WF 2/3, SH 1.43/0.03 p=0.237, H-012 corr 0.214.
+- Notes: SH collapse to 0.03. Large-cap lead effect doesn't persist in recent data.
+- Sessions: [2026-04-14 session 201]
+
+## H-1144: Return Synchronicity (R²)
+- Status: REJECTED (WF 1/3, momentum proxy, = H-1147)
+- Idea: Low R² with market = more independent info = outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.032, IS 50%, WF 1/3, SH 2.13/-0.56 p=0.162, H-012 corr 0.548.
+- Notes: Identical to H-1147 (idio ratio = 1 - R²). High momentum correlation (0.548). SH collapse.
+- Sessions: [2026-04-14 session 201]
+
+## H-1145: Volume Lead-Lag (BTC vol → alt returns)
+- Status: REJECTED (WF 1/3)
+- Idea: BTC volume spikes predict next-day alt returns via beta.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.846, IS 50%, WF 1/3, SH 1.01/0.65 p=0.252, H-012 corr 0.268.
+- Notes: Volume lead-lag doesn't work. Information propagates same-day in crypto.
+- Sessions: [2026-04-14 session 201]
+
+## H-1146: Cross-Momentum Sensitivity
+- Status: REJECTED (WF 1/3)
+- Idea: Assets less sensitive to market momentum outperform (defensive).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.950, IS 50%, WF 1/3, SH 1.25/0.61 p=0.198, H-012 corr 0.160.
+- Notes: Low sensitivity ≈ low beta ≈ already tested in other forms. WF 1/3.
+- Sessions: [2026-04-14 session 201]
+
+## H-1147: Idiosyncratic Volatility Ratio
+- Status: REJECTED (= H-1144 duplicate, WF 1/3)
+- Idea: High idio vol / total vol assets (more asset-specific risk) outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.032, IS 50%, WF 1/3, SH 2.13/-0.56 p=0.162, H-012 corr 0.548.
+- Notes: Identical results to H-1144 (R²). Idio ratio = 1 - synchronicity. High momentum correlation. Both fail.
+- Sessions: [2026-04-14 session 201]

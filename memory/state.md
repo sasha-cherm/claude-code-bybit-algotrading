@@ -10,7 +10,7 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-14 session 200):
+### Current Demo Status (as of 2026-04-14 session 201):
 Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,748. 13 open positions.
 
 ---
@@ -842,17 +842,17 @@ Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,748. 13 open positions.
 - **Runner**: `paper_trades/h763_mom_vol_ratio/runner.py`
 - **Params**: M20_V20_R5_N4. IS Sharpe 1.239, WF 3/5, SH p=0.085. H-012 corr 0.027.
 
-## Portfolio Summary (mark-to-market 2026-04-12 session 185)
-- **Bybit Demo**: ~$95,490 (-4.51%, BTC $73,335).
-- **Total internal MTM (87 runners)**: 87 runners (83+4 new). **32/83 positive** (39%). Avg PnL **-0.15%**.
-- **Top performers**: H-169(+5.13%), H-049(+4.98%), H-085(+4.51%), H-193(+4.43%), H-411(+4.09%), H-244(+4.04%), H-019(+3.47%), H-277(+3.45%), H-059(+3.26%), H-353(+3.25%)
-- **H-063**: ~$9,659 (-3.41%). Iron condor (70K/75.5K) expires Apr 13 — BTC at $73,335 is within strikes.
-- **Worst performers**: H-191(-6.51%), H-197(-6.35%), H-053(-5.38%), H-223(-3.92%), H-062(-3.89%)
-- **Research (session 185)**: 24 new hypotheses (H-740–H-763). **4 deployed** (H-754 Lead-Lag, H-759 ADX Trend, H-761 Gap Signal, H-763 Mom-Vol Ratio). **763 total hypotheses.**
-- **Key findings**: (1) Residual/idiosyncratic signals completely fail in crypto — market factor too dominant, residuals are noise. (2) Correlation dynamics mostly fail — crypto is too correlated for meaningful cross-asset correlation signals. (3) ADX Trend Strength (Sharpe 1.723, WF 5/5) is the best new signal. (4) Lead-Lag is a novel microstructure signal with near-zero momentum correlation.
-- **Meta-conclusions**: Factor model-based signals (CAPM residuals, idio vol, beta decomposition) don't apply to crypto. Trend strength, overnight gaps, and lead-lag relationships are the new productive categories.
-- **AUTOMATED:** Paper trades hourly via cron (87 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor all paper trades (esp. new 4). H-063 iron condor expires tomorrow. Explore non-price data or multi-timeframe combinations.
+## Portfolio Summary (mark-to-market 2026-04-14 session 201)
+- **Bybit Demo**: ~$98,190 (-1.81%, BTC $74,748).
+- **Total internal MTM (179 runners)**: 179 runners (176+3 new). **94/176 positive** (53%). Avg PnL **+0.40%**.
+- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.41%), H-332(+5.60%), H-169(+5.13%), H-496(+4.92%), H-085(+4.51%), H-193(+4.43%), H-435(+4.34%)
+- **H-063**: ~$9,730 (-2.70%). Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,748.
+- **Worst performers**: H-191(-6.51%), H-183(-6.16%), H-759(-6.11%), H-053(-5.38%), H-182(-5.01%)
+- **Research (session 201)**: 24 new hypotheses (H-1124–H-1147). **3 deployed** (H-1127/H-1135/H-1137). **1147 total hypotheses.**
+- **Key findings**: (1) Correlation structure signals FAIL in crypto XS — BTC corr, pairwise corr, downside corr all have massive SH collapse. (2) Lead-lag signals DON'T WORK — information propagates same-day. (3) Short-term extreme reversal IS a genuine factor (H-1135 star, Sharpe 1.836, WF 4/4, zero mom corr). (4) RSI is an independent momentum measure uncorrelated with 60d return momentum.
+- **Meta-conclusions**: Crypto XS alpha comes from: momentum, size, volume dynamics, volatility structure, reversal extremes, RSI, and liquidity. Correlation-based and lead-lag signals fail. 1147 hypotheses tested, ~85 deployed as runners.
+- **AUTOMATED:** Paper trades hourly via cron (179 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 179 runners (esp. H-1135/H-1137/H-1127 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Target Portfolio Allocation — OLD 5-strat (baseline)
@@ -1303,3 +1303,45 @@ Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,748. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h1091_overnight_share/runner.py`
 - **Params**: R=7, N=4. IS Sharpe **1.905**, IS 100%, WF **4/4 PERFECT**, SH p=**0.008**. H-012 corr -0.016. Overnight accumulation signal.
+
+### H-1100: Amihud Illiquidity XS (session 200)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). Initial entry.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1100_amihud_illiq/runner.py`
+- **Params**: R=5, N=4, dir=low_long. IS Sharpe **1.609**, WF **3/3**, SH 1.41/1.83 p=**0.030**. H-012 corr 0.471. Liquidity premium.
+
+### H-1102: Kyle Lambda XS (session 200)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). Initial entry.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1102_kyle_lambda/runner.py`
+- **Params**: R=5, N=4, dir=low_long. IS Sharpe 1.218, WF **3/3**, SH 0.39/2.08 p=0.099. H-012 corr 0.295. Market depth proxy.
+
+### H-1116: Dispersion-Timed Momentum XS (session 200)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). Initial entry.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1116_disp_timed_mom/runner.py`
+- **Params**: R=7, N=4, dir=high_long. IS Sharpe 1.293, WF 2/3, p=0.080. H-012 corr 0.635. Marginal.
+
+### H-1127: Beta Stability XS (session 201)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 8 positions (4L/4S). LONG: BTC, ETH, ATOM, SUI. SHORT: OP, ARB, NEAR, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1127_beta_stability/runner.py`
+- **Params**: R=5, N=4, dir=low_long. IS Sharpe 1.151, WF **3/3 PERFECT**, SH 0.71/1.60 p=0.119. H-012 corr **0.089**. Stable beta = lower risk.
+
+### H-1135: Extreme Return Reversal XS (session 201) — SESSION BEST
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 6 positions (3L/3S). LONG: BTC, ETH, SOL. SHORT: OP, ARB, ATOM.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1135_extreme_return/runner.py`
+- **Params**: R=3, N=3, dir=low_long. IS Sharpe **1.836**, IS **100%**, WF **4/4 PERFECT**, SH **2.08/1.59** p=**0.011**. H-012 corr **-0.002**. Contrarian extreme reversal.
+
+### H-1137: RSI Cross-Sectional XS (session 201)
+- **Status**: LIVE paper trade (started 2026-04-14)
+- **Position**: 6 positions (3L/3S). LONG: NEAR, ARB, BTC. SHORT: SOL, ADA, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1137_rsi_xs/runner.py`
+- **Params**: R=3, N=3, dir=high_long. IS Sharpe **1.552**, WF **3/4**, SH **1.59/1.54** p=**0.032**. H-012 corr 0.021. Independent momentum via RSI.

@@ -1429,3 +1429,10 @@
 - Focus: Paper trade MTM (BTC $70,949), return decomposition/quality (H-860–H-867), short-term reversal (H-868–H-875), technical indicator XS (H-876–H-883)
 - Done: 114 runners (106→114). **43/106 positive** (40%). Avg **+0.24%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-860–H-867, return quality)**: **5 CONFIRMED+deployed**: H-864 Conditional Momentum, H-867 Max Gain Dep, H-866 VW Return Div, H-873 Dist High, H-861 Downside Protect. **Batch 2 (H-868–H-875, reversal)**: 1 CONFIRMED. Mean reversion FAILS in crypto XS. **Batch 3 (H-876–H-883, technical)**: 2 CONFIRMED: H-878 Stochastic, H-882 EMV. **883 total hypotheses.**
 
+
+### Session 2026-04-13 review+deploy+research (session 191)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
+- Focus: Paper trade MTM (BTC $71,393), time-series statistics (H-884–H-891), volume dynamics (H-892–H-899), momentum refinements (H-900–H-907)
+- Done: 120 runners (113→120). **46/113 positive** (41%). Avg **+0.32%**. Demo ~$98,017 (-1.96%). **Batch 1 (H-884–H-891, TS stats)**: **1 CONFIRMED+deployed**: H-891 Up/Down Ratio (1.233, WF 4/5, corr 0.015). 7 REJECTED. **Batch 2 (H-892–H-899, volume dynamics)**: **4 CONFIRMED+deployed**: H-899 Vol Trend Persistence (**1.560**, WF **5/5 PERFECT**, p=0.030 — **session best**), H-898 CumVolDiv, H-892 Vol Acceleration, H-894 Vol-Price Corr. **Batch 3 (H-900–H-907, momentum refinements)**: **2 CONFIRMED+deployed**: H-902 Momentum Quality, H-900 TF Consistency. **907 total hypotheses.**
+- Next: Monitor runners. Explore on-chain data, sentiment APIs, ML ensembles.
+- Self-modifications: 7 runners created, added to orchestrator. Archived session 181.
