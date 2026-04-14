@@ -15,5 +15,22 @@
       "ATOM"
     ],
     "equity": 9995.0
+  },
+  {
+    "type": "rebalance",
+    "time": "2026-04-14T00:36:38.862789+00:00",
+    "longs": [
+      "ETH",
+      "LINK",
+      "NEAR",
+      "ARB"
+    ],
+    "shorts": [
+      "SOL",
+      "SUI",
+      "ADA",
+      "ATOM"
+    ],
+    "equity": 10089.11
   }
 ]

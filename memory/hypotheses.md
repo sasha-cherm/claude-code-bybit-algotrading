@@ -10708,3 +10708,219 @@
 - Result: IS Sharpe **1.581**, WF **3/4**, SH p=**0.033**, H-012 corr **0.070**. Split-half: 2.180/0.787 (both positive).
 - Notes: Volume momentum spread captures accelerating institutional attention. Low momentum corr. Distinct from H-1046 (duration vs acceleration).
 - Sessions: [2026-04-14 session 197]
+
+## H-1052: Funding Rate Velocity XS
+- Status: REJECTED
+- Idea: Rate of change of rolling avg funding rate (short minus long MA). Rising funding = bullish leverage.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.621, WF 2/4, SH p=0.396, H-012 corr -0.020. Split-half: 1.242/-0.291.
+- Notes: Funding velocity has weak IS and collapses in second half. No cross-sectional predictive power.
+- Sessions: [2026-04-14 session 198]
+
+## H-1053: Funding Rate Dispersion XS
+- Status: REJECTED
+- Idea: Per-asset distance from cross-sectional mean funding rate. High = outlier sentiment.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.409, WF 2/4, SH p=0.574, H-012 corr -0.015.
+- Notes: Funding dispersion too noisy for XS ranking. No statistical significance.
+- Sessions: [2026-04-14 session 198]
+
+## H-1054: Funding Rate Mean Reversion XS
+- Status: REJECTED
+- Idea: Contrarian z-score of funding rate. Extreme high funding → short, extreme low → long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.224, WF 2/4, SH p=0.759, H-012 corr -0.033.
+- Notes: Funding mean reversion fails as XS signal. Funding extremes don't predict cross-sectional returns.
+- Sessions: [2026-04-14 session 198]
+
+## H-1055: Funding-OI Interaction XS
+- Status: REJECTED
+- Idea: Funding × OI change interaction. High funding + rising OI = crowded trade → contrarian short.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.033, WF 1/4, SH p=0.156, H-012 corr -0.009. Split-half: 2.534/-1.177 (collapses).
+- Notes: Best IS in funding batch but terrible WF and SH collapse. Classic overfit.
+- Sessions: [2026-04-14 session 198]
+
+## H-1056: Funding Rate Rank Momentum XS
+- Status: REJECTED
+- Idea: Change in funding rate ranking over time. Rising rank = more bullish → contrarian short.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.630, WF 1/4, SH p=0.392, H-012 corr 0.021.
+- Notes: Funding rank momentum fails OOS. Funding rate dynamics have no reliable XS signal.
+- Sessions: [2026-04-14 session 198]
+
+## H-1057: Negative Funding Frequency XS
+- Status: REJECTED
+- Idea: Proportion of recent days with negative funding rate. High neg freq = bearish pressure → contrarian long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.778, WF 1/4, SH p=0.291, H-012 corr -0.017. Split-half: 1.884/-0.750 (collapses).
+- Notes: Negative funding frequency provides no persistent edge. Second half goes negative.
+- Sessions: [2026-04-14 session 198]
+
+## H-1058: Funding Rate Volatility XS
+- Status: REJECTED
+- Idea: Rolling std of funding rate. High funding vol = uncertainty in positioning.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.507, WF 1/4, SH p=0.488, H-012 corr 0.021.
+- Notes: Funding volatility fails OOS. No edge.
+- Sessions: [2026-04-14 session 198]
+
+## H-1059: Funding Rate Z-Score XS
+- Status: REJECTED
+- Idea: Normalized deviation of funding from rolling mean. Extreme z-score → contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.512, WF 2/4, SH p=0.487, H-012 corr -0.016.
+- Notes: Essentially same signal as H-1054 with different normalization. Both fail.
+- Sessions: [2026-04-14 session 198]
+
+## H-1060: OI Velocity XS
+- Status: REJECTED
+- Idea: Rate of change of OI — short-term OI change vs long-term.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.850, WF 4/5, SH p=0.237, H-012 corr 0.014.
+- Notes: Good WF (4/5) but IS too weak and not significant. Borderline — OI velocity shows some promise.
+- Sessions: [2026-04-14 session 198]
+
+## H-1061: OI-Price Divergence Speed XS
+- Status: REJECTED (borderline)
+- Idea: Divergence rate between OI change rank and price change rank.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.970, WF **5/5**, SH p=0.175, H-012 corr 0.071. Split-half: 0.802/1.289.
+- Notes: Perfect WF and stable halves but p=0.175 not significant. OI-price divergence has a real signal but too noisy for deployment. Corr 0.071 with momentum.
+- Sessions: [2026-04-14 session 198]
+
+## H-1062: OI Concentration Change XS
+- Status: REJECTED
+- Idea: Change in OI Herfindahl shares across assets. Flow concentration = momentum signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.042, WF 3/5, SH p=0.145, H-012 corr 0.083. Split-half: 1.901/0.011 (collapses).
+- Notes: IS strong but second half collapses to near zero. OI concentration change is unstable.
+- Sessions: [2026-04-14 session 198]
+
+## H-1063: OI Momentum XS
+- Status: REJECTED
+- Idea: Cumulative OI change as percentage. More OI growth → more conviction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.745, WF 1/5, SH p=0.299, H-012 corr 0.002.
+- Notes: OI momentum fails OOS. Raw OI growth rate has no cross-sectional predictive power.
+- Sessions: [2026-04-14 session 198]
+
+## H-1064: OI-Volume Ratio XS
+- Status: REJECTED
+- Idea: OI / Volume ratio — leverage intensity. High ratio = crowded positioning.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.185, WF 5/5, SH p=0.796, H-012 corr -0.052.
+- Notes: Perfect WF but zero IS Sharpe and no significance. OI/Volume ratio is stable but generates no returns.
+- Sessions: [2026-04-14 session 198]
+
+## H-1065: OI Rank Stability XS
+- Status: CONFIRMED (deployed session 198)
+- Idea: Rank change of OI (short-term vs long-term ranking). Assets whose OI rank dropped → long (less crowded).
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 7d)
+- Result: IS Sharpe **1.753**, WF **5/5 PERFECT**, SH p=**0.016**, H-012 corr **-0.037**. Split-half: **2.172/1.298** (both strong). Dir=low_long.
+- Notes: **SESSION BEST**. OI rank stability captures positioning regime changes. Assets losing OI rank = less crowded, better risk/reward. Strong negative corr with momentum = excellent diversifier. Anti-crowding signal.
+- Sessions: [2026-04-14 session 198]
+
+## H-1066: OI Surge Detection XS
+- Status: REJECTED
+- Idea: Short-term OI jump vs baseline. Sudden OI surge = new position building.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.194, WF 3/5, SH p=0.787, H-012 corr -0.031.
+- Notes: OI surges have no cross-sectional predictive power. Near-zero IS.
+- Sessions: [2026-04-14 session 198]
+
+## H-1067: OI Mean Reversion XS
+- Status: REJECTED (borderline)
+- Idea: Z-score of OI from rolling mean. Extreme high OI → overleveraged, expect correction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.950, WF 4/5, SH p=0.189, H-012 corr 0.002.
+- Notes: Decent WF and IS but not significant. OI mean reversion is a real but weak effect.
+- Sessions: [2026-04-14 session 198]
+
+## H-1068: Intraday Vol Ratio (Day/Night) XS
+- Status: CONFIRMED (deployed session 198)
+- Idea: Day session (08-20 UTC) vs night session volatility ratio from hourly data. High day/night vol = institutional activity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 7d, 14d avg)
+- Result: IS Sharpe **1.330**, WF **4/5**, SH p=**0.063**, H-012 corr **0.006**. Split-half: **1.315/1.358** (remarkably stable).
+- Notes: First hourly-data-derived XS signal. Institutional flow concentrates in day hours (08-20 UTC overlap with TradFi). Assets with higher day/night vol ratio attract more institutional interest → outperform. Zero momentum corr — pure microstructure signal.
+- Sessions: [2026-04-14 session 198]
+
+## H-1069: Hourly Return Autocorrelation XS
+- Status: REJECTED
+- Idea: Persistence of hourly returns within the day. Low autocorr = contrarian long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.525, WF 1/5, SH p=0.033, H-012 corr -0.026.
+- Notes: Strong IS (1.525) and significant p-value but WF 1/5 — classic overfit. Autocorrelation varies too much across regimes.
+- Sessions: [2026-04-14 session 198]
+
+## H-1070: Volume-Weighted Return XS
+- Status: REJECTED
+- Idea: Intraday VWAP return efficiency. Effective price improvement from volume weighting.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.943, WF 3/5, SH p=0.187, H-012 corr -0.001.
+- Notes: Borderline — decent WF but not significant. VW returns are noisy.
+- Sessions: [2026-04-14 session 198]
+
+## H-1071: Hourly Range Expansion XS
+- Status: CONFIRMED (deployed session 198)
+- Idea: Max hourly range / avg hourly range per day, averaged over 14 days. High expansion = explosive intraday moves → trending asset.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal 7d, 14d avg)
+- Result: IS Sharpe **1.365**, WF **4/5**, SH p=**0.056**, H-012 corr **0.020**. Split-half: **1.834/0.820** (both positive).
+- Notes: Range expansion captures trend quality at intraday scale. Assets with bigger hourly spikes relative to average = trending more strongly. Second hourly microstructure signal. Low momentum corr.
+- Sessions: [2026-04-14 session 198]
+
+## H-1072: Session Momentum (US-Asia) XS
+- Status: REJECTED
+- Idea: US session return minus Asian session return. Differential captures regional flow direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.170, WF 1/5, SH p=0.811, H-012 corr -0.024.
+- Notes: Session momentum has no cross-sectional signal. Regional flow patterns don't predict relative asset returns.
+- Sessions: [2026-04-14 session 198]
+
+## H-1073: Intraday Mean Reversion Speed XS
+- Status: REJECTED
+- Idea: How fast do intraday moves revert? Fast reversion = efficient market.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.204, WF 2/5, SH p=0.776, H-012 corr 0.036.
+- Notes: Mean reversion speed fails as XS signal. Market efficiency doesn't predict returns.
+- Sessions: [2026-04-14 session 198]
+
+## H-1074: Volume Clock (AM/PM) XS
+- Status: REJECTED
+- Idea: Proportion of volume in AM vs PM hours. Volume distribution across day.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.370, WF 1/5, SH p=0.604, H-012 corr 0.025.
+- Notes: Intraday volume distribution has no XS signal.
+- Sessions: [2026-04-14 session 198]
+
+## H-1075: Intraday CLV Trend XS
+- Status: REJECTED (borderline)
+- Idea: Average close-location-value from hourly bars. Intraday accumulation signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.869, WF 4/5, SH p=0.224, H-012 corr 0.001.
+- Notes: Good WF (4/5) and zero corr but not significant. Intraday CLV has some merit but too noisy for deployment.
+- Sessions: [2026-04-14 session 198]

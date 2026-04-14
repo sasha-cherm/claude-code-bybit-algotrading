@@ -1,53 +1,53 @@
 {
   "started": "2026-04-11T05:29:33.918071+00:00",
   "initial_capital": 10000,
-  "capital": 9995.0,
+  "capital": 10089.10604980808,
   "positions": {
-    "BTC": {
-      "qty": 0.017170329670329672,
-      "entry_price": 72800.0,
-      "side": "LONG"
-    },
     "ETH": {
-      "qty": 0.5591890416841879,
-      "entry_price": 2235.38,
+      "qty": 0.5327562049993704,
+      "entry_price": 2368.38,
       "side": "LONG"
     },
-    "DOGE": {
-      "qty": 13393.33547626701,
-      "entry_price": 0.09333,
+    "LINK": {
+      "qty": 135.96650224099236,
+      "entry_price": 9.28,
+      "side": "LONG"
+    },
+    "NEAR": {
+      "qty": 894.871731061283,
+      "entry_price": 1.41,
       "side": "LONG"
     },
     "ARB": {
-      "qty": 10878.078496214428,
-      "entry_price": 0.11491,
+      "qty": 11221.710608292502,
+      "entry_price": 0.11244,
       "side": "LONG"
     },
     "SOL": {
-      "qty": -14.838556505223172,
-      "entry_price": 84.24,
+      "qty": -14.61734407780826,
+      "entry_price": 86.32,
       "side": "SHORT"
     },
-    "DOT": {
-      "qty": -972.0062208398133,
-      "entry_price": 1.286,
+    "SUI": {
+      "qty": -1325.2485461573458,
+      "entry_price": 0.9521,
       "side": "SHORT"
     },
-    "OP": {
-      "qty": -11061.946902654867,
-      "entry_price": 0.113,
+    "ADA": {
+      "qty": -5124.97620144764,
+      "entry_price": 0.2462,
       "side": "SHORT"
     },
     "ATOM": {
-      "qty": -697.9341150195422,
-      "entry_price": 1.791,
+      "qty": -715.6943509905893,
+      "entry_price": 1.763,
       "side": "SHORT"
     }
   },
-  "last_rebal_date": "2026-04-11",
-  "rebal_count": 1,
-  "total_trades": 8,
-  "equity": 10135.8,
+  "last_rebal_date": "2026-04-14",
+  "rebal_count": 2,
+  "total_trades": 16,
+  "equity": 10089.11,
   "equity_history": [
     {
       "time": "2026-04-11T05:29:33.918083+00:00",
@@ -332,6 +332,22 @@
     {
       "time": "2026-04-13T20:36:18.646555+00:00",
       "equity": 10135.8
+    },
+    {
+      "time": "2026-04-13T21:35:44.006941+00:00",
+      "equity": 10117.99
+    },
+    {
+      "time": "2026-04-13T22:34:27.032232+00:00",
+      "equity": 10095.49
+    },
+    {
+      "time": "2026-04-13T23:41:41.974526+00:00",
+      "equity": 10088.47
+    },
+    {
+      "time": "2026-04-14T00:36:38.862789+00:00",
+      "equity": 10089.11
     }
   ]
 }

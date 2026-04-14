@@ -1407,3 +1407,12 @@
 - Next: Await Q-005 answer. Monitor 95 runners (esp. H-792/H-810). H-063 iron condor — BTC near 71K put strike, watch closely. Explore on-chain data, sentiment APIs.
 - Questions added: none
 - Self-modifications: H-792/H-810 runners created, added to orchestrator. Archived session 177. (session 187)
+
+
+### Session 2026-04-12 review+deploy+research (session 188)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 5 new deployments
+- Focus: Paper trade MTM (BTC $71,606), cross-asset information flow (H-812–H-819), higher-order/non-linear stats (H-820–H-827), composite/ensemble signals (H-828–H-835)
+- Done: 100 runners (95→100). **43/95 positive** (45%). Avg **+0.30%**. Demo ~$98,361 (-1.64%, recovering). H-063 trade 3 active ($9,651). **Batch 1 (H-812–H-819, cross-asset info)**: **H-814 CONFIRMED+deployed** (Rank Velocity, IS **1.886**, WF 3/4, SH p=0.011, corr 0.062). **H-817 CONFIRMED+deployed** (Vol Spillover, IS **1.423**, WF 3/4, SH p=0.054, corr 0.011). BTC propagation fails (-0.475). Breadth mom, comovement, synchronicity, idiosyncratic mom — all fail OOS. **Batch 2 (H-820–H-827, higher-order)**: **H-824 CONFIRMED+deployed** (Min Daily Return/Resilience, IS **2.094**, WF **5/5 PERFECT**, SH p=**0.004**, corr **-0.052** — **session best**). Coskewness, downside beta, entropy, Herfindahl, Sortino — all fail. H-822 Low Quantile Spread borderline (WF 5/5 but SH fail). **Batch 3 (H-828–H-835, composite/ensemble)**: **H-828 CONFIRMED+deployed** (Top-5 Ensemble, IS **1.693**, WF 3/4, SH p=0.020, corr **-0.001**). **H-831 CONFIRMED+deployed** (Vol-Confirmed Breakout, IS **1.274**, WF 4/5, SH p=0.078, corr 0.006). PCA residual borderline (SH fail). Regime-conditional, funding-OI composite, variance ratio — fail. **835 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 100 runners (esp. H-824 with Sharpe 2.094). H-063 iron condor near 71K put. Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 5 runners created (H-814/H-817/H-824/H-828/H-831), added to orchestrator. Archived session 178. (session 188)

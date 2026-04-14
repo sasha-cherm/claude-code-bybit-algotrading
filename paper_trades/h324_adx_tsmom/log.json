@@ -7,5 +7,14 @@
     "trades": 0,
     "fees": 0.0,
     "capital": 10000.0
+  },
+  {
+    "type": "flatten",
+    "time": "2026-04-14T00:34:21.600145+00:00",
+    "date": "2026-04-13",
+    "reason": "ADX_below_threshold",
+    "trades": 0,
+    "fees": 0.0,
+    "capital": 10000.0
   }
 ]

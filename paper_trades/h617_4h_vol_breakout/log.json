@@ -6,5 +6,22 @@
     "direction": "SHORT",
     "position": -0.06919562849697408,
     "notional": 5000.0
+  },
+  {
+    "type": "close",
+    "time": "2026-04-14T00:35:26.363234+00:00",
+    "btc_price": 74235.2,
+    "position": -0.06919562849697408,
+    "entry_price": 72258.9,
+    "pnl": -136.75,
+    "cost": 2.57
+  },
+  {
+    "type": "open",
+    "time": "2026-04-14T00:35:26.363234+00:00",
+    "btc_price": 74235.2,
+    "direction": "LONG",
+    "position": 0.06639828749529286,
+    "notional": 4929.090151870565
   }
 ]

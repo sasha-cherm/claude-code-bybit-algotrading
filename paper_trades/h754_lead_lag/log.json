@@ -16,5 +16,23 @@
     "capital": 9980.0,
     "fees": 20.0,
     "trades": 6
+  },
+  {
+    "time": "2026-04-14T00:37:57.316417+00:00",
+    "action": "rebalance",
+    "date": "2026-04-13",
+    "longs": [
+      "NEAR/USDT",
+      "LINK/USDT",
+      "ATOM/USDT"
+    ],
+    "shorts": [
+      "ETH/USDT",
+      "ADA/USDT",
+      "DOT/USDT"
+    ],
+    "capital": 10620.08,
+    "fees": 13.7341,
+    "trades": 4
   }
 ]

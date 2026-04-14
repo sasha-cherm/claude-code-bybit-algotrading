@@ -76,5 +76,44 @@
     },
     "trades": 4,
     "fees": 13.4035
+  },
+  {
+    "date": "2026-04-13",
+    "action": "rebalance",
+    "capital": 9939.76,
+    "positions": {
+      "ETH/USDT": {
+        "dir": "LONG",
+        "entry": 2385.597024,
+        "w": 0.3333333333333333
+      },
+      "ARB/USDT": {
+        "dir": "LONG",
+        "entry": 0.113473,
+        "w": 0.3333333333333333
+      },
+      "AVAX/USDT": {
+        "dir": "LONG",
+        "entry": 9.676935,
+        "w": 0.3333333333333333
+      },
+      "DOT/USDT": {
+        "dir": "SHORT",
+        "entry": 1.234753,
+        "w": -0.3333333333333333
+      },
+      "XRP/USDT": {
+        "dir": "SHORT",
+        "entry": 1.377924,
+        "w": -0.3333333333333333
+      },
+      "OP/USDT": {
+        "dir": "SHORT",
+        "entry": 0.115877,
+        "w": -0.3333333333333333
+      }
+    },
+    "trades": 6,
+    "fees": 20.036
   }
 ]
