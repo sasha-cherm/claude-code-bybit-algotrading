@@ -1,19 +1,18 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,271.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,063.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 224 runners active. Session 207. **115/217 positive** (53%), avg **+0.55%**.
-- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,271, near call strike.
-- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%).
-- **Session 207 research**: 24 new hypotheses (H-1268–H-1291). **13 CONFIRMED** (7 deployed: H-1270/H-1271/H-1275/H-1276/H-1281/H-1284/H-1287). **1291 total hypotheses.**
-- **H-1270 Range Contraction**: IS **1.749**, WF **4/4 PERFECT**, SH **1.76/1.83** p=**0.016**, corr **-0.036**. **SESSION BEST** — both SH halves >1.7, exceptional stability.
-- **H-1287 Days Since High**: IS **1.547**, WF **3/4**, SH **1.43/1.75** p=**0.032**, corr **0.001**. Completely independent — recency of peak predicts continuation.
-- **H-1281 Pos Frac Change**: IS **1.436**, WF **3/4**, SH **1.08/2.11** p=**0.047**, corr 0.016. Improving win rate → outperforms.
-- **H-1284 Dist from High**: IS **1.197**, WF **4/4 PERFECT**, SH **1.64/0.69**, p=**0.098**, corr **0.001**. Zero momentum correlation.
-- **Key findings**: OHLCV evolution continues strong — range contraction, OC drift, range position all work. Signed gap and intraday reversal freq are DUPLICATES of H-1256. Statistical moments mostly noise — only win rate change (H-1281) and variance trend (H-1276) pass. Price level signals productive — days since high and distance from high are completely momentum-independent (corr 0.001).
-- **AUTOMATED:** Paper trades hourly via cron (224 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 224 runners (esp. H-1270/H-1287/H-1281 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Internal paper trades:** 227 runners active. Session 208. **99/224 positive** (44%), avg **+0.54%**.
+- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,063, near call strike.
+- **Top performers**: H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%), H-332(+5.60%).
+- **Session 208 research**: 24 new hypotheses (H-1292–H-1315). **3 CONFIRMED** (3 deployed: H-1305/H-1308/H-1314). **1315 total hypotheses.**
+- **H-1305 Mean Reversion Speed**: IS **1.659**, WF **3/4**, SH **1.44/2.06** p=**0.022**, corr **-0.030**. **SESSION BEST** — AR(1) persistence on log prices, both SH >1.4, improving.
+- **H-1308 Vol Trend Slope**: IS **1.514**, WF **3/4**, SH **1.67/1.34** p=**0.036**, corr **0.012**. Rising volume interest predicts XS returns. Both SH >1.3.
+- **H-1314 High-Vol Return Sign**: IS **1.545**, WF **2/4**, SH **1.69/1.39** p=**0.033**, corr **-0.048**. Smart money direction on active days. Anti-momentum.
+- **Key findings**: Vol microstructure (Batch 1, H-1292–H-1299) is NOISE — all 8 rejected. Parkinson/GK/vol-of-vol/clustering/asymmetry all fail XS. Return autocorrelation (Batch 2, H-1300–H-1307) mostly noise but AR(1) persistence works. Volume profile (Batch 3, H-1308–H-1315) productive — volume trend slope and high-vol return sign both pass with strong SH stability.
+- **AUTOMATED:** Paper trades hourly via cron (227 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 227 runners (esp. H-1305/H-1308/H-1314 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -25,15 +24,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 197) archived to `memory/session_archive.md`._
-
-### Session 2026-04-14 review+deploy+research (session 198)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
-- Focus: Paper trade MTM (BTC $74,089), funding rate dynamics (H-1052–H-1059), OI structure (H-1060–H-1067), hourly microstructure (H-1068–H-1075)
-- Done: 167 runners (164→167). **94/164 positive** (57%, up from 40%). Avg **+0.47%** (up from +0.21%). Demo ~$98,190 (-1.81%). H-063 trade 3 active ($9,624, BTC approaching 75K call). **Batch 1 (H-1052–H-1059, funding dynamics)**: **ALL 8 REJECTED**. Funding rates have NO reliable XS signal — velocity, dispersion, mean reversion, OI interaction, rank momentum, neg freq, vol, z-score all fail. Best was H-1055 (Sharpe 1.033 IS but WF 1/4 + SH collapse). **Batch 2 (H-1060–H-1067, OI structure)**: **H-1065 CONFIRMED+deployed** (OI Rank Stability, IS **1.753**, WF **5/5 PERFECT**, p=**0.016**, corr **-0.037** — **SESSION BEST**). Anti-crowding signal: assets losing OI rank = less crowded → outperform. H-1061 (OI-Price Divergence) borderline (WF 5/5 but p=0.175). OI momentum/surge/velocity/concentration all fail. **Batch 3 (H-1068–H-1075, hourly microstructure)**: **H-1068 CONFIRMED+deployed** (Day/Night Vol Ratio, IS **1.330**, WF **4/5**, p=**0.063**, corr **0.006**, SH 1.32/1.36 — remarkably stable). **H-1071 CONFIRMED+deployed** (Range Expansion, IS **1.365**, WF **4/5**, p=**0.056**, corr **0.020**, SH 1.83/0.82). H-1069 (Autocorr) strong IS but WF 1/5 overfit. Session momentum/MR speed/vol clock/CLV all fail. **1075 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 167 runners (esp. H-1065/H-1068/H-1071 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 3 runners created (H-1065/H-1068/H-1071), added to orchestrator. Archived session 188. (session 198)
+_Older sessions (bootstrap through 198) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-14 review+deploy+research (session 199)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
@@ -106,3 +97,11 @@ _Older sessions (bootstrap through 197) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 224 runners (esp. H-1270/H-1287/H-1281 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 7 runners created (H-1270/H-1271/H-1275/H-1276/H-1281/H-1284/H-1287), added to orchestrator. Archived session 197. (session 207)
+
+### Session 2026-04-15 review+deploy+research (session 208)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $74,063), vol microstructure (H-1292–H-1299), return autocorrelation (H-1300–H-1307), volume profile (H-1308–H-1315)
+- Done: 227 runners (224→227). **99/224 positive** (44%). Avg **+0.54%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1292–H-1299, vol microstructure)**: **ALL 8 REJECTED**. Parkinson/GK/vol-of-vol/intraday vol share/vol clustering/vol asymmetry/vol decay/CC-Parkinson ratio all fail. Vol asymmetry (H-1297) had IS 1.404 but WF 1/4. Vol microstructure has NO reliable XS signal. **Batch 2 (H-1300–H-1307, return autocorrelation)**: **H-1305 CONFIRMED+deployed** (Mean Reversion Speed, IS **1.659**, WF 3/4, SH **1.44/2.06**, p=**0.022**, corr **-0.030** — **SESSION BEST**). H-1303 SH collapse (2.51/-0.32). H-1300 WF 4/4 but p=0.398. Most autocorrelation signals noise. **Batch 3 (H-1308–H-1315, volume profile)**: **H-1308 CONFIRMED+deployed** (Vol Trend Slope, IS **1.514**, WF 3/4, SH **1.67/1.34**, p=**0.036**, corr 0.012). **H-1314 CONFIRMED+deployed** (High-Vol Return Sign, IS **1.545**, WF 2/4, SH **1.69/1.39**, p=**0.033**, corr -0.048). H-1309/H-1312 SH collapse. **1315 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 227 runners (esp. H-1305/H-1308/H-1314 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 3 runners created (H-1305/H-1308/H-1314), added to orchestrator. Archived session 198. (session 208)

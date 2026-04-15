@@ -246,6 +246,9 @@ RUNNERS = [
     ("H-1281", ROOT / "paper_trades" / "h1281_pos_frac_change" / "runner.py"),
     ("H-1284", ROOT / "paper_trades" / "h1284_dist_from_high" / "runner.py"),
     ("H-1287", ROOT / "paper_trades" / "h1287_days_since_high" / "runner.py"),
+    ("H-1305", ROOT / "paper_trades" / "h1305_mr_speed" / "runner.py"),
+    ("H-1308", ROOT / "paper_trades" / "h1308_vol_trend_slope" / "runner.py"),
+    ("H-1314", ROOT / "paper_trades" / "h1314_high_vol_ret" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

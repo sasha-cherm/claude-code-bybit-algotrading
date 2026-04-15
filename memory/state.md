@@ -10,8 +10,8 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-15 session 207):
-Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,271. 13 open positions.
+### Current Demo Status (as of 2026-04-15 session 208):
+Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,063. 13 open positions.
 
 ---
 
@@ -1345,3 +1345,24 @@ Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,271. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h1137_rsi_xs/runner.py`
 - **Params**: R=3, N=3, dir=high_long. IS Sharpe **1.552**, WF **3/4**, SH **1.59/1.54** p=**0.032**. H-012 corr 0.021. Independent momentum via RSI.
+
+### H-1305: Mean Reversion Speed XS (session 208) — SESSION BEST
+- **Status**: LIVE paper trade (started 2026-04-15)
+- **Position**: 8 positions (4L/4S). LONG: ATOM, OP, NEAR, DOT. SHORT: SOL, AVAX, DOGE, LINK.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1305_mr_speed/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.659**, WF **3/4**, SH **1.44/2.06** p=**0.022**. H-012 corr **-0.030**. AR(1) persistence on log prices — trending assets outperform.
+
+### H-1308: Volume Trend Slope XS (session 208)
+- **Status**: LIVE paper trade (started 2026-04-15)
+- **Position**: 8 positions (4L/4S). LONG: ARB, LINK, DOT, NEAR. SHORT: XRP, SUI, ATOM, SOL.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1308_vol_trend_slope/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.514**, WF **3/4**, SH **1.67/1.34** p=**0.036**. H-012 corr 0.012. Rising volume interest predicts XS returns.
+
+### H-1314: High-Volume Return Sign XS (session 208)
+- **Status**: LIVE paper trade (started 2026-04-15)
+- **Position**: 8 positions (4L/4S). LONG: OP, ARB, NEAR, ETH. SHORT: LINK, SOL, DOT, DOGE.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1314_high_vol_ret/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.545**, WF **2/4**, SH **1.69/1.39** p=**0.033**. H-012 corr **-0.048**. Smart money direction on active days.

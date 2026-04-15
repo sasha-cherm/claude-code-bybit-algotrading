@@ -1,0 +1,67 @@
+{
+  "started": "2026-04-15T17:19:13.128751+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "ARB/USDT": {
+      "size": 22687.66542597807,
+      "entry_price": 0.11019203400000001,
+      "weight": 0.25,
+      "symbol": "ARB/USDT"
+    },
+    "LINK/USDT": {
+      "size": 277.0450121902022,
+      "entry_price": 9.0238044,
+      "weight": 0.25,
+      "symbol": "LINK/USDT"
+    },
+    "DOT/USDT": {
+      "size": 2143.65360204117,
+      "entry_price": 1.1662332,
+      "weight": 0.25,
+      "symbol": "DOT/USDT"
+    },
+    "NEAR/USDT": {
+      "size": 1839.220088285507,
+      "entry_price": 1.3592718,
+      "weight": 0.25,
+      "symbol": "NEAR/USDT"
+    },
+    "XRP/USDT": {
+      "size": -1836.4424941392508,
+      "entry_price": 1.36132768,
+      "weight": -0.25,
+      "symbol": "XRP/USDT"
+    },
+    "SUI/USDT": {
+      "size": -2679.7771943200128,
+      "entry_price": 0.93291338,
+      "weight": -0.25,
+      "symbol": "SUI/USDT"
+    },
+    "ATOM/USDT": {
+      "size": -1432.9513467163345,
+      "entry_price": 1.7446510000000002,
+      "weight": -0.25,
+      "symbol": "ATOM/USDT"
+    },
+    "SOL/USDT": {
+      "size": -29.86741638819881,
+      "entry_price": 83.703256,
+      "weight": -0.25,
+      "symbol": "SOL/USDT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-04-14",
+      "equity": 9976.0
+    }
+  ],
+  "last_daily_date": "2026-04-14",
+  "last_rebal_date": "2026-04-14",
+  "days_since_rebal": 5,
+  "rebal_count": 1,
+  "total_trades": 8,
+  "total_fees": 20.0,
+  "equity": 9975.999999839998
+}

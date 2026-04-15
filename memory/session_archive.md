@@ -1482,3 +1482,9 @@
 - Focus: Paper trade MTM (BTC $73,134), calendar/seasonal (H-1028–H-1035), return persistence/memory (H-1036–H-1043), volume structure/profile (H-1044–H-1051)
 - Done: 164 runners (156→164). 63/156 positive (40%). Avg +0.21%. 8 deployed: H-1028/H-1033/H-1036/H-1041/H-1043/H-1046/H-1047/H-1051. H-1046 SESSION BEST (Rel Vol Duration, IS 2.000, WF 5/5 PERFECT). 1051 total hypotheses.
 - Self-modifications: 8 runners created, added to orchestrator. Archived session 187. (session 197)
+
+### Session 2026-04-14 review+deploy+research (session 198)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $74,089), funding rate dynamics (H-1052–H-1059), OI structure (H-1060–H-1067), hourly microstructure (H-1068–H-1075)
+- Done: 167 runners (164→167). 94/164 positive (57%). Avg +0.47%. Demo ~$98,190 (-1.81%). Batch 1 (funding): ALL 8 REJECTED. Batch 2 (OI): H-1065 CONFIRMED+deployed. Batch 3 (microstructure): H-1068, H-1071 CONFIRMED+deployed. 1075 total hypotheses.
+- Next: Monitor 167 runners. Explore on-chain data, sentiment APIs, ML ensembles.

@@ -12878,3 +12878,219 @@
 - Result: IS Sharpe 1.294, IS 50%, WF 2/4 [-1.18, 2.21, -0.67, 3.73], SH 2.08/0.21 p=0.073, H-012 corr -0.049.
 - Notes: SH collapse (2.08→0.21). First-half-only effect. Despite good p-value, not stable. Not deployed.
 - Sessions: [2026-04-15 session 207]
+
+## H-1292: Parkinson Volatility XS
+- Status: REJECTED
+- Idea: Parkinson range-based vol estimator (20d) as XS signal. High vol = different return pattern.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.437, IS 50%, WF 1/4, SH 1.97/-1.29 p=0.545, H-012 corr 0.024.
+- Notes: SH collapse. WF 1/4. Range-based vol has no XS signal.
+- Sessions: [2026-04-15 session 208]
+
+## H-1293: Garman-Klass Volatility XS
+- Status: REJECTED
+- Idea: GK vol estimator using OHLC over 20d as XS signal. More efficient than CC vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.631, IS 41%, WF 3/4 [2.95, 2.39, -0.33, 1.62], SH -0.71/2.15 p=0.382, H-012 corr 0.001.
+- Notes: SH collapse first half negative. p=0.382 too weak despite decent WF.
+- Sessions: [2026-04-15 session 208]
+
+## H-1294: Vol of Vol XS
+- Status: REJECTED
+- Idea: Std of rolling vol changes over 60d. Stability of volatility as XS ranking.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.835, IS 50%, WF 3/4 [3.24, 2.53, -1.25, 0.01], SH 0.12/1.66 p=0.247, H-012 corr -0.037.
+- Notes: First half SH near zero. p=0.247 too weak.
+- Sessions: [2026-04-15 session 208]
+
+## H-1295: Intraday Vol Share XS
+- Status: REJECTED
+- Idea: Range vol as share of total vol (20d). How much vol is intraday vs overnight.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.627, IS 33%, WF 2/4 [2.52, 1.62, -0.30, -1.04], SH 0.41/0.92 p=0.385, H-012 corr 0.031.
+- Notes: Weak IS and p-value. Only 33% IS positive.
+- Sessions: [2026-04-15 session 208]
+
+## H-1296: Vol Clustering Intensity XS
+- Status: REJECTED
+- Idea: Autocorrelation of abs(returns) at lag 1 over 20d. GARCH-like persistence as XS signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.632, IS 50%, WF 2/4 [1.16, 1.79, -0.81, -0.02], SH 0.91/0.25 p=0.381, H-012 corr -0.069.
+- Notes: p=0.381 too weak. Second half SH collapse.
+- Sessions: [2026-04-15 session 208]
+
+## H-1297: Vol Asymmetry XS
+- Status: REJECTED
+- Idea: Down-day vol / up-day vol ratio (20d). Leverage effect as XS ranking.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.404, IS 50%, WF 1/4 [-1.05, -0.78, -1.13, 0.43], SH 2.33/0.25 p=0.052, H-012 corr 0.009.
+- Notes: Strong IS but WF 1/4 — complete OOS failure. Classic overfit despite low p-value.
+- Sessions: [2026-04-15 session 208]
+
+## H-1298: Vol Surprise Decay XS
+- Status: REJECTED
+- Idea: Rate of 5d/20d vol ratio mean reversion. How fast vol spikes decay.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.997, IS 41%, WF 2/4 [-0.24, 2.06, 0.82, -2.10], SH 1.18/0.78 p=0.168, H-012 corr -0.027.
+- Notes: Inconsistent WF (extreme variance). p=0.168 borderline but SH decline.
+- Sessions: [2026-04-15 session 208]
+
+## H-1299: CC/Parkinson Vol Ratio XS
+- Status: REJECTED
+- Idea: Close-close vol / Parkinson vol ratio. Efficiency of vol estimators reveals microstructure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.392, IS 33%, WF 1/4 [-1.45, -0.74, -1.95, 3.49], SH 1.41/-0.90 p=0.587, H-012 corr -0.018.
+- Notes: SH collapse. WF 1/4. Microstructure efficiency ratio has no XS signal.
+- Sessions: [2026-04-15 session 208]
+
+## H-1300: Return Autocorrelation XS
+- Status: REJECTED
+- Idea: Corr(ret_t, ret_{t-1}) over 20d. Assets with positive autocorrelation = momentum tendency.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.610, IS 41%, WF 4/4 PERFECT [1.82, 0.99, 0.45, 0.67], SH 0.09/1.49 p=0.398, H-012 corr -0.045.
+- Notes: WF 4/4 but p=0.398 far too weak. First half SH near zero. Interesting independence (-0.045) but unreliable.
+- Sessions: [2026-04-15 session 208]
+
+## H-1301: Absolute Return Persistence XS
+- Status: REJECTED
+- Idea: Autocorrelation of |ret| over 20d. Vol clustering strength as XS signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.632, IS 50%, WF 2/4 [1.16, 1.79, -0.81, -0.02], SH 0.91/0.25 p=0.381, H-012 corr -0.069.
+- Notes: =H-1296 (identical rankings). Vol clustering autocorrelation doesn't work XS.
+- Sessions: [2026-04-15 session 208]
+
+## H-1302: Sign Persistence XS
+- Status: REJECTED
+- Idea: Fraction of consecutive same-sign returns in 20d. Trend streakiness.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.780, IS 75%, WF 2/4 [1.78, -0.40, 0.0, -1.88], SH 0.59/1.03 p=0.280, H-012 corr 0.004.
+- Notes: High IS% but p=0.280 and WF inconsistent. Second half of WF negative.
+- Sessions: [2026-04-15 session 208]
+
+## H-1303: Partial Autocorrelation Lag 2 XS
+- Status: REJECTED
+- Idea: PACF at lag 2 after removing lag 1 effect (40d). Second-order return structure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.327, IS 50%, WF 2/4 [-1.95, 2.03, -1.26, 0.78], SH 2.51/-0.32 p=0.066, H-012 corr 0.042.
+- Notes: SH collapse (2.51→-0.32). First-half-only effect. WF wildly inconsistent (-1.95 to 2.03).
+- Sessions: [2026-04-15 session 208]
+
+## H-1304: Return Predictability R² XS
+- Status: REJECTED
+- Idea: R² of AR(1) model on returns over 40d. How predictable returns are.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.913, IS 50%, WF 3/4 [2.49, 1.18, -0.64, 2.35], SH 0.24/1.69 p=0.206, H-012 corr 0.039.
+- Notes: First half SH near zero. p=0.206 too weak.
+- Sessions: [2026-04-15 session 208]
+
+## H-1305: Mean Reversion Speed XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: AR(1) coefficient on log prices over 60d. High = trending, outperforms in XS.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.659, WF 3/4 [1.12, 1.79, 1.67, -0.25], SH 1.44/2.06 p=0.022, H-012 corr -0.030.
+- Notes: SESSION BEST. Both SH halves > 1.4. Nearly zero momentum correlation. AR(1) persistence predicts XS returns — trending assets continue outperforming. 3 consecutive positive WF folds.
+- Sessions: [2026-04-15 session 208]
+
+## H-1306: Runs Test Z-score XS
+- Status: REJECTED
+- Idea: Wald-Wolfowitz runs test z-score on return signs (40d). Departure from randomness.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.959, IS 50%, WF 2/4 [-3.06, -1.36, 0.15, 3.58], SH 1.99/-0.38 p=0.184, H-012 corr -0.024.
+- Notes: SH collapse (1.99→-0.38). WF wildly unstable (-3.06 to 3.58). Randomness tests don't work XS.
+- Sessions: [2026-04-15 session 208]
+
+## H-1307: Cross-autocorrelation with Market XS
+- Status: REJECTED
+- Idea: Corr(asset_ret_t, market_ret_{t-1}) over 20d. Lead-lag with market average.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.412, IS 50%, WF 1/4, SH 1.42/-0.84 p=0.569, H-012 corr 0.070.
+- Notes: WF 1/4, SH collapse. Cross-autocorrelation doesn't work for XS ranking.
+- Sessions: [2026-04-15 session 208]
+
+## H-1308: Volume Trend Slope XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Slope of linear regression on log(volume) over 20d. Rising volume interest = outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.514, WF 3/4 [0.41, 3.39, -0.46, 1.50], SH 1.67/1.34 p=0.036, H-012 corr 0.012.
+- Notes: Both SH halves > 1.3 — excellent stability. Near-zero momentum correlation. Volume attention predicts returns. Consistent WF except fold 3.
+- Sessions: [2026-04-15 session 208]
+
+## H-1309: Volume Concentration XS
+- Status: REJECTED
+- Idea: Max single-day volume / sum over 20d. How concentrated volume distribution is.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.324, IS 33%, WF 2/4 [0.68, -0.70, -2.83, 0.14], SH 2.58/-0.34 p=0.067, H-012 corr 0.045.
+- Notes: SH collapse (2.58→-0.34). Only 33% IS positive. First-half-only effect.
+- Sessions: [2026-04-15 session 208]
+
+## H-1310: Volume Rank Stability XS
+- Status: REJECTED
+- Idea: Std of daily volume rank across assets over 20d. Consistent liquidity positioning.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.732, IS 50%, WF 4/4 PERFECT [1.89, 2.95, 0.94, 1.80], SH 0.12/1.50 p=0.311, H-012 corr -0.063.
+- Notes: WF 4/4 PERFECT but p=0.311 too weak and first-half SH near zero. Promising WF consistency but unreliable.
+- Sessions: [2026-04-15 session 208]
+
+## H-1311: Volume-Return Decoupling XS
+- Status: REJECTED
+- Idea: 1 - abs(corr(ret, vol)) over 20d. Low coupling may indicate institutional flow.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.453, IS 50%, WF 4/4 PERFECT [1.52, 1.75, 0.82, 0.47], SH -0.85/2.17 p=0.530, H-012 corr 0.073.
+- Notes: WF 4/4 but p=0.530 far too weak. First-half SH negative. Signal too noisy.
+- Sessions: [2026-04-15 session 208]
+
+## H-1312: Abnormal Volume Frequency XS
+- Status: REJECTED
+- Idea: Fraction of days with volume > 2x 60d average in last 20d. Attention spikes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.172, IS 100%, WF 2/4 [-3.58, -0.22, 0.33, 1.22], SH 2.92/-1.25 p=0.105, H-012 corr -0.006.
+- Notes: SH collapse (2.92→-1.25). 100% IS positive but WF 2/4 with first fold -3.58. Classic overfit.
+- Sessions: [2026-04-15 session 208]
+
+## H-1313: Volume Momentum Persistence XS
+- Status: REJECTED
+- Idea: Autocorrelation of volume changes over 20d. Volume trending behavior.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.513, IS 50%, WF 2/4 [-2.28, -0.23, 2.18, 2.36], SH 0.57/0.47 p=0.477, H-012 corr -0.077.
+- Notes: p=0.477 too weak. WF unstable.
+- Sessions: [2026-04-15 session 208]
+
+## H-1314: High-Volume Return Sign XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Average return on top-5-volume days in 20d. Directional bias of active trading days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.545, WF 2/4 [2.12, -0.86, 3.73, -0.74], SH 1.69/1.39 p=0.033, H-012 corr -0.048.
+- Notes: Both SH halves > 1.3 — excellent stability. Anti-momentum (-0.048 corr). Smart money direction on high-activity days predicts continuation. WF inconsistent but very strong when positive.
+- Sessions: [2026-04-15 session 208]
+
+## H-1315: Volume Entropy XS
+- Status: REJECTED
+- Idea: Shannon entropy of volume distribution (5 bins) over 20d. How evenly distributed volume is.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.920, IS 41%, WF 2/4 [0.03, -0.46, -2.84, 0.14], SH 1.88/-0.30 p=0.203, H-012 corr 0.045.
+- Notes: SH collapse (1.88→-0.30). WF mostly negative. Volume entropy noise.
+- Sessions: [2026-04-15 session 208]
