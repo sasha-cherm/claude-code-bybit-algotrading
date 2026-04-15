@@ -1,20 +1,20 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,392.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,179.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 206 runners active. Session 205. **115/199 positive** (58%), avg **+0.62%**.
-- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,392, near call strike.
+- **Internal paper trades:** 216 runners active. Session 206. **115/216 positive** (53%), avg **+0.55%**.
+- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,179, near call strike.
 - **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%).
-- **Session 205 research**: 24 new hypotheses (H-1220–H-1243). **9 CONFIRMED** (7 deployed: H-1221/H-1223/H-1233/H-1234/H-1237/H-1238/H-1243). **1243 total hypotheses.**
-- **H-1238 Post-Drop Recovery**: IS **1.286**, WF **3/4**, SH **1.33/1.28** p=**0.075**, corr **-0.065**. **SESSION BEST** — most stable SH. Anti-momentum. Contrarian signal.
-- **H-1221 Approx Entropy**: IS **1.288**, WF **3/4**, SH **1.93/0.50**, p=**0.075**, corr 0.075. First info-theoretic signal to pass.
-- **H-1243 Tail Asymmetry**: IS **1.184**, WF **3/4**, SH **1.47/0.83**, p=**0.101**, corr **0.013**. Favorable tail ratio → outperforms.
-- **H-1237 UD Vol Asymmetry**: IS **0.817**, WF **4/4 PERFECT**, SH 0.60/1.09, p=0.258. Deployed for perfect WF despite high p.
-- **H-1233 DD Frequency**: IS **1.155**, WF **3/3 PERFECT**, SH 1.59/0.58, p=0.119. Stability premium.
-- **Key findings**: Entropy/complexity — most fail, but ApEn (regularity) and LZ (compressibility) are genuine signals. Drawdown dynamics — stability premium exists (fewer DDs → outperform), but most DD signals are noisy. Asymmetric behavior — post-drop recovery is best signal (SH 1.33/1.28), tail asymmetry works. Capture ratios/beta asymmetry DON'T work. Factor interactions still zero.
-- **AUTOMATED:** Paper trades hourly via cron (206 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 206 runners (esp. H-1238/H-1221/H-1243 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Session 206 research**: 24 new hypotheses (H-1244–H-1267). **15 CONFIRMED** (11 deployed: H-1247/H-1251/H-1252/H-1253/H-1256/H-1257/H-1258/H-1259/H-1263/H-1265/H-1266). **1267 total hypotheses.**
+- **H-1256 Gap Frequency**: IS **1.905**, IS **100%**, WF **4/4 PERFECT**, SH **2.65/1.11** p=**0.008**, corr **-0.016**. **SESSION BEST** — overnight gaps = institutional activity signal.
+- **H-1265 CVaR 5%**: IS **2.188**, WF **3/4**, SH **2.36/2.01** p=**0.003**, corr **-0.048**. **BATCH BEST** — exceptional split-half (both >2.0!).
+- **H-1263 Risk-Return Trend**: IS **1.521**, WF **4/4 PERFECT**, SH **1.22/1.98** p=**0.035**, corr **-0.036**. Improving Sharpe predicts continuation.
+- **H-1253 Close Position**: IS **1.362**, WF **4/4 PERFECT**, SH 0.91/1.93, p=**0.059**, corr -0.013. Classic candlestick wisdom validated.
+- **H-1247 Info Discreteness**: IS **1.668**, WF **3/4**, SH **2.25/0.92**, p=**0.021**, corr -0.021. Info consistency signal.
+- **Key findings**: OHLCV signals are a goldmine — 6/8 confirmed (best batch ever). Gap frequency, close position, candle direction, range metrics all work. Momentum quality mostly noise — only info discreteness passes. Risk-adjusted metrics — CVaR is exceptional (tail risk quality). Omega/upside potential/Calmar don't persist (SH collapse). Stability signals continue to work (crash freq, max consec loss).
+- **AUTOMATED:** Paper trades hourly via cron (216 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 216 runners (esp. H-1256/H-1265/H-1263 new stars). Explore on-chain data, sentiment APIs, ML ensembles. More OHLCV signal mining (rich vein).
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -27,14 +27,6 @@
 
 
 _Older sessions (bootstrap through 195) archived to `memory/session_archive.md`._
-
-### Session 2026-04-13 review+deploy+research (session 196)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
-- Focus: Paper trade MTM (BTC $72,175), cross-timeframe (H-1004–H-1011), relative dynamics (H-1012–H-1019), nonlinear/threshold (H-1020–H-1027)
-- Done: 155 runners (148→155). **62/155 positive** (40%). Avg **+0.20%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1004–H-1011, cross-TF)**: **H-1007 CONFIRMED+deployed** (Intraweek Recovery, IS 1.448, WF **5/5**, p=0.045, corr **0.002**). **H-1009 CONFIRMED+deployed** (Consecutive Up Days, IS 1.490, WF 4/5, p=0.039, corr 0.042). **H-1010 CONFIRMED+deployed** (Weekly Vol Profile, IS **1.939**, WF 3/5, p=**0.007**, corr -0.033 — **SESSION BEST**). Weekly return rank too noisy (IS 0.17). VWAP too weak. 5 REJECTED/BORDERLINE. **Batch 2 (H-1012–H-1019, relative dynamics)**: **H-1013 CONFIRMED+deployed** (DD Recovery, IS 1.394, WF **4/4**, p=0.055, corr -0.062). **H-1016 CONFIRMED+deployed** (Vol Rank Persistence, IS 1.417, WF **4/4**, p=0.051, corr 0.045). **H-1018 CONFIRMED+deployed** (Price Compression, IS 1.432, WF 4/5, p=0.047, corr **-0.017**). Momentum × dispersion fails. Skew trend 0% positive. 5 REJECTED/BORDERLINE. **Batch 3 (H-1020–H-1027, nonlinear)**: **H-1020 CONFIRMED** (Extreme Return Asymmetry, 1.378, WF 2/4, p=0.058 — NOT deployed, weak WF + split-half collapse). **H-1023 CONFIRMED+deployed** (Return Stability, 1.296, WF **4/4**, p=0.074, corr -0.051). Mom regime switch/vol acceleration/reversal all fail. **1027 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 155 runners (esp. H-1010/H-1009/H-1018 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 7 runners created (H-1007/H-1009/H-1010/H-1013/H-1016/H-1018/H-1023), added to orchestrator. Archived session 186. (session 196)
 
 ### Session 2026-04-14 review+deploy+research (session 197)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 8 new deployments
@@ -107,3 +99,11 @@ _Older sessions (bootstrap through 195) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 206 runners (esp. H-1238/H-1221/H-1243 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 7 runners created (H-1221/H-1223/H-1233/H-1234/H-1237/H-1238/H-1243), added to orchestrator. Archived session 195. (session 205)
+
+### Session 2026-04-15 review+deploy+research (session 206)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 11 new deployments
+- Focus: Paper trade MTM (BTC $74,179), momentum quality/shape (H-1244–H-1251), intraday OHLCV (H-1252–H-1259), risk-adjusted metrics (H-1260–H-1267)
+- Done: 216 runners (205→216). **115/216 positive** (53%). Avg **+0.55%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1244–H-1251, momentum quality)**: **H-1247 CONFIRMED+deployed** (Info Discreteness, IS **1.668**, WF 3/4, p=**0.021**, corr -0.021). **H-1251 CONFIRMED+deployed** (Crash Frequency, IS 1.046, WF **4/4 PERFECT**, SH **1.02/1.08**, corr -0.056 — anti-momentum). H-1244 CONFIRMED not deployed (SH collapse 1.92/-0.24). 5 REJECTED/BORDERLINE. **Batch 2 (H-1252–H-1259, OHLCV signals)**: **BEST BATCH EVER — 6/8 confirmed+deployed.** **H-1256 CONFIRMED+deployed** (Gap Frequency, IS **1.905**, IS **100%**, WF **4/4 PERFECT**, SH **2.65/1.11**, p=**0.008** — **SESSION BEST**). **H-1253 CONFIRMED+deployed** (Close Position, 1.362, WF **4/4 PERFECT**, p=0.059). **H-1258 CONFIRMED+deployed** (Candle Direction, 1.284, WF **4/4 PERFECT**, corr **-0.093**). **H-1257 CONFIRMED+deployed** (TR Trend, 1.096, WF **4/4 PERFECT**, corr **-0.002**). **H-1252 CONFIRMED+deployed** (Rel Range, 1.112, WF 3/4, p=0.124). **H-1259 CONFIRMED+deployed** (HL Asymmetry, 1.041, WF 3/4). 2 REJECTED. **Batch 3 (H-1260–H-1267, risk-adjusted)**: **H-1265 CONFIRMED+deployed** (CVaR 5%, IS **2.188**, WF 3/4, SH **2.36/2.01** — **BATCH BEST**, p=**0.003**). **H-1263 CONFIRMED+deployed** (RR Trend, 1.521, WF **4/4 PERFECT**, p=0.035). **H-1266 CONFIRMED+deployed** (Max Consec Loss, 1.338, IS **100%**, WF 3/4, p=0.064). 5 REJECTED/BORDERLINE. **1267 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 216 runners (esp. H-1256/H-1265/H-1263 new stars). More OHLCV mining (richest vein found). Explore on-chain, sentiment, ML ensembles.
+- Questions added: none
+- Self-modifications: 11 runners created (H-1247/H-1251/H-1252/H-1253/H-1256/H-1257/H-1258/H-1259/H-1263/H-1265/H-1266), added to orchestrator. Archived session 196. (session 206)

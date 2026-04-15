@@ -1467,3 +1467,12 @@
 - Questions added: none
 - Self-modifications: 6 runners created (H-986/H-992/H-994/H-997/H-1001/H-1003), added to orchestrator. Archived session 185. (session 195)
 
+
+
+### Session 2026-04-13 review+deploy+research (session 196)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
+- Focus: Paper trade MTM (BTC $72,175), cross-timeframe (H-1004–H-1011), relative dynamics (H-1012–H-1019), nonlinear/threshold (H-1020–H-1027)
+- Done: 155 runners (148→155). **62/155 positive** (40%). Avg **+0.20%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1004–H-1011, cross-TF)**: **H-1007 CONFIRMED+deployed** (Intraweek Recovery, IS 1.448, WF **5/5**, p=0.045, corr **0.002**). **H-1009 CONFIRMED+deployed** (Consecutive Up Days, IS 1.490, WF 4/5, p=0.039, corr 0.042). **H-1010 CONFIRMED+deployed** (Weekly Vol Profile, IS **1.939**, WF 3/5, p=**0.007**, corr -0.033 — **SESSION BEST**). Weekly return rank too noisy (IS 0.17). VWAP too weak. 5 REJECTED/BORDERLINE. **Batch 2 (H-1012–H-1019, relative dynamics)**: **H-1013 CONFIRMED+deployed** (DD Recovery, IS 1.394, WF **4/4**, p=0.055, corr -0.062). **H-1016 CONFIRMED+deployed** (Vol Rank Persistence, IS 1.417, WF **4/4**, p=0.051, corr 0.045). **H-1018 CONFIRMED+deployed** (Price Compression, IS 1.432, WF 4/5, p=0.047, corr **-0.017**). Momentum × dispersion fails. Skew trend 0% positive. 5 REJECTED/BORDERLINE. **Batch 3 (H-1020–H-1027, nonlinear)**: **H-1020 CONFIRMED** (Extreme Return Asymmetry, 1.378, WF 2/4, p=0.058 — NOT deployed, weak WF + split-half collapse). **H-1023 CONFIRMED+deployed** (Return Stability, 1.296, WF **4/4**, p=0.074, corr -0.051). Mom regime switch/vol acceleration/reversal all fail. **1027 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 155 runners (esp. H-1010/H-1009/H-1018 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 7 runners created (H-1007/H-1009/H-1010/H-1013/H-1016/H-1018/H-1023), added to orchestrator. Archived session 186. (session 196)

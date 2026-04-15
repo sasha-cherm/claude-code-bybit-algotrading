@@ -12445,3 +12445,219 @@
 - Result: IS Sharpe 1.184, IS 50%, WF 3/4 [0.82, 1.73, 0.48, -0.57], SH 1.47/0.83 p=0.101, H-012 corr 0.013.
 - Notes: Good SH stability. Assets with favorable tail risk outperform. Independent of momentum. Deployed.
 - Sessions: [2026-04-15 session 205]
+
+## H-1244: Momentum Information Ratio XS
+- Status: CONFIRMED (not deployed)
+- Idea: 60d return / std(daily returns over 60d). Quality-adjusted momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.051, IS 50%, WF 2/4 [-1.0, -2.81, 0.75, 1.34], SH 1.92/-0.24 p=0.146, H-012 corr 0.008.
+- Notes: SH collapse second half (-0.24). Not deployed despite reasonable IS. Quality-adjusted momentum doesn't persist.
+- Sessions: [2026-04-15 session 206]
+
+## H-1245: Win Ratio XS
+- Status: REJECTED
+- Idea: Fraction of positive-return days in 60d. Up-day breadth.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.707, IS 83%, WF 3/4, SH 0.68/0.77 p=0.328, H-012 corr -0.041.
+- Notes: Weak IS, high p-value. Broad-based win ratio is too noisy to rank cross-sectionally.
+- Sessions: [2026-04-15 session 206]
+
+## H-1246: Trend Monotonicity XS
+- Status: REJECTED
+- Idea: Spearman corr between day-index and cumulative return over 30d. Smooth uptrend measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.024, IS 41%, WF 2/4, SH 1.37/0.57 p=0.156, H-012 corr 0.000.
+- Notes: Borderline. WF 2/4 weak, p slightly over threshold. Trend monotonicity adds little beyond raw momentum.
+- Sessions: [2026-04-15 session 206]
+
+## H-1247: Information Discreteness XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Fraction of days where daily return sign matches 60d cumulative return sign. Continuous info flow.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.668, IS 50%, WF 3/4 [-1.16, 0.85, 0.13, 4.24], SH 2.25/0.92 p=0.021, H-012 corr -0.021.
+- Notes: Strong IS (1.668) with excellent p-value (0.021). Assets with more consistent daily alignment to trend → outperform. Independent of momentum. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1248: Max Excursion Asymmetry XS
+- Status: REJECTED
+- Idea: Max drawup / max drawdown over 30d. Upside vs downside path shape.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.577, IS 50%, WF 2/4, SH 0.97/0.05 p=0.424, H-012 corr -0.042.
+- Notes: Weak IS, SH collapse second half (0.05). Path shape asymmetry is noise.
+- Sessions: [2026-04-15 session 206]
+
+## H-1249: Momentum Divergence XS
+- Status: REJECTED
+- Idea: rank(30d return) - rank(60d return). Cross-timeframe disagreement.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.752, IS 41%, WF 3/4, SH 0.44/1.27 p=0.298, H-012 corr 0.018.
+- Notes: High p-value, weak IS. Timeframe disagreement signals too noisy.
+- Sessions: [2026-04-15 session 206]
+
+## H-1250: Average Positive Return XS
+- Status: CONFIRMED (not deployed)
+- Idea: Mean of positive daily returns only over 30d. Up-day quality.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.645, IS 50%, WF 4/4 PERFECT [0.82, 3.77, 0.38, 2.53], SH -0.58/2.10 p=0.372, H-012 corr -0.027.
+- Notes: WF 4/4 PERFECT but SH collapse first half (-0.58) and high p. Not deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1251: Crash Frequency XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Number of >3% decline days in 60d. Fewer crashes = more stable → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.046, IS 50%, WF 4/4 PERFECT [0.09, 1.54, 1.04, 2.49], SH 1.02/1.08 p=0.148, H-012 corr -0.056.
+- Notes: WF 4/4 PERFECT with remarkably stable SH (1.02/1.08). Anti-momentum (corr -0.056). Stability premium: fewer crash days = safer = outperforms. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1252: Relative Intraday Range XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: (high-low)/close 10d avg vs 30d avg ratio. Range expansion signal.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.112, IS 50%, WF 3/4 [-0.85, 2.82, 1.24, 1.06], SH 1.35/0.84 p=0.124, H-012 corr -0.028.
+- Notes: First OHLCV-derived signal. Expanding intraday range = increasing activity → outperforms. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1253: Close Position XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: (close-low)/(high-low) averaged 20d. Assets closing near daily highs → outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.362, IS 50%, WF 4/4 PERFECT [2.31, 1.97, 0.52, 1.20], SH 0.91/1.93 p=0.059, H-012 corr -0.013.
+- Notes: WF 4/4 PERFECT. Closing near the high = buying pressure. Classic candlestick wisdom validated in XS framework. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1254: Body-to-Shadow Ratio XS
+- Status: REJECTED
+- Idea: abs(close-open)/(high-low) averaged 20d. Directional conviction in candles.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.657, IS 50%, WF 2/4, SH 2.11/-1.15 p=0.363, H-012 corr -0.027.
+- Notes: SH collapse (-1.15). Body-to-shadow ratio doesn't predict XS returns.
+- Sessions: [2026-04-15 session 206]
+
+## H-1255: Upper Shadow Dominance XS
+- Status: REJECTED
+- Idea: (high-max(open,close))/(high-low) averaged 20d. Selling pressure at highs.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.442, IS 41%, WF 0/4 [-2.73, -1.07, -0.28, -1.44], SH 1.69/-1.03 p=0.541, H-012 corr -0.014.
+- Notes: WF 0/4 — complete failure OOS. Upper shadow as selling pressure indicator doesn't work.
+- Sessions: [2026-04-15 session 206]
+
+## H-1256: Gap Frequency XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: abs(open-prev_close)/prev_close mean 20d. Assets with more overnight gaps → outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.905, IS 100%, WF 4/4 PERFECT [0.90, 1.36, 1.43, 2.42], SH 2.65/1.11 p=0.008, H-012 corr -0.016. **SESSION BEST**.
+- Notes: **SESSION BEST** — exceptional across all metrics. 100% IS, WF 4/4 PERFECT, SH both halves strong. Gaps = information arriving = institutional activity. Independent of momentum. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1257: True Range Trend XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: ATR(10)/ATR(30). Expanding vs contracting true range.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.096, IS 50%, WF 4/4 PERFECT [1.0, 2.22, 0.35, 0.51], SH 1.01/1.23 p=0.129, H-012 corr -0.002.
+- Notes: WF 4/4 PERFECT. Completely independent from momentum (corr -0.002). Range expansion = emerging activity. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1258: Candle Direction Consistency XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Fraction of bullish candles (close>open) in 20d. Consistent bullish action.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.284, IS 50%, WF 4/4 PERFECT [0.49, 2.30, 0.29, 0.72], SH 0.65/2.05 p=0.076, H-012 corr -0.093.
+- Notes: WF 4/4 PERFECT. Anti-momentum (corr -0.093). Consistent bullish candles predict continuation. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1259: High-Low Asymmetry XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: log((high-close)/(close-low)) averaged 20d. Lower upper wicks → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.041, IS 50%, WF 3/4 [2.27, 2.14, -0.33, 1.63], SH 0.63/1.72 p=0.149, H-012 corr 0.007.
+- Notes: Wick imbalance signal — assets with less selling pressure (smaller upper wicks) outperform. Independent. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1260: Upside Potential Ratio XS
+- Status: REJECTED
+- Idea: E[r|r>0] × P(r>0) / downside_dev, 30d. Risk-adjusted upside.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.029, IS 50%, WF 2/4, SH 2.56/-1.00 p=0.154, H-012 corr -0.010.
+- Notes: SH collapse (-1.00). Upside potential ratio is first-half-only signal.
+- Sessions: [2026-04-15 session 206]
+
+## H-1261: Omega Ratio XS
+- Status: CONFIRMED (not deployed)
+- Idea: sum(positive rets) / abs(sum(negative rets)), 30d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.090, IS 50%, WF 2/4, SH 2.41/-0.58 p=0.131, H-012 corr -0.041.
+- Notes: SH collapse (-0.58). Omega ratio doesn't persist. Not deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1262: Calmar Proxy XS
+- Status: REJECTED
+- Idea: 30d return / max drawdown over 30d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.000, IS 50%, WF 2/4, SH 1.30/0.61 p=0.166, H-012 corr 0.001.
+- Notes: Borderline p, WF 2/4 weak. Calmar-based ranking is too noisy.
+- Sessions: [2026-04-15 session 206]
+
+## H-1263: Risk-Return Trend XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: 20d rolling Sharpe minus 40d rolling Sharpe. Assets with improving risk-reward outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.521, IS 50%, WF 4/4 PERFECT [1.67, 3.44, 0.31, 0.97], SH 1.22/1.98 p=0.035, H-012 corr -0.036.
+- Notes: WF 4/4 PERFECT, excellent p-value. Improving risk-adjusted returns predict continuation. Genuine timing signal. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1264: Positive Skew Score XS
+- Status: CONFIRMED (not deployed)
+- Idea: (mean-median)/std, 30d. Nonparametric skewness measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.276, IS 50%, WF 3/4, SH 2.63/-0.34 p=0.077, H-012 corr 0.010.
+- Notes: SH collapse (-0.34). Despite decent IS and p, first-half-only effect. Not deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1265: CVaR 5% XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Mean of worst 5% of returns over 30d. Less extreme downside → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 2.188, IS 50%, WF 3/4 [3.45, 1.0, -0.05, 3.03], SH 2.36/2.01 p=0.003, H-012 corr -0.048. **BATCH BEST**.
+- Notes: **BATCH BEST** — exceptional split-half (both >2.0!). Tail risk quality predicts XS returns: assets with less extreme downside risk outperform. Anti-momentum. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1266: Max Consecutive Loss XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Longest losing streak in 30d. Shorter streaks = more stable → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.338, IS 100%, WF 3/4 [1.86, 0.66, -0.39, 1.67], SH 1.48/1.18 p=0.064, H-012 corr -0.013.
+- Notes: 100% IS (all param combos positive). Stable SH. Shorter losing streaks = less crowded selling = outperform. Deployed.
+- Sessions: [2026-04-15 session 206]
+
+## H-1267: Gain Persistence XS
+- Status: REJECTED
+- Idea: Autocorrelation of sign(return) over 30d. Return streakiness.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.560, IS 25%, WF 1/4 [-2.89, -1.83, -2.25, 1.46], SH 1.85/-1.13 p=0.438, H-012 corr 0.014.
+- Notes: WF 1/4 complete failure. Return autocorrelation doesn't predict XS returns.
+- Sessions: [2026-04-15 session 206]
