@@ -1,0 +1,20 @@
+[
+  {
+    "time": "2026-04-15T13:14:55.171048+00:00",
+    "action": "rebalance",
+    "date": "2026-04-14",
+    "longs": [
+      "BTC/USDT",
+      "SOL/USDT",
+      "XRP/USDT"
+    ],
+    "shorts": [
+      "ADA/USDT",
+      "DOT/USDT",
+      "OP/USDT"
+    ],
+    "capital": 9980.0,
+    "fees": 20.0,
+    "trades": 6
+  }
+]

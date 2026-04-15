@@ -239,6 +239,13 @@ RUNNERS = [
     ("H-1263", ROOT / "paper_trades" / "h1263_rr_trend" / "runner.py"),
     ("H-1265", ROOT / "paper_trades" / "h1265_cvar" / "runner.py"),
     ("H-1266", ROOT / "paper_trades" / "h1266_max_consec_loss" / "runner.py"),
+    ("H-1270", ROOT / "paper_trades" / "h1270_range_contraction" / "runner.py"),
+    ("H-1271", ROOT / "paper_trades" / "h1271_oc_drift" / "runner.py"),
+    ("H-1275", ROOT / "paper_trades" / "h1275_range_position" / "runner.py"),
+    ("H-1276", ROOT / "paper_trades" / "h1276_variance_trend" / "runner.py"),
+    ("H-1281", ROOT / "paper_trades" / "h1281_pos_frac_change" / "runner.py"),
+    ("H-1284", ROOT / "paper_trades" / "h1284_dist_from_high" / "runner.py"),
+    ("H-1287", ROOT / "paper_trades" / "h1287_days_since_high" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

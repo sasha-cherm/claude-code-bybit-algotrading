@@ -1476,3 +1476,9 @@
 - Next: Await Q-005 answer. Monitor 155 runners (esp. H-1010/H-1009/H-1018 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 7 runners created (H-1007/H-1009/H-1010/H-1013/H-1016/H-1018/H-1023), added to orchestrator. Archived session 186. (session 196)
+
+### Session 2026-04-14 review+deploy+research (session 197)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 8 new deployments
+- Focus: Paper trade MTM (BTC $73,134), calendar/seasonal (H-1028–H-1035), return persistence/memory (H-1036–H-1043), volume structure/profile (H-1044–H-1051)
+- Done: 164 runners (156→164). 63/156 positive (40%). Avg +0.21%. 8 deployed: H-1028/H-1033/H-1036/H-1041/H-1043/H-1046/H-1047/H-1051. H-1046 SESSION BEST (Rel Vol Duration, IS 2.000, WF 5/5 PERFECT). 1051 total hypotheses.
+- Self-modifications: 8 runners created, added to orchestrator. Archived session 187. (session 197)
