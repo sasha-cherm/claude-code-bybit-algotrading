@@ -1,13 +1,13 @@
 {
   "started": "2026-04-11T05:29:15.315881+00:00",
-  "capital": 9997.5,
+  "capital": 10237.39708370427,
   "initial_capital": 10000,
-  "position": 0.0703196308500659,
-  "entry_price": 71103.9,
-  "signal": 1,
-  "last_date": "2026-04-14",
-  "total_trades": 1,
-  "equity": 10216.1,
+  "position": 0,
+  "entry_price": 0,
+  "signal": 0,
+  "last_date": "2026-04-15",
+  "total_trades": 2,
+  "equity": 10237.4,
   "equity_history": [
     {
       "time": "2026-04-11T05:29:15.315892+00:00",
@@ -530,7 +530,37 @@
       "equity": 10216.1,
       "btc_price": 74212.6,
       "signal": 1
+    },
+    {
+      "time": "2026-04-14T21:34:45.892952+00:00",
+      "equity": 10205.6,
+      "btc_price": 74063.3,
+      "signal": 1
+    },
+    {
+      "time": "2026-04-14T22:35:25.059223+00:00",
+      "equity": 10201.71,
+      "btc_price": 74007.9,
+      "signal": 1
+    },
+    {
+      "time": "2026-04-14T23:39:02.695976+00:00",
+      "equity": 10210.44,
+      "btc_price": 74132.1,
+      "signal": 1
+    },
+    {
+      "time": "2026-04-15T00:36:56.236746+00:00",
+      "equity": 10237.4,
+      "btc_price": 74552.7,
+      "signal": 0
+    },
+    {
+      "time": "2026-04-15T01:07:37.083509+00:00",
+      "equity": 10237.4,
+      "btc_price": 74712.0,
+      "signal": 0
     }
   ],
-  "hold_remaining": 1
+  "hold_remaining": 0
 }

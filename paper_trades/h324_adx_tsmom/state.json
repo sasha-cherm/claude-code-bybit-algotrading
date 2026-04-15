@@ -42,11 +42,16 @@
       "date": "2026-04-13",
       "equity": 10000.0,
       "positions": 0
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 10000.0,
+      "positions": 0
     }
   ],
-  "last_daily_date": "2026-04-13",
+  "last_daily_date": "2026-04-14",
   "last_rebal_date": "2026-04-13",
-  "days_since_rebal": 0,
+  "days_since_rebal": 1,
   "rebal_count": 2,
   "total_trades": 0,
   "total_fees": 0.0

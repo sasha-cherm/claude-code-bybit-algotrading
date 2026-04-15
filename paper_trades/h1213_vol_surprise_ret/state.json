@@ -1,0 +1,55 @@
+{
+  "started": "2026-04-15T01:16:32.474002+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "SUI/USDT": {
+      "size": 3571.607330375456,
+      "entry_price": 0.9332866200000001,
+      "weight": 0.3333333333333333,
+      "symbol": "SUI/USDT"
+    },
+    "LINK/USDT": {
+      "size": 369.3933495869362,
+      "entry_price": 9.0238044,
+      "weight": 0.3333333333333333,
+      "symbol": "LINK/USDT"
+    },
+    "BTC/USDT": {
+      "size": 0.04494832785717247,
+      "entry_price": 74159.22888,
+      "weight": 0.3333333333333333,
+      "symbol": "BTC/USDT"
+    },
+    "ATOM/USDT": {
+      "size": -1910.6017956217793,
+      "entry_price": 1.7446510000000002,
+      "weight": -0.3333333333333333,
+      "symbol": "ATOM/USDT"
+    },
+    "SOL/USDT": {
+      "size": -39.82322185093174,
+      "entry_price": 83.703256,
+      "weight": -0.3333333333333333,
+      "symbol": "SOL/USDT"
+    },
+    "DOGE/USDT": {
+      "size": -35864.88955851985,
+      "entry_price": 0.092941408,
+      "weight": -0.3333333333333333,
+      "symbol": "DOGE/USDT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-04-14",
+      "equity": 9976.0
+    }
+  ],
+  "last_daily_date": "2026-04-14",
+  "last_rebal_date": "2026-04-14",
+  "days_since_rebal": 3,
+  "rebal_count": 1,
+  "total_trades": 6,
+  "total_fees": 20.0,
+  "equity": 9975.99999984
+}

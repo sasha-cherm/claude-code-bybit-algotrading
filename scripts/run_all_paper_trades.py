@@ -213,6 +213,14 @@ RUNNERS = [
     ("H-1190", ROOT / "paper_trades" / "h1190_hurst" / "runner.py"),
     ("H-1193", ROOT / "paper_trades" / "h1193_gap_fill" / "runner.py"),
     ("H-1194", ROOT / "paper_trades" / "h1194_trend_linearity" / "runner.py"),
+    ("H-1202", ROOT / "paper_trades" / "h1202_signed_vol_asym" / "runner.py"),
+    ("H-1206", ROOT / "paper_trades" / "h1206_rsi_xs" / "runner.py"),
+    ("H-1208", ROOT / "paper_trades" / "h1208_outperf_streak" / "runner.py"),
+    ("H-1210", ROOT / "paper_trades" / "h1210_win_rate" / "runner.py"),
+    ("H-1213", ROOT / "paper_trades" / "h1213_vol_surprise_ret" / "runner.py"),
+    ("H-1215", ROOT / "paper_trades" / "h1215_vol_trend_ret" / "runner.py"),
+    ("H-1216", ROOT / "paper_trades" / "h1216_ret_per_vol" / "runner.py"),
+    ("H-1218", ROOT / "paper_trades" / "h1218_pos_vol_mom" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

@@ -18,5 +18,25 @@
     "capital": 9980.0,
     "fees": 20.0,
     "trades": 8
+  },
+  {
+    "time": "2026-04-15T00:38:52.238553+00:00",
+    "action": "rebalance",
+    "date": "2026-04-14",
+    "longs": [
+      "ARB/USDT",
+      "NEAR/USDT",
+      "ATOM/USDT",
+      "ETH/USDT"
+    ],
+    "shorts": [
+      "LINK/USDT",
+      "XRP/USDT",
+      "ADA/USDT",
+      "SOL/USDT"
+    ],
+    "capital": 10072.0,
+    "fees": 19.7421,
+    "trades": 8
   }
 ]

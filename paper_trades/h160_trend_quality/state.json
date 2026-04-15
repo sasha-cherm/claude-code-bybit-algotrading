@@ -1,41 +1,41 @@
 {
   "started": "2026-03-31T17:07:35.782659+00:00",
-  "capital": 9936.7,
+  "capital": 10207.01,
   "positions": {
-    "ARB/USDT": {
+    "NEAR/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 0.115683,
-      "size": 28651.14661196,
+      "entry_price": 1.354271,
+      "size": 2515.61025055,
       "direction": "LONG"
     },
-    "BTC/USDT": {
+    "ARB/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 73132.82364,
-      "size": 0.04532102,
+      "entry_price": 0.110132,
+      "size": 30933.94132453,
       "direction": "LONG"
     },
     "ETH/USDT": {
       "weight": 0.3333333333333333,
-      "entry_price": 2287.55742,
-      "size": 1.44890543,
+      "entry_price": 2321.244156,
+      "size": 1.46766875,
       "direction": "LONG"
     },
-    "SOL/USDT": {
+    "ADA/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 84.973002,
-      "size": -39.0059701,
+      "entry_price": 0.239752,
+      "size": -14209.75398791,
       "direction": "SHORT"
     },
     "XRP/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.354729,
-      "size": -2446.58110623,
+      "entry_price": 1.361328,
+      "size": -2502.56977549,
       "direction": "SHORT"
     },
     "DOT/USDT": {
       "weight": -0.3333333333333333,
-      "entry_price": 1.285743,
-      "size": -2577.85178767,
+      "entry_price": 1.160768,
+      "size": -2934.96899768,
       "direction": "SHORT"
     }
   },
@@ -129,12 +129,18 @@
       "equity": 10103.71,
       "positions": 6,
       "rebalanced": false
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 10202.92,
+      "positions": 6,
+      "rebalanced": true
     }
   ],
-  "last_daily_date": "2026-04-13",
-  "last_rebal_date": "2026-04-11",
-  "days_since_rebal": 2,
-  "rebal_count": 5,
-  "total_trades": 22,
-  "total_fees": 72.97638405747173
+  "last_daily_date": "2026-04-14",
+  "last_rebal_date": "2026-04-14",
+  "days_since_rebal": 0,
+  "rebal_count": 6,
+  "total_trades": 26,
+  "total_fees": 86.41715169754191
 }

@@ -46,11 +46,11 @@
     }
   },
   "equity_history": [],
-  "last_daily_date": "2026-04-13",
+  "last_daily_date": "2026-04-14",
   "last_rebal_date": "2026-04-13",
-  "days_since_rebal": 5,
+  "days_since_rebal": 1,
   "rebal_count": 2,
   "total_trades": 12,
   "total_fees": 40.888056938157646,
-  "equity": 10400.67672109762
+  "equity": 10398.888544659383
 }

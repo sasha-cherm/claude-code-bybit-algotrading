@@ -1,54 +1,54 @@
 {
   "started": "2026-04-12T09:17:32.347025+00:00",
-  "capital": 9980.0,
+  "capital": 9981.734183774377,
   "positions": {
     "BTC/USDT": {
-      "size": 0.03421699418851864,
-      "entry_price": 73063.1097,
+      "size": 0.03369754189592437,
+      "entry_price": 74127.02244,
       "weight": 0.25,
       "symbol": "BTC/USDT"
     },
-    "NEAR/USDT": {
-      "size": 1782.8103423537832,
-      "entry_price": 1.4022804,
-      "weight": 0.25,
-      "symbol": "NEAR/USDT"
-    },
     "DOGE/USDT": {
-      "size": 26856.13086902336,
-      "entry_price": 0.093088614,
+      "size": 26824.908319002425,
+      "entry_price": 0.09311862,
       "weight": 0.25,
       "symbol": "DOGE/USDT"
     },
+    "ETH/USDT": {
+      "size": 1.0761032775614774,
+      "entry_price": 2321.244156,
+      "weight": 0.25,
+      "symbol": "ETH/USDT"
+    },
     "ARB/USDT": {
-      "size": 21627.58587851522,
-      "entry_price": 0.115593114,
+      "size": 22680.946003988065,
+      "entry_price": 0.110132022,
       "weight": 0.25,
       "symbol": "ARB/USDT"
     },
-    "SUI/USDT": {
-      "size": -2655.5863424171666,
-      "entry_price": 0.94141168,
-      "weight": -0.25,
-      "symbol": "SUI/USDT"
-    },
-    "OP/USDT": {
-      "size": -21838.428821135403,
-      "entry_price": 0.11447710000000001,
-      "weight": -0.25,
-      "symbol": "OP/USDT"
-    },
     "SOL/USDT": {
-      "size": -29.44536151695718,
-      "entry_price": 84.90301600000001,
+      "size": -29.817378254168858,
+      "entry_price": 83.77324200000001,
       "weight": -0.25,
       "symbol": "SOL/USDT"
     },
-    "ATOM/USDT": {
-      "size": -1406.3555118222744,
-      "entry_price": 1.7776444,
+    "SUI/USDT": {
+      "size": -2678.9600299343865,
+      "entry_price": 0.93241348,
       "weight": -0.25,
-      "symbol": "ATOM/USDT"
+      "symbol": "SUI/USDT"
+    },
+    "ADA/USDT": {
+      "size": -10418.674411663089,
+      "entry_price": 0.23975204000000003,
+      "weight": -0.25,
+      "symbol": "ADA/USDT"
+    },
+    "OP/USDT": {
+      "size": -22487.831898441123,
+      "entry_price": 0.11107778,
+      "weight": -0.25,
+      "symbol": "OP/USDT"
     }
   },
   "equity_history": [
@@ -331,13 +331,33 @@
     {
       "date": "2026-04-13",
       "equity": 9905.11
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 9905.11
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 9905.11
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 9905.11
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 9977.74
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 9976.51
     }
   ],
-  "last_daily_date": "2026-04-13",
-  "last_rebal_date": "2026-04-11",
-  "days_since_rebal": 2,
-  "rebal_count": 1,
-  "total_trades": 8,
-  "total_fees": 20.0,
-  "equity": 9905.10946471332
+  "last_daily_date": "2026-04-14",
+  "last_rebal_date": "2026-04-14",
+  "days_since_rebal": 3,
+  "rebal_count": 2,
+  "total_trades": 12,
+  "total_fees": 29.859593393725476,
+  "equity": 9976.50516882339
 }

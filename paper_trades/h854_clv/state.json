@@ -307,13 +307,33 @@
     {
       "date": "2026-04-13",
       "equity": 10151.36
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 10151.36
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 10151.36
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 10151.36
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 10320.15
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 10314.12
     }
   ],
-  "last_daily_date": "2026-04-13",
+  "last_daily_date": "2026-04-14",
   "last_rebal_date": "2026-04-11",
-  "days_since_rebal": 2,
+  "days_since_rebal": 3,
   "rebal_count": 1,
   "total_trades": 8,
   "total_fees": 20.0,
-  "equity": 10151.355943277842
+  "equity": 10314.121448614715
 }

@@ -1,40 +1,40 @@
 {
   "started": "2026-04-12T13:18:14.463837+00:00",
-  "capital": 9980.0,
+  "capital": 9635.060481385954,
   "positions": {
+    "DOT/USDT": {
+      "size": 2773.2649421408028,
+      "entry_price": 1.1612322,
+      "weight": 0.3333333333333333,
+      "symbol": "DOT/USDT"
+    },
     "ARB/USDT": {
-      "size": 28836.781171353625,
-      "entry_price": 0.115593114,
+      "size": 29241.309579742727,
+      "entry_price": 0.110132022,
       "weight": 0.3333333333333333,
       "symbol": "ARB/USDT"
     },
-    "NEAR/USDT": {
-      "size": 2377.0804564717105,
-      "entry_price": 1.4022804,
+    "DOGE/USDT": {
+      "size": 34583.89471348519,
+      "entry_price": 0.09311862,
       "weight": 0.3333333333333333,
-      "symbol": "NEAR/USDT"
+      "symbol": "DOGE/USDT"
     },
-    "LINK/USDT": {
-      "size": 367.5600308782771,
-      "entry_price": 9.0688134,
-      "weight": 0.3333333333333333,
-      "symbol": "LINK/USDT"
-    },
-    "ETH/USDT": {
-      "size": -1.4590937922257547,
-      "entry_price": 2284.523004,
+    "SUI/USDT": {
+      "size": -3453.837400490002,
+      "entry_price": 0.93241348,
       "weight": -0.3333333333333333,
-      "symbol": "ETH/USDT"
+      "symbol": "SUI/USDT"
     },
-    "XRP/USDT": {
-      "size": -2461.6067139397555,
-      "entry_price": 1.35412912,
+    "ADA/USDT": {
+      "size": -13432.230023757196,
+      "entry_price": 0.23975204000000003,
       "weight": -0.3333333333333333,
-      "symbol": "XRP/USDT"
+      "symbol": "ADA/USDT"
     },
     "SOL/USDT": {
-      "size": -39.26048202260957,
-      "entry_price": 84.90301600000001,
+      "size": -38.44192337626179,
+      "entry_price": 83.77324200000001,
       "weight": -0.3333333333333333,
       "symbol": "SOL/USDT"
     }
@@ -295,13 +295,33 @@
     {
       "date": "2026-04-13",
       "equity": 9828.87
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 9828.87
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 9828.87
+    },
+    {
+      "date": "2026-04-13",
+      "equity": 9828.87
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 9631.2
+    },
+    {
+      "date": "2026-04-14",
+      "equity": 9645.63
     }
   ],
-  "last_daily_date": "2026-04-13",
-  "last_rebal_date": "2026-04-11",
-  "days_since_rebal": 2,
-  "rebal_count": 1,
-  "total_trades": 6,
-  "total_fees": 19.999999999999996,
-  "equity": 9828.87375149162
+  "last_daily_date": "2026-04-14",
+  "last_rebal_date": "2026-04-14",
+  "days_since_rebal": 3,
+  "rebal_count": 2,
+  "total_trades": 14,
+  "total_fees": 46.153168449156084,
+  "equity": 9645.625515737886
 }

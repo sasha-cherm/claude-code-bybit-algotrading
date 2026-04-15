@@ -1453,3 +1453,8 @@
 - Questions added: none
 - Self-modifications: 6 runners created (H-935/H-938/H-939/H-940/H-946/H-954), added to orchestrator. Archived session 183. (session 193)
 
+
+### Session 2026-04-13 review+deploy+research (session 194)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 9 new deployments
+- Focus: Paper trade MTM (BTC $70,842), distributional dynamics (H-956–H-963), conditional/structural momentum (H-964–H-971), microstructure/candle signals (H-972–H-979)
+- Done: 142 runners (133→142). 61/142 positive (42%). Avg +0.22%. Demo ~$98,126 (-1.87%). 9 deployed: H-959/H-960/H-961/H-963/H-964/H-970/H-971/H-974/H-979. 979 total hypotheses.

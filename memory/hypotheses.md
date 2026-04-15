@@ -12013,3 +12013,219 @@
 - Result: IS Sharpe 0.888, IS 50%, WF 3/4, SH 1.25/0.41 p=0.219, H-012 corr -0.016.
 - Notes: Interesting idea but p too high. SH second half weak.
 - Sessions: [2026-04-15 session 203]
+
+## H-1196: Variance Ratio VR(5) XS
+- Status: REJECTED
+- Idea: VR(5) = var(5d ret) / (5 * var(1d ret)). Departure from random walk.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.897, IS 50%, WF 1/4, SH 1.87/-0.50 p=0.215, H-012 corr -0.021.
+- Notes: SH collapse. VR measures market efficiency but doesn't predict XS returns reliably.
+- Sessions: [2026-04-15 session 204]
+
+## H-1197: Price Delay XS
+- Status: REJECTED
+- Idea: How quickly asset responds to BTC moves. 1 - R²(concurrent) / R²(full) with lagged BTC.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.752, IS 41%, WF 1/4, SH 1.82/-0.49 p=0.298, H-012 corr 0.010.
+- Notes: WF 1/4 and SH collapse. Price delay doesn't predict future XS returns in crypto.
+- Sessions: [2026-04-15 session 204]
+
+## H-1198: Absolute Autocorrelation XS
+- Status: REJECTED
+- Idea: |autocorrelation of 1d returns over 20d|. Return predictability measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.848, IS 33%, WF 1/4, SH 1.56/-0.24 p=0.240, H-012 corr 0.029.
+- Notes: Only 33% IS positive. WF 1/4. Autocorrelation structure doesn't predict XS returns.
+- Sessions: [2026-04-15 session 204]
+
+## H-1199: Close-Open Dispersion XS
+- Status: REJECTED (duplicate of H-1193)
+- Idea: std(overnight rets) / std(intraday rets) over 20d. Information arrival asymmetry.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.905, IS 100%, WF 4/4, SH 2.65/1.11 p=0.008, H-012 corr -0.016.
+- Notes: IDENTICAL metrics to H-1193 Gap Fill Ratio — produces same XS rankings. Duplicate signal, not deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1200: Amihud Illiquidity Persistence XS
+- Status: REJECTED
+- Idea: Autocorrelation of Amihud illiquidity ratio over 20d. Liquidity stability.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.653, IS 50%, WF 1/4, SH 1.75/-0.99 p=0.366, H-012 corr 0.005.
+- Notes: WF 1/4 and massive SH collapse. Liquidity persistence ≠ return predictability.
+- Sessions: [2026-04-15 session 204]
+
+## H-1201: Return-Volume Correlation XS
+- Status: CONFIRMED (not deployed — SH collapse)
+- Idea: corr(|returns|, volume, 20d). How much information does volume carry about returns?
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.792, IS 50%, WF 2/4, SH 3.12/0.04 p=0.013, H-012 corr -0.022.
+- Notes: Severe SH collapse from 3.12 to 0.04. First-half overfit. Not deployed despite low p-value.
+- Sessions: [2026-04-15 session 204]
+
+## H-1202: Signed Volume Asymmetry XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: corr(returns, volume, 20d). Directional volume — positive means volume on up days is higher.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.631, IS 50%, WF 4/4 PERFECT [0.64, 0.04, 3.42, 1.29], SH 2.21/0.85 p=0.024, H-012 corr 0.002.
+- Notes: Perfect WF, both SH halves positive, near-zero momentum correlation. Genuine directional volume signal. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1203: Intraday Range Efficiency XS
+- Status: REJECTED
+- Idea: avg(|close-open|/(high-low)) over 20d. How efficiently price moves from open to close.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.657, IS 50%, WF 2/4, SH 2.11/-1.15 p=0.363, H-012 corr -0.027.
+- Notes: SH collapse. Direction: low_long (inefficient range → outperform?) doesn't hold.
+- Sessions: [2026-04-15 session 204]
+
+## H-1204: Rank Velocity XS
+- Status: CONFIRMED (not deployed — borderline WF)
+- Idea: Change in XS return rank over 10d. Fast rank movers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.134, IS 50%, WF 2/4, SH 1.33/0.90 p=0.116, H-012 corr 0.071.
+- Notes: Both SH halves positive but WF only 2/4. Borderline, not deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1205: Rank Mean Reversion XS
+- Status: REJECTED
+- Idea: Distance from 20d average rank. Cross-sectional contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.865, IS 50%, WF 2/4, SH 0.56/1.22 p=0.231, H-012 corr 0.039.
+- Notes: p=0.231 too high. XS rank mean reversion doesn't work reliably.
+- Sessions: [2026-04-15 session 204]
+
+## H-1206: RSI(14) XS Ranking
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Rank assets by RSI(14) cross-sectionally. High RSI → momentum-like, keep long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.437, IS 50%, WF 3/4 [2.73, 2.85, 1.84, -1.63], SH 0.71/2.49 p=0.047, H-012 corr 0.059.
+- Notes: Strong WF (3/4 folds >1.8 Sharpe). Low momentum correlation despite being momentum-adjacent. RSI captures different timeframe (14d vs 60d). Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1207: Momentum Smoothness XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: R² of linear regression on cumulative return curve over 20d. Smooth trends outperform choppy moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.279, IS 50%, WF 2/4 [1.11, 2.30, -0.16, -0.19], SH 1.15/1.49 p=0.077, H-012 corr -0.028.
+- Notes: Excellent SH stability (1.15/1.49). Anti-momentum. WF borderline but strong positive folds. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1208: Outperformance Streak (Contrarian) XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Contrarian — long assets that stopped outperforming (low streak), short hot streaks. Consecutive days outperforming XS median.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.513, IS 83%, WF 3/4 [1.55, 1.04, -1.08, 0.95], SH 2.20/0.63 p=0.036, H-012 corr -0.053.
+- Notes: 83% IS positive (10/12 params). Anti-momentum contrarian. Assets at end of winning streaks underperform. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1209: Relative Drawdown XS
+- Status: REJECTED
+- Idea: Own DD from 30d high vs cross-sectional median DD.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.627, IS 41%, WF 4/4, SH 0.19/1.15 p=0.385, H-012 corr 0.025.
+- Notes: p=0.385 too high despite WF 4/4. IS too weak (0.627).
+- Sessions: [2026-04-15 session 204]
+
+## H-1210: Win Rate XS Ranking
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: % of positive return days over 20d. Long high win rate, short low win rate.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.284, IS 50%, WF 4/4 PERFECT [0.49, 2.30, 0.29, 0.72], SH 0.65/2.05 p=0.076, H-012 corr -0.093.
+- Notes: Perfect WF (4/4). Most anti-momentum of batch (corr -0.093). Win rate captures consistency, not magnitude. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1211: Return Dispersion Contribution XS
+- Status: REJECTED
+- Idea: How much each asset contributes to cross-sectional return dispersion over 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.955, IS 41%, WF 2/4, SH 2.87/-1.63 p=0.186, H-012 corr -0.035.
+- Notes: Severe SH collapse (2.87→-1.63). First half overfit.
+- Sessions: [2026-04-15 session 204]
+
+## H-1212: Volume-Weighted Return XS
+- Status: CONFIRMED (not deployed — weak SH second half)
+- Idea: Volume-weighted average return over 20d. Smart money flow proxy.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.327, IS 50%, WF 3/4 [0.02, 0.35, 1.54, -0.03], SH 2.01/0.43 p=0.066, H-012 corr -0.021.
+- Notes: WF folds include near-zero values (0.02, -0.03). SH second half drops to 0.43. Not deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1213: Volume Surprise Return XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Average return on high-volume days (vol > 1.5σ above mean) over 20d. Informed trading.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.456, IS 50%, WF 3/4 [-1.0, 0.43, 3.23, 0.96], SH 2.14/0.56 p=0.044, H-012 corr 0.003.
+- Notes: Near-zero momentum correlation. Captures what informed traders do on high-volume days. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1214: Up-Volume Ratio XS
+- Status: REJECTED
+- Idea: Volume on up days / total volume over 20d. Buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.556, IS 50%, WF 4/4, SH -0.16/1.47 p=0.441, H-012 corr -0.087.
+- Notes: IS too weak (0.556), p=0.441. SH first half negative. Identical rankings to H-1219 (duplicate).
+- Sessions: [2026-04-15 session 204]
+
+## H-1215: Volume Trend Return XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Correlation between cumulative volume and cumulative returns over 20d. Price-volume agreement.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.656, IS 50%, WF 3/4 [1.12, 1.85, -0.59, 1.18], SH 1.60/1.77 p=0.022, H-012 corr -0.032.
+- Notes: BEST SH stability of batch (1.60/1.77 — both halves strong). Price-volume agreement signals informed accumulation. Anti-momentum. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1216: Return Per Unit Volume XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: sum(|ret|) / sum(vol) over 20d. Low values = more liquid/efficient assets. Direction: low_long.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.452, IS 50%, WF 4/4 PERFECT [1.23, 1.34, 1.84, 2.88], SH 1.28/1.63 p=0.045, H-012 corr -0.023.
+- Notes: Perfect WF with monotonically increasing fold Sharpes. Excellent SH stability (1.28/1.63). Anti-momentum. Liquid assets outperform. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1217: Volume Concentration in Returns XS
+- Status: REJECTED
+- Idea: std(ret*vol) / mean(|ret*vol|) over 20d. How concentrated is volume-weighted return distribution?
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.236, IS 50%, WF 2/4, SH 2.20/-0.13 p=0.087, H-012 corr -0.061.
+- Notes: SH collapse (2.20→-0.13). First-half overfit despite low p-value.
+- Sessions: [2026-04-15 session 204]
+
+## H-1218: Positive Volume Momentum XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Volume on top 5 return days / volume on bottom 5 return days, 20d window. Buying dominance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.585, IS 50%, WF 3/4 [1.98, -1.22, 1.37, 0.85], SH 2.17/0.89 p=0.028, H-012 corr -0.017.
+- Notes: Volume concentrated on up days predicts continued outperformance. Anti-momentum. Deployed.
+- Sessions: [2026-04-15 session 204]
+
+## H-1219: Net Volume Delta XS
+- Status: REJECTED (duplicate of H-1214)
+- Idea: (vol on up days - vol on down days) / total vol over 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.556, IS 50%, WF 4/4, SH -0.16/1.47 p=0.441, H-012 corr -0.087.
+- Notes: Identical metrics to H-1214 — mathematically equivalent in XS ranking. Duplicate.
+- Sessions: [2026-04-15 session 204]
