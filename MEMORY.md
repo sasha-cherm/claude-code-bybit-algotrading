@@ -1,18 +1,20 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,063.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,764.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 227 runners active. Session 208. **99/224 positive** (44%), avg **+0.54%**.
-- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,063, near call strike.
-- **Top performers**: H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%), H-332(+5.60%).
-- **Session 208 research**: 24 new hypotheses (H-1292–H-1315). **3 CONFIRMED** (3 deployed: H-1305/H-1308/H-1314). **1315 total hypotheses.**
-- **H-1305 Mean Reversion Speed**: IS **1.659**, WF **3/4**, SH **1.44/2.06** p=**0.022**, corr **-0.030**. **SESSION BEST** — AR(1) persistence on log prices, both SH >1.4, improving.
-- **H-1308 Vol Trend Slope**: IS **1.514**, WF **3/4**, SH **1.67/1.34** p=**0.036**, corr **0.012**. Rising volume interest predicts XS returns. Both SH >1.3.
-- **H-1314 High-Vol Return Sign**: IS **1.545**, WF **2/4**, SH **1.69/1.39** p=**0.033**, corr **-0.048**. Smart money direction on active days. Anti-momentum.
-- **Key findings**: Vol microstructure (Batch 1, H-1292–H-1299) is NOISE — all 8 rejected. Parkinson/GK/vol-of-vol/clustering/asymmetry all fail XS. Return autocorrelation (Batch 2, H-1300–H-1307) mostly noise but AR(1) persistence works. Volume profile (Batch 3, H-1308–H-1315) productive — volume trend slope and high-vol return sign both pass with strong SH stability.
-- **AUTOMATED:** Paper trades hourly via cron (227 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 227 runners (esp. H-1305/H-1308/H-1314 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Internal paper trades:** 232 runners active. Session 209. **115/227 positive** (51%), avg **+0.51%**.
+- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,764, near call strike.
+- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%).
+- **Session 209 research**: 24 new hypotheses (H-1316–H-1339). **5 genuinely CONFIRMED** (5 deployed: H-1319/H-1320/H-1333/H-1334/H-1335). **1339 total hypotheses.**
+- **CRITICAL FINDING**: Degenerate signal detection — H-1316/H-1321/H-1329/H-1339 all produce IDENTICAL metrics (IS 1.905, WF 4/4, SH 2.647/1.114). These are NOT genuine signals: common signals (same value for all assets) or broken chained assignments produce ties, and tie-breaking defaults to column ordering = size factor proxy. All flagged as DEGENERATE.
+- **H-1319 Rel Vol vs Peers**: IS **1.657**, WF **4/4 PERFECT**, SH **1.08/2.32** p=**0.022**, corr **-0.011**. **SESSION BEST** — assets with high relative dollar volume outperform. Genuine cross-asset signal.
+- **H-1335 Consec Candle Mom**: IS **1.600**, WF **4/4 PERFECT**, SH **2.11/0.97** p=**0.027**, corr **-0.061**. Anti-momentum persistence signal. Strong IS but some SH decay.
+- **H-1320 Momentum Divergence**: IS **1.416**, WF **3/4**, SH **1.38/1.53** p=**0.050**, corr **0.036**. Short-term (14d) relative momentum. Very stable SH.
+- **H-1334 DD Recovery Speed**: IS **1.335**, WF **3/4**, SH **1.75/0.82** p=**0.065**, corr **-0.012**. Slow recoverers are oversold — contrarian signal.
+- **H-1333 Pos Ret Concentration**: IS **1.290**, WF **2/4**, SH **1.08/1.71** p=**0.074**, corr **-0.025**. Gini of positive returns — concentrated gains predict continuation. Improving SH.
+- **AUTOMATED:** Paper trades hourly via cron (232 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 232 runners (esp. H-1319/H-1335 new stars). Continue exploring new signal categories.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -25,14 +27,6 @@
 
 
 _Older sessions (bootstrap through 198) archived to `memory/session_archive.md`._
-
-### Session 2026-04-14 review+deploy+research (session 199)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
-- Focus: Paper trade MTM (BTC $74,354), relative performance dynamics (H-1076–H-1083), return distribution properties (H-1084–H-1091), multi-horizon composites (H-1092–H-1099)
-- Done: 173 runners (167→173). **94/167 positive** (56%). Avg **+0.44%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1076–H-1083, relative performance)**: **H-1081 CONFIRMED+deployed** (Rel Vol Surprise, IS **1.923**, WF **4/4 PERFECT**, p=**0.007**, SH 1.97/1.90 — **SESSION BEST**, corr 0.043). **H-1077 CONFIRMED+deployed** (Rank Change Mom, 1.390, WF 3/4, p=0.053, corr -0.031). **H-1078 CONFIRMED+deployed** (Outperf Consistency, 1.239, WF 3/4, p=0.084, corr -0.014). **H-1080 CONFIRMED not deployed** (Catch-Up, 1.412, WF 2/4, p=0.049 — weak WF). 4 REJECTED. **Batch 2 (H-1084–H-1091, return distribution)**: **H-1090 CONFIRMED+deployed** (Consec Extreme Freq, IS **2.397**, IS 100%, WF 3/4, p=**0.001**, corr -0.023 — vol clustering). **H-1091 CONFIRMED+deployed** (Overnight Return Share, IS **1.905**, IS 100%, WF **4/4 PERFECT**, p=**0.008**, corr -0.016 — institutional accumulation). **H-1087 CONFIRMED+deployed** (Return Kurtosis, 1.198, WF 3/4, p=0.097, corr 0.019 — thin tails outperform). 5 REJECTED/BORDERLINE. **Batch 3 (H-1092–H-1099, multi-horizon)**: **ALL 8 REJECTED** — every multi-horizon composite is a momentum proxy (corr 0.57-0.88 with H-012). Term structure slope, weighted momentum, sign agreement, multi-horizon Sharpe all add zero independent information. **1099 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 173 runners (esp. H-1081/H-1090/H-1091 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 6 runners created (H-1077/H-1078/H-1081/H-1087/H-1090/H-1091), added to orchestrator. Archived session 189. (session 199)
 
 ### Session 2026-04-14 review+deploy+research (session 200)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
@@ -105,3 +99,11 @@ _Older sessions (bootstrap through 198) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 227 runners (esp. H-1305/H-1308/H-1314 new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 3 runners created (H-1305/H-1308/H-1314), added to orchestrator. Archived session 198. (session 208)
+
+### Session 2026-04-16 review+deploy+research (session 209)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 5 new deployments
+- Focus: Paper trade MTM (BTC $74,764), cross-asset momentum transfer (H-1316–H-1323), vol regime signals (H-1324–H-1331), price & momentum quality (H-1332–H-1339)
+- Done: 232 runners (227→232). **115/227 positive** (51%). Avg **+0.51%**. Demo ~$98,190 (-1.81%). **CRITICAL: Degenerate signal detection** — H-1316/H-1321/H-1329/H-1339 all produce identical metrics (IS 1.905, WF 4/4, SH 2.647/1.114) due to common signals creating column-order tie-breaking = size factor proxy. All flagged DEGENERATE. **Batch 1 (H-1316–H-1323, momentum transfer)**: H-1316/H-1321 DEGENERATE. **H-1319 CONFIRMED+deployed** (Rel Vol vs Peers, IS **1.657**, WF **4/4 PERFECT**, p=**0.022**, corr -0.011 — **SESSION BEST**). **H-1320 CONFIRMED+deployed** (Mom Divergence, 1.416, WF 3/4, p=0.050, SH 1.38/1.53). H-1322=H-1320 DUPLICATE. H-1317/H-1318/H-1323 REJECTED. **Batch 2 (H-1324–H-1331, vol regime)**: H-1329 DEGENERATE. H-1326 BORDERLINE (IS 1.991 but partially degenerate from binary ties). 6 REJECTED/BORDERLINE. **Batch 3 (H-1332–H-1339, price quality)**: H-1339 DEGENERATE. **H-1335 CONFIRMED+deployed** (Consec Candle Mom, IS **1.600**, WF **4/4 PERFECT**, p=**0.027**, corr -0.061). **H-1334 CONFIRMED+deployed** (DD Recovery Speed, 1.335, WF 3/4, p=0.065). **H-1333 CONFIRMED+deployed** (Pos Ret Gini, 1.290, WF 2/4, p=0.074, SH improving). 3 REJECTED/BORDERLINE. **1339 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 232 runners (esp. H-1319/H-1335 new stars). Fix degenerate signal detection in batch framework. Continue new signal categories.
+- Questions added: none
+- Self-modifications: 5 runners created (H-1319/H-1320/H-1333/H-1334/H-1335), added to orchestrator. Archived session 199. (session 209)

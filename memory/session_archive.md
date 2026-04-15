@@ -1488,3 +1488,9 @@
 - Focus: Paper trade MTM (BTC $74,089), funding rate dynamics (H-1052–H-1059), OI structure (H-1060–H-1067), hourly microstructure (H-1068–H-1075)
 - Done: 167 runners (164→167). 94/164 positive (57%). Avg +0.47%. Demo ~$98,190 (-1.81%). Batch 1 (funding): ALL 8 REJECTED. Batch 2 (OI): H-1065 CONFIRMED+deployed. Batch 3 (microstructure): H-1068, H-1071 CONFIRMED+deployed. 1075 total hypotheses.
 - Next: Monitor 167 runners. Explore on-chain data, sentiment APIs, ML ensembles.
+
+### Session 2026-04-14 review+deploy+research (session 199)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $74,354), relative performance dynamics (H-1076–H-1083), return distribution properties (H-1084–H-1091), multi-horizon composites (H-1092–H-1099)
+- Done: 173 runners (167→173). 94/167 positive (56%). Avg +0.44%. 6 deployed (H-1077/H-1078/H-1081/H-1087/H-1090/H-1091). H-1081 SESSION BEST (IS 1.923, WF 4/4 PERFECT). All multi-horizon composites rejected. 1099 total hypotheses.
+- Next: Monitor 173 runners. Explore on-chain data, sentiment APIs, ML ensembles.

@@ -13094,3 +13094,208 @@
 - Result: IS Sharpe 0.920, IS 41%, WF 2/4 [0.03, -0.46, -2.84, 0.14], SH 1.88/-0.30 p=0.203, H-012 corr 0.045.
 - Notes: SH collapse (1.88→-0.30). WF mostly negative. Volume entropy noise.
 - Sessions: [2026-04-15 session 208]
+
+## H-1316: Large-Cap Momentum Spread
+- Status: DEGENERATE — common signal produces column-order ranking = size factor proxy
+- Idea: Avg momentum of top-3 market cap vs bottom-3. Same value for all assets = tie-breaking defaults to column order.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.905, WF 4/4, SH 2.647/1.114 p=0.008 — IDENTICAL to other degenerate signals. NOT genuine.
+- Notes: Common signals (same value per row for all assets) produce deterministic column-order ranking = size factor proxy.
+- Sessions: [2026-04-16 session 209]
+
+## H-1317: Sector Peer Return
+- Status: REJECTED — 0% IS positive
+- Idea: Avg 14d return of 3 most correlated assets as peer momentum predictor.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0/12 param combos positive. No signal.
+- Sessions: [2026-04-16 session 209]
+
+## H-1318: BTC Beta Momentum
+- Status: REJECTED — 0% IS positive
+- Idea: Beta * BTC 20d return. High beta + rising BTC should outperform.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0/12 param combos positive. BTC beta momentum has no XS predictive power.
+- Sessions: [2026-04-16 session 209]
+
+## H-1319: Relative Volume vs Peers
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: 20d avg dollar volume / market avg volume. High relative volume = asset-specific attention diverging from peers.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by 20d avg dollar vol / market avg. Long top 3 (high relative vol = attention), short bottom 3 (low relative vol = ignored).
+- Result: IS Sharpe **1.657**, IS 50%, WF **4/4 PERFECT** [1.91, 1.82, 3.10, 2.68], SH **1.08/2.32** p=**0.022**, H-012 corr **-0.011**. **SESSION BEST.**
+- Notes: Genuine per-asset signal with continuous values. Improving SH (1.08→2.32). Highly independent (corr -0.011). Assets getting disproportionate volume vs peers outperform.
+- Sessions: [2026-04-16 session 209]
+
+## H-1320: Momentum Divergence (Short-Term XS Momentum)
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: 14d return minus equal-weight market avg 14d return. Effectively short-term (14d) cross-sectional momentum.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by 14d return minus market avg. Long top 3 (outperformers), short bottom 3 (underperformers).
+- Result: IS Sharpe **1.416**, IS 50%, WF **3/4** [2.59, 1.70, 0.33, -1.77], SH **1.38/1.53** p=**0.050**, H-012 corr **0.036**.
+- Notes: XS ranking by asset_ret14 - market_avg is equivalent to ranking by raw 14d returns (subtracting constant doesn't change rank). This is a 14d momentum factor, uncorrelated with H-012's 60d momentum (corr 0.036). Very stable SH.
+- Sessions: [2026-04-16 session 209]
+
+## H-1321: Cross-Asset Return Dispersion
+- Status: DEGENERATE — common signal produces column-order ranking = size factor proxy
+- Idea: Std of all asset returns on each day (same value for all assets per row).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.905, WF 4/4 — IDENTICAL to H-1316. Same degenerate pattern.
+- Sessions: [2026-04-16 session 209]
+
+## H-1322: Lagged Alt Momentum
+- Status: DUPLICATE of H-1320 — identical metrics
+- Idea: Avg 14d return of all other assets (excl self) with low_long direction.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.416, WF 3/4 — identical to H-1320 because rankings are equivalent.
+- Notes: XS ranking by "avg peer return" with low_long ≈ "own return minus avg" with high_long. Same signal expressed differently.
+- Sessions: [2026-04-16 session 209]
+
+## H-1323: Funding Rate Spread
+- Status: REJECTED — 0% IS positive
+- Idea: Asset funding rate minus median funding rate (7d avg).
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: 0/12 param combos positive. Relative funding rate has no XS signal.
+- Sessions: [2026-04-16 session 209]
+
+## H-1324: Vol Regime Change
+- Status: REJECTED — SH collapse, WF 1/4
+- Idea: Ratio of 5d to 60d realized vol. Identifies transition into high/low vol regimes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.469, IS 33%, WF 1/4, SH 0.949/-0.214 p=0.516. Second half negative. Weak overall.
+- Sessions: [2026-04-16 session 209]
+
+## H-1325: Vol Mean Reversion Score
+- Status: REJECTED — WF 1/4, high p-value
+- Idea: Z-score of 10d vol vs 60d history. Vol mean-reverts, so extreme z-scores should predict.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.297, IS 33%, WF 1/4, SH 0.069/0.580 p=0.680. Nearly zero Sharpe.
+- Sessions: [2026-04-16 session 209]
+
+## H-1326: Vol Trend Breakout
+- Status: BORDERLINE — partially degenerate from binary ties
+- Idea: Binary: 10d vol > 2x 60d vol. Long non-breakout, short breakout.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.991, IS 100%, WF 4/4 [1.1, 1.36, 1.43, 2.78], SH 2.762/1.169 p=0.006. Very similar to degenerate signals but slightly different — binary signal has many ties on zero-breakout days where ranking defaults to column order. Genuine signal contaminated by degenerate-day artifact.
+- Sessions: [2026-04-16 session 209]
+
+## H-1327: Vol Decay Rate
+- Status: REJECTED — WF 2/4, high p-value
+- Idea: (20d vol - 10d vol) / 20d vol. Positive = vol declining.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.588, IS 50%, WF 2/4, SH 0.558/0.638 p=0.416.
+- Sessions: [2026-04-16 session 209]
+
+## H-1328: Normalized ATR Change
+- Status: BORDERLINE — WF 3/4 but p=0.299
+- Idea: Pct change in ATR(14) over 20 days. Expanding/contracting risk measure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.750, IS 41%, WF 3/4, SH 0.821/0.670 p=0.299. p-value too high for deployment.
+- Sessions: [2026-04-16 session 209]
+
+## H-1329: Vol Regime Duration
+- Status: DEGENERATE — chained assignment bug produces all zeros = column-order ranking
+- Idea: Consecutive days where 10d vol > 60d vol.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.905, WF 4/4 — IDENTICAL to H-1316/H-1321. ChainedAssignment error in pandas meant values were never set, leaving DataFrame as zeros.
+- Sessions: [2026-04-16 session 209]
+
+## H-1330: Vol Asymmetry Shift
+- Status: REJECTED — near-zero Sharpe, p=0.916
+- Idea: 20d skewness minus 60d skewness. Changing distribution shape.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.076, IS 25%, WF 3/4 (trivially), SH -0.115/0.372 p=0.916.
+- Sessions: [2026-04-16 session 209]
+
+## H-1331: Relative Vol Rank
+- Status: BORDERLINE — WF 3/4 but p=0.221
+- Idea: Percentile rank of 10d vol in own 60d history. Asset's own vol regime position.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.883, IS 50%, WF 3/4, SH 0.700/1.094 p=0.221. Interesting concept but p-value too high.
+- Sessions: [2026-04-16 session 209]
+
+## H-1332: Trend Strength (Fractal Efficiency)
+- Status: BORDERLINE — SH collapse
+- Idea: abs(net move) / sum(abs daily returns) over 20d. How efficiently price moves.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.972, IS 50%, WF 2/4, SH 2.372/-0.988 p=0.179. Massive SH collapse. Only works in first half.
+- Sessions: [2026-04-16 session 209]
+
+## H-1333: Positive Return Concentration
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: Gini coefficient of positive daily returns in 20d. Concentrated gains = few big up days.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by Gini of positive returns. Long top 4 (concentrated gains), short bottom 4 (distributed small gains).
+- Result: IS Sharpe **1.290**, IS 50%, WF **2/4** [-0.85, 0.59, -0.24, 2.27], SH **1.08/1.71** p=**0.074**, H-012 corr **-0.025**.
+- Notes: Improving SH (1.08→1.71) is promising. WF only 2/4 but recent fold very strong (2.27). Anti-momentum (corr -0.025). Deployed despite borderline WF because of improving OOS performance.
+- Sessions: [2026-04-16 session 209]
+
+## H-1334: Drawdown Recovery Speed
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: Avg bars to recover from intraperiod dips in 30d. Slow recovery = oversold, contrarian opportunity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by avg recovery time. Long top 3 (slow recoverers = oversold), short bottom 3 (fast recoverers = overbought).
+- Result: IS Sharpe **1.335**, IS 50%, WF **3/4** [3.28, 2.18, -1.19, 1.98], SH **1.75/0.82** p=**0.065**, H-012 corr **-0.012**.
+- Notes: Contrarian signal — assets taking longer to recover from dips are oversold and subsequently outperform. Some SH decay (1.75→0.82) but both halves positive. Independent of momentum.
+- Sessions: [2026-04-16 session 209]
+
+## H-1335: Consecutive Candle Momentum
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: Max consecutive green candles in 20d. Strong bullish persistence predicts continuation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by max consec green candles in 20d. Long top 4 (strongest persistence), short bottom 4 (weakest).
+- Result: IS Sharpe **1.600**, IS 41%, WF **4/4 PERFECT** [0.14, 1.69, 0.20, 1.17], SH **2.11/0.97** p=**0.027**, H-012 corr **-0.061**.
+- Notes: Anti-momentum (corr -0.061). Some SH decay but both halves positive. All 4 WF folds positive. Captures price persistence that raw returns miss.
+- Sessions: [2026-04-16 session 209]
+
+## H-1336: Return Smoothness Ratio
+- Status: REJECTED — SH collapse, WF 2/4
+- Idea: Std of 5d rolling returns / (sqrt5 * std of daily returns). Smooth vs choppy trends.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.626, IS 50%, WF 2/4, SH 1.236/-0.279 p=0.386. SH collapse.
+- Sessions: [2026-04-16 session 209]
+
+## H-1337: Close vs VWAP
+- Status: BORDERLINE — WF 2/4, improving SH
+- Idea: Daily close / 20d VWAP proxy. Consistently above = buying pressure.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.142, IS 50%, WF 2/4 [2.0, 2.62, -0.38, -0.64], SH 0.937/1.493 p=0.114. Recent folds negative.
+- Sessions: [2026-04-16 session 209]
+
+## H-1338: Tail Ratio
+- Status: REJECTED — WF 2/4, SH collapse
+- Idea: 95th pctile / abs(5th pctile) of returns in 30d. Upside vs downside extremes.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 0.787, IS 50%, WF 2/4, SH 1.296/0.069 p=0.276. SH near-collapse.
+- Sessions: [2026-04-16 session 209]
+
+## H-1339: Intraday Reversal Frequency
+- Status: DEGENERATE — identical metrics to other degenerate signals
+- Idea: Fraction of days where (close-open) has opposite sign to gap (open-prev_close) in 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS 1.905, WF 4/4, SH 2.647/1.114 — IDENTICAL to H-1316/H-1321/H-1329. Discretized signal (rolling mean of binary over 20d) produces many ties, defaulting to column-order ranking.
+- Notes: Rolling 20d mean of binary creates only 21 possible values. With 14 assets, many ties → tie-breaking follows column order → size factor proxy.
+- Sessions: [2026-04-16 session 209]
