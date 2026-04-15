@@ -1,0 +1,20 @@
+[
+  {
+    "time": "2026-04-15T05:15:48.116747+00:00",
+    "action": "rebalance",
+    "date": "2026-04-14",
+    "longs": [
+      "DOGE/USDT",
+      "OP/USDT",
+      "ARB/USDT"
+    ],
+    "shorts": [
+      "AVAX/USDT",
+      "NEAR/USDT",
+      "ATOM/USDT"
+    ],
+    "capital": 9980.0,
+    "fees": 20.0,
+    "trades": 6
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "started": "2026-04-15T05:15:01.507464+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "LINK/USDT": {
+      "size": 277.0450121902022,
+      "entry_price": 9.0238044,
+      "weight": 0.25,
+      "symbol": "LINK/USDT"
+    },
+    "BTC/USDT": {
+      "size": 0.033711245892879355,
+      "entry_price": 74159.22888,
+      "weight": 0.25,
+      "symbol": "BTC/USDT"
+    },
+    "AVAX/USDT": {
+      "size": 268.70566544614104,
+      "entry_price": 9.3038604,
+      "weight": 0.25,
+      "symbol": "AVAX/USDT"
+    },
+    "ADA/USDT": {
+      "size": 10431.970367195341,
+      "entry_price": 0.23964792000000001,
+      "weight": 0.25,
+      "symbol": "ADA/USDT"
+    },
+    "SUI/USDT": {
+      "size": -2679.7771943200128,
+      "entry_price": 0.93291338,
+      "weight": -0.25,
+      "symbol": "SUI/USDT"
+    },
+    "ETH/USDT": {
+      "size": -1.0766879521271115,
+      "entry_price": 2321.93552,
+      "weight": -0.25,
+      "symbol": "ETH/USDT"
+    },
+    "SOL/USDT": {
+      "size": -29.86741638819881,
+      "entry_price": 83.703256,
+      "weight": -0.25,
+      "symbol": "SOL/USDT"
+    },
+    "XRP/USDT": {
+      "size": -1836.4424941392508,
+      "entry_price": 1.36132768,
+      "weight": -0.25,
+      "symbol": "XRP/USDT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-04-14",
+      "equity": 9976.0
+    }
+  ],
+  "last_daily_date": "2026-04-14",
+  "last_rebal_date": "2026-04-14",
+  "days_since_rebal": 3,
+  "rebal_count": 1,
+  "total_trades": 8,
+  "total_fees": 20.0,
+  "equity": 9975.999999839996
+}

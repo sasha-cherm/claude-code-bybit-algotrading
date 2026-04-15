@@ -1,20 +1,20 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,528.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,392.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 198 runners active. Session 204. **119/190 positive** (63%), avg **+0.84%**.
-- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,528, near call strike.
-- **Top performers**: H-049(+8.06%), H-250(+8.05%), H-085(+7.50%), H-277(+7.17%), H-353(+7.07%).
-- **Session 204 research**: 24 new hypotheses (H-1196–H-1219). **11 CONFIRMED** (8 deployed: H-1202/H-1206/H-1207/H-1208/H-1210/H-1213/H-1215/H-1216/H-1218). **1219 total hypotheses.**
-- **H-1215 Vol Trend Return**: IS **1.656**, WF **3/4**, SH **1.60/1.77** p=**0.022**, corr **-0.032**. **SESSION BEST SH** — most stable split-half of any batch 3 signal.
-- **H-1216 Return Per Vol**: IS **1.452**, WF **4/4 PERFECT** [1.23→2.88 monotonic], SH **1.28/1.63**, p=**0.045**, corr -0.023. Liquid assets outperform.
-- **H-1202 Signed Vol Asym**: IS **1.631**, WF **4/4 PERFECT**, SH **2.21/0.85**, p=**0.024**, corr **0.002**. Directional volume signal.
-- **H-1210 Win Rate**: IS **1.284**, WF **4/4 PERFECT**, SH 0.65/2.05, p=0.076, corr **-0.093**. Most anti-momentum of batch.
-- **H-1208 Outperf Streak**: IS **1.513**, IS **83%**, WF **3/4**, SH **2.20/0.63**, p=**0.036**, corr -0.053. Contrarian: short hot streaks.
-- **Key findings**: Price efficiency signals mostly fail (variance ratio, price delay, autocorr — all WF 1/4). H-1199=H-1193 duplicate. Relative strength dynamics yield many signals — RSI/win rate/smoothness independent of 60d momentum. Volume-return interactions rich: volume trend, surprise returns, positive vol mom all genuine. H-1214=H-1219 duplicate (up-vol ratio ≡ net vol delta).
-- **AUTOMATED:** Paper trades hourly via cron (198 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 198 runners (esp. new deploys). Explore on-chain data, sentiment APIs, ML ensembles.
+- **Internal paper trades:** 206 runners active. Session 205. **115/199 positive** (58%), avg **+0.62%**.
+- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,392, near call strike.
+- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%).
+- **Session 205 research**: 24 new hypotheses (H-1220–H-1243). **9 CONFIRMED** (7 deployed: H-1221/H-1223/H-1233/H-1234/H-1237/H-1238/H-1243). **1243 total hypotheses.**
+- **H-1238 Post-Drop Recovery**: IS **1.286**, WF **3/4**, SH **1.33/1.28** p=**0.075**, corr **-0.065**. **SESSION BEST** — most stable SH. Anti-momentum. Contrarian signal.
+- **H-1221 Approx Entropy**: IS **1.288**, WF **3/4**, SH **1.93/0.50**, p=**0.075**, corr 0.075. First info-theoretic signal to pass.
+- **H-1243 Tail Asymmetry**: IS **1.184**, WF **3/4**, SH **1.47/0.83**, p=**0.101**, corr **0.013**. Favorable tail ratio → outperforms.
+- **H-1237 UD Vol Asymmetry**: IS **0.817**, WF **4/4 PERFECT**, SH 0.60/1.09, p=0.258. Deployed for perfect WF despite high p.
+- **H-1233 DD Frequency**: IS **1.155**, WF **3/3 PERFECT**, SH 1.59/0.58, p=0.119. Stability premium.
+- **Key findings**: Entropy/complexity — most fail, but ApEn (regularity) and LZ (compressibility) are genuine signals. Drawdown dynamics — stability premium exists (fewer DDs → outperform), but most DD signals are noisy. Asymmetric behavior — post-drop recovery is best signal (SH 1.33/1.28), tail asymmetry works. Capture ratios/beta asymmetry DON'T work. Factor interactions still zero.
+- **AUTOMATED:** Paper trades hourly via cron (206 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 206 runners (esp. H-1238/H-1221/H-1243 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -26,15 +26,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 194) archived to `memory/session_archive.md`._
-
-### Session 2026-04-13 review+deploy+research (session 195)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
-- Focus: Paper trade MTM (BTC $71,115), vol forecasting/regime (H-980–H-987), spread/relative value (H-988–H-995), adaptive/conditional (H-996–H-1003)
-- Done: 149 runners (143→149). **67/143 positive** (47%, up from 42%). Avg **+0.22%**. Demo ~$98,126 (-1.87%). **Batch 1 (H-980–H-987, vol forecast)**: **H-986 CONFIRMED+deployed** (Vol Breakout Freq, **2.874**, WF 3/4, p=**0.0001**, corr -0.04 — **SESSION BEST**). H-983 (RV Spread) strong but duplicate H-059. H-985 Vol Asymmetry WF unstable. H-980/H-982/H-984/H-987 all fail IS. Vol compression 0% positive (anti-signal). **Batch 2 (H-988–H-995, relative value)**: **H-992 CONFIRMED+deployed** (XS Skew Position, 1.236, WF **4/5**, p=0.084, corr 0.021). **H-994 CONFIRMED+deployed** (Vol Rank Change, **1.618**, WF 3/5, p=0.025, corr -0.017). H-993 = H-992 duplicate. Rank persistence/beta momentum fail. Relative DD interesting (WF 4/4) but SH fail. **Batch 3 (H-996–H-1003, adaptive)**: **H-1001 CONFIRMED+deployed** (Momentum Breadth, **1.798**, WF **4/4 PERFECT**, p=**0.013**, corr **0.012** — **star**). **H-997 CONFIRMED+deployed** (Mom-Vol Interaction, 1.576, WF 3/5, p=0.029, corr 0.04). **H-1003 CONFIRMED+deployed** (ATR-Norm Return, 1.406, WF 3/5, p=0.051, corr 0.012). Vol climax reversal 0% — contrarian volume fails. PV divergence fails. **1003 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 149 runners (esp. H-986/H-1001/H-997 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 6 runners created (H-986/H-992/H-994/H-997/H-1001/H-1003), added to orchestrator. Archived session 185. (session 195)
+_Older sessions (bootstrap through 195) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-13 review+deploy+research (session 196)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
@@ -107,3 +99,11 @@ _Older sessions (bootstrap through 194) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 198 runners (esp. H-1215/H-1216/H-1202 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
 - Questions added: none
 - Self-modifications: 8 runners created (H-1202/H-1206/H-1207/H-1208/H-1210/H-1213/H-1215/H-1216/H-1218), added to orchestrator. Archived session 194. (session 204)
+
+### Session 2026-04-15 review+deploy+research (session 205)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 7 new deployments
+- Focus: Paper trade MTM (BTC $74,392), entropy/complexity (H-1220–H-1227), drawdown dynamics (H-1228–H-1235), asymmetric behavior (H-1236–H-1243)
+- Done: 206 runners (199→206). **115/199 positive** (58%). Avg **+0.62%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1220–H-1227, entropy/complexity)**: **H-1221 CONFIRMED+deployed** (Approx Entropy, IS **1.288**, WF **3/4**, p=**0.075**, corr 0.075 — first info-theoretic signal). **H-1223 CONFIRMED+deployed** (LZ Complexity, 1.093, WF 2/4, SH **1.06/1.17** — excellent SH stability, corr **-0.047**). 6 REJECTED. Most entropy measures fail — permutation entropy, spectral entropy, dispersion entropy, ACF decay all too noisy. **Batch 2 (H-1228–H-1235, drawdown dynamics)**: **H-1233 CONFIRMED+deployed** (DD Frequency, 1.155, WF **3/3 PERFECT**, p=0.119 — stability premium). **H-1234 CONFIRMED+deployed** (Mean Recovery Time, **1.253**, WF 2/3, p=**0.091** — contrarian: slow recoverers oversold). 6 REJECTED. DD depth/duration/underwater all noisy. Pain ratio too weak. **Batch 3 (H-1236–H-1243, asymmetric behavior)**: **H-1238 CONFIRMED+deployed** (Post-Drop Recovery, **1.286**, WF **3/4**, SH **1.33/1.28** — **SESSION BEST**, corr **-0.065**). **H-1243 CONFIRMED+deployed** (Tail Asymmetry, 1.184, WF 3/4, p=0.101, corr **0.013**). **H-1237 CONFIRMED+deployed** (UD Vol Asym, 0.817, WF **4/4 PERFECT** — deployed for exceptional WF). **H-1236 CONFIRMED not deployed** (SH collapse 2.13→0.02). Conditional vol asymmetry/beta asymmetry/upside capture all fail. **1243 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 206 runners (esp. H-1238/H-1221/H-1243 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 7 runners created (H-1221/H-1223/H-1233/H-1234/H-1237/H-1238/H-1243), added to orchestrator. Archived session 195. (session 205)

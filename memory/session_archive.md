@@ -1458,3 +1458,12 @@
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 9 new deployments
 - Focus: Paper trade MTM (BTC $70,842), distributional dynamics (H-956–H-963), conditional/structural momentum (H-964–H-971), microstructure/candle signals (H-972–H-979)
 - Done: 142 runners (133→142). 61/142 positive (42%). Avg +0.22%. Demo ~$98,126 (-1.87%). 9 deployed: H-959/H-960/H-961/H-963/H-964/H-970/H-971/H-974/H-979. 979 total hypotheses.
+
+### Session 2026-04-13 review+deploy+research (session 195)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $71,115), vol forecasting/regime (H-980–H-987), spread/relative value (H-988–H-995), adaptive/conditional (H-996–H-1003)
+- Done: 149 runners (143→149). **67/143 positive** (47%, up from 42%). Avg **+0.22%**. Demo ~$98,126 (-1.87%). **Batch 1 (H-980–H-987, vol forecast)**: **H-986 CONFIRMED+deployed** (Vol Breakout Freq, **2.874**, WF 3/4, p=**0.0001**, corr -0.04 — **SESSION BEST**). H-983 (RV Spread) strong but duplicate H-059. H-985 Vol Asymmetry WF unstable. H-980/H-982/H-984/H-987 all fail IS. Vol compression 0% positive (anti-signal). **Batch 2 (H-988–H-995, relative value)**: **H-992 CONFIRMED+deployed** (XS Skew Position, 1.236, WF **4/5**, p=0.084, corr 0.021). **H-994 CONFIRMED+deployed** (Vol Rank Change, **1.618**, WF 3/5, p=0.025, corr -0.017). H-993 = H-992 duplicate. Rank persistence/beta momentum fail. Relative DD interesting (WF 4/4) but SH fail. **Batch 3 (H-996–H-1003, adaptive)**: **H-1001 CONFIRMED+deployed** (Momentum Breadth, **1.798**, WF **4/4 PERFECT**, p=**0.013**, corr **0.012** — **star**). **H-997 CONFIRMED+deployed** (Mom-Vol Interaction, 1.576, WF 3/5, p=0.029, corr 0.04). **H-1003 CONFIRMED+deployed** (ATR-Norm Return, 1.406, WF 3/5, p=0.051, corr 0.012). Vol climax reversal 0% — contrarian volume fails. PV divergence fails. **1003 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 149 runners (esp. H-986/H-1001/H-997 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 6 runners created (H-986/H-992/H-994/H-997/H-1001/H-1003), added to orchestrator. Archived session 185. (session 195)
+

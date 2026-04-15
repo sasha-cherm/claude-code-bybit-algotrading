@@ -12229,3 +12229,219 @@
 - Result: IS Sharpe 0.556, IS 50%, WF 4/4, SH -0.16/1.47 p=0.441, H-012 corr -0.087.
 - Notes: Identical metrics to H-1214 — mathematically equivalent in XS ranking. Duplicate.
 - Sessions: [2026-04-15 session 204]
+
+## H-1220: Permutation Entropy XS
+- Status: REJECTED
+- Idea: Complexity of return ordinal patterns over 20d. High PE = more random.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.333, IS 41%, WF 3/4 [1.03, -0.74, 1.61, 0.27], SH 0.88/-0.49 p=0.645, H-012 corr -0.021.
+- Notes: Very weak IS Sharpe and high p-value. SH collapse in second half. No signal.
+- Sessions: [2026-04-15 session 205]
+
+## H-1221: Approximate Entropy XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Regularity/predictability of return series over 20d. Low ApEn = more predictable → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.288, IS 58%, WF 3/4 [1.64, 0.88, -2.11, 2.33], SH 1.93/0.50 p=0.075, H-012 corr 0.075.
+- Notes: First information-theoretic signal to pass. Assets with more regular return patterns outperform. SH 2nd half weaker (0.50). Deployed.
+- Sessions: [2026-04-15 session 205]
+
+## H-1222: Spectral Entropy XS
+- Status: REJECTED
+- Idea: Frequency domain entropy of returns. Flat spectrum = high entropy = random.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.556, IS 41%, WF 1/4 [0.52, -0.51, -0.34, -0.75], SH 0.98/0.07 p=0.441, H-012 corr -0.011.
+- Notes: WF 1/4 — no out-of-sample validity. SH collapse.
+- Sessions: [2026-04-15 session 205]
+
+## H-1223: Lempel-Ziv Complexity XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Compressibility of return sign sequence over 20d. Low complexity = more structured → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.093, IS 66%, WF 2/4 [-2.16, 1.11, 2.75, -0.02], SH 1.06/1.17 p=0.130, H-012 corr -0.047.
+- Notes: Excellent SH stability (1.06/1.17). Independent of momentum. Low complexity = predictable patterns. Deployed despite borderline WF.
+- Sessions: [2026-04-15 session 205]
+
+## H-1224: Dispersion Entropy XS
+- Status: REJECTED
+- Idea: Class-based Shannon entropy of returns over 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.550, IS 41%, WF 3/4, SH 0.30/0.91 p=0.446, H-012 corr 0.016.
+- Notes: Weak IS and high p-value despite reasonable WF.
+- Sessions: [2026-04-15 session 205]
+
+## H-1225: Autocorrelation Decay XS
+- Status: REJECTED
+- Idea: Sum of |ACF(1)| + |ACF(2)| over 20d. How structured is the autocorrelation.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.557, IS 50%, WF 3/4 [1.19, 3.56, -2.65, 1.09], SH 0.69/0.40 p=0.441, H-012 corr -0.018.
+- Notes: WF unstable (huge variance -2.65 to 3.56). High p-value.
+- Sessions: [2026-04-15 session 205]
+
+## H-1226: Permutation Entropy Change XS
+- Status: REJECTED
+- Idea: Delta of PE(10d) - PE(20d). Entropy is increasing or decreasing.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.766, IS 33%, WF 1/4 [-1.65, 0.70, -0.94, -1.51], SH 0.92/0.59 p=0.289, H-012 corr 0.057.
+- Notes: WF 1/4 — no OOS validity.
+- Sessions: [2026-04-15 session 205]
+
+## H-1227: Multi-Scale Entropy Ratio XS
+- Status: REJECTED
+- Idea: Ratio of coarse-grained PE to fine-grained PE. Multi-scale complexity.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.702, IS 25%, WF 1/4 [-0.89, 3.81, -3.70, -1.40], SH 0.80/0.59 p=0.331, H-012 corr 0.017.
+- Notes: WF 1/4. Very unstable folds. Only 25% of params positive.
+- Sessions: [2026-04-15 session 205]
+
+## H-1228: Current Drawdown Depth XS
+- Status: REJECTED
+- Idea: Distance from 60d rolling high. How deep in drawdown.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.783, IS 50%, WF 3/3 [2.08, 1.46, 0.60], SH 0.57/1.05 p=0.290, H-012 corr 0.013.
+- Notes: WF 3/3 but high p-value (0.29). Borderline.
+- Sessions: [2026-04-15 session 205]
+
+## H-1229: Drawdown Duration XS
+- Status: REJECTED
+- Idea: Days since 60d rolling high. How long in drawdown.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.566, IS 50%, WF 3/3 [2.18, 1.14, 1.07], SH -0.04/1.49 p=0.444, H-012 corr -0.018.
+- Notes: WF 3/3 but SH first half is flat (-0.04). High p-value.
+- Sessions: [2026-04-15 session 205]
+
+## H-1230: Recovery Speed XS
+- Status: REJECTED
+- Idea: Gain after drawdown trough / drawdown depth. How fast assets bounce.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.995, IS 41%, WF 2/3 [0.41, -0.50, 0.82], SH 1.92/-0.18 p=0.180, H-012 corr 0.005.
+- Notes: SH collapse (1.92→-0.18). First-half overfit.
+- Sessions: [2026-04-15 session 205]
+
+## H-1231: Underwater Ratio XS
+- Status: REJECTED
+- Idea: Fraction of 60d lookback spent below prior peak.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.984, IS 50%, WF 3/3 [0.41, 2.27, 1.62], SH 0.34/2.07 p=0.184, H-012 corr -0.043.
+- Notes: SH first half very weak (0.34). DD -73.5% too high.
+- Sessions: [2026-04-15 session 205]
+
+## H-1232: Max DD Change XS
+- Status: REJECTED
+- Idea: Change in rolling 30d max drawdown vs 60d. Improving or worsening.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.003, IS 50%, WF 3/3 [1.65, 0.73, 0.23], SH 1.23/0.72 p=0.176, H-012 corr 0.103.
+- Notes: Above p=0.15 threshold. Modest corr with momentum (0.103).
+- Sessions: [2026-04-15 session 205]
+
+## H-1233: Drawdown Frequency XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Number of >2% drawdown episodes in 60d. Fewer DDs = more stable → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.155, IS 66%, WF 3/3 PERFECT [0.56, 1.30, 0.43], SH 1.59/0.58 p=0.119, H-012 corr 0.079.
+- Notes: Perfect WF. Stability premium — assets with fewer drawdown episodes outperform. Deployed.
+- Sessions: [2026-04-15 session 205]
+
+## H-1234: Mean Recovery Time XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Avg days to recover from >1% drawdowns in 60d. Slow recoverers are oversold → contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.253, IS 50%, WF 2/3 [2.06, 1.91, -2.91], SH 1.62/0.74 p=0.091, H-012 corr 0.085.
+- Notes: Contrarian signal — long slow recoverers (oversold). WF last fold very negative but first two strong. Deployed.
+- Sessions: [2026-04-15 session 205]
+
+## H-1235: Pain Ratio XS
+- Status: REJECTED
+- Idea: Mean drawdown depth / mean abs return. Pain per unit of gain.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.385, IS 50%, WF 3/3 [1.57, 1.45, 0.14], SH 0.34/0.47 p=0.603, H-012 corr 0.034.
+- Notes: Very weak IS, high p-value. WF 3/3 but tiny Sharpes in all folds.
+- Sessions: [2026-04-15 session 205]
+
+## H-1236: Gain-Loss Ratio XS
+- Status: CONFIRMED (not deployed)
+- Idea: Avg gain on up days / avg loss on down days over 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.257, IS 50%, WF 2/4 [-0.11, -1.27, 2.41, 1.95], SH 2.13/0.02 p=0.082, H-012 corr 0.026.
+- Notes: SH collapse (2.13→0.02). Extreme first-half vs second-half asymmetry. Not deployed due to SH instability.
+- Sessions: [2026-04-15 session 205]
+
+## H-1237: Up-Down Volume Asymmetry XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Mean vol on up days / mean vol on down days, 20d. Buying pressure dominance.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.817, IS 50%, WF 4/4 PERFECT [1.26, 0.28, 1.87, 0.64], SH 0.60/1.09 p=0.258, H-012 corr 0.013.
+- Notes: WF 4/4 PERFECT — rare. All folds positive and consistent. Deployed despite high p-value due to exceptional WF. Independent signal.
+- Sessions: [2026-04-15 session 205]
+
+## H-1238: Post-Drop Recovery XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: Avg return day after drop minus avg return day after gain, 20d. Asymmetric recovery behavior.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.286, IS 50%, WF 3/4 [1.16, 1.32, 1.45, -1.57], SH 1.33/1.28 p=0.075, H-012 corr -0.065. **SESSION BEST**.
+- Notes: **SESSION BEST** — most stable split-half of entire batch (1.33/1.28). Anti-momentum (corr -0.065). Consistent positive WF folds except last. Deployed.
+- Sessions: [2026-04-15 session 205]
+
+## H-1239: Conditional Volatility Asymmetry XS
+- Status: REJECTED
+- Idea: Vol after drops / vol after gains, 20d. Leverage effect measurement.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.684, IS 33%, WF 1/4 [-0.45, 0.22, -0.19, -0.44], SH 1.11/0.14 p=0.344, H-012 corr 0.017.
+- Notes: WF 1/4, SH collapse. Leverage effect doesn't predict XS returns.
+- Sessions: [2026-04-15 session 205]
+
+## H-1240: Positive Return Concentration XS
+- Status: REJECTED
+- Idea: Max single-day gain / total sum of gains, 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.971, IS 41%, WF 2/4 [1.65, 2.73, -0.74, -2.17], SH 0.21/2.24 p=0.179, H-012 corr 0.022.
+- Notes: SH first half near-zero (0.21). Extreme WF variance.
+- Sessions: [2026-04-15 session 205]
+
+## H-1241: Upside Capture Ratio XS
+- Status: REJECTED
+- Idea: Beta to market on up-market days, 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.165, IS 33%, WF 2/4 [-1.81, 1.80, -0.24, 0.78], SH -0.12/0.51 p=0.819, H-012 corr -0.042.
+- Notes: Near-zero IS Sharpe, SH first half negative. Upside capture adds nothing.
+- Sessions: [2026-04-15 session 205]
+
+## H-1242: Downside Beta Asymmetry XS
+- Status: REJECTED
+- Idea: Downside beta / upside beta, 20d.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 0.488, IS 41%, WF 2/4 [-0.17, 2.44, -2.16, 0.19], SH 0.58/0.38 p=0.499, H-012 corr -0.006.
+- Notes: Weak IS, extreme WF variance. Beta asymmetry is noise.
+- Sessions: [2026-04-15 session 205]
+
+## H-1243: Tail Asymmetry Ratio XS
+- Status: LIVE (paper trade since 2026-04-15)
+- Idea: 95th percentile return / abs(5th percentile return), 20d. Positive tail > negative tail → outperforms.
+- Instrument: futures (14 perps)
+- Timeframe: 1D
+- Result: IS Sharpe 1.184, IS 50%, WF 3/4 [0.82, 1.73, 0.48, -0.57], SH 1.47/0.83 p=0.101, H-012 corr 0.013.
+- Notes: Good SH stability. Assets with favorable tail risk outperform. Independent of momentum. Deployed.
+- Sessions: [2026-04-15 session 205]
