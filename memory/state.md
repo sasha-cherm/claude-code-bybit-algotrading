@@ -1366,3 +1366,45 @@ Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,764. 13 open positions.
 - **Capital**: $9,976 (-0.24%)
 - **Runner**: `paper_trades/h1314_high_vol_ret/runner.py`
 - **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.545**, WF **2/4**, SH **1.69/1.39** p=**0.033**. H-012 corr **-0.048**. Smart money direction on active days.
+
+### H-1340: Volume-Weighted Return XS (session 210)
+- **Status**: LIVE paper trade (started 2026-04-16)
+- **Position**: 8 positions (4L/4S). LONG: ARB, OP, NEAR, ETH. SHORT: DOGE, ADA, SOL, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1340_vol_weighted_ret/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.196**, WF **3/4**, SH **1.61/0.65** p=**0.098**. H-012 corr **-0.008**. Return-volume coupling signal.
+
+### H-1349: Left Tail Shrinkage XS (session 210)
+- **Status**: LIVE paper trade (started 2026-04-16)
+- **Position**: 8 positions (4L/4S). LONG: ATOM, DOGE, AVAX, ETH. SHORT: BTC, NEAR, SUI, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1349_left_tail_shrink/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.390**, WF **3/4**, SH **1.14/1.79** p=**0.054**. H-012 corr **0.009**. Left tail dynamics.
+
+### H-1350: Right Tail Growth XS (session 210)
+- **Status**: LIVE paper trade (started 2026-04-16)
+- **Position**: 8 positions (4L/4S). LONG: OP, ARB, ETH, SUI. SHORT: ATOM, NEAR, DOGE, DOT.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1350_right_tail_growth/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.130**, WF **3/4**, SH **1.26/0.99** p=**0.118**. H-012 corr **-0.049**. Right tail dynamics.
+
+### H-1354: Expected Shortfall Trend XS (session 210) — SESSION BEST SH
+- **Status**: LIVE paper trade (started 2026-04-16)
+- **Position**: 8 positions (4L/4S). LONG: ATOM, DOGE, OP, LINK. SHORT: AVAX, SOL, DOT, ADA.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1354_es_trend/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.556**, WF **3/4**, SH **1.56/1.58** p=**0.031**. H-012 corr **0.013**. Rock-stable split-half. Tail risk improvement signal.
+
+### H-1355: Distribution Width Change XS (session 210)
+- **Status**: LIVE paper trade (started 2026-04-16)
+- **Position**: 8 positions (4L/4S). LONG: OP, SOL, LINK, AVAX. SHORT: XRP, DOT, ARB, BTC.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1355_width_change/runner.py`
+- **Params**: R=5, N=4, dir=high_long. IS Sharpe **1.421**, WF **2/4**, SH **1.30/1.67** p=**0.049**. H-012 corr **0.025**. Distribution widening signal.
+
+### H-1356: Short-Long Momentum Gap XS (session 210) — SESSION BEST
+- **Status**: LIVE paper trade (started 2026-04-16)
+- **Position**: 8 positions (4L/4S). LONG: ARB, ATOM, NEAR, ETH. SHORT: LINK, SUI, SOL, XRP.
+- **Capital**: $9,976 (-0.24%)
+- **Runner**: `paper_trades/h1356_sl_mom_gap/runner.py`
+- **Params**: R=5, N=4, dir=low_long. IS Sharpe **1.601**, WF **3/4**, SH **1.97/1.16** p=**0.027**. H-012 corr **-0.012**. Contrarian: assets with recent risk-adj weakness vs longer trend.

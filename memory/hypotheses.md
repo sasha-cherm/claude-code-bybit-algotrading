@@ -13299,3 +13299,168 @@
 - Result: IS 1.905, WF 4/4, SH 2.647/1.114 — IDENTICAL to H-1316/H-1321/H-1329. Discretized signal (rolling mean of binary over 20d) produces many ties, defaulting to column-order ranking.
 - Notes: Rolling 20d mean of binary creates only 21 possible values. With 14 assets, many ties → tie-breaking follows column order → size factor proxy.
 - Sessions: [2026-04-16 session 209]
+
+## H-1340: Volume-Weighted Return
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: Average daily return weighted by relative volume (vol/20d avg). High rel-vol days count more. Captures return-volume coupling.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by 20d mean(return * relative_volume). Long top 4 (high vol-weighted returns), short bottom 4.
+- Result: IS Sharpe **1.196**, IS 50%, WF **3/4** [0.62, 1.3, 0.1, -0.23], SH **1.61/0.65** p=**0.098**, H-012 corr **-0.008**.
+- Notes: Genuine return-volume interaction signal. Near-zero H-012 correlation = independent factor. Some SH decay but both halves positive.
+- Sessions: [2026-04-16 session 210]
+
+## H-1341: Volume Confirmation Rate
+- Status: REJECTED — WF 1/4, SH collapse
+- Idea: Fraction of days where return sign matches volume direction (above/below 20d avg). Low confirmation = contrarian signal.
+- Result: IS 0.532, WF 1/4, SH 1.425/-0.458 p=0.462.
+- Sessions: [2026-04-16 session 210]
+
+## H-1342: Smart Money Flow (Chaikin)
+- Status: BORDERLINE — WF 4/4 PERFECT but p=0.221
+- Idea: Chaikin MFM normalized by volume, rolling 20d sum. High = buying pressure at close vs H/L range.
+- Result: IS 0.885, WF **4/4** [2.45, 0.31, 0.12, 2.35], SH 0.615/1.256 p=0.221. Exceptional WF but weak IS.
+- Sessions: [2026-04-16 session 210]
+
+## H-1343: Volume-Price Trend Divergence
+- Status: REJECTED — very weak IS (0.253)
+- Idea: Spearman rank correlation of price changes vs volume changes over 20d.
+- Result: IS 0.253, WF 3/4, p=0.726.
+- Sessions: [2026-04-16 session 210]
+
+## H-1344: Abnormal Volume Return Ratio
+- Status: REJECTED — SH collapse
+- Idea: Average |return| on high-volume days (>1.5x avg) vs low-volume days.
+- Result: IS 0.695, WF 2/4, SH 1.225/-0.074 p=0.336.
+- Sessions: [2026-04-16 session 210]
+
+## H-1345: Volume Climax Frequency
+- Status: DEGENERATE — 8/14 assets have same value
+- Idea: Count of days with volume > 2x 20d avg in 30d. Discrete count → ties.
+- Sessions: [2026-04-16 session 210]
+
+## H-1346: Volume-Adjusted Momentum
+- Status: REJECTED — WF 1/4
+- Idea: 20d return / avg relative volume. Momentum per unit of attention.
+- Result: IS 0.442, WF 1/4, p=0.541.
+- Sessions: [2026-04-16 session 210]
+
+## H-1347: Down-Volume Ratio
+- Status: REJECTED — weak IS, high p
+- Idea: Fraction of total volume on negative return days in 20d.
+- Result: IS 0.655, WF 3/4, SH 0.030/1.477 p=0.364.
+- Sessions: [2026-04-16 session 210]
+
+## H-1348: Tail Weight Change
+- Status: REJECTED — WF 0/4, SH collapse
+- Idea: Kurtosis(20d) - kurtosis(60d). Increasing tail weight = regime change.
+- Result: IS 0.342, WF 0/4, SH 1.771/-1.866 p=0.635.
+- Sessions: [2026-04-16 session 210]
+
+## H-1349: Left Tail Shrinkage
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: 5th percentile of recent 20d returns minus 5th percentile of prior 20d. High = left tail shrinking.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by p5 change. Long top 4 (most improving left tail), short bottom 4.
+- Result: IS Sharpe **1.390**, IS 50%, WF **3/4** [1.02, 2.17, 2.46, -1.93], SH **1.14/1.79** p=**0.054**, H-012 corr **0.009**.
+- Notes: Improving SH (second half stronger). Near-zero H-012 corr = independent.
+- Sessions: [2026-04-16 session 210]
+
+## H-1350: Right Tail Growth
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: 95th percentile of recent 20d returns minus 95th percentile of prior 20d. High = right tail expanding.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by p95 change. Long top 4 (expanding upside), short bottom 4.
+- Result: IS Sharpe **1.130**, IS 50%, WF **3/4** [1.03, 2.21, -0.95, 2.34], SH **1.26/0.99** p=**0.118**, H-012 corr **-0.049**.
+- Notes: Both halves ~1.0 Sharpe — very stable. Slightly anti-momentum (corr -0.049).
+- Sessions: [2026-04-16 session 210]
+
+## H-1351: Tail Asymmetry Change
+- Status: BORDERLINE — SH collapse 1.61/-0.20
+- Idea: Change in tail ratio (p95/|p5|) between recent and prior 20d windows.
+- Result: IS 0.877, WF 2/4, SH 1.605/-0.195 p=0.225.
+- Sessions: [2026-04-16 session 210]
+
+## H-1352: Extreme Day Ratio
+- Status: DEGENERATE — only 3 unique values
+- Idea: Fraction of days with returns > 2 sigma in 30d.
+- Sessions: [2026-04-16 session 210]
+
+## H-1353: VaR Breach Rate
+- Status: DEGENERATE — only 2 unique values
+- Idea: Fraction of days where loss exceeds historical VaR(5%) in 30d.
+- Sessions: [2026-04-16 session 210]
+
+## H-1354: Expected Shortfall Trend
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: Avg of worst 3 days in recent 20d minus same for prior 20d. High = tail risk improving.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by ES change. Long top 4 (most improving tail), short bottom 4.
+- Result: IS Sharpe **1.556**, IS 50%, WF **3/4** [2.61, 1.54, 2.92, -1.05], SH **1.56/1.58** p=**0.031**, H-012 corr **0.013**.
+- Notes: **Rock-stable split-half** (1.56/1.58 — nearly identical). 3 WF folds strongly positive (>1.5 Sharpe).
+- Sessions: [2026-04-16 session 210]
+
+## H-1355: Distribution Width Change (IQR Delta)
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: IQR of recent 20d returns minus IQR of prior 20d. High = distribution widening.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by IQR delta. Long top 4 (widening), short bottom 4 (narrowing).
+- Result: IS Sharpe **1.421**, IS 50%, WF **2/4** [-0.19, 1.4, -1.11, 0.22], SH **1.30/1.67** p=**0.049**, H-012 corr **0.025**.
+- Notes: Improving SH. Related to H-059 vol expansion thesis.
+- Sessions: [2026-04-16 session 210]
+
+## H-1356: Short-Long Momentum Gap
+- Status: LIVE (paper trade since 2026-04-16)
+- Idea: Risk-adjusted 5d momentum minus risk-adjusted 20d momentum. Low = recent weakness despite longer trend. Contrarian.
+- Instrument: futures (14 perps)
+- Timeframe: 1D (rebal every 5 days)
+- Logic: Rank by (sharpe5 - sharpe20). Long bottom 4 (recent weakness vs trend), short top 4.
+- Result: IS Sharpe **1.601**, IS 50%, WF **3/4** [0.57, 0.55, -0.29, 1.61], SH **1.97/1.16** p=**0.027**, H-012 corr **-0.012**.
+- Notes: **SESSION BEST**. Contrarian (low_long). Near-zero H-012 corr. Captures mean-reversion within trending assets.
+- Sessions: [2026-04-16 session 210]
+
+## H-1357: Momentum Decay Profile
+- Status: REJECTED — WF 1/4, SH collapse 1.99/-1.48
+- Idea: 5d return / 20d return ratio. Acceleration measure.
+- Result: IS 0.500, WF 1/4, p=0.488.
+- Sessions: [2026-04-16 session 210]
+
+## H-1358: Multi-Horizon Rank Consistency
+- Status: BORDERLINE — WF 2/4, recent folds negative
+- Idea: Average percentile rank across 5d, 10d, 20d returns.
+- Result: IS 0.955, WF 2/4, SH 1.009/0.914 p=0.186. H-012 corr 0.009.
+- Sessions: [2026-04-16 session 210]
+
+## H-1359: Horizon-Weighted Momentum
+- Status: BORDERLINE — WF 2/4, p=0.159
+- Idea: 0.5*z(5d) + 0.3*z(10d) + 0.2*z(20d). Recency-weighted z-score combo.
+- Result: IS 1.019, WF 2/4, SH 0.868/1.272 p=0.159. H-012 corr 0.030.
+- Sessions: [2026-04-16 session 210]
+
+## H-1360: Trend Agreement
+- Status: BORDERLINE — WF 2/4, SH decay
+- Idea: sign(5d) + sign(10d) + sign(20d). All positive = strong multi-scale trend.
+- Result: IS 0.946, IS 83%, WF 2/4, SH 1.659/0.197 p=0.190.
+- Sessions: [2026-04-16 session 210]
+
+## H-1361: Fast-Slow Volume Divergence
+- Status: BORDERLINE — WF 2/4
+- Idea: (5d vol/20d vol) minus (5d ret/20d ret). Volume expanding faster than price.
+- Result: IS 0.931, WF 2/4, SH 0.731/1.250 p=0.197.
+- Sessions: [2026-04-16 session 210]
+
+## H-1362: Multi-Scale Reversal Score
+- Status: BORDERLINE — WF 2/4, recent folds collapse
+- Idea: Sum of (close - MA_k)/MA_k for k=[5,10,20]. Total distance from multiple MAs.
+- Result: IS 0.976, WF 2/4, SH 0.711/1.367 p=0.177.
+- Sessions: [2026-04-16 session 210]
+
+## H-1363: Lookback Stability
+- Status: REJECTED — WF 1/4, SH collapse
+- Idea: Std of [5d ret, 10d ret, 15d ret, 20d ret]. Low = consistent across horizons.
+- Result: IS 0.641, WF 1/4, SH 1.392/-0.375 p=0.375.
+- Sessions: [2026-04-16 session 210]

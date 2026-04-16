@@ -254,6 +254,12 @@ RUNNERS = [
     ("H-1333", ROOT / "paper_trades" / "h1333_pos_ret_gini" / "runner.py"),
     ("H-1334", ROOT / "paper_trades" / "h1334_dd_recovery" / "runner.py"),
     ("H-1335", ROOT / "paper_trades" / "h1335_consec_green" / "runner.py"),
+    ("H-1340", ROOT / "paper_trades" / "h1340_vol_weighted_ret" / "runner.py"),
+    ("H-1349", ROOT / "paper_trades" / "h1349_left_tail_shrink" / "runner.py"),
+    ("H-1350", ROOT / "paper_trades" / "h1350_right_tail_growth" / "runner.py"),
+    ("H-1354", ROOT / "paper_trades" / "h1354_es_trend" / "runner.py"),
+    ("H-1355", ROOT / "paper_trades" / "h1355_width_change" / "runner.py"),
+    ("H-1356", ROOT / "paper_trades" / "h1356_sl_mom_gap" / "runner.py"),
 ]
 
 LOG_FILE = ROOT / "logs" / "paper_trades.log"

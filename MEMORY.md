@@ -1,20 +1,22 @@
 # MEMORY.md — Session Log & State Index
 
 ## Current State
-- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,764.
+- **BYBIT DEMO H-056 v2** (deployed 2026-03-23, v2 2026-03-26): Equity ~$98,190 (-1.81%). BTC spot ~$74,750.
 - **H-056 v2 allocation**: H-031(30%,3x)/H-052(23%,3x)/H-053(16%,3x)/H-021(15%,3x)/H-039(10%,1x)/H-049(6%,3x).
-- **Internal paper trades:** 232 runners active. Session 209. **115/227 positive** (51%), avg **+0.51%**.
-- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,764, near call strike.
-- **Top performers**: H-049(+7.98%), H-277(+7.17%), H-353(+7.07%), H-754(+6.72%), H-414(+5.67%).
-- **Session 209 research**: 24 new hypotheses (H-1316–H-1339). **5 genuinely CONFIRMED** (5 deployed: H-1319/H-1320/H-1333/H-1334/H-1335). **1339 total hypotheses.**
-- **CRITICAL FINDING**: Degenerate signal detection — H-1316/H-1321/H-1329/H-1339 all produce IDENTICAL metrics (IS 1.905, WF 4/4, SH 2.647/1.114). These are NOT genuine signals: common signals (same value for all assets) or broken chained assignments produce ties, and tie-breaking defaults to column ordering = size factor proxy. All flagged as DEGENERATE.
-- **H-1319 Rel Vol vs Peers**: IS **1.657**, WF **4/4 PERFECT**, SH **1.08/2.32** p=**0.022**, corr **-0.011**. **SESSION BEST** — assets with high relative dollar volume outperform. Genuine cross-asset signal.
-- **H-1335 Consec Candle Mom**: IS **1.600**, WF **4/4 PERFECT**, SH **2.11/0.97** p=**0.027**, corr **-0.061**. Anti-momentum persistence signal. Strong IS but some SH decay.
-- **H-1320 Momentum Divergence**: IS **1.416**, WF **3/4**, SH **1.38/1.53** p=**0.050**, corr **0.036**. Short-term (14d) relative momentum. Very stable SH.
-- **H-1334 DD Recovery Speed**: IS **1.335**, WF **3/4**, SH **1.75/0.82** p=**0.065**, corr **-0.012**. Slow recoverers are oversold — contrarian signal.
-- **H-1333 Pos Ret Concentration**: IS **1.290**, WF **2/4**, SH **1.08/1.71** p=**0.074**, corr **-0.025**. Gini of positive returns — concentrated gains predict continuation. Improving SH.
-- **AUTOMATED:** Paper trades hourly via cron (232 runners). Claude sessions every 4h. IV collector running.
-- **Next action:** Await Q-005 answer. Monitor 232 runners (esp. H-1319/H-1335 new stars). Continue exploring new signal categories.
+- **Internal paper trades:** 237 runners active. Session 210. **135/231 positive** (58%), avg **+0.49%**.
+- **H-063**: Iron condor trade 3 (75K/71K, exp Apr 17) — BTC at $74,750, near call strike. Expiry tomorrow.
+- **Top performers**: H-049(+7.98%), H-754(+7.46%), H-277(+7.17%), H-353(+7.07%), H-085(+7.07%).
+- **Session 210 research**: 24 new hypotheses (H-1340–H-1363). **6 genuinely CONFIRMED** (6 deployed: H-1340/H-1349/H-1350/H-1354/H-1355/H-1356). **1363 total hypotheses.**
+- **NEW SIGNAL CATEGORIES**: Return-volume coupling (H-1340–H-1347, 1 confirmed), distributional tail dynamics (H-1348–H-1355, 4 confirmed), multi-scale momentum (H-1356–H-1363, 1 confirmed). Distributional tail is a rich vein — 4 of 6 non-degenerate signals confirmed.
+- **H-1356 SL Momentum Gap**: IS **1.601**, WF **3/4**, SH **1.97/1.16** p=**0.027**, corr **-0.012**. **SESSION BEST** — contrarian: assets with recent risk-adj weakness vs longer trend. Near-zero H-012 corr.
+- **H-1354 ES Trend**: IS **1.556**, WF **3/4**, SH **1.56/1.58** p=**0.031**, corr **0.013**. **Rock-stable SH** — both halves nearly identical. Tail risk improvement signal.
+- **H-1355 Width Change**: IS **1.421**, WF **2/4**, SH **1.30/1.67** p=**0.049**, corr **0.025**. Distribution widening = expanding vol regime attracts capital. Improving SH.
+- **H-1349 Left Tail Shrink**: IS **1.390**, WF **3/4**, SH **1.14/1.79** p=**0.054**, corr **0.009**. Improving SH. Left tail dynamics.
+- **H-1340 Vol-Weighted Ret**: IS **1.196**, WF **3/4**, SH **1.61/0.65** p=**0.098**, corr **-0.008**. Return-volume coupling.
+- **H-1350 Right Tail Growth**: IS **1.130**, WF **3/4**, SH **1.26/0.99** p=**0.118**, corr **-0.049**. Right tail dynamics.
+- **KEY FINDING**: Distributional tail signals are a genuine new factor family — 4/6 confirmed (H-1349/H-1350/H-1354/H-1355). These capture changes in the shape of the return distribution. Near-zero correlation with momentum. 3 degenerate signals caught (H-1345/H-1352/H-1353) from discrete count/binary rolling means.
+- **AUTOMATED:** Paper trades hourly via cron (237 runners). Claude sessions every 4h. IV collector running.
+- **Next action:** Await Q-005 answer. Monitor 237 runners (esp. H-1356/H-1354/H-1349 new stars). Continue exploring new signal categories.
 - **Open user questions:** Q-005 (H-056 v3 portfolio upgrade proposal)
 
 ## Memory Files
@@ -26,15 +28,7 @@
 ## Session Log
 
 
-_Older sessions (bootstrap through 198) archived to `memory/session_archive.md`._
-
-### Session 2026-04-14 review+deploy+research (session 200)
-- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
-- Focus: Paper trade MTM (BTC $74,748), liquidity/market quality (H-1100–H-1107), factor interactions (H-1108–H-1115), regime-conditional (H-1116–H-1123)
-- Done: 176 runners (173→176). **78/173 positive** (45%). Avg **+0.44%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1100–H-1107, liquidity)**: **H-1100 CONFIRMED+deployed** (Amihud Illiquidity, IS **1.609**, WF **3/3**, SH **1.41/1.83** p=**0.030** — **SESSION BEST**, corr 0.471). **H-1102 CONFIRMED+deployed** (Kyle Lambda, 1.218, WF **3/3**, SH 0.39/2.08 p=0.099, corr 0.295). 6 REJECTED/BORDERLINE. Liquidity premium real: long liquid, short illiquid assets outperform. **Batch 2 (H-1108–H-1115, factor interactions)**: **ALL 8 REJECTED**. z(A)×z(B) factor interactions add ZERO alpha beyond individual factors. Mom×LowVol, Size×Mom, Rev×Turnover, Trend×Kurtosis all fail. Key finding: factor synergies don't exist in crypto XS. **Batch 3 (H-1116–H-1123, regime-conditional)**: **H-1116 CONFIRMED+deployed** (Dispersion-Timed Mom, IS 1.293, WF 2/3, p=0.080, corr 0.635 — marginal). 7 REJECTED. Adaptive lookback (0.844 corr), crash protection (0.885 corr), correlation adjustment (0.835 corr) are all pure momentum proxies. **1123 total hypotheses.**
-- Next: Await Q-005 answer. Monitor 176 runners (esp. H-1100/H-1102 liquidity premium). Explore on-chain data, sentiment APIs, ML ensembles.
-- Questions added: none
-- Self-modifications: 3 runners created (H-1100/H-1102/H-1116), added to orchestrator. Archived session 190. (session 200)
+_Older sessions (bootstrap through 200) archived to `memory/session_archive.md`._
 
 ### Session 2026-04-14 review+deploy+research (session 201)
 - Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
@@ -107,3 +101,11 @@ _Older sessions (bootstrap through 198) archived to `memory/session_archive.md`.
 - Next: Await Q-005 answer. Monitor 232 runners (esp. H-1319/H-1335 new stars). Fix degenerate signal detection in batch framework. Continue new signal categories.
 - Questions added: none
 - Self-modifications: 5 runners created (H-1319/H-1320/H-1333/H-1334/H-1335), added to orchestrator. Archived session 199. (session 209)
+
+### Session 2026-04-16 review+deploy+research (session 210)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $74,750), return-volume coupling (H-1340–H-1347), distributional tail dynamics (H-1348–H-1355), multi-scale momentum (H-1356–H-1363)
+- Done: 237 runners (231→237). **135/231 positive** (58%, up from 51%). Avg **+0.49%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1340–H-1347, ret-vol coupling)**: **H-1340 CONFIRMED+deployed** (Vol-Weighted Return, IS 1.196, WF 3/4, p=0.098, corr -0.008). H-1342 BORDERLINE (WF 4/4 but p=0.221). H-1345 DEGENERATE. 4 REJECTED. Return-volume coupling mostly noise — only vol-weighted return survives. **Batch 2 (H-1348–H-1355, distributional tail)**: **RICH VEIN — 4/6 non-degenerate confirmed.** **H-1354 CONFIRMED+deployed** (ES Trend, IS **1.556**, WF 3/4, SH **1.56/1.58** p=0.031 — rock-stable SH). **H-1355 CONFIRMED+deployed** (Width Change, 1.421, WF 2/4, p=0.049, SH 1.30/1.67). **H-1349 CONFIRMED+deployed** (Left Tail Shrink, 1.390, WF 3/4, p=0.054, SH 1.14/1.79). **H-1350 CONFIRMED+deployed** (Right Tail Growth, 1.130, WF 3/4, p=0.118). H-1352/H-1353 DEGENERATE. H-1348 REJECTED. H-1351 BORDERLINE (SH collapse). **Batch 3 (H-1356–H-1363, multi-scale mom)**: **H-1356 CONFIRMED+deployed** (SL Mom Gap, IS **1.601**, WF 3/4, SH **1.97/1.16** p=0.027, corr -0.012 — **SESSION BEST**). 5 BORDERLINE (all WF 2/4). H-1357/H-1363 REJECTED. **1363 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 237 runners (esp. H-1356/H-1354/H-1349 new stars). Explore more distributional tail variations.
+- Questions added: none
+- Self-modifications: 6 runners created (H-1340/H-1349/H-1350/H-1354/H-1355/H-1356), added to orchestrator. Archived session 200. (session 210)

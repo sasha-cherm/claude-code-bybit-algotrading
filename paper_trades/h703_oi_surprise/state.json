@@ -1,7 +1,7 @@
 {
   "started": "2026-04-11T13:25:29.158218+00:00",
   "capital": 9980.0,
-  "equity": 10191.421584467185,
+  "equity": 10057.39425641553,
   "initial_capital": 10000.0,
   "positions": {
     "AVAX/USDT": {
@@ -61,11 +61,15 @@
     {
       "date": "2026-04-14",
       "equity": 10221.94
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 10057.39
     }
   ],
-  "last_daily_date": "2026-04-14",
+  "last_daily_date": "2026-04-15",
   "last_rebal_date": "2026-04-10",
-  "days_since_rebal": 4,
+  "days_since_rebal": 5,
   "rebal_count": 1,
   "total_trades": 6,
   "total_fees": 19.999999999999996

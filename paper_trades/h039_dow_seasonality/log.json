@@ -153,5 +153,29 @@
     "notional": 10240.16,
     "fee": 4.1,
     "capital_after": 10236.06
+  },
+  {
+    "type": "close",
+    "time": "2026-04-16T00:30:22.037332+00:00",
+    "signal_date": "2026-04-15",
+    "direction": "LONG",
+    "entry_price": 74112.2,
+    "exit_price": 74752.6,
+    "size_btc": 0.13817099,
+    "gross_pnl": 88.48,
+    "fee": 4.13,
+    "net_pnl": 84.35,
+    "capital_after": 10320.41
+  },
+  {
+    "type": "open",
+    "time": "2026-04-16T00:30:22.037344+00:00",
+    "signal_date": "2026-04-15",
+    "direction": "SHORT",
+    "entry_price": 74752.6,
+    "size_btc": 0.13806093,
+    "notional": 10320.41,
+    "fee": 4.13,
+    "capital_after": 10316.29
   }
 ]
