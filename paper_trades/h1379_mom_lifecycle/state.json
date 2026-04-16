@@ -1,0 +1,87 @@
+{
+  "started": "2026-04-16T05:14:38.658648+00:00",
+  "capital": 9980.0,
+  "positions": {
+    "DOT/USDT": {
+      "size": 2114.6362943993267,
+      "entry_price": 1.1822363999999999,
+      "weight": 0.25,
+      "symbol": "DOT/USDT"
+    },
+    "SOL/USDT": {
+      "size": 29.440519434393448,
+      "entry_price": 84.91698000000001,
+      "weight": 0.25,
+      "symbol": "SOL/USDT"
+    },
+    "ETH/USDT": {
+      "size": 1.0590473870109418,
+      "entry_price": 2360.612028,
+      "weight": 0.25,
+      "symbol": "ETH/USDT"
+    },
+    "BTC/USDT": {
+      "size": 0.03341001485011281,
+      "entry_price": 74827.86257999999,
+      "weight": 0.25,
+      "symbol": "BTC/USDT"
+    },
+    "AVAX/USDT": {
+      "size": -265.1081530979648,
+      "entry_price": 9.4301136,
+      "weight": -0.25,
+      "symbol": "AVAX/USDT"
+    },
+    "LINK/USDT": {
+      "size": -270.00325019112455,
+      "entry_price": 9.2591478,
+      "weight": -0.25,
+      "symbol": "LINK/USDT"
+    },
+    "OP/USDT": {
+      "size": -20854.879900083433,
+      "entry_price": 0.11987602000000001,
+      "weight": -0.25,
+      "symbol": "OP/USDT"
+    },
+    "ATOM/USDT": {
+      "size": -1415.1104131409193,
+      "entry_price": 1.7666465999999998,
+      "weight": -0.25,
+      "symbol": "ATOM/USDT"
+    }
+  },
+  "equity_history": [
+    {
+      "date": "2026-04-15",
+      "equity": 9976.0
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 9976.0
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 9976.0
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 9976.0
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 9976.0
+    },
+    {
+      "date": "2026-04-15",
+      "equity": 9976.0
+    }
+  ],
+  "last_daily_date": "2026-04-15",
+  "last_rebal_date": "2026-04-15",
+  "days_since_rebal": 7,
+  "rebal_count": 1,
+  "total_trades": 8,
+  "total_fees": 20.0,
+  "equity": 9975.999999839998
+}

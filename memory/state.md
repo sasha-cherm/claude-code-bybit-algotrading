@@ -10,8 +10,10 @@
 **Bybit account leverage**: 10x (changed from 3x in session 83 to fix margin — only affects IM, not exposure)
 **Gross leverage**: ~3.0x actual. All perp, no spot.
 
-### Current Demo Status (as of 2026-04-16 session 209):
-Demo eq: ~$98,190 (-1.81%). BTC spot ~$74,764. 13 open positions.
+### Current Demo Status (as of 2026-04-16 session 212):
+Demo eq: ~$98,374 (-1.63%). BTC spot ~$73,193. 13 open positions.
+244 runners deployed (242→244). 134/242 positive (55%). Avg +0.47%.
+Session 212 added: H-1405 (Positive Day Share, STAR), H-1411 (Drift/Diffusion Ratio).
 
 ---
 

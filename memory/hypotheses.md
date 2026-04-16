@@ -13464,3 +13464,261 @@
 - Idea: Std of [5d ret, 10d ret, 15d ret, 20d ret]. Low = consistent across horizons.
 - Result: IS 0.641, WF 1/4, SH 1.392/-0.375 p=0.375.
 - Sessions: [2026-04-16 session 210]
+
+## H-1364: Upper Tail Shrink
+- Status: DUPLICATE of H-1350 (p95 recent - p95 prior, high_long)
+- Result: Identical metrics to H-1350.
+- Sessions: [2026-04-16 session 211]
+
+## H-1365: Left Tail Grow
+- Status: DUPLICATE of H-1349 (p5 recent - p5 prior, high_long)
+- Result: Identical metrics to H-1349.
+- Sessions: [2026-04-16 session 211]
+
+## H-1366: Left CVaR Trend
+- Status: DUPLICATE of H-1354 (mean bottom3 of 20d delta)
+- Result: Identical metrics to H-1354 (ES Trend).
+- Sessions: [2026-04-16 session 211]
+
+## H-1367: Right CVaR Trend
+- Status: CONFIRMED → deployed as paper trade
+- Idea: Mean of top 3 returns in recent 20d minus prior 20d. Upside tail expansion.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=7, N=4, dir=high_long. Captures upside tail growth across window boundaries.
+- Result: IS Sharpe **1.308**, WF **4/4 PERFECT**, SH 1.268/1.425, p=**0.070**, H-012 corr **-0.021**.
+- Sessions: [2026-04-16 session 211]
+
+## H-1368: Skewness Change
+- Status: REJECTED — WF 2/4, p=0.795
+- Idea: skew(20d) - skew(60d).
+- Result: IS 0.188, IS 8%, SH 0.302/0.033 — essentially noise.
+- Sessions: [2026-04-16 session 211]
+
+## H-1369: Tail Range Asymmetry
+- Status: BORDERLINE — WF 3/4 but SH collapse 1.58/0.02
+- Idea: (p95-p50)/(p50-p5). Right vs left tail width ratio.
+- Result: IS 0.907, SH 1.575/0.015 p=0.209.
+- Sessions: [2026-04-16 session 211]
+
+## H-1370: Downside Semi-Std Change
+- Status: CONFIRMED → deployed as paper trade
+- Idea: std(negative returns recent 20d) - std(negative returns prior 20d). Low = downside compressing.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=7, N=4, dir=low_long. Flight-to-quality: long where downside vol shrinking.
+- Result: IS Sharpe **1.346**, WF 3/4, SH **1.371/1.346** p=**0.063**, H-012 corr 0.039.
+- Sessions: [2026-04-16 session 211]
+
+## H-1371: Upside Semi-Std Change
+- Status: CONFIRMED → deployed as paper trade — STAR
+- Idea: std(positive returns recent 20d) - std(positive returns prior 20d). Expanding upside dispersion.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=7, N=4, dir=high_long. Captures upside vol expansion as momentum proxy.
+- Result: IS Sharpe **1.395**, WF **4/4 PERFECT**, SH **1.409/1.424**, p=**0.054**, H-012 corr **-0.023**.
+- Sessions: [2026-04-16 session 211]
+
+## H-1372: Mean Persistence
+- Status: REJECTED — WF 1/4, SH collapse 1.74/-0.05
+- Idea: |mean(20d) - mean(prior 20d)| / std(60d). Low = stable regime.
+- Result: IS 0.972, SH 1.740/-0.046 p=0.178.
+- Sessions: [2026-04-16 session 211]
+
+## H-1373: Sign Persistence
+- Status: BORDERLINE — WF 2/4 despite strong IS/SH
+- Idea: Frac of 30d where daily sign matches rolling mean sign.
+- Result: IS 1.681, WF 2/4, SH 1.830/1.532 p=0.020, H-012 corr 0.005. Strong IS but WF too weak.
+- Sessions: [2026-04-16 session 211]
+
+## H-1374: Trend Stability
+- Status: REJECTED — SH -1.03/2.21, DD -101% catastrophic
+- Idea: Std of rolling 10d slopes across 60d.
+- Result: IS 0.476, DD -101%.
+- Sessions: [2026-04-16 session 211]
+
+## H-1375: Vol Persistence
+- Status: REJECTED — WF 0/4, all negative
+- Idea: Std of rolling 10d vol across 60d.
+- Result: IS 0.447, WF 0/4 [-1.94, -2.92, -0.89, -0.12].
+- Sessions: [2026-04-16 session 211]
+
+## H-1376: Regime Flip Count
+- Status: BORDERLINE — WF 2/4, p=0.413
+- Idea: Count of sign changes in 20d rolling mean across 60d.
+- Result: IS 0.591, IS 91% (11/12 positive) but SH weak.
+- Sessions: [2026-04-16 session 211]
+
+## H-1377: Price CV 60d
+- Status: BORDERLINE — SH -0.51/1.15, unstable
+- Idea: Std/mean of close over 60d (coefficient of variation).
+- Result: IS 0.184, p=0.799.
+- Sessions: [2026-04-16 session 211]
+
+## H-1378: Return Stability (IQR/range)
+- Status: BORDERLINE — IS 0.097, p=0.893
+- Idea: IQR(30d) / range(30d). High = stable distribution.
+- Result: Weak overall.
+- Sessions: [2026-04-16 session 211]
+
+## H-1379: Momentum Lifecycle
+- Status: CONFIRMED → deployed as paper trade — SESSION STAR
+- Idea: Days since the 20d rolling-mean return last flipped sign. Trend-in-force age.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=7, N=4, dir=high_long. Older trends persist (momentum quality via persistence).
+- Result: IS Sharpe **1.651**, WF **4/4 PERFECT**, SH **1.839/1.445**, p=**0.022**, H-012 corr **-0.035**.
+- Sessions: [2026-04-16 session 211]
+
+## H-1380: XS Z-Score Momentum
+- Status: BORDERLINE — WF 2/4, p=0.104
+- Idea: 10d return minus XS mean, divided by XS std (z-score across assets each day).
+- Result: IS 1.176, SH 1.324/1.012. Likely overlap with H-012 momentum but normalized.
+- Sessions: [2026-04-16 session 211]
+
+## H-1381: Peer Deviation
+- Status: REJECTED — SH 1.64/-1.84, massive collapse
+- Idea: Mean abs deviation of asset returns from XS mean over 30d.
+- Result: IS 0.192.
+- Sessions: [2026-04-16 session 211]
+
+## H-1382: XS Rank Trend
+- Status: CONFIRMED → deployed as paper trade
+- Idea: Slope of asset's XS-rank-percentile (of 10d cum return) over 30d. Rising rank = long.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=7, N=4, dir=high_long. Rank-ascent momentum (climbing the leaderboard).
+- Result: IS Sharpe **1.332**, WF 3/4, SH **1.249/1.474**, p=**0.065**, H-012 corr **0.005** (near zero).
+- Sessions: [2026-04-16 session 211]
+
+## H-1383: Outperformance Consistency (30d)
+- Status: DUPLICATE of H-1078 (20d) — same concept, different window
+- Result: Skipped to avoid redundancy.
+- Sessions: [2026-04-16 session 211]
+
+## H-1384: Relative Vol Spread
+- Status: BORDERLINE — SH -0.38/1.45, unstable
+- Idea: Asset 20d vol / XS median 20d vol.
+- Result: IS 0.483, p=0.503.
+- Sessions: [2026-04-16 session 211]
+
+## H-1385: Cross-Section Correlation
+- Status: REJECTED — SH 2.65/-0.46 catastrophic collapse
+- Idea: Avg pairwise correlation of asset with XS over 60d.
+- Result: IS 1.428 but SH collapse + WF 2/4.
+- Sessions: [2026-04-16 session 211]
+
+## H-1386: Beta to XS Mean
+- Status: BORDERLINE — WF 4/4 PERFECT but p=0.156, SH 0.40/1.74
+- Idea: Rolling 60d regression beta of asset vs XS-mean.
+- Result: IS 1.024, WF 4/4. Underwhelming SH first half.
+- Sessions: [2026-04-16 session 211]
+
+## H-1387: XS Surprise
+- Status: REJECTED — WF 2/4, p=0.730
+- Idea: (5d ret - XS median 5d) / asset 20d vol.
+- Result: IS 0.250.
+- Sessions: [2026-04-16 session 211]
+
+## H-1388: Body/Range Avg
+- Status: REJECTED — IS 0.126, 2/18 IS positive (11%)
+- Idea: |C-O|/(H-L) avg over 20d — directional candle density.
+- Result: FAILS baseline. Corr -0.304 (mildly contrarian).
+- Sessions: [2026-04-16 session 212]
+
+## H-1389: Upper Wick Share
+- Status: REJECTED — IS 0.789 but 56% pos_fract, fails baseline.
+- Sessions: [2026-04-16 session 212]
+
+## H-1390: Lower Wick Share
+- Status: REJECTED — IS 0.411, 44% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1391: Wick Asymmetry
+- Status: REJECTED — IS 0.569, 33% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1392: Range Stability (CV)
+- Status: REJECTED — IS 0.214, 17% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1393: Body Direction Consistency
+- Status: REJECTED — IS 0.442, 22% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1394: Daily Efficiency (Body/TR)
+- Status: REJECTED — IS 0.126, 11% pos_fract. Near-duplicate of H-1388.
+- Sessions: [2026-04-16 session 212]
+
+## H-1395: Relative Body Size
+- Status: REJECTED — IS 0.881, SH p=0.106, WF 3/4 (one catastrophic fold -2.33), fails sig threshold.
+- Sessions: [2026-04-16 session 212]
+
+## H-1396: Rolling Beta to BTC
+- Status: REJECTED — IS -0.563, 0/18 pos_fract. Pure beta is anti-signal.
+- Sessions: [2026-04-16 session 212]
+
+## H-1397: Beta Change
+- Status: REJECTED — IS 0.312, 28% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1398: Idio Vol
+- Status: REJECTED — IS 0.317, 17% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1399: Alpha Persistence
+- Status: REJECTED — IS 0.924, SH p=0.095, but WF 2/4 and SH collapse H1=1.45 → H2=0.26. High H-012 corr 0.488.
+- Sessions: [2026-04-16 session 212]
+
+## H-1400: R2 Change
+- Status: REJECTED — IS 0.473, 50% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1401: Beta-Adjusted Momentum
+- Status: REJECTED — DUPLICATE of H-1399 (same rankings, identical metrics). High H-012 corr 0.488.
+- Sessions: [2026-04-16 session 212]
+
+## H-1402: Up-Down Beta Diff
+- Status: REJECTED — IS 0.631, WF 3/4 but SH collapse H1=0.90 → H2=-0.19. SH p=0.185.
+- Sessions: [2026-04-16 session 212]
+
+## H-1403: Corr to XS Mean
+- Status: REJECTED — IS 0.253, 11% pos_fract. Corr H-012 -0.451.
+- Sessions: [2026-04-16 session 212]
+
+## H-1404: Path Efficiency
+- Status: REJECTED — IS **1.133**, SH p=0.054 sig, Split 1.87/1.41 excellent BUT WF 1/4 (recent folds all negative). Overfit.
+- Sessions: [2026-04-16 session 212]
+
+## H-1405: Positive Day Share
+- Status: CONFIRMED → deployed as paper trade
+- Idea: Sum of positive returns / sum of absolute returns over 15 days. Upside frequency + magnitude weighting.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=5, N=3, lb=15, dir=high_long. Ranks assets by positive-return contribution; long top 3, short bottom 3.
+- Result: IS Sharpe **1.347**, 100% IS pos, WF **4/4 PERFECT** [0.42, 0.30, 1.26, 1.61], SH **1.56/1.46** p=**0.028**, H-012 corr **0.463**.
+- Notes: STAR of session 212. Stronger WF than most momentum — 4/4 with improving folds. Moderate H-012 correlation (0.46) but not redundant.
+- Sessions: [2026-04-16 session 212]
+
+## H-1406: Max Day Share
+- Status: REJECTED — IS -0.126, 0/18 pos_fract. Signal is inverted — long concentrated-returners LOSES.
+- Sessions: [2026-04-16 session 212]
+
+## H-1407: Return Smoothness
+- Status: REJECTED — IS 0.845, WF 3/4 (one -0.12 fold) but SH p=0.115 fails <0.10 threshold, and H1=0.40 weak.
+- Sessions: [2026-04-16 session 212]
+
+## H-1408: Variance Ratio
+- Status: REJECTED — IS 1.105 but 53% pos_fract fails IS baseline (<66%).
+- Sessions: [2026-04-16 session 212]
+
+## H-1409: Avg Run Length
+- Status: REJECTED — IS 0.590, 39% pos_fract.
+- Sessions: [2026-04-16 session 212]
+
+## H-1410: Cum-Ret Linearity (Signed R2)
+- Status: REJECTED — IS 0.981, WF 2/4 collapse on recent folds. Corr H-012 **0.652** too high.
+- Sessions: [2026-04-16 session 212]
+
+## H-1411: Drift/Diffusion Ratio
+- Status: CONFIRMED → deployed as paper trade
+- Idea: mean(r_t) / std(r_t) over 15 days — classic risk-adjusted drift rate per asset.
+- Instrument: futures (perp). Timeframe: daily.
+- Logic: R=3, N=4, lb=15, dir=high_long. Ranks by Sharpe-like rolling ratio; long top 4, short bottom 4.
+- Result: IS Sharpe **1.278**, 92% IS pos, WF **3/4** [-1.56, 1.08, 1.84, 2.31] (improving), SH **0.96/1.02** stable, p=**0.035**, H-012 corr **0.328**.
+- Notes: Classic single-asset Sharpe ratio applied as XS rank. Most recent 3 WF folds all positive. Stable SH halves.
+- Sessions: [2026-04-16 session 212]

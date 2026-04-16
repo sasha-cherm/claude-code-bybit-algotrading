@@ -1500,3 +1500,19 @@
 - Focus: Paper trade MTM (BTC $74,748), liquidity/market quality (H-1100–H-1107), factor interactions (H-1108–H-1115), regime-conditional (H-1116–H-1123)
 - Done: 176 runners (173→176). 78/173 positive (45%). Avg +0.44%. Demo ~$98,190 (-1.81%). Batch 1: H-1100/H-1102 CONFIRMED+deployed. Batch 2: ALL 8 REJECTED. Batch 3: H-1116 CONFIRMED+deployed. 1123 total hypotheses.
 - Next: Await Q-005 answer. Monitor 176 runners. Explore on-chain data, sentiment APIs, ML ensembles.
+
+### Session 2026-04-14 review+deploy+research (session 201)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 3 new deployments
+- Focus: Paper trade MTM (BTC $74,748), correlation/co-movement (H-1124–H-1131), short-term reversal (H-1132–H-1139), lead-lag/spillover (H-1140–H-1147)
+- Done: 179 runners (176→179). **94/176 positive** (53%, up from 45%). Avg **+0.40%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1124–H-1131, correlation)**: **H-1127 CONFIRMED+deployed** (Beta Stability, IS 1.151, WF **3/3 PERFECT**, p=0.119, corr **0.089**). 7 REJECTED. Correlation signals UNRELIABLE. **Batch 2 (H-1132–H-1139, reversal)**: **H-1135 CONFIRMED+deployed** (Extreme Return Reversal, IS **1.836**, WF **4/4 PERFECT**, IS **100%**, p=**0.011**, corr **-0.002**). **H-1137 CONFIRMED+deployed** (RSI XS). 6 REJECTED. **Batch 3 (H-1140–H-1147, lead-lag)**: **ALL 8 REJECTED**. Lead-lag signals DON'T WORK in crypto XS. **1147 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 179 runners. Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 3 runners created (H-1127/H-1135/H-1137). (session 201)
+### Session 2026-04-14 review+deploy+research (session 202)
+- Goal: Review + Deploy + Research — MTM update, 24 new backtests (3 batches of 8), 6 new deployments
+- Focus: Paper trade MTM (BTC $74,608), technical indicators (H-1148–H-1155), price structure (H-1156–H-1163), risk quality (H-1164–H-1171)
+- Done: 185 runners (179→185). **78/179 positive** (44%). Avg **+0.41%**. Demo ~$98,190 (-1.81%). **Batch 1 (H-1148–H-1155, TA indicators)**: **H-1154 CONFIRMED+deployed** (Price Channel Position, IS **1.324**, WF 3/4, SH **1.26/1.43**, p=**0.067**, corr **0.010** — very stable SH). **H-1155 CONFIRMED+deployed** (ROC Divergence, 1.220, WF 2/4, p=0.091, corr **-0.006**). H-1149=H-1150 (Stochastic≡Williams %R). MACD/CCI/ADX/BB all borderline. **Batch 2 (H-1156–H-1163, price structure)**: **H-1163 CONFIRMED+deployed** (Overnight/Intraday Ratio, IS **1.905**, WF **4/4 PERFECT**, IS **100%**, SH **2.65/1.11**, p=**0.008**, corr **-0.016** — **SESSION BEST**). **H-1162 CONFIRMED+deployed** (Price Acceleration, **1.503**, WF 3/4, p=0.038, corr **-0.049**). **H-1161 CONFIRMED+deployed** (VPT Change, 1.327, WF 3/4, p=0.066, corr -0.021). **H-1156 CONFIRMED+deployed** (MA Convergence, 1.258, WF 3/4, p=0.082, corr 0.012). H-1160 overfit (WF 1/4+SH collapse). H-1159/H-1158 SH collapse. **Batch 3 (H-1164–H-1171, risk quality)**: **H-1166 CONFIRMED not deployed** (Downside Capture, 1.311, WF 3/3, p=0.076 — corr 0.597 too high). ALL OTHERS REJECTED/BORDERLINE. Key finding: risk quality signals are momentum proxies (IR 0.901, capture ratio 0.867, alpha consistency 0.694). **1171 total hypotheses.**
+- Next: Await Q-005 answer. Monitor 185 runners (esp. H-1163/H-1162/H-1154 new stars). Explore on-chain data, sentiment APIs, ML ensembles.
+- Questions added: none
+- Self-modifications: 6 runners created (H-1154/H-1155/H-1156/H-1161/H-1162/H-1163), added to orchestrator. Archived session 192. (session 202)
+
